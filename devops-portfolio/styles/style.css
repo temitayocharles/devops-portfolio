@@ -1,87 +1,49 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   background: #0f172a;
   color: #e2e8f0;
-  margin: 0;
-  padding: 0;
+  margin: 0; padding: 0;
 }
 main {
   max-width: 900px;
-  margin: 60px auto;
+  margin: auto;
   background: #1e293b;
   padding: 40px;
-  border-radius: 14px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
-  animation: fadeIn 1.2s ease-in;
-  position: relative;
+  border-radius: 12px;
+  animation: fadeIn 1s ease-in;
 }
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+nav {
+  background: #1e293b;
+  padding: 1em;
+  text-align: center;
 }
-header img.profile-pic {
-  width: 120px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.6);
-  transition: transform 0.4s;
-}
-header img.profile-pic:hover {
-  transform: scale(1.05);
-}
-a {
+nav a {
   color: #7dd3fc;
+  margin: 0 15px;
   text-decoration: none;
+  font-weight: bold;
 }
-a:hover {
-  text-decoration: underline;
-  color: #bae6fd;
-}
-section h2 {
-  border-bottom: 1px solid #475569;
-  padding-bottom: 0.3em;
-  margin-top: 2em;
-}
-.logo-strip {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-top: 40px;
-  justify-content: flex-start;
-}
-.logo-strip img {
-  height: 40px;
-  animation: bounceIn 1s ease-in-out;
-  transition: transform 0.3s;
-}
-.logo-strip img:hover {
-  transform: scale(1.1);
-}
-.footer {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #334155;
+nav a:hover { text-decoration: underline; }
+footer {
   text-align: center;
-  font-size: 0.9em;
+  padding: 2em 1em;
   color: #64748b;
+  font-size: 0.8em;
 }
-.contact {
-  margin-top: 30px;
+.logo-bar {
   text-align: center;
+  padding: 10px;
 }
-.contact a {
+.logo-bar img {
+  height: 40px;
   margin: 0 10px;
-  display: inline-block;
-}
-.contact img {
-  height: 26px;
-  vertical-align: middle;
+  animation: float 3s infinite ease-in-out;
 }
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-@keyframes bounceIn {
-  from { opacity: 0; transform: scale(0.5); }
-  to { opacity: 1; transform: scale(1); }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
