@@ -1,8 +1,10 @@
-name: Auto Convert Markdown to HTML
+name: Build & Convert Markdown to HTML
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+  workflow_dispatch:
 
 jobs:
   build:
@@ -10,43 +12,52 @@ jobs:
 
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install pandoc
         run: sudo apt-get update && sudo apt-get install -y pandoc
 
       - name: Convert all .md to .html
         run: |
-          for md in devops-portfolio/projects/*.md; do
+          mkdir -p projects
+          shopt -s nullglob
+          for md in projects/*.md; do
             name=$(basename "$md" .md)
-            pandoc "$md" -o "devops-portfolio/projects/$name.html"
+            pandoc "$md" -o "projects/$name.html"
           done
 
       - name: Generate index.html
         run: |
-          {
-            echo "<!DOCTYPE html>"
-            echo "<html><head><meta charset='UTF-8'><title>Charles Portfolio</title><link rel='stylesheet' href='../styles/style.css'></head><body>"
-            echo "<main><h1>Charles — Senior DevOps Engineer</h1><h2>Project Portfolio</h2><ul>"
-            for html in devops-portfolio/projects/*.html; do
-              filename=$(basename "$html")
-              name=$(basename "$html" .html | sed 's/-/ /g' | sed -e 's/\b\(.\)/\u\1/g')
-              echo "<li><a href=\"projects/$filename\">$name</a></li>"
-            done
-            echo "</ul></main></body></html>"
-          } > devops-portfolio/index.html
+          echo '<!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="UTF-8">
+            <title>Charles — DevOps Portfolio</title>
+            <link rel="stylesheet" href="styles/style.css">
+          </head>
+          <body>
+          <main>
+          <h1>Charles — Senior DevOps Engineer</h1>
+          <p>Specializing in scalable CI/CD automation, Kubernetes, security-first infrastructure, and infrastructure-as-code.</p>
+          <h2>Projects</h2>
+          <ul>' > index.html
+
+          for file in projects/*.html; do
+            title=$(basename "$file" .html | sed 's/-/ /g' | awk '{for(i=1;i<=NF;++i) $i=toupper(substr($i,1,1)) substr($i,2)}1')
+            echo "<li><a href=\"$file\">$title</a></li>" >> index.html
+          done
+
+          echo '</ul></main></body></html>' >> index.html
 
       - name: Commit changes
         run: |
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-          git add devops-portfolio/projects/*.html devops-portfolio/index.html
-          git commit -m "CI: Auto-converted Markdown to HTML and updated index" || echo "No changes to commit"
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add projects/*.html index.html
+          git commit -m "chore: auto convert markdown to HTML and regenerate index" || echo "No changes to commit"
 
       - name: Push to main
         uses: ad-m/github-push-action@v0.6.0
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
-          force: true
-
