@@ -1,0 +1,11 @@
+<h1 id="kms-key-rotation-lambda">KMS Key Rotation Lambda</h1>
+<h2 id="overview">Overview</h2>
+<p>Built a Lambda function to automate 90-day key rotation for KMS keys
+without immediate deletion of old keys.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>SSM logging of new key metadata (KeyId, timestamp)</li>
+<li>CloudWatch monitoring with failure alerts</li>
+<li>Tagging for traceability</li>
+<li>Slack/Mattermost alerting integrated</li>
+</ul>
