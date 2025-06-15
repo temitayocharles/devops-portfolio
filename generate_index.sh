@@ -1,46 +1,35 @@
 #!/bin/bash
 
-PROJECTS_DIR="devops-portfolio/projects"
-INDEX_FILE="$PROJECTS_DIR/index.html"
+projects_dir="devops-portfolio/projects"
+index_file="devops-portfolio/index.html"
 
-echo "Generating index.html for project pages..."
-
-cat > "$INDEX_FILE" <<EOF
+cat > "$index_file" <<EOF
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Charles’ DevOps Portfolio</title>
-  <link rel="stylesheet" href="../styles/style.css">
+  <title>Charles | DevOps Projects</title>
+  <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-<nav>
-  <a href="../index.html">Home</a>
-  <a href="../contact.html">Contact</a>
-</nav>
-<main>
-  <header>
-    <h1>Projects Index</h1>
-    <p>Browse all case studies and infrastructure modules below.</p>
-  </header>
-  <section>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <main>
+    <h1>Project Portfolio</h1>
     <ul>
 EOF
 
-for file in "$PROJECTS_DIR"/*.html; do
-  fname=$(basename "$file")
-  [[ "$fname" == "index.html" ]] && continue
-  title=$(echo "$fname" | sed -E 's/-/ /g; s/\.html$//; s/\b./\U&/g')
-  echo "    <li><a href=\"$fname\">$title</a></li>" >> "$INDEX_FILE"
+for html_file in "$projects_dir"/*.html; do
+  name=$(basename "$html_file" .html)
+  display_name=$(echo "$name" | sed 's/-/ /g' | awk '{for(i=1;i<=NF;i++){$i=toupper(substr($i,1,1)) substr($i,2)}}1')
+  echo "      <li><a href=\"projects/$name.html\">$display_name</a></li>" >> "$index_file"
 done
 
-cat >> "$INDEX_FILE" <<EOF
+cat >> "$index_file" <<EOF
     </ul>
-  </section>
-</main>
+  </main>
 </body>
 </html>
 EOF
-
-echo "✅ $INDEX_FILE regenerated."
-

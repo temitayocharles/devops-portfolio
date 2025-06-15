@@ -1,4 +1,4 @@
-name: Auto Generate Portfolio Pages
+name: Auto Generate and Deploy DevOps Portfolio
 
 on:
   push:
@@ -9,27 +9,23 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout source
+    - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Set up Python for Pandoc (if needed)
-      uses: actions/setup-python@v4
-      with:
-        python-version: 3.x
-
-    - name: Install pandoc
+    - name: Set up Pandoc
       run: |
         sudo apt-get update
         sudo apt-get install -y pandoc
 
-    - name: Convert .md to .html
+    - name: Convert Markdown to HTML and clean up
       run: |
         for md in devops-portfolio/projects/*.md; do
           name=$(basename "$md" .md)
           pandoc "$md" -o "devops-portfolio/projects/$name.html"
+          rm -f "$md"
         done
 
-    - name: Regenerate index.html
+    - name: Generate index.html
       run: |
         chmod +x generate_index.sh
         ./generate_index.sh
@@ -39,4 +35,3 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_dir: ./devops-portfolio
-
