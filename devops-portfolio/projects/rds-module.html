@@ -1,27 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Charles DevOps Portfolio</title>
-  <link rel="stylesheet" href="../styles/style.css" />
-</head>
-<body>
-<nav>
-  <a href="../index.html">Home</a>
-  <a href="../contact.html">Contact</a>
-</nav>
-<main>
-</main>
-<footer>
-  <div class="tech-strip">
-    <img class="logo" src="../assets/logos/aws.svg" alt="AWS" />
-    <img class="logo" src="../assets/logos/k8s.svg" alt="Kubernetes" />
-    <img class="logo" src="../assets/logos/docker.svg" alt="Docker" />
-    <img class="logo" src="../assets/logos/terraform.svg" alt="Terraform" />
-    <img class="logo" src="../assets/logos/github-actions.svg" alt="GitHub Actions" />
-    <img class="logo" src="../assets/logos/argocd.svg" alt="ArgoCD" />
-  </div>
-  <p>&copy; 2025 Charles | Built with GitHub Pages & Markdown</p>
-</footer>
-</body>
-</html>
+<h1 id="aws-rds-terraform-module">AWS RDS Terraform Module</h1>
+<h2 id="overview">Overview</h2>
+<p>Provisioned fully parameterized, secure RDS instances using Terraform
+modules integrated with Webforx standards.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>Supports PostgreSQL, MySQL, MSSQL</li>
+<li>Integrated KMS encryption, CloudWatch alarms, automated backups</li>
+<li>SNS-based failure alerts</li>
+<li>Fetched secrets from AWS Parameter Store</li>
+</ul>
+<h2 id="stack">Stack</h2>
+<p>Terraform, AWS RDS, KMS, SNS, CloudWatch, YAML config parsing</p>
+<h2 id="diagram">Diagram</h2>
+<figure>
+<img src="../assets/diagrams/rds-architecture.png"
+alt="RDS Architecture" />
+<figcaption aria-hidden="true">RDS Architecture</figcaption>
+</figure>

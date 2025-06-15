@@ -1,27 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Charles DevOps Portfolio</title>
-  <link rel="stylesheet" href="../styles/style.css" />
-</head>
-<body>
-<nav>
-  <a href="../index.html">Home</a>
-  <a href="../contact.html">Contact</a>
-</nav>
-<main>
-</main>
-<footer>
-  <div class="tech-strip">
-    <img class="logo" src="../assets/logos/aws.svg" alt="AWS" />
-    <img class="logo" src="../assets/logos/k8s.svg" alt="Kubernetes" />
-    <img class="logo" src="../assets/logos/docker.svg" alt="Docker" />
-    <img class="logo" src="../assets/logos/terraform.svg" alt="Terraform" />
-    <img class="logo" src="../assets/logos/github-actions.svg" alt="GitHub Actions" />
-    <img class="logo" src="../assets/logos/argocd.svg" alt="ArgoCD" />
-  </div>
-  <p>&copy; 2025 Charles | Built with GitHub Pages & Markdown</p>
-</footer>
-</body>
-</html>
+<h1 id="kms-key-rotation-lambda">KMS Key Rotation Lambda</h1>
+<h2 id="overview">Overview</h2>
+<p>Built a Lambda function to automate 90-day key rotation for KMS keys
+without immediate deletion of old keys.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>SSM logging of new key metadata (KeyId, timestamp)</li>
+<li>CloudWatch monitoring with failure alerts</li>
+<li>Tagging for traceability</li>
+<li>Slack/Mattermost alerting integrated</li>
+</ul>
