@@ -2,41 +2,86 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: #0f172a;
   color: #e2e8f0;
-  padding: 40px;
-  transition: background 0.5s ease;
+  margin: 0;
+  padding: 0;
 }
 main {
-  max-width: 850px;
-  margin: auto;
+  max-width: 900px;
+  margin: 60px auto;
   background: #1e293b;
   padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  border-radius: 14px;
+  box-shadow: 0 0 40px rgba(0,0,0,0.5);
   animation: fadeIn 1.2s ease-in;
+  position: relative;
 }
-header h1 {
-  font-size: 2em;
-  color: #38bdf8;
-  margin-bottom: 0.5em;
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+header img.profile-pic {
+  width: 120px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  transition: transform 0.4s;
+}
+header img.profile-pic:hover {
+  transform: scale(1.05);
+}
+a {
+  color: #7dd3fc;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  color: #bae6fd;
 }
 section h2 {
   border-bottom: 1px solid #475569;
   padding-bottom: 0.3em;
   margin-top: 2em;
 }
-a {
-  color: #7dd3fc;
-  text-decoration: none;
-  transition: color 0.3s ease;
+.logo-strip {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  justify-content: flex-start;
 }
-a:hover {
-  text-decoration: underline;
-  color: #bae6fd;
+.logo-strip img {
+  height: 40px;
+  animation: bounceIn 1s ease-in-out;
+  transition: transform 0.3s;
 }
-li {
-  padding: 6px 0;
+.logo-strip img:hover {
+  transform: scale(1.1);
+}
+.footer {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #334155;
+  text-align: center;
+  font-size: 0.9em;
+  color: #64748b;
+}
+.contact {
+  margin-top: 30px;
+  text-align: center;
+}
+.contact a {
+  margin: 0 10px;
+  display: inline-block;
+}
+.contact img {
+  height: 26px;
+  vertical-align: middle;
 }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+@keyframes bounceIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
 }
