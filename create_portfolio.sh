@@ -7,183 +7,71 @@ mkdir -p devops-portfolio/assets/screenshots
 mkdir -p devops-portfolio/styles
 mkdir -p devops-portfolio/.github/workflows
 
-# Create README.md
-cat > devops-portfolio/README.md <<EOF
-# Charles — DevOps Engineer Portfolio
-
-Welcome to my portfolio. I'm a DevOps engineer focused on scalable infrastructure, CI/CD automation, Kubernetes operations, and cloud-native security.
-
-## 🔧 Core Skills
-- Terraform modules (parametrized, secure, YAML-driven)
-- CI/CD pipelines (GitHub Actions, Docker, Helm, ArgoCD)
-- Kubernetes (EKS, Istio, Kyverno, autoscaling)
-- Cloud-native tooling (AWS, OCI, ExternalDNS, SOPS, ESO)
-
-## 📁 Projects
-- [RDS Terraform Module](./projects/rds-module.md)
-- [CI/CD with GitHub Actions + EKS](./projects/eks-ci-cd.md)
-- [AWS Budget Alerts via SNS](./projects/aws-budget-sns.md)
-- [Automated EC2 Backup & AMI Cleanup](./projects/backup-ami-cleanup.md)
-- [KMS Key Rotation Lambda](./projects/kms-rotation-lambda.md)
-
-> This portfolio reflects practical, production-style work aligned with enterprise security and performance standards.
-
----
-📨 Reach me via LinkedIn | Email available upon request
+# CNAME for custom domain
+cat > devops-portfolio/CNAME <<EOF
+www.meetcharlie.live
 EOF
 
-# Create index.html
-cat > devops-portfolio/index.html <<EOF
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Charles — DevOps Portfolio</title>
-  <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
-  <main>
-    <h1>Charles — DevOps Engineer</h1>
-    <p>Focused on CI/CD automation, Kubernetes, and cloud-native infrastructure.</p>
-
-    <section>
-      <h2>About Me</h2>
-      <p>I am a DevOps Engineer with a passion for building secure, scalable, and automated infrastructure. I specialize in Kubernetes (EKS), CI/CD pipelines, cloud-native tooling, and infrastructure-as-code using Terraform. Over the course of my DevOps journey, I've independently built and deployed robust systems that follow enterprise best practices. This portfolio showcases real-world experience, problem-solving ability, and a deep commitment to production-grade standards.</p>
-    </section>
-
-    <h2>Projects</h2>
-    <ul>
-      <li><a href="projects/rds-module.md">RDS Terraform Module</a></li>
-      <li><a href="projects/eks-ci-cd.md">CI/CD with GitHub Actions + EKS</a></li>
-      <li><a href="projects/aws-budget-sns.md">AWS Budget Alerts via SNS</a></li>
-      <li><a href="projects/backup-ami-cleanup.md">Automated EC2 Backup & AMI Cleanup</a></li>
-      <li><a href="projects/kms-rotation-lambda.md">KMS Key Rotation Lambda</a></li>
-    </ul>
-  </main>
-</body>
-</html>
+# Export to PDF script
+cat > devops-portfolio/export-to-pdf.sh <<EOF
+#!/bin/bash
+mkdir -p exports
+for file in devops-portfolio/projects/*.html; do
+  name=\$(basename "\$file" .html)
+  wkhtmltopdf "\$file" "exports/\$name.pdf"
+done
+echo "✅ Exported all HTML project pages to PDF."
 EOF
 
-# Create style.css
+chmod +x devops-portfolio/export-to-pdf.sh
+
+# Enhanced styling with animations
 cat > devops-portfolio/styles/style.css <<EOF
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
   padding: 40px;
-  background: #f9f9f9;
-  color: #333;
+  transition: background 0.5s ease;
 }
 main {
-  max-width: 800px;
+  max-width: 850px;
   margin: auto;
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  animation: fadeIn 1.2s ease-in;
 }
-h1 {
-  color: #005f73;
+header h1 {
+  font-size: 2em;
+  color: #38bdf8;
+  margin-bottom: 0.5em;
+}
+section h2 {
+  border-bottom: 1px solid #475569;
+  padding-bottom: 0.3em;
+  margin-top: 2em;
 }
 a {
-  color: #0a9396;
+  color: #7dd3fc;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 a:hover {
   text-decoration: underline;
+  color: #bae6fd;
 }
-section {
-  margin-bottom: 30px;
+li {
+  padding: 6px 0;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 EOF
 
-# Create GitHub Actions deploy workflow
-cat > devops-portfolio/.github/workflows/deploy.yml <<EOF
-name: Deploy Portfolio
+# Keep the rest of your existing content untouched...
+# (Paste the rest of your script here, starting from README.md creation and so on)
 
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: \${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./devops-portfolio
-EOF
-
-# Create project pages
-cat > devops-portfolio/projects/rds-module.md <<EOF
-# AWS RDS Terraform Module
-
-## Overview
-Provisioned fully parameterized, secure RDS instances using Terraform modules integrated with Webforx standards.
-
-## Features
-- Supports PostgreSQL, MySQL, MSSQL
-- Integrated KMS encryption, CloudWatch alarms, automated backups
-- SNS-based failure alerts
-- Fetched secrets from AWS Parameter Store
-
-## Stack
-Terraform, AWS RDS, KMS, SNS, CloudWatch, YAML config parsing
-
-## Diagram
-![RDS Architecture](../assets/diagrams/rds-architecture.png)
-EOF
-
-cat > devops-portfolio/projects/eks-ci-cd.md <<EOF
-# CI/CD with GitHub Actions + EKS
-
-## Overview
-CI/CD pipeline built using GitHub Actions for microservice deployments into EKS clusters using Docker, Helm, and ArgoCD.
-
-## Features
-- gitleaks, Checkov, SonarQube, Trivy scanning
-- Docker image build and push to Amazon ECR
-- Helm deployment to ArgoCD for GitOps rollout
-- Istio + ExternalDNS + Prometheus stack
-
-## Diagram
-![CI/CD Pipeline](../assets/diagrams/cicd-pipeline.png)
-EOF
-
-cat > devops-portfolio/projects/aws-budget-sns.md <<EOF
-# AWS Budget Alerts via SNS
-
-## Overview
-Created a Terraform module to provision AWS Budgets and notify subscribers through SNS and email alerts.
-
-## Features
-- Threshold-based monthly budget alerts
-- Uses centralized YAML input (`webforx.yaml`)
-- SNS topic with email subscription list
-EOF
-
-cat > devops-portfolio/projects/backup-ami-cleanup.md <<EOF
-# Automated EC2 Backup & AMI Cleanup
-
-## Overview
-Automated EC2 snapshot and AMI lifecycle cleanup using Lambda and Terraform.
-
-## Features
-- Snapshot creation and AMI retention policy
-- SNS alerts on success/failure
-- CloudWatch alarms for Lambda
-- Logs to SSM Parameter Store
-EOF
-
-cat > devops-portfolio/projects/kms-rotation-lambda.md <<EOF
-# KMS Key Rotation Lambda
-
-## Overview
-Built a Lambda function to automate 90-day key rotation for KMS keys without immediate deletion of old keys.
-
-## Features
-- SSM logging of new key metadata (KeyId, timestamp)
-- CloudWatch monitoring with failure alerts
-- Tagging for traceability
-- Slack/Mattermost alerting integrated
-EOF
-
-echo "✅ Full portfolio with enhancements created at ./devops-portfolio"
-
+echo "✅ Portfolio upgraded with animations, PDF export, and custom domain setup."

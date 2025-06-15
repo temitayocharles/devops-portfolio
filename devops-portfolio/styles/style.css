@@ -1,23 +1,42 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
   padding: 40px;
-  background: #f9f9f9;
-  color: #333;
+  transition: background 0.5s ease;
 }
 main {
-  max-width: 800px;
+  max-width: 850px;
   margin: auto;
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(0,0,0,0.4);
+  animation: fadeIn 1.2s ease-in;
 }
-h1 {
-  color: #005f73;
+header h1 {
+  font-size: 2em;
+  color: #38bdf8;
+  margin-bottom: 0.5em;
+}
+section h2 {
+  border-bottom: 1px solid #475569;
+  padding-bottom: 0.3em;
+  margin-top: 2em;
 }
 a {
-  color: #0a9396;
+  color: #7dd3fc;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 a:hover {
   text-decoration: underline;
+  color: #bae6fd;
 }
-section {
-  margin-bottom: 30px;
+li {
+  padding: 6px 0;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
