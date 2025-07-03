@@ -1,0 +1,8 @@
+node_modules
+.env
+*.log
+*.sqlite
+pgdata
+.DS_Store
+frontend/nginx.conf~*
+backend/.env
