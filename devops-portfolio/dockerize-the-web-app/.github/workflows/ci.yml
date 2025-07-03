@@ -39,9 +39,9 @@ jobs:
         run: docker build -t frontend-app ./frontend
 
       # Optional: Push to Docker Hub (uncomment if needed)
-      # - name: Push images to Docker Hub
-      #   run: |
-      #     docker tag backend-app yourdockerhub/backend-app:latest
-      #     docker tag frontend-app yourdockerhub/frontend-app:latest
-      #     docker push yourdockerhub/backend-app:latest
-      #     docker push yourdockerhub/frontend-app:latest
+      - name: Push images to Docker Hub
+        run: |
+          docker tag backend-app temitayocharles/backend-app:1.0
+          docker tag frontend-app temitayocharles/frontend-app:1.0
+          docker push temitayocharles/backend-app:1.0
+          docker push temitayocharles/frontend-app:1.0
