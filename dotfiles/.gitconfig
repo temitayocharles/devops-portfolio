@@ -1,0 +1,18 @@
+[user]
+	name = Charlie Temitayo
+	email = your.personal@email.com
+
+[core]
+  editor = code --wait
+
+[init]
+  defaultBranch = main
+
+[credential]
+  helper = store
+
+[includeIf "gitdir:~/Documents/PERSONAL/"]
+  path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/Documents/WEBFORX/"]
+  path = ~/.gitconfig-work
