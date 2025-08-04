@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills & Technologies • Temitayo Charles</title>
+  <meta name="description" content="Technical skills in DevOps, containerization, cloud platforms, and automation tools.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .skill-category {
+      background-color: #1e1e1e;
+      padding: 30px;
+      border-radius: 12px;
+      border-left: 4px solid #66d9ef;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    .skill-category h3 {
+      color: #a6e22e;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .skill-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 15px 0;
+      padding: 10px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .skill-item:last-child {
+      border-bottom: none;
+    }
+
+    .skill-name {
+      font-weight: bold;
+      color: #f0f0f0;
+    }
+
+    .skill-level {
+      display: flex;
+      gap: 5px;
+    }
+
+    .skill-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #333;
+    }
+
+    .skill-dot.filled {
+      background-color: #66d9ef;
+      box-shadow: 0 0 8px rgba(102, 217, 239, 0.5);
+    }
+
+    .certifications {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+      padding: 30px;
+      border-radius: 12px;
+      margin: 40px 0;
+      border: 1px solid #a6e22e;
+    }
+
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      border-bottom: 1px solid #333;
+    }
+
+    .cert-item:last-child {
+      border-bottom: none;
+    }
+
+    .cert-badge {
+      background-color: #66d9ef;
+      color: #0e0e0e;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html" class="active">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="main">
+    <h1>Technical Skills & Expertise</h1>
+    <p>A comprehensive overview of my technical capabilities in DevOps engineering, containerization, and cloud technologies.</p>
+
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3>🐳 Containerization & Orchestration</h3>
+        <div class="skill-item">
+          <span class="skill-name">Docker</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Kubernetes</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Helm</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Docker Compose</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>☁️ Cloud Platforms</h3>
+        <div class="skill-item">
+          <span class="skill-name">AWS</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">EC2, S3, IAM</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">CloudWatch</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>🔧 Infrastructure as Code</h3>
+        <div class="skill-item">
+          <span class="skill-name">Terraform</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Ansible</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">CloudFormation</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>🚀 CI/CD & Automation</h3>
+        <div class="skill-item">
+          <span class="skill-name">GitHub Actions</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Jenkins</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">GitLab CI</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>📊 Monitoring & Security</h3>
+        <div class="skill-item">
+          <span class="skill-name">Prometheus</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Grafana</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">HashiCorp Vault</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Trivy Security Scanning</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="skill-category">
+        <h3>💻 Programming & Scripting</h3>
+        <div class="skill-item">
+          <span class="skill-name">Bash/Shell Scripting</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">Python</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot"></div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <span class="skill-name">YAML/JSON</span>
+          <div class="skill-level">
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+            <div class="skill-dot filled"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certifications">
+      <h2>🏆 Certifications & Learning Path</h2>
+      <div class="cert-item">
+        <div>
+          <strong>AWS Certified DevOps Engineer</strong>
+          <p>In Progress - Expected 2025</p>
+        </div>
+        <span class="cert-badge">Planning</span>
+      </div>
+      <div class="cert-item">
+        <div>
+          <strong>Kubernetes Certified Administrator (CKA)</strong>
+          <p>Target certification for container orchestration expertise</p>
+        </div>
+        <span class="cert-badge">Future</span>
+      </div>
+      <div class="cert-item">
+        <div>
+          <strong>HashiCorp Certified: Terraform Associate</strong>
+          <p>Infrastructure as Code specialization</p>
+        </div>
+        <span class="cert-badge">Planned</span>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h3>Connect with Me</h3>
+    <div class="social-links">
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+  </footer>
+</body>
+</html>

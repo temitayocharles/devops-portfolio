@@ -1,0 +1,42 @@
+<svg width="400" height="250" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="container-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e40af;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#3730a3;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="400" height="250" fill="url(#container-grad)" rx="10"/>
+  
+  <!-- Docker Container -->
+  <g transform="translate(200, 125)">
+    <rect x="-80" y="-40" width="160" height="80" rx="10" fill="#2496ed" stroke="#0db7ed" stroke-width="3"/>
+    <text x="0" y="-15" text-anchor="middle" style="font-family: Arial; font-size: 16px; font-weight: bold; fill: white;">🐳 DevOps</text>
+    <text x="0" y="5" text-anchor="middle" style="font-family: Arial; font-size: 14px; fill: white;">Container</text>
+    <text x="0" y="25" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: #bfdbfe;">50+ Tools Integrated</text>
+  </g>
+  
+  <!-- Tools around container -->
+  <circle cx="80" cy="80" r="20" fill="#ff6b35"/>
+  <text x="80" y="85" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold; fill: white;">K8s</text>
+  
+  <circle cx="320" cy="80" r="20" fill="#623ce4"/>
+  <text x="320" y="85" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold; fill: white;">TF</text>
+  
+  <circle cx="80" cy="170" r="20" fill="#e6522c"/>
+  <text x="80" y="175" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold; fill: white;">📊</text>
+  
+  <circle cx="320" cy="170" r="20" fill="#2088ff"/>
+  <text x="320" y="175" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold; fill: white;">CI</text>
+  
+  <!-- Title -->
+  <text x="200" y="30" text-anchor="middle" style="font-family: Arial; font-size: 18px; font-weight: bold; fill: white;">
+    Ultimate DevOps Container
+  </text>
+  
+  <!-- Status -->
+  <rect x="150" y="200" width="100" height="25" rx="12" fill="rgba(34, 197, 94, 0.3)" stroke="#22c55e" stroke-width="2"/>
+  <text x="200" y="218" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold; fill: #22c55e;">
+    Production Ready
+  </text>
+</svg>

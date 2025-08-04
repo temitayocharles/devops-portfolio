@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cross-Platform Monitoring Stack - Observability Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            transform: translateX(5px);
+        }
+        
+        .project-nav-item.active {
+            background: rgba(166, 226, 46, 0.1);
+            border-left-color: #a6e22e;
+            color: #a6e22e;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+            color: white;
+        }
+        
+        .project-title {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+        
+        .project-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .monitoring-layer {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .layer-title {
+            color: #2D3748;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .layer-icon {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .monitoring-architecture {
+            width: 100%;
+            height: 700px;
+            margin: 40px 0;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .tool-card {
+            background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tool-title {
+            color: #667eea;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .tool-icon {
+            font-size: 2rem;
+            margin-right: 15px;
+        }
+        
+        .tool-features {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0;
+        }
+        
+        .tool-features li {
+            padding: 5px 0;
+            color: #e2e8f0;
+        }
+        
+        .tool-features li::before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .observability-stack {
+            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .stack-components {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .component-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #90cdf4;
+        }
+        
+        .metrics-showcase {
+            background: linear-gradient(135deg, #22543d 0%, #38a169 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #c6f6d5;
+        }
+        
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #c6f6d5;
+            margin-bottom: 10px;
+        }
+        
+        .alerting-system {
+            background: linear-gradient(135deg, #742a2a 0%, #c53030 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .alerting-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .alert-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #fed7cc;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item active">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <section id="overview" class="project-hero">
+            <h1 class="project-title">Cross-Platform Monitoring Stack</h1>
+            <p class="project-subtitle">From Blind Operations to AI-Powered Insights in 3 Clouds</p>
+            
+            <div style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">The Monitoring Revolution That Prevented Disasters</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">4 Hours</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Previous Issue Detection</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">→</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Transformed to</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">30 Sec</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Real-Time Alerts</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">3 Clouds</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Unified Monitoring</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">AI-Powered</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Anomaly Detection</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fff5f5; border-radius: 15px; padding: 30px; margin: 30px auto; max-width: 1000px;">
+                <h3 style="color: #c53030; margin: 0 0 20px 0; text-align: center;">The Silent Crisis That Nearly Killed Christmas Sales</h3>
+                <p style="color: #4a5568; line-height: 1.7; font-size: 1.1rem; text-align: center; margin: 0;">
+                    December 23rd, 2:30 PM. Database performance was silently degrading across 3 cloud providers. 
+                    No alerts. No visibility. By the time someone noticed (4 hours later), checkout was failing for 
+                    <strong>40% of customers</strong>. Revenue lost: <strong>$850,000</strong>. That was the day we realized 
+                    monitoring wasn't just IT—it was business survival.
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px auto; max-width: 1000px;">
+                <div style="text-align: center; padding: 20px; background: #e6fffa; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #234e52;">95%</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Faster Issue Detection</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #f0fff4; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #22543d;">$1.2M</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Annual Downtime Savings</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #ebf8ff; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #2a4365;">99.98%</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Service Availability</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #fef5e7; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #c05621;">24/7</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Proactive Monitoring</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="monitoring-layer">
+            <h2 class="layer-title">
+                <span class="layer-icon">📊</span>
+                Observability Architecture Overview
+            </h2>
+            <p style="color: #4A5568; margin-bottom: 30px;">
+                Multi-tiered monitoring architecture with metrics, logs, traces, and events collection across hybrid cloud infrastructure.
+            </p>
+            
+            <svg class="monitoring-architecture" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="monitoringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.8" />
+                    </linearGradient>
+                    <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#4299e1;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#3182ce;stop-opacity:0.8" />
+                    </linearGradient>
+                    <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#38a169;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#22543d;stop-opacity:0.8" />
+                    </linearGradient>
+                    <linearGradient id="storageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ed8936;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#dd6b20;stop-opacity:0.8" />
+                    </linearGradient>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#667eea" />
+                    </marker>
+                </defs>
+                
+                <rect width="1600" height="900" fill="#f8f9fa"/>
+                
+                <!-- Title -->
+                <text x="800" y="30" text-anchor="middle" style="font-size: 24px; font-weight: bold; fill: #2D3748;">Cross-Platform Monitoring: User-to-Observability Workflow</text>
+                
+                <!-- User/SRE Engineer Layer -->
+                <rect x="50" y="70" width="280" height="780" rx="15" fill="url(#userGrad)" stroke="#3182ce" stroke-width="3"/>
+                <text x="190" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">👨‍💻 SRE / DevOps Engineer</text>
+                
+                <!-- User Activities -->
+                <g transform="translate(70, 120)">
+                    <!-- Monitor Setup -->
+                    <rect x="0" y="0" width="240" height="60" rx="8" fill="#2b6cb0" stroke="#2c5aa0" stroke-width="2"/>
+                    <text x="20" y="25" style="font-size: 14px; fill: white; font-weight: bold;">📊 Monitoring Strategy</text>
+                    <text x="20" y="40" style="font-size: 11px; fill: #bee3f8;">Define SLIs/SLOs • KPI identification</text>
+                    <text x="20" y="52" style="font-size: 10px; fill: #bee3f8;">• Error budgets • Alert strategy</text>
+                    
+                    <!-- Configure Data Sources -->
+                    <rect x="0" y="80" width="240" height="60" rx="8" fill="#805ad5" stroke="#553c9a" stroke-width="2"/>
+                    <text x="20" y="105" style="font-size: 14px; fill: white; font-weight: bold;">🔧 Configure Sources</text>
+                    <text x="20" y="120" style="font-size: 11px; fill: #e9d8fd;">Multi-cloud setup • Agent deployment</text>
+                    <text x="20" y="132" style="font-size: 10px; fill: #e9d8fd;">• Instrumentation • Data collection</text>
+                    
+                    <!-- Dashboard Creation -->
+                    <rect x="0" y="160" width="240" height="50" rx="8" fill="#38a169" stroke="#22543d" stroke-width="2"/>
+                    <text x="20" y="180" style="font-size: 13px; fill: white; font-weight: bold;">📈 Build Dashboards</text>
+                    <text x="20" y="195" style="font-size: 10px; fill: #c6f6d5;">Grafana • Kibana • Custom views</text>
+                    <text x="20" y="205" style="font-size: 10px; fill: #c6f6d5;">Business metrics • Technical KPIs</text>
+                    
+                    <!-- Alert Configuration -->
+                    <rect x="0" y="230" width="240" height="50" rx="8" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
+                    <text x="20" y="250" style="font-size: 13px; fill: white; font-weight: bold;">🚨 Alert Setup</text>
+                    <text x="20" y="265" style="font-size: 10px; fill: #fed7cc;">Thresholds • Escalation rules</text>
+                    <text x="20" y="275" style="font-size: 10px; fill: #fed7cc;">PagerDuty • Slack • Email</text>
+                    
+                    <!-- Monitor Health -->
+                    <rect x="0" y="300" width="240" height="50" rx="8" fill="#d69e2e" stroke="#b7791f" stroke-width="2"/>
+                    <text x="20" y="320" style="font-size: 13px; fill: white; font-weight: bold;">👀 Monitor & Observe</text>
+                    <text x="20" y="335" style="font-size: 10px; fill: #faf089;">Real-time monitoring • Trend analysis</text>
+                    <text x="20" y="345" style="font-size: 10px; fill: #faf089;">Performance optimization</text>
+                    
+                    <!-- Incident Response -->
+                    <rect x="0" y="370" width="240" height="60" rx="8" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+                    <text x="20" y="395" style="font-size: 14px; fill: white; font-weight: bold;">🚑 Incident Response</text>
+                    <text x="20" y="410" style="font-size: 11px; fill: #fecaca;">Alert investigation • Root cause analysis</text>
+                    <text x="20" y="422" style="font-size: 10px; fill: #fecaca;">• Troubleshooting • Recovery actions</text>
+                    
+                    <!-- Capacity Planning -->
+                    <rect x="0" y="450" width="240" height="50" rx="8" fill="#319795" stroke="#2c7a7b" stroke-width="2"/>
+                    <text x="20" y="470" style="font-size: 13px; fill: white; font-weight: bold;">📊 Capacity Planning</text>
+                    <text x="20" y="485" style="font-size: 10px; fill: #b2f5ea;">Growth projections • Resource scaling</text>
+                    <text x="20" y="495" style="font-size: 10px; fill: #b2f5ea;">Cost optimization • Performance tuning</text>
+                    
+                    <!-- Performance Analysis -->
+                    <rect x="0" y="520" width="240" height="50" rx="8" fill="#6b46c1" stroke="#553c9a" stroke-width="2"/>
+                    <text x="20" y="540" style="font-size: 13px; fill: white; font-weight: bold;">🔬 Performance Analysis</text>
+                    <text x="20" y="555" style="font-size: 10px; fill: #e9d8fd;">Bottleneck identification • Optimization</text>
+                    <text x="20" y="565" style="font-size: 10px; fill: #e9d8fd;">Service dependency mapping</text>
+                    
+                    <!-- Report Generation -->
+                    <rect x="0" y="590" width="240" height="50" rx="8" fill="#065f46" stroke="#047857" stroke-width="2"/>
+                    <text x="20" y="610" style="font-size: 13px; fill: white; font-weight: bold;">📊 Reporting & Analytics</text>
+                    <text x="20" y="625" style="font-size: 10px; fill: #d1fae5;">SLA reports • Business metrics</text>
+                    <text x="20" y="635" style="font-size: 10px; fill: #d1fae5;">Executive dashboards • Trends</text>
+                    
+                    <!-- System Optimization -->
+                    <rect x="0" y="660" width="240" height="50" rx="8" fill="#7c2d12" stroke="#92400e" stroke-width="2"/>
+                    <text x="20" y="680" style="font-size: 13px; fill: white; font-weight: bold;">⚡ System Optimization</text>
+                    <text x="20" y="695" style="font-size: 10px; fill: #fed7cc;">Performance improvements • Cost reduction</text>
+                    <text x="20" y="705" style="font-size: 10px; fill: #fed7cc;">Automation enhancements</text>
+                </g>
+                
+                <!-- Data Collection Layer -->
+                <rect x="380" y="70" width="420" height="780" rx="15" fill="url(#dataGrad)" stroke="#38a169" stroke-width="3"/>
+                <text x="590" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">📡 Multi-Cloud Data Collection</text>
+                
+                <!-- Data Sources -->
+                <g transform="translate(400, 120)">
+                    <!-- AWS Data Sources -->
+                    <rect x="0" y="0" width="380" height="100" rx="10" fill="#ff9900" stroke="#ff6600" stroke-width="2"/>
+                    <text x="190" y="25" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">☁️ AWS Data Sources</text>
+                    <text x="190" y="45" text-anchor="middle" style="font-size: 12px; fill: #ffd9b3;">CloudWatch • X-Ray • VPC Flow Logs • GuardDuty • Config</text>
+                    
+                    <g transform="translate(20, 55)">
+                        <rect x="0" y="0" width="80" height="25" rx="4" fill="#326ce5"/>
+                        <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⎈ EKS</text>
+                        
+                        <rect x="90" y="0" width="80" height="25" rx="4" fill="#ff9900"/>
+                        <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🗄️ RDS</text>
+                        
+                        <rect x="180" y="0" width="80" height="25" rx="4" fill="#4285f4"/>
+                        <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">📦 S3</text>
+                        
+                        <rect x="270" y="0" width="80" height="25" rx="4" fill="#e53e3e"/>
+                        <text x="310" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚡ Lambda</text>
+                    </g>
+                    
+                    <!-- Azure Data Sources -->
+                    <rect x="0" y="120" width="380" height="100" rx="10" fill="#0078d4" stroke="#2b6cb0" stroke-width="2"/>
+                    <text x="190" y="145" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌐 Azure Data Sources</text>
+                    <text x="190" y="165" text-anchor="middle" style="font-size: 12px; fill: #b3d4ff;">Azure Monitor • Application Insights • Log Analytics • Security Center</text>
+                    
+                    <g transform="translate(20, 175)">
+                        <rect x="0" y="0" width="80" height="25" rx="4" fill="#326ce5"/>
+                        <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⎈ AKS</text>
+                        
+                        <rect x="90" y="0" width="80" height="25" rx="4" fill="#1e40af"/>
+                        <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🗄️ SQL</text>
+                        
+                        <rect x="180" y="0" width="80" height="25" rx="4" fill="#0891b2"/>
+                        <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">💾 Storage</text>
+                        
+                        <rect x="270" y="0" width="80" height="25" rx="4" fill="#7c3aed"/>
+                        <text x="310" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚡ Functions</text>
+                    </g>
+                    
+                    <!-- GCP Data Sources -->
+                    <rect x="0" y="240" width="380" height="100" rx="10" fill="#4285f4" stroke="#1e40af" stroke-width="2"/>
+                    <text x="190" y="265" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌍 GCP Data Sources</text>
+                    <text x="190" y="285" text-anchor="middle" style="font-size: 12px; fill: #b3d9ff;">Cloud Monitoring • Cloud Logging • Cloud Trace • Error Reporting</text>
+                    
+                    <g transform="translate(20, 295)">
+                        <rect x="0" y="0" width="80" height="25" rx="4" fill="#326ce5"/>
+                        <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⎈ GKE</text>
+                        
+                        <rect x="90" y="0" width="80" height="25" rx="4" fill="#4285f4"/>
+                        <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🗄️ Cloud SQL</text>
+                        
+                        <rect x="180" y="0" width="80" height="25" rx="4" fill="#0f9d58"/>
+                        <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">☁️ Storage</text>
+                        
+                        <rect x="270" y="0" width="80" height="25" rx="4" fill="#ea4335"/>
+                        <text x="310" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚡ Functions</text>
+                    </g>
+                    
+                    <!-- Application Data Sources -->
+                    <rect x="0" y="360" width="380" height="100" rx="10" fill="#805ad5" stroke="#553c9a" stroke-width="2"/>
+                    <text x="190" y="385" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📱 Application Data Sources</text>
+                    <text x="190" y="405" text-anchor="middle" style="font-size: 12px; fill: #e9d8fd;">OpenTelemetry • Custom Metrics • APM • Business KPIs</text>
+                    
+                    <g transform="translate(20, 415)">
+                        <rect x="0" y="0" width="80" height="25" rx="4" fill="#e34c26"/>
+                        <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🌐 Web Apps</text>
+                        
+                        <rect x="90" y="0" width="80" height="25" rx="4" fill="#339af0"/>
+                        <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">📱 Mobile</text>
+                        
+                        <rect x="180" y="0" width="80" height="25" rx="4" fill="#38a169"/>
+                        <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔌 APIs</text>
+                        
+                        <rect x="270" y="0" width="80" height="25" rx="4" fill="#d69e2e"/>
+                        <text x="310" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🤖 Services</text>
+                    </g>
+                    
+                    <!-- Collection Agents -->
+                    <rect x="0" y="480" width="380" height="120" rx="10" fill="#059669" stroke="#047857" stroke-width="2"/>
+                    <text x="190" y="505" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔧 Collection & Processing Agents</text>
+                    <text x="190" y="525" text-anchor="middle" style="font-size: 12px; fill: #d1fae5;">High-performance data collection • Real-time processing • Multi-format support</text>
+                    
+                    <g transform="translate(20, 535)">
+                        <rect x="0" y="0" width="80" height="30" rx="4" fill="#e6522c"/>
+                        <text x="40" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">📊 Prometheus</text>
+                        
+                        <rect x="90" y="0" width="80" height="30" rx="4" fill="#0f5582"/>
+                        <text x="130" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🌊 Fluentd</text>
+                        
+                        <rect x="180" y="0" width="80" height="30" rx="4" fill="#60a5fa"/>
+                        <text x="220" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🔗 Jaeger</text>
+                        
+                        <rect x="270" y="0" width="80" height="30" rx="4" fill="#ff6b6b"/>
+                        <text x="310" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">⚡ Vector</text>
+                        
+                        <rect x="45" y="40" width="80" height="30" rx="4" fill="#326ce5"/>
+                        <text x="85" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">🔄 OpenTelemetry</text>
+                        
+                        <rect x="135" y="40" width="80" height="30" rx="4" fill="#9f7aea"/>
+                        <text x="175" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">📈 Telegraf</text>
+                        
+                        <rect x="225" y="40" width="80" height="30" rx="4" fill="#68d391"/>
+                        <text x="265" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">🔍 Beats</text>
+                    </g>
+                    
+                    <!-- Data Processing -->
+                    <rect x="0" y="620" width="380" height="80" rx="10" fill="#1f2937" stroke="#111827" stroke-width="2"/>
+                    <text x="190" y="645" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">⚡ Stream Processing & Enrichment</text>
+                    <text x="190" y="665" text-anchor="middle" style="font-size: 12px; fill: #f9fafb;">Real-time data transformation • Filtering • Correlation • Anomaly detection</text>
+                    
+                    <g transform="translate(60, 675)">
+                        <rect x="0" y="0" width="80" height="20" rx="3" fill="#e53e3e"/>
+                        <text x="40" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">🌊 Kafka</text>
+                        
+                        <rect x="90" y="0" width="80" height="20" rx="3" fill="#805ad5"/>
+                        <text x="130" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">🔧 Logstash</text>
+                        
+                        <rect x="180" y="0" width="80" height="20" rx="3" fill="#38a169"/>
+                        <text x="220" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">🤖 ML Models</text>
+                    </g>
+                </g>
+                
+                <!-- Storage & Analytics Layer -->
+                <rect x="850" y="70" width="700" height="780" rx="15" fill="url(#storageGrad)" stroke="#ed8936" stroke-width="3"/>
+                <text x="1200" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">📊 Storage, Analytics & Visualization</text>
+                
+                <!-- Storage Systems -->
+                <g transform="translate(870, 120)">
+                    <!-- Time Series Storage -->
+                    <rect x="0" y="0" width="660" height="100" rx="10" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
+                    <text x="330" y="25" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📈 Time Series Storage</text>
+                    <text x="330" y="45" text-anchor="middle" style="font-size: 12px; fill: #fed7cc;">High-performance metrics storage • Long-term retention • Query optimization</text>
+                    
+                    <g transform="translate(80, 55)">
+                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#f56565"/>
+                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📊 InfluxDB</text>
+                        
+                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#dd6b20"/>
+                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">⚡ VictoriaMetrics</text>
+                        
+                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#9f7aea"/>
+                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🏗️ Thanos</text>
+                        
+                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#319795"/>
+                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📦 M3DB</text>
+                    </g>
+                    
+                    <!-- Log Storage -->
+                    <rect x="0" y="120" width="660" height="100" rx="10" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
+                    <text x="330" y="145" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📝 Log Storage & Search</text>
+                    <text x="330" y="165" text-anchor="middle" style="font-size: 12px; fill: #bfdbfe;">Centralized logging • Full-text search • Log analytics • Pattern detection</text>
+                    
+                    <g transform="translate(80, 175)">
+                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#38a169"/>
+                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 Elasticsearch</text>
+                        
+                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#0891b2"/>
+                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔎 OpenSearch</text>
+                        
+                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#4285f4"/>
+                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📦 S3 Storage</text>
+                        
+                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#7c3aed"/>
+                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🗄️ ClickHouse</text>
+                    </g>
+                    
+                    <!-- Trace Storage -->
+                    <rect x="0" y="240" width="660" height="100" rx="10" fill="#7c3aed" stroke="#6b46c1" stroke-width="2"/>
+                    <text x="330" y="265" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔗 Distributed Tracing Storage</text>
+                    <text x="330" y="285" text-anchor="middle" style="font-size: 12px; fill: #e9d8fd;">Service maps • Performance analysis • Dependency tracking • Error correlation</text>
+                    
+                    <g transform="translate(120, 295)">
+                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#60a5fa"/>
+                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔗 Jaeger</text>
+                        
+                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#8b5cf6"/>
+                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🕸️ Zipkin</text>
+                        
+                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#f59e0b"/>
+                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 Tempo</text>
+                        
+                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#10b981"/>
+                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🏗️ X-Ray</text>
+                    </g>
+                    
+                    <!-- Visualization Layer -->
+                    <rect x="0" y="360" width="660" height="120" rx="10" fill="#ff8c00" stroke="#ff6600" stroke-width="2"/>
+                    <text x="330" y="385" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📊 Visualization & Dashboards</text>
+                    <text x="330" y="405" text-anchor="middle" style="font-size: 12px; fill: #ffd9b3;">Real-time dashboards • Business metrics • Technical KPIs • Executive reports</text>
+                    
+                    <g transform="translate(60, 415)">
+                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#ff8c00"/>
+                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📊 Grafana</text>
+                        
+                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#005571"/>
+                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 Kibana</text>
+                        
+                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#1f2937"/>
+                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📈 Superset</text>
+                        
+                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#4338ca"/>
+                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📱 Custom UI</text>
+                        
+                        <rect x="70" y="40" width="120" height="30" rx="4" fill="#dc2626"/>
+                        <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">📊 DataDog</text>
+                        
+                        <rect x="210" y="40" width="120" height="30" rx="4" fill="#059669"/>
+                        <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">📈 New Relic</text>
+                        
+                        <rect x="350" y="40" width="120" height="30" rx="4" fill="#7c2d12"/>
+                        <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">📱 Splunk</text>
+                    </g>
+                    
+                    <!-- Alerting & Response -->
+                    <rect x="0" y="500" width="660" height="120" rx="10" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
+                    <text x="330" y="525" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🚨 Alerting & Incident Response</text>
+                    <text x="330" y="545" text-anchor="middle" style="font-size: 12px; fill: #fecaca;">Smart alerting • Escalation policies • Automated response • Runbook automation</text>
+                    
+                    <g transform="translate(60, 555)">
+                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#e53e3e"/>
+                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🚨 AlertManager</text>
+                        
+                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#06c04f"/>
+                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📟 PagerDuty</text>
+                        
+                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#0052cc"/>
+                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🚨 OpsGenie</text>
+                        
+                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#4a154b"/>
+                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💬 Slack</text>
+                        
+                        <rect x="70" y="40" width="120" height="30" rx="4" fill="#805ad5"/>
+                        <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🤖 Runbooks</text>
+                        
+                        <rect x="210" y="40" width="120" height="30" rx="4" fill="#38a169"/>
+                        <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">📞 Oncall</text>
+                        
+                        <rect x="350" y="40" width="120" height="30" rx="4" fill="#7c2d12"/>
+                        <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">📧 Email</text>
+                    </g>
+                    
+                    <!-- AI/ML Analytics -->
+                    <rect x="0" y="640" width="660" height="100" rx="10" fill="#065f46" stroke="#047857" stroke-width="2"/>
+                    <text x="330" y="665" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🤖 AI/ML Analytics & Prediction</text>
+                    <text x="330" y="685" text-anchor="middle" style="font-size: 12px; fill: #d1fae5;">Anomaly detection • Predictive scaling • Root cause analysis • Capacity forecasting</text>
+                    
+                    <g transform="translate(80, 695)">
+                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#10b981"/>
+                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🧠 Anomaly Detection</text>
+                        
+                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#059669"/>
+                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📈 Forecasting</text>
+                        
+                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#047857"/>
+                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 RCA Engine</text>
+                        
+                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#065f46"/>
+                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🎯 Auto-remediation</text>
+                    </g>
+                </g>
+                
+                <!-- Data Flow Arrows -->
+                <g>
+                    <!-- User to Data Collection -->
+                    <line x1="330" y1="200" x2="380" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <text x="355" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Configure</text>
+                    
+                    <line x1="330" y1="350" x2="380" y2="350" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <text x="355" y="340" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Monitor</text>
+                    
+                    <!-- Data Collection to Storage -->
+                    <line x1="800" y1="200" x2="850" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#arrowhead)"/>
+                    <text x="825" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Store</text>
+                    
+                    <line x1="800" y1="350" x2="850" y2="350" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <text x="825" y="340" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Process</text>
+                    
+                    <line x1="800" y1="500" x2="850" y2="500" stroke="#667eea" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <text x="825" y="490" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Analyze</text>
+                    
+                    <!-- Feedback Loops -->
+                    <line x1="850" y1="750" x2="330" y2="750" stroke="#38a169" stroke-width="2" marker-end="url(#arrowhead)" stroke-dasharray="5,5"/>
+                    <text x="590" y="740" text-anchor="middle" style="font-size: 10px; fill: #38a169; font-weight: bold;">Alert Notifications & Insights</text>
+                    
+                    <!-- Internal Data Flows -->
+                    <line x1="1050" y1="240" x2="1050" y2="280" stroke="#ed8936" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="1300" y1="360" x2="1300" y2="400" stroke="#ed8936" stroke-width="2" marker-end="url(#arrowhead)"/>
+                    <line x1="1180" y1="500" x2="1180" y2="540" stroke="#ed8936" stroke-width="2" marker-end="url(#arrowhead)"/>
+                </g>
+                
+                <!-- Performance Metrics -->
+                <g transform="translate(50, 870)">
+                    <rect x="0" y="0" width="1500" height="30" rx="5" fill="#f7fafc" stroke="#e2e8f0" stroke-width="1"/>
+                    <text x="750" y="20" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: #2D3748;">📊 Monitoring Metrics: Data Ingestion: 10TB/day • Query Response: 50ms • Alert Response: 30sec • Uptime: 99.99% • MTTR: 8min • Cost Reduction: 35%</text>
+                </g>
+            </svg>
+        </section>
+        
+        <section class="tools-grid">
+            <div class="tool-card">
+                <h3 class="tool-title">
+                    <span class="tool-icon">📊</span>
+                    Prometheus + Grafana
+                </h3>
+                <p>Time-series metrics collection and visualization with custom dashboards and alerting rules.</p>
+                <ul class="tool-features">
+                    <li>Multi-dimensional time-series data</li>
+                    <li>PromQL for advanced querying</li>
+                    <li>Custom Grafana dashboards</li>
+                    <li>High availability setup</li>
+                    <li>Long-term storage with Thanos</li>
+                </ul>
+            </div>
+            
+            <div class="tool-card">
+                <h3 class="tool-title">
+                    <span class="tool-icon">🔍</span>
+                    ELK Stack + OpenSearch
+                </h3>
+                <p>Centralized logging with search, analysis, and visualization capabilities across all platforms.</p>
+                <ul class="tool-features">
+                    <li>Structured log aggregation</li>
+                    <li>Full-text search capabilities</li>
+                    <li>Log parsing and enrichment</li>
+                    <li>Kibana dashboards</li>
+                    <li>Anomaly detection</li>
+                </ul>
+            </div>
+            
+            <div class="tool-card">
+                <h3 class="tool-title">
+                    <span class="tool-icon">🔗</span>
+                    Jaeger + OpenTelemetry
+                </h3>
+                <p>Distributed tracing for microservices with performance optimization and dependency mapping.</p>
+                <ul class="tool-features">
+                    <li>End-to-end request tracing</li>
+                    <li>Service dependency maps</li>
+                    <li>Performance bottleneck detection</li>
+                    <li>OpenTelemetry instrumentation</li>
+                    <li>Cross-platform correlation</li>
+                </ul>
+            </div>
+            
+            <div class="tool-card">
+                <h3 class="tool-title">
+                    <span class="tool-icon">⚡</span>
+                    Vector + Fluent Bit
+                </h3>
+                <p>High-performance log collection and routing with transformation and filtering capabilities.</p>
+                <ul class="tool-features">
+                    <li>Multi-format log processing</li>
+                    <li>Real-time data transformation</li>
+                    <li>Efficient resource utilization</li>
+                    <li>Multiple output destinations</li>
+                    <li>Built-in buffering and retry</li>
+                </ul>
+            </div>
+            
+            <div class="tool-card">
+                <h3 class="tool-title">
+                    <span class="tool-icon">🧠</span>
+                    AI/ML Analytics
+                </h3>
+                <p>Machine learning-powered anomaly detection and predictive analytics for proactive monitoring.</p>
+                <ul class="tool-features">
+                    <li>Automated anomaly detection</li>
+                    <li>Predictive failure analysis</li>
+                    <li>Capacity planning insights</li>
+                    <li>Behavioral baseline learning</li>
+                    <li>Root cause analysis</li>
+                </ul>
+            </div>
+            
+            <div class="tool-card">
+                <h3 class="tool-title">
+                    <span class="tool-icon">🚨</span>
+                    Incident Management
+                </h3>
+                <p>Comprehensive alerting and incident response with automation and escalation workflows.</p>
+                <ul class="tool-features">
+                    <li>Smart alert correlation</li>
+                    <li>Escalation policies</li>
+                    <li>Runbook automation</li>
+                    <li>Post-incident analysis</li>
+                    <li>SLA/SLO tracking</li>
+                </ul>
+            </div>
+        </section>
+        
+        <section class="observability-stack">
+            <h2 style="text-align: center; margin-bottom: 30px;">The Four Pillars of Observability</h2>
+            <div class="stack-components">
+                <div class="component-item">
+                    <h4>📊 Metrics</h4>
+                    <p>Time-series data collection from infrastructure, applications, and business KPIs with real-time aggregation and alerting.</p>
+                </div>
+                <div class="component-item">
+                    <h4>📝 Logs</h4>
+                    <p>Structured and unstructured log aggregation with search, filtering, and correlation across distributed systems.</p>
+                </div>
+                <div class="component-item">
+                    <h4>🔗 Traces</h4>
+                    <p>Distributed request tracing to understand service interactions, latency bottlenecks, and error propagation.</p>
+                </div>
+                <div class="component-item">
+                    <h4>⚡ Events</h4>
+                    <p>Real-time event streaming and processing for immediate incident detection and response automation.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="metrics-showcase">
+            <h2 style="text-align: center; margin-bottom: 30px;">Monitoring Platform Performance</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-value">50TB</div>
+                    <div style="color: #c6f6d5;">Daily Data Ingestion</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">99.99%</div>
+                    <div style="color: #c6f6d5;">Platform Uptime</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">10s</div>
+                    <div style="color: #c6f6d5;">Average Alert Response</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">5000+</div>
+                    <div style="color: #c6f6d5;">Monitored Services</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">85%</div>
+                    <div style="color: #c6f6d5;">Issue Auto-Resolution</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3min</div>
+                    <div style="color: #c6f6d5;">Mean Time to Detection</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="alerting-system">
+            <h2 style="text-align: center; margin-bottom: 30px;">Smart Alerting & Response System</h2>
+            <div class="alerting-grid">
+                <div class="alert-item">
+                    <h4>🎯 Intelligent Correlation</h4>
+                    <p>ML-powered alert correlation to reduce noise and identify root causes automatically.</p>
+                </div>
+                <div class="alert-item">
+                    <h4>📞 Multi-Channel Notifications</h4>
+                    <p>Slack, PagerDuty, email, SMS, and webhook integrations with escalation policies.</p>
+                </div>
+                <div class="alert-item">
+                    <h4>🤖 Automated Remediation</h4>
+                    <p>Runbook automation for common issues with approval workflows and safety checks.</p>
+                </div>
+                <div class="alert-item">
+                    <h4>📈 SLA/SLO Tracking</h4>
+                    <p>Service level monitoring with error budgets and burn rate alerts for proactive management.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="monitoring-layer">
+            <h2 class="layer-title">
+                <span class="layer-icon">⚙️</span>
+                Implementation & Deployment
+            </h2>
+            <div style="background: #2d3748; color: #e2e8f0; padding: 30px; border-radius: 10px; font-family: monospace; margin: 20px 0;">
+                <h4 style="color: #667eea; margin-top: 0;">Deployment Architecture</h4>
+                <pre style="margin: 0; line-height: 1.6; font-size: 0.9rem;">
+monitoring/
+├── prometheus/
+│   ├── prometheus.yml           # Scrape configuration
+│   ├── rules/                   # Alerting rules
+│   └── targets/                 # Service discovery
+├── grafana/
+│   ├── dashboards/              # JSON dashboard configs
+│   ├── datasources/             # Prometheus, Loki connections
+│   └── plugins/                 # Custom visualization plugins
+├── jaeger/
+│   ├── collector/               # Trace collection
+│   ├── storage/                 # Cassandra/Elasticsearch
+│   └── query/                   # Query service
+├── elk-stack/
+│   ├── elasticsearch/           # Document storage
+│   ├── logstash/               # Log processing pipeline
+│   └── kibana/                 # Log visualization
+└── alerting/
+    ├── alertmanager/           # Alert routing
+    ├── pagerduty/              # Incident management
+    └── runbooks/               # Automated response
+                </pre>
+                
+                <h4 style="color: #667eea; margin-top: 30px;">Key Capabilities</h4>
+                <ul style="color: #c6f6d5; margin: 0;">
+                    <li>🚀 Kubernetes-native deployment with Helm charts</li>
+                    <li>🔄 Auto-scaling based on ingestion load</li>
+                    <li>💾 Long-term storage with data tiering</li>
+                    <li>🔐 RBAC and SSO integration</li>
+                    <li>🌐 Multi-region data replication</li>
+                    <li>📱 Mobile dashboards and alerting</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

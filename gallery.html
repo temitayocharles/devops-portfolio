@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visual Gallery • Ultimate DevOps Portfolio</title>
+    <meta name="description" content="Visual gallery showcasing DevOps tools, dashboards, container workflows, and infrastructure in action.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .gallery-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .gallery-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        
+        .gallery-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .gallery-nav {
+            background: #f8f9fa;
+            padding: 20px;
+            margin-bottom: 40px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .gallery-nav button {
+            background: #2d3748;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .gallery-nav button:hover,
+        .gallery-nav button.active {
+            background: #66d9ef;
+            color: #0e0e0e;
+            transform: translateY(-2px);
+        }
+        
+        .gallery-section {
+            margin-bottom: 60px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-header h2 {
+            color: #2d3748;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .section-header p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .gallery-item {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-bottom: 3px solid #66d9ef;
+        }
+        
+        .gallery-item-content {
+            padding: 25px;
+        }
+        
+        .gallery-item h3 {
+            color: #2d3748;
+            margin: 0 0 10px 0;
+            font-size: 1.3rem;
+        }
+        
+        .gallery-item p {
+            color: #4a5568;
+            line-height: 1.6;
+            margin: 0 0 15px 0;
+        }
+        
+        .gallery-item .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .gallery-item .tag {
+            background: linear-gradient(135deg, #66d9ef, #a6e22e);
+            color: #0e0e0e;
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
+        .placeholder-image {
+            background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+            font-weight: bold;
+            font-size: 1.1rem;
+            height: 250px;
+        }
+        
+        .demo-preview {
+            background: #1e1e1e;
+            color: white;
+            padding: 60px 20px;
+            margin: 60px 0;
+            border-radius: 15px;
+        }
+        
+        .demo-preview h2 {
+            text-align: center;
+            color: #66d9ef;
+            margin-bottom: 40px;
+            font-size: 2.5rem;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .demo-item {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .demo-item:hover {
+            border-color: #66d9ef;
+            transform: translateY(-5px);
+        }
+        
+        .demo-item h4 {
+            color: #a6e22e;
+            margin: 0 0 15px 0;
+            font-size: 1.2rem;
+        }
+        
+        .demo-item .demo-gif {
+            width: 100%;
+            height: 200px;
+            background: #000;
+            border-radius: 8px;
+            margin: 15px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #66d9ef;
+            overflow: hidden;
+        }
+        
+        .demo-item .demo-gif img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 6px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #a6e22e 0%, #66d9ef 100%);
+            color: #0e0e0e;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin: 60px 0;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            background: #0e0e0e;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            background: #2d3748;
+            transform: translateY(-2px);
+        }
+        
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about-me.html">About</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="gallery.html" class="active">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="gallery-hero">
+        <h1>📸 Visual Gallery</h1>
+        <p>
+            Explore screenshots, demonstrations, and visual documentation of DevOps tools, 
+            container workflows, monitoring dashboards, and infrastructure automation in action.
+        </p>
+    </div>
+
+    <div class="main">
+        <div class="gallery-nav">
+            <button class="active" onclick="showSection('all')">🔍 All Images</button>
+            <button onclick="showSection('containers')">🐳 Container Demos</button>
+            <button onclick="showSection('monitoring')">📊 Monitoring & Dashboards</button>
+            <button onclick="showSection('tools')">🛠️ DevOps Tools</button>
+            <button onclick="showSection('security')">🔒 Security & Vault</button>
+            <button onclick="showSection('infrastructure')">☁️ Infrastructure</button>
+        </div>
+
+        <!-- Container Demos Section -->
+        <section id="containers" class="gallery-section">
+            <div class="section-header">
+                <h2>🐳 Container Demonstrations</h2>
+                <p>Real-time container deployment, startup sequences, and Docker workflow demonstrations</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/thumbnails/ultimate-devops-container.svg" alt="Ultimate DevOps Container" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>Ultimate DevOps Container</h3>
+                        <p>Comprehensive container with 50+ integrated DevOps tools, monitoring stack, and development environment.</p>
+                        <div class="tags">
+                            <span class="tag">Docker</span>
+                            <span class="tag">50+ Tools</span>
+                            <span class="tag">Production Ready</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/thumbnails/enterprise-cicd.svg" alt="Enterprise CI/CD Pipeline" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>Enterprise CI/CD Pipeline</h3>
+                        <p>GitOps workflow with automated testing, security scanning, and multi-environment deployment.</p>
+                        <div class="tags">
+                            <span class="tag">GitOps</span>
+                            <span class="tag">Security</span>
+                            <span class="tag">Multi-Environment</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/thumbnails/aws-infrastructure.svg" alt="AWS Infrastructure" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>AWS Infrastructure Automation</h3>
+                        <p>Terraform-managed AWS infrastructure with EKS, RDS, and comprehensive monitoring setup.</p>
+                        <div class="tags">
+                            <span class="tag">Terraform</span>
+                            <span class="tag">AWS EKS</span>
+                            <span class="tag">Infrastructure as Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DevOps Tools Section -->
+        <section id="tools" class="gallery-section">
+            <div class="section-header">
+                <h2>🛠️ DevOps Tools in Action</h2>
+                <p>Screenshots and demonstrations of the 30+ pre-installed DevOps tools and their configurations</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/technology-stack-showcase.svg" alt="Technology Stack" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>Complete Technology Stack</h3>
+                        <p>Comprehensive overview of 50+ DevOps tools organized by category with integrated workflow.</p>
+                        <div class="tags">
+                            <span class="tag">50+ Tools</span>
+                            <span class="tag">Full Stack</span>
+                            <span class="tag">Integration</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="placeholder-image">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 10px;">💻</div>
+                            VS Code Server Interface<br>
+                            <small>(Screenshot extract)</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3>VS Code Server Dashboard</h3>
+                        <p>Browser-based VS Code with extensions, themes, and integrated terminal access.</p>
+                        <div class="tags">
+                            <span class="tag">VS Code</span>
+                            <span class="tag">Browser</span>
+                            <span class="tag">Extensions</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="placeholder-image">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 10px;">⌨️</div>
+                            Terminal with Tools<br>
+                            <small>(Screenshot extract)</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3>Enhanced Terminal Experience</h3>
+                        <p>Beautiful terminal with Oh My Zsh, auto-completion, and all DevOps tools readily available.</p>
+                        <div class="tags">
+                            <span class="tag">Terminal</span>
+                            <span class="tag">CLI Tools</span>
+                            <span class="tag">Productivity</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monitoring & Dashboards Section -->
+        <section id="monitoring" class="gallery-section">
+            <div class="section-header">
+                <h2>📊 Monitoring & Dashboards</h2>
+                <p>Real-time monitoring dashboards, metrics visualization, and observability tools</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/thumbnails/monitoring-stack.svg" alt="Monitoring Stack" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>Cross-Platform Monitoring</h3>
+                        <p>Prometheus, Grafana, and Jaeger integration with real-time dashboards and observability.</p>
+                        <div class="tags">
+                            <span class="tag">Prometheus</span>
+                            <span class="tag">Grafana</span>
+                            <span class="tag">Observability</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/ci-pipeline-example.svg" alt="CI/CD Pipeline Flow" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>Enterprise CI/CD Flow</h3>
+                        <p>Complete pipeline visualization from code commit to production deployment with metrics.</p>
+                        <div class="tags">
+                            <span class="tag">Pipeline</span>
+                            <span class="tag">Flow</span>
+                            <span class="tag">Metrics</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <img src="images/devops-frustration-vs-solution.svg" alt="DevOps Transformation" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>DevOps Transformation Journey</h3>
+                        <p>Visual comparison showing the evolution from manual processes to automated DevOps excellence.</p>
+                        <div class="tags">
+                            <span class="tag">Transformation</span>
+                            <span class="tag">Before/After</span>
+                            <span class="tag">ROI</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security & Vault Section -->
+        <section id="security" class="gallery-section">
+            <div class="section-header">
+                <h2>🔒 Security & Vault</h2>
+                <p>HashiCorp Vault configuration, secrets management, and security features demonstration</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="images/thumbnails/kubernetes-vpn.svg" alt="Kubernetes VPN" style="height: 250px; object-fit: cover;">
+                    <div class="gallery-item-content">
+                        <h3>Kubernetes VPN Solution</h3>
+                        <p>WireGuard-based VPN with network policies and zero-trust security architecture.</p>
+                        <div class="tags">
+                            <span class="tag">WireGuard</span>
+                            <span class="tag">Zero-Trust</span>
+                            <span class="tag">Network Policies</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="placeholder-image">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
+                            TLS Certificate Management<br>
+                            <small>(Screenshot extract)</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3>TLS Security Configuration</h3>
+                        <p>Automatic TLS certificate generation, HTTPS endpoints, and secure communication setup.</p>
+                        <div class="tags">
+                            <span class="tag">TLS</span>
+                            <span class="tag">HTTPS</span>
+                            <span class="tag">Certificates</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="placeholder-image">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 10px;">🔐</div>
+                            Security Scanning Tools<br>
+                            <small>(Screenshot extract)</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3>Security Scanning Results</h3>
+                        <p>Trivy and Checkov security scans showing vulnerability assessments and compliance checks.</p>
+                        <div class="tags">
+                            <span class="tag">Trivy</span>
+                            <span class="tag">Checkov</span>
+                            <span class="tag">Scanning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infrastructure Section -->
+        <section id="infrastructure" class="gallery-section">
+            <div class="section-header">
+                <h2>☁️ Infrastructure & Deployment</h2>
+                <p>Infrastructure as Code, cloud deployments, and automation workflows</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="placeholder-image">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 10px;">🚀</div>
+                            Complete Workflow Demo<br>
+                            <small>(From demo-05-full-workflow.gif)</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3>End-to-End DevOps Workflow</h3>
+                        <p>Complete demonstration from container startup to infrastructure deployment and monitoring setup.</p>
+                        <div class="tags">
+                            <span class="tag">Full Workflow</span>
+                            <span class="tag">E2E Demo</span>
+                            <span class="tag">DevOps</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="placeholder-image">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 10px;">🏗️</div>
+                            Terraform Execution<br>
+                            <small>(Screenshot extract)</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3>Infrastructure as Code</h3>
+                        <p>Terraform plan and apply operations showing infrastructure provisioning and management.</p>
+                        <div class="tags">
+                            <span class="tag">Terraform</span>
+                            <span class="tag">IaC</span>
+                            <span class="tag">Automation</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="gallery-item">
+                    <div class="placeholder-image">
+                        <div>
+                            <div style="font-size: 3rem; margin-bottom: 10px;">⚙️</div>
+                            Kubernetes Cluster Management<br>
+                            <small>(Screenshot extract)</small>
+                        </div>
+                    </div>
+                    <div class="gallery-item-content">
+                        <h3>Kubernetes Operations</h3>
+                        <p>kubectl commands, cluster management, and container orchestration in action.</p>
+                        <div class="tags">
+                            <span class="tag">Kubernetes</span>
+                            <span class="tag">kubectl</span>
+                            <span class="tag">Orchestration</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Demos Preview Section -->
+        <div class="demo-preview">
+            <h2>🎬 Live Demonstration Videos</h2>
+            <p style="text-align: center; margin-bottom: 40px; color: #f0f0f0; font-size: 1.1rem;">
+                Watch actual demonstrations of the DevOps container in action
+            </p>
+            
+            <div class="demo-grid">
+                <div class="demo-item">
+                    <h4>🚀 Quick Start Demo</h4>
+                    <div class="demo-gif">
+                        <img src="images/demos/demo-01-docker-pull.gif" alt="Docker Pull Demo">
+                    </div>
+                    <p style="color: #f0f0f0; margin: 0;">30-second container deployment</p>
+                </div>
+
+                <div class="demo-item">
+                    <h4>⚡ Service Startup</h4>
+                    <div class="demo-gif">
+                        <img src="images/demos/demo-02-container-startup.gif" alt="Container Startup Demo">
+                    </div>
+                    <p style="color: #f0f0f0; margin: 0;">Automatic service initialization</p>
+                </div>
+
+                <div class="demo-item">
+                    <h4>🛠️ Tools Showcase</h4>
+                    <div class="demo-gif">
+                        <img src="images/demos/demo-03-tools-showcase.gif" alt="Tools Showcase Demo">
+                    </div>
+                    <p style="color: #f0f0f0; margin: 0;">30+ DevOps tools demonstration</p>
+                </div>
+
+                <div class="demo-item">
+                    <h4>🔧 Environment Setup</h4>
+                    <div class="demo-gif">
+                        <img src="images/demos/demo-04-environment-setup.gif" alt="Environment Setup Demo">
+                    </div>
+                    <p style="color: #f0f0f0; margin: 0;">Terminal and tool configuration</p>
+                </div>
+
+                <div class="demo-item" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto;">
+                    <h4>🚀 Complete Workflow</h4>
+                    <div class="demo-gif">
+                        <img src="images/demos/demo-05-full-workflow.gif" alt="Full Workflow Demo">
+                    </div>
+                    <p style="color: #f0f0f0; margin: 0;">End-to-end DevOps pipeline demonstration</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action Section -->
+        <div class="cta-section">
+            <h2>🚀 Ready to Experience It Yourself?</h2>
+            <p>Don't just watch the demos—try the Ultimate DevOps Container and see the power of containerized development environments.</p>
+            <div class="cta-buttons">
+                <a href="project-ultimate-devops-container.html" class="cta-button">📖 View Full Project Details</a>
+                <a href="https://hub.docker.com/r/temitayocharles/devops-charlie" target="_blank" class="cta-button">🐳 Get from DockerHub</a>
+                <a href="contact.html" class="cta-button">💬 Get in Touch</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Connect with Me</h3>
+        <div class="social-links">
+            <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+            <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+            <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+        </div>
+        <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+    </footer>
+
+    <script>
+        function showSection(category) {
+            // Update active button
+            document.querySelectorAll('.gallery-nav button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Show/hide sections
+            const sections = document.querySelectorAll('.gallery-section');
+            
+            if (category === 'all') {
+                sections.forEach(section => {
+                    section.style.display = 'block';
+                });
+            } else {
+                sections.forEach(section => {
+                    if (section.id === category) {
+                        section.style.display = 'block';
+                    } else {
+                        section.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>

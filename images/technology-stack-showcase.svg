@@ -1,0 +1,193 @@
+<svg width="1400" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="tech-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1b4b;stop-opacity:0.9" />
+      <stop offset="100%" style="stop-color:#312e81;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1400" height="800" fill="url(#tech-bg)"/>
+  
+  <!-- Title -->
+  <text x="700" y="40" text-anchor="middle" style="font-family: Arial; font-size: 32px; font-weight: bold; fill: white;">
+    🛠️ Complete DevOps Technology Stack
+  </text>
+  <text x="700" y="70" text-anchor="middle" style="font-family: Arial; font-size: 16px; fill: #a5b4fc;">
+    Production-tested tools across the entire software delivery lifecycle
+  </text>
+  
+  <!-- Cloud Platforms -->
+  <g transform="translate(50, 100)">
+    <rect x="0" y="0" width="400" height="120" rx="15" fill="rgba(255, 153, 0, 0.2)" stroke="#ff9900" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" style="font-family: Arial; font-size: 18px; font-weight: bold; fill: white;">☁️ Cloud Platforms</text>
+    
+    <rect x="20" y="40" width="100" height="60" rx="8" fill="#ff9900"/>
+    <text x="70" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">AWS</text>
+    <text x="70" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">EKS • EC2 • RDS</text>
+    
+    <rect x="140" y="40" width="100" height="60" rx="8" fill="#0078d4"/>
+    <text x="190" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Azure</text>
+    <text x="190" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">AKS • VMs • SQL</text>
+    
+    <rect x="260" y="40" width="100" height="60" rx="8" fill="#4285f4"/>
+    <text x="310" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">GCP</text>
+    <text x="310" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">GKE • Compute</text>
+  </g>
+  
+  <!-- Containers & Orchestration -->
+  <g transform="translate(500, 100)">
+    <rect x="0" y="0" width="400" height="120" rx="15" fill="rgba(56, 161, 105, 0.2)" stroke="#38a169" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" style="font-family: Arial; font-size: 18px; font-weight: bold; fill: white;">🐳 Container Orchestration</text>
+    
+    <rect x="20" y="40" width="100" height="60" rx="8" fill="#2496ed"/>
+    <text x="70" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Docker</text>
+    <text x="70" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Containers</text>
+    
+    <rect x="140" y="40" width="100" height="60" rx="8" fill="#326ce5"/>
+    <text x="190" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Kubernetes</text>
+    <text x="190" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Orchestration</text>
+    
+    <rect x="260" y="40" width="100" height="60" rx="8" fill="#0f4c75"/>
+    <text x="310" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Helm</text>
+    <text x="310" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Package Mgr</text>
+  </g>
+  
+  <!-- IaC & Config -->
+  <g transform="translate(950, 100)">
+    <rect x="0" y="0" width="400" height="120" rx="15" fill="rgba(139, 92, 246, 0.2)" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" style="font-family: Arial; font-size: 18px; font-weight: bold; fill: white;">🏗️ Infrastructure as Code</text>
+    
+    <rect x="20" y="40" width="100" height="60" rx="8" fill="#623ce4"/>
+    <text x="70" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Terraform</text>
+    <text x="70" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Provisioning</text>
+    
+    <rect x="140" y="40" width="100" height="60" rx="8" fill="#ee0000"/>
+    <text x="190" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Ansible</text>
+    <text x="190" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Config Mgmt</text>
+    
+    <rect x="260" y="40" width="100" height="60" rx="8" fill="#f14e32"/>
+    <text x="310" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Packer</text>
+    <text x="310" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Images</text>
+  </g>
+  
+  <!-- CI/CD Pipeline -->
+  <g transform="translate(50, 270)">
+    <rect x="0" y="0" width="400" height="120" rx="15" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" style="font-family: Arial; font-size: 18px; font-weight: bold; fill: white;">🔄 CI/CD Pipeline</text>
+    
+    <rect x="20" y="40" width="100" height="60" rx="8" fill="#2088ff"/>
+    <text x="70" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">GitHub</text>
+    <text x="70" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Actions</text>
+    
+    <rect x="140" y="40" width="100" height="60" rx="8" fill="#d33833"/>
+    <text x="190" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Jenkins</text>
+    <text x="190" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Automation</text>
+    
+    <rect x="260" y="40" width="100" height="60" rx="8" fill="#ef7b4d"/>
+    <text x="310" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">ArgoCD</text>
+    <text x="310" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">GitOps</text>
+  </g>
+  
+  <!-- Monitoring & Observability -->
+  <g transform="translate(500, 270)">
+    <rect x="0" y="0" width="400" height="120" rx="15" fill="rgba(34, 197, 94, 0.2)" stroke="#22c55e" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" style="font-family: Arial; font-size: 18px; font-weight: bold; fill: white;">📊 Monitoring & Observability</text>
+    
+    <rect x="20" y="40" width="100" height="60" rx="8" fill="#e6522c"/>
+    <text x="70" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Prometheus</text>
+    <text x="70" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Metrics</text>
+    
+    <rect x="140" y="40" width="100" height="60" rx="8" fill="#ff8c00"/>
+    <text x="190" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Grafana</text>
+    <text x="190" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Dashboards</text>
+    
+    <rect x="260" y="40" width="100" height="60" rx="8" fill="#60a5fa"/>
+    <text x="310" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Jaeger</text>
+    <text x="310" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Tracing</text>
+  </g>
+  
+  <!-- Security -->
+  <g transform="translate(950, 270)">
+    <rect x="0" y="0" width="400" height="120" rx="15" fill="rgba(239, 68, 68, 0.2)" stroke="#ef4444" stroke-width="2"/>
+    <text x="200" y="25" text-anchor="middle" style="font-family: Arial; font-size: 18px; font-weight: bold; fill: white;">🔐 Security & Compliance</text>
+    
+    <rect x="20" y="40" width="100" height="60" rx="8" fill="#000000"/>
+    <text x="70" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Vault</text>
+    <text x="70" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Secrets</text>
+    
+    <rect x="140" y="40" width="100" height="60" rx="8" fill="#4f46e5"/>
+    <text x="190" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">SOPS</text>
+    <text x="190" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Encryption</text>
+    
+    <rect x="260" y="40" width="100" height="60" rx="8" fill="#059669"/>
+    <text x="310" y="65" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">Trivy</text>
+    <text x="310" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: white;">Scanning</text>
+  </g>
+  
+  <!-- Bottom Integration Flow -->
+  <g transform="translate(200, 450)">
+    <rect x="0" y="0" width="1000" height="280" rx="20" fill="rgba(15, 23, 42, 0.8)" stroke="#334155" stroke-width="2"/>
+    <text x="500" y="30" text-anchor="middle" style="font-family: Arial; font-size: 20px; font-weight: bold; fill: white;">
+      🔗 Integrated DevOps Workflow
+    </text>
+    
+    <!-- Workflow Steps -->
+    <g transform="translate(50, 60)">
+      <!-- Developer commits -->
+      <circle cx="50" cy="50" r="40" fill="#4ade80" stroke="#22c55e" stroke-width="3"/>
+      <text x="50" y="45" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold;">👨‍💻</text>
+      <text x="50" y="60" text-anchor="middle" style="font-family: Arial; font-size: 8px;">Developer</text>
+      
+      <!-- Arrow -->
+      <polygon points="100,50 140,45 140,55" fill="#60a5fa"/>
+      
+      <!-- CI Pipeline -->
+      <circle cx="180" cy="50" r="40" fill="#3b82f6" stroke="#2563eb" stroke-width="3"/>
+      <text x="180" y="45" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold;">🔨</text>
+      <text x="180" y="60" text-anchor="middle" style="font-family: Arial; font-size: 8px;">CI Build</text>
+      
+      <!-- Arrow -->
+      <polygon points="230,50 270,45 270,55" fill="#60a5fa"/>
+      
+      <!-- Security Scan -->
+      <circle cx="310" cy="50" r="40" fill="#ef4444" stroke="#dc2626" stroke-width="3"/>
+      <text x="310" y="45" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold;">🔐</text>
+      <text x="310" y="60" text-anchor="middle" style="font-family: Arial; font-size: 8px;">Security</text>
+      
+      <!-- Arrow -->
+      <polygon points="360,50 400,45 400,55" fill="#60a5fa"/>
+      
+      <!-- Deploy -->
+      <circle cx="440" cy="50" r="40" fill="#8b5cf6" stroke="#7c3aed" stroke-width="3"/>
+      <text x="440" y="45" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold;">🚀</text>
+      <text x="440" y="60" text-anchor="middle" style="font-family: Arial; font-size: 8px;">Deploy</text>
+      
+      <!-- Arrow -->
+      <polygon points="490,50 530,45 530,55" fill="#60a5fa"/>
+      
+      <!-- Monitor -->
+      <circle cx="570" cy="50" r="40" fill="#f59e0b" stroke="#d97706" stroke-width="3"/>
+      <text x="570" y="45" text-anchor="middle" style="font-family: Arial; font-size: 10px; font-weight: bold;">📊</text>
+      <text x="570" y="60" text-anchor="middle" style="font-family: Arial; font-size: 8px;">Monitor</text>
+      
+      <!-- Feedback Loop -->
+      <path d="M 580 80 Q 320 120 60 80" stroke="#22c55e" stroke-width="3" fill="none" stroke-dasharray="5,5"/>
+      <polygon points="60,80 80,75 80,85" fill="#22c55e"/>
+      <text x="320" y="140" text-anchor="middle" style="font-family: Arial; font-size: 12px; fill: #22c55e;">Continuous Feedback Loop</text>
+    </g>
+    
+    <!-- Metrics -->
+    <rect x="50" y="200" width="900" height="60" rx="10" fill="rgba(59, 130, 246, 0.1)" stroke="#3b82f6" stroke-width="1"/>
+    <text x="500" y="225" text-anchor="middle" style="font-family: Arial; font-size: 14px; font-weight: bold; fill: white;">
+      🎯 Production Metrics
+    </text>
+    <text x="500" y="245" text-anchor="middle" style="font-family: Arial; font-size: 12px; fill: #93c5fd;">
+      99.9% Uptime • 5min Deploy Time • 50+ Deployments/Week • Zero Security Incidents • 35% Cost Reduction
+    </text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="700" y="780" text-anchor="middle" style="font-family: Arial; font-size: 16px; font-weight: bold; fill: white;">
+    Enterprise-grade DevOps stack powering modern software delivery
+  </text>
+</svg>

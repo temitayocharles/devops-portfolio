@@ -1,0 +1,58 @@
+# DevOps Portfolio - File Exclusions
+
+## Development Files
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+## System Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+## IDE Files
+.vscode/
+.idea/
+*.sublime-*
+
+## Build Files
+node_modules/
+dist/
+build/
+.cache/
+
+## Backup Files
+*.bak
+*.backup
+*.orig
+
+## Development Scripts (keep in repo but document)
+# create-placeholder-images.sh
+# copy-images.sh
+# deploy-guide.sh
+# create-professional-diagrams.sh
+
+## Environment Files
+.env
+.env.local
+.env.production
+
+## Package Manager
+package-lock.json
+yarn.lock
+
+## Archives
+*.zip
+*.tar.gz
+*.rar
+
+## Documentation Drafts
+*-draft.*
+*-temp.*
