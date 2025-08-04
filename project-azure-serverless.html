@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serverless Event Platform - Azure Event-Driven Architecture</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            color: #66d9ef;
+        }
+        
+        .project-nav-item.active {
+            background: rgba(138, 43, 226, 0.2);
+            border-left-color: #8a2be2;
+            color: #8a2be2;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            background: #0e0e0e;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #8a2be2;
+        }
+        
+        .project-title {
+            color: #8a2be2;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .project-subtitle {
+            color: #66d9ef;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 4px solid #8a2be2;
+        }
+        
+        .content-section h2 {
+            color: #8a2be2;
+            margin-bottom: 20px;
+        }
+        
+        .content-section h3 {
+            color: #66d9ef;
+            margin-bottom: 15px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tech-item {
+            background: rgba(138, 43, 226, 0.1);
+            border: 1px solid #8a2be2;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .serverless-features {
+            background: linear-gradient(135deg, #663399 0%, #8a2be2 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #fff;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item active">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">This Project</div>
+            <a href="#overview" class="project-nav-item">🎯 Story Overview</a>
+            <a href="#architecture" class="project-nav-item">🏗️ Architecture</a>
+            <a href="#features" class="project-nav-item">⚡ Event Features</a>
+            <a href="#impact" class="project-nav-item">🎯 Real-World Impact</a>
+            <a href="#implementation" class="project-nav-item">⚙️ Implementation</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <section id="overview" class="project-hero">
+            <h1 class="project-title">Serverless Event Platform</h1>
+            <p class="project-subtitle">Event-Driven Architecture with Azure Functions & Event Grid</p>
+            
+            <div style="background: linear-gradient(135deg, #8a2be2 0%, #663399 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">From Batch Processing to Real-Time Events</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">1M+</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Events/Day</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">99.9%</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Delivery Rate</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">&lt;50ms</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Event Latency</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">70%</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Cost Reduction</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#problem-story" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">📖 Read the Story</a>
+                <a href="#architecture" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">🏗️ See Architecture</a>
+                <a href="#business-impact" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">💼 Business Impact</a>
+            </div>
+        </section>
+
+        <section id="problem-story" class="content-section">
+            <h2>🎯 The Challenge: Real-Time Event Processing</h2>
+            <p>Required to modernize legacy batch processing systems into a real-time, event-driven architecture using Azure serverless technologies. The goal was to process millions of events daily with sub-second latency while maintaining cost efficiency and reliability.</p>
+            
+            <div style="background: rgba(229, 62, 62, 0.1); border-left: 4px solid #e53e3e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #e53e3e; margin-top: 0;">🚨 The Legacy Problem</h3>
+                <ul style="color: #f0f0f0;">
+                    <li><strong>Batch Processing Delays:</strong> Hours-long processing windows with data staleness</li>
+                    <li><strong>Tight Coupling:</strong> Monolithic systems with difficult-to-scale components</li>
+                    <li><strong>Resource Waste:</strong> Always-on infrastructure with poor utilization</li>
+                    <li><strong>Error Recovery:</strong> Limited fault tolerance and manual intervention required</li>
+                    <li><strong>Scaling Issues:</strong> Cannot handle sudden traffic spikes or varying workloads</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>🏗️ Event-Driven Serverless Architecture</h2>
+            <p>Designed and implemented a complete serverless event platform using Azure Functions, Event Grid, Service Bus, and Cosmos DB with automated scaling, dead letter handling, and comprehensive monitoring.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>⚡ Azure Functions</h3>
+                    <p>Serverless compute for event processing and business logic</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔗 Azure Event Grid</h3>
+                    <p>Event routing and delivery with reliable messaging</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🚌 Azure Service Bus</h3>
+                    <p>Message queuing with guaranteed delivery and ordering</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🌍 Azure Cosmos DB</h3>
+                    <p>Globally distributed NoSQL database for event storage</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔒 Azure Key Vault</h3>
+                    <p>Secure secrets and configuration management</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📊 Application Insights</h3>
+                    <p>Real-time monitoring and distributed tracing</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔄 Logic Apps</h3>
+                    <p>Workflow orchestration and integration connectors</p>
+                </div>
+                <div class="tech-item">
+                    <h3>⏰ Azure Event Hubs</h3>
+                    <p>High-throughput event ingestion and streaming</p>
+                </div>
+            </div>
+
+            <h3>🏗️ Event Platform Components</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Event Ingestion:</strong> Event Hubs for high-volume event streaming and buffering</li>
+                <li><strong>Event Routing:</strong> Event Grid with custom topics and intelligent filtering</li>
+                <li><strong>Processing Functions:</strong> Azure Functions with multiple triggers and bindings</li>
+                <li><strong>State Management:</strong> Cosmos DB with global distribution and consistency levels</li>
+                <li><strong>Message Queuing:</strong> Service Bus with dead letter queues and retry policies</li>
+                <li><strong>Monitoring & Observability:</strong> Application Insights with custom metrics and alerting</li>
+            </ul>
+        </section>
+
+        <section id="features" class="serverless-features">
+            <h2 style="text-align: center; margin-bottom: 30px;">⚡ Event-Driven Platform Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>📈 Auto-Scaling</h3>
+                    <ul>
+                        <li>Dynamic scaling based on event volume</li>
+                        <li>Consumption-based pricing model</li>
+                        <li>Zero infrastructure management</li>
+                        <li>Burst capacity for traffic spikes</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🔄 Event Processing</h3>
+                    <ul>
+                        <li>Real-time event streaming and filtering</li>
+                        <li>Custom event schemas and validation</li>
+                        <li>Event replay and reprocessing capabilities</li>
+                        <li>Batch and stream processing modes</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🛡️ Reliability & Recovery</h3>
+                    <ul>
+                        <li>Guaranteed at-least-once delivery</li>
+                        <li>Dead letter queue handling</li>
+                        <li>Automatic retry with exponential backoff</li>
+                        <li>Circuit breaker patterns</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🔗 Integration Ecosystem</h3>
+                    <ul>
+                        <li>200+ built-in connectors</li>
+                        <li>Custom API integration</li>
+                        <li>Third-party service webhooks</li>
+                        <li>Legacy system integration</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>📊 Monitoring & Insights</h3>
+                    <ul>
+                        <li>Real-time event metrics and dashboards</li>
+                        <li>Distributed tracing across functions</li>
+                        <li>Custom alerting and notifications</li>
+                        <li>Performance optimization insights</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🔒 Security & Governance</h3>
+                    <ul>
+                        <li>Azure AD authentication and authorization</li>
+                        <li>Event payload encryption</li>
+                        <li>Compliance and audit logging</li>
+                        <li>Network isolation and private endpoints</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="content-section">
+            <h2>🎯 Real-World Business Impact</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: linear-gradient(135deg, #8a2be2 0%, #663399 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">1M+</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Events Per Day</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #8a2be2 0%, #663399 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">&lt;50ms</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Processing Latency</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #8a2be2 0%, #663399 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">99.9%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Event Delivery</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #8a2be2 0%, #663399 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">70%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Cost Reduction</span>
+                </div>
+            </div>
+
+            <h3>💼 Transformation Story</h3>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                    <div>
+                        <h4 style="color: #e53e3e; margin-bottom: 15px;">😤 Before Event Platform</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Batch processing with 4-6 hour delays</li>
+                            <li>Always-on infrastructure with high costs</li>
+                            <li>Manual scaling and resource management</li>
+                            <li>Limited fault tolerance and error recovery</li>
+                            <li>Tight coupling between system components</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #8a2be2; margin-bottom: 15px;">🚀 After Serverless Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Real-time processing with sub-second latency</li>
+                            <li>Pay-per-use model with 70% cost reduction</li>
+                            <li>Automatic scaling based on event volume</li>
+                            <li>Built-in resilience with retry and dead letter handling</li>
+                            <li>Loosely coupled microservices architecture</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #a6e22e; margin-top: 0;">🎉 Success Metrics</h3>
+                <p style="color: #f0f0f0;"><strong>Performance:</strong> Sub-50ms event processing with 99.9% delivery rate<br>
+                <strong>Scalability:</strong> Handles 10x traffic spikes without manual intervention<br>
+                <strong>Cost Efficiency:</strong> 70% cost reduction through serverless consumption model<br>
+                <strong>Reliability:</strong> Zero data loss with automatic error recovery</p>
+            </div>
+        </section>
+
+        <section id="implementation" class="content-section">
+            <h2>⚙️ Technical Implementation Details</h2>
+            
+            <h3>🎯 My Role as Serverless Architect & Event Engineer</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Event Architecture:</strong> Designed event schemas, routing patterns, and processing workflows</li>
+                <li><strong>Function Development:</strong> Created Azure Functions with optimal triggers and bindings</li>
+                <li><strong>Message Design:</strong> Implemented reliable messaging patterns with Service Bus and Event Grid</li>
+                <li><strong>State Management:</strong> Configured Cosmos DB with appropriate consistency and partitioning</li>
+                <li><strong>Monitoring Setup:</strong> Application Insights integration with custom metrics and alerts</li>
+                <li><strong>Error Handling:</strong> Dead letter queues, retry policies, and circuit breaker implementations</li>
+            </ul>
+
+            <h3>🔧 Key Technologies & Event Patterns</h3>
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin: 20px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4 style="color: #66d9ef;">Event Streaming</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Event Hubs for high-throughput ingestion with Event Grid routing</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Serverless Compute</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Azure Functions with multiple triggers and auto-scaling</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Data Storage</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Cosmos DB with global distribution and optimized partitioning</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Integration</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Logic Apps for workflow orchestration and external integrations</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📋 Implementation Workflow</h3>
+            <ol style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Event Design:</strong> Schema definition and event sourcing patterns</li>
+                <li><strong>Infrastructure Setup:</strong> Azure resource provisioning with ARM templates</li>
+                <li><strong>Function Development:</strong> Event processing logic with optimal performance</li>
+                <li><strong>Event Routing:</strong> Event Grid configuration with filtering and subscription</li>
+                <li><strong>State Management:</strong> Cosmos DB setup with consistency and partitioning</li>
+                <li><strong>Error Handling:</strong> Dead letter queues and retry policy implementation</li>
+                <li><strong>Monitoring Integration:</strong> Application Insights with custom dashboards</li>
+                <li><strong>Performance Testing:</strong> Load testing and capacity planning</li>
+            </ol>
+
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin: 0; opacity: 0.7; font-size: 0.9rem;">
+                    💡 <strong>Share this story:</strong> LinkedIn | Twitter | Email
+                    <br>
+                    Help others discover how serverless event-driven architecture transforms real-time processing
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

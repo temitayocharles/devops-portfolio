@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Monitoring Stack - Kubernetes Observability Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            color: #66d9ef;
+        }
+        
+        .project-nav-item.active {
+            background: rgba(255, 153, 0, 0.2);
+            border-left-color: #ff9900;
+            color: #ff9900;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            background: #0e0e0e;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #ff9900;
+        }
+        
+        .project-title {
+            color: #ff9900;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .project-subtitle {
+            color: #66d9ef;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 4px solid #ff9900;
+        }
+        
+        .content-section h2 {
+            color: #ff9900;
+            margin-bottom: 20px;
+        }
+        
+        .content-section h3 {
+            color: #66d9ef;
+            margin-bottom: 15px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tech-item {
+            background: rgba(255, 153, 0, 0.1);
+            border: 1px solid #ff9900;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .monitoring-stack {
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .monitoring-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .monitoring-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #fff;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item active">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">This Project</div>
+            <a href="#overview" class="project-nav-item">🎯 Story Overview</a>
+            <a href="#architecture" class="project-nav-item">🏗️ Architecture</a>
+            <a href="#observability" class="project-nav-item">📊 Observability</a>
+            <a href="#impact" class="project-nav-item">🎯 Real-World Impact</a>
+            <a href="#implementation" class="project-nav-item">⚙️ Implementation</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <section id="overview" class="project-hero">
+            <h1 class="project-title">AWS Monitoring Stack</h1>
+            <p class="project-subtitle">Production-Grade Observability for Kubernetes Clusters</p>
+            
+            <div style="background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">From Blind Operations to Complete Observability</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">99.9%</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Uptime Achieved</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">50+</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Custom Dashboards</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">5min</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Alert Response Time</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">24/7</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Automated Monitoring</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#problem-story" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">📖 Read the Story</a>
+                <a href="#architecture" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">🏗️ See Architecture</a>
+                <a href="#business-impact" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">💼 Business Impact</a>
+            </div>
+        </section>
+
+        <section id="problem-story" class="content-section">
+            <h2>🎯 The Challenge: Production-Grade Observability</h2>
+            <p>Required to implement a production-grade observability stack for Kubernetes clusters deployed across multiple environments. The goal was centralized monitoring, secure alert routing, and visual dashboarding for engineering and operations teams.</p>
+            
+            <div style="background: rgba(229, 62, 62, 0.1); border-left: 4px solid #e53e3e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #e53e3e; margin-top: 0;">🚨 The Problem</h3>
+                <ul style="color: #f0f0f0;">
+                    <li><strong>Blind Operations:</strong> No visibility into application performance or resource usage</li>
+                    <li><strong>Reactive Troubleshooting:</strong> Issues discovered by users before operations teams</li>
+                    <li><strong>Scattered Metrics:</strong> Multiple monitoring tools with no central view</li>
+                    <li><strong>Alert Fatigue:</strong> No intelligent alerting or escalation procedures</li>
+                    <li><strong>Compliance Requirements:</strong> Need for audit trails and SLO tracking</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>🏗️ Complete Monitoring Architecture</h2>
+            <p>Deployed a complete monitoring stack using Prometheus, Grafana, Alertmanager, Loki, and Jaeger on Amazon EKS with node-level metrics, application traces, and blackbox probes.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>🚀 Amazon EKS</h3>
+                    <p>Managed Kubernetes platform with integrated monitoring capabilities</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📊 Prometheus</h3>
+                    <p>Time-series database for metrics collection and storage</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📈 Grafana</h3>
+                    <p>Visualization platform with custom dashboards and alerting</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔔 Alertmanager</h3>
+                    <p>Intelligent alert routing and notification management</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📝 Loki</h3>
+                    <p>Log aggregation system for centralized log management</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔍 Jaeger</h3>
+                    <p>Distributed tracing for application performance monitoring</p>
+                </div>
+                <div class="tech-item">
+                    <h3>💻 Node Exporter</h3>
+                    <p>System metrics collection from Kubernetes nodes</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔗 Blackbox Exporter</h3>
+                    <p>External service monitoring and health checks</p>
+                </div>
+            </div>
+
+            <h3>🏗️ Monitoring Stack Components</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Metrics Collection:</strong> Prometheus with custom service discovery and scraping configurations</li>
+                <li><strong>Log Aggregation:</strong> Loki for centralized log collection and querying</li>
+                <li><strong>Distributed Tracing:</strong> Jaeger for end-to-end request tracing and performance analysis</li>
+                <li><strong>Visualization:</strong> Grafana with role-based dashboards and custom panels</li>
+                <li><strong>Alerting:</strong> Alertmanager with intelligent routing and escalation policies</li>
+                <li><strong>Security:</strong> RBAC-protected dashboards with Vault-managed credentials</li>
+            </ul>
+        </section>
+
+        <section id="observability" class="monitoring-stack">
+            <h2 style="text-align: center; margin-bottom: 30px;">📊 Comprehensive Observability Platform</h2>
+            
+            <div class="monitoring-grid">
+                <div class="monitoring-item">
+                    <h3>📈 Metrics & KPIs</h3>
+                    <ul>
+                        <li>Application performance metrics</li>
+                        <li>Infrastructure resource utilization</li>
+                        <li>Custom business metrics</li>
+                        <li>SLA/SLO tracking and reporting</li>
+                    </ul>
+                </div>
+                
+                <div class="monitoring-item">
+                    <h3>📝 Centralized Logging</h3>
+                    <ul>
+                        <li>Application and system logs</li>
+                        <li>Structured log parsing</li>
+                        <li>Log-based alerting rules</li>
+                        <li>Historical log analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="monitoring-item">
+                    <h3>🔍 Distributed Tracing</h3>
+                    <ul>
+                        <li>Request flow visualization</li>
+                        <li>Performance bottleneck identification</li>
+                        <li>Service dependency mapping</li>
+                        <li>Error rate and latency tracking</li>
+                    </ul>
+                </div>
+                
+                <div class="monitoring-item">
+                    <h3>🔔 Intelligent Alerting</h3>
+                    <ul>
+                        <li>Multi-channel notifications (Mattermost, PagerDuty)</li>
+                        <li>Alert correlation and grouping</li>
+                        <li>Escalation policies and schedules</li>
+                        <li>Alert fatigue reduction</li>
+                    </ul>
+                </div>
+                
+                <div class="monitoring-item">
+                    <h3>🎯 Custom Dashboards</h3>
+                    <ul>
+                        <li>Executive summary views</li>
+                        <li>Team-specific operational dashboards</li>
+                        <li>Application-specific metrics</li>
+                        <li>Infrastructure health overviews</li>
+                    </ul>
+                </div>
+                
+                <div class="monitoring-item">
+                    <h3>🔒 Security & Access</h3>
+                    <ul>
+                        <li>RBAC for dashboard access</li>
+                        <li>Audit logging and compliance</li>
+                        <li>Secure secret management</li>
+                        <li>Multi-tenant isolation</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="content-section">
+            <h2>🎯 Real-World Business Impact</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">99.9%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Uptime Achievement</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">85%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Faster Issue Resolution</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">50+</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Custom Dashboards</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">24/7</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Automated Monitoring</span>
+                </div>
+            </div>
+
+            <h3>💼 Transformation Story</h3>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                    <div>
+                        <h4 style="color: #e53e3e; margin-bottom: 15px;">😤 Before Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Manual monitoring and reactive troubleshooting</li>
+                            <li>Users reporting issues before operations team awareness</li>
+                            <li>Multiple disconnected monitoring tools</li>
+                            <li>No historical performance data or trends</li>
+                            <li>Limited visibility into application behavior</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #ff9900; margin-bottom: 15px;">🚀 After Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Proactive monitoring with predictive alerting</li>
+                            <li>Issues detected and resolved before user impact</li>
+                            <li>Unified observability platform with single pane of glass</li>
+                            <li>Comprehensive historical data and trend analysis</li>
+                            <li>Complete end-to-end application visibility</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #a6e22e; margin-top: 0;">🎉 Success Metrics</h3>
+                <p style="color: #f0f0f0;"><strong>Availability:</strong> 99.9% uptime with zero unplanned outages<br>
+                <strong>Performance:</strong> 85% faster mean time to resolution (MTTR)<br>
+                <strong>Visibility:</strong> 100% application and infrastructure coverage<br>
+                <strong>Team Efficiency:</strong> 60% reduction in manual monitoring tasks</p>
+            </div>
+        </section>
+
+        <section id="implementation" class="content-section">
+            <h2>⚙️ Technical Implementation Details</h2>
+            
+            <h3>🎯 My Role as Observability Engineer & Cluster Integrator</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Monitoring DaemonSets:</strong> Deployed and configured monitoring agents across all cluster nodes</li>
+                <li><strong>Service Discovery:</strong> Implemented automated scrape target configuration</li>
+                <li><strong>Dashboard Development:</strong> Created role-based dashboards for different team functions</li>
+                <li><strong>Alert Engineering:</strong> Developed intelligent alerting rules with escalation policies</li>
+                <li><strong>Performance Optimization:</strong> Tuned monitoring stack for high-volume metrics collection</li>
+                <li><strong>Security Integration:</strong> Implemented RBAC and secure secret management</li>
+            </ul>
+
+            <h3>🔧 Key Technologies & Integration</h3>
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin: 20px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4 style="color: #66d9ef;">Metrics Platform</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Prometheus with custom exporters, recording rules, and high-availability setup</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Visualization</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Grafana with custom dashboards, data sources, and RBAC integration</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Log Management</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Loki for log aggregation with structured logging and retention policies</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Tracing System</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Jaeger for distributed tracing with sampling and storage optimization</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📋 Implementation Workflow</h3>
+            <ol style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Infrastructure Setup:</strong> EKS cluster preparation with monitoring namespace</li>
+                <li><strong>Stack Deployment:</strong> Helm-based installation of monitoring components</li>
+                <li><strong>Service Discovery:</strong> Automated configuration of scrape targets and endpoints</li>
+                <li><strong>Dashboard Creation:</strong> Custom dashboards for different stakeholder groups</li>
+                <li><strong>Alert Configuration:</strong> Intelligent alerting rules with notification routing</li>
+                <li><strong>Security Hardening:</strong> RBAC policies and secure secret management</li>
+                <li><strong>Performance Tuning:</strong> Optimization for high-volume metrics and logs</li>
+                <li><strong>Documentation:</strong> Operational runbooks and troubleshooting guides</li>
+            </ol>
+
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin: 0; opacity: 0.7; font-size: 0.9rem;">
+                    💡 <strong>Share this story:</strong> LinkedIn | Twitter | Email
+                    <br>
+                    Help others discover how comprehensive observability transforms operations
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

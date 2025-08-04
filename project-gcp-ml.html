@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML Operations Pipeline - Google Cloud MLOps Platform</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            color: #66d9ef;
+        }
+        
+        .project-nav-item.active {
+            background: rgba(34, 197, 94, 0.2);
+            border-left-color: #22c55e;
+            color: #22c55e;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            background: #0e0e0e;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #22c55e;
+        }
+        
+        .project-title {
+            color: #22c55e;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .project-subtitle {
+            color: #66d9ef;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 4px solid #22c55e;
+        }
+        
+        .content-section h2 {
+            color: #22c55e;
+            margin-bottom: 20px;
+        }
+        
+        .content-section h3 {
+            color: #66d9ef;
+            margin-bottom: 15px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tech-item {
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid #22c55e;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .ml-features {
+            background: linear-gradient(135deg, #059669 0%, #22c55e 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #fff;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item active">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">This Project</div>
+            <a href="#overview" class="project-nav-item">🎯 Story Overview</a>
+            <a href="#architecture" class="project-nav-item">🏗️ Architecture</a>
+            <a href="#features" class="project-nav-item">🤖 ML Features</a>
+            <a href="#impact" class="project-nav-item">🎯 Real-World Impact</a>
+            <a href="#implementation" class="project-nav-item">⚙️ Implementation</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <section id="overview" class="project-hero">
+            <h1 class="project-title">AI/ML Operations Pipeline</h1>
+            <p class="project-subtitle">Google Cloud MLOps Platform with Vertex AI & Kubeflow</p>
+            
+            <div style="background: linear-gradient(135deg, #22c55e 0%, #059669 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">From Manual ML to Automated MLOps at Scale</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">50+</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">ML Models</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">24/7</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Auto Training</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">95%</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Accuracy</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">10x</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Faster Deployment</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#problem-story" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">📖 Read the Story</a>
+                <a href="#architecture" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">🏗️ See Architecture</a>
+                <a href="#business-impact" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">💼 Business Impact</a>
+            </div>
+        </section>
+
+        <section id="problem-story" class="content-section">
+            <h2>🎯 The Challenge: Enterprise MLOps at Scale</h2>
+            <p>Required to build a production-grade machine learning operations platform supporting the complete ML lifecycle from data ingestion to model deployment, monitoring, and retraining with automated governance and compliance for enterprise AI initiatives.</p>
+            
+            <div style="background: rgba(229, 62, 62, 0.1); border-left: 4px solid #e53e3e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #e53e3e; margin-top: 0;">🚨 The ML Operations Challenge</h3>
+                <ul style="color: #f0f0f0;">
+                    <li><strong>Manual ML Processes:</strong> Data scientists manually managing training and deployment</li>
+                    <li><strong>Model Drift:</strong> No automated monitoring or retraining for degrading models</li>
+                    <li><strong>Deployment Complexity:</strong> Inconsistent environments and manual model serving</li>
+                    <li><strong>Governance Gaps:</strong> No model versioning, lineage, or compliance tracking</li>
+                    <li><strong>Scaling Bottlenecks:</strong> Limited ability to train multiple models simultaneously</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>🏗️ Complete MLOps Platform Architecture</h2>
+            <p>Architected and implemented an end-to-end MLOps platform using Vertex AI, Kubeflow Pipelines, MLflow, and BigQuery with automated training, deployment, monitoring, and governance workflows.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>🧠 Vertex AI</h3>
+                    <p>Unified ML platform for training, deployment, and management</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔄 Kubeflow Pipelines</h3>
+                    <p>ML workflow orchestration and pipeline automation</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📊 BigQuery ML</h3>
+                    <p>Large-scale data processing and feature engineering</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📈 MLflow</h3>
+                    <p>Experiment tracking and model registry</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📡 Cloud Monitoring</h3>
+                    <p>Model performance and drift detection</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔒 Cloud IAM</h3>
+                    <p>Secure access control and audit logging</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🚀 Cloud Run</h3>
+                    <p>Serverless model serving and inference endpoints</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📦 Artifact Registry</h3>
+                    <p>Model versioning and artifact management</p>
+                </div>
+            </div>
+
+            <h3>🏗️ MLOps Platform Components</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Data Pipeline:</strong> BigQuery for feature engineering and data transformation</li>
+                <li><strong>Training Platform:</strong> Vertex AI Training with distributed computing and hyperparameter tuning</li>
+                <li><strong>Model Registry:</strong> Centralized model versioning with lineage tracking</li>
+                <li><strong>Deployment Pipeline:</strong> Automated model serving with A/B testing capabilities</li>
+                <li><strong>Monitoring System:</strong> Real-time model performance and drift detection</li>
+                <li><strong>Governance Framework:</strong> Compliance tracking and model explainability</li>
+            </ul>
+        </section>
+
+        <section id="features" class="ml-features">
+            <h2 style="text-align: center; margin-bottom: 30px;">🤖 Enterprise MLOps Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>🔄 Automated ML Pipeline</h3>
+                    <ul>
+                        <li>End-to-end workflow automation</li>
+                        <li>Continuous training and retraining</li>
+                        <li>Hyperparameter optimization</li>
+                        <li>Model validation and testing</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>📊 Model Monitoring</h3>
+                    <ul>
+                        <li>Real-time performance tracking</li>
+                        <li>Data drift and concept drift detection</li>
+                        <li>Model explainability and interpretability</li>
+                        <li>Automated alerting and remediation</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🚀 Model Deployment</h3>
+                    <ul>
+                        <li>Blue-green deployment strategies</li>
+                        <li>A/B testing and canary releases</li>
+                        <li>Auto-scaling inference endpoints</li>
+                        <li>Multi-environment promotion</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>📈 Experiment Management</h3>
+                    <ul>
+                        <li>Distributed experiment tracking</li>
+                        <li>Hyperparameter optimization</li>
+                        <li>Model comparison and selection</li>
+                        <li>Collaborative experiment sharing</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🔒 Governance & Compliance</h3>
+                    <ul>
+                        <li>Model lineage and versioning</li>
+                        <li>Audit trails and compliance reporting</li>
+                        <li>Bias detection and fairness metrics</li>
+                        <li>Regulatory compliance automation</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>⚡ High Performance</h3>
+                    <ul>
+                        <li>Distributed training on GPUs/TPUs</li>
+                        <li>Batch and real-time inference</li>
+                        <li>Feature store for reusable features</li>
+                        <li>Optimized model serving</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="content-section">
+            <h2>🎯 Real-World Business Impact</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: linear-gradient(135deg, #22c55e 0%, #059669 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">50+</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">ML Models</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #22c55e 0%, #059669 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">10x</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Faster Deployment</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #22c55e 0%, #059669 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">95%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Model Accuracy</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #22c55e 0%, #059669 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">80%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Time Savings</span>
+                </div>
+            </div>
+
+            <h3>💼 Transformation Story</h3>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                    <div>
+                        <h4 style="color: #e53e3e; margin-bottom: 15px;">😤 Before MLOps Platform</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Manual model training and deployment processes</li>
+                            <li>No automated monitoring or model drift detection</li>
+                            <li>Inconsistent environments and deployment strategies</li>
+                            <li>Limited collaboration between data science teams</li>
+                            <li>Weeks-long cycles for model updates and fixes</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #22c55e; margin-bottom: 15px;">🚀 After MLOps Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Fully automated ML pipelines with continuous training</li>
+                            <li>Real-time monitoring with automatic retraining triggers</li>
+                            <li>Standardized deployment with blue-green strategies</li>
+                            <li>Collaborative platform with shared experiments</li>
+                            <li>Same-day model updates with automated testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #a6e22e; margin-top: 0;">🎉 Success Metrics</h3>
+                <p style="color: #f0f0f0;"><strong>Productivity:</strong> 10x faster model deployment with automated pipelines<br>
+                <strong>Quality:</strong> 95% model accuracy with automated testing and validation<br>
+                <strong>Efficiency:</strong> 80% time savings in ML development lifecycle<br>
+                <strong>Governance:</strong> 100% compliance with automated audit trails</p>
+            </div>
+        </section>
+
+        <section id="implementation" class="content-section">
+            <h2>⚙️ Technical Implementation Details</h2>
+            
+            <h3>🎯 My Role as MLOps Engineer & AI Infrastructure Architect</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Platform Architecture:</strong> End-to-end MLOps platform design with Vertex AI and Kubeflow</li>
+                <li><strong>Pipeline Development:</strong> Automated ML workflows with continuous training and deployment</li>
+                <li><strong>Model Registry:</strong> Centralized model versioning and lineage tracking system</li>
+                <li><strong>Monitoring Implementation:</strong> Real-time model performance and drift detection</li>
+                <li><strong>Governance Framework:</strong> Compliance automation and audit trail implementation</li>
+                <li><strong>Performance Optimization:</strong> Distributed training and inference scaling strategies</li>
+            </ul>
+
+            <h3>🔧 Key Technologies & ML Integration</h3>
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin: 20px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4 style="color: #66d9ef;">ML Platform</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Vertex AI for unified ML training, deployment, and management</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Pipeline Engine</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Kubeflow Pipelines for workflow orchestration and automation</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Data Platform</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">BigQuery for large-scale feature engineering and analytics</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Model Registry</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">MLflow for experiment tracking and model versioning</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📋 Implementation Workflow</h3>
+            <ol style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Platform Setup:</strong> Vertex AI configuration and Kubeflow pipeline deployment</li>
+                <li><strong>Data Pipeline:</strong> BigQuery feature engineering and data transformation workflows</li>
+                <li><strong>Training Pipeline:</strong> Automated model training with hyperparameter optimization</li>
+                <li><strong>Model Registry:</strong> MLflow integration for experiment tracking and versioning</li>
+                <li><strong>Deployment Pipeline:</strong> Automated model serving with blue-green deployments</li>
+                <li><strong>Monitoring Setup:</strong> Model performance tracking and drift detection</li>
+                <li><strong>Governance Implementation:</strong> Compliance automation and audit trail logging</li>
+                <li><strong>Performance Optimization:</strong> Distributed training and inference scaling</li>
+            </ol>
+
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin: 0; opacity: 0.7; font-size: 0.9rem;">
+                    💡 <strong>Share this story:</strong> LinkedIn | Twitter | Email
+                    <br>
+                    Help others discover how enterprise MLOps enables AI at scale with governance
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>
