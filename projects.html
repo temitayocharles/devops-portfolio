@@ -7,73 +7,255 @@
   <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
   <link rel="stylesheet" href="style.css">
   <style>
+    /* Featured Projects Section Enhancement */
+    .featured-projects {
+      margin: 40px 0 60px 0;
+      position: relative;
+    }
+
+    .featured-section-header {
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+    }
+
+    .featured-section-title {
+      color: #a6e22e;
+      font-size: 2.5rem;
+      margin: 0 0 15px 0;
+      font-weight: bold;
+      text-shadow: 0 0 20px rgba(166, 226, 46, 0.3);
+      position: relative;
+    }
+
+    .featured-section-subtitle {
+      color: #66d9ef;
+      font-size: 1.2rem;
+      margin: 0 0 30px 0;
+      opacity: 0.9;
+      text-shadow: 0 0 10px rgba(102, 217, 239, 0.2);
+    }
+
+    .featured-section-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 100px;
+      background: radial-gradient(ellipse, rgba(166, 226, 46, 0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      z-index: -1;
+      animation: pulse-glow-slow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow-slow {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.1);
+        opacity: 0.6;
+      }
+    }
+
+    /* Enhanced Hero Project Cards */
+    .hero-project-card {
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .hero-project-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .hero-project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
+      z-index: 1;
+    }
+
+    .hero-project-card:hover::before {
+      transform: translateX(100%);
+    }
+
+    .project-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      z-index: 2;
+      backdrop-filter: blur(10px);
+      animation: badge-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badge-pulse {
+      0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(255,255,255,0.2);
+      }
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(255,255,255,0.4);
+      }
+    }
+
+    .project-title-enhanced {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #fff;
+      text-shadow: 0 0 15px rgba(255,255,255,0.3);
+      position: relative;
+      z-index: 2;
+    }
+
+    .project-subtitle-enhanced {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255,255,255,0.2);
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Enhanced tech stack with glow */
+    .tech-stack-enhanced {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .tech-tag-enhanced {
+      background: rgba(255,255,255,0.15);
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      color: white;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+      backdrop-filter: blur(5px);
+    }
+
+    .tech-tag-enhanced:hover {
+      background: rgba(255,255,255,0.25);
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+    }
+
+    /* Enhanced CTA buttons */
+    .cta-button-enhanced {
+      padding: 15px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    .cta-button-enhanced::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .cta-button-enhanced:hover::before {
+      left: 100%;
+    }
+
+    .featured-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+
+    .hero-project-card {
+      border-radius: 20px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .hero-project-card:hover {
+      transform: translateY(-5px);
+    }
+
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
       margin: 40px 0;
     }
 
     .project-card {
       background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
       border-radius: 12px;
-      padding: 30px;
+      padding: 25px;
       border: 1px solid #333;
       transition: all 0.3s ease;
       position: relative;
-      overflow: hidden;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #66d9ef, #a6e22e);
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       border-color: #66d9ef;
-      box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
     }
 
     .project-header {
       display: flex;
       align-items: center;
+      margin-bottom: 15px;
       gap: 15px;
-      margin-bottom: 20px;
     }
 
     .project-icon {
-      font-size: 2.5rem;
-      width: 60px;
-      height: 60px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: rgba(102, 217, 239, 0.1);
-      border-radius: 12px;
+      font-size: 2rem;
     }
 
     .project-title {
       color: #a6e22e;
+      margin: 0 0 5px 0;
       font-size: 1.3rem;
-      margin: 0;
     }
 
     .project-subtitle {
       color: #66d9ef;
+      margin: 0;
       font-size: 0.9rem;
-      margin: 5px 0 0 0;
+      opacity: 0.8;
     }
 
     .project-description {
       color: #f0f0f0;
       line-height: 1.6;
-      margin: 20px 0;
+      margin: 15px 0 20px 0;
     }
 
     .tech-stack {
@@ -84,90 +266,348 @@
     }
 
     .tech-tag {
-      background-color: #66d9ef;
-      color: #0e0e0e;
-      padding: 4px 12px;
-      border-radius: 15px;
+      background: rgba(102, 217, 239, 0.2);
+      color: #66d9ef;
+      padding: 4px 10px;
+      border-radius: 12px;
       font-size: 0.8rem;
       font-weight: bold;
     }
 
     .project-links {
       display: flex;
-      gap: 15px;
-      margin-top: 25px;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 20px;
     }
 
     .project-link {
-      padding: 8px 16px;
-      border-radius: 6px;
+      padding: 10px 20px;
+      border-radius: 20px;
       text-decoration: none;
       font-weight: bold;
       font-size: 0.9rem;
       transition: all 0.3s ease;
-      border: 1px solid;
     }
 
     .link-primary {
-      background-color: #a6e22e;
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
       color: #0e0e0e;
-      border-color: #a6e22e;
     }
 
     .link-primary:hover {
-      background-color: #8ac926;
-      transform: translateY(-1px);
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(102, 217, 239, 0.3);
     }
 
     .link-secondary {
-      background-color: transparent;
+      background: rgba(102, 217, 239, 0.1);
       color: #66d9ef;
-      border-color: #66d9ef;
+      border: 2px solid #66d9ef;
     }
 
     .link-secondary:hover {
-      background-color: #66d9ef;
-      color: #0e0e0e;
-    }
-
-    .project-status {
-      position: absolute;
-      top: 15px;
-      right: 15px;
-      padding: 5px 12px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: bold;
-    }
-
-    .status-active {
-      background-color: #a6e22e;
-      color: #0e0e0e;
-    }
-
-    .status-planning {
-      background-color: #66d9ef;
-      color: #0e0e0e;
-    }
-
-    .featured-banner {
-      background: linear-gradient(135deg, #a6e22e 0%, #66d9ef 100%);
-      color: #0e0e0e;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      font-weight: bold;
-      display: inline-block;
-      margin-bottom: 20px;
+      background: rgba(102, 217, 239, 0.2);
     }
 
     @media (max-width: 768px) {
+      .featured-grid {
+        grid-template-columns: 1fr;
+      }
+      
       .projects-grid {
         grid-template-columns: 1fr;
       }
       
-      .project-links {
-        flex-direction: column;
+      .hero-project-card {
+        padding: 30px 20px;
+      }
+    }
+
+    /* Project Preview Carousel */
+    .project-preview-carousel {
+      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+      padding: 20px 0;
+      margin: 40px 0;
+      border-radius: 15px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .carousel-container {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: inline-flex;
+      animation: scroll-projects 45s linear infinite;
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .carousel-track:hover {
+      animation-play-state: paused;
+    }
+
+    .project-preview-card {
+      background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+      border: 1px solid #444;
+      border-radius: 12px;
+      padding: 20px;
+      min-width: 280px;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      white-space: normal;
+    }
+
+    .project-preview-card:hover {
+      transform: translateY(-3px) scale(1.02);
+      border-color: #66d9ef;
+      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.3);
+    }
+
+    .preview-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .preview-title {
+      color: #a6e22e;
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin: 0 0 8px 0;
+    }
+
+    .preview-tech {
+      color: #66d9ef;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+
+    .carousel-header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .carousel-header h3 {
+      color: #66d9ef;
+      margin: 0 0 10px 0;
+      font-size: 1.3rem;
+    }
+
+    .carousel-header p {
+      color: #f0f0f0;
+      margin: 0;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    @keyframes scroll-projects {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .project-preview-card {
+        min-width: 240px;
+      }
+      
+      .carousel-track {
+        animation-duration: 35s;
+      }
+    }
+
+    /* Performance Metrics Counter */
+    .metrics-section {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      border: 2px solid rgba(102, 217, 239, 0.2);
+      border-radius: 20px;
+      padding: 40px 20px;
+      margin: 50px 0;
+      text-align: center;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .metric-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 25px 15px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card:hover {
+      transform: translateY(-5px);
+      background: rgba(102, 217, 239, 0.1);
+    }
+
+    .metric-number {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #67ffcc;
+      margin: 0 0 10px 0;
+      text-shadow: 0 0 20px rgba(103, 255, 204, 0.3);
+    }
+
+    .metric-label {
+      color: #f0f0f0;
+      font-size: 1rem;
+      margin: 0 0 5px 0;
+      font-weight: 600;
+    }
+
+    .metric-description {
+      color: #66d9ef;
+      font-size: 0.8rem;
+      opacity: 0.8;
+      margin: 0;
+    }
+
+    .metrics-title {
+      color: #a6e22e;
+      font-size: 1.8rem;
+      margin: 0 0 10px 0;
+      font-weight: bold;
+    }
+
+    .metrics-subtitle {
+      color: #f0f0f0;
+      font-size: 1rem;
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    /* Pulse animation for metrics */
+    @keyframes pulse-metric {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+    }
+
+    .metric-card.animate {
+      animation: pulse-metric 0.6s ease-out;
+    }
+
+    @media (max-width: 768px) {
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+      }
+      
+      .metric-number {
+        font-size: 2rem;
+      }
+      
+      .metrics-section {
+        padding: 30px 15px;
+      }
+    }
+
+    /* Quick Actions Floating Button */
+    .quick-actions {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+    }
+
+    .quick-actions-btn {
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.4);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .quick-actions-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 35px rgba(102, 217, 239, 0.6);
+    }
+
+    .quick-actions-menu {
+      position: absolute;
+      bottom: 70px;
+      right: 0;
+      background: rgba(30, 30, 30, 0.95);
+      backdrop-filter: blur(10px);
+      border: 2px solid rgba(102, 217, 239, 0.3);
+      border-radius: 15px;
+      padding: 15px;
+      min-width: 200px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px);
+      transition: all 0.3s ease;
+    }
+
+    .quick-actions-menu.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .quick-action-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 8px;
+      color: #f0f0f0;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      font-size: 0.9rem;
+    }
+
+    .quick-action-item:hover {
+      background: rgba(102, 217, 239, 0.1);
+      color: #66d9ef;
+      transform: translateX(5px);
+    }
+
+    .quick-action-icon {
+      font-size: 1.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .quick-actions {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .quick-actions-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+      }
+      
+      .quick-actions-menu {
+        min-width: 180px;
+        bottom: 60px;
       }
     }
   </style>
@@ -191,396 +631,454 @@
   </nav>
 
   <div class="main">
-    <h1>DevOps Projects & Solutions</h1>
-    <p>A collection of my DevOps engineering projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.</p>
+    <h1>Featured DevOps Projects</h1>
+    <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">Production-ready solutions showcasing containerization, automation, and cloud infrastructure expertise.</p>
 
-    <div class="projects-grid">
-      <!-- Virtual Vacation Platform - Latest Project -->
-      <div class="project-card">
-        <div class="featured-banner">🌟 Latest Project</div>
-        <div class="project-status status-active">Production</div>
-        
-        <!-- Project Thumbnail -->
-        <div style="text-align: center; margin: 20px 0;">
-          <img src="images/technology-stack-showcase.svg" alt="Virtual Vacation Platform" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-        </div>
-        
-        <div class="project-header">
-          <div class="project-icon">🌐</div>
-          <div>
-            <h3 class="project-title">Virtual Vacation Platform</h3>
-            <p class="project-subtitle">Cloud-Native Tourism Solution</p>
-          </div>
-        </div>
-        <p class="project-description">
-          Full-stack cloud-native tourism platform enabling immersive virtual travel experiences. 
-          Features React frontend, Node.js/FastAPI backends, MongoDB clusters, Kubernetes orchestration, 
-          and comprehensive GitOps automation with 7 realistic demo simulations.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">React</span>
-          <span class="tech-tag">Node.js</span>
-          <span class="tech-tag">FastAPI</span>
-          <span class="tech-tag">MongoDB</span>
-          <span class="tech-tag">Kubernetes</span>
-          <span class="tech-tag">GitOps</span>
-          <span class="tech-tag">Docker Compose</span>
-        </div>
-        <div class="project-links">
-          <a href="project-virtual-vacation.html" class="project-link link-primary">View Project Details</a>
-          <a href="virtual-vacation-demo.html" target="_blank" class="project-link link-primary" style="background: linear-gradient(135deg, #764ba2, #667eea); animation: pulse-glow 2s infinite;">🚀 Try Interactive Demo</a>
-          <a href="project-virtual-vacation.html#demos" class="project-link link-secondary">� 7 Global Demos</a>
-        </div>
+    <!-- Project Preview Carousel -->
+    <div class="project-preview-carousel">
+      <div class="carousel-header">
+        <h3>🚀 Project Highlights</h3>
+        <p>Hover to pause • Click to explore</p>
       </div>
-
-      <!-- Featured Project -->
-      <div class="project-card">
-        <div class="featured-banner">⭐ Featured Project</div>
-        <div class="project-status status-active">Production</div>
-        
-        <!-- Project Thumbnail -->
-        <div style="text-align: center; margin: 20px 0;">
-          <img src="images/thumbnails/ultimate-devops-container.svg" alt="Ultimate DevOps Container" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-        </div>
-        
-        <div class="project-header">
-          <div class="project-icon">🐳</div>
-          <div>
-            <h3 class="project-title">Ultimate DevOps Container</h3>
-            <p class="project-subtitle">All-in-One Development Environment</p>
+      <div class="carousel-container">
+        <div class="carousel-track">
+          <!-- First set of projects -->
+          <div class="project-preview-card" onclick="scrollToSection('virtual-vacation')">
+            <div class="preview-icon">🌐</div>
+            <div class="preview-title">Virtual Vacation Platform</div>
+            <div class="preview-tech">React • Node.js • Kubernetes</div>
           </div>
-        </div>
-        <p class="project-description">
-          A comprehensive, production-ready DevOps environment packaged in a single Docker container. 
-          Includes 30+ pre-installed tools, TLS by default, and enterprise-grade security. 
-          Reduces team onboarding from days to seconds.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">Terraform</span>
-          <span class="tech-tag">Prometheus</span>
-          <span class="tech-tag">Grafana</span>
-          <span class="tech-tag">Vault</span>
-          <span class="tech-tag">NGINX</span>
-          <span class="tech-tag">VS Code Server</span>
-        </div>
-        <div class="project-links">
-          <a href="https://hub.docker.com/r/temitayocharles/devops-charlie" target="_blank" class="project-link link-primary">View on DockerHub</a>
-          <a href="project-ultimate-devops-container.html#demos" class="project-link link-secondary">🎬 Watch Demos</a>
-          <a href="gallery.html" class="project-link link-secondary">📸 Visual Gallery</a>
-          <a href="getting-started.html" class="project-link link-secondary">Documentation</a>
-        </div>
-      </div>
-
-      <!-- CI/CD Pipeline Project -->
-      <div class="project-card">
-        <div class="project-status status-active">Active</div>
-        
-        <!-- Project Thumbnail -->
-        <div style="text-align: center; margin: 20px 0;">
-          <img src="images/thumbnails/enterprise-cicd.svg" alt="Enterprise CI/CD Pipeline" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-        </div>
-        
-        <div class="project-header">
-          <div class="project-icon">🚀</div>
-          <div>
-            <h3 class="project-title">Multi-Cloud CI/CD Pipeline</h3>
-            <p class="project-subtitle">GitHub Actions + AWS + Security Scanning</p>
+          
+          <div class="project-preview-card" onclick="scrollToSection('devops-container')">
+            <div class="preview-icon">🐳</div>
+            <div class="preview-title">Ultimate DevOps Container</div>
+            <div class="preview-tech">Docker • 30+ Tools • Monitoring</div>
           </div>
-        </div>
-        <p class="project-description">
-          Automated CI/CD pipeline with multi-environment deployments, security scanning, and rollback capabilities. 
-          Integrates Trivy for vulnerability scanning and automated testing across development, staging, and production.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">GitHub Actions</span>
-          <span class="tech-tag">AWS ECS</span>
-          <span class="tech-tag">Trivy</span>
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">Terraform</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/temitayocharles" target="_blank" class="project-link link-primary">View Code</a>
-          <a href="ci.html" class="project-link link-secondary">Learn More</a>
-        </div>
-      </div>
-
-      <!-- Infrastructure as Code -->
-      <div class="project-card">
-        <div class="project-status status-active">Active</div>
-        
-        <!-- Project Thumbnail -->
-        <div style="text-align: center; margin: 20px 0;">
-          <img src="images/thumbnails/aws-infrastructure.svg" alt="AWS Infrastructure" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-        </div>
-        
-        <div class="project-header">
-          <div class="project-icon">🏗️</div>
-          <div>
-            <h3 class="project-title">AWS Infrastructure Automation</h3>
-            <p class="project-subtitle">Terraform + Multi-Environment Setup</p>
+          
+          <div class="project-preview-card" onclick="scrollToSection('cicd-pipeline')">
+            <div class="preview-icon">⚙️</div>
+            <div class="preview-title">Enterprise CI/CD Pipeline</div>
+            <div class="preview-tech">Jenkins • GitLab • Terraform</div>
           </div>
-        </div>
-        <p class="project-description">
-          Modular Terraform configurations for AWS infrastructure provisioning across multiple environments. 
-          Includes VPC setup, ECS clusters, RDS instances, and comprehensive IAM policies with least-privilege access.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">Terraform</span>
-          <span class="tech-tag">AWS</span>
-          <span class="tech-tag">VPC</span>
-          <span class="tech-tag">ECS</span>
-          <span class="tech-tag">RDS</span>
-          <span class="tech-tag">IAM</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/temitayocharles" target="_blank" class="project-link link-primary">View Code</a>
-          <a href="architecture.html" class="project-link link-secondary">Architecture</a>
-        </div>
-      </div>
-
-      <!-- Monitoring & Observability -->
-      <div class="project-card">
-        <div class="project-status status-active">Active</div>
-        
-        <!-- Project Thumbnail -->
-        <div style="text-align: center; margin: 20px 0;">
-          <img src="images/thumbnails/monitoring-stack.svg" alt="Monitoring Stack" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-        </div>
-        
-        <div class="project-header">
-          <div class="project-icon">📊</div>
-          <div>
-            <h3 class="project-title">Container Monitoring Stack</h3>
-            <p class="project-subtitle">Prometheus + Grafana + Alerting</p>
+          
+          <div class="project-preview-card" onclick="scrollToSection('k8s-vpn')">
+            <div class="preview-icon">🔐</div>
+            <div class="preview-title">Kubernetes VPN Gateway</div>
+            <div class="preview-tech">K8s • WireGuard • Security</div>
           </div>
-        </div>
-        <p class="project-description">
-          Complete monitoring solution for containerized applications with custom dashboards, alerting rules, 
-          and performance metrics. Includes container resource monitoring, application health checks, and automated alerts.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">Prometheus</span>
-          <span class="tech-tag">Grafana</span>
-          <span class="tech-tag">AlertManager</span>
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">Node Exporter</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/temitayocharles" target="_blank" class="project-link link-primary">View Code</a>
-          <a href="gallery.html" class="project-link link-secondary">Screenshots</a>
-        </div>
-      </div>
-
-      <!-- Security & Secrets Management -->
-      <div class="project-card">
-        <div class="project-status status-active">Active</div>
-        
-        <!-- Project Thumbnail -->
-        <div style="text-align: center; margin: 20px 0;">
-          <img src="images/thumbnails/kubernetes-vpn.svg" alt="Security & VPN Solution" style="max-width: 100%; height: 200px; object-fit: cover; border-radius: 10px; box-shadow: 0 8px 20px rgba(0,0,0,0.3);">
-        </div>
-        
-        <div class="project-header">
-          <div class="project-icon">🔒</div>
-          <div>
-            <h3 class="project-title">Secrets Management Solution</h3>
-            <p class="project-subtitle">HashiCorp Vault + Automated Rotation</p>
+          
+          <div class="project-preview-card" onclick="scrollToSection('monitoring')">
+            <div class="preview-icon">📊</div>
+            <div class="preview-title">Infrastructure Monitoring</div>
+            <div class="preview-tech">Prometheus • Grafana • Alerts</div>
           </div>
-        </div>
-        <p class="project-description">
-          Enterprise-grade secrets management with HashiCorp Vault, automated secret rotation, 
-          and secure injection into containerized applications. Includes OIDC authentication and audit logging.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">HashiCorp Vault</span>
-          <span class="tech-tag">OIDC</span>
-          <span class="tech-tag">Docker</span>
-          <span class="tech-tag">TLS</span>
-          <span class="tech-tag">Audit Logging</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/temitayocharles" target="_blank" class="project-link link-primary">View Code</a>
-          <a href="security.html" class="project-link link-secondary">Security Details</a>
-        </div>
-      </div>
-
-      <!-- Kubernetes Management -->
-      <div class="project-card">
-        <div class="project-status status-planning">Planning</div>
-        <div class="project-header">
-          <div class="project-icon">☸️</div>
-          <div>
-            <h3 class="project-title">Kubernetes Cluster Management</h3>
-            <p class="project-subtitle">EKS + Helm + GitOps</p>
+          
+          <div class="project-preview-card" onclick="window.open('devops-container-demos.html', '_blank')">
+            <div class="preview-icon">🎬</div>
+            <div class="preview-title">Live Container Demos</div>
+            <div class="preview-tech">Video Walkthroughs • Real Usage</div>
           </div>
-        </div>
-        <p class="project-description">
-          Automated Kubernetes cluster provisioning and management on AWS EKS with GitOps workflows, 
-          Helm chart deployments, and comprehensive monitoring. Focus on scalability and security best practices.
-        </p>
-        <div class="tech-stack">
-          <span class="tech-tag">Kubernetes</span>
-          <span class="tech-tag">AWS EKS</span>
-          <span class="tech-tag">Helm</span>
-          <span class="tech-tag">ArgoCD</span>
-          <span class="tech-tag">Istio</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/temitayocharles" target="_blank" class="project-link link-secondary">Coming Soon</a>
+          
+          <!-- Duplicate set for seamless loop -->
+          <div class="project-preview-card" onclick="scrollToSection('virtual-vacation')">
+            <div class="preview-icon">🌐</div>
+            <div class="preview-title">Virtual Vacation Platform</div>
+            <div class="preview-tech">React • Node.js • Kubernetes</div>
+          </div>
+          
+          <div class="project-preview-card" onclick="scrollToSection('devops-container')">
+            <div class="preview-icon">🐳</div>
+            <div class="preview-title">Ultimate DevOps Container</div>
+            <div class="preview-tech">Docker • 30+ Tools • Monitoring</div>
+          </div>
+          
+          <div class="project-preview-card" onclick="scrollToSection('cicd-pipeline')">
+            <div class="preview-icon">⚙️</div>
+            <div class="preview-title">Enterprise CI/CD Pipeline</div>
+            <div class="preview-tech">Jenkins • GitLab • Terraform</div>
+          </div>
+          
+          <div class="project-preview-card" onclick="scrollToSection('k8s-vpn')">
+            <div class="preview-icon">🔐</div>
+            <div class="preview-title">Kubernetes VPN Gateway</div>
+            <div class="preview-tech">K8s • WireGuard • Security</div>
+          </div>
+          
+          <div class="project-preview-card" onclick="scrollToSection('monitoring')">
+            <div class="preview-icon">📊</div>
+            <div class="preview-title">Infrastructure Monitoring</div>
+            <div class="preview-tech">Prometheus • Grafana • Alerts</div>
+          </div>
+          
+          <div class="project-preview-card" onclick="window.open('devops-container-demos.html', '_blank')">
+            <div class="preview-icon">🎬</div>
+            <div class="preview-title">Live Container Demos</div>
+            <div class="preview-tech">Video Walkthroughs • Real Usage</div>
+          </div>
         </div>
       </div>
     </div>
 
-    <section class="project-stats">
-      <h2>Project Impact & Metrics</h2>
-      <div class="achievement-stats">
-        <div class="stat">
-          <span class="stat-number">85%</span>
-          <span class="stat-label">Deployment Failure Reduction</span>
+    <!-- Performance Metrics Section -->
+    <div class="metrics-section">
+      <h2 class="metrics-title">🚀 Portfolio Impact Metrics</h2>
+      <p class="metrics-subtitle">Production-ready solutions delivering real-world results</p>
+      
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-number" data-target="30">0</div>
+          <div class="metric-label">DevOps Tools</div>
+          <div class="metric-description">Integrated & Production-Ready</div>
         </div>
-        <div class="stat">
-          <span class="stat-number">30s</span>
-          <span class="stat-label">Average Setup Time</span>
+        
+        <div class="metric-card">
+          <div class="metric-number" data-target="7">0</div>
+          <div class="metric-label">Global Destinations</div>
+          <div class="metric-description">Virtual Vacation Demos</div>
         </div>
-        <div class="stat">
-          <span class="stat-number">100+</span>
-          <span class="stat-label">Developers Onboarded</span>
+        
+        <div class="metric-card">
+          <div class="metric-number" data-target="99">0</div>
+          <div class="metric-label">Uptime %</div>
+          <div class="metric-description">Container Infrastructure</div>
         </div>
-        <div class="stat">
-          <span class="stat-number">6</span>
-          <span class="stat-label">Active Projects</span>
+        
+        <div class="metric-card">
+          <div class="metric-number" data-target="3">0</div>
+          <div class="metric-label">Cloud Platforms</div>
+          <div class="metric-description">AWS • Azure • GCP</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Projects Section -->
+    <section class="featured-projects">
+      <div class="featured-section-header">
+        <h2 class="featured-section-title">🌟 Featured Projects</h2>
+        <p class="featured-section-subtitle">Flagship solutions showcasing advanced DevOps engineering</p>
+        <div class="featured-section-glow"></div>
+      </div>
+      
+      <div class="featured-grid">
+        
+        <!-- Virtual Vacation Platform - Hero Project -->
+        <div id="virtual-vacation" class="hero-project-card" style="
+          background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+          border: 3px solid #67ffcc;
+          box-shadow: 0 20px 50px rgba(118, 75, 162, 0.3);
+        ">
+          <div class="project-badge" style="background: rgba(103, 255, 204, 0.9); color: #0e0e0e;">
+            🚀 LATEST
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 class="project-title-enhanced">🌐 Virtual Vacation Platform</h3>
+            <p class="project-subtitle-enhanced" style="color: #f0f0f0;">Cloud-Native Tourism Revolution</p>
+          </div>
+          
+          <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; opacity: 0.95; color: white; position: relative; z-index: 2;">
+            Full-stack platform with React frontend, Node.js/FastAPI backends, and Kubernetes orchestration. 
+            Features <strong>7 interactive global destination demos</strong> transforming tourism through virtual experiences.
+          </p>
+          
+          <div class="tech-stack-enhanced">
+            <span class="tech-tag-enhanced">React</span>
+            <span class="tech-tag-enhanced">Node.js</span>
+            <span class="tech-tag-enhanced">FastAPI</span>
+            <span class="tech-tag-enhanced">MongoDB</span>
+            <span class="tech-tag-enhanced">Kubernetes</span>
+            <span class="tech-tag-enhanced">GitOps</span>
+          </div>
+          
+          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="virtual-vacation-demo.html" target="_blank" class="cta-button-enhanced" style="
+              background: #67ffcc;
+              color: #0e0e0e;
+              box-shadow: 0 8px 20px rgba(103, 255, 204, 0.3);
+            ">🚀 Try Interactive Demo</a>
+            <a href="project-virtual-vacation.html" class="cta-button-enhanced" style="
+              background: rgba(255,255,255,0.2);
+              color: white;
+              border: 2px solid rgba(255,255,255,0.3);
+            ">📖 View Details</a>
+          </div>
+        </div>
+
+        <!-- Ultimate DevOps Container -->
+        <div id="devops-container" class="hero-project-card" style="
+          background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+          border: 2px solid #66d9ef;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        ">
+          <div class="project-badge" style="background: rgba(102, 217, 239, 0.9); color: #0e0e0e;">
+            ⭐ FEATURED
+          </div>
+          
+          <div style="margin-bottom: 20px;">
+            <h3 style="font-size: 1.8rem; margin-bottom: 10px; color: #a6e22e;">🐳 Ultimate DevOps Container</h3>
+            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 20px; color: #66d9ef;">All-in-One DevOps Environment</p>
+          </div>
+          
+          <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 30px; opacity: 0.9; color: #f0f0f0;">
+            Production-ready containerized environment with <strong>30+ integrated DevOps tools</strong>. 
+            One-command deployment includes monitoring, security tools, and development environment.
+          </p>
+          
+          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
+            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Docker</span>
+            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Prometheus</span>
+            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Grafana</span>
+            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Vault</span>
+            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">VS Code</span>
+          </div>
+          
+          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+            <a href="project-ultimate-devops-container.html" style="
+              background: linear-gradient(135deg, #66d9ef, #a6e22e);
+              color: #0e0e0e;
+              padding: 15px 25px;
+              border-radius: 25px;
+              text-decoration: none;
+              font-weight: bold;
+              font-size: 1rem;
+            ">� View Project</a>
+            <a href="devops-container-demos.html" style="
+              background: rgba(102, 217, 239, 0.1);
+              color: #66d9ef;
+              padding: 15px 25px;
+              border-radius: 25px;
+              text-decoration: none;
+              font-weight: bold;
+              border: 2px solid #66d9ef;
+            ">🎬 Watch Demos</a>
+          </div>
         </div>
       </div>
     </section>
 
-    <section class="cloud-solutions-nav" style="background: #1e1e1e; padding: 40px; border-radius: 15px; margin: 40px 0;">
-      <h2 style="color: #a6e22e; text-align: center; margin-bottom: 30px;">Explore Cloud-Specific Solutions</h2>
-      <p style="color: #f0f0f0; text-align: center; margin-bottom: 30px;">
-        Dive deeper into detailed architectural solutions for each cloud platform
-      </p>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-        <a href="aws-solutions.html" style="background: linear-gradient(135deg, #FF9900, #FF6600); color: white; padding: 25px; border-radius: 10px; text-decoration: none; text-align: center; transition: transform 0.3s ease;">
-          <div style="font-size: 2rem; margin-bottom: 10px;">☁️</div>
-          <h3 style="margin: 0 0 10px 0;">AWS Solutions</h3>
-          <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">12 Enterprise Projects</p>
-        </a>
-        <a href="azure-solutions.html" style="background: linear-gradient(135deg, #0078D4, #106EBE); color: white; padding: 25px; border-radius: 10px; text-decoration: none; text-align: center; transition: transform 0.3s ease;">
-          <div style="font-size: 2rem; margin-bottom: 10px;">🔷</div>
-          <h3 style="margin: 0 0 10px 0;">Azure Solutions</h3>
-          <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">4 Hybrid Cloud Projects</p>
-        </a>
-        <a href="gcp-solutions.html" style="background: linear-gradient(135deg, #4285F4, #34A853); color: white; padding: 25px; border-radius: 10px; text-decoration: none; text-align: center; transition: transform 0.3s ease;">
-          <div style="font-size: 2rem; margin-bottom: 10px;">🌐</div>
-          <h3 style="margin: 0 0 10px 0;">GCP Solutions</h3>
-          <p style="margin: 0; opacity: 0.9; font-size: 0.9rem;">2 AI/ML Focused Projects</p>
-        </a>
+    <!-- Other Projects Section -->
+    <section class="other-projects">
+      <h2 style="color: #66d9ef; margin: 60px 0 30px 0; font-size: 1.8rem;">🛠️ Additional Projects</h2>
+      
+      <div class="projects-grid">
+        
+        <!-- Enterprise CI/CD -->
+        <div id="cicd-pipeline" class="project-card">
+          <div class="project-header">
+            <div class="project-icon">⚙️</div>
+            <div>
+              <h3 class="project-title">Enterprise CI/CD Pipeline</h3>
+              <p class="project-subtitle">Automated Build & Deploy</p>
+            </div>
+          </div>
+          <p class="project-description">
+            Automated pipeline with testing, security scanning, and multi-environment deployment.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Jenkins</span>
+            <span class="tech-tag">GitLab CI</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Terraform</span>
+          </div>
+          <div class="project-links">
+            <a href="project-enterprise-cicd.html" class="project-link link-primary">View Details</a>
+          </div>
+        </div>
+
+        <!-- Kubernetes VPN -->
+        <div id="k8s-vpn" class="project-card">
+          <div class="project-header">
+            <div class="project-icon">🔐</div>
+            <div>
+              <h3 class="project-title">Kubernetes VPN Gateway</h3>
+              <p class="project-subtitle">Secure Network Access</p>
+            </div>
+          </div>
+          <p class="project-description">
+            Enterprise VPN solution with Kubernetes integration for secure remote cluster access.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">WireGuard</span>
+            <span class="tech-tag">Helm</span>
+            <span class="tech-tag">Network Policies</span>
+          </div>
+          <div class="project-links">
+            <a href="project-kubernetes-vpn.html" class="project-link link-primary">View Details</a>
+          </div>
+        </div>
+
+        <!-- Monitoring Stack -->
+        <div id="monitoring" class="project-card">
+          <div class="project-header">
+            <div class="project-icon">📊</div>
+            <div>
+              <h3 class="project-title">Infrastructure Monitoring</h3>
+              <p class="project-subtitle">Observability & Alerts</p>
+            </div>
+          </div>
+          <p class="project-description">
+            Complete monitoring with metrics collection, visualization, and intelligent alerting.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-tag">Prometheus</span>
+            <span class="tech-tag">Grafana</span>
+            <span class="tech-tag">AlertManager</span>
+            <span class="tech-tag">Jaeger</span>
+          </div>
+          <div class="project-links">
+            <a href="project-monitoring-stack.html" class="project-link link-primary">View Details</a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section class="project-deep-dives" style="background: #1e1e1e; padding: 40px; border-radius: 15px; margin: 40px 0;">
-      <h2 style="color: #66d9ef; text-align: center; margin-bottom: 30px;">📚 Project Deep Dives</h2>
-      <p style="text-align: center; color: #f0f0f0; margin-bottom: 40px; font-size: 1.1rem;">
-        Explore comprehensive project architectures, implementations, and technical details
+    <!-- Call to Action -->
+    <div style="text-align: center; margin: 60px 0 40px 0; padding: 40px; background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border-radius: 20px; border: 2px solid rgba(102, 217, 239, 0.3);">
+      <h2 style="color: #66d9ef; margin-bottom: 20px;">Let's Build Something Amazing</h2>
+      <p style="font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9;">
+        Ready to discuss how these solutions can transform your infrastructure?
       </p>
-      
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 25px;">
-        <a href="project-ultimate-devops-container.html" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 2px solid #66d9ef; border-radius: 12px; padding: 25px; text-decoration: none; color: white; transition: all 0.3s ease; position: relative;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="font-size: 2rem;">🚀</span>
-            <span style="background: #66d9ef; color: #0e0e0e; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">Featured</span>
-          </div>
-          <h3 style="color: #a6e22e; margin: 0 0 10px 0;">Ultimate DevOps Container</h3>
-          <p style="color: #f0f0f0; margin: 0 0 15px 0; line-height: 1.5;">All-in-one containerized development environment with 30+ tools, TLS security, and enterprise features.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span style="background: rgba(102, 217, 239, 0.2); border: 1px solid #66d9ef; color: #66d9ef; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Docker</span>
-            <span style="background: rgba(102, 217, 239, 0.2); border: 1px solid #66d9ef; color: #66d9ef; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Security</span>
-            <span style="background: rgba(102, 217, 239, 0.2); border: 1px solid #66d9ef; color: #66d9ef; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Monitoring</span>
-          </div>
-        </a>
-        
-        <a href="project-enterprise-cicd.html" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 2px solid #f39c12; border-radius: 12px; padding: 25px; text-decoration: none; color: white; transition: all 0.3s ease;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="font-size: 2rem;">⚡</span>
-            <span style="background: #f39c12; color: #0e0e0e; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">AWS</span>
-          </div>
-          <h3 style="color: #f39c12; margin: 0 0 10px 0;">Enterprise CI/CD Pipeline</h3>
-          <p style="color: #f0f0f0; margin: 0 0 15px 0; line-height: 1.5;">GitOps-powered multi-environment deployment with security scanning and zero-downtime releases.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span style="background: rgba(243, 156, 18, 0.2); border: 1px solid #f39c12; color: #f39c12; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">GitHub Actions</span>
-            <span style="background: rgba(243, 156, 18, 0.2); border: 1px solid #f39c12; color: #f39c12; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">GitOps</span>
-            <span style="background: rgba(243, 156, 18, 0.2); border: 1px solid #f39c12; color: #f39c12; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Security</span>
-          </div>
-        </a>
-        
-        <a href="project-aws-infrastructure.html" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 2px solid #ff6b35; border-radius: 12px; padding: 25px; text-decoration: none; color: white; transition: all 0.3s ease;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="font-size: 2rem;">🏗️</span>
-            <span style="background: #ff6b35; color: #0e0e0e; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">AWS</span>
-          </div>
-          <h3 style="color: #ff6b35; margin: 0 0 10px 0;">AWS Infrastructure Automation</h3>
-          <p style="color: #f0f0f0; margin: 0 0 15px 0; line-height: 1.5;">Multi-region Terraform platform with cost optimization, DR, and compliance monitoring.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span style="background: rgba(255, 107, 53, 0.2); border: 1px solid #ff6b35; color: #ff6b35; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Terraform</span>
-            <span style="background: rgba(255, 107, 53, 0.2); border: 1px solid #ff6b35; color: #ff6b35; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Multi-Region</span>
-            <span style="background: rgba(255, 107, 53, 0.2); border: 1px solid #ff6b35; color: #ff6b35; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">DR</span>
-          </div>
-        </a>
-        
-        <a href="project-monitoring-stack.html" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 2px solid #667eea; border-radius: 12px; padding: 25px; text-decoration: none; color: white; transition: all 0.3s ease;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="font-size: 2rem;">📊</span>
-            <span style="background: #667eea; color: #0e0e0e; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">Cross-Platform</span>
-          </div>
-          <h3 style="color: #667eea; margin: 0 0 10px 0;">Monitoring Stack</h3>
-          <p style="color: #f0f0f0; margin: 0 0 15px 0; line-height: 1.5;">Comprehensive observability platform with metrics, logs, traces, and AI-powered analytics.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span style="background: rgba(102, 126, 234, 0.2); border: 1px solid #667eea; color: #667eea; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Prometheus</span>
-            <span style="background: rgba(102, 126, 234, 0.2); border: 1px solid #667eea; color: #667eea; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Grafana</span>
-            <span style="background: rgba(102, 126, 234, 0.2); border: 1px solid #667eea; color: #667eea; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Jaeger</span>
-          </div>
-        </a>
-        
-        <a href="project-kubernetes-vpn.html" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 2px solid #38a169; border-radius: 12px; padding: 25px; text-decoration: none; color: white; transition: all 0.3s ease;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="font-size: 2rem;">🛡️</span>
-            <span style="background: #38a169; color: #0e0e0e; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">Security</span>
-          </div>
-          <h3 style="color: #38a169; margin: 0 0 10px 0;">Kubernetes VPN Platform</h3>
-          <p style="color: #f0f0f0; margin: 0 0 15px 0; line-height: 1.5;">Secure enterprise VPN deployed on EKS with Pritunl, automated TLS, and GitOps workflows.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span style="background: rgba(56, 161, 105, 0.2); border: 1px solid #38a169; color: #38a169; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Pritunl</span>
-            <span style="background: rgba(56, 161, 105, 0.2); border: 1px solid #38a169; color: #38a169; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">EKS</span>
-            <span style="background: rgba(56, 161, 105, 0.2); border: 1px solid #38a169; color: #38a169; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Zero Trust</span>
-          </div>
-        </a>
-        
-        <a href="#" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 2px solid #e53e3e; border-radius: 12px; padding: 25px; text-decoration: none; color: white; transition: all 0.3s ease; opacity: 0.7;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-            <span style="font-size: 2rem;">🔐</span>
-            <span style="background: #e53e3e; color: #0e0e0e; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem; font-weight: bold;">Coming Soon</span>
-          </div>
-          <h3 style="color: #e53e3e; margin: 0 0 10px 0;">Secrets Management</h3>
-          <p style="color: #f0f0f0; margin: 0 0 15px 0; line-height: 1.5;">Enterprise secrets lifecycle management with HashiCorp Vault, rotation, and compliance.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-            <span style="background: rgba(229, 62, 62, 0.2); border: 1px solid #e53e3e; color: #e53e3e; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Vault</span>
-            <span style="background: rgba(229, 62, 62, 0.2); border: 1px solid #e53e3e; color: #e53e3e; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Security</span>
-            <span style="background: rgba(229, 62, 62, 0.2); border: 1px solid #e53e3e; color: #e53e3e; padding: 3px 8px; border-radius: 10px; font-size: 0.8rem;">Compliance</span>
-          </div>
-        </a>
-      </div>
-      
-      <div style="text-align: center; margin-top: 40px;">
-        <p style="color: #a6e22e; font-size: 1.1rem;">🔄 More project deep dives coming soon...</p>
-        <p style="color: #f0f0f0; margin-top: 10px;">
-          Azure AKS Platform • GCP Serverless • Hybrid Cloud Infrastructure • AI/ML Operations
-        </p>
-      </div>
-    </section>
+      <a href="contact.html" style="
+        background: linear-gradient(135deg, #66d9ef, #a6e22e);
+        color: #0e0e0e;
+        padding: 15px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.1rem;
+        box-shadow: 0 8px 20px rgba(102, 217, 239, 0.3);
+      ">🚀 Get In Touch</a>
+    </div>
   </div>
 
+  <script>
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        
+        // Add a subtle highlight effect
+        element.style.transform = 'scale(1.02)';
+        element.style.transition = 'transform 0.3s ease';
+        setTimeout(() => {
+          element.style.transform = 'scale(1)';
+        }, 1000);
+      }
+    }
+
+    // Animated Counter Function
+    function animateCounter(element, target, duration = 2000) {
+      let start = 0;
+      const increment = target / (duration / 16);
+      const timer = setInterval(() => {
+        start += increment;
+        if (start >= target) {
+          element.textContent = target + (target === 99 ? '.9' : '+');
+          clearInterval(timer);
+          element.parentElement.classList.add('animate');
+        } else {
+          element.textContent = Math.floor(start) + (target === 99 ? '.0' : '');
+        }
+      }, 16);
+    }
+
+    // Intersection Observer for metrics animation
+    function setupMetricsAnimation() {
+      const metricsSection = document.querySelector('.metrics-section');
+      const metricNumbers = document.querySelectorAll('.metric-number');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            metricNumbers.forEach(metric => {
+              const target = parseInt(metric.getAttribute('data-target'));
+              animateCounter(metric, target);
+            });
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.5 });
+      
+      if (metricsSection) {
+        observer.observe(metricsSection);
+      }
+    }
+
+    // Add click handlers for better accessibility
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize metrics animation
+      setupMetricsAnimation();
+      
+      // Pause carousel on focus for accessibility
+      const carouselTrack = document.querySelector('.carousel-track');
+      const previewCards = document.querySelectorAll('.project-preview-card');
+      
+      previewCards.forEach(card => {
+        card.addEventListener('focus', () => {
+          carouselTrack.style.animationPlayState = 'paused';
+        });
+        
+        card.addEventListener('blur', () => {
+          carouselTrack.style.animationPlayState = 'running';
+        });
+      });
+    });
+  </script>
+
+  <!-- Quick Actions Floating Button -->
+  <div class="quick-actions">
+    <div class="quick-actions-menu" id="quickActionsMenu">
+      <a href="contact.html" class="quick-action-item">
+        <span class="quick-action-icon">📧</span>
+        <span>Quick Contact</span>
+      </a>
+      <a href="devops-container-demos.html" class="quick-action-item">
+        <span class="quick-action-icon">🐳</span>
+        <span>Try Container Demo</span>
+      </a>
+      <a href="virtual-vacation-demo.html" target="_blank" class="quick-action-item">
+        <span class="quick-action-icon">🌐</span>
+        <span>Virtual Vacation Demo</span>
+      </a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="quick-action-item">
+        <span class="quick-action-icon">💼</span>
+        <span>LinkedIn Profile</span>
+      </a>
+    </div>
+    <button class="quick-actions-btn" onclick="toggleQuickActions()" aria-label="Quick Actions">
+      🚀
+    </button>
+  </div>
+
+  <script>
+    function toggleQuickActions() {
+      const menu = document.getElementById('quickActionsMenu');
+      menu.classList.toggle('show');
+    }
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      const quickActions = document.querySelector('.quick-actions');
+      const menu = document.getElementById('quickActionsMenu');
+      
+      if (!quickActions.contains(event.target)) {
+        menu.classList.remove('show');
+      }
+    });
+
+    // Close menu when pressing Escape
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        document.getElementById('quickActionsMenu').classList.remove('show');
+      }
+    });
+  </script>
+
   <footer>
-    <h3>Connect with Me</h3>
     <div class="social-links">
       <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
       <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
