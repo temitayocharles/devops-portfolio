@@ -672,20 +672,70 @@
 </section>
   <script src="global-sidebar.js"></script>
   
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about-me.html">About Me</a>
-    <a href="projects.html" class="active">Projects</a>
-    <a href="skills.html">Skills</a>
-    <a href="aws-solutions.html">AWS Solutions</a>
-    <a href="azure-solutions.html">Azure Solutions</a>
-    <a href="gcp-solutions.html">GCP Solutions</a>
-    <a href="architecture.html">Architecture</a>
-    <a href="ci.html">CI/CD</a>
-    <a href="security.html">Security</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
+  <!-- Sidebar Toggle Button -->
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
+  
+  <!-- Sidebar Navigation -->
+  <aside class="global-sidebar" id="globalSidebar">
+    <div class="sidebar-header">
+      <h3>Navigation</h3>
+      <p>Quick access to all sections</p>
+      <button id="sidebarClose" aria-label="Close sidebar"
+        style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">×</button>
+    </div>
+    <div class="sidebar-nav-group">
+      <div class="sidebar-nav-title">Projects</div>
+      <a href="projects.html" class="sidebar-nav-item" data-icon="📚">All Projects</a>
+      <a href="project-ultimate-devops-container.html" class="sidebar-nav-item" data-icon="🚀">Ultimate DevOps
+        Container</a>
+      <a href="project-virtual-vacation.html" class="sidebar-nav-item" data-icon="🌐">Virtual Vacation Platform</a>
+      <a href="project-enterprise-cicd.html" class="sidebar-nav-item" data-icon="⚡">Enterprise CI/CD Pipeline</a>
+      <a href="project-monitoring-stack.html" class="sidebar-nav-item" data-icon="📊">Monitoring Stack</a>
+    </div>
+    <div class="sidebar-nav-group">
+      <div class="sidebar-nav-title">Environments</div>
+      <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS Solutions</a>
+      <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="🔷">Azure Solutions</a>
+      <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐">GCP Solutions</a>
+    </div>
+    <div class="sidebar-nav-group">
+      <div class="sidebar-nav-title">Solutions & More</div>
+      <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
+      <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️">Skills</a>
+      <a href="blog.html" class="sidebar-nav-item" data-icon="📝">Blog</a>
+      <a href="contact.html" class="sidebar-nav-item" data-icon="✉️">Contact</a>
+    </div>
+    <div class="sidebar-footer">
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> •
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a> •
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+      <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
+    </div>
+  </aside>
+  
+  <!-- Sidebar Overlay -->
+  <div id="sidebarOverlay"
+    style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.25);z-index:999;display:none;transition:opacity 0.3s;">
+  </div>
+  <nav class="main-nav"
+    style="width:100%;background:#232526;padding:0.5rem 0 0.5rem 0;box-shadow:0 2px 12px rgba(0,0,0,0.08);display:flex;justify-content:center;align-items:center;z-index:1000;position:relative;">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="about-me.html" class="nav-link">About</a>
+    <a href="skills.html" class="nav-link">Skills</a>
+    <a href="projects.html" class="nav-link active">Projects</a>
+    <a href="aws-solutions.html" class="nav-link">AWS Solutions</a>
+    <a href="azure-solutions.html" class="nav-link">Azure Solutions</a>
+    <a href="gcp-solutions.html" class="nav-link">GCP Solutions</a>
+    <a href="blog.html" class="nav-link">Blog</a>
+    <a href="contact.html" class="nav-link">Contact</a>
   </nav>
+    <!-- New Hero Button Group -->
+    <div class="homepage-main-buttons" style="display:flex;justify-content:center;gap:32px;margin:40px 0 32px 0;">
+      <a href="index.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Home</a>
+      <a href="projects.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Projects</a>
+      <a href="about-me.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">About Me</a>
+      <a href="contact.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Contact</a>
+    </div>
 
   <div class="main">
     <h1>Featured DevOps Projects</h1>
