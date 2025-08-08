@@ -25,67 +25,116 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sticky Sidebar Navigation -->
-  <nav id="sidebar" class="sticky-sidebar"
-    style="position:fixed;top:0;left:0;height:100vh;width:70px;background:#232526;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding-top:80px;box-shadow:2px 0 12px rgba(0,0,0,0.08);">
-    <a href="index.html" title="Home" style="margin-bottom:30px;color:#66d9ef;font-size:2rem;text-decoration:none;">🏠</a>
-    <a href="#featured" title="Featured"
-      style="margin-bottom:30px;color:#a6e22e;font-size:2rem;text-decoration:none;">⭐</a>
-    <a href="#projects" title="Projects"
-      style="margin-bottom:30px;color:#764ba2;font-size:2rem;text-decoration:none;">📁</a>
-    <a href="#demos" title="Demos" style="margin-bottom:30px;color:#f39c12;font-size:2rem;text-decoration:none;">🎬</a>
-    <a href="#faq" title="FAQ" style="margin-bottom:30px;color:#28a745;font-size:2rem;text-decoration:none;">❓</a>
-    <a href="contact.html" title="Contact"
-      style="margin-top:auto;margin-bottom:30px;color:#e53e3e;font-size:2rem;text-decoration:none;">✉️</a>
-  </nav>
-  <script src="global-sidebar.js"></script>
-  
-                  <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about-me.html">About</a></li>
-                    <li><a href="skills.html">Skills</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="aws-solutions.html">AWS Solutions</a></li>
-                    <li><a href="azure-solutions.html">Azure Solutions</a></li>
-                    <li><a href="gcp-solutions.html">GCP Solutions</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+  <!-- Sidebar Toggle Button -->
+  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
+
+<!-- Sidebar Navigation -->
+<aside class="global-sidebar" id="globalSidebar">
+  <div class="sidebar-header">
+    <h3>Navigation</h3>
+    <p>Quick access to all sections</p>
+    <button id="sidebarClose" aria-label="Close sidebar"
+      style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">×</button>
+  </div>
+  <div class="sidebar-nav-group">
+    <div class="sidebar-nav-title">Projects</div>
+    <a href="projects.html" class="sidebar-nav-item" data-icon="📚">All Projects</a>
+    <a href="project-ultimate-devops-container.html" class="sidebar-nav-item" data-icon="🚀">Ultimate DevOps
+      Container</a>
+    <a href="project-virtual-vacation.html" class="sidebar-nav-item" data-icon="🌐">Virtual Vacation Platform</a>
+    <a href="project-enterprise-cicd.html" class="sidebar-nav-item" data-icon="⚡">Enterprise CI/CD Pipeline</a>
+    <a href="project-monitoring-stack.html" class="sidebar-nav-item" data-icon="📊">Monitoring Stack</a>
+  </div>
+  <div class="sidebar-nav-group">
+    <div class="sidebar-nav-title">Environments</div>
+    <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS Solutions</a>
+    <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="🔷">Azure Solutions</a>
+    <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐">GCP Solutions</a>
+  </div>
+  <div class="sidebar-nav-group">
+    <div class="sidebar-nav-title">Solutions & More</div>
+    <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
+    <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️">Skills</a>
+    <a href="blog.html" class="sidebar-nav-item" data-icon="📝">Blog</a>
+    <a href="contact.html" class="sidebar-nav-item" data-icon="✉️">Contact</a>
+  </div>
+  <div class="sidebar-footer">
+    <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> •
+    <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a> •
+    <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
+  </div>
+</aside>
+
+<!-- Sidebar Overlay -->
+<div id="sidebarOverlay"
+  style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.25);z-index:999;display:none;transition:opacity 0.3s;">
+</div>
+<nav class="main-nav"
+  style="width:100%;background:#232526;padding:0.5rem 0 0.5rem 0;box-shadow:0 2px 12px rgba(0,0,0,0.08);display:flex;justify-content:center;align-items:center;z-index:1000;position:relative;">
+  <a href="index.html" class="nav-link active">Home</a>
+  <a href="about-me.html" class="nav-link">About</a>
+  <a href="skills.html" class="nav-link">Skills</a>
+  <a href="projects.html" class="nav-link">Projects</a>
+  <a href="aws-solutions.html" class="nav-link">AWS Solutions</a>
+  <a href="azure-solutions.html" class="nav-link">Azure Solutions</a>
+  <a href="gcp-solutions.html" class="nav-link">GCP Solutions</a>
+  <a href="blog.html" class="nav-link">Blog</a>
+  <a href="contact.html" class="nav-link">Contact</a>
+</nav>
   
   <div class="hero-section">
-      <!-- Hero Banner Section -->
-  <div class="hero-banner">
-    <img src="images/banner.jpg" alt="DevOps Professional Banner" class="hero-banner-image" />
-    <div class="hero-banner-overlay">
-      <div class="hero-content">
-        <div class="profile-section">
-          <img src="images/profile.jpg" alt="Temitayo Charles - DevOps Engineer" class="profile-photo" />
-          <div class="profile-info">
-            <!-- Updated hero content to focus on personal branding rather than product marketing -->
-            <h1>Temitayo Charles</h1>
-            <p class="tagline">DevOps Engineer &amp; Container Specialist</p>
-            <p class="hero-description">
-              I streamline development pipelines using containerization, CI/CD automation and cloud infrastructure.
-              Explore my projects and learn how I deliver automated, secure and scalable solutions.
+  <div class="hero-banner" style="position:relative;width:100%;max-width:1200px;margin:0 auto;">
+    <img src="B57EDA65-F244-49EB-B5BA-504705128E03.PNG" alt="DevOps Banner"
+      style="width:100%;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);object-fit:cover;max-height:320px;" />
+    <div class="hero-banner-overlay"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;">
+      <div class="hero-content" style="display:flex;align-items:center;gap:40px;width:100%;padding:40px;">
+        <div class="profile-section" style="display:flex;align-items:center;gap:32px;">
+          <div
+            style="width:170px;height:170px;border-radius:50%;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);background:#fff;display:flex;align-items:center;justify-content:center;">
+            <img src="IMG_0907.JPG" alt="Temitayo Charles"
+              style="width:170px;height:170px;object-fit:cover;border-radius:50%;" />
+          </div>
+          <div class="profile-info" style="color:#fff;">
+            <h1 style="font-size:2.5rem;margin-bottom:8px;">Temitayo Charles Akinniranye</h1>
+            <p class="tagline" style="font-size:1.2rem;margin-bottom:8px;">DevOps | Cloud Infrastructure | Kubernetes |
+              CI/CD | DevSecOps</p>
+            <p class="hero-description" style="font-size:1.1rem;max-width:500px;">
+              I solve real-world infrastructure and automation problems for teams and businesses. My work streamlines
+              onboarding, reduces cloud costs, and delivers secure, scalable solutions using containers and cloud-native
+              tools.<br>
+              <span style="color:#a6e22e;font-weight:bold;">Explore my projects below to see how I deliver business impact
+                and technical excellence.</span>
             </p>
           </div>
         </div>
-        <a href="getting-started.html" class="cta-button">Get Started Today</a>
+        <a href="getting-started.html" class="cta-button"
+          style="background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;padding:15px 32px;border-radius:10px;text-decoration:none;font-weight:bold;font-size:1.15rem;box-shadow:0 2px 12px #232526;margin-left:32px;">Get
+          Started Today</a>
       </div>
     </div>
   </div>
   </div>
 
   <div class="main">
-    <!-- Carousel for Project Highlights -->
+    <!-- New Hero Button Group -->
+    <div class="homepage-main-buttons" style="display:flex;justify-content:center;gap:32px;margin:40px 0 32px 0;">
+      <a href="index.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Home</a>
+      <a href="projects.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Projects</a>
+      <a href="about-me.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">About Me</a>
+      <a href="contact.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Contact</a>
+    </div>
+    
+    <!-- Carousel for Project Highlights (Restored) -->
     <section id="featured" style="margin-bottom:40px;">
       <div class="carousel" style="max-width:900px;margin:0 auto;overflow:hidden;position:relative;">
         <div class="carousel-track" style="display:flex;transition:transform 0.6s cubic-bezier(.4,0,.2,1);">
           <div class="carousel-item"
             style="min-width:100%;box-sizing:border-box;padding:30px;background:#232526;border-radius:20px;margin-right:20px;color:#fff;">
             <h3 style="color:#66d9ef;font-size:2rem;margin-bottom:10px;">TC Enterprise DevOps Platform™</h3>
-            <p style="font-size:1.1rem;">A fully customized, production-grade DevOps laboratory engineered by Temitayo
-              Charles. Multi-master Kubernetes, GitOps, Service Mesh, Vault, Prometheus, Grafana, and more.</p>
+            <p style="font-size:1.1rem;">A fully customized, production-grade DevOps laboratory engineered by Temitayo Charles.
+              Multi-master Kubernetes, GitOps, Service Mesh, Vault, Prometheus, Grafana, and more.</p>
           </div>
           <div class="carousel-item"
             style="min-width:100%;box-sizing:border-box;padding:30px;background:#764ba2;border-radius:20px;margin-right:20px;color:#fff;">
@@ -96,8 +145,8 @@
           <div class="carousel-item"
             style="min-width:100%;box-sizing:border-box;padding:30px;background:#667eea;border-radius:20px;margin-right:20px;color:#fff;">
             <h3 style="color:#f39c12;font-size:2rem;margin-bottom:10px;">Virtual Vacation Platform</h3>
-            <p style="font-size:1.1rem;">Immersive tourism platform with AI recommendations, Kubernetes deployment, and
-              GitOps automation.</p>
+            <p style="font-size:1.1rem;">Immersive tourism platform with AI recommendations, Kubernetes deployment, and GitOps
+              automation.</p>
           </div>
         </div>
         <button class="carousel-btn prev"
@@ -106,49 +155,9 @@
           style="position:absolute;top:50%;right:10px;transform:translateY(-50%);background:#232526;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;">&#8594;</button>
       </div>
     </section>
-    <!-- Bespoke Featured Project: TC Enterprise DevOps Platform™ -->
-    <section class="featured-demo-section" style="
-    <!-- Animated Progress Bars for Milestones -->
-    </section>
-    <div style="max-width:700px;margin:0 auto 30px auto;">
-      <h3 style="color:#66d9ef;margin-bottom:10px;">Project Milestones</h3>
-      <div style="margin-bottom:10px;"><span style="color:#a6e22e;">Foundation Setup</span><div style="background:#232526;border-radius:8px;overflow:hidden;height:12px;"><div style="width:80%;background:#a6e22e;height:12px;transition:width 1s;"></div></div></div>
-      <div style="margin-bottom:10px;"><span style="color:#66d9ef;">Security & Policy</span><div style="background:#232526;border-radius:8px;overflow:hidden;height:12px;"><div style="width:60%;background:#66d9ef;height:12px;transition:width 1s;"></div></div></div>
-      <div style="margin-bottom:10px;"><span style="color:#f39c12;">Service Mesh & Networking</span><div style="background:#232526;border-radius:8px;overflow:hidden;height:12px;"><div style="width:40%;background:#f39c12;height:12px;transition:width 1s;"></div></div></div>
-      <div style="margin-bottom:10px;"><span style="color:#764ba2;">High Availability & Scaling</span><div style="background:#232526;border-radius:8px;overflow:hidden;height:12px;"><div style="width:20%;background:#764ba2;height:12px;transition:width 1s;"></div></div></div>
-    </div>
-    <!-- FAQ / AMA Section -->
-    <section id="faq" style="background:#232526;color:#fff;padding:40px 20px;border-radius:20px;margin:40px 0;max-width:900px;margin-left:auto;margin-right:auto;">
-      <h2 style="color:#66d9ef;text-align:center;margin-bottom:20px;">❓ Frequently Asked Questions</h2>
-      <div style="display:grid;grid-template-columns:1fr;gap:20px;">
-        <div style="background:#414345;border-radius:12px;padding:20px;">
-          <h3 style="color:#a6e22e;margin-bottom:8px;">What real-world problems does TC Enterprise DevOps Platform™ solve?</h3>
-          <p style="color:#e0e0e0;">It eliminates cloud costs, simplifies complex enterprise setups, enforces zero-trust security, and provides hands-on onboarding for advanced DevOps skills.</p>
-        </div>
-        <div style="background:#414345;border-radius:12px;padding:20px;">
-          <h3 style="color:#66d9ef;margin-bottom:8px;">How is the platform architected?</h3>
-          <p style="color:#e0e0e0;">It uses multi-master Kubernetes, GitOps, Service Mesh, Vault, Prometheus, Grafana, HA PostgreSQL, Redis Sentinel, and more—fully integrated for enterprise-grade reliability.</p>
-        </div>
-        <div style="background:#414345;border-radius:12px;padding:20px;">
-          <h3 style="color:#f39c12;margin-bottom:8px;">Is it mobile and user-friendly?</h3>
-          <p style="color:#e0e0e0;">Yes! The UI is fully responsive, touch-optimized, and designed for seamless navigation on any device.</p>
-        </div>
-        <div style="background:#414345;border-radius:12px;padding:20px;">
-          <h3 style="color:#764ba2;margin-bottom:8px;">How do I return to the home or previous page?</h3>
-          <p style="color:#e0e0e0;">Use the sticky sidebar, floating buttons, or navigation links at the top and bottom of every page for instant access.</p>
-        </div>
-      </div>
-    </section>
-      background: linear-gradient(135deg, #232526 0%, #414345 100%);
-      border: 3px solid #66d9ef;
-      border-radius: 24px;
-      padding: 40px 30px;
-      text-align: center;
-      margin-bottom: 48px;
-      box-shadow: 0 12px 40px rgba(102, 217, 239, 0.12);
-      position: relative;
-      overflow: hidden;
-    ">
+    <!-- FIXED: Featured Project Section (malformed HTML removed) -->
+    <section class="featured-demo-section"
+      style="background: linear-gradient(135deg, #232526 0%, #414345 100%); border: 3px solid #66d9ef; border-radius: 24px; padding: 40px 30px; text-align: center; margin-bottom: 48px; box-shadow: 0 12px 40px rgba(102, 217, 239, 0.12); position: relative; overflow: hidden;">
       <h2 style="color: #66d9ef; font-size: 2.7rem; margin-bottom: 18px; text-shadow: 0 2px 12px #232526;">
         🧪 Featured Project: TC Enterprise DevOps Platform™
       </h2>
@@ -595,16 +604,50 @@
   </footer>
   <script>
     // Carousel Functionality
+      let carouselIndex = 0;
     const carouselTrack = document.querySelector('.carousel-track');
     const carouselItems = document.querySelectorAll('.carousel-item');
-    cons t  prevBtn = document r('.carousel-btn.pre v ');
-    const nextBtn = docu      uselIndex = 0;
-    function elItems.length)%caro u selItems.length;
-   ousel();
-    });
-      nextBtn.addEventListener('cl      ouselItems.length;
-      updateCaro f(window.scrollY>300 ) {backToTopBtn.style ck';}else{backToTopB t n.style.display='none';}
-         ndow.scrollTo({top:0,behavior:'smooth'});});
+      const prevBtn = document.querySelector('.carousel-btn.prev');
+      const nextBtn = document.querySelector('.carousel-btn.next');
+
+      function updateCarousel() {
+        carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
+      }
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          carouselIndex = (carouselIndex - 1 + carouselItems.length) % carouselItems.length;
+          updateCarousel();
+        });
+        nextBtn.addEventListener('click', () => {
+          carouselIndex = (carouselIndex + 1) % carouselItems.length;
+          updateCarousel();
+        });
+      }
+
+      // Animated Metrics
+      function animateCounter(element, target) {
+        let count = 0;
+        const duration = 1200;
+        const increment = target / (duration / 20);
+        const timer = setInterval(() => {
+          count += increment;
+          if (count >= target) {
+            element.textContent = target;
+            clearInterval(timer);
+          } else {
+            element.textContent = Math.floor(count);
+          }
+        }, 20);
+      }
+      function setupMetricsAnimation() {
+        const metricNumbers = document.querySelectorAll('.metric-number');
+        metricNumbers.forEach(metric => {
+          const target = parseInt(metric.getAttribute('data-target'), 10);
+          animateCounter(metric, target);
+        });
+      }
+      document.addEventListener('DOMContentLoaded', setupMetricsAnimation);
+
     // Interactive Demo Functionality
     function openDemo(demoType) {
       let demoModal = document.getElementById('demoModal');
@@ -894,6 +937,40 @@
         closeDemo();
       }
     });
+
+  // FIXED: Sidebar Functionality
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const globalSidebar = document.getElementById('globalSidebar');
+  const sidebarClose = document.getElementById('sidebarClose');
+  const sidebarOverlay = document.getElementById('sidebarOverlay');
+
+  function openSidebar() {
+    globalSidebar.classList.add('open');
+    sidebarOverlay.style.display = 'block';
+    setTimeout(() => { sidebarOverlay.style.opacity = '1'; }, 10);
+    document.body.style.overflow = 'hidden';
+  }
+  function closeSidebar() {
+    globalSidebar.classList.remove('open');
+    sidebarOverlay.style.opacity = '0';
+    setTimeout(() => { sidebarOverlay.style.display = 'none'; }, 300);
+    document.body.style.overflow = 'auto';
+  }
+  sidebarToggle.addEventListener('click', openSidebar);
+  sidebarClose.addEventListener('click', closeSidebar);
+  sidebarOverlay.addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeSidebar();
+  });
+  function handleSidebarToggleVisibility() {
+    if (window.innerWidth > 900) {
+      sidebarToggle.style.display = 'none';
+    } else {
+      sidebarToggle.style.display = 'block';
+    }
+  }
+  window.addEventListener('resize', handleSidebarToggleVisibility);
+  document.addEventListener('DOMContentLoaded', handleSidebarToggleVisibility);
   </script>
 </body>
 </html>

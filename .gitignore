@@ -8,6 +8,28 @@
 *.swo
 *~
 
+# Lint/Cache/Config Files
+.eslintcache
+.stylelintcache
+.stylelintignore
+.eslintignore
+
+# Coverage and Test Output
+coverage/
+.nyc_output/
+
+# OS-specific Files
+.AppleDouble
+.LSOverride
+
+# Package Manager Files
+pnpm-lock.yaml
+.pnpm-debug.log
+
+# Miscellaneous
+.env.*.local
+.history
+
 ## System Files
 .DS_Store
 .DS_Store?

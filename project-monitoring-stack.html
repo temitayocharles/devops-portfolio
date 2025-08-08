@@ -507,44 +507,55 @@
                     <text x="20" y="120" style="font-size: 11px; fill: #e9d8fd;">Multi-cloud setup • Agent deployment</text>
                     <text x="20" y="132" style="font-size: 10px; fill: #e9d8fd;">• Instrumentation • Data collection</text>
                     
-                    <!-- Dashboard Creation -->
-                    <rect x="0" y="160" width="240" height="50" rx="8" fill="#38a169" stroke="#22543d" stroke-width="2"/>
-                    <text x="20" y="180" style="font-size: 13px; fill: white; font-weight: bold;">📈 Build Dashboards</text>
-                    <text x="20" y="195" style="font-size: 10px; fill: #c6f6d5;">Grafana • Kibana • Custom views</text>
-                    <text x="20" y="205" style="font-size: 10px; fill: #c6f6d5;">Business metrics • Technical KPIs</text>
-                    
-                    <!-- Alert Configuration -->
-                    <rect x="0" y="230" width="240" height="50" rx="8" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
-                    <text x="20" y="250" style="font-size: 13px; fill: white; font-weight: bold;">🚨 Alert Setup</text>
-                    <text x="20" y="265" style="font-size: 10px; fill: #fed7cc;">Thresholds • Escalation rules</text>
-                    <text x="20" y="275" style="font-size: 10px; fill: #fed7cc;">PagerDuty • Slack • Email</text>
-                    
-                    <!-- Monitor Health -->
-                    <rect x="0" y="300" width="240" height="50" rx="8" fill="#d69e2e" stroke="#b7791f" stroke-width="2"/>
-                    <text x="20" y="320" style="font-size: 13px; fill: white; font-weight: bold;">👀 Monitor & Observe</text>
-                    <text x="20" y="335" style="font-size: 10px; fill: #faf089;">Real-time monitoring • Trend analysis</text>
-                    <text x="20" y="345" style="font-size: 10px; fill: #faf089;">Performance optimization</text>
-                    
-                    <!-- Incident Response -->
-                    <rect x="0" y="370" width="240" height="60" rx="8" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
-                    <text x="20" y="395" style="font-size: 14px; fill: white; font-weight: bold;">🚑 Incident Response</text>
-                    <text x="20" y="410" style="font-size: 11px; fill: #fecaca;">Alert investigation • Root cause analysis</text>
-                    <text x="20" y="422" style="font-size: 10px; fill: #fecaca;">• Troubleshooting • Recovery actions</text>
-                    
-                    <!-- Capacity Planning -->
-                    <rect x="0" y="450" width="240" height="50" rx="8" fill="#319795" stroke="#2c7a7b" stroke-width="2"/>
-                    <text x="20" y="470" style="font-size: 13px; fill: white; font-weight: bold;">📊 Capacity Planning</text>
-                    <text x="20" y="485" style="font-size: 10px; fill: #b2f5ea;">Growth projections • Resource scaling</text>
-                    <text x="20" y="495" style="font-size: 10px; fill: #b2f5ea;">Cost optimization • Performance tuning</text>
-                    
-                    <!-- Performance Analysis -->
-                    <rect x="0" y="520" width="240" height="50" rx="8" fill="#6b46c1" stroke="#553c9a" stroke-width="2"/>
-                    <text x="20" y="540" style="font-size: 13px; fill: white; font-weight: bold;">🔬 Performance Analysis</text>
-                    <text x="20" y="555" style="font-size: 10px; fill: #e9d8fd;">Bottleneck identification • Optimization</text>
-                    <text x="20" y="565" style="font-size: 10px; fill: #e9d8fd;">Service dependency mapping</text>
-                    
-                    <!-- Report Generation -->
-                    <rect x="0" y="590" width="240" height="50" rx="8" fill="#065f46" stroke="#047857" stroke-width="2"/>
+                    <!-- Immersive Demo Journey Section -->
+                    <section id="demo-journey" style="margin-bottom:40px;">
+                        <h2 style="color:#667eea;margin-bottom:18px;text-align:center;">Monitoring Stack Interactive Demo Journey</h2>
+                        <div style="display:grid;grid-template-columns:1fr;gap:32px;max-width:900px;margin:0 auto;">
+                            <!-- Live Grafana Dashboard Widget -->
+                            <div style="background:#18181b;border-radius:16px;box-shadow:0 4px 32px #764ba2a0;padding:32px;">
+                                <h3 style="color:#66d9ef;text-align:center;margin-bottom:18px;">Live Grafana Dashboard</h3>
+                                <iframe src="https://play.grafana.org/d/000000012/grafana-play-home?orgId=1&refresh=10s" width="100%"
+                                    height="320"
+                                    style="border-radius:12px;border:2px solid #667eea;box-shadow:0 2px 16px #667eea40;"></iframe>
+                                <p style="color:#a6e22e;font-size:1rem;margin-top:12px;text-align:center;">Real-time metrics, alerts, and
+                                    visualizations from a simulated multi-cloud environment.</p>
+                            </div>
+                            <!-- AI Anomaly Detection Widget -->
+                            <div style="background:#23272a;border-radius:16px;box-shadow:0 4px 32px #38a169a0;padding:32px;">
+                                <h3 style="color:#38a169;text-align:center;margin-bottom:18px;">AI-Powered Anomaly Detection</h3>
+                                <div style="display:flex;flex-direction:column;align-items:center;">
+                                    <input id="anomalyInput" type="text" placeholder="Paste sample metric or log line..."
+                                        style="width:80%;padding:12px;border-radius:8px;border:1px solid #38a169;margin-bottom:12px;background:#18181b;color:#c6f6d5;">
+                                    <button onclick="runAnomalyDetection()"
+                                        style="background:#38a169;color:#18181b;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;box-shadow:0 2px 8px #38a16940;">Detect
+                                        Anomaly</button>
+                                    <div id="anomalyResult" style="margin-top:18px;font-size:1.1rem;color:#c6f6d5;text-align:center;"></div>
+                                </div>
+                                <p style="color:#c6f6d5;font-size:0.95rem;margin-top:18px;text-align:center;">Uses ML models to detect
+                                    outliers, spikes, and unusual patterns in metrics/logs.</p>
+                            </div>
+                            <!-- Incident Response Simulator Widget -->
+                            <div style="background:#2d3748;border-radius:16px;box-shadow:0 4px 32px #dc2626a0;padding:32px;">
+                                <h3 style="color:#dc2626;text-align:center;margin-bottom:18px;">Incident Response Simulator</h3>
+                                <div style="display:flex;flex-direction:column;align-items:center;">
+                                    <select id="incidentType"
+                                        style="width:80%;padding:12px;border-radius:8px;border:1px solid #dc2626;margin-bottom:12px;background:#18181b;color:#fecaca;">
+                                        <option value="db">Database Latency Spike</option>
+                                        <option value="api">API Error Surge</option>
+                                        <option value="infra">Infrastructure Outage</option>
+                                        <option value="security">Security Breach Alert</option>
+                                    </select>
+                                    <button onclick="runIncidentResponse()"
+                                        style="background:#dc2626;color:#fff;padding:10px 24px;border:none;border-radius:8px;font-weight:bold;box-shadow:0 2px 8px #dc262640;">Simulate
+                                        Response</button>
+                                    <div id="incidentResult" style="margin-top:18px;font-size:1.1rem;color:#fecaca;text-align:center;">
+                                    </div>
+                                </div>
+                                <p style="color:#fecaca;font-size:0.95rem;margin-top:18px;text-align:center;">Simulates alert investigation,
+                                    root cause analysis, and automated remediation steps.</p>
+                            </div>
+                        </div>
+                    </section>
                     <text x="20" y="610" style="font-size: 13px; fill: white; font-weight: bold;">📊 Reporting & Analytics</text>
                     <text x="20" y="625" style="font-size: 10px; fill: #d1fae5;">SLA reports • Business metrics</text>
                     <text x="20" y="635" style="font-size: 10px; fill: #d1fae5;">Executive dashboards • Trends</text>
@@ -1086,6 +1097,36 @@ monitoring/
                 sidebar.classList.remove('open');
             }
         });
+            // Interactive Demo Journey Scripts
+            function runAnomalyDetection() {
+                const input = document.getElementById('anomalyInput').value.trim();
+                const result = document.getElementById('anomalyResult');
+                if (!input) {
+                    result.innerHTML = '<span style="color:#dc2626;">Please enter a metric or log line.</span>';
+                    return;
+                }
+                // Simulated ML anomaly detection logic
+                if (/error|timeout|fail|spike|latency|unusual|drop|disconnect/i.test(input)) {
+                    result.innerHTML = '<span style="color:#dc2626;font-weight:bold;">Anomaly Detected!</span> <br> <span style="color:#fecaca;">Pattern: ' + input.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+                } else {
+                    result.innerHTML = '<span style="color:#38a169;font-weight:bold;">No anomaly detected.</span> <br> <span style="color:#c6f6d5;">Pattern: ' + input.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</span>';
+                }
+            }
+            function runIncidentResponse() {
+                const type = document.getElementById('incidentType').value;
+                const result = document.getElementById('incidentResult');
+                let response = '';
+                if (type === 'db') {
+                    response = '<b>Database Latency Spike</b><br>1. Alert triggered in Grafana.<br>2. SRE notified via PagerDuty.<br>3. Root cause: slow queries.<br>4. Automated remediation: query optimization, cache flush.';
+                } else if (type === 'api') {
+                    response = '<b>API Error Surge</b><br>1. Alert triggered in Prometheus.<br>2. Incident escalated to on-call.<br>3. Root cause: deployment bug.<br>4. Automated rollback initiated.';
+                } else if (type === 'infra') {
+                    response = '<b>Infrastructure Outage</b><br>1. Alert triggered in AlertManager.<br>2. SRE team paged.<br>3. Root cause: node failure.<br>4. Automated failover and node replacement.';
+                } else if (type === 'security') {
+                    response = '<b>Security Breach Alert</b><br>1. Alert triggered in Security Center.<br>2. Security team notified.<br>3. Root cause: suspicious login.<br>4. Automated account lock and investigation.';
+                }
+                result.innerHTML = response;
+            }
     </script>
 </body>
 </html>

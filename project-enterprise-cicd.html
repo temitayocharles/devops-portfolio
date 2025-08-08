@@ -1,40 +1,118 @@
-<!-- Demo Journey Section -->
-<section id="demo-journey" style="margin-bottom:40px;">
-    <h2 style="color:#66d9ef;margin-bottom:18px;text-align:center;">Enterprise CI/CD Pipeline Demo Journey</h2>
-    <div style="display:grid;grid-template-columns:1fr;gap:24px;max-width:700px;margin:0 auto;">
-        <div>
-            <video width="100%" height="270" controls poster="images/ci-pipeline-example.png"
-                style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-                <source src="videos/ci-cd-demo-01-commit.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <p style="color:#a6e22e;font-size:1rem;margin-top:8px;">Step 1: Code Commit & Automated Trigger</p>
+<!-- Interactive Pipeline Visualizer -->
+<section id="interactive-pipeline-demo" style="margin-bottom:48px;">
+    <h2 style="color:#f39c12;text-align:center;margin-bottom:18px;">⚡ Interactive CI/CD Pipeline Visualizer</h2>
+    <div
+        style="background:linear-gradient(135deg,#f39c12,#e67e22);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(243,156,18,0.18);max-width:900px;margin:0 auto;">
+        <button id="startPipelineBtn"
+            style="background:#a6e22e;color:#232526;padding:12px 28px;border-radius:10px;font-weight:bold;font-size:1.1rem;box-shadow:0 2px 8px #f39c12;margin-bottom:18px;">Start
+            Demo Pipeline</button>
+        <div id="pipelineStages" style="margin-top:18px;"></div>
+    </div>
+    <script>
+        const stages = [
+            { name: 'Code Commit', color: '#a6e22e', desc: 'Developer pushes code to GitHub.' },
+            { name: 'Build & Test', color: '#66d9ef', desc: 'Automated build, test, and quality gates.' },
+            { name: 'Security Scan', color: '#c53030', desc: 'Trivy/Checkov scan for vulnerabilities.' },
+            { name: 'Deploy', color: '#f39c12', desc: 'Zero-downtime deployment to AWS EKS.' },
+            { name: 'Monitor', color: '#764ba2', desc: 'Real-time monitoring and alerting.' },
+            { name: 'Rollback', color: '#dc2626', desc: 'Instant rollback if issues detected.' }
+        ];
+        function runPipelineDemo() {
+            const container = document.getElementById('pipelineStages');
+            container.innerHTML = '';
+            let i = 0;
+            function nextStage() {
+                if (i >= stages.length) return;
+                const s = stages[i];
+                const el = document.createElement('div');
+                el.style = `background:${s.color};color:#fff;padding:18px;border-radius:12px;margin-bottom:16px;box-shadow:0 2px 8px #232526;font-size:1.1rem;transition:all 0.3s;`;
+                el.innerHTML = `<strong>${s.name}</strong><br><span style='font-size:0.95rem;'>${s.desc}</span>`;
+                container.appendChild(el);
+                i++;
+                setTimeout(nextStage, 1200);
+            }
+            nextStage();
+        }
+        document.getElementById('startPipelineBtn').addEventListener('click', runPipelineDemo);
+    </script>
+    </section>
+    
+    <!-- Security Scan Simulation Widget -->
+    <section id="security-scan-widget" style="margin-bottom:48px;">
+        <h2 style="color:#c53030;text-align:center;margin-bottom:18px;">🛡️ Security Scan Simulation</h2>
+        <div
+            style="background:linear-gradient(135deg,#c53030,#e53e3e);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(197,48,48,0.18);max-width:600px;margin:0 auto;">
+            <label for="scanInput" style="font-weight:bold;color:#fff;font-size:1.1rem;">Paste a Dockerfile or config
+                snippet:</label>
+            <textarea id="scanInput" rows="4"
+                style="width:100%;margin:12px 0 18px 0;padding:10px;border-radius:8px;font-size:1rem;"></textarea>
+            <button id="runScanBtn"
+                style="background:#a6e22e;color:#232526;padding:10px 22px;border-radius:8px;font-weight:bold;font-size:1rem;box-shadow:0 2px 8px #c53030;">Run
+                Security Scan</button>
+            <div id="scanResults" style="margin-top:18px;color:#fff;"></div>
         </div>
-        <div>
-            <video width="100%" height="270" controls poster="images/ci-pipeline-example.png"
-                style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-                <source src="videos/ci-cd-demo-02-build-test.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <p style="color:#66d9ef;font-size:1rem;margin-top:8px;">Step 2: Build, Test, and Quality Gates</p>
+        <script>
+            document.getElementById('runScanBtn').addEventListener('click', function () {
+                const input = document.getElementById('scanInput').value.trim();
+                const results = document.getElementById('scanResults');
+                if (!input) {
+                    results.innerHTML = '<span style="color:#f39c12;">Please paste a config to scan.</span>';
+                    return;
+                }
+                // Simulated scan logic
+                let issues = [];
+                if (input.toLowerCase().includes('latest')) issues.push('Avoid using :latest tag for images.');
+                if (input.toLowerCase().includes('root')) issues.push('Container runs as root. Use non-root user.');
+                if (input.toLowerCase().includes('apt-get')) issues.push('Consider using multi-stage builds to reduce image size.');
+                if (input.length < 50) issues.push('Config is too short for a real scan.');
+                if (issues.length === 0) {
+                    results.innerHTML = '<span style="color:#a6e22e;">No critical vulnerabilities found! ✅</span>';
+                } else {
+                    results.innerHTML = '<strong>Scan Results:</strong><ul style="margin-top:8px;">' + issues.map(i => `<li style='color:#c53030;'>${i}</li>`).join('') + '</ul>';
+                }
+            });
+        </script>
+    </section>
+    
+    <!-- Live Metrics Dashboard -->
+    <section id="ci-metrics-dashboard" style="margin-bottom:48px;">
+        <h2 style="color:#66d9ef;text-align:center;margin-bottom:18px;">📊 Live CI/CD Metrics</h2>
+        <div
+            style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;background:#232526;border-radius:18px;padding:32px;box-shadow:0 8px 32px #66d9ef;max-width:900px;margin:0 auto;">
+            <div style="min-width:180px;text-align:center;color:#fff;">
+                <div style="font-size:2.2rem;font-weight:bold;color:#a6e22e;" id="metricBuildTime">0s</div>
+                <div style="font-size:1rem;">Avg Build Time</div>
         </div>
-        <div>
-            <video width="100%" height="270" controls poster="images/ci-pipeline-example.png"
-                style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-                <source src="videos/ci-cd-demo-03-deploy.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <p style="color:#f39c12;font-size:1rem;margin-top:8px;">Step 3: Zero-Downtime Deployment</p>
+        <div style="min-width:180px;text-align:center;color:#fff;">
+            <div style="font-size:2.2rem;font-weight:bold;color:#f39c12;" id="metricDeploys">0</div>
+            <div style="font-size:1rem;">Daily Deployments</div>
         </div>
-        <div>
-            <video width="100%" height="270" controls poster="images/ci-pipeline-example.png"
-                style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-                <source src="videos/ci-cd-demo-04-monitoring.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <p style="color:#764ba2;font-size:1rem;margin-top:8px;">Step 4: Monitoring & Observability</p>
+        <div style="min-width:180px;text-align:center;color:#fff;">
+            <div style="font-size:2.2rem;font-weight:bold;color:#c53030;" id="metricSuccess">0%</div>
+            <div style="font-size:1rem;">Success Rate</div>
         </div>
     </div>
+    <script>
+            function animateMetric(id, target, suffix = '') {
+                let count = 0;
+                const duration = 1200;
+                consent = target / (durat               const el = document.getElementById(id);
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        el.textContent = target + suffix;
+                        clearInterval(timer);
+                    } else {
+                        el.textContent = Math.floor(count) + suffix;
+                    }
+                }, 20);
+            }
+            document.addEventListener('DOMContentLoaded', function() {
+                animateMetric('metricBuildTime', 45, 's');
+                animateMetric('metricDeploys', 500);
+                 animateMetric('metricSuccess', 99, '%');
+            });
+    </script>
 </section>
 <!DOCTYPE html>
 <html lang="en">
