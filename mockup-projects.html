@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Temitayo Charles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="global-sidebar">
+        <!-- ...sidebar content... -->
+    </aside>
+    <section class="projects-section">
+        <h1>Projects</h1>
+        <div class="platform-tabs">
+            <button onclick="showTab('aws')">AWS</button>
+            <button onclick="showTab('gcp')">GCP</button>
+            <button onclick="showTab('azure')">Azure</button>
+            <button onclick="showTab('tooling')">DevOps Tooling</button>
+            <button onclick="showTab('multi-cloud')">Multi-Cloud</button>
+        </div>
+        <div class="projects-list" id="aws">
+            <!-- AWS Projects Cards -->
+            <div class="project-card" onclick="location.href='project-enterprise-cicd.html'">
+                <span class="badge aws">AWS</span>
+                <h3>Enterprise CI/CD Pipeline</h3>
+                <p>Secure, automated CI/CD for cloud-native delivery.</p>
+            </div>
+            <div class="project-card" onclick="location.href='project-kubernetes-vpn.html'">
+                <span class="badge aws">AWS</span>
+                <h3>Kubernetes VPN Gateway</h3>
+                <p>Secure internal access to private cloud services.</p>
+            </div>
+            <!-- ...other AWS projects... -->
+        </div>
+        <div class="projects-list" id="gcp" style="display:none">
+            <!-- GCP Projects Cards -->
+            <div class="project-card" onclick="location.href='project-gcp-ml.html'">
+                <span class="badge gcp">GCP</span>
+                <h3>GCP ML Pipeline</h3>
+                <p>Cloud-native machine learning pipeline.</p>
+            </div>
+            <!-- ...other GCP projects... -->
+        </div>
+        <div class="projects-list" id="azure" style="display:none">
+            <!-- Azure Projects Cards -->
+            <div class="project-card" onclick="location.href='project-azure-serverless.html'">
+                <span class="badge azure">Azure</span>
+                <h3>Azure Serverless Platform</h3>
+                <p>Hybrid cloud and serverless operations.</p>
+            </div>
+            <!-- ...other Azure projects... -->
+        </div>
+        <div class="projects-list" id="tooling" style="display:none">
+            <!-- DevOps Tooling Projects Cards -->
+            <div class="project-card" onclick="location.href='project-ultimate-devops-container.html'">
+                <span class="badge tooling">Tooling</span>
+                <h3>Ultimate DevOps Container</h3>
+                <p>Portable engineering environment for DevOps teams.</p>
+            </div>
+            <!-- ...other tooling projects... -->
+        </div>
+        <div class="projects-list" id="multi-cloud" style="display:none">
+            <!-- Multi-Cloud Projects Cards -->
+            <div class="project-card" onclick="location.href='project-virtual-vacation.html'">
+                <span class="badge multi-cloud">Multi-Cloud</span>
+                <h3>Virtual Vacation Platform</h3>
+                <p>Immersive tourism platform with AI recommendations.</p>
+            </div>
+            <!-- ...other multi-cloud projects... -->
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+            <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+            <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+        </div>
+        <p>&copy; 2025 Temitayo Charles | DevOps Engineer</p>
+    </footer>
+    <script>
+        function showTab(tab) {
+            document.querySelectorAll('.projects-list').forEach(function (list) {
+                list.style.display = 'none';
+            });
+            document.getElementById(tab).style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>

@@ -25,6 +25,67 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <!-- ===== HERO / LANDING SECTION ===== -->
+  <section id="hero" aria-labelledby="hero-title">
+    <!-- Decorative background -->
+    <div class="hero-bg" aria-hidden="true">
+      <div class="hero-gradient"></div>
+      <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
+        <defs>
+          <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"></rect>
+      </svg>
+    </div>
+  
+    <div class="hero-inner">
+      <h1 id="hero-title" class="hero-title">
+        Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
+      </h1>
+  
+      <p class="hero-subtitle">
+        I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
+        that let organizations deploy faster, operate safer, and scale without limits.
+      </p>
+  
+      <blockquote class="hero-quote">
+        “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
+        security, and resilience are the defaults — not afterthoughts.”
+      </blockquote>
+  
+      <ul class="hero-points" role="list">
+        <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
+        <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
+        <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
+        <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
+      </ul>
+  
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
+          View My Projects
+        </a>
+        <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
+          Download My Resume
+        </a>
+        <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
+          Contact
+        </a>
+      </div>
+  
+      <div class="hero-trust">
+        <span class="trust-pill">Kubernetes</span>
+        <span class="trust-pill">Terraform</span>
+        <span class="trust-pill">Vault</span>
+        <span class="trust-pill">Prometheus</span>
+        <span class="trust-pill">ArgoCD</span>
+        <span class="trust-pill">AWS</span>
+      </div>
+    </div>
+  </section>
+  <!-- ===== /HERO SECTION ===== -->
+
   <!-- Sidebar Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
 
@@ -796,50 +857,7 @@
               <h2 style="margin: 0 0 20px 0; color: #333;">🔄 Complete DevOps Workflow</h2>
               <img src="images/demos/demo-05-full-workflow.gif" alt="Full Workflow" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" />
               <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 style="margin: 0 0 15px 0;">End-to-End Process Flow:</h3>
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                  <div style="text-align: center; flex: 1; min-width: 100px;">
-                    <div style="font-size: 2rem; margin-bottom: 5px;">💻</div>
-                    <div style="font-size: 0.9rem;">Code</div>
-                  </div>
-                  <div style="color: rgba(255,255,255,0.7);">→</div>
-                  <div style="text-align: center; flex: 1; min-width: 100px;">
-                    <div style="font-size: 2rem; margin-bottom: 5px;">🔨</div>
-                    <div style="font-size: 0.9rem;">Build</div>
-                  </div>
-                  <div style="color: rgba(255,255,255,0.7);">→</div>
-                  <div style="text-align: center; flex: 1; min-width: 100px;">
-                    <div style="font-size: 2rem; margin-bottom: 5px;">🧪</div>
-                    <div style="font-size: 0.9rem;">Test</div>
-                  </div>
-                  <div style="color: rgba(255,255,255,0.7);">→</div>
-                  <div style="text-align: center; flex: 1; min-width: 100px;">
-                    <div style="font-size: 2rem; margin-bottom: 5px;">🚀</div>
-                    <div style="font-size: 0.9rem;">Deploy</div>
-                  </div>
-                  <div style="color: rgba(255,255,255,0.7);">→</div>
-                  <div style="text-align: center; flex: 1; min-width: 100px;">
-                    <div style="font-size: 2rem; margin-bottom: 5px;">📊</div>
-                    <div style="font-size: 0.9rem;">Monitor</div>
-                  </div>
-                </div>
-              </div>
-              <p style="line-height: 1.6; color: #555;">
-                This comprehensive demo shows a real-world scenario: from committing code changes to seeing them live in production, complete with automated testing, security scanning, and performance monitoring.
-              </p>
-              <a href="use-cases.html" style="display: inline-block; padding: 12px 24px; background: #6f42c1; color: white; text-decoration: none; border-radius: 6px; margin-top: 15px;">Explore Use Cases</a>
-            </div>
-          `;
-          break;
-          
-        case 'virtual-vacation':
-          content = `
-            <div style="background: white; border-radius: 15px; padding: 30px; max-width: 1000px; max-height: 90vh; overflow-y: auto; position: relative;">
-              <button onclick="closeDemo()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
-              <h2 style="margin: 0 0 20px 0; color: #333;">🌐 Virtual Vacation Platform</h2>
-              <img src="images/technology-stack-showcase.svg" alt="Virtual Vacation Architecture" style="width: 100%; border-radius: 10px; margin-bottom: 20px; background: #f8f9fa; padding: 20px;" />
-              <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
-                <h3 style="margin: 0 0 15px 0; font-size: 1.5rem;">🎯 Project Highlights</h3>
+                <h3 style="margin: 0 0 15px  0; font-size: 1.5rem;">🎯 Project Highlights</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                   <div style="text-align: center;">
                     <div style="font-size: 2rem; margin-bottom: 8px;">🚀</div>

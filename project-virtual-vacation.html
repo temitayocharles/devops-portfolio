@@ -9,6 +9,63 @@
   <link rel="stylesheet" href="virtual-vacation.css">
 </head>
 <body>
+<!-- ===== HERO / LANDING SECTION ===== -->
+<section id="hero" aria-labelledby="hero-title">
+  <!-- Decorative background -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-gradient"></div>
+    <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
+      <defs>
+        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"></rect>
+    </svg>
+  </div>
+
+  <div class="hero-inner">
+    <h1 id="hero-title" class="hero-title">
+      Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
+    </h1>
+
+    <p class="hero-subtitle">
+      I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
+      that let organizations deploy faster, operate safer, and scale without limits.
+    </p>
+
+    <blockquote class="hero-quote">
+      “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
+      security, and resilience are the defaults — not afterthoughts.”
+    </blockquote>
+
+    <ul class="hero-points" role="list">
+      <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
+      <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
+      <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
+      <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
+    </ul>
+
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
+        View My Projects
+      </a>
+      <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
+        Download My Resume
+      </a>
+      <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
+        Contact
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <span class="trust-pill">Kubernetes</span>
+      <span class="trust-pill">Terraform</span>
+      <span class="trust-pill">Vault</span>
+      <span class="trust-pill">Prometheus</span>
+    </div>
+  </div>
+</section>
   <script src="global-sidebar.js" defer></script>
   <nav>
     <a href="index.html">Home</a>
@@ -117,104 +174,7 @@
         document.getElementById('citySelect').addEventListener('change', function (e) {
           renderCityDemo(e.target.value);
         });
-        // Initial render
-        renderCityDemo('lagos');
-      </script>
-    </section>
-    
-    <!-- AI Recommendation Chatbot Modal -->
-    <div id="aiChatbotModal" class="ai-chatbot-modal" aria-modal="true" role="dialog">
-      <div class="ai-chatbot-content">
-        <button onclick="closeAIChatbot()" class="ai-chatbot-close" aria-label="Close AI Chatbot">×</button>
-        <h3 id="aiChatbotTitle" class="ai-chatbot-title">AI Travel Assistant</h3>
-        <div id="aiChatbotConversation" class="ai-chatbot-conversation"></div>
-        <input id="aiChatbotInput" type="text" placeholder="Ask about this city..." class="ai-chatbot-input"
-          aria-label="Chatbot input" />
-        <button onclick="sendAIChatbotMessage()" class="ai-chatbot-send btn-glow"
-          aria-label="Send chatbot message">Send</button>
-      </div>
-    </div>
-    <script>
-      let currentCity = 'lagos';
-      function openAIChatbot(city) {
-        currentCity = city;
-        document.getElementById('aiChatbotModal').style.display = 'flex';
-        document.getElementById('aiChatbotTitle').textContent = `AI Travel Assistant: ${cityData[city].name}`;
-        document.getElementById('aiChatbotConversation').innerHTML = `<div style='color:#764ba2;'>Hi! Ask me anything about ${cityData[city].name}.</div>`;
-        document.getElementById('aiChatbotInput').value = '';
-      }
-      function closeAIChatbot() {
-        document.getElementById('aiChatbotModal').style.display = 'none';
-      }
-      function sendAIChatbotMessage() {
-        const input = document.getElementById('aiChatbotInput').value.trim();
-        if (!input) return;
-        const convo = document.getElementById('aiChatbotConversation');
-        convo.innerHTML += `<div style='margin-top:8px;color:#232526;'><strong>You:</strong> ${input}</div>`;
-        // Simulated AI response
-        setTimeout(() => {
-          let response = '';
-          if (input.toLowerCase().includes('food')) {
-            response = `Local cuisine highlight: <span style='color:#a6e22e;'>${currentCity === 'lagos' ? 'Jollof rice & Suya' : currentCity === 'tokyo' ? 'Sushi & Ramen' : currentCity === 'paris' ? 'Croissants & Escargot' : currentCity === 'toronto' ? 'Poutine & Maple Syrup' : currentCity === 'nyc' ? 'Bagels & Pizza' : currentCity === 'mumbai' ? 'Vada Pav & Pav Bhaji' : 'Fish & Chips'}</span>.`;
-          } else if (input.toLowerCase().includes('music')) {
-            response = `Popular music: <span style='color:#66d9ef;'>${currentCity === 'lagos' ? 'Afrobeats' : currentCity === 'tokyo' ? 'J-Pop' : currentCity === 'paris' ? 'Chanson Française' : currentCity === 'toronto' ? 'Indie Rock' : currentCity === 'nyc' ? 'Hip-Hop' : currentCity === 'mumbai' ? 'Bollywood' : 'Rock'}</span>.`;
-          } else if (input.toLowerCase().includes('weather')) {
-            response = `Current weather: <span style='color:#f39c12;'>${cityData[currentCity].weather}</span>.`;
-          } else if (input.toLowerCase().includes('crowd')) {
-            response = `Crowd status: <span style='color:#764ba2;'>${cityData[currentCity].crowd}</span>.`;
-          } else {
-            response = `Here's something cool about ${cityData[currentCity].name}: <span style='color:#a6e22e;'>${cityData[currentCity].aiRec}</span>`;
-          }
-          convo.innerHTML += `<div style='margin-top:8px;color:#764ba2;'><strong>AI:</strong> ${response}</div>`;
-        }, 600);
-        document.getElementById('aiChatbotInput').value = '';
-      }
-    </script>
-    
-    <!-- Dynamic Metrics Dashboard -->
-    <section id="metrics-dashboard" style="margin-bottom:48px;">
-      <h2 style="color:#a6e22e;text-align:center;margin-bottom:18px;">📊 Platform Impact Metrics</h2>
-      <div
-        style="display:flex;flex-wrap:wrap;justify-content:center;gap:32px;background:#232526;border-radius:18px;padding:32px;box-shadow:0 8px 32px #a6e22e;max-width:900px;margin:0 auto;">
-        <div style="min-width:180px;text-align:center;color:#fff;">
-          <div style="font-size:2.2rem;font-weight:bold;color:#a6e22e;" id="metricUsers">0</div>
-          <div style="font-size:1rem;">Active Users</div>
-        </div>
-        <div style="min-width:180px;text-align:center;color:#fff;">
-          <div style="font-size:2.2rem;font-weight:bold;color:#66d9ef;" id="metricTours">0</div>
-          <div style="font-size:1rem;">Tours Completed</div>
-        </div>
-        <div style="min-width:180px;text-align:center;color:#fff;">
-          <div style="font-size:2.2rem;font-weight:bold;color:#f39c12;" id="metricAccessibility">0%</div>
-          <div style="font-size:1rem;">Accessibility Impact</div>
-        </div>
-      </div>
-      <script>
-        function animateMetric(id, target, suffix = '') {
-          let count = 0;
-          const duration = 1200;
-          const increment = target / (duration / 20);
-          const el = document.getElementById(id);
-          const timer = setInterval(() => {
-            count += increment;
-            if (count >= target) {
-              el.textContent = target + suffix;
-              clearInterval(timer);
-            } else {
-              el.textContent = Math.floor(count) + suffix;
-            }
-          }, 20);
-        }
-        document.addEventListener('DOMContentLoaded', function () {
-          animateMetric('metricUsers', 12800);
-          animateMetric('metricTours', 45200);
-          animateMetric('metricAccessibility', 100, '%');
-        });
-      </script>
-    </section>
-    <!-- Demo Journey Section -->
-    <section id="demo-journey" style="margin-bottom:40px;">
-      <h2 style="color:#764ba2;margin-bottom:18px;text-align:center;">Virtual Vacation Platform Demo Journey</h2>
+            // Initial render
       <div style="display:grid;grid-template-columns:1fr;gap:24px;max-width:700px;margin:0 auto;">
         <div>
           <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
