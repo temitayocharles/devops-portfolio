@@ -18,6 +18,45 @@
             overflow-x: hidden;
         }
 
+        .demo-header {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300"><circle cx="100" cy="50" r="20" fill="rgba(255,255,255,0.1)"/><circle cx="300" cy="80" r="15" fill="rgba(255,255,255,0.1)"/><circle cx="500" cy="40" r="25" fill="rgba(255,255,255,0.1)"/><circle cx="700" cy="70" r="18" fill="rgba(255,255,255,0.1)"/><circle cx="900" cy="60" r="22" fill="rgba(255,255,255,0.1)"/></svg>') repeat-x;
+            opacity: 0.3;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(-20px); }
+        }
+
+        .demo-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
         .demo-container {
             max-width: 1400px;
             margin: 0 auto;
@@ -364,6 +403,11 @@
     </style>
 </head>
 <body>
+    <div class="demo-header">
+        <h1 class="demo-title">🌍 Virtual Vacation Platform</h1>
+        <p class="demo-subtitle">Interactive Demo - Experience Immersive Travel Technology</p>
+    </div>
+
     <div class="demo-container">
         <div class="navigation-sidebar">
             <div class="nav-section">

@@ -1,77 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact | DevOps Portfolio</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="favicon.ico">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact • Ultimate DevOps</title>
+  <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <nav class="main-nav">
+  <nav>
     <a href="index.html">Home</a>
-    <a href="about-me.html">About</a>
+    <a href="about-me.html">About Me</a>
     <a href="projects.html">Projects</a>
     <a href="skills.html">Skills</a>
     <a href="blog.html">Blog</a>
     <a href="contact.html" class="active">Contact</a>
   </nav>
-<main class="main" style="min-height: 80vh;">
-  <section class="contact-card card-immersive">
-    <h1>Contact Temitayo Charles Akinniranye 🚀</h1>
-    <p>Let's connect and collaborate! Reach out for DevOps projects, consulting, speaking, or just to say hi.<br>
-      <span style="color:#66d9ef;font-size:1.1rem;">Professional, responsive, and open to new opportunities.</span>
-    </p>
-    <form action="mailto:temitayocharles@gmail.com" method="post" enctype="text/plain">
-      <input type="text" name="name" placeholder="Your Name" required style="margin-bottom:12px;">
-      <input type="email" name="email" placeholder="Your Email" required style="margin-bottom:12px;">
-      <textarea name="message" rows="5" placeholder="Your Message" required style="margin-bottom:12px;"></textarea>
-      <button type="submit" class="cta-primary"
-        style="background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;font-weight:bold;border-radius:8px;padding:12px 28px;font-size:1.1rem;box-shadow:0 2px 12px #232526;">Send
-        Message</button>
-    </form>
-    </section>
-
-    <section class="social-links card-immersive">
-  <h2>Connect on Social</h2>
-  <a href="https://github.com/temitayocharles" target="_blank" style="color:#a6e22e;font-size:1.1rem;">GitHub</a>
-  <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color:#764ba2;font-size:1.1rem;">LinkedIn</a>
-  <a href="mailto:temitayocharles@gmail.com" style="color:#66d9ef;font-size:1.1rem;">Email</a>
-    </section>
-
-    <section class="featured-project-card card-immersive">
-      <h2>Featured Project</h2>
-      <div class="project-title">Ultimate DevOps Container</div>
-      <img src="images/devops-comparison.png" alt="DevOps Container Demo"
-        style="width:100%; border-radius:18px; box-shadow:0 4px 24px #66d9ef44;">
-      <p>Enterprise-grade, cloud-native DevOps platform. <a href="project-ultimate-devops-container.html"
-          class="project-link">View Project</a></p>
-    </section>
-
-    <section class="collab-item card-immersive">
-      <h2>Collaboration</h2>
-      <p>Open to partnerships, speaking, and community events. Let's build the future of DevOps together!</p>
-  <button class="cta-secondary" onclick="window.location.href='mailto:temitayocharles@gmail.com'"
-    style="background:linear-gradient(135deg,#764ba2,#66d9ef);color:#fff;font-weight:bold;border-radius:8px;padding:10px 24px;font-size:1rem;box-shadow:0 2px 12px #232526;">Start
-    Collaboration</button>
-    </section>
-    </main>
-
-  <button id="rocketButton" title="Back to Top" onclick="window.scrollTo({top:0,behavior:'smooth'});">🚀</button>
-
+  <div class="main">
+    <div class="contact-hero">
+      <h1>🤝 Let's Connect</h1>
+      <p class="contact-subtitle">Ready to transform your DevOps workflow? Let's discuss how we can streamline your development pipeline together.</p>
+    </div>
+    
+    <div class="contact-grid">
+      <div class="contact-section">
+        <h2>📧 Direct Contact</h2>
+        <div class="contact-card primary">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-details">
+            <h3>Email</h3>
+            <p><a href="mailto:temitayo_charles@yahoo.com" class="contact-link">temitayo_charles@yahoo.com</a></p>
+            <span class="response-time">Response within 24 hours</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="contact-section">
+        <h2>🌐 Professional Networks</h2>
+        <div class="social-contact-grid">
+          <a href="https://github.com/temitayocharles" target="_blank" class="social-contact-card github">
+            <div class="social-icon">🐙</div>
+            <div class="social-details">
+              <h3>GitHub</h3>
+              <p>@temitayocharles</p>
+              <span class="social-description">Open source projects & code samples</span>
+            </div>
+          </a>
+          
+          <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-contact-card docker">
+            <div class="social-icon">🐳</div>
+            <div class="social-details">
+              <h3>DockerHub</h3>
+              <p>temitayocharles</p>
+              <span class="social-description">Container images & DevOps tools</span>
+            </div>
+          </a>
+          
+          <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-contact-card linkedin">
+            <div class="social-icon">💼</div>
+            <div class="social-details">
+              <h3>LinkedIn</h3>
+              <p>Temitayo Charles</p>
+              <span class="social-description">Professional experience & network</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="featured-section">
+      <h2>🚀 Featured Project Spotlight</h2>
+      <div class="featured-project-card">
+        <div class="project-icon">🎯</div>
+        <div class="project-content">
+          <h3>Ultimate DevOps Container</h3>
+          <p>A comprehensive containerized DevOps environment featuring 30+ pre-installed tools for seamless development, testing, and deployment workflows.</p>
+          <div class="project-features">
+            <span class="feature-tag">Docker Ready</span>
+            <span class="feature-tag">30+ Tools</span>
+            <span class="feature-tag">Production-Grade</span>
+          </div>
+          <a href="https://hub.docker.com/r/temitayocharles/devops-charlie" target="_blank" class="project-link">
+            Explore on DockerHub →
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <div class="collaboration-section">
+      <h2>🤔 Interested in Collaboration?</h2>
+      <div class="collaboration-grid">
+        <div class="collab-item">
+          <div class="collab-icon">🔧</div>
+          <h3>DevOps Consulting</h3>
+          <p>Infrastructure automation, CI/CD pipeline optimization, and containerization strategies</p>
+        </div>
+        <div class="collab-item">
+          <div class="collab-icon">🏗️</div>
+          <h3>Architecture Review</h3>
+          <p>System design evaluation, scalability planning, and best practices implementation</p>
+        </div>
+        <div class="collab-item">
+          <div class="collab-icon">📚</div>
+          <h3>Knowledge Sharing</h3>
+          <p>Technical presentations, workshops, and documentation for your development teams</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
   <footer>
-  <h3 style="color:#a6e22e;font-size:1.5rem;">Thank you for visiting!</h3>
-  <p style="color:#66d9ef;font-size:1.1rem;">Portfolio powered by creativity, cloud, and code.<br>Temitayo Charles
-    Akinniranye &copy; 2025</p>
+    <h3>Connect with Me</h3>
+    <div class="social-links">
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
   </footer>
-<style>
-  body {
-    background: linear-gradient(135deg, #181c24 0%, #232526 100%);
-  }
-
-  footer {
-    background: linear-gradient(135deg, #232526 0%, #181c24 100%);
-  }
-</style>
 </body>
 </html>
