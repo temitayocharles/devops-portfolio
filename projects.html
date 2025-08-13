@@ -7,171 +7,14 @@
   <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
   <link rel="stylesheet" href="style.css">
   <script src="gemini-api-key.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     /* Featured Projects Section Enhancement */
     .featured-projects {
       margin: 40px 0 60px 0;
       position: relative;
     }
-
-    .featured-section-header {
-      text-align: center;
-      margin-bottom: 50px;
-      position: relative;
-    }
-
-    .featured-section-title {
-      color: #a6e22e;
-      font-size: 2.5rem;
-      margin: 0 0 15px 0;
-      font-weight: bold;
-      text-shadow: 0 0 20px rgba(166, 226, 46, 0.3);
-      position: relative;
-    }
-
-    .featured-section-subtitle {
-      color: #66d9ef;
-      font-size: 1.2rem;
-      margin: 0 0 30px 0;
-      opacity: 0.9;
-      text-shadow: 0 0 10px rgba(102, 217, 239, 0.2);
-    }
-
-    .featured-section-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px;
-      height: 100px;
-      background: radial-gradient(ellipse, rgba(166, 226, 46, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse-glow-slow 3s ease-in-out infinite;
-    }
-
-    @keyframes pulse-glow-slow {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.6;
-      }
-    }
-
-    /* Enhanced Hero Project Cards */
-    .hero-project-card {
-      border-radius: 20px;
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .hero-project-card:hover {
-      transform: translateY(-8px) scale(1.02);
-    }
-
-    .hero-project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-      z-index: 1;
-    }
-
-    .hero-project-card:hover::before {
-      transform: translateX(100%);
-    }
-
-    .project-badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      z-index: 2;
-      backdrop-filter: blur(10px);
-      animation: badge-pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes badge-pulse {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px rgba(255,255,255,0.4);
-      }
-    }
-
-    .project-title-enhanced {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #fff;
-      text-shadow: 0 0 15px rgba(255,255,255,0.3);
-      position: relative;
-      z-index: 2;
-    }
-
-    .project-subtitle-enhanced {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.2);
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Enhanced tech stack with glow */
-    .tech-stack-enhanced {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 30px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .tech-tag-enhanced {
-      background: rgba(255,255,255,0.15);
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-    }
-
-    .tech-tag-enhanced:hover {
-      background: rgba(255,255,255,0.25);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255,255,255,0.2);
-    }
-
-    /* Enhanced CTA buttons */
-    .cta-button-enhanced {
-      padding: 15px 25px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-    }
+/* ...existing code... */
 
     .cta-button-enhanced::before {
       content: '';
@@ -699,131 +542,81 @@
         style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">×</button>
     </div>
     <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Projects</div>
-      <a href="projects.html" class="sidebar-nav-item" data-icon="📚">All Projects</a>
-      <a href="project-ultimate-devops-container.html" class="sidebar-nav-item" data-icon="🚀">Ultimate DevOps
-        Container</a>
-      <a href="project-virtual-vacation.html" class="sidebar-nav-item" data-icon="🌐">Virtual Vacation Platform</a>
-      <a href="project-enterprise-cicd.html" class="sidebar-nav-item" data-icon="⚡">Enterprise CI/CD Pipeline</a>
-      <a href="project-monitoring-stack.html" class="sidebar-nav-item" data-icon="📊">Monitoring Stack</a>
-    </div>
-    <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Environments</div>
-      <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS Solutions</a>
-      <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="🔷">Azure Solutions</a>
-      <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐">GCP Solutions</a>
+        <h3 style="font-size:2rem;color:#a6e22e;margin-bottom:10px;">Navigation</h3>
+        <p style="color:#66d9ef;">Quick access to all sections</p>
+        <button id="sidebarClose" aria-label="Close sidebar"
+          style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">&times;</button>
+        style="font-size:2rem;vertical-align:middle;">🚀 Ultimate DevOps Container</a>
+        <div class="sidebar-card-grid" style="display:grid;grid-template-columns:1fr;gap:24px;padding:24px;">
+          <a href="projects.html" class="sidebar-card"
+            style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+            <span style="font-size:2.2rem;">📚</span>
+            <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Projects</span>
+          </a>
+          <a href="project-ultimate-devops-container.html" class="sidebar-card"
+            style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+            <span style="font-size:2.2rem;">🚀</span>
+            <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Ultimate DevOps Container</span>
+          </a>
+          <a href="project-virtual-vacation.html" class="sidebar-card"
+            style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+            <span style="font-size:2.2rem;">🌐</span>
+            <span style="font-size:1.25rem;color:#764ba2;font-weight:bold;">Virtual Vacation Platform</span>
+          </a>
+          <a href="project-enterprise-cicd.html" class="sidebar-card"
+            style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+            <span style="font-size:2.2rem;">⚡</span>
+            <span style="font-size:1.25rem;color:#f39c12;font-weight:bold;">Enterprise CI/CD Pipeline</span>
+          </a>
+          <a href="project-monitoring-stack.html" class="sidebar-card"
+            style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+            <span style="font-size:2.2rem;">📊</span>
+            <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Monitoring Stack</span>
+          </a>
+        </div>
+  <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐" style="font-size:2rem;vertical-align:middle;">🌐
+    GCP Solutions</a>
     </div>
     <div class="sidebar-nav-group">
       <div class="sidebar-nav-title">Solutions & More</div>
-      <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
-      <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️">Skills</a>
-      <a href="blog.html" class="sidebar-nav-item" data-icon="📝">Blog</a>
-      <a href="contact.html" class="sidebar-nav-item" data-icon="✉️">Contact</a>
+  <a href="about-me.html" class="sidebar-nav-item" data-icon="👤" style="font-size:2rem;vertical-align:middle;">👤
+    About</a>
+  <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️" style="font-size:2rem;vertical-align:middle;">🛠️
+    Skills</a>
+  <a href="blog.html" class="sidebar-nav-item" data-icon="📝" style="font-size:2rem;vertical-align:middle;">📝 Blog</a>
+  <a href="contact.html" class="sidebar-nav-item" data-icon="✉️" style="font-size:2rem;vertical-align:middle;">✉️
+    Contact</a>
     </div>
-    <div class="sidebar-footer">
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> •
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a> •
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
-      <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
-    </div>
-  </aside>
-  
-  <!-- Sidebar Overlay -->
-  <div id="sidebarOverlay"
-    style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.25);z-index:999;display:none;transition:opacity 0.3s;">
-  </div>
-  <nav class="main-nav"
-    style="width:100%;background:#232526;padding:0.5rem 0 0.5rem 0;box-shadow:0 2px 12px rgba(0,0,0,0.08);display:flex;justify-content:center;align-items:center;z-index:1000;position:relative;">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="about-me.html" class="nav-link">About</a>
-    <a href="skills.html" class="nav-link">Skills</a>
-    <a href="projects.html" class="nav-link active">Projects</a>
-    <a href="aws-solutions.html" class="nav-link">AWS Solutions</a>
-    <a href="azure-solutions.html" class="nav-link">Azure Solutions</a>
-    <a href="gcp-solutions.html" class="nav-link">GCP Solutions</a>
-    <a href="blog.html" class="nav-link">Blog</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-  </nav>
-    <!-- New Hero Button Group -->
-    <div class="homepage-main-buttons" style="display:flex;justify-content:center;gap:32px;margin:40px 0 32px 0;">
-      <a href="index.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Home</a>
-      <a href="projects.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Projects</a>
-      <a href="about-me.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">About Me</a>
-      <a href="contact.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Contact</a>
-    </div>
-
-  <div class="main">
-    <!-- AI Project Assistant Widget -->
-    <section id="projects-ai-assistant" style="margin:40px 0;">
-      <div
-        style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
-        <h2 style="color:#a6e22e;margin-bottom:12px;text-align:center;">🤖 AI Project Assistant</h2>
-        <p style="color:#f0f0f0;text-align:center;margin-bottom:18px;">Get instant project recommendations, architecture
-          explanations, and DevOps Q&A. Ask about any project, technology, or best practice!</p>
-        <form id="projects-ai-form" style="display:flex;gap:10px;">
-          <input type="text" id="projects-ai-input" placeholder="Ask about a project, architecture, or DevOps..."
-            style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
-          <button type="submit"
-            style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
-        </form>
-        <div id="projects-ai-chat"
-          style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
-        </div>
+    <section style="margin:40px 0;">
+      <button id="aiAssistantToggle"
+        style="display:block;margin:0 auto 18px auto;padding:12px 28px;font-size:1.2rem;background:linear-gradient(135deg,#232526,#66d9ef);color:#a6e22e;border:none;border-radius:12px;box-shadow:0 2px 8px rgba(102,217,239,0.12);cursor:pointer;">Show
+        AI Project Assistant 🤖</button>
+      <div id="aiAssistantWidget" style="display:none;">
+        <div
+          style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
+          <h2 style="color:#a6e22e;margin-bottom:12px;text-align:center;">🤖 AI Project Assistant</h2>
+          <p style="color:#f0f0f0;text-align:center;margin-bottom:18px;">Get instant project recommendations, architecture
+            explanations, and DevOps best practices. Ask about any project or technology!</p>
+            <form id="mockup-ai-form" style="display:flex;gap:10px;">
+              <input type="text" id="mockup-ai-input" placeholder="Ask about a project, architecture, or DevOps..."
+                style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
+              <button type="submit"
+                style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
+            </form>
+          <div id="mockup-ai-chat"
+            style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
+          </div>
+          </div>
       </div>
       <script>
-      // Unified Gemini API logic
-      window.GLOBAL_AI_ENABLED = true;
-      function setAIWidgetsEnabled(enabled) {
-        window.GLOBAL_AI_ENABLED = enabled;
-        document.querySelectorAll('[id$="-ai-assistant"], [id$="-ai-form"], [id$="-ai-chat"]').forEach(el => {
-          if (el) el.style.display = enabled ? '' : 'none';
-        });
-      }
-      document.getElementById('aiToggleBtn').addEventListener('click', function () {
-        window.GLOBAL_AI_ENABLED = !window.GLOBAL_AI_ENABLED;
-        setAIWidgetsEnabled(window.GLOBAL_AI_ENABLED);
-        this.style.background = window.GLOBAL_AI_ENABLED ? 'linear-gradient(135deg,#66d9ef,#a6e22e)' : 'linear-gradient(135deg,#232526,#333)';
-        this.textContent = window.GLOBAL_AI_ENABLED ? '🤖' : '🚫';
-      });
-      setAIWidgetsEnabled(true);
-      // Gemini API integration
-      const projectsAiForm = document.getElementById('projects-ai-form');
-      const projectsAiInput = document.getElementById('projects-ai-input');
-      const projectsAiChat = document.getElementById('projects-ai-chat');
-      const GEMINI_API_KEY = window.GEMINI_API_KEY || 'GEMINI_API_KEY_PLACEHOLDER';
-      async function fetchGeminiAnswer(question) {
-        if (!window.GLOBAL_AI_ENABLED) return 'AI is disabled.';
-        const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + GEMINI_API_KEY;
-        const body = {
-          contents: [{ parts: [{ text: question }] }]
-        };
-        try {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-          });
-          const data = await res.json();
-          if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
-            return data.candidates[0].content.parts.map(p => p.text).join(' ');
-          } else {
-            return 'No answer received from Gemini.';
-          }
-        } catch (err) {
-          return 'Error connecting to Gemini API.';
-        }
-      }
-      projectsAiForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const question = projectsAiInput.value.trim();
-        if (!question) return;
-        projectsAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
-        projectsAiInput.value = '';
-      projectsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> <span style='color:#66d9ef;'>Thinking...</span></div>`;
-      projectsAiChat.scrollTop = projectsAiChat.scrollHeight;
-      const answer = await fetchGeminiAnswer(question);
-      projectsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${answer}</div>`;
-      projectsAiChat.scrollTop = projectsAiChat.scrollHeight;
+    // Collapsible AI Assistant logic
+    const aiAssistantToggle = document.getElementById('aiAssistantToggle');
+    const aiAssistantWidget = document.getElementById('aiAssistantWidget');
+    let aiVisible = false;
+    aiAssistantToggle.addEventListener('click', function () {
+      aiVisible = !aiVisible;
+      aiAssistantWidget.style.display = aiVisible ? 'block' : 'none';
+      aiAssistantToggle.textContent = aiVisible ? 'Hide AI Project Assistant 🚫' : 'Show AI Project Assistant 🤖';
     });
       </script>
     </section>
@@ -834,27 +627,91 @@
 
     <!-- Project Preview Carousel -->
     <div class="project-preview-carousel">
-      <div class="carousel-header">
-        <h3>🚀 Project Highlights</h3>
-        <p>Hover to pause • Click to explore</p>
-      </div>
-      <div class="carousel-container">
-        <div class="carousel-track">
-          <!-- First set of projects -->
-          <div class="project-preview-card" onclick="scrollToSection('virtual-vacation')">
-            <div class="preview-icon">🌐</div>
-            <div class="preview-title">Virtual Vacation Platform</div>
-            <div class="preview-tech">React • Node.js • Kubernetes</div>
+          <h1 style="text-align:center;margin-bottom:40px;font-size:2.5rem;color:#a6e22e;">Skills & Technologies</h1>
+          <div class="skills-tiles"
+            style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px;margin-bottom:48px;">
+            <div class="skill-tile"
+              style="background:linear-gradient(135deg,#232526,#66d9ef);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(102,217,239,0.12);color:#fff;">
+              <h2 style="font-size:1.5rem;margin-bottom:18px;display:flex;align-items:center;gap:12px;"><span
+                  style="font-size:2rem;">🐳</span>Containerization & Orchestration</h2>
+              <ul style="list-style:none;padding:0;margin:0;">
+                <li style="margin-bottom:12px;font-size:1.1rem;">Docker <span style="color:#66d9ef;font-weight:bold;">★★★★★</span>
+                </li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Kubernetes <span
+                    style="color:#66d9ef;font-weight:bold;">★★★★☆</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Helm <span style="color:#66d9ef;font-weight:bold;">★★★★☆</span>
+                </li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Docker Compose <span
+                    style="color:#66d9ef;font-weight:bold;">★★★★★</span></li>
+              </ul>
+            </div>
+            <div class="skill-tile"
+              style="background:linear-gradient(135deg,#232526,#a6e22e);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(166,226,46,0.12);color:#fff;">
+              <h2 style="font-size:1.5rem;margin-bottom:18px;display:flex;align-items:center;gap:12px;"><span
+                  style="font-size:2rem;">☁️</span>Cloud Platforms</h2>
+              <ul style="list-style:none;padding:0;margin:0;">
+                <li style="margin-bottom:12px;font-size:1.1rem;">AWS <span style="color:#a6e22e;font-weight:bold;">★★★★☆</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">EC2, S3, IAM <span
+                    style="color:#a6e22e;font-weight:bold;">★★★★☆</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">CloudWatch <span
+                    style="color:#a6e22e;font-weight:bold;">★★★☆☆</span></li>
+              </ul>
+            </div>
+            <div class="skill-tile"
+              style="background:linear-gradient(135deg,#232526,#f39c12);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(243,156,18,0.12);color:#fff;">
+              <h2 style="font-size:1.5rem;margin-bottom:18px;display:flex;align-items:center;gap:12px;"><span
+                  style="font-size:2rem;">🛠️</span>Infrastructure as Code</h2>
+              <ul style="list-style:none;padding:0;margin:0;">
+                <li style="margin-bottom:12px;font-size:1.1rem;">Terraform <span
+                    style="color:#f39c12;font-weight:bold;">★★★★☆</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Ansible <span style="color:#f39c12;font-weight:bold;">★★★☆☆</span>
+                </li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">CloudFormation <span
+                    style="color:#f39c12;font-weight:bold;">★★★☆☆</span></li>
+              </ul>
+            </div>
+            <div class="skill-tile"
+              style="background:linear-gradient(135deg,#232526,#764ba2);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(118,75,162,0.12);color:#fff;">
+              <h2 style="font-size:1.5rem;margin-bottom:18px;display:flex;align-items:center;gap:12px;"><span
+                  style="font-size:2rem;">�</span>CI/CD & Automation</h2>
+              <ul style="list-style:none;padding:0;margin:0;">
+                <li style="margin-bottom:12px;font-size:1.1rem;">GitHub Actions <span
+                    style="color:#764ba2;font-weight:bold;">★★★★★</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Jenkins <span style="color:#764ba2;font-weight:bold;">★★★★☆</span>
+                </li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">GitLab CI <span
+                    style="color:#764ba2;font-weight:bold;">★★★☆☆</span></li>
+              </ul>
+            </div>
+            <div class="skill-tile"
+              style="background:linear-gradient(135deg,#232526,#67ffcc);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(103,255,204,0.12);color:#232526;">
+              <h2 style="font-size:1.5rem;margin-bottom:18px;display:flex;align-items:center;gap:12px;"><span
+                  style="font-size:2rem;">📊</span>Monitoring & Security</h2>
+              <ul style="list-style:none;padding:0;margin:0;">
+                <li style="margin-bottom:12px;font-size:1.1rem;">Prometheus <span
+                    style="color:#232526;font-weight:bold;">★★★★☆</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Grafana <span style="color:#232526;font-weight:bold;">★★★★☆</span>
+                </li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">HashiCorp Vault <span
+                    style="color:#232526;font-weight:bold;">★★★★☆</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Trivy Security Scanning <span
+                    style="color:#232526;font-weight:bold;">★★★★☆</span></li>
+              </ul>
+            </div>
+            <div class="skill-tile"
+              style="background:linear-gradient(135deg,#232526,#8ac926);border-radius:18px;padding:32px;box-shadow:0 8px 32px rgba(138,201,38,0.12);color:#232526;">
+              <h2 style="font-size:1.5rem;margin-bottom:18px;display:flex;align-items:center;gap:12px;"><span
+                  style="font-size:2rem;">�</span>Programming & Scripting</h2>
+              <ul style="list-style:none;padding:0;margin:0;">
+                <li style="margin-bottom:12px;font-size:1.1rem;">Bash/Shell Scripting <span
+                    style="color:#232526;font-weight:bold;">★★★★★</span></li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">Python <span style="color:#232526;font-weight:bold;">★★★★☆</span>
+                </li>
+                <li style="margin-bottom:12px;font-size:1.1rem;">YAML/JSON <span
+                    style="color:#232526;font-weight:bold;">★★★★★</span></li>
+              </ul>
+            </div>
           </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('devops-container')">
-            <div class="preview-icon">🐳</div>
-            <div class="preview-title">Ultimate DevOps Container</div>
-            <div class="preview-tech">Docker • 30+ Tools • Monitoring</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('cicd-pipeline')">
-            <div class="preview-icon">⚙️</div>
             <div class="preview-title">Enterprise CI/CD Pipeline</div>
             <div class="preview-tech">Jenkins • GitLab • Terraform</div>
           </div>
@@ -863,42 +720,6 @@
             <div class="preview-icon">🔐</div>
             <div class="preview-title">Kubernetes VPN Gateway</div>
             <div class="preview-tech">K8s • WireGuard • Security</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('monitoring')">
-            <div class="preview-icon">📊</div>
-            <div class="preview-title">Infrastructure Monitoring</div>
-            <div class="preview-tech">Prometheus • Grafana • Alerts</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="window.open('devops-container-demos.html', '_blank')">
-            <div class="preview-icon">🎬</div>
-            <div class="preview-title">Live Container Demos</div>
-            <div class="preview-tech">Video Walkthroughs • Real Usage</div>
-          </div>
-          
-          <!-- Duplicate set for seamless loop -->
-          <div class="project-preview-card" onclick="scrollToSection('virtual-vacation')">
-            <div class="preview-icon">🌐</div>
-            <div class="preview-title">Virtual Vacation Platform</div>
-            <div class="preview-tech">React • Node.js • Kubernetes</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('devops-container')">
-            <div class="preview-icon">🐳</div>
-            <div class="preview-title">Ultimate DevOps Container</div>
-            <div class="preview-tech">Docker • 30+ Tools • Monitoring</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('cicd-pipeline')">
-            <div class="preview-icon">⚙️</div>
-            <div class="preview-title">Enterprise CI/CD Pipeline</div>
-            <div class="preview-tech">Jenkins • GitLab • Terraform</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('k8s-vpn')">
-            <div class="preview-icon">🔐</div>
-            <div class="preview-title">Kubernetes VPN Gateway</div>
             <div class="preview-tech">K8s • WireGuard • Security</div>
           </div>
           
@@ -919,7 +740,7 @@
 
     <!-- Performance Metrics Section -->
     <div class="metrics-section">
-      <h2 class="metrics-title">🚀 Portfolio Impact Metrics</h2>
+      <h2 class="metrics-title" style="text-shadow:0 0 20px #67ffcc;">🚀 Portfolio Impact Metrics</h2>
       <p class="metrics-subtitle">Production-ready solutions delivering real-world results</p>
       
       <div class="metrics-grid">
@@ -947,14 +768,27 @@
           <div class="metric-description">AWS • Azure • GCP</div>
         </div>
       </div>
+      <!-- Dynamic Chart.js Metrics -->
+      <canvas id="metricsChart"
+        style="margin:40px auto;max-width:600px;background:#232526;border-radius:20px;box-shadow:0 0 30px #66d9ef;"></canvas>
     </div>
 
     <!-- Featured Projects Section -->
     <section class="featured-projects">
       <div class="featured-section-header">
-        <h2 class="featured-section-title">🌟 Featured Projects</h2>
-        <p class="featured-section-subtitle">Flagship solutions showcasing advanced DevOps engineering</p>
+        <h2 class="featured-section-title" style="text-shadow:0 0 30px #66d9ef,0 0 10px #a6e22e;">🌟 Featured Projects</h2>
+        <p class="featured-section-subtitle" style="text-shadow:0 0 10px #66d9ef;">Flagship solutions showcasing advanced DevOps
+          engineering</p>
         <div class="featured-section-glow"></div>
+        <!-- Dropdown Filter -->
+        <select id="projectFilter"
+          style="margin-top:20px;padding:10px 20px;border-radius:12px;background:#232526;color:#a6e22e;border:2px solid #66d9ef;font-size:1rem;">
+          <option value="all">All Projects</option>
+          <option value="cloud">Cloud Platforms</option>
+          <option value="container">Containerization</option>
+          <option value="cicd">CI/CD</option>
+          <option value="security">Security</option>
+        </select>
       </div>
       
       <div class="featured-grid">
@@ -1151,80 +985,141 @@
   </div>
 
   <script>
-    function scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
-        
-        // Add a subtle highlight effect
-        element.style.transform = 'scale(1.02)';
-        element.style.transition = 'transform 0.3s ease';
-        setTimeout(() => {
-          element.style.transform = 'scale(1)';
-        }, 1000);
-      }
-    }
+function scrollToSection(sectionId) {
+  const element = document.getElementById(sectionId);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    // Add a glowy highlight effect
+    element.style.boxShadow = '0 0 30px #66de      nt.style.transform = 'scale(1.04)'                  setTimeout(() => {
+      element.style.boxShad         = '';
+      el          t.style.transform = 'scale(1)';
+    }, 1200);
+  }
+}
 
-    // Animated Counter Function
-    function animateCounter(element, target, duration = 2000) {
-      let start = 0;
-      const increment = target / (duration / 16);
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-          element.textContent = target + (target === 99 ? '.9' : '+');
-          clearInterval(timer);
-          element.parentElement.classList.add('animate');
-        } else {
-          element.textContent = Math.floor(start) + (target === 99 ? '.0' : '');
-        }
-      }, 16);
-    }
+// Animated           r Function
+function animateC      er(element, target, duration = 2000) {
+  let start = 0;
+  const increment = target / (duration / 16);
+  const timer = setInterval(() => {
+    start += increment;
+    if (start >= target) {
+      element.textContent =   target + (target === 99 ? '.9'   : '+');
+      clearInterval(timer);
+      element.parentElem    t.classList.add    animate');
+    } else {
+      element.textCo    ent = Math.floor(start) + (target       99 ? '.0' : '');
+          }, 16);
+}
 
-    // Intersection Observer for metrics animation
-    function setupMetricsAnimation() {
-      const metricsSection = document.querySelector('.metrics-section');
-      const metricNumbers = document.querySelectorAll('.metric-number');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+// Intersection Observer for metrics animation
+function setupMetricsAnimation() {
+  const metricsSection = document.querySelector('.metrics-section');
+  const metricNumbers = document.querySelectorAll('.metric-number');
+  const observer = new IntersectionObserver((e            ntr    ies) => {
+    entries.forEach(entry => {
           if (entry.isIntersecting) {
-            metricNumbers.forEach(metric => {
-              const target = parseInt(metric.getAttribute('data-target'));
-              animateCounter(metric, target);
-            });
-            observer.unobserve(entry.target);
-          }
+             etricNumbers.forEach(metric => {
+          const target = parseInt(      tric.getAttribute('data-target'));
+          animateCounter(metric,      arget);
         });
-      }, { threshold: 0.5 });
-      
-      if (metricsSection) {
-        observer.observe(metricsSection);
+        observer.unobserve(entry.targ        
       }
-    }
-
-    // Add click handlers for better accessibility
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize metrics animation
-      setupMetricsAnimation();
-      
-      // Pause carousel on focus for accessibility
-      const carouselTrack = document.querySelector('.carousel-track');
-      const previewCards = document.querySelectorAll('.project-preview-card');
-      
-      previewCards.forEach(card => {
-        card.addEventListener('focus', () => {
-          carouselTrack.style.animationPlayState = 'paused';
-        });
-        
-        card.addEventListener('blur', () => {
-          carouselTrack.style.animationPlayState = 'running';
-        });
-      });
     });
+  }, { thr          : 0.5 })        csSection) {
+    observer.observe(metricsSection);
+  }
+}
+
+// Chart.rics function
+function renderMetric               
+  const chartCanvas = ent.getE             Id('metricsChart');
+  if (!chartCanvas) return;
+  const ctx = char    anvas.ge2d');
+  ne    Chart(ctx, {
+    type:      r',
+    data: {
+      labels: ['De    ps   To  ols', 'Global Destinations',   'Uptime %', 'Cloud Platforms'],
+        datasets: [{
+        label: 'Portfolio Metrics',
+            ta: [30, 7, 99, 3],
+          backgroundColor: [
+          'rgba(102,217    39,0.7)',
+             rgba(166,226,      .7)',
+            'rgba(103,255,204,0.7)',
+          'rgba(118,75,162,0.7)'
+        ],
+        b        adius: 10,
+               },
+    options: {
+      p          {
+        legend: { di          alse },
+        tit                  display: true,
+                : 'Portfolio Impact Metr                  color: '#a6e22e',
+             ont: { size: 18 }
+                             scales: {
+                                 s: { color:        22e' },
+             rid: { color: 'rgba(166,226,           }
+                     y: {
+                   { color: '#66d9ef' },
+          gr            r: 'rgba(102,217,2            
+        }
+      }
+          })        nst        r                   Eleme            ojectFilter');
+  cons                         query            l('.project-card,           oje              
+            ddEventListener('change', fun                const value = filter.value;
+    cards          (c         {            f (v    ue === 'all') {
+        card.style.display = '';
+      } el     {
+  st tags = card.textContent.toLowerCase();
+        card.style.display = tags.includes(value) ? '' : 'none';
+      }
+     })      });
+}
+
+// Theme toggle logic        ction setupThemeToggle            et dark = true;
+  c                ocument.createEleme                ;                    meToggleBtn';
+  btn.title = 'Toggle          
+           le.position = 'fixed';
+  btn.style.bottom = '        
+                 .r           = '    px';  
+    btn.style.zIndex = '99  99';
+  btn.style.background =     in nt(13    eg,#232526,#66d9ef)';
+  btn.style.color = '#a6    2e';
+  btn.style.border = '    ne';
+   borderRadiu    = '50%';
+  btn.style.width = '    px';
+  b.h  '    px';
+b  tyle.fontSize = '2rem';
+  btn.style.boxShad     = '0  6px r g ba(102,217,239,0.18)';
+  btn.style.cursor = 'poin    r';
+  btn.style.transition =     ackground 0.3s';
+  btn.textContent = ' 
+  document.body.appendChild(btn);
+  btn.addEventListener('click', function () {
+    dark = !dark;
+    docu    nt.body.s background = dark ? '' : 'linear-gradient(135    g,#f0f0f0,#232526)';
+    document.body.style.col dark ? '' : '#232526';
+    btn.style.background = dark ? 'linear-gradient(135deg,#232526,#66d9ef)' : 'linear-gradient(135deg,#a6e22e,#66d9ef)';
+    btn.textContent = dark ? '🌙' : '☀️';
+  });
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+  setupMetricsAnimation();
+  renderMetricsChart();
+  // Pause carousel on focus for accessibility
+  const carouselTrack = document.querySelector('.carousel-track');
+  const previewCards = document.querySelecto    rAll('.project-preview-card');
+  previewCards.forEach(card =      {
+    card.addEventListen      ('focus', () => {
+          carouselTrack.style.animationPlayState = 'pau      d';
+    });
+    card.addEventListener('blur', () => {
+      carouselTrack.style.animationPlayState = 'running';
+    });
+  });
+});
   </script>
 
   <!-- Quick Actions Floating Button -->

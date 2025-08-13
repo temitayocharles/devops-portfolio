@@ -37,37 +37,78 @@
   <!-- Sidebar Navigation -->
   <aside class="global-sidebar" id="globalSidebar">
     <div class="sidebar-header">
-      <h3>Navigation</h3>
-      <p>Quick access to all sections</p>
+      <h3 style="font-size:2rem;color:#a6e22e;margin-bottom:10px;">Navigation</h3>
+      <p style="color:#66d9ef;">Quick access to all sections</p>
       <button id="sidebarClose" aria-label="Close sidebar"
-        style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">×</button>
+        style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">&times;</button>
     </div>
-    <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Projects</div>
-      <a href="projects.html" class="sidebar-nav-item" data-icon="📚">All Projects</a>
-      <a href="project-ultimate-devops-container.html" class="sidebar-nav-item" data-icon="🚀">Ultimate DevOps
-        Container</a>
-      <a href="project-virtual-vacation.html" class="sidebar-nav-item" data-icon="🌐">Virtual Vacation Platform</a>
-      <a href="project-enterprise-cicd.html" class="sidebar-nav-item" data-icon="⚡">Enterprise CI/CD Pipeline</a>
-      <a href="project-monitoring-stack.html" class="sidebar-nav-item" data-icon="📊">Monitoring Stack</a>
+    <div class="sidebar-card-grid" style="display:grid;grid-template-columns:1fr;gap:24px;padding:24px;">
+      <a href="projects.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">📚</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Projects</span>
+      </a>
+      <a href="project-ultimate-devops-container.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🚀</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Ultimate DevOps Container</span>
+      </a>
+      <a href="project-virtual-vacation.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🌐</span>
+        <span style="font-size:1.25rem;color:#764ba2;font-weight:bold;">Virtual Vacation Platform</span>
+      </a>
+      <a href="project-enterprise-cicd.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">⚡</span>
+        <span style="font-size:1.25rem;color:#f39c12;font-weight:bold;">Enterprise CI/CD Pipeline</span>
+      </a>
+      <a href="project-monitoring-stack.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">📊</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Monitoring Stack</span>
+      </a>
+      <a href="aws-solutions.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">☁️</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">AWS Solutions</span>
+      </a>
+      <a href="azure-solutions.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🔷</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Azure Solutions</span>
+      </a>
+      <a href="gcp-solutions.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🌐</span>
+        <span style="font-size:1.25rem;color:#764ba2;font-weight:bold;">GCP Solutions</span>
+      </a>
+      <a href="about-me.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">👤</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">About</span>
+      </a>
+      <a href="skills.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🛠️</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Skills</span>
+      </a>
+      <a href="blog.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">📝</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Blog</span>
+      </a>
+      <a href="contact.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">✉️</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Contact</span>
+      </a>
     </div>
-    <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Environments</div>
-      <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS Solutions</a>
-      <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="🔷">Azure Solutions</a>
-      <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐">GCP Solutions</a>
-    </div>
-    <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Solutions & More</div>
-      <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
-      <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️">Skills</a>
-      <a href="blog.html" class="sidebar-nav-item" data-icon="📝">Blog</a>
-      <a href="contact.html" class="sidebar-nav-item" data-icon="✉️">Contact</a>
-    </div>
-    <div class="sidebar-footer">
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> •
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a> •
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    <div class="sidebar-footer" style="text-align:center;margin-top:24px;">
+      <a href="https://github.com/temitayocharles" target="_blank" style="color:#a6e22e;font-size:1.1rem;">GitHub</a> •
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank"
+        style="color:#66d9ef;font-size:1.1rem;">DockerHub</a> •
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color:#764ba2;font-size:1.1rem;">LinkedIn</a>
       <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
     </div>
   </aside>
@@ -657,40 +698,81 @@
       style="position:fixed;bottom:30px;right:30px;background:#66d9ef;color:#232526;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;z-index:9999;display:none;transition:background 0.3s;"
       title="Back to Top">↑</button>
     <h3>Connect with Me</h3>
-    <div class="social-links">
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    <div class="sidebar-header">
+      <h3 style="font-size:2rem;color:#a6e22e;margin-bottom:10px;">Navigation</h3>
+      <p style="color:#66d9ef;">Quick access to all sections</p>
+      <button id="sidebarClose" aria-label="Close sidebar"
+        style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">&times;</button>
     </div>
-    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
-  </footer>
-  <script>
-        // Sidebar Functionality
-    const sidebarToggle = document.getElementById('sidebarToggle');
-    const globalSidebar = document.getElementById('globalSidebar');
-    const sidebarClose = document.getElementById('sidebarClose');
-        const sidebarOverlay = document.getElementById('sidebarOverlay');
-    function openSidebar() {
-      globalSidebar.classList.add('open');
-      sidebarOverlay.style.display = 'block';
-      setTimeout(() => { sidebarOverlay.style.opacity = '1'; }, 10);
-      document.body.style.overflow = 'hidden';
-    }
-    function closeSidebar() {
-      globalSidebar.classList.remove('open');
-      sidebarOverlay.style.opacity = '0';
-      setTimeout(() => { sidebarOverlay.style.display = 'none'; }, 300);
-      document.body.style.overflow = 'auto';
-    }
-    sidebarToggle.addEventListener('click', openSidebar);
-    sidebarClose.addEventListener('click', closeSidebar);
-    sidebarOverlay.addEventListener('click', closeSidebar);
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeSidebar();
-    });
-    function handleSidebarToggleVisibility() {
-      if (window.innerWidth > 900) {
-        sidebarToggle.style.display = 'none';
+    <div class="sidebar-card-grid" style="display:grid;grid-template-columns:1fr;gap:24px;padding:24px;">
+      <a href="projects.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">📚</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Projects</span>
+      </a>
+      <a href="project-ultimate-devops-container.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🚀</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Ultimate DevOps Container</span>
+      </a>
+      <a href="project-virtual-vacation.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🌐</span>
+        <span style="font-size:1.25rem;color:#764ba2;font-weight:bold;">Virtual Vacation Platform</span>
+      </a>
+      <a href="project-enterprise-cicd.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">⚡</span>
+        <span style="font-size:1.25rem;color:#f39c12;font-weight:bold;">Enterprise CI/CD Pipeline</span>
+      </a>
+      <a href="project-monitoring-stack.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">📊</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Monitoring Stack</span>
+      </a>
+      <a href="aws-solutions.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">☁️</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">AWS Solutions</span>
+      </a>
+      <a href="azure-solutions.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🔷</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Azure Solutions</span>
+      </a>
+      <a href="gcp-solutions.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🌐</span>
+        <span style="font-size:1.25rem;color:#764ba2;font-weight:bold;">GCP Solutions</span>
+      </a>
+      <a href="about-me.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">👤</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">About</span>
+      </a>
+      <a href="skills.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🛠️</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Skills</span>
+      </a>
+      <a href="blog.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">📝</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Blog</span>
+      </a>
+      <a href="contact.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">✉️</span>
+        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Contact</span>
+      </a>
+    </div>
+    <div class="sidebar-footer" style="text-align:center;margin-top:24px;">
+      <a href="https://github.com/temitayocharles" target="_blank" style="color:#a6e22e;font-size:1.1rem;">GitHub</a> •
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank"
+        style="color:#66d9ef;font-size:1.1rem;">DockerHub</a> •
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color:#764ba2;font-size:1.1rem;">LinkedIn</a>
+      <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
+    </div>
       } else {
         sidebarToggle.style.display = 'block';
       }

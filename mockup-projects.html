@@ -17,10 +17,43 @@
         <!-- Sidebar Toggle Button -->
         <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
 
-    <!-- Sidebar Navigation -->
-    <aside class="global-sidebar">
-        <!-- ...sidebar content... -->
-    </aside>
+        <!-- Sidebar Navigation -->
+        <aside class="global-sidebar" id="globalSidebar">
+            <div class="sidebar-header">
+                <h3>Navigation</h3>
+                <p>Quick access to all sections</p>
+                <button id="sidebarClose" aria-label="Close sidebar"
+                    style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">×</button>
+            </div>
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">Projects</div>
+                <a href="projects.html" class="sidebar-nav-item" data-icon="📚">All Projects</a>
+                <a href="project-ultimate-devops-container.html" class="sidebar-nav-item" data-icon="🚀">Ultimate DevOps
+                    Container</a>
+                <a href="project-virtual-vacation.html" class="sidebar-nav-item" data-icon="🌐">Virtual Vacation Platform</a>
+                <a href="project-enterprise-cicd.html" class="sidebar-nav-item" data-icon="⚡">Enterprise CI/CD Pipeline</a>
+                <a href="project-monitoring-stack.html" class="sidebar-nav-item" data-icon="📊">Monitoring Stack</a>
+            </div>
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">Environments</div>
+                <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS Solutions</a>
+                <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="🔷">Azure Solutions</a>
+                <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐">GCP Solutions</a>
+            </div>
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">Solutions & More</div>
+                <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
+                <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️">Skills</a>
+                <a href="blog.html" class="sidebar-nav-item" data-icon="📝">Blog</a>
+                <a href="contact.html" class="sidebar-nav-item" data-icon="✉️">Contact</a>
+            </div>
+            <div class="sidebar-footer">
+                <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> •
+                <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a> •
+                <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+                <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
+            </div>
+        </aside>
 
     <section class="projects-section">
         <h1>Projects</h1>
