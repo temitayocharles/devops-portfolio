@@ -25,74 +25,6 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ===== HERO / LANDING SECTION ===== -->
-  <section id="hero" aria-labelledby="hero-title"
-    style="background: linear-gradient(135deg, #0b1020 0%, #232526 100%); color: #e7ecf7; padding: clamp(3rem, 6vw, 6rem) 1.25rem; border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; overflow: hidden;">
-    <div class="hero-photo-bg"
-      style="position: absolute; inset: 0; z-index: 0; width: 100vw; height: 100%; overflow: hidden;">
-      <img src="images/profile.jpg" alt="Temitayo Charles"
-        style="width: 100vw; height: 100vh; object-fit: cover; opacity: 0.18; filter: blur(2px) grayscale(0.2); mix-blend-mode: luminosity;" />
-    </div>
-    <div class="hero-inner" style="max-width: 1100px; margin: 0 auto; text-align: left; position: relative; z-index: 1;">
-      <h1 id="hero-title" class="hero-title"
-        style="font-size: clamp(1.8rem, 3vw + 1rem, 3.2rem); line-height: 1.1; letter-spacing: 0.2px; margin: 0 0 1rem 0; text-shadow: 0 0 24px #66d9ef;">
-        Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
-      </h1>
-      <p class="hero-subtitle"
-        style="font-size: clamp(1rem, 1vw + 0.9rem, 1.25rem); color: #a6b3d1; max-width: 72ch; margin: 0 0 1.25rem 0;">
-        I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures that let
-        organizations deploy faster, operate safer, and scale without limits.
-      </p>
-      <blockquote class="hero-quote"
-        style="margin: 0 0 1.75rem 0; padding-left: 1rem; border-left: 3px solid #66d9ef; color: #d7e4ff; font-size: 1.05rem; opacity: 0.95;">
-        “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation, security,
-        and resilience are the defaults — not afterthoughts.”
-      </blockquote>
-      <ul class="hero-points" role="list"
-        style="display: grid; grid-template-columns: repeat(2, minmax(260px, 1fr)); gap: 0.75rem 1.5rem; margin: 1.25rem 0 2rem 0; padding: 0; list-style: none;">
-        <li><span class="dot"
-            style="display: inline-block; width: 9px; height: 9px; margin-top: 0.35rem; border-radius: 50%; box-shadow: 0 0 16px #66d9ef, inset 0 0 6px #66d9ef; background: #66d9ef; flex: 0 0 auto;"></span><strong>DevSecOps
-            Expertise</strong> — Security embedded end-to-end</li>
-        <li><span class="dot"
-            style="display: inline-block; width: 9px; height: 9px; margin-top: 0.35rem; border-radius: 50%; box-shadow: 0 0 16px #66d9ef, inset 0 0 6px #66d9ef; background: #66d9ef; flex: 0 0 auto;"></span><strong>Enterprise
-            CI/CD</strong> — Automated, zero-downtime releases</li>
-        <li><span class="dot"
-            style="display: inline-block; width: 9px; height: 9px; margin-top: 0.35rem; border-radius: 50%; box-shadow: 0 0 16px #66d9ef, inset 0 0 6px #66d9ef; background: #66d9ef; flex: 0 0 auto;"></span><strong>Cloud
-            & Kubernetes</strong> — EKS-ready, production architectures</li>
-        <li><span class="dot"
-            style="display: inline-block; width: 9px; height: 9px; margin-top: 0.35rem; border-radius: 50%; box-shadow: 0 0 16px #66d9ef, inset 0 0 6px #66d9ef; background: #66d9ef; flex: 0 0 auto;"></span><strong>Observability</strong>
-          — Real-time metrics, alerts, and SLOs</li>
-      </ul>
-      <div class="hero-ctas" style="display: flex; flex-wrap: wrap; gap: 0.75rem; margin-bottom: 1.25rem;">
-        <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies"
-          style="background: linear-gradient(180deg, rgba(106, 169, 255, 0.18), rgba(106, 169, 255, 0.08)); border-color: rgba(106, 169, 255, 0.45); color: #232526; padding: 0.7rem 1.05rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); text-decoration: none; font-weight: bold;">
-          View My Projects
-        </a>
-        <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume"
-          style="background: linear-gradient(180deg, rgba(84, 255, 197, 0.18), rgba(84, 255, 197, 0.06)); border-color: rgba(84, 255, 197, 0.45); color: #232526; padding: 0.7rem 1.05rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); text-decoration: none; font-weight: bold;">
-          Download My Resume
-        </a>
-        <a class="btn btn-ghost" href="/contact.html" aria-label="Contact"
-          style="background: transparent; border-color: rgba(255,255,255,0.14); color: #a6b3d1; padding: 0.7rem 1.05rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); text-decoration: none; font-weight: bold;">
-          Contact
-        </a>
-      </div>
-      <div class="hero-trust" style="display: flex; flex-wrap: wrap; gap: 0.5rem; opacity: 0.9;">
-        <span class="trust-pill"
-          style="font-size: 0.85rem; color: #c6d6ff; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; padding: 0.35rem 0.6rem;">Kubernetes</span>
-        <span class="trust-pill"
-          style="font-size: 0.85rem; color: #c6d6ff; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; padding: 0.35rem 0.6rem;">Terraform</span>
-        <span class="trust-pill"
-          style="font-size: 0.85rem; color: #c6d6ff; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; padding: 0.35rem 0.6rem;">Vault</span>
-        <span class="trust-pill"
-          style="font-size: 0.85rem; color: #c6d6ff; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; padding: 0.35rem 0.6rem;">Prometheus</span>
-        <span class="trust-pill"
-          style="font-size: 0.85rem; color: #c6d6ff; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; padding: 0.35rem 0.6rem;">ArgoCD</span>
-        <span class="trust-pill"
-          style="font-size: 0.85rem; color: #c6d6ff; background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015)); border: 1px solid rgba(255,255,255,0.09); border-radius: 999px; padding: 0.35rem 0.6rem;">AWS</span>
-      </div>
-    </div>
-  </section>
   <!-- ===== /HERO SECTION ===== -->
 
   <!-- Sidebar Toggle Button -->
@@ -322,6 +254,14 @@
         display: inline-block;
         transition: background 0.3s;
       ">� Explore Full Project Details</a>
+    </section>
+
+    <section style="background: #ff7300; color: #a6e22e; text-align: center; padding: 60px 0;">
+      <h1 style="font-size: 3rem; font-weight: bold; margin-bottom: 24px;">AWS Cloud Solutions</h1>
+      <p style="font-size: 1.25rem; color: #fff; max-width: 700px; margin: 0 auto;">
+        Enterprise-grade DevOps architectures built on Amazon Web Services, showcasing scalable infrastructure, secure CI/CD
+        pipelines, and modern container orchestration patterns.
+      </p>
     </section>
 
     <section class="intro-section">
