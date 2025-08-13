@@ -1,209 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temitayo Charles • DevOps Engineer & Container Specialist</title>
-  <meta name="description"
-    content="DevOps Engineer specializing in containerization, automation, and cloud infrastructure. Creator of the Ultimate DevOps Container.">
-  <!-- Open Graph / Social Media Meta Tags -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Temitayo Charles • DevOps Engineer & Container Specialist">
-  <meta property="og:description"
-    content="DevOps Engineer specializing in containerization, automation, and cloud infrastructure. Creator of the Ultimate DevOps Container.">
-  <meta property="og:url" content="https://charliedevops.dev">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Temitayo Charles • DevOps Engineer">
-  <meta name="twitter:description"
-    content="DevOps Engineer specializing in containerization, automation, and cloud infrastructure.">
-  <!-- Keywords for SEO -->
-  <meta name="keywords"
-    content="DevOps, Docker, Kubernetes, AWS, Azure, GCP, Container, Automation, Infrastructure, CI/CD, GitOps, Terraform, Monitoring">
-  <meta name="author" content="Temitayo Charles">
-  <!-- Favicon -->
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link rel="stylesheet" href="style.css">
-  <script src="gemini-api-key.js"></script>
-</head>
-<body>
-  <!-- ===== /HERO SECTION ===== -->
-  <!-- Global AI Toggle Button -->
-  <button id="aiToggleBtn"
-    style="position:fixed;bottom:30px;left:30px;z-index:9999;background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;transition:background 0.3s;"
-    title="Toggle AI Widgets">🤖</button>
-
-  <!-- Sidebar Toggle Button -->
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
-  <!-- Sidebar Navigation -->
-  <aside class="global-sidebar" id="globalSidebar">
-    <div class="sidebar-header">
-      <h3 style="font-size:2rem;color:#a6e22e;margin-bottom:10px;">Navigation</h3>
-      <p style="color:#66d9ef;">Quick access to all sections</p>
-      <button id="sidebarClose" aria-label="Close sidebar"
-        style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">&times;</button>
-    </div>
-    <div class="sidebar-card-grid" style="display:grid;grid-template-columns:1fr;gap:24px;padding:24px;">
-      <a href="projects.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">📚</span>
-        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Projects</span>
-      </a>
-      <a href="project-ultimate-devops-container.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">🚀</span>
-        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Ultimate DevOps Container</span>
-      </a>
-      <a href="project-virtual-vacation.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">🌐</span>
-        <span style="font-size:1.25rem;color:#764ba2;font-weight:bold;">Virtual Vacation Platform</span>
-      </a>
-      <a href="project-enterprise-cicd.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">⚡</span>
-        <span style="font-size:1.25rem;color:#f39c12;font-weight:bold;">Enterprise CI/CD Pipeline</span>
-      </a>
-      <a href="project-monitoring-stack.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">📊</span>
-        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Monitoring Stack</span>
-      </a>
-      <a href="aws-solutions.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">☁️</span>
-        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">AWS Solutions</span>
-      </a>
-      <a href="azure-solutions.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">🔷</span>
-        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Azure Solutions</span>
-      </a>
-      <a href="gcp-solutions.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">🌐</span>
-        <span style="font-size:1.25rem;color:#764ba2;font-weight:bold;">GCP Solutions</span>
-      </a>
-      <a href="about-me.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">👤</span>
-        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">About</span>
-      </a>
-      <a href="skills.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">🛠️</span>
-        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Skills</span>
-      </a>
-      <a href="blog.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">📝</span>
-        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Blog</span>
-      </a>
-      <a href="contact.html" class="sidebar-card"
-        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
-        <span style="font-size:2.2rem;">✉️</span>
-        <span style="font-size:1.25rem;color:#66d9ef;font-weight:bold;">Contact</span>
-      </a>
-    </div>
-    <div class="sidebar-footer" style="text-align:center;margin-top:24px;">
-      <a href="https://github.com/temitayocharles" target="_blank" style="color:#a6e22e;font-size:1.1rem;">GitHub</a> •
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank"
-        style="color:#66d9ef;font-size:1.1rem;">DockerHub</a> •
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color:#764ba2;font-size:1.1rem;">LinkedIn</a>
-      <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
-    </div>
-  </aside>
-  <!-- Sidebar Overlay -->
-  <div id="sidebarOverlay"
-    style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.25);z-index:999;display:none;transition:opacity 0.3s;">
-  </div>
-  <nav class="main-nav"
-    style="width:100%;background:#232526;padding:0.5rem 0 0.5rem 0;box-shadow:0 2px 12px rgba(0,0,0,0.08);display:flex;justify-content:center;align-items:center;z-index:1000;position:relative;">
-    <a href="index.html" class="nav-link active">Home</a>
-    <a href="about-me.html" class="nav-link">About</a>
-    <a href="skills.html" class="nav-link">Skills</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="aws-solutions.html" class="nav-link">AWS Solutions</a>
-    <a href="azure-solutions.html" class="nav-link">Azure Solutions</a>
-    <a href="gcp-solutions.html" class="nav-link">GCP Solutions</a>
-    <a href="blog.html" class="nav-link">Blog</a>
-    <a href="contact.html" class="nav-link">Contact</a>
-  </nav>
-  <div class="main">
-    <!-- Profile Photo + AI Widget -->
-    <section id="profile-ai" style="display:flex;flex-direction:column;align-items:center;gap:24px;margin-bottom:40px;">
-      <div style="position:relative;max-width:220px;">
-        <img src="images/banner.jpg" alt="Temitayo Charles Profile"
-          style="width:220px;height:220px;object-fit:cover;border-radius:50%;box-shadow:0 8px 32px rgba(102,217,239,0.18);border:4px solid #a6e22e;" />
-        <span
-          style="position:absolute;bottom:12px;right:12px;background:#66d9ef;color:#232526;padding:6px 14px;border-radius:16px;font-weight:bold;font-size:0.95rem;box-shadow:0 2px 8px rgba(102,217,239,0.18);">AI
-          Powered</span>
-      </div>
-      <div style="max-width:400px;text-align:center;">
-        <h2 style="color:#a6e22e;margin-bottom:10px;">Temitayo Charles</h2>
-        <p style="color:#f0f0f0;">DevOps Engineer & Container Specialist</p>
-        <form id="profile-ai-form" style="display:flex;gap:10px;margin-top:18px;">
-          <input type="text" id="profile-ai-input" placeholder="Ask me anything about DevOps..."
-            style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
-          <button type="submit"
-            style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
-        </form>
-        <div id="profile-ai-chat"
-          style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
-        </div>
-      </div>
-      <script>
-                  // Gemini API integration (placeholder key)
-        const profileAiForm = document.getElementById('profile-ai-form');
-        const profileAiInput = document.getElementById('profile-ai-input');
-        const profileAiChat = document.getElementById('profile-ai-chat');
-                  const GEMINI_API_KEY = 'GEMINI_API_KEY_PLACEHOLDER';
-                  async function fetchGeminiAnswer(question) {
-                    const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + GEMINI_API_KEY;
-                    const body = {
-                      contents: [{ parts: [{ text: question }] }]
-                    };
-                    try {
-                      const res = await fetch(endpoint, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(body)
-                      });
-                      const data = await res.json();
-                      if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
-                        return data.candidates[0].content.parts.map(p => p.text).join(' ');
-                      } else {
-                        return 'No answer received from Gemini.';
-                      }
-                    } catch (err) {
-                      return 'Error connecting to Gemini API.';
-                    }
-                  }
-                  profileAiForm.addEventListener('submit', async function (e) {
+    <script>
+            // Rocket toggle and AI quick launch logic
+            const rocketBtn = document.getElementById('rocketToggleBtn');
+            // 'rocketMenu' is already declared above, do not redeclare.
+            rocketBtn.onclick = function () {
+              rocketMenu.style.display = rocketMenu.style.display === 'none' ? 'block' : 'none';
+            };
+            document.addEventListener('click', function (e) {
+              if (!rocketBtn.contains(e.target) && !rocketMenu.contains(e.target)) {
+                rocketMenu.style.display = 'none';
+              }
+          });
+          document.getElementById('aiQuickLaunch').onclick = function (e) {
           e.preventDefault();
-          const question = profileAiInput.value.trim();
-          if (!question) return;
-          profileAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
-          profileAiInput.value = '';
-                  profileAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> <span style='color:#66d9ef;'>Thinking...</span></div>`;
-            profileAiChat.scrollTop = profileAiChat.scrollHeight;
-                  const answer = await fetchGeminiAnswer(question);
-                  profileAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${answer}</div>`;
-                  profileAiChat.scrollTop = profileAiChat.scrollHeight;
-        });
-      </script>
-    </section>
-    <!-- End Profile Photo + AI Widget -->
-    <!-- New Hero Button Group -->
-    <div class="homepage-main-buttons" style="display:flex;justify-content:center;gap:32px;margin:40px 0 32px 0;">
-      <a href="index.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Home</a>
-      <a href="projects.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Projects</a>
-      <a href="about-me.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">About Me</a>
-      <a href="contact.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Contact</a>
-    </div>
-    <!-- Carousel for Project Highlights (Restored) -->
-    <section id="featured" style="margin-bottom:40px;">
-      <div class="carousel" style="max-width:900px;margin:0 auto;overflow:hidden;position:relative;">
-        <div class="carousel-track" style="display:flex;transition:transform 0.6s cubic-bezier(.4,0,.2,1);">
+                    if (window.GLOBAL_AI_ENABLED !== undefined) {
+                      window.GLOBAL_AI_ENABLED = true;
+                      setAIWidgetsEnabled(true);
+                    }
+                    alert('AI Assistant activated!');
+                  };
+                </script>
+          style="width:180px;height:180px;object-fit:cover;border-radius:50%;box-shadow:0 8px 32px
+          rgba(102,217,239,0.18);border:4px solid #a6e22e;" />
+          </div>
+      <h1 style="font-size:2.7rem;color:#66d9ef;margin-bottom:18px;text-align:center;">DevOps Excellence, Delivered</h1>
+      <p style="font-size:1.3rem;color:#a6e22e;text-align:center;max-width:600px;margin-bottom:40px;">
+        A portfolio of real-world DevOps solutions—containerization, automation, cloud, and CI/CD—engineered for reliability,
+        security, and speed.<br>
+        <span style="color:#fff;font-size:1.1rem;">From cloud to code, every project solves a real business problem.</span>
+      </p>
+      <!-- Project Carousel -->
+      <div class="carousel" style="max-width:700px;width:100%;margin:0 auto;overflow:hidden;position:relative;">
+        <div class="carousel-track" id="carouselTrack"
+          style="display:flex;transition:transform 0.6s cubic-bezier(.4,0,.2,1);">
+          <!-- All project items here, as above -->
           <div class="carousel-item"
             style="min-width:100%;box-sizing:border-box;padding:30px;background:#232526;border-radius:20px;margin-right:20px;color:#fff;">
             <h3 style="color:#66d9ef;font-size:2rem;margin-bottom:10px;">TC Enterprise DevOps Platform™</h3>
@@ -222,138 +53,148 @@
             <p style="font-size:1.1rem;">Immersive tourism platform with AI recommendations, Kubernetes deployment, and GitOps
               automation.</p>
           </div>
-        </div>
-        <button class="carousel-btn prev"
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#e53e3e;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">Enterprise CI/CD Pipeline</h3>
+            <p style="font-size:1.1rem;">GitOps-powered deployment platform with security scanning and zero-downtime releases.</p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#28a745;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">Monitoring Stack</h3>
+            <p style="font-size:1.1rem;">Multi-cloud observability platform with AI-powered analytics and distributed tracing.</p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#009ee3;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">Azure AKS Platform</h3>
+            <p style="font-size:1.1rem;">Enterprise Kubernetes on Azure with security, monitoring, and CI/CD integration.</p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#6a5acd;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">Hybrid Cloud Platform</h3>
+            <p style="font-size:1.1rem;">Unified multi-cloud and hybrid architectures for seamless integration and scalability.
+            </p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#8a2be2;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">Serverless Event Platform</h3>
+            <p style="font-size:1.1rem;">Event-driven serverless architecture for real-time processing and automation.</p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#22c55e;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">GCP MLOps Platform</h3>
+            <p style="font-size:1.1rem;">Enterprise MLOps at scale with automated pipelines, monitoring, and deployment.</p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#3b82f6;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">GCP Serverless Microservices</h3>
+            <p style="font-size:1.1rem;">Cloud-native microservices and ultra-fast scaling on Google Cloud Platform.</p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#ff9900;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">AWS Monitoring & Observability</h3>
+            <p style="font-size:1.1rem;">Production-grade observability with Prometheus, Grafana, Loki, and Jaeger.</p>
+          </div>
+          <div class="carousel-item"
+            style="min-width:100%;box-sizing:border-box;padding:30px;background:#38a169;border-radius:20px;margin-right:20px;color:#fff;">
+            <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">EKS Platform & VPN</h3>
+            <p style="font-size:1.1rem;">Secure Kubernetes access, secrets management, and GitOps automation.</p>
+          </div>
+          </div>
+        <button class="carousel-btn prev" id="carouselPrev"
           style="position:absolute;top:50%;left:10px;transform:translateY(-50%);background:#232526;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;">&#8592;</button>
-        <button class="carousel-btn next"
+        <button class="carousel-btn next" id="carouselNext"
           style="position:absolute;top:50%;right:10px;transform:translateY(-50%);background:#232526;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;">&#8594;</button>
+        </div>
+      <script>
+        // Simple carousel logic
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('carouselPrev');
+        const nextBtn = document.getElementById('carouselNext');
+        let currentIndex = 0;
+        const items = track.children.length;
+        function updateCarousel() {
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+        prevBtn.onclick = function () {
+          currentIndex = (currentIndex - 1 + items) % items;
+          updateCarousel();
+        };
+        nextBtn.onclick = function () {
+          currentIndex = (currentIndex + 1) % items;
+          updateCarousel();
+        };
+        updateCarousel();
+      </script>
+    </div>
+  </div>
+    <!-- Skills & Expertise Section (Recruiter-Friendly Format) -->
+    <section class="skills-expertise" style="background:#232526;padding:48px 0 32px 0;">
+      <div style="max-width:900px;margin:0 auto;">
+        <h2 style="color:#a6e22e;font-size:2.2rem;margin-bottom:24px;text-align:center;">Skills & Expertise</h2>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;">
+          <div style="background:#1e1e1e;border-radius:14px;padding:24px;text-align:center;box-shadow:0 2px 12px #232526;">
+            <span style="font-size:2.2rem;">🐳</span>
+            <h3 style="color:#66d9ef;font-size:1.25rem;margin:12px 0 8px 0;">Docker & Containers</h3>
+            <p style="color:#e0e0e0;font-size:1.05rem;">Expert in containerization, image optimization, and secure
+              deployments.</p>
+          </div>
+          <div style="background:#1e1e1e;border-radius:14px;padding:24px;text-align:center;box-shadow:0 2px 12px #232526;">
+            <span style="font-size:2.2rem;">☸️</span>
+            <h3 style="color:#a6e22e;font-size:1.25rem;margin:12px 0 8px 0;">Kubernetes & Orchestration</h3>
+            <p style="color:#e0e0e0;font-size:1.05rem;">Multi-cloud clusters, GitOps, Helm, and Service Mesh expertise.</p>
+          </div>
+          <div style="background:#1e1e1e;border-radius:14px;padding:24px;text-align:center;box-shadow:0 2px 12px #232526;">
+            <span style="font-size:2.2rem;">⚙️</span>
+            <h3 style="color:#f39c12;font-size:1.25rem;margin:12px 0 8px 0;">CI/CD Automation</h3>
+            <p style="color:#e0e0e0;font-size:1.05rem;">Jenkins, GitHub Actions, GitLab CI, and zero-downtime deployments.</p>
+          </div>
+          <div style="background:#1e1e1e;border-radius:14px;padding:24px;text-align:center;box-shadow:0 2px 12px #232526;">
+            <span style="font-size:2.2rem;">☁️</span>
+            <h3 style="color:#66d9ef;font-size:1.25rem;margin:12px 0 8px 0;">Cloud Infrastructure</h3>
+            <p style="color:#e0e0e0;font-size:1.05rem;">AWS, Azure, GCP, Terraform, and Infrastructure as Code.</p>
+          </div>
+          <div style="background:#1e1e1e;border-radius:14px;padding:24px;text-align:center;box-shadow:0 2px 12px #232526;">
+            <span style="font-size:2.2rem;">🔒</span>
+            <h3 style="color:#a6e22e;font-size:1.25rem;margin:12px 0 8px 0;">Security & Monitoring</h3>
+            <p style="color:#e0e0e0;font-size:1.05rem;">Vault, Prometheus, Grafana, and enterprise-grade observability.</p>
+          </div>
+          <div style="background:#1e1e1e;border-radius:14px;padding:24px;text-align:center;box-shadow:0 2px 12px #232526;">
+            <span style="font-size:2.2rem;">🛠️</span>
+            <h3 style="color:#f39c12;font-size:1.25rem;margin:12px 0 8px 0;">Automation Tools</h3>
+            <p style="color:#e0e0e0;font-size:1.05rem;">Terraform, Helm, Ansible, and custom scripting.</p>
+          </div>
+        </div>
       </div>
     </section>
-    <!-- FIXED: Featured Project Section (malformed HTML removed) -->
-    <section class="featured-demo-section"
-      style="background: linear-gradient(135deg, #232526 0%, #414345 100%); border: 3px solid #66d9ef; border-radius: 24px; padding: 40px 30px; text-align: center; margin-bottom: 48px; box-shadow: 0 12px 40px rgba(102, 217, 239, 0.12); position: relative; overflow: hidden;">
-      <h2 style="color: #66d9ef; font-size: 2.7rem; margin-bottom: 18px; text-shadow: 0 2px 12px #232526;">
-        🧪 Featured Project: TC Enterprise DevOps Platform™
-      </h2>
-      <p
-        style="margin-bottom: 22px; font-size: 1.15em; color: #e0e0e0; max-width: 700px; margin-left: auto; margin-right: auto;">
-        <strong>TC Enterprise DevOps Platform™</strong>—a fully customized, production-grade DevOps laboratory engineered by
-        <span style="color: #764ba2; font-weight: bold;">Temitayo Charles</span>.<br>
-        <span style="color: #a6e22e;">Multi-master Kubernetes, GitOps, Service Mesh, Vault, Prometheus, Grafana, HA
-          PostgreSQL, Redis Sentinel, and more—tailored for enterprise CI/CD, security, monitoring, and disaster
-          recovery.</span>
-      </p>
-      <div
-        style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #e0e0e0; margin: 0 auto 18px auto; max-width: 700px; box-shadow: 0 2px 12px #232526;">
-        <h3 style="color: #66d9ef; margin-bottom: 8px;">What Problems Does This Lab Solve?</h3>
-        <ul style="text-align: left; font-size: 1.05em; color: #e0e0e0; margin: 0 0 0 18px;">
-          <li><strong>Cloud Cost:</strong> Simulates full enterprise infrastructure at zero cloud spend</li>
-          <li><strong>Complexity:</strong> One-click setup for multi-master Kubernetes, CI/CD, and monitoring</li>
-          <li><strong>Security:</strong> Zero-trust, dynamic secrets, policy enforcement, and runtime threat detection</li>
-          <li><strong>Reliability:</strong> HA clusters, automated failover, disaster recovery, and chaos engineering</li>
-          <li><strong>Onboarding:</strong> Hands-on training for staff/principal-level DevOps skills</li>
-          <li><strong>Operational Excellence:</strong> Automated scaling, monitoring, and compliance reporting</li>
-        </ul>
-      </div>
-      <!-- Architectural Diagram SVG (draw.io/Lucidchart style) -->
-      <div style="display: flex; justify-content: center; margin-bottom: 28px;">
-        <div
-          style="background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(102,217,239,0.08); padding: 18px; max-width: 600px; width: 100%;">
-          <svg viewBox="0 0 600 320" width="100%" height="220" style="display: block; margin: 0 auto;">
-            <rect x="20" y="20" width="560" height="280" rx="24" fill="#f8f9fa" stroke="#66d9ef" stroke-width="2" />
-            <text x="300" y="50" text-anchor="middle" font-size="22" fill="#764ba2"
-              font-family="Segoe UI, sans-serif">Enterprise DevOps Platform</text>
-            <rect x="60" y="80" width="160" height="60" rx="12" fill="#e0e7ff" stroke="#764ba2" stroke-width="2" />
-            <text x="140" y="110" text-anchor="middle" font-size="16" fill="#232526">Kubernetes Cluster</text>
-            <rect x="380" y="80" width="160" height="60" rx="12" fill="#e0e7ff" stroke="#66d9ef" stroke-width="2" />
-            <text x="460" y="110" text-anchor="middle" font-size="16" fill="#232526">Service Mesh (Istio)</text>
-            <rect x="60" y="170" width="160" height="60" rx="12" fill="#fffbe6" stroke="#f39c12" stroke-width="2" />
-            <text x="140" y="200" text-anchor="middle" font-size="16" fill="#232526">Vault / Secrets</text>
-            <rect x="380" y="170" width="160" height="60" rx="12" fill="#e6fffa" stroke="#67ffcc" stroke-width="2" />
-            <text x="460" y="200" text-anchor="middle" font-size="16" fill="#232526">Monitoring (Prometheus/Grafana)</text>
-            <rect x="220" y="250" width="160" height="40" rx="10" fill="#e0ffe6" stroke="#a6e22e" stroke-width="2" />
-            <text x="300" y="275" text-anchor="middle" font-size="15" fill="#232526">CI/CD: GitHub Actions → Jenkins →
-              ArgoCD</text>
-            <line x1="140" y1="140" x2="140" y2="170" stroke="#764ba2" stroke-width="2" marker-end="url(#arrow)" />
-            <line x1="460" y1="140" x2="460" y2="170" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
-            <line x1="300" y1="140" x2="300" y2="250" stroke="#a6e22e" stroke-width="2" marker-end="url(#arrow)" />
-            <defs>
-              <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#232526" />
-              </marker>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      <!-- Demo Video Placeholder -->
-      <div style="margin-bottom: 24px;">
-        <h3 style="color:#66d9ef;margin-bottom:12px;">Ultimate DevOps Container Demo Journey</h3>
-        <div style="display:grid;grid-template-columns:1fr;gap:24px;max-width:700px;margin:0 auto;">
-          <div>
-            <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-01-dockerhub.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#a6e22e;font-size:1rem;margin-top:8px;">Step 1: Pulling the Ultimate DevOps Container from
-              DockerHub</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-02-run-container.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#66d9ef;font-size:1rem;margin-top:8px;">Step 2: Running the Container and Initializing the
-              Environment</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-03-initial-setup.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#f39c12;font-size:1rem;margin-top:8px;">Step 3: Initial Setup and Configuration</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-04-tools-tour.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#764ba2;font-size:1rem;margin-top:8px;">Step 4: Exploring Built-in DevOps Tools</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-05-monitoring.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#28a745;font-size:1rem;margin-top:8px;">Step 5: Monitoring, Dashboards, and Observability</p>
-          </div>
-        </div>
-      </div>
-      <!-- Key Highlights -->
-      <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px;">
-        <div
-          style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #a6e22e; min-width: 220px; box-shadow: 0 2px 12px #232526;">
-          <h3 style="margin-bottom: 8px;">🛡️ Zero-Trust Security</h3>
-          <p style="color: #e0e0e0;">Vault OIDC, Service Mesh, Policy Enforcement, Runtime Threat Detection</p>
-        </div>
-        <div
-          style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #66d9ef; min-width: 220px; box-shadow: 0 2px 12px #232526;">
-          <h3 style="margin-bottom: 8px;">📈 Enterprise Monitoring</h3>
-          <p style="color: #e0e0e0;">Prometheus, Grafana, Distributed Tracing, Alerting, SLI/SLO Dashboards</p>
-        </div>
-        <div
-          style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #f39c12; min-width: 220px; box-shadow: 0 2px 12px #232526;">
-          <h3 style="margin-bottom: 8px;">🚀 Progressive Delivery</h3>
-          <p style="color: #e0e0e0;">Canary Deployments, GitOps, Automated Rollbacks, Event-Driven Scaling</p>
-        </div>
-      </div>
-      <a href="project-tc-enterprise-devops-platform.html" style="
-                    background: linear-gradient(135deg, #66d9ef, #a6e22e);
-                    color: #232526;
+    <!-- End Skills & Expertise Section -->
+    </div>
+  <footer>
+    <!-- Rocket Toggle Button -->
+    <button id="rocketToggleBtn"
+      style="position:fixed;bottom:30px;right:30px;z-index:9999;background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;border:none;border-radius:50%;width:64px;height:64px;font-size:2.3rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;transition:background 0.3s;"
+      title="Quick Actions">🚀</button>
+    <div id="rocketMenu"
+      style="display:none;position:fixed;bottom:100px;right:40px;z-index:9999;background:#232526e6;border-radius:18px;padding:24px 18px;box-shadow:0 8px 32px rgba(102,217,239,0.18);min-width:220px;">
+      <h4 style="color:#a6e22e;margin-bottom:12px;text-align:center;font-size:1.2rem;">Quick Actions</h4>
+      <ul style="list-style:none;padding:0;margin:0;">
+        <li><a href="projects.html"
+            style="display:block;padding:10px 0;color:#66d9ef;font-size:1.1rem;text-decoration:none;">View All
+            Projects</a></li>
+        <li><a href="about-me.html"
+            style="display:block;padding:10px 0;color:#a6e22e;font-size:1.1rem;text-decoration:none;">About Me</a></li>
+        <li><a href="#" id="aiQuickLaunch"
+            style="display:block;padding:10px 0;color:#f39c12;font-size:1.1rem;text-decoration:none;">🤖 AI Assistant</a>
+        </li>
+      </ul>
+    </div>
+    <script>
+                  <!-- Remcket toggle script. Working logic is at the top of the file. -->
+    </script>
+    <p style="text-align:center;color:#a6e22e;margin-top:40px;">&copy; 2025 Temitayo Charles | DevOps Engineer & Container
+      Enthusiast</p>
+    <p style="text-align:center;color:#a6e22e;margin-top:40px;">&copy; 2025 Temitayo Charles Akinniranye | DevOps Engineer &
+      Container Enthusiast</p>
+    </footer>
                     padding: 15px 32px;
                     border-radius: 10px;
                     text-decoration: none;
@@ -430,37 +271,57 @@
           🎬 Watch Live Demos
         </a>
         <a href="getting-started.html" class="project-link secondary">
-          Get Started
-        </a>
-      </div>
-    </section>
-
-    <section class="expertise-overview">
-      <h2>What I Bring to Your Team</h2>
-      <div class="expertise-grid">
-        <div class="expertise-item">
-          <h3>🐳 Containerization Expert</h3>
-          <p>Docker, Kubernetes, and custom container solutions that scale</p>
-        </div>
-        <div class="expertise-item">
-          <h3>⚙️ CI/CD Architect</h3>
-          <p>GitHub Actions, Jenkins, and automated deployment pipelines</p>
-        </div>
-        <div class="expertise-item">
-          <h3>☁️ Cloud Infrastructure</h3>
-          <p>AWS services, Infrastructure as Code, and scalable architectures</p>
-        </div>
-        <div class="expertise-item">
-          <h3>🔒 Security & Monitoring</h3>
-          <p>Vault secrets, Prometheus monitoring, and security best practices</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Technology Stack Showcase -->
-    <section style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); padding: 60px 20px; margin: 40px 0; border-radius: 15px;">
-      <h2 style="text-align: center; color: white; margin-bottom: 40px; font-size: 2.5rem;">Complete Technology Stack</h2>
-      <div style="text-align: center; margin-bottom: 30px;">
+          <div class="main"
+            style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;">
+            <div style="margin-top:60px;margin-bottom:40px;">
+              <img src="images/banner.jpg" alt="Temitayo Charles Profile"
+                style="width:180px;height:180px;object-fit:cover;border-radius:50%;box-shadow:0 8px 32px rgba(102,217,239,0.18);border:4px solid #a6e22e;" />
+            </div>
+            <h1 style="font-size:2.7rem;color:#66d9ef;margin-bottom:18px;text-align:center;">DevOps Excellence, Delivered</h1>
+            <p style="font-size:1.3rem;color:#a6e22e;text-align:center;max-width:600px;margin-bottom:40px;">
+              A portfolio of real-world DevOps solutions—containerization, automation, cloud, and CI/CD—engineered for
+              reliability, security, and speed.
+            </p>
+            <!-- Project Carousel -->
+            <div class="carousel" style="max-width:700px;width:100%;margin:0 auto;overflow:hidden;position:relative;">
+              <div class="carousel-track" id="carouselTrack"
+                style="display:flex;transition:transform 0.6s cubic-bezier(.4,0,.2,1);">
+                <div class="carousel-item"
+                  style="min-width:100%;box-sizing:border-box;padding:30px;background:#232526;border-radius:20px;margin-right:20px;color:#fff;">
+                  <h3 style="color:#66d9ef;font-size:2rem;margin-bottom:10px;">TC Enterprise DevOps Platform™</h3>
+                  <p style="font-size:1.1rem;">A fully customized, production-grade DevOps laboratory engineered by Temitayo
+                    Charles. Multi-master Kubernetes, GitOps, Service Mesh, Vault, Prometheus, Grafana, and more.</p>
+                </div>
+                <div class="carousel-item"
+                  style="min-width:100%;box-sizing:border-box;padding:30px;background:#764ba2;border-radius:20px;margin-right:20px;color:#fff;">
+                  <h3 style="color:#a6e22e;font-size:2rem;margin-bottom:10px;">Ultimate DevOps Container</h3>
+                  <p style="font-size:1.1rem;">All-in-one containerized environment with 30+ tools, TLS security, and enterprise
+                    monitoring.</p>
+                </div>
+                <div class="carousel-item"
+                  style="min-width:100%;box-sizing:border-box;padding:30px;background:#667eea;border-radius:20px;margin-right:20px;color:#fff;">
+                  <h3 style="color:#f39c12;font-size:2rem;margin-bottom:10px;">Virtual Vacation Platform</h3>
+                  <p style="font-size:1.1rem;">Immersive tourism platform with AI recommendations, Kubernetes deployment, and
+                    GitOps automation.</p>
+                </div>
+                <div class="carousel-item"
+                  style="min-width:100%;box-sizing:border-box;padding:30px;background:#e53e3e;border-radius:20px;margin-right:20px;color:#fff;">
+                  <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">Enterprise CI/CD Pipeline</h3>
+                  <p style="font-size:1.1rem;">GitOps-powered deployment platform with security scanning and zero-downtime releases.</p>
+                </div>
+                <div class="carousel-item"
+                  style="min-width:100%;box-sizing:border-box;padding:30px;background:#28a745;border-radius:20px;margin-right:20px;color:#fff;">
+                  <h3 style="color:#fff;font-size:2rem;margin-bottom:10px;">Monitoring Stack</h3>
+                  <p style="font-size:1.1rem;">Multi-cloud observability platform with AI-powered analytics and distributed tracing.</p>
+                </div>
+              </div>
+              <button class="carousel-btn prev" id="carouselPrev"
+                style="position:absolute;top:50%;left:10px;transform:translateY(-50%);background:#232526;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;">&#8592;</button>
+              <button class="carousel-btn next" id="carouselNext"
+                style="position:absolute;top:50%;right:10px;transform:translateY(-50%);background:#232526;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;">&#8594;</button>
+              </div>
+            <!-- Only one correct carousel script should exist above. Removed broken/duplicate script. -->
+          </div>
         <img src="images/technology-stack-showcase.svg" alt="Complete DevOps Technology Stack" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
       </div>
       <div style="text-align: center; max-width: 800px; margin: 0 auto;">
@@ -705,6 +566,11 @@
         style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">&times;</button>
     </div>
     <div class="sidebar-card-grid" style="display:grid;grid-template-columns:1fr;gap:24px;padding:24px;">
+      <a href="index.html" class="sidebar-card"
+        style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
+        <span style="font-size:2.2rem;">🏠</span>
+        <span style="font-size:1.25rem;color:#a6e22e;font-weight:bold;">Home</span>
+      </a>
       <a href="projects.html" class="sidebar-card"
         style="display:flex;align-items:center;gap:18px;background:#232526;border-radius:16px;padding:18px 24px;box-shadow:0 2px 12px #232526;text-decoration:none;transition:box-shadow 0.2s;">
         <span style="font-size:2.2rem;">📚</span>
@@ -772,13 +638,9 @@
         style="color:#66d9ef;font-size:1.1rem;">DockerHub</a> •
       <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color:#764ba2;font-size:1.1rem;">LinkedIn</a>
       <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
+    <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles Akinniranye</span>
     </div>
-      } else {
-        sidebarToggle.style.display = 'block';
-      }
-    }
-    window.addEventListener('resize', handleSidebarToggleVisibility);
-    document.addEventListener('DOMContentLoaded', handleSidebarToggleVisibility);
+  <!-- Removed broken sidebar toggle logic. Sidebar is always visible for desktop, and can be toggled for mobile via a dedicated button if needed. -->
 
       // Unified Gemini API logic
       window.GLOBAL_AI_ENABLED = true;

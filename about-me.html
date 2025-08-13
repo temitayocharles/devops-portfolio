@@ -73,14 +73,20 @@
     <a href="contact.html" class="nav-link">Contact</a>
   </nav>
 
-  <div class="main">
-    <section class="about-section">
-      <div style="display:flex;align-items:center;gap:32px;margin-bottom:32px;">
+  <div class="main" style="position:relative;min-height:100vh;">
+    <section class="about-section" style="position:relative;z-index:2;">
+      <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;">
+        <img src="images/banner.jpg" alt="Temitayo Charles Profile"
+          style="width:100vw;height:100vh;object-fit:cover;opacity:0.13;filter:blur(2px);position:absolute;top:0;left:0;" />
+      </div>
+      <div style="position:relative;z-index:2;display:flex;align-items:center;gap:32px;margin-bottom:32px;">
         <img src="images/banner.jpg" alt="Temitayo Charles Profile"
           style="width:180px;height:180px;object-fit:cover;border-radius:50%;box-shadow:0 8px 32px rgba(102,217,239,0.18);border:4px solid #a6e22e;" />
         <div>
-          <h2 style="color:#a6e22e;margin-bottom:10px;">Temitayo Charles</h2>
-          <p style="color:#f0f0f0;">DevOps Engineer & Container Specialist</p>
+          <h2 style="color:#a6e22e;margin-bottom:10px;font-size:2.2rem;font-family:'Segoe UI',Arial,sans-serif;">Temitayo Charles
+          </h2>
+          <p style="color:#f0f0f0;font-size:1.15rem;font-family:'Segoe UI',Arial,sans-serif;">DevOps Engineer & Container
+            Specialist</p>
         </div>
       </div>
       <!-- AI Q&A Widget -->
@@ -158,13 +164,15 @@
       <!-- End AI Q&A Widget -->
 
       <h2>About Me</h2>
-      <p>
-        I'm a passionate DevOps engineer with expertise in containerization, CI/CD pipelines, and cloud infrastructure automation. 
-        My mission is to bridge the gap between development and operations through innovative tooling and best practices.
+      <p style="color:#e0e0e0;font-size:1.18rem;line-height:1.7;font-family:'Segoe UI',Arial,sans-serif;max-width:700px;">
+        I'm a passionate DevOps engineer with expertise in containerization, CI/CD pipelines, and cloud infrastructure
+        automation.<br>
+        My mission is to bridge the gap between development and operations through innovative tooling and best practices.<br>
+        I believe in making technology accessible, reliable, and secure for teams of all sizes.
       </p>
 
       <h3>What I Do</h3>
-      <ul>
+      <ul style="font-size:1.13rem;color:#a6e22e;font-family:'Segoe UI',Arial,sans-serif;line-height:1.8;">
         <li>🚀 <strong>Container Orchestration:</strong> Docker, Kubernetes, and custom DevOps environments</li>
         <li>⚙️ <strong>CI/CD Pipeline Design:</strong> GitHub Actions, Jenkins, GitLab CI</li>
         <li>☁️ <strong>Cloud Infrastructure:</strong> AWS services and Infrastructure as Code</li>
@@ -173,10 +181,10 @@
       </ul>
 
       <h3>Professional Experience</h3>
-      <div class="experience-item">
-        <h4>DevOps Engineer</h4>
-        <p class="experience-meta">Current Role</p>
-        <ul>
+      <div class="experience-item" style="font-size:1.13rem;color:#e0e0e0;font-family:'Segoe UI',Arial,sans-serif;">
+        <h4 style="color:#66d9ef;font-size:1.3rem;margin-bottom:6px;">DevOps Engineer</h4>
+        <p class="experience-meta" style="color:#a6e22e;font-size:1.05rem;">Current Role</p>
+        <ul style="margin-left:18px;">
           <li>Designed and maintained containerized DevOps environments serving 100+ developers</li>
           <li>Reduced onboarding time from 3 days to 30 seconds with automated container solutions</li>
           <li>Implemented comprehensive CI/CD pipelines reducing deployment failures by 85%</li>
@@ -185,25 +193,26 @@
       </div>
 
       <h3>Featured Achievement</h3>
-      <div class="achievement-highlight">
-        <h4>Ultimate DevOps Container</h4>
-        <p>
-          Created a comprehensive, production-ready DevOps environment that packages 30+ essential tools 
-          into a single Docker container. This solution has helped organizations standardize their
-          development environments and accelerate team productivity.
+      <div class="achievement-highlight"
+        style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:24px;max-width:500px;box-shadow:0 8px 32px rgba(102,217,239,0.12);margin-top:24px;">
+        <h4 style="color:#a6e22e;font-size:1.25rem;margin-bottom:10px;">Ultimate DevOps Container</h4>
+        <p style="color:#e0e0e0;font-size:1.13rem;">
+          Created a comprehensive, production-ready DevOps environment that packages 30+ essential tools into a single Docker
+          container.<br>
+          This solution has helped organizations standardize their development environments and accelerate team productivity.
         </p>
-        <div class="achievement-stats">
-          <div class="stat">
-            <span class="stat-number">30+</span>
-            <span class="stat-label">Pre-installed Tools</span>
+        <div class="achievement-stats" style="display:flex;gap:24px;margin-top:18px;">
+          <div class="stat" style="text-align:center;">
+            <span class="stat-number" style="color:#66d9ef;font-size:1.5rem;font-weight:bold;">30+</span><br>
+            <span class="stat-label" style="color:#a6e22e;font-size:1rem;">Pre-installed Tools</span>
           </div>
-          <div class="stat">
-            <span class="stat-number">< 30s</span>
-            <span class="stat-label">Setup Time</span>
+          <div class="stat" style="text-align:center;">
+            <span class="stat-number" style="color:#66d9ef;font-size:1.5rem;font-weight:bold;">&lt; 30s</span><br>
+            <span class="stat-label" style="color:#a6e22e;font-size:1rem;">Setup Time</span>
           </div>
-          <div class="stat">
-            <span class="stat-number">3</span>
-            <span class="stat-label">Architectures Supported</span>
+          <div class="stat" style="text-align:center;">
+            <span class="stat-number" style="color:#66d9ef;font-size:1.5rem;font-weight:bold;">3</span><br>
+            <span class="stat-label" style="color:#a6e22e;font-size:1rem;">Architectures Supported</span>
           </div>
         </div>
       </div>
