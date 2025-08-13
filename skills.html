@@ -96,63 +96,6 @@
   </style>
 </head>
 <body>
-<!-- ===== HERO / LANDING SECTION ===== -->
-<section id="hero" aria-labelledby="hero-title">
-  <!-- Decorative background -->
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-gradient"></div>
-    <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
-      <defs>
-        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)"></rect>
-    </svg>
-  </div>
-
-  <div class="hero-inner">
-    <h1 id="hero-title" class="hero-title">
-      Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
-    </h1>
-
-    <p class="hero-subtitle">
-      I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
-      that let organizations deploy faster, operate safer, and scale without limits.
-    </p>
-
-    <blockquote class="hero-quote">
-      “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
-      security, and resilience are the defaults — not afterthoughts.”
-    </blockquote>
-
-    <ul class="hero-points" role="list">
-      <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
-      <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
-      <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
-      <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
-    </ul>
-
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
-        View My Projects
-      </a>
-      <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
-        Download My Resume
-      </a>
-      <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
-        Contact
-      </a>
-    </div>
-
-    <div class="hero-trust">
-      <span class="trust-pill">Kubernetes</span>
-      <span class="trust-pill">Terraform</span>
-      <span class="trust-pill">Vault</span>
-      <span class="trust-pill">Prometheus</span>
-    </div>
-  </div>
-</section>
   <!-- Sidebar Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
   
@@ -219,6 +162,48 @@
     </div>
 
   <div class="main">
+    <!-- AI Skills Assistant Widget -->
+    <section id="skills-ai-assistant" style="margin:40px 0;">
+      <div
+        style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
+        <h2 style="color:#a6e22e;margin-bottom:12px;text-align:center;">🤖 AI Skills Assistant</h2>
+        <p style="color:#f0f0f0;text-align:center;margin-bottom:18px;">Ask about any DevOps skill, technology, or
+          certification. Get instant explanations and learning path suggestions!</p>
+        <form id="skills-ai-form" style="display:flex;gap:10px;">
+          <input type="text" id="skills-ai-input" placeholder="Ask about a skill, tool, or certification..."
+            style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
+          <button type="submit"
+            style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
+        </form>
+        <div id="skills-ai-chat"
+          style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
+        </div>
+      </div>
+      <script>
+        // Simple AI widget for skills page
+        const skillsAiForm = document.getElementById('skills-ai-form');
+        const skillsAiInput = document.getElementById('skills-ai-input');
+        const skillsAiChat = document.getElementById('skills-ai-chat');
+        skillsAiForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const question = skillsAiInput.value.trim();
+          if (!question) return;
+          skillsAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+          skillsAiInput.value = '';
+          setTimeout(() => {
+            let response = '';
+            if (question.toLowerCase().includes('terraform')) response = 'Terraform is an Infrastructure as Code tool for provisioning cloud resources. Want to know about modules or state management?';
+            else if (question.toLowerCase().includes('certification')) response = 'Recommended certifications: AWS DevOps Engineer, Kubernetes CKA, HashiCorp Terraform Associate.';
+            else if (question.toLowerCase().includes('monitoring')) response = 'Prometheus and Grafana are key for monitoring and observability. Ask about metrics, dashboards, or alerting!';
+            else response = 'I can help with DevOps skills, technology explanations, and learning path suggestions. Try asking about a specific tool or certification!';
+            skillsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
+            skillsAiChat.scrollTop = skillsAiChat.scrollHeight;
+          }, 700);
+        });
+      </script>
+    </section>
+    <!-- End AI Skills Assistant Widget -->
+
     <h1>Technical Skills & Expertise</h1>
     <p>A comprehensive overview of my technical capabilities in DevOps engineering, containerization, and cloud technologies.</p>
 

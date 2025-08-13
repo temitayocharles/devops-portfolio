@@ -9,10 +9,14 @@
 </head>
 
 <body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+
     <!-- Sidebar Navigation -->
     <aside class="global-sidebar">
         <!-- ...sidebar content... -->
     </aside>
+
     <section class="projects-section">
         <h1>Projects</h1>
         <div class="platform-tabs">
@@ -73,6 +77,44 @@
             <!-- ...other multi-cloud projects... -->
         </div>
     </section>
+    <section style="margin:40px 0;">
+        <div
+            style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
+            <h2 style="color:#a6e22e;margin-bottom:12px;text-align:center;">🤖 AI Project Assistant</h2>
+            <p style="color:#f0f0f0;text-align:center;margin-bottom:18px;">Get instant project recommendations, architecture
+                explanations, and DevOps best practices. Ask about any project or technology!</p>
+            <form id="mockup-ai-form" style="display:flex;gap:10px;">
+                <input type="text" id="mockup-ai-input" placeholder="Ask about a project, architecture, or DevOps..."
+                    style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
+                <button type="submit"
+                    style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
+            </form>
+            <div id="mockup-ai-chat"
+                style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
+            </div>
+        </div>
+        <script>
+            // Simple AI widget for project recommendations
+            const mockupAiForm = document.getElementById('mockup-ai-form');
+            const mockupAiInput = document.getElementById('mockup-ai-input');
+            const mockupAiChat = document.getElementById('mockup-ai-chat');
+            mockupAiForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const question = mockupAiInput.value.trim();
+                if (!question) return;
+                mockupAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+                mockupAiInput.value = '';
+                setTimeout(() => {
+                    let response = '';
+                    if (question.toLowerCase().includes('recommend')) response = 'Based on your interests, I recommend exploring the Ultimate DevOps Container or the Virtual Vacation Platform for advanced DevOps and AI integration.';
+                    else if (question.toLowerCase().includes('architecture')) response = 'Project architectures leverage Kubernetes, CI/CD, and cloud-native patterns. Ask about specific stacks for more details!';
+                    else response = 'I can help with project suggestions, architecture explanations, and DevOps best practices. Try asking about a specific project or technology!';
+                    mockupAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
+                    mockupAiChat.scrollTop = mockupAiChat.scrollHeight;
+                }, 700);
+            });
+        </script>
+    </section>
     <!-- Footer -->
     <footer>
         <div class="social-links">
@@ -89,6 +131,11 @@
             });
             document.getElementById(tab).style.display = 'block';
         }
+
+    function toggleSidebar() {
+        const sidebar = document.querySelector('.global-sidebar');
+        sidebar.style.display = (sidebar.style.display === 'block' || sidebar.style.display === '') ? 'none' : 'block';
+    }
     </script>
 </body>
 

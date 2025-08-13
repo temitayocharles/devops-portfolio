@@ -16,11 +16,47 @@
     <a href="contact.html" class="active">Contact</a>
   </nav>
   <div class="main">
-    <div class="contact-hero">
-      <h1>🤝 Let's Connect</h1>
-      <p class="contact-subtitle">Ready to transform your DevOps workflow? Let's discuss how we can streamline your development pipeline together.</p>
-    </div>
-    
+    <!-- AI Contact Assistant Widget -->
+    <section id="contact-ai-assistant" style="margin:40px 0;">
+      <div
+        style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
+        <h2 style="color:#a6e22e;margin-bottom:12px;text-align:center;">🤖 AI Contact Assistant</h2>
+        <p style="color:#f0f0f0;text-align:center;margin-bottom:18px;">Ask about collaboration, consulting, or DevOps
+          topics. Get instant answers and suggestions for working together!</p>
+        <form id="contact-ai-form" style="display:flex;gap:10px;">
+          <input type="text" id="contact-ai-input" placeholder="Ask about collaboration, consulting, or DevOps..."
+            style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
+          <button type="submit"
+            style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
+        </form>
+        <div id="contact-ai-chat"
+          style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
+        </div>
+      </div>
+      <script>
+        // Simple AI widget for contact page
+        const contactAiForm = document.getElementById('contact-ai-form');
+        const contactAiInput = document.getElementById('contact-ai-input');
+        const contactAiChat = document.getElementById('contact-ai-chat');
+        contactAiForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const question = contactAiInput.value.trim();
+          if (!question) return;
+          contactAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+          contactAiInput.value = '';
+          setTimeout(() => {
+            let response = '';
+            if (question.toLowerCase().includes('collaborat')) response = 'I am open to collaboration on DevOps, automation, and cloud projects. Let me know your goals or project ideas!';
+            else if (question.toLowerCase().includes('consult')) response = 'DevOps consulting covers infrastructure automation, CI/CD, and containerization. Ask about specific services or solutions.';
+            else if (question.toLowerCase().includes('devops')) response = 'DevOps topics include automation, CI/CD, cloud, and security. Ask about any area for advice or resources!';
+            else response = 'I can help with collaboration, consulting, and DevOps questions. Try asking about a specific topic or how to work together!';
+            contactAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
+            contactAiChat.scrollTop = contactAiChat.scrollHeight;
+          }, 700);
+        });
+      </script>
+      </section>
+      <!-- End AI Contact Assistant Widget -->
     <div class="contact-grid">
       <div class="contact-section">
         <h2>📧 Direct Contact</h2>

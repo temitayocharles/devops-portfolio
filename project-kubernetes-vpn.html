@@ -25,26 +25,50 @@
             min-height: 100vh;
         }
         
-        .project-hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
-            text-align: center;
-            color: white;
-        }
-        
-        .project-title {
-            font-size: 3rem;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-        }
-        
         /* Similar styling to other project pages */
     </style>
 </head>
 <body>
 <main class="main-content">
+    <!-- AI Q&A Widget for Project Page -->
+    <section id="project-ai-assistant" style="margin-bottom:32px;">
+        <div
+            style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:24px;max-width:500px;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
+            <h3 style="color:#a6e22e;margin-bottom:10px;text-align:center;">🤖 Ask About This Project</h3>
+            <form id="project-ai-form" style="display:flex;gap:10px;">
+                <input type="text" id="project-ai-input" placeholder="Ask about VPN, Kubernetes, or security..."
+                    style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
+                <button type="submit"
+                    style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
+            </form>
+            <div id="project-ai-chat"
+                style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
+            </div>
+        </div>
+        <script>
+            // Simple AI widget for project page
+            const projectAiForm = document.getElementById('project-ai-form');
+            const projectAiInput = document.getElementById('project-ai-input');
+            const projectAiChat = document.getElementById('project-ai-chat');
+            projectAiForm.addEventListener('submit', function (e) {
+                e.preventDefault();
+                const question = projectAiInput.value.trim();
+                if (!question) return;
+                projectAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+                projectAiInput.value = '';
+                setTimeout(() => {
+                    let response = '';
+                    if (question.toLowerCase().includes('vpn')) response = 'This project uses Pritunl VPN in Kubernetes for secure internal access. Ask about architecture, security, or monitoring!';
+                    else if (question.toLowerCase().includes('security')) response = 'Security is enforced with Vault, SOPS, RBAC, and network policies. Need details on compliance or encryption?';
+                    else if (question.toLowerCase().includes('kubernetes')) response = 'Kubernetes orchestrates the VPN deployment, scaling, and monitoring. Ask about Helm, ArgoCD, or cluster setup!';
+                    else response = 'I can help with technical details, architecture, and DevOps best practices for this project.';
+                    projectAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
+                    projectAiChat.scrollTop = projectAiChat.scrollHeight;
+                }, 700);
+            });
+        </script>
+    </section>
+
     <!-- Navigation back to projects overview -->
     <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">
         <a href="projects.html" style="color:#66d9ef; text-decoration:none;">← Back to Projects</a>
@@ -52,25 +76,12 @@
         <!-- Replace the href below with the actual repository for this project when available -->
         <a href="https://github.com/temitayocharles/devops-portfolio" target="_blank" style="color:#66d9ef; text-decoration:none;">View code on GitHub</a>
     </p>
-        <section class="project-hero">
-            <h1 class="project-title">Kubernetes VPN Deployment</h1>
-            <p class="project-subtitle">Secure Internal Access on Amazon EKS</p>
-            <div style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; padding: 20px; margin: 20px 0;">
-                <p style="font-size: 1.2rem; line-height: 1.8; margin: 0; font-weight: 500;">
-                    🚀 <strong>The Challenge:</strong> Implement secure internal access to private cloud services 
-                    without exposing Kubernetes clusters externally, aligned with security best practices.
-                </p>
-                <p style="font-size: 1.2rem; line-height: 1.8; margin: 15px 0 0 0; font-weight: 500;">
-                    ✨ <strong>The Solution:</strong> Deployed scalable VPN solution using Pritunl and MongoDB 
-                    inside EKS with Ingress-based TLS termination and automated Helm delivery.
-                </p>
-            </div>
-        </section>
 
-        <section style="background: white; border: 2px solid #667eea; border-radius: 15px; padding: 30px; margin: 30px 0;">
-            <h2 style="color: #2D3748; font-size: 1.8rem; margin-bottom: 20px;">
-                <span style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 50px; height: 50px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 1.5rem;">🛡️</span>
-                Security-First VPN Architecture
+    <section style="background: white; border: 2px solid #667eea; border-radius: 15px; padding: 30px; margin: 30px 0;">
+        <h2 style="color: #2D3748; font-size: 1.8rem; margin-bottom: 20px;">
+            <span
+                style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 50px; height: 50px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 1.5rem;">🛡️</span>
+            Security-First VPN Architecture
             </h2>
             
             <!-- Comprehensive Kubernetes VPN Workflow Diagram -->
@@ -96,485 +107,493 @@
                         <polygon points="0 0, 10 3.5, 0 7" fill="#667eea" />
                     </marker>
                 </defs>
+            <rect width="1600" height="900" fill="#f8f9fa" />
+            
+            <!-- Title -->
+            <text x="800" y="30" text-anchor="middle" style="font-size: 24px; font-weight: bold; fill: #2D3748;">Kubernetes
+                VPN: Secure Access Workflow</text>
+            
+            <!-- User/Administrator Layer -->
+            <rect x="50" y="70" width="280" height="780" rx="15" fill="url(#userSecGrad)" stroke="#3182ce" stroke-width="3" />
+            <text x="190" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">👨‍💼 Network
+                Administrator</text>
+            
+            <!-- User Activities -->
+            <g transform="translate(70, 120)">
+                <!-- VPN Strategy -->
+                <rect x="0" y="0" width="240" height="60" rx="8" fill="#2b6cb0" stroke="#2c5aa0" stroke-width="2" />
+                <text x="20" y="25" style="font-size: 14px; fill: white; font-weight: bold;">🔐 VPN Security Strategy</text>
+                <text x="20" y="40" style="font-size: 11px; fill: #bee3f8;">Zero Trust architecture • Access policies</text>
+                <text x="20" y="52" style="font-size: 10px; fill: #bee3f8;">• Network segmentation • Compliance</text>
                 
-                <rect width="1600" height="900" fill="#f8f9fa"/>
+                <!-- Deploy Infrastructure -->
+                <rect x="0" y="80" width="240" height="60" rx="8" fill="#805ad5" stroke="#553c9a" stroke-width="2" />
+                <text x="20" y="105" style="font-size: 14px; fill: white; font-weight: bold;">🚀 Deploy VPN
+                    Infrastructure</text>
+                <text x="20" y="120" style="font-size: 11px; fill: #e9d8fd;">Helm chart deployment • Pritunl setup</text>
+                <text x="20" y="132" style="font-size: 10px; fill: #e9d8fd;">• MongoDB configuration • GitOps</text>
                 
-                <!-- Title -->
-                <text x="800" y="30" text-anchor="middle" style="font-size: 24px; font-weight: bold; fill: #2D3748;">Kubernetes VPN: Secure Access Workflow</text>
+                <!-- SSL Certificate Management -->
+                <rect x="0" y="160" width="240" height="50" rx="8" fill="#38a169" stroke="#22543d" stroke-width="2" />
+                <text x="20" y="180" style="font-size: 13px; fill: white; font-weight: bold;">🔏 SSL Certificate
+                    Setup</text>
+                <text x="20" y="195" style="font-size: 10px; fill: #c6f6d5;">cert-manager • Let's Encrypt • TLS</text>
+                <text x="20" y="205" style="font-size: 10px; fill: #c6f6d5;">Automated renewal • Ingress integration</text>
                 
-                <!-- User/Administrator Layer -->
-                <rect x="50" y="70" width="280" height="780" rx="15" fill="url(#userSecGrad)" stroke="#3182ce" stroke-width="3"/>
-                <text x="190" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">👨‍💼 Network Administrator</text>
+                <!-- User Management -->
+                <rect x="0" y="230" width="240" height="50" rx="8" fill="#e53e3e" stroke="#c53030" stroke-width="2" />
+                <text x="20" y="250" style="font-size: 13px; fill: white; font-weight: bold;">👥 User & Access
+                    Management</text>
+                <text x="20" y="265" style="font-size: 10px; fill: #fed7cc;">User provisioning • Group policies</text>
+                <text x="20" y="275" style="font-size: 10px; fill: #fed7cc;">MFA setup • Access controls</text>
                 
-                <!-- User Activities -->
-                <g transform="translate(70, 120)">
-                    <!-- VPN Strategy -->
-                    <rect x="0" y="0" width="240" height="60" rx="8" fill="#2b6cb0" stroke="#2c5aa0" stroke-width="2"/>
-                    <text x="20" y="25" style="font-size: 14px; fill: white; font-weight: bold;">🔐 VPN Security Strategy</text>
-                    <text x="20" y="40" style="font-size: 11px; fill: #bee3f8;">Zero Trust architecture • Access policies</text>
-                    <text x="20" y="52" style="font-size: 10px; fill: #bee3f8;">• Network segmentation • Compliance</text>
-                    
-                    <!-- Deploy Infrastructure -->
-                    <rect x="0" y="80" width="240" height="60" rx="8" fill="#805ad5" stroke="#553c9a" stroke-width="2"/>
-                    <text x="20" y="105" style="font-size: 14px; fill: white; font-weight: bold;">🚀 Deploy VPN Infrastructure</text>
-                    <text x="20" y="120" style="font-size: 11px; fill: #e9d8fd;">Helm chart deployment • Pritunl setup</text>
-                    <text x="20" y="132" style="font-size: 10px; fill: #e9d8fd;">• MongoDB configuration • GitOps</text>
-                    
-                    <!-- SSL Certificate Management -->
-                    <rect x="0" y="160" width="240" height="50" rx="8" fill="#38a169" stroke="#22543d" stroke-width="2"/>
-                    <text x="20" y="180" style="font-size: 13px; fill: white; font-weight: bold;">🔏 SSL Certificate Setup</text>
-                    <text x="20" y="195" style="font-size: 10px; fill: #c6f6d5;">cert-manager • Let's Encrypt • TLS</text>
-                    <text x="20" y="205" style="font-size: 10px; fill: #c6f6d5;">Automated renewal • Ingress integration</text>
-                    
-                    <!-- User Management -->
-                    <rect x="0" y="230" width="240" height="50" rx="8" fill="#e53e3e" stroke="#c53030" stroke-width="2"/>
-                    <text x="20" y="250" style="font-size: 13px; fill: white; font-weight: bold;">👥 User & Access Management</text>
-                    <text x="20" y="265" style="font-size: 10px; fill: #fed7cc;">User provisioning • Group policies</text>
-                    <text x="20" y="275" style="font-size: 10px; fill: #fed7cc;">MFA setup • Access controls</text>
-                    
-                    <!-- Network Configuration -->
-                    <rect x="0" y="300" width="240" height="50" rx="8" fill="#d69e2e" stroke="#b7791f" stroke-width="2"/>
-                    <text x="20" y="320" style="font-size: 13px; fill: white; font-weight: bold;">🌐 Network Configuration</text>
-                    <text x="20" y="335" style="font-size: 10px; fill: #faf089;">Route tables • Subnets • VPC</text>
-                    <text x="20" y="345" style="font-size: 10px; fill: #faf089;">Security groups • Network policies</text>
-                    
-                    <!-- Monitor Connections -->
-                    <rect x="0" y="370" width="240" height="60" rx="8" fill="#319795" stroke="#2c7a7b" stroke-width="2"/>
-                    <text x="20" y="395" style="font-size: 14px; fill: white; font-weight: bold;">📊 Connection Monitoring</text>
-                    <text x="20" y="410" style="font-size: 11px; fill: #b2f5ea;">Session tracking • Bandwidth usage</text>
-                    <text x="20" y="422" style="font-size: 10px; fill: #b2f5ea;">• Performance metrics • Health checks</text>
-                    
-                    <!-- Security Auditing -->
-                    <rect x="0" y="450" width="240" height="50" rx="8" fill="#6b46c1" stroke="#553c9a" stroke-width="2"/>
-                    <text x="20" y="470" style="font-size: 13px; fill: white; font-weight: bold;">🔍 Security Auditing</text>
-                    <text x="20" y="485" style="font-size: 10px; fill: #e9d8fd;">Connection logs • Access patterns</text>
-                    <text x="20" y="495" style="font-size: 10px; fill: #e9d8fd;">Threat detection • Compliance reports</text>
-                    
-                    <!-- Backup & Recovery -->
-                    <rect x="0" y="520" width="240" height="50" rx="8" fill="#065f46" stroke="#047857" stroke-width="2"/>
-                    <text x="20" y="540" style="font-size: 13px; fill: white; font-weight: bold;">💾 Backup & Recovery</text>
-                    <text x="20" y="555" style="font-size: 10px; fill: #d1fae5;">Config backups • Disaster recovery</text>
-                    <text x="20" y="565" style="font-size: 10px; fill: #d1fae5;">MongoDB snapshots • Helm rollbacks</text>
-                    
-                    <!-- Scale & Optimize -->
-                    <rect x="0" y="590" width="240" height="50" rx="8" fill="#7c2d12" stroke="#92400e" stroke-width="2"/>
-                    <text x="20" y="610" style="font-size: 13px; fill: white; font-weight: bold;">⚡ Scale & Optimize</text>
-                    <text x="20" y="625" style="font-size: 10px; fill: #fed7cc;">Auto-scaling • Performance tuning</text>
-                    <text x="20" y="635" style="font-size: 10px; fill: #fed7cc;">Resource optimization • Cost control</text>
-                    
-                    <!-- Update & Maintain -->
-                    <rect x="0" y="660" width="240" height="50" rx="8" fill="#1e40af" stroke="#1e3a8a" stroke-width="2"/>
-                    <text x="20" y="680" style="font-size: 13px; fill: white; font-weight: bold;">🔄 Update & Maintenance</text>
-                    <text x="20" y="695" style="font-size: 10px; fill: #bfdbfe;">Version updates • Security patches</text>
-                    <text x="20" y="705" style="font-size: 10px; fill: #bfdbfe;">GitOps automation • Monitoring</text>
+                <!-- Network Configuration -->
+                <rect x="0" y="300" width="240" height="50" rx="8" fill="#d69e2e" stroke="#b7791f" stroke-width="2" />
+                <text x="20" y="320" style="font-size: 13px; fill: white; font-weight: bold;">🌐 Network
+                    Configuration</text>
+                <text x="20" y="335" style="font-size: 10px; fill: #faf089;">Route tables • Subnets • VPC</text>
+                <text x="20" y="345" style="font-size: 10px; fill: #faf089;">Security groups • Network policies</text>
+                
+                <!-- Monitor Connections -->
+                <rect x="0" y="370" width="240" height="60" rx="8" fill="#319795" stroke="#2c7a7b" stroke-width="2" />
+                <text x="20" y="395" style="font-size: 14px; fill: white; font-weight: bold;">📊 Connection
+                    Monitoring</text>
+                <text x="20" y="410" style="font-size: 11px; fill: #b2f5ea;">Session tracking • Bandwidth usage</text>
+                <text x="20" y="422" style="font-size: 10px; fill: #b2f5ea;">• Performance metrics • Health checks</text>
+                
+                <!-- Security Auditing -->
+                <rect x="0" y="450" width="240" height="50" rx="8" fill="#6b46c1" stroke="#553c9a" stroke-width="2" />
+                <text x="20" y="470" style="font-size: 13px; fill: white; font-weight: bold;">🔍 Security Auditing</text>
+                <text x="20" y="485" style="font-size: 10px; fill: #e9d8fd;">Connection logs • Access patterns</text>
+                <text x="20" y="495" style="font-size: 10px; fill: #e9d8fd;">Threat detection • Compliance reports</text>
+                
+                <!-- Backup & Recovery -->
+                <rect x="0" y="520" width="240" height="50" rx="8" fill="#065f46" stroke="#047857" stroke-width="2" />
+                <text x="20" y="540" style="font-size: 13px; fill: white; font-weight: bold;">💾 Backup & Recovery</text>
+                <text x="20" y="555" style="font-size: 10px; fill: #d1fae5;">Config backups • Disaster recovery</text>
+                <text x="20" y="565" style="font-size: 10px; fill: #d1fae5;">MongoDB snapshots • Helm rollbacks</text>
+                
+                <!-- Scale & Optimize -->
+                <rect x="0" y="590" width="240" height="50" rx="8" fill="#7c2d12" stroke="#92400e" stroke-width="2" />
+                <text x="20" y="610" style="font-size: 13px; fill: white; font-weight: bold;">⚡ Scale & Optimize</text>
+                <text x="20" y="625" style="font-size: 10px; fill: #fed7cc;">Auto-scaling • Performance tuning</text>
+                <text x="20" y="635" style="font-size: 10px; fill: #fed7cc;">Resource optimization • Cost control</text>
+                
+                <!-- Update & Maintain -->
+                <rect x="0" y="660" width="240" height="50" rx="8" fill="#1e40af" stroke="#1e3a8a" stroke-width="2" />
+                <text x="20" y="680" style="font-size: 13px; fill: white; font-weight: bold;">🔄 Update & Maintenance</text>
+                <text x="20" y="695" style="font-size: 10px; fill: #bfdbfe;">Version updates • Security patches</text>
+                <text x="20" y="705" style="font-size: 10px; fill: #bfdbfe;">GitOps automation • Monitoring</text>
                 </g>
                 
                 <!-- VPN Infrastructure Layer -->
-                <rect x="380" y="70" width="420" height="780" rx="15" fill="url(#vpnInfraGrad)" stroke="#38a169" stroke-width="3"/>
-                <text x="590" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">🔐 VPN Infrastructure & Security</text>
+            <rect x="380" y="70" width="420" height="780" rx="15" fill="url(#vpnInfraGrad)" stroke="#38a169" stroke-width="3" />
+            <text x="590" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">🔐 VPN
+                Infrastructure & Security</text>
+            
+            <!-- VPN Components -->
+            <g transform="translate(400, 120)">
+                <!-- Pritunl VPN Server -->
+                <rect x="0" y="0" width="380" height="120" rx="10" fill="#0052cc" stroke="#1e40af" stroke-width="2" />
+                <text x="190" y="25" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔐
+                    Pritunl VPN Server</text>
+                <text x="190" y="45" text-anchor="middle" style="font-size: 12px; fill: #bfdbfe;">Enterprise-grade VPN
+                    solution • Multi-protocol support • Web management</text>
                 
-                <!-- VPN Components -->
-                <g transform="translate(400, 120)">
-                    <!-- Pritunl VPN Server -->
-                    <rect x="0" y="0" width="380" height="120" rx="10" fill="#0052cc" stroke="#1e40af" stroke-width="2"/>
-                    <text x="190" y="25" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔐 Pritunl VPN Server</text>
-                    <text x="190" y="45" text-anchor="middle" style="font-size: 12px; fill: #bfdbfe;">Enterprise-grade VPN solution • Multi-protocol support • Web management</text>
-                    
-                    <g transform="translate(20, 55)">
-                        <rect x="0" y="0" width="100" height="25" rx="4" fill="#4285f4"/>
-                        <text x="50" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 OpenVPN</text>
-                        
-                        <rect x="110" y="0" width="100" height="25" rx="4" fill="#0078d4"/>
-                        <text x="160" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔒 WireGuard</text>
-                        
-                        <rect x="220" y="0" width="100" height="25" rx="4" fill="#38a169"/>
-                        <text x="270" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🌐 Web UI</text>
-                        
-                        <rect x="330" y="0" width="40" height="25" rx="4" fill="#e53e3e"/>
-                        <text x="350" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">API</text>
-                        
-                        <rect x="55" y="35" width="100" height="25" rx="4" fill="#805ad5"/>
-                        <text x="105" y="52" text-anchor="middle" style="font-size: 9px; fill: white;">👥 User Mgmt</text>
-                        
-                        <rect x="165" y="35" width="100" height="25" rx="4" fill="#d69e2e"/>
-                        <text x="215" y="52" text-anchor="middle" style="font-size: 9px; fill: white;">📊 Analytics</text>
+                <g transform="translate(20, 55)">
+                    <rect x="0" y="0" width="100" height="25" rx="4" fill="#4285f4" />
+                    <text x="50" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 OpenVPN</text>
+                    <rect x="110" y="0" width="100" height="25" rx="4" fill="#0078d4" />
+                    <text x="160" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔒 WireGuard</text>
+                    <rect x="220" y="0" width="100" height="25" rx="4" fill="#38a169" />
+                    <text x="270" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🌐 Web UI</text>
+                    <rect x="330" y="0" width="40" height="25" rx="4" fill="#e53e3e" />
+                    <text x="350" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">API</text>
+                    <rect x="55" y="35" width="100" height="25" rx="4" fill="#805ad5" />
+                    <text x="105" y="52" text-anchor="middle" style="font-size: 9px; fill: white;">👥 User Mgmt</text>
+                    <rect x="165" y="35" width="100" height="25" rx="4" fill="#d69e2e" />
+                    <text x="215" y="52" text-anchor="middle" style="font-size: 9px; fill: white;">📊 Analytics</text>
                     </g>
                     
                     <!-- MongoDB Database -->
-                    <rect x="0" y="140" width="380" height="100" rx="10" fill="#47a248" stroke="#22543d" stroke-width="2"/>
-                    <text x="190" y="165" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🍃 MongoDB Configuration Store</text>
-                    <text x="190" y="185" text-anchor="middle" style="font-size: 12px; fill: #c6f6d5;">User credentials • Server configuration • Connection logs • Analytics data</text>
-                    
-                    <g transform="translate(20, 195)">
-                        <rect x="0" y="0" width="80" height="25" rx="4" fill="#68d391"/>
-                        <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">👤 Users</text>
-                        
-                        <rect x="90" y="0" width="80" height="25" rx="4" fill="#9ae6b4"/>
-                        <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚙️ Config</text>
-                        
-                        <rect x="180" y="0" width="80" height="25" rx="4" fill="#38a169"/>
-                        <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">📊 Logs</text>
-                        
-                        <rect x="270" y="0" width="80" height="25" rx="4" fill="#22543d"/>
-                        <text x="310" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔒 Secrets</text>
+                <rect x="0" y="140" width="380" height="100" rx="10" fill="#47a248" stroke="#22543d" stroke-width="2" />
+                <text x="190" y="165" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🍃
+                    MongoDB Configuration Store</text>
+                <text x="190" y="185" text-anchor="middle" style="font-size: 12px; fill: #c6f6d5;">User credentials • Server
+                    configuration • Connection logs • Analytics data</text>
+                
+                <g transform="translate(20, 195)">
+                    <rect x="0" y="0" width="80" height="25" rx="4" fill="#68d391" />
+                    <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">👤 Users</text>
+                    <rect x="90" y="0" width="80" height="25" rx="4" fill="#9ae6b4" />
+                    <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚙️ Config</text>
+                    <rect x="180" y="0" width="80" height="25" rx="4" fill="#38a169" />
+                    <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">📊 Logs</text>
+                    <rect x="270" y="0" width="80" height="25" rx="4" fill="#22543d" />
+                    <text x="310" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔒 Secrets</text>
                     </g>
                     
                     <!-- Ingress & TLS -->
-                    <rect x="0" y="260" width="380" height="100" rx="10" fill="#7c3aed" stroke="#553c9a" stroke-width="2"/>
-                    <text x="190" y="285" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌐 Ingress Controller & TLS</text>
-                    <text x="190" y="305" text-anchor="middle" style="font-size: 12px; fill: #e9d8fd;">NGINX Ingress • cert-manager • Let's Encrypt • Automated TLS</text>
-                    
-                    <g transform="translate(20, 315)">
-                        <rect x="0" y="0" width="90" height="25" rx="4" fill="#8b5cf6"/>
-                        <text x="45" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚡ NGINX</text>
-                        
-                        <rect x="100" y="0" width="90" height="25" rx="4" fill="#a78bfa"/>
-                        <text x="145" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔏 cert-manager</text>
-                        
-                        <rect x="200" y="0" width="90" height="25" rx="4" fill="#c4b5fd"/>
-                        <text x="245" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 Let's Encrypt</text>
-                        
-                        <rect x="300" y="0" width="70" height="25" rx="4" fill="#6b46c1"/>
-                        <text x="335" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🌍 DNS</text>
+                <rect x="0" y="260" width="380" height="100" rx="10" fill="#7c3aed" stroke="#553c9a" stroke-width="2" />
+                <text x="190" y="285" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌐
+                    Ingress Controller & TLS</text>
+                <text x="190" y="305" text-anchor="middle" style="font-size: 12px; fill: #e9d8fd;">NGINX Ingress •
+                    cert-manager • Let's Encrypt • Automated TLS</text>
+                
+                <g transform="translate(20, 315)">
+                    <rect x="0" y="0" width="90" height="25" rx="4" fill="#8b5cf6" />
+                    <text x="45" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚡ NGINX</text>
+                    <rect x="100" y="0" width="90" height="25" rx="4" fill="#a78bfa" />
+                    <text x="145" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔏 cert-manager</text>
+                    <rect x="200" y="0" width="90" height="25" rx="4" fill="#c4b5fd" />
+                    <text x="245" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 Let's Encrypt</text>
+                    <rect x="300" y="0" width="70" height="25" rx="4" fill="#6b46c1" />
+                    <text x="335" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🌍 DNS</text>
                     </g>
                     
                     <!-- Security & Secrets -->
-                    <rect x="0" y="380" width="380" height="120" rx="10" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
-                    <text x="190" y="405" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔒 Security & Secret Management</text>
-                    <text x="190" y="425" text-anchor="middle" style="font-size: 12px; fill: #fecaca;">Vault integration • SOPS encryption • RBAC • Network policies</text>
-                    
-                    <g transform="translate(20, 435)">
-                        <rect x="0" y="0" width="80" height="30" rx="4" fill="#f56565"/>
-                        <text x="40" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 Vault</text>
-                        
-                        <rect x="90" y="0" width="80" height="30" rx="4" fill="#feb2b2"/>
-                        <text x="130" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🔑 SOPS</text>
-                        
-                        <rect x="180" y="0" width="80" height="30" rx="4" fill="#fc8181"/>
-                        <text x="220" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🛡️ RBAC</text>
-                        
-                        <rect x="270" y="0" width="80" height="30" rx="4" fill="#e53e3e"/>
-                        <text x="310" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🌐 NetworkPol</text>
-                        
-                        <rect x="45" y="40" width="80" height="30" rx="4" fill="#c53030"/>
-                        <text x="85" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">👤 ServiceAcc</text>
-                        
-                        <rect x="135" y="40" width="80" height="30" rx="4" fill="#9b2c2c"/>
-                        <text x="175" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 PodSecCtx</text>
-                        
-                        <rect x="225" y="40" width="80" height="30" rx="4" fill="#742a2a"/>
-                        <text x="265" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">🔍 Audit</text>
+                <rect x="0" y="380" width="380" height="120" rx="10" fill="#dc2626" stroke="#b91c1c" stroke-width="2" />
+                <text x="190" y="405" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔒
+                    Security & Secret Management</text>
+                <text x="190" y="425" text-anchor="middle" style="font-size: 12px; fill: #fecaca;">Vault integration • SOPS
+                    encryption • RBAC • Network policies</text>
+                
+                <g transform="translate(20, 435)">
+                    <rect x="0" y="0" width="80" height="30" rx="4" fill="#f56565" />
+                    <text x="40" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 Vault</text>
+                    <rect x="90" y="0" width="80" height="30" rx="4" fill="#feb2b2" />
+                    <text x="130" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🔑 SOPS</text>
+                    <rect x="180" y="0" width="80" height="30" rx="4" fill="#fc8181" />
+                    <text x="220" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🛡️ RBAC</text>
+                    <rect x="270" y="0" width="80" height="30" rx="4" fill="#e53e3e" />
+                    <text x="310" y="20" text-anchor="middle" style="font-size: 9px; fill: white;">🌐 NetworkPol</text>
+                    <rect x="45" y="40" width="80" height="30" rx="4" fill="#c53030" />
+                    <text x="85" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">👤 ServiceAcc</text>
+                    <rect x="135" y="40" width="80" height="30" rx="4" fill="#9b2c2c" />
+                    <text x="175" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">🔐 PodSecCtx</text>
+                    <rect x="225" y="40" width="80" height="30" rx="4" fill="#742a2a" />
+                    <text x="265" y="60" text-anchor="middle" style="font-size: 9px; fill: white;">🔍 Audit</text>
                     </g>
                     
                     <!-- Deployment & GitOps -->
-                    <rect x="0" y="520" width="380" height="100" rx="10" fill="#059669" stroke="#047857" stroke-width="2"/>
-                    <text x="190" y="545" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔄 Deployment & GitOps</text>
-                    <text x="190" y="565" text-anchor="middle" style="font-size: 12px; fill: #d1fae5;">Helm charts • ArgoCD • GitOps workflow • Automated rollbacks</text>
-                    
-                    <g transform="translate(60, 575)">
-                        <rect x="0" y="0" width="80" height="25" rx="4" fill="#10b981"/>
-                        <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚙️ Helm</text>
-                        
-                        <rect x="90" y="0" width="80" height="25" rx="4" fill="#34d399"/>
-                        <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔄 ArgoCD</text>
-                        
-                        <rect x="180" y="0" width="80" height="25" rx="4" fill="#6ee7b7"/>
-                        <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">📁 Git</text>
+                <rect x="0" y="520" width="380" height="100" rx="10" fill="#059669" stroke="#047857" stroke-width="2" />
+                <text x="190" y="545" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔄
+                    Deployment & GitOps</text>
+                <text x="190" y="565" text-anchor="middle" style="font-size: 12px; fill: #d1fae5;">Helm charts • ArgoCD •
+                    GitOps workflow • Automated rollbacks</text>
+                
+                <g transform="translate(60, 575)">
+                    <rect x="0" y="0" width="80" height="25" rx="4" fill="#10b981" />
+                    <text x="40" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">⚙️ Helm</text>
+                    <rect x="90" y="0" width="80" height="25" rx="4" fill="#34d399" />
+                    <text x="130" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">🔄 ArgoCD</text>
+                    <rect x="180" y="0" width="80" height="25" rx="4" fill="#6ee7b7" />
+                    <text x="220" y="17" text-anchor="middle" style="font-size: 9px; fill: white;">📁 Git</text>
                     </g>
                     
                     <!-- Monitoring & Observability -->
-                    <rect x="0" y="640" width="380" height="80" rx="10" fill="#1f2937" stroke="#111827" stroke-width="2"/>
-                    <text x="190" y="665" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📊 Monitoring & Observability</text>
-                    <text x="190" y="685" text-anchor="middle" style="font-size: 12px; fill: #f9fafb;">Prometheus metrics • Grafana dashboards • Alert management</text>
-                    
-                    <g transform="translate(80, 695)">
-                        <rect x="0" y="0" width="80" height="20" rx="3" fill="#e6522c"/>
-                        <text x="40" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">📈 Prometheus</text>
-                        
-                        <rect x="90" y="0" width="80" height="20" rx="3" fill="#ff8c00"/>
-                        <text x="130" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">📊 Grafana</text>
-                        
-                        <rect x="180" y="0" width="80" height="20" rx="3" fill="#4ade80"/>
-                        <text x="220" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">🚨 Alerts</text>
+                <rect x="0" y="640" width="380" height="80" rx="10" fill="#1f2937" stroke="#111827" stroke-width="2" />
+                <text x="190" y="665" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📊
+                    Monitoring & Observability</text>
+                <text x="190" y="685" text-anchor="middle" style="font-size: 12px; fill: #f9fafb;">Prometheus metrics •
+                    Grafana dashboards • Alert management</text>
+                
+                <g transform="translate(80, 695)">
+                    <rect x="0" y="0" width="80" height="20" rx="3" fill="#e6522c" />
+                    <text x="40" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">📈 Prometheus</text>
+                    <rect x="90" y="0" width="80" height="20" rx="3" fill="#ff8c00" />
+                    <text x="130" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">📊 Grafana</text>
+                    <rect x="180" y="0" width="80" height="20" rx="3" fill="#4ade80" />
+                    <text x="220" y="15" text-anchor="middle" style="font-size: 8px; fill: white;">🚨 Alerts</text>
                     </g>
-                </g>
-                
-                <!-- Amazon EKS Layer -->
-                <rect x="850" y="70" width="700" height="780" rx="15" fill="url(#eksGrad)" stroke="#ed8936" stroke-width="3"/>
-                <text x="1200" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">⎈ Amazon EKS & AWS Infrastructure</text>
-                
-                <!-- EKS Components -->
-                <g transform="translate(870, 120)">
-                    <!-- EKS Control Plane -->
-                    <rect x="0" y="0" width="660" height="100" rx="10" fill="#ff9900" stroke="#dd6b20" stroke-width="2"/>
-                    <text x="330" y="25" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">⎈ EKS Control Plane</text>
-                    <text x="330" y="45" text-anchor="middle" style="font-size: 12px; fill: #ffd9b3;">Managed Kubernetes API • etcd • Scheduler • Controller Manager</text>
+                    </g>
                     
-                    <g transform="translate(80, 55)">
-                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#ff6600"/>
-                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🎯 API Server</text>
-                        
-                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#cc5500"/>
-                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💾 etcd</text>
-                        
-                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#aa4400"/>
-                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📅 Scheduler</text>
-                        
-                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#883300"/>
-                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🎛️ Controller</text>
+                    <!-- Amazon EKS Layer -->
+            <rect x="850" y="70" width="700" height="780" rx="15" fill="url(#eksGrad)" stroke="#ed8936" stroke-width="3" />
+            <text x="1200" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">⎈ Amazon EKS
+                & AWS Infrastructure</text>
+            
+            <!-- EKS Components -->
+            <g transform="translate(870, 120)">
+                <!-- EKS Control Plane -->
+                <rect x="0" y="0" width="660" height="100" rx="10" fill="#ff9900" stroke="#dd6b20" stroke-width="2" />
+                <text x="330" y="25" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">⎈ EKS
+                    Control Plane</text>
+                <text x="330" y="45" text-anchor="middle" style="font-size: 12px; fill: #ffd9b3;">Managed Kubernetes API •
+                    etcd • Scheduler • Controller Manager</text>
+                
+                <g transform="translate(80, 55)">
+                    <rect x="0" y="0" width="120" height="30" rx="4" fill="#ff6600" />
+                    <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🎯 API Server</text>
+                    <rect x="140" y="0" width="120" height="30" rx="4" fill="#cc5500" />
+                    <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💾 etcd</text>
+                    <rect x="280" y="0" width="120" height="30" rx="4" fill="#aa4400" />
+                    <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📅 Scheduler</text>
+                    <rect x="420" y="0" width="120" height="30" rx="4" fill="#883300" />
+                    <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🎛️ Controller</text>
                     </g>
                     
                     <!-- Worker Nodes -->
-                    <rect x="0" y="120" width="660" height="120" rx="10" fill="#326ce5" stroke="#1e40af" stroke-width="2"/>
-                    <text x="330" y="145" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🖥️ EKS Worker Nodes</text>
-                    <text x="330" y="165" text-anchor="middle" style="font-size: 12px; fill: #bfdbfe;">Auto-scaling node groups • Multiple AZs • Optimized AMI • Container runtime</text>
-                    
-                    <g transform="translate(40, 175)">
-                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#60a5fa"/>
-                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">⚡ kubelet</text>
-                        
-                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#3b82f6"/>
-                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🐳 containerd</text>
-                        
-                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#2563eb"/>
-                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🌐 kube-proxy</text>
-                        
-                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#1d4ed8"/>
-                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 cAdvisor</text>
-                        
-                        <rect x="70" y="40" width="120" height="30" rx="4" fill="#1e40af"/>
-                        <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🔄 Auto Scaling</text>
-                        
-                        <rect x="210" y="40" width="120" height="30" rx="4" fill="#1e3a8a"/>
-                        <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🛡️ Security Groups</text>
-                        
-                        <rect x="350" y="40" width="120" height="30" rx="4" fill="#172554"/>
-                        <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🏗️ Node Groups</text>
+                <rect x="0" y="120" width="660" height="120" rx="10" fill="#326ce5" stroke="#1e40af" stroke-width="2" />
+                <text x="330" y="145" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🖥️ EKS
+                    Worker Nodes</text>
+                <text x="330" y="165" text-anchor="middle" style="font-size: 12px; fill: #bfdbfe;">Auto-scaling node groups
+                    • Multiple AZs • Optimized AMI • Container runtime</text>
+                
+                <g transform="translate(40, 175)">
+                    <rect x="0" y="0" width="120" height="30" rx="4" fill="#60a5fa" />
+                    <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">⚡ kubelet</text>
+                    <rect x="140" y="0" width="120" height="30" rx="4" fill="#3b82f6" />
+                    <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🐳 containerd</text>
+                    <rect x="280" y="0" width="120" height="30" rx="4" fill="#2563eb" />
+                    <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🌐 kube-proxy</text>
+                    <rect x="420" y="0" width="120" height="30" rx="4" fill="#1d4ed8" />
+                    <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 cAdvisor</text>
+                    <rect x="70" y="40" width="120" height="30" rx="4" fill="#1e40af" />
+                    <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🔄 Auto Scaling</text>
+                    <rect x="210" y="40" width="120" height="30" rx="4" fill="#1e3a8a" />
+                    <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🛡️ Security
+                        Groups</text>
+                    <rect x="350" y="40" width="120" height="30" rx="4" fill="#172554" />
+                    <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🏗️ Node Groups</text>
                     </g>
                     
                     <!-- Networking Layer -->
-                    <rect x="0" y="260" width="660" height="120" rx="10" fill="#7c3aed" stroke="#6b46c1" stroke-width="2"/>
-                    <text x="330" y="285" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌐 Network & Security Layer</text>
-                    <text x="330" y="305" text-anchor="middle" style="font-size: 12px; fill: #e9d8fd;">VPC • Private subnets • NAT gateways • Security groups • NACLs</text>
-                    
-                    <g transform="translate(40, 315)">
-                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#8b5cf6"/>
-                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🏠 VPC</text>
-                        
-                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#a78bfa"/>
-                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔒 Private Subnets</text>
-                        
-                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#c4b5fd"/>
-                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🚪 NAT Gateway</text>
-                        
-                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#ddd6fe"/>
-                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🛡️ Sec Groups</text>
-                        
-                        <rect x="70" y="40" width="120" height="30" rx="4" fill="#6b46c1"/>
-                        <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🌐 CNI Plugin</text>
-                        
-                        <rect x="210" y="40" width="120" height="30" rx="4" fill="#553c9a"/>
-                        <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🔐 Network ACL</text>
-                        
-                        <rect x="350" y="40" width="120" height="30" rx="4" fill="#44337a"/>
-                        <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🎯 Load Balancer</text>
+                <rect x="0" y="260" width="660" height="120" rx="10" fill="#7c3aed" stroke="#6b46c1" stroke-width="2" />
+                <text x="330" y="285" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌐
+                    Network & Security Layer</text>
+                <text x="330" y="305" text-anchor="middle" style="font-size: 12px; fill: #e9d8fd;">VPC • Private subnets •
+                    NAT gateways • Security groups • NACLs</text>
+                
+                <g transform="translate(40, 315)">
+                    <rect x="0" y="0" width="120" height="30" rx="4" fill="#8b5cf6" />
+                    <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🏠 VPC</text>
+                    <rect x="140" y="0" width="120" height="30" rx="4" fill="#a78bfa" />
+                    <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔒 Private
+                        Subnets</text>
+                    <rect x="280" y="0" width="120" height="30" rx="4" fill="#c4b5fd" />
+                    <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🚪 NAT Gateway</text>
+                    <rect x="420" y="0" width="120" height="30" rx="4" fill="#ddd6fe" />
+                    <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🛡️ Sec Groups</text>
+                    <rect x="70" y="40" width="120" height="30" rx="4" fill="#6b46c1" />
+                    <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🌐 CNI Plugin</text>
+                    <rect x="210" y="40" width="120" height="30" rx="4" fill="#553c9a" />
+                    <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🔐 Network ACL</text>
+                    <rect x="350" y="40" width="120" height="30" rx="4" fill="#44337a" />
+                    <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🎯 Load Balancer</text>
                     </g>
                     
                     <!-- Storage & Persistence -->
-                    <rect x="0" y="400" width="660" height="100" rx="10" fill="#059669" stroke="#047857" stroke-width="2"/>
-                    <text x="330" y="425" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">💾 Storage & Persistence</text>
-                    <text x="330" y="445" text-anchor="middle" style="font-size: 12px; fill: #d1fae5;">EBS volumes • EFS • S3 • Persistent volumes • Storage classes</text>
-                    
-                    <g transform="translate(90, 455)">
-                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#10b981"/>
-                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💽 EBS Volumes</text>
-                        
-                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#34d399"/>
-                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📁 EFS</text>
-                        
-                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#6ee7b7"/>
-                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">☁️ S3 Buckets</text>
-                        
-                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#a7f3d0"/>
-                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">⚙️ Storage Class</text>
+                <rect x="0" y="400" width="660" height="100" rx="10" fill="#059669" stroke="#047857" stroke-width="2" />
+                <text x="330" y="425" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">💾
+                    Storage & Persistence</text>
+                <text x="330" y="445" text-anchor="middle" style="font-size: 12px; fill: #d1fae5;">EBS volumes • EFS • S3 •
+                    Persistent volumes • Storage classes</text>
+                
+                <g transform="translate(90, 455)">
+                    <rect x="0" y="0" width="120" height="30" rx="4" fill="#10b981" />
+                    <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💽 EBS Volumes</text>
+                    <rect x="140" y="0" width="120" height="30" rx="4" fill="#34d399" />
+                    <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📁 EFS</text>
+                    <rect x="280" y="0" width="120" height="30" rx="4" fill="#6ee7b7" />
+                    <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">☁️ S3 Buckets</text>
+                    <rect x="420" y="0" width="120" height="30" rx="4" fill="#a7f3d0" />
+                    <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">⚙️ Storage Class</text>
                     </g>
                     
                     <!-- AWS Integration Services -->
-                    <rect x="0" y="520" width="660" height="120" rx="10" fill="#dc2626" stroke="#b91c1c" stroke-width="2"/>
-                    <text x="330" y="545" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔗 AWS Integration Services</text>
-                    <text x="330" y="565" text-anchor="middle" style="font-size: 12px; fill: #fecaca;">IAM • CloudWatch • Secrets Manager • Parameter Store • Route 53</text>
-                    
-                    <g transform="translate(40, 575)">
-                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#f56565"/>
-                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">👤 IAM</text>
-                        
-                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#feb2b2"/>
-                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📊 CloudWatch</text>
-                        
-                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#fc8181"/>
-                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔐 Secrets Mgr</text>
-                        
-                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#f87171"/>
-                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">⚙️ Param Store</text>
-                        
-                        <rect x="210" y="40" width="120" height="30" rx="4" fill="#e53e3e"/>
-                        <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🌍 Route 53</text>
-                        
-                        <rect x="70" y="40" width="120" height="30" rx="4" fill="#dc2626"/>
-                        <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🏷️ Cost Explorer</text>
-                        
-                        <rect x="350" y="40" width="120" height="30" rx="4" fill="#b91c1c"/>
-                        <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 CloudTrail</text>
+                <rect x="0" y="520" width="660" height="120" rx="10" fill="#dc2626" stroke="#b91c1c" stroke-width="2" />
+                <text x="330" y="545" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔗 AWS
+                    Integration Services</text>
+                <text x="330" y="565" text-anchor="middle" style="font-size: 12px; fill: #fecaca;">IAM • CloudWatch •
+                    Secrets Manager • Parameter Store • Route 53</text>
+                
+                <g transform="translate(40, 575)">
+                    <rect x="0" y="0" width="120" height="30" rx="4" fill="#f56565" />
+                    <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">👤 IAM</text>
+                    <rect x="140" y="0" width="120" height="30" rx="4" fill="#feb2b2" />
+                    <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📊 CloudWatch</text>
+                    <rect x="280" y="0" width="120" height="30" rx="4" fill="#fc8181" />
+                    <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🔐 Secrets Mgr</text>
+                    <rect x="420" y="0" width="120" height="30" rx="4" fill="#f87171" />
+                    <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">⚙️ Param Store</text>
+                    <rect x="210" y="40" width="120" height="30" rx="4" fill="#e53e3e" />
+                    <text x="270" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🌍 Route 53</text>
+                    <rect x="70" y="40" width="120" height="30" rx="4" fill="#dc2626" />
+                    <text x="130" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🏷️ Cost Explorer</text>
+                    <rect x="350" y="40" width="120" height="30" rx="4" fill="#b91c1c" />
+                    <text x="410" y="60" text-anchor="middle" style="font-size: 10px; fill: white;">🔍 CloudTrail</text>
                     </g>
                     
                     <!-- High Availability & Disaster Recovery -->
-                    <rect x="0" y="660" width="660" height="100" rx="10" fill="#1f2937" stroke="#111827" stroke-width="2"/>
-                    <text x="330" y="685" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🏗️ High Availability & DR</text>
-                    <text x="330" y="705" text-anchor="middle" style="font-size: 12px; fill: #f9fafb;">Multi-AZ deployment • Auto-scaling • Health checks • Backup strategies</text>
-                    
-                    <g transform="translate(90, 715)">
-                        <rect x="0" y="0" width="120" height="30" rx="4" fill="#4b5563"/>
-                        <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🌍 Multi-AZ</text>
-                        
-                        <rect x="140" y="0" width="120" height="30" rx="4" fill="#6b7280"/>
-                        <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📈 Auto-Scale</text>
-                        
-                        <rect x="280" y="0" width="120" height="30" rx="4" fill="#9ca3af"/>
-                        <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💓 Health Checks</text>
-                        
-                        <rect x="420" y="0" width="120" height="30" rx="4" fill="#d1d5db"/>
-                        <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💾 Backup</text>
-                    </g>
-                </g>
+                <rect x="0" y="660" width="660" height="100" rx="10" fill="#1f2937" stroke="#111827" stroke-width="2" />
+                <text x="330" y="685" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🏗️ High
+                    Availability & DR</text>
+                <text x="330" y="705" text-anchor="middle" style="font-size: 12px; fill: #f9fafb;">Multi-AZ deployment •
+                    Auto-scaling • Health checks • Backup strategies</text>
                 
-                <!-- Data Flow Arrows -->
-                <g>
-                    <!-- User to VPN Infrastructure -->
-                    <line x1="330" y1="200" x2="380" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#vpnArrow)"/>
-                    <text x="355" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Deploy</text>
+                <g transform="translate(90, 715)">
+                    <rect x="0" y="0" width="120" height="30" rx="4" fill="#4b5563" />
+                    <text x="60" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">🌍 Multi-AZ</text>
+                    <rect x="140" y="0" width="120" height="30" rx="4" fill="#6b7280" />
+                    <text x="200" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">📈 Auto-Scale</text>
+                    <rect x="280" y="0" width="120" height="30" rx="4" fill="#9ca3af" />
+                    <text x="340" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💓 Health Checks</text>
+                    <rect x="420" y="0" width="120" height="30" rx="4" fill="#d1d5db" />
+                    <text x="480" y="20" text-anchor="middle" style="font-size: 10px; fill: white;">💾 Backup</text>
+                    </g>
+                    </g>
                     
-                    <line x1="330" y1="350" x2="380" y2="350" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <text x="355" y="340" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Configure</text>
-                    
-                    <line x1="330" y1="500" x2="380" y2="500" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <text x="355" y="490" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Monitor</text>
-                    
-                    <!-- VPN Infrastructure to EKS -->
-                    <line x1="800" y1="200" x2="850" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#vpnArrow)"/>
-                    <text x="825" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Deploy to</text>
-                    
-                    <line x1="800" y1="350" x2="850" y2="350" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <text x="825" y="340" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Secure with</text>
-                    
-                    <line x1="800" y1="500" x2="850" y2="500" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <text x="825" y="490" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Scale on</text>
-                    
-                    <!-- Secure Feedback Loops -->
-                    <line x1="850" y1="750" x2="330" y2="750" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)" stroke-dasharray="5,5"/>
-                    <text x="590" y="740" text-anchor="middle" style="font-size: 10px; fill: #38a169; font-weight: bold;">Secure Connection Established</text>
-                    
-                    <!-- Internal VPN Infrastructure Flows -->
-                    <line x1="590" y1="240" x2="590" y2="280" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <line x1="590" y1="360" x2="590" y2="400" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <line x1="590" y1="500" x2="590" y2="540" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    
-                    <!-- Internal EKS Flows -->
-                    <line x1="1200" y1="220" x2="1200" y2="260" stroke="#ed8936" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <line x1="1200" y1="380" x2="1200" y2="420" stroke="#ed8936" stroke-width="2" marker-end="url(#vpnArrow)"/>
-                    <line x1="1200" y1="520" x2="1200" y2="560" stroke="#ed8936" stroke-width="2" marker-end="url(#vpnArrow)"/>
+                    <!-- Data Flow Arrows -->
+                    <g>
+                        <!-- User to VPN Infrastructure -->
+                <line x1="330" y1="200" x2="380" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#vpnArrow)" />
+                <text x="355" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Deploy</text>
+                <line x1="330" y1="350" x2="380" y2="350" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <text x="355" y="340" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Configure</text>
+                <line x1="330" y1="500" x2="380" y2="500" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <text x="355" y="490" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Monitor</text>
+                
+                <!-- VPN Infrastructure to EKS -->
+                <line x1="800" y1="200" x2="850" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#vpnArrow)" />
+                <text x="825" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Deploy
+                    to</text>
+                <line x1="800" y1="350" x2="850" y2="350" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <text x="825" y="340" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Secure
+                    with</text>
+                <line x1="800" y1="500" x2="850" y2="500" stroke="#667eea" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <text x="825" y="490" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Scale
+                    on</text>
+                
+                <!-- Secure Feedback Loops -->
+                <line x1="850" y1="750" x2="330" y2="750" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)"
+                    stroke-dasharray="5,5" />
+                <text x="590" y="740" text-anchor="middle" style="font-size: 10px; fill: #38a169; font-weight: bold;">Secure
+                    Connection Established</text>
+                
+                <!-- Internal VPN Infrastructure Flows -->
+                <line x1="590" y1="240" x2="590" y2="280" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <line x1="590" y1="360" x2="590" y2="400" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <line x1="590" y1="500" x2="590" y2="540" stroke="#38a169" stroke-width="2" marker-end="url(#vpnArrow)" />
+                
+                <!-- Internal EKS Flows -->
+                <line x1="1200" y1="220" x2="1200" y2="260" stroke="#ed8936" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <line x1="1200" y1="380" x2="1200" y2="420" stroke="#ed8936" stroke-width="2" marker-end="url(#vpnArrow)" />
+                <line x1="1200" y1="520" x2="1200" y2="560" stroke="#ed8936" stroke-width="2" marker-end="url(#vpnArrow)" />
                 </g>
                 
                 <!-- Security Metrics -->
                 <g transform="translate(50, 870)">
-                    <rect x="0" y="0" width="1500" height="30" rx="5" fill="#f7fafc" stroke="#e2e8f0" stroke-width="1"/>
-                    <text x="750" y="20" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: #2D3748;">🔐 VPN Metrics: Connection Time: 3sec • Uptime: 99.95% • Max Users: 500 • Encryption: AES-256 • Compliance: SOC2 • Zero Trust: ✅</text>
+                <rect x="0" y="0" width="1500" height="30" rx="5" fill="#f7fafc" stroke="#e2e8f0" stroke-width="1" />
+                <text x="750" y="20" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: #2D3748;">🔐 VPN
+                    Metrics: Connection Time: 3sec • Uptime: 99.95% • Max Users: 500 • Encryption: AES-256 • Compliance:
+                    SOC2 • Zero Trust: ✅</text>
                 </g>
-            </svg>
-            
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
-                <div>
-                    <h3 style="color: #667eea; margin-bottom: 20px;">Technical Implementation</h3>
-                    <ul style="color: #4A5568; line-height: 1.8;">
-                        <li><strong>Pritunl VPN Server:</strong> Enterprise-grade VPN solution running in Kubernetes</li>
-                        <li><strong>MongoDB Backend:</strong> Secure configuration and user management database</li>
-                        <li><strong>Ingress TLS:</strong> cert-manager integration for automated certificate management</li>
-                        <li><strong>Helm Automation:</strong> GitOps deployment with ArgoCD integration</li>
-                        <li><strong>Vault Secrets:</strong> SOPS-encrypted secret management</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 style="color: #667eea; margin-bottom: 20px;">Security & Compliance</h3>
-                    <div style="background: #f0f4ff; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px;">
-                        <h4 style="color: #4c51bf; margin: 0 0 10px 0;">🔒 Security Controls</h4>
-                        <ul style="color: #2D3748; margin: 0; line-height: 1.6;">
-                            <li>ClusterIP-only access behind secure Ingress</li>
-                            <li>RBAC isolation for VPN and database pods</li>
-                            <li>Secrets managed using Vault and encrypted with SOPS</li>
-                            <li>Network policies for pod-to-pod communication</li>
+                </svg>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin: 30px 0;">
+                    <div>
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Technical Implementation</h3>
+                        <ul style="color: #4A5568; line-height: 1.8;">
+                            <li><strong>Pritunl VPN Server:</strong> Enterprise-grade VPN solution running in Kubernetes</li>
+                            <li><strong>MongoDB Backend:</strong> Secure configuration and user management database</li>
+                            <li><strong>Ingress TLS:</strong> cert-manager integration for automated certificate management</li>
+                            <li><strong>Helm Automation:</strong> GitOps deployment with ArgoCD integration</li>
+                            <li><strong>Vault Secrets:</strong> SOPS-encrypted secret management</li>
                         </ul>
                     </div>
-                </div>
-            </div>
-            
-            <div style="background: #2d3748; color: white; border-radius: 10px; padding: 30px; margin: 30px 0;">
-                <h3 style="color: #667eea; margin: 0 0 20px 0;">High Availability Features</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-                    <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
-                        <h4 style="color: #667eea; margin: 0 0 10px 0;">⚡ Automated Failover</h4>
-                        <p style="margin: 0; font-size: 0.9rem;">Readiness and liveness probes for automatic pod recovery</p>
-                    </div>
-                    <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
-                        <h4 style="color: #667eea; margin: 0 0 10px 0;">🔄 Ingress Retry</h4>
-                        <p style="margin: 0; font-size: 0.9rem;">Retry policies and Helm-based rollback control</p>
-                    </div>
-                    <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
-                        <h4 style="color: #667eea; margin: 0 0 10px 0;">📊 Monitoring</h4>
-                        <p style="margin: 0; font-size: 0.9rem;">VPN sessions and cluster health via Prometheus and Grafana</p>
+                    <div>
+                        <h3 style="color: #667eea; margin-bottom: 20px;">Security & Compliance</h3>
+                        <div style="background: #f0f4ff; border-left: 4px solid #667eea; padding: 20px; border-radius: 8px;">
+                            <h4 style="color: #4c51bf; margin: 0 0 10px 0;">🔒 Security Controls</h4>
+                            <ul style="color: #2D3748; margin: 0; line-height: 1.6;">
+                                <li>ClusterIP-only access behind secure Ingress</li>
+                                <li>RBAC isolation for VPN and database pods</li>
+                                <li>Secrets managed using Vault and encrypted with SOPS</li>
+                                <li>Network policies for pod-to-pod communication</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        
-        <!-- Technology Stack Section -->
-        <section style="background: white; border: 2px solid #667eea; border-radius: 15px; padding: 30px; margin: 30px 0;">
-            <h2 style="color: #2D3748; font-size: 1.8rem; margin-bottom: 20px;">
-                <span style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 50px; height: 50px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 1.5rem;">🛠️</span>
-                Technology Stack
+                
+                <div style="background: #2d3748; color: white; border-radius: 10px; padding: 30px; margin: 30px 0;">
+                    <h3 style="color: #667eea; margin: 0 0 20px 0;">High Availability Features</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin: 0 0 10px 0;">⚡ Automated Failover</h4>
+                    <p style="margin: 0; font-size: 0.9rem;">Readiness and liveness probes for automatic pod recovery</p>
+                </div>
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin: 0 0 10px 0;">🔄 Ingress Retry</h4>
+                    <p style="margin: 0; font-size: 0.9rem;">Retry policies and Helm-based rollback control</p>
+                </div>
+                <div style="background: rgba(102, 126, 234, 0.1); padding: 20px; border-radius: 8px; border-left: 4px solid #667eea;">
+                    <h4 style="color: #667eea; margin: 0 0 10px 0;">📊 Monitoring</h4>
+                    <p style="margin: 0; font-size: 0.9rem;">VPN sessions and cluster health via Prometheus and Grafana</p>
+                </div>
+                </div>
+                </div>
+                </section>
+                
+                <!-- Technology Stack Section -->
+                <section style="background: white; border: 2px solid #667eea; border-radius: 15px; padding: 30px; margin: 30px 0;">
+                    <h2 style="color: #2D3748; font-size: 1.8rem; margin-bottom: 20px;">
+            <span
+                style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; width: 50px; height: 50px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; margin-right: 15px; font-size: 1.5rem;">🛠️</span>
+            Technology Stack
             </h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
-                <div style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
-                    <div style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">⎈</div>
-                    <h4 style="margin: 10px 0 5px 0;">Amazon EKS</h4>
-                    <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Managed Kubernetes platform</p>
-                </div>
-                <div style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
-                    <div style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">🔐</div>
-                    <h4 style="margin: 10px 0 5px 0;">Pritunl</h4>
-                    <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Enterprise VPN server</p>
-                </div>
-                <div style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
-                    <div style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">🍃</div>
-                    <h4 style="margin: 10px 0 5px 0;">MongoDB</h4>
-                    <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Configuration database</p>
-                </div>
-                <div style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
-                    <div style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">⚙️</div>
-                    <h4 style="margin: 10px 0 5px 0;">Helm</h4>
-                    <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Kubernetes package manager</p>
-                </div>
-                <div style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
-                    <div style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">🔒</div>
-                    <h4 style="margin: 10px 0 5px 0;">Vault</h4>
-                    <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Secret management</p>
-                </div>
-                <div style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
-                    <div style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">🔄</div>
-                    <h4 style="margin: 10px 0 5px 0;">ArgoCD</h4>
-                    <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">GitOps deployment</p>
-                </div>
+            <div
+                style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
+                <div
+                    style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                    ⎈</div>
+                <h4 style="margin: 10px 0 5px 0;">Amazon EKS</h4>
+                <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Managed Kubernetes platform</p>
             </div>
-        </section>
+            <div
+                style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
+                <div
+                    style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                    🔐</div>
+                <h4 style="margin: 10px 0 5px 0;">Pritunl</h4>
+                <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Enterprise VPN server</p>
+            </div>
+            <div
+                style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
+                <div
+                    style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                    🍃</div>
+                <h4 style="margin: 10px 0 5px 0;">MongoDB</h4>
+                <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Configuration database</p>
+            </div>
+            <div
+                style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
+                <div
+                    style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                    ⚙️</div>
+                <h4 style="margin: 10px 0 5px 0;">Helm</h4>
+                <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Kubernetes package manager</p>
+            </div>
+            <div
+                style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
+                <div
+                    style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                    🔒</div>
+                <h4 style="margin: 10px 0 5px 0;">Vault</h4>
+                <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">Secret management</p>
+            </div>
+            <div
+                style="background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%); color: white; border-radius: 10px; padding: 20px; text-align: center; border: 2px solid #667eea;">
+                <div
+                    style="width: 40px; height: 40px; margin: 0 auto 10px; background: #667eea; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: bold; color: white;">
+                    🔄</div>
+                <h4 style="margin: 10px 0 5px 0;">ArgoCD</h4>
+                <p style="margin: 0; font-size: 0.8rem; opacity: 0.9;">GitOps deployment</p>
+            </div>
+            </div>
+            </section>
     </main>
 </body>
 </html>

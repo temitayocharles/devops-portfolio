@@ -94,66 +94,76 @@
       color: #ccc;
       font-style: italic;
     }
+
+    /* AI Assistant Widget Styles */
+    #ai-assistant {
+      margin: 40px 0;
+    }
+
+    #ai-assistant .widget-container {
+      background: linear-gradient(135deg, #232526 0%, #66d9ef 100%);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 600px;
+      margin: 0 auto;
+      box-shadow: 0 8px 32px rgba(102, 217, 239, 0.12);
+    }
+
+    #ai-assistant h2 {
+      color: #a6e22e;
+      margin-bottom: 12px;
+      text-align: center;
+    }
+
+    #ai-assistant p {
+      color: #f0f0f0;
+      text-align: center;
+      margin-bottom: 18px;
+    }
+
+    #ai-chat {
+      background: #1e1e1e;
+      border-radius: 12px;
+      padding: 18px;
+      min-height: 120px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 16px;
+      color: #f0f0f0;
+      font-size: 1rem;
+    }
+
+    #ai-form {
+      display: flex;
+      gap: 10px;
+    }
+
+    #ai-input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #66d9ef;
+      font-size: 1rem;
+    }
+
+    #ai-form button {
+      background: #a6e22e;
+      color: #232526;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #ai-form button:hover {
+      background: #8ac926;
+    }
   </style>
-</head>
-<body>
-<!-- ===== HERO / LANDING SECTION ===== -->
-<section id="hero" aria-labelledby="hero-title">
-  <!-- Decorative background -->
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-gradient"></div>
-    <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
-      <defs>
-        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)"></rect>
-    </svg>
-  </div>
-
-  <div class="hero-inner">
-    <h1 id="hero-title" class="hero-title">
-      Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
-    </h1>
-
-    <p class="hero-subtitle">
-      I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
-      that let organizations deploy faster, operate safer, and scale without limits.
-    </p>
-
-    <blockquote class="hero-quote">
-      “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
-      security, and resilience are the defaults — not afterthoughts.”
-    </blockquote>
-
-    <ul class="hero-points" role="list">
-      <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
-      <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
-      <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
-      <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
-    </ul>
-
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
-        View My Projects
-      </a>
-      <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
-        Download My Resume
-      </a>
-      <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
-        Contact
-      </a>
-    </div>
-
-    <div class="hero-trust">
-      <span class="trust-pill">Kubernetes</span>
-      <span class="trust-pill">Terraform</span>
-      <span class="trust-pill">Vault</span>
-      <span class="trust-pill">Prometheus</span>
-    </div>
-  </div>
-</section>
+  </head>
+  
+  <body>
   <!-- Sidebar Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
   
@@ -222,6 +232,49 @@
   <div class="main">
     <h1>Technical Articles & Insights</h1>
     <p>Sharing knowledge and experiences in DevOps engineering, containerization, and automation.</p>
+
+    <!-- AI Assistant Widget -->
+    <section id="ai-assistant" style="margin:40px 0;">
+      <div
+        style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:32px;max-width:600px;margin:0 auto;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
+        <h2 style="color:#a6e22e;margin-bottom:12px;text-align:center;">🤖 Ask the DevOps AI Assistant</h2>
+        <p style="color:#f0f0f0;text-align:center;margin-bottom:18px;">Get instant answers, article suggestions, and
+          technical explanations. Try asking about Docker, Kubernetes, CI/CD, or any DevOps topic!</p>
+        <div id="ai-chat"
+          style="background:#1e1e1e;border-radius:12px;padding:18px;min-height:120px;max-height:300px;overflow-y:auto;margin-bottom:16px;color:#f0f0f0;font-size:1rem;">
+        </div>
+        <form id="ai-form" style="display:flex;gap:10px;">
+          <input type="text" id="ai-input" placeholder="Type your DevOps question..."
+            style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
+          <button type="submit"
+            style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
+        </form>
+      </div>
+      <script>
+        // Simple AI assistant mockup (replace with real API integration)
+        const aiForm = document.getElementById('ai-form');
+        const aiInput = document.getElementById('ai-input');
+        const aiChat = document.getElementById('ai-chat');
+        aiForm.addEventListener('submit', function (e) {
+          e.preventDefault();
+          const question = aiInput.value.trim();
+          if (!question) return;
+          aiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+          aiInput.value = '';
+          setTimeout(() => {
+            // Simulated AI response
+            let response = '';
+            if (question.toLowerCase().includes('docker')) response = 'Docker is a platform for building, shipping, and running containers. Need help with Dockerfiles, images, or orchestration?';
+            else if (question.toLowerCase().includes('kubernetes')) response = 'Kubernetes automates deployment, scaling, and management of containerized applications. Ask about clusters, pods, or services!';
+            else if (question.toLowerCase().includes('ci/cd')) response = 'CI/CD automates code integration and delivery. Popular tools: GitHub Actions, Jenkins, GitLab CI. Want pipeline tips?';
+            else response = 'Great question! The DevOps AI Assistant will help you with technical insights, best practices, and article recommendations.';
+            aiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
+            aiChat.scrollTop = aiChat.scrollHeight;
+          }, 700);
+        });
+      </script>
+    </section>
+    <!-- End AI Assistant Widget -->
 
     <div class="coming-soon">
       <h3>📝 Blog Coming Soon</h3>
