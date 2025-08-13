@@ -8,123 +8,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Sidebar Toggle Button -->
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
-  
-  <!-- Sidebar Navigation -->
-  <aside class="global-sidebar" id="globalSidebar">
-    <div class="sidebar-header">
-      <h3>Navigation</h3>
-      <p>Quick access to all sections</p>
-      <button id="sidebarClose" aria-label="Close sidebar"
-        style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">×</button>
-    </div>
-    <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Projects</div>
-      <a href="projects.html" class="sidebar-nav-item" data-icon="📚">All Projects</a>
-      <a href="project-ultimate-devops-container.html" class="sidebar-nav-item" data-icon="🚀">Ultimate DevOps
-        Container</a>
-      <a href="project-virtual-vacation.html" class="sidebar-nav-item" data-icon="🌐">Virtual Vacation Platform</a>
-      <a href="project-enterprise-cicd.html" class="sidebar-nav-item" data-icon="⚡">Enterprise CI/CD Pipeline</a>
-      <a href="project-monitoring-stack.html" class="sidebar-nav-item" data-icon="📊">Monitoring Stack</a>
-    </div>
-    <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Environments</div>
-      <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS Solutions</a>
-      <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="🔷">Azure Solutions</a>
-      <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐">GCP Solutions</a>
-    </div>
-    <div class="sidebar-nav-group">
-      <div class="sidebar-nav-title">Solutions & More</div>
-      <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
-      <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️">Skills</a>
-      <a href="blog.html" class="sidebar-nav-item" data-icon="📝">Blog</a>
-      <a href="contact.html" class="sidebar-nav-item" data-icon="✉️">Contact</a>
-    </div>
-    <div class="sidebar-footer">
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> •
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a> •
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
-      <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
-    </div>
-  </aside>
-  
-  <!-- Sidebar Overlay -->
-  <div id="sidebarOverlay"
-    style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.25);z-index:999;display:none;transition:opacity 0.3s;">
-  </div>
-  <nav class="main-nav"
-    style="width:100%;background:#232526;padding:0.5rem 0 0.5rem 0;box-shadow:0 2px 12px rgba(0,0,0,0.08);display:flex;justify-content:center;align-items:center;z-index:1000;position:relative;">
-    <a href="index.html" class="nav-link">Home</a>
-    <a href="about-me.html" class="nav-link active">About</a>
-    <a href="skills.html" class="nav-link">Skills</a>
-    <a href="projects.html" class="nav-link">Projects</a>
-    <a href="aws-solutions.html" class="nav-link">AWS Solutions</a>
-    <a href="azure-solutions.html" class="nav-link">Azure Solutions</a>
-    <a href="gcp-solutions.html" class="nav-link">GCP Solutions</a>
-    <a href="blog.html" class="nav-link">Blog</a>
-    <a href="contact.html" class="nav-link">Contact</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="skills.html">Skills</a>
+    <a href="projects.html">Projects</a>
+    <a href="aws-solutions.html">AWS Solutions</a>
+    <a href="azure-solutions.html">Azure Solutions</a>
+    <a href="gcp-solutions.html">GCP Solutions</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
   </nav>
   
   <div class="main">
-    <!-- ===== HERO / LANDING SECTION ===== -->
-    <section id="hero" aria-labelledby="hero-title">
-      <div class="hero-bg" aria-hidden="true">
-        <div class="hero-gradient"></div>
-        <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
-          <defs>
-            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#grid)"></rect>
-        </svg>
+    <div class="hero-section">
+      <div class="hero-content">
+        <h1>Temitayo Charles</h1>
+        <h2 class="subtitle">DevOps Engineer & Container Specialist</h2>
+        <p class="tagline">Transforming development workflows through intelligent automation and containerization</p>
       </div>
-      <div class="hero-inner">
-        <h1 id="hero-title" class="hero-title">
-          Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
-        </h1>
-        <p class="hero-subtitle">
-          I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
-          that let organizations deploy faster, operate safer, and scale without limits.
-        </p>
-        <blockquote class="hero-quote">
-          “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
-          security, and resilience are the defaults — not afterthoughts.”
-        </blockquote>
-        <ul class="hero-points" role="list">
-          <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
-          <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
-          <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
-          <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
-        </ul>
-        <div class="hero-ctas">
-          <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
-            View My Projects
-          </a>
-          <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
-            Download My Resume
-          </a>
-          <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
-            Contact
-          </a>
-        </div>
-        <div class="hero-trust">
-          <span class="trust-pill">Kubernetes</span>
-          <span class="trust-pill">Terraform</span>
-          <span class="trust-pill">Vault</span>
-          <span class="trust-pill">Prometheus</span>
-          <span class="trust-pill">ArgoCD</span>
-          <span class="trust-pill">AWS</span>
-        </div>
-        </div>
-        </section>
-    <!-- New Hero Button Group -->
-    <div class="homepage-main-buttons" style="display:flex;justify-content:center;gap:32px;margin:40px 0 32px 0;">
-      <a href="index.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Home</a>
-      <a href="projects.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Projects</a>
-      <a href="about-me.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">About Me</a>
-      <a href="contact.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Contact</a>
     </div>
 
     <section class="about-section">
