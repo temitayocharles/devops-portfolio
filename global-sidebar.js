@@ -2,13 +2,12 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Create sidebar HTML
     const sidebarHTML = `
-        <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
         
         <div class="global-sidebar" id="globalSidebar">
             <div class="sidebar-header">
                 <h3>DevOps Portfolio</h3>
                 <p>Temitayo Charles</p>
-                <button class="sidebar-close" id="sidebarClose">&times;</button>
             </div>
             
             <div class="sidebar-nav-group">
@@ -54,8 +53,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
             </div>
         </div>
-
-        <div class="sidebar-overlay" id="sidebarOverlay"></div>
     `;
     
     // Insert sidebar at beginning of body
@@ -71,9 +68,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Close sidebar when clicking outside
     document.addEventListener('click', function(e) {
         const sidebar = document.getElementById('globalSidebar');
-        const toggle = document.getElementById('sidebarToggle');
+        const toggle = document.querySelector('.sidebar-toggle');
         
         if (!sidebar.contains(e.target) && !toggle.contains(e.target)) {
+            closeSidebar();
+        }
+    });
+    
+    // Handle keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
             closeSidebar();
         }
     });
@@ -94,22 +98,20 @@ function toggleSidebar() {
 
 function openSidebar() {
     const sidebar = document.getElementById('globalSidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const contentWrapper = document.querySelector('.content-wrapper');
     
     sidebar.classList.add('open');
-    sidebarOverlay.style.display = 'block';
-    setTimeout(() => { sidebarOverlay.style.opacity = '1'; }, 10);
-    document.body.style.overflow = 'hidden';
+    if (window.innerWidth > 768) {
+        contentWrapper.classList.add('sidebar-open');
+    }
 }
 
 function closeSidebar() {
     const sidebar = document.getElementById('globalSidebar');
-    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    const contentWrapper = document.querySelector('.content-wrapper');
     
     sidebar.classList.remove('open');
-    sidebarOverlay.style.opacity = '0';
-    setTimeout(() => { sidebarOverlay.style.display = 'none'; }, 300);
-    document.body.style.overflow = 'auto';
+    contentWrapper.classList.remove('sidebar-open');
 }
 
 // Set active page based on current URL
@@ -124,24 +126,3 @@ function setActivePage() {
         }
     });
 }
-
-// Sidebar Toggle Logic
-const sidebarToggle = document.getElementById('sidebarToggle');
-const globalSidebar = document.getElementById('globalSidebar');
-const sidebarClose = document.getElementById('sidebarClose');
-const sidebarOverlay = document.getElementById('sidebarOverlay');
-if (sidebarToggle) sidebarToggle.addEventListener('click', openSidebar);
-if (sidebarClose) sidebarClose.addEventListener('click', closeSidebar);
-if (sidebarOverlay) sidebarOverlay.addEventListener('click', closeSidebar);
-document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeSidebar();
-});
-function handleSidebarToggleVisibility() {
-    if (window.innerWidth > 900) {
-        sidebarToggle.style.display = 'none';
-    } else {
-        sidebarToggle.style.display = 'block';
-    }
-}
-window.addEventListener('resize', handleSidebarToggleVisibility);
-document.addEventListener('DOMContentLoaded', handleSidebarToggleVisibility);

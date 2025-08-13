@@ -4,17 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>About Temitayo Charles • DevOps Engineer</title>
-  <meta name="description"
-    content="DevOps Engineer specializing in containerization, CI/CD, and cloud infrastructure automation.">
+  <meta name="description" content="DevOps Engineer specializing in containerization, CI/CD, and cloud infrastructure automation.">
   <link rel="stylesheet" href="style.css">
-  <script src="gemini-api-key.js"></script>
 </head>
-
 <body>
-  <!-- Global AI Toggle Button -->
-  <button id="aiToggleBtn"
-    style="position:fixed;bottom:30px;left:30px;z-index:9999;background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;transition:background 0.3s;"
-    title="Toggle AI Widgets">🤖</button>
   <!-- Sidebar Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
   
@@ -55,7 +48,7 @@
       <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
     </div>
   </aside>
-
+  
   <!-- Sidebar Overlay -->
   <div id="sidebarOverlay"
     style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.25);z-index:999;display:none;transition:opacity 0.3s;">
@@ -72,107 +65,77 @@
     <a href="blog.html" class="nav-link">Blog</a>
     <a href="contact.html" class="nav-link">Contact</a>
   </nav>
-
-  <div class="main" style="position:relative;min-height:100vh;">
-    <section class="about-section" style="position:relative;z-index:2;">
-      <div style="position:absolute;top:0;left:0;width:100%;height:100%;z-index:1;">
-        <img src="images/banner.jpg" alt="Temitayo Charles Profile"
-          style="width:100vw;height:100vh;object-fit:cover;opacity:0.13;filter:blur(2px);position:absolute;top:0;left:0;" />
+  
+  <div class="main">
+    <!-- ===== HERO / LANDING SECTION ===== -->
+    <section id="hero" aria-labelledby="hero-title">
+      <div class="hero-bg" aria-hidden="true">
+        <div class="hero-gradient"></div>
+        <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
+          <defs>
+            <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
+              <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" fill="url(#grid)"></rect>
+        </svg>
       </div>
-      <div style="position:relative;z-index:2;display:flex;align-items:center;gap:32px;margin-bottom:32px;">
-        <img src="images/banner.jpg" alt="Temitayo Charles Profile"
-          style="width:180px;height:180px;object-fit:cover;border-radius:50%;box-shadow:0 8px 32px rgba(102,217,239,0.18);border:4px solid #a6e22e;" />
-        <div>
-          <h2 style="color:#a6e22e;margin-bottom:10px;font-size:2.2rem;font-family:'Segoe UI',Arial,sans-serif;">Temitayo Charles
-          </h2>
-          <p style="color:#f0f0f0;font-size:1.15rem;font-family:'Segoe UI',Arial,sans-serif;">DevOps Engineer & Container
-            Specialist</p>
+      <div class="hero-inner">
+        <h1 id="hero-title" class="hero-title">
+          Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
+        </h1>
+        <p class="hero-subtitle">
+          I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
+          that let organizations deploy faster, operate safer, and scale without limits.
+        </p>
+        <blockquote class="hero-quote">
+          “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
+          security, and resilience are the defaults — not afterthoughts.”
+        </blockquote>
+        <ul class="hero-points" role="list">
+          <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
+          <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
+          <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
+          <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
+        </ul>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
+            View My Projects
+          </a>
+          <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
+            Download My Resume
+          </a>
+          <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
+            Contact
+          </a>
         </div>
-      </div>
-      <!-- AI Q&A Widget -->
-      <section id="about-ai-assistant" style="margin-bottom:32px;">
-        <div
-          style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:24px;max-width:500px;box-shadow:0 8px 32px rgba(102,217,239,0.12);">
-          <h3 style="color:#a6e22e;margin-bottom:10px;text-align:center;">🤖 Ask About My DevOps Journey</h3>
-          <form id="about-ai-form" style="display:flex;gap:10px;">
-            <input type="text" id="about-ai-input" placeholder="Ask me about DevOps, containers, or my experience..."
-              style="flex:1;padding:10px;border-radius:8px;border:1px solid #66d9ef;font-size:1rem;" />
-            <button type="submit"
-              style="background:#a6e22e;color:#232526;border:none;border-radius:8px;padding:10px 18px;font-weight:bold;cursor:pointer;transition:background 0.3s;">Ask</button>
-          </form>
-          <div id="about-ai-chat"
-            style="background:#1e1e1e;border-radius:12px;padding:12px;min-height:60px;max-height:180px;overflow-y:auto;margin-top:10px;color:#f0f0f0;font-size:1rem;">
-          </div>
+        <div class="hero-trust">
+          <span class="trust-pill">Kubernetes</span>
+          <span class="trust-pill">Terraform</span>
+          <span class="trust-pill">Vault</span>
+          <span class="trust-pill">Prometheus</span>
+          <span class="trust-pill">ArgoCD</span>
+          <span class="trust-pill">AWS</span>
         </div>
-        <script>
-      // Unified Gemini API logic
-      window.GLOBAL_AI_ENABLED = true;
-      function setAIWidgetsEnabled(enabled) {
-        window.GLOBAL_AI_ENABLED = enabled;
-        document.querySelectorAll('[id$="-ai-assistant"], [id$="-ai-form"], [id$="-ai-chat"]').forEach(el => {
-          if (el) el.style.display = enabled ? '' : 'none';
-        });
-      }
-      document.getElementById('aiToggleBtn').addEventListener('click', function () {
-        window.GLOBAL_AI_ENABLED = !window.GLOBAL_AI_ENABLED;
-        setAIWidgetsEnabled(window.GLOBAL_AI_ENABLED);
-        this.style.background = window.GLOBAL_AI_ENABLED ? 'linear-gradient(135deg,#66d9ef,#a6e22e)' : 'linear-gradient(135deg,#232526,#333)';
-        this.textContent = window.GLOBAL_AI_ENABLED ? '🤖' : '🚫';
-      });
-      setAIWidgetsEnabled(true);
-      // Gemini API integration
-      const aboutAiForm = document.getElementById('about-ai-form');
-      const aboutAiInput = document.getElementById('about-ai-input');
-      const aboutAiChat = document.getElementById('about-ai-chat');
-      const GEMINI_API_KEY = window.GEMINI_API_KEY || 'GEMINI_API_KEY_PLACEHOLDER';
-      async function fetchGeminiAnswer(question) {
-        if (!window.GLOBAL_AI_ENABLED) return 'AI is disabled.';
-        const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + GEMINI_API_KEY;
-        const body = {
-          contents: [{ parts: [{ text: question }] }]
-        };
-        try {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(body)
-          });
-          const data = await res.json();
-          if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
-            return data.candidates[0].content.parts.map(p => p.text).join(' ');
-          } else {
-            return 'No answer received from Gemini.';
-          }
-        } catch (err) {
-          return 'Error connecting to Gemini API.';
-        }
-      }
-      aboutAiForm.addEventListener('submit', async function (e) {
-        e.preventDefault();
-        const question = aboutAiInput.value.trim();
-        if (!question) return;
-        aboutAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
-        aboutAiInput.value = '';
-      aboutAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> <span style='color:#66d9ef;'>Thinking...</span></div>`;
-      aboutAiChat.scrollTop = aboutAiChat.scrollHeight;
-      const answer = await fetchGeminiAnswer(question);
-      aboutAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${answer}</div>`;
-      aboutAiChat.scrollTop = aboutAiChat.scrollHeight;
-    });
-        </script>
-      </section>
-      <!-- End AI Q&A Widget -->
+        </div>
+        </section>
+    <!-- New Hero Button Group -->
+    <div class="homepage-main-buttons" style="display:flex;justify-content:center;gap:32px;margin:40px 0 32px 0;">
+      <a href="index.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Home</a>
+      <a href="projects.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Projects</a>
+      <a href="about-me.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">About Me</a>
+      <a href="contact.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Contact</a>
+    </div>
 
+    <section class="about-section">
       <h2>About Me</h2>
-      <p style="color:#e0e0e0;font-size:1.18rem;line-height:1.7;font-family:'Segoe UI',Arial,sans-serif;max-width:700px;">
-        I'm a passionate DevOps engineer with expertise in containerization, CI/CD pipelines, and cloud infrastructure
-        automation.<br>
-        My mission is to bridge the gap between development and operations through innovative tooling and best practices.<br>
-        I believe in making technology accessible, reliable, and secure for teams of all sizes.
+      <p>
+        I'm a passionate DevOps engineer with expertise in containerization, CI/CD pipelines, and cloud infrastructure automation. 
+        My mission is to bridge the gap between development and operations through innovative tooling and best practices.
       </p>
 
       <h3>What I Do</h3>
-      <ul style="font-size:1.13rem;color:#a6e22e;font-family:'Segoe UI',Arial,sans-serif;line-height:1.8;">
+      <ul>
         <li>🚀 <strong>Container Orchestration:</strong> Docker, Kubernetes, and custom DevOps environments</li>
         <li>⚙️ <strong>CI/CD Pipeline Design:</strong> GitHub Actions, Jenkins, GitLab CI</li>
         <li>☁️ <strong>Cloud Infrastructure:</strong> AWS services and Infrastructure as Code</li>
@@ -181,10 +144,10 @@
       </ul>
 
       <h3>Professional Experience</h3>
-      <div class="experience-item" style="font-size:1.13rem;color:#e0e0e0;font-family:'Segoe UI',Arial,sans-serif;">
-        <h4 style="color:#66d9ef;font-size:1.3rem;margin-bottom:6px;">DevOps Engineer</h4>
-        <p class="experience-meta" style="color:#a6e22e;font-size:1.05rem;">Current Role</p>
-        <ul style="margin-left:18px;">
+      <div class="experience-item">
+        <h4>DevOps Engineer</h4>
+        <p class="experience-meta">Current Role</p>
+        <ul>
           <li>Designed and maintained containerized DevOps environments serving 100+ developers</li>
           <li>Reduced onboarding time from 3 days to 30 seconds with automated container solutions</li>
           <li>Implemented comprehensive CI/CD pipelines reducing deployment failures by 85%</li>
@@ -193,26 +156,25 @@
       </div>
 
       <h3>Featured Achievement</h3>
-      <div class="achievement-highlight"
-        style="background:linear-gradient(135deg,#232526 0%,#66d9ef 100%);border-radius:16px;padding:24px;max-width:500px;box-shadow:0 8px 32px rgba(102,217,239,0.12);margin-top:24px;">
-        <h4 style="color:#a6e22e;font-size:1.25rem;margin-bottom:10px;">Ultimate DevOps Container</h4>
-        <p style="color:#e0e0e0;font-size:1.13rem;">
-          Created a comprehensive, production-ready DevOps environment that packages 30+ essential tools into a single Docker
-          container.<br>
-          This solution has helped organizations standardize their development environments and accelerate team productivity.
+      <div class="achievement-highlight">
+        <h4>Ultimate DevOps Container</h4>
+        <p>
+          Created a comprehensive, production-ready DevOps environment that packages 30+ essential tools 
+          into a single Docker container. This solution has helped organizations standardize their 
+          development environments and accelerate team productivity.
         </p>
-        <div class="achievement-stats" style="display:flex;gap:24px;margin-top:18px;">
-          <div class="stat" style="text-align:center;">
-            <span class="stat-number" style="color:#66d9ef;font-size:1.5rem;font-weight:bold;">30+</span><br>
-            <span class="stat-label" style="color:#a6e22e;font-size:1rem;">Pre-installed Tools</span>
+        <div class="achievement-stats">
+          <div class="stat">
+            <span class="stat-number">30+</span>
+            <span class="stat-label">Pre-installed Tools</span>
           </div>
-          <div class="stat" style="text-align:center;">
-            <span class="stat-number" style="color:#66d9ef;font-size:1.5rem;font-weight:bold;">&lt; 30s</span><br>
-            <span class="stat-label" style="color:#a6e22e;font-size:1rem;">Setup Time</span>
+          <div class="stat">
+            <span class="stat-number">< 30s</span>
+            <span class="stat-label">Setup Time</span>
           </div>
-          <div class="stat" style="text-align:center;">
-            <span class="stat-number" style="color:#66d9ef;font-size:1.5rem;font-weight:bold;">3</span><br>
-            <span class="stat-label" style="color:#a6e22e;font-size:1rem;">Architectures Supported</span>
+          <div class="stat">
+            <span class="stat-number">3</span>
+            <span class="stat-label">Architectures Supported</span>
           </div>
         </div>
       </div>
