@@ -7,9 +7,14 @@
   <meta name="description"
     content="DevOps Engineer specializing in containerization, CI/CD, and cloud infrastructure automation.">
   <link rel="stylesheet" href="style.css">
+  <script src="gemini-api-key.js"></script>
 </head>
 
 <body>
+  <!-- Global AI Toggle Button -->
+  <button id="aiToggleBtn"
+    style="position:fixed;bottom:30px;left:30px;z-index:9999;background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;transition:background 0.3s;"
+    title="Toggle AI Widgets">🤖</button>
   <!-- Sidebar Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
   
@@ -94,26 +99,60 @@
           </div>
         </div>
         <script>
-          // Simple AI widget for About Me
-          const aboutAiForm = document.getElementById('about-ai-form');
-          const aboutAiInput = document.getElementById('about-ai-input');
-          const aboutAiChat = document.getElementById('about-ai-chat');
-          aboutAiForm.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const question = aboutAiInput.value.trim();
-            if (!question) return;
-            aboutAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
-            aboutAiInput.value = '';
-            setTimeout(() => {
-              let response = '';
-              if (question.toLowerCase().includes('experience')) response = 'I have designed and maintained containerized DevOps environments for 100+ developers, reducing onboarding time and improving reliability.';
-              else if (question.toLowerCase().includes('container')) response = 'Containers are my specialty! Ask about Docker, Kubernetes, or custom solutions.';
-              else if (question.toLowerCase().includes('cloud')) response = 'I work with AWS, Azure, and GCP to build scalable, secure DevOps architectures.';
-              else response = 'Ask me anything about DevOps, automation, CI/CD, or my professional journey.';
-              aboutAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
-              aboutAiChat.scrollTop = aboutAiChat.scrollHeight;
-            }, 700);
+      // Unified Gemini API logic
+      window.GLOBAL_AI_ENABLED = true;
+      function setAIWidgetsEnabled(enabled) {
+        window.GLOBAL_AI_ENABLED = enabled;
+        document.querySelectorAll('[id$="-ai-assistant"], [id$="-ai-form"], [id$="-ai-chat"]').forEach(el => {
+          if (el) el.style.display = enabled ? '' : 'none';
+        });
+      }
+      document.getElementById('aiToggleBtn').addEventListener('click', function () {
+        window.GLOBAL_AI_ENABLED = !window.GLOBAL_AI_ENABLED;
+        setAIWidgetsEnabled(window.GLOBAL_AI_ENABLED);
+        this.style.background = window.GLOBAL_AI_ENABLED ? 'linear-gradient(135deg,#66d9ef,#a6e22e)' : 'linear-gradient(135deg,#232526,#333)';
+        this.textContent = window.GLOBAL_AI_ENABLED ? '🤖' : '🚫';
+      });
+      setAIWidgetsEnabled(true);
+      // Gemini API integration
+      const aboutAiForm = document.getElementById('about-ai-form');
+      const aboutAiInput = document.getElementById('about-ai-input');
+      const aboutAiChat = document.getElementById('about-ai-chat');
+      const GEMINI_API_KEY = window.GEMINI_API_KEY || 'GEMINI_API_KEY_PLACEHOLDER';
+      async function fetchGeminiAnswer(question) {
+        if (!window.GLOBAL_AI_ENABLED) return 'AI is disabled.';
+        const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + GEMINI_API_KEY;
+        const body = {
+          contents: [{ parts: [{ text: question }] }]
+        };
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
           });
+          const data = await res.json();
+          if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+            return data.candidates[0].content.parts.map(p => p.text).join(' ');
+          } else {
+            return 'No answer received from Gemini.';
+          }
+        } catch (err) {
+          return 'Error connecting to Gemini API.';
+        }
+      }
+      aboutAiForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const question = aboutAiInput.value.trim();
+        if (!question) return;
+        aboutAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+        aboutAiInput.value = '';
+      aboutAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> <span style='color:#66d9ef;'>Thinking...</span></div>`;
+      aboutAiChat.scrollTop = aboutAiChat.scrollHeight;
+      const answer = await fetchGeminiAnswer(question);
+      aboutAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${answer}</div>`;
+      aboutAiChat.scrollTop = aboutAiChat.scrollHeight;
+    });
         </script>
       </section>
       <!-- End AI Q&A Widget -->

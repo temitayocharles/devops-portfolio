@@ -6,6 +6,7 @@
   <title>Projects • Temitayo Charles</title>
   <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
   <link rel="stylesheet" href="style.css">
+  <script src="gemini-api-key.js"></script>
   <style>
     /* Featured Projects Section Enhancement */
     .featured-projects {
@@ -682,6 +683,10 @@
   </head>
   
   <body>
+  <!-- Global AI Toggle Button -->
+  <button id="aiToggleBtn"
+    style="position:fixed;bottom:30px;left:30px;z-index:9999;background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;transition:background 0.3s;"
+    title="Toggle AI Widgets">🤖</button>
   <!-- Sidebar Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
   
@@ -766,25 +771,60 @@
         </div>
       </div>
       <script>
-        // Simple AI widget for project recommendations
-        const projectsAiForm = document.getElementById('projects-ai-form');
-        const projectsAiInput = document.getElementById('projects-ai-input');
-        const projectsAiChat = document.getElementById('projects-ai-chat');
-        projectsAiForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          const question = projectsAiInput.value.trim();
-          if (!question) return;
-          projectsAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
-          projectsAiInput.value = '';
-          setTimeout(() => {
-            let response = '';
-            if (question.toLowerCase().includes('recommend')) response = 'Explore the Ultimate DevOps Container or Virtual Vacation Platform for advanced DevOps and AI integration.';
-            else if (question.toLowerCase().includes('architecture')) response = 'Project architectures leverage Kubernetes, CI/CD, and cloud-native patterns. Ask about specific stacks for more details!';
-            else response = 'I can help with project suggestions, architecture explanations, and DevOps best practices. Try asking about a specific project or technology!';
-            projectsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
-            projectsAiChat.scrollTop = projectsAiChat.scrollHeight;
-          }, 700);
+      // Unified Gemini API logic
+      window.GLOBAL_AI_ENABLED = true;
+      function setAIWidgetsEnabled(enabled) {
+        window.GLOBAL_AI_ENABLED = enabled;
+        document.querySelectorAll('[id$="-ai-assistant"], [id$="-ai-form"], [id$="-ai-chat"]').forEach(el => {
+          if (el) el.style.display = enabled ? '' : 'none';
         });
+      }
+      document.getElementById('aiToggleBtn').addEventListener('click', function () {
+        window.GLOBAL_AI_ENABLED = !window.GLOBAL_AI_ENABLED;
+        setAIWidgetsEnabled(window.GLOBAL_AI_ENABLED);
+        this.style.background = window.GLOBAL_AI_ENABLED ? 'linear-gradient(135deg,#66d9ef,#a6e22e)' : 'linear-gradient(135deg,#232526,#333)';
+        this.textContent = window.GLOBAL_AI_ENABLED ? '🤖' : '🚫';
+      });
+      setAIWidgetsEnabled(true);
+      // Gemini API integration
+      const projectsAiForm = document.getElementById('projects-ai-form');
+      const projectsAiInput = document.getElementById('projects-ai-input');
+      const projectsAiChat = document.getElementById('projects-ai-chat');
+      const GEMINI_API_KEY = window.GEMINI_API_KEY || 'GEMINI_API_KEY_PLACEHOLDER';
+      async function fetchGeminiAnswer(question) {
+        if (!window.GLOBAL_AI_ENABLED) return 'AI is disabled.';
+        const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + GEMINI_API_KEY;
+        const body = {
+          contents: [{ parts: [{ text: question }] }]
+        };
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+          const data = await res.json();
+          if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+            return data.candidates[0].content.parts.map(p => p.text).join(' ');
+          } else {
+            return 'No answer received from Gemini.';
+          }
+        } catch (err) {
+          return 'Error connecting to Gemini API.';
+        }
+      }
+      projectsAiForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const question = projectsAiInput.value.trim();
+        if (!question) return;
+        projectsAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+        projectsAiInput.value = '';
+      projectsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> <span style='color:#66d9ef;'>Thinking...</span></div>`;
+      projectsAiChat.scrollTop = projectsAiChat.scrollHeight;
+      const answer = await fetchGeminiAnswer(question);
+      projectsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${answer}</div>`;
+      projectsAiChat.scrollTop = projectsAiChat.scrollHeight;
+    });
       </script>
     </section>
     <!-- End AI Project Assistant Widget -->

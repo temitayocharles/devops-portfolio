@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kubernetes VPN Deployment - Secure Internal Access</title>
     <link rel="stylesheet" href="style.css">
+    <script src="gemini-api-key.js"></script>
     <style>
         .project-nav-sidebar {
             position: fixed;
@@ -46,25 +47,43 @@
             </div>
         </div>
         <script>
-            // Simple AI widget for project page
+                    // Gemini API integration (placeholder key)
             const projectAiForm = document.getElementById('project-ai-form');
             const projectAiInput = document.getElementById('project-ai-input');
             const projectAiChat = document.getElementById('project-ai-chat');
-            projectAiForm.addEventListener('submit', function (e) {
+                    const GEMINI_API_KEY = 'GEMINI_API_KEY_PLACEHOLDER';
+                    async function fetchGeminiAnswer(question) {
+                        const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + GEMINI_API_KEY;
+                        const body = {
+                            contents: [{ parts: [{ text: question }] }]
+                        };
+                        try {
+                            const res = await fetch(endpoint, {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(body)
+                            });
+                            const data = await res.json();
+                            if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+                                return data.candidates[0].content.parts.map(p => p.text).join(' ');
+                            } else {
+                                return 'No answer received from Gemini.';
+                            }
+                        } catch (err) {
+                            return 'Error connecting to Gemini API.';
+                        }
+                    }
+                    projectAiForm.addEventListener('submit', async function (e) {
                 e.preventDefault();
                 const question = projectAiInput.value.trim();
                 if (!question) return;
                 projectAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
                 projectAiInput.value = '';
-                setTimeout(() => {
-                    let response = '';
-                    if (question.toLowerCase().includes('vpn')) response = 'This project uses Pritunl VPN in Kubernetes for secure internal access. Ask about architecture, security, or monitoring!';
-                    else if (question.toLowerCase().includes('security')) response = 'Security is enforced with Vault, SOPS, RBAC, and network policies. Need details on compliance or encryption?';
-                    else if (question.toLowerCase().includes('kubernetes')) response = 'Kubernetes orchestrates the VPN deployment, scaling, and monitoring. Ask about Helm, ArgoCD, or cluster setup!';
-                    else response = 'I can help with technical details, architecture, and DevOps best practices for this project.';
-                    projectAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
+                    projectAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> <span style='color:#66d9ef;'>Thinking...</span></div>`;
                     projectAiChat.scrollTop = projectAiChat.scrollHeight;
-                }, 700);
+                    const answer = await fetchGeminiAnswer(question);
+                    projectAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${answer}</div>`;
+                    projectAiChat.scrollTop = projectAiChat.scrollHeight;
             });
         </script>
     </section>

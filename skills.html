@@ -6,6 +6,7 @@
   <title>Skills & Technologies • Temitayo Charles</title>
   <meta name="description" content="Technical skills in DevOps, containerization, cloud platforms, and automation tools.">
   <link rel="stylesheet" href="style.css">
+  <script src="gemini-api-key.js"></script>
   <style>
     .skills-grid {
       display: grid;
@@ -96,6 +97,10 @@
   </style>
 </head>
 <body>
+  <!-- Global AI Toggle Button -->
+  <button id="aiToggleBtn"
+    style="position:fixed;bottom:30px;left:30px;z-index:9999;background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;transition:background 0.3s;"
+    title="Toggle AI Widgets">🤖</button>
   <!-- Sidebar Toggle Button -->
   <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
   
@@ -180,26 +185,60 @@
         </div>
       </div>
       <script>
-        // Simple AI widget for skills page
-        const skillsAiForm = document.getElementById('skills-ai-form');
-        const skillsAiInput = document.getElementById('skills-ai-input');
-        const skillsAiChat = document.getElementById('skills-ai-chat');
-        skillsAiForm.addEventListener('submit', function (e) {
-          e.preventDefault();
-          const question = skillsAiInput.value.trim();
-          if (!question) return;
-          skillsAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
-          skillsAiInput.value = '';
-          setTimeout(() => {
-            let response = '';
-            if (question.toLowerCase().includes('terraform')) response = 'Terraform is an Infrastructure as Code tool for provisioning cloud resources. Want to know about modules or state management?';
-            else if (question.toLowerCase().includes('certification')) response = 'Recommended certifications: AWS DevOps Engineer, Kubernetes CKA, HashiCorp Terraform Associate.';
-            else if (question.toLowerCase().includes('monitoring')) response = 'Prometheus and Grafana are key for monitoring and observability. Ask about metrics, dashboards, or alerting!';
-            else response = 'I can help with DevOps skills, technology explanations, and learning path suggestions. Try asking about a specific tool or certification!';
-            skillsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${response}</div>`;
-            skillsAiChat.scrollTop = skillsAiChat.scrollHeight;
-          }, 700);
+      // Unified Gemini API logic
+      window.GLOBAL_AI_ENABLED = true;
+      function setAIWidgetsEnabled(enabled) {
+        window.GLOBAL_AI_ENABLED = enabled;
+        document.querySelectorAll('[id$="-ai-assistant"], [id$="-ai-form"], [id$="-ai-chat"]').forEach(el => {
+          if (el) el.style.display = enabled ? '' : 'none';
         });
+      }
+      document.getElementById('aiToggleBtn').addEventListener('click', function () {
+        window.GLOBAL_AI_ENABLED = !window.GLOBAL_AI_ENABLED;
+        setAIWidgetsEnabled(window.GLOBAL_AI_ENABLED);
+        this.style.background = window.GLOBAL_AI_ENABLED ? 'linear-gradient(135deg,#66d9ef,#a6e22e)' : 'linear-gradient(135deg,#232526,#333)';
+        this.textContent = window.GLOBAL_AI_ENABLED ? '🤖' : '🚫';
+      });
+      setAIWidgetsEnabled(true);
+      // Gemini API integration
+      const skillsAiForm = document.getElementById('skills-ai-form');
+      const skillsAiInput = document.getElementById('skills-ai-input');
+      const skillsAiChat = document.getElementById('skills-ai-chat');
+      const GEMINI_API_KEY = window.GEMINI_API_KEY || 'GEMINI_API_KEY_PLACEHOLDER';
+      async function fetchGeminiAnswer(question) {
+        if (!window.GLOBAL_AI_ENABLED) return 'AI is disabled.';
+        const endpoint = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=' + GEMINI_API_KEY;
+        const body = {
+          contents: [{ parts: [{ text: question }] }]
+        };
+        try {
+          const res = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+          });
+          const data = await res.json();
+          if (data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts) {
+            return data.candidates[0].content.parts.map(p => p.text).join(' ');
+          } else {
+            return 'No answer received from Gemini.';
+          }
+        } catch (err) {
+          return 'Error connecting to Gemini API.';
+        }
+      }
+      skillsAiForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const question = skillsAiInput.value.trim();
+        if (!question) return;
+        skillsAiChat.innerHTML += `<div style='margin-bottom:8px;'><strong>You:</strong> ${question}</div>`;
+        skillsAiInput.value = '';
+      skillsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> <span style='color:#66d9ef;'>Thinking...</span></div>`;
+      skillsAiChat.scrollTop = skillsAiChat.scrollHeight;
+      const answer = await fetchGeminiAnswer(question);
+      skillsAiChat.innerHTML += `<div style='margin-bottom:12px;'><strong>AI:</strong> ${answer}</div>`;
+      skillsAiChat.scrollTop = skillsAiChat.scrollHeight;
+    });
       </script>
     </section>
     <!-- End AI Skills Assistant Widget -->
