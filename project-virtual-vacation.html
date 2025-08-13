@@ -6,67 +6,10 @@
   <title>Virtual Vacation Platform • Cloud-Native Tourism Solution</title>
   <meta name="description" content="Full-stack, TLS-secured, containerized web application transforming tourism through immersive virtual experiences. Docker Compose to Kubernetes with GitOps automation.">
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="virtual-vacation.css">
 </head>
 <body>
-<!-- ===== HERO / LANDING SECTION ===== -->
-<section id="hero" aria-labelledby="hero-title">
-  <!-- Decorative background -->
-  <div class="hero-bg" aria-hidden="true">
-    <div class="hero-gradient"></div>
-    <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
-      <defs>
-        <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-          <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
-        </pattern>
-      </defs>
-      <rect width="100%" height="100%" fill="url(#grid)"></rect>
-    </svg>
-  </div>
-
-  <div class="hero-inner">
-    <h1 id="hero-title" class="hero-title">
-      Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
-    </h1>
-
-    <p class="hero-subtitle">
-      I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
-      that let organizations deploy faster, operate safer, and scale without limits.
-    </p>
-
-    <blockquote class="hero-quote">
-      “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
-      security, and resilience are the defaults — not afterthoughts.”
-    </blockquote>
-
-    <ul class="hero-points" role="list">
-      <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
-      <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
-      <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
-      <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
-    </ul>
-
-    <div class="hero-ctas">
-      <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
-        View My Projects
-      </a>
-      <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
-        Download My Resume
-      </a>
-      <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
-        Contact
-      </a>
-    </div>
-
-    <div class="hero-trust">
-      <span class="trust-pill">Kubernetes</span>
-      <span class="trust-pill">Terraform</span>
-      <span class="trust-pill">Vault</span>
-      <span class="trust-pill">Prometheus</span>
-    </div>
-  </div>
-</section>
-  <script src="global-sidebar.js" defer></script>
+  <script src="global-sidebar.js"></script>
+  
   <nav>
     <a href="index.html">Home</a>
     <a href="about-me.html">About Me</a>
@@ -77,139 +20,6 @@
   </nav>
 
   <div class="main">
-    <!-- Immersive Interactive Demo Section -->
-    <section id="city-explorer-demo" style="margin-bottom:48px;">
-      <h2 class="city-explorer-label" style="text-align:center;margin-bottom:18px;color:#764ba2;">🌍 Live City Explorer Demo
-      </h2>
-      <div class="city-explorer-section">
-        <label for="citySelect" class="city-explorer-label">Choose a city to explore:</label>
-        <select id="citySelect" class="city-explorer-select">
-          <option value="lagos">Lagos, Nigeria</option>
-          <option value="tokyo">Tokyo, Japan</option>
-          <option value="paris">Paris, France</option>
-          <option value="toronto">Toronto, Canada</option>
-          <option value="nyc">New York City, USA</option>
-          <option value="mumbai">Mumbai, India</option>
-          <option value="london">London, England</option>
-        </select>
-        <div id="cityDemoContent" class="city-demo-content"></div>
-      </div>
-      <script>
-        const cityData = {
-          lagos: {
-            name: "Lagos, Nigeria",
-            crowd: "Moderate",
-            weather: "Sunny, 32°C",
-            language: "English, Yoruba",
-            aiRec: "Don't miss Victoria Island and the vibrant Afrobeats scene!",
-            img: "images/demos/lagos-demo.jpg"
-          },
-          tokyo: {
-            name: "Tokyo, Japan",
-            crowd: "Busy",
-            weather: "Cloudy, 27°C",
-            language: "Japanese",
-            aiRec: "Visit Shibuya Crossing and try authentic ramen.",
-            img: "images/demos/tokyo-demo.jpg"
-          },
-          paris: {
-            name: "Paris, France",
-            crowd: "Light",
-            weather: "Rainy, 19°C",
-            language: "French",
-            aiRec: "Stroll the Champs-Élysées and enjoy café culture.",
-            img: "images/demos/paris-demo.jpg"
-          },
-          toronto: {
-            name: "Toronto, Canada",
-            crowd: "Moderate",
-            weather: "Clear, 22°C",
-            language: "English, French",
-            aiRec: "Explore CN Tower and catch a hockey game.",
-            img: "images/demos/toronto-demo.jpg"
-          },
-          nyc: {
-            name: "New York City, USA",
-            crowd: "Busy",
-            weather: "Sunny, 28°C",
-            language: "English",
-            aiRec: "Experience Times Square and Broadway shows.",
-            img: "images/demos/new-york-demo.jpg"
-          },
-          mumbai: {
-            name: "Mumbai, India",
-            crowd: "Busy",
-            weather: "Monsoon, 30°C",
-            language: "Hindi, Marathi",
-            aiRec: "Walk Marine Drive at sunset and enjoy Bollywood culture.",
-            img: "images/demos/mumbai-demo.jpg"
-          },
-          london: {
-            name: "London, England",
-            crowd: "Light",
-            weather: "Cloudy, 18°C",
-            language: "English",
-            aiRec: "Cross Tower Bridge and visit West End theatres.",
-            img: "images/demos/london-demo.jpg"
-          }
-        };
-        function renderCityDemo(city) {
-          const data = cityData[city];
-          document.getElementById('cityDemoContent').innerHTML = `
-                    <h3 style='color:#a6e22e;'>${data.name}</h3>
-                    <img src='${data.img}' alt='${data.name}' style='width:100%;max-width:400px;border-radius:12px;box-shadow:0 4px 16px #764ba2;margin-bottom:18px;' />
-                    <img src='${data.img}' alt='${data.name} city view' loading="lazy" class="city-demo-img" />
-                    <ul style='list-style:none;padding:0;font-size:1.1rem;'>
-                      <li><strong>Real-Time Crowd:</strong> ${data.crowd}</li>
-                      <li><strong>Weather:</strong> ${data.weather}</li>
-                      <li><strong>Languages:</strong> ${data.language}</li>
-                      <li><strong>AI Recommendation:</strong> <span style='color:#66d9ef;'>${data.aiRec}</span></li>
-                    </ul>
-                    <div style='margin-top:18px;'>
-                      <button onclick='openAIChatbot("${city}")' style='background:#a6e22e;color:#232526;padding:10px 22px;border-radius:8px;font-weight:bold;font-size:1rem;box-shadow:0 2px 8px #764ba2;'>Ask AI for More</button>
-                      <button onclick='openAIChatbot("${city}")' class="btn-glow" aria-label="Ask AI for more about ${data.name}">Ask AI for More</button>
-                    </div>
-                  `;
-        }
-        document.getElementById('citySelect').addEventListener('change', function (e) {
-          renderCityDemo(e.target.value);
-        });
-            // Initial render
-      <div style="display:grid;grid-template-columns:1fr;gap:24px;max-width:700px;margin:0 auto;">
-        <div>
-          <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-            loading="lazy" class="demo-video">
-            <source src="videos/virtual-vacation-demo-01-mvp.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <p style="color:#a6e22e;font-size:1rem;margin-top:8px;">Step 1: MVP Launch with Docker Compose</p>
-        </div>
-        <div>
-          <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-            style="border-radius:16px;box-shadow:0 4px 24px rgba(118,75,162,0.08);">
-            <source src="videos/virtual-vacation-demo-02-k8s.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <p style="color:#66d9ef;font-size:1rem;margin-top:8px;">Step 2: Kubernetes Production Deployment</p>
-        </div>
-        <div>
-          <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-            style="border-radius:16px;box-shadow:0 4px 24px rgba(118,75,162,0.08);">
-            <source src="videos/virtual-vacation-demo-03-ai.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <p style="color:#f39c12;font-size:1rem;margin-top:8px;">Step 3: AI-Powered Recommendations</p>
-        </div>
-        <div>
-          <video width="100%" height="270" controls poster="images/technology-stack-showcase.svg"
-            style="border-radius:16px;box-shadow:0 4px 24px rgba(118,75,162,0.08);">
-            <source src="videos/virtual-vacation-demo-04-gitops.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-          <p style="color:#764ba2;font-size:1rem;margin-top:8px;">Step 4: GitOps Automation with ArgoCD</p>
-        </div>
-      </div>
-    </section>
     <!-- Navigation back to projects overview -->
     <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">
       <a href="projects.html" style="color:#66d9ef; text-decoration:none;">← Back to Projects</a>
@@ -233,11 +43,21 @@
       <!-- Interactive Demo Link -->
       <div class="demo-launch-section" style="margin-top: 20px; text-align: center;">
         <a href="virtual-vacation-demo.html" target="_blank" class="demo-launch-btn" style="
-          class="demo-launch-btn btn-glow" aria-label="Launch interactive virtual vacation demo"
+          display: inline-block;
+          background: linear-gradient(135deg, #764ba2, #667eea);
+          color: white;
+          padding: 15px 30px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 1.1em;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 25px rgba(118, 75, 162, 0.3);
+          animation: pulse-glow 2s infinite;
+        ">
           🚀 Try Interactive Demo - Experience Virtual Vacation Live!
         </a>
-  <p class="demo-launch-desc">↑ Click to experience the fully functional Virtual Vacation platform with real interactions
-  </p>
+        <p style="margin-top: 10px; color: #666; font-style: italic;">
           ↑ Click to experience the fully functional Virtual Vacation platform with real interactions
         </p>
       </div>
@@ -710,50 +530,49 @@
     
     <div class="demo-grid">
       <div class="demo-card">
-  <div class="demo-flag" aria-label="Nigeria flag">🇳🇬</div>
-  <h3>Lagos, Nigeria</h3>
-  <p>Experience West African culture with Victoria Island exploration, Afrobeats ambiance, and local market insights.</p>
-  <a href="images/demos/lagos-demo.html" target="_blank" class="demo-btn btn-glow" aria-label="Launch Lagos Demo">🚀
-    Launch Lagos Demo</a>
+        <div class="demo-flag">🇳🇬</div>
+        <h3>Lagos, Nigeria</h3>
+        <p>Experience West African culture with Victoria Island exploration, Afrobeats ambiance, and local market insights.</p>
+        <a href="images/demos/lagos-demo.html" target="_blank" class="demo-btn">🚀 Launch Lagos Demo</a>
       </div>
       
       <div class="demo-card">
-  <div class="demo-flag" aria-label="Japan flag">🇯🇵</div>
+        <div class="demo-flag">🇯🇵</div>
         <h3>Tokyo, Japan</h3>
         <p>Navigate Shibuya Crossing with real-time crowd data, Japanese language translation, and cultural etiquette guides.</p>
         <a href="images/demos/tokyo-demo.html" target="_blank" class="demo-btn">🚀 Launch Tokyo Demo</a>
       </div>
       
       <div class="demo-card">
-  <div class="demo-flag" aria-label="France flag">🇫🇷</div>
+        <div class="demo-flag">🇫🇷</div>
         <h3>Paris, France</h3>
         <p>Stroll the Champs-Élysées with French cultural insights, luxury shopping guides, and café culture immersion.</p>
         <a href="images/demos/paris-demo.html" target="_blank" class="demo-btn">🚀 Launch Paris Demo</a>
       </div>
       
       <div class="demo-card">
-  <div class="demo-flag" aria-label="Canada flag">🇨🇦</div>
+        <div class="demo-flag">🇨🇦</div>
         <h3>Toronto, Canada</h3>
         <p>Explore CN Tower with bilingual guides, Canadian weather patterns, and hockey culture experiences.</p>
         <a href="images/demos/toronto-demo.html" target="_blank" class="demo-btn">🚀 Launch Toronto Demo</a>
       </div>
       
       <div class="demo-card">
-  <div class="demo-flag" aria-label="USA flag">🇺🇸</div>
+        <div class="demo-flag">🇺🇸</div>
         <h3>New York City, USA</h3>
         <p>Experience Times Square with Broadway shows, subway navigation, and authentic American urban culture.</p>
         <a href="images/demos/new-york-demo.html" target="_blank" class="demo-btn">🚀 Launch NYC Demo</a>
       </div>
       
       <div class="demo-card">
-  <div class="demo-flag" aria-label="India flag">🇮🇳</div>
+        <div class="demo-flag">🇮🇳</div>
         <h3>Mumbai, India</h3>
         <p>Walk Marine Drive during sunset with Hindi/Marathi translations, Bollywood culture, and monsoon experiences.</p>
         <a href="images/demos/mumbai-demo.html" target="_blank" class="demo-btn">🚀 Launch Mumbai Demo</a>
       </div>
       
       <div class="demo-card">
-  <div class="demo-flag" aria-label="UK flag">🇬🇧</div>
+        <div class="demo-flag">🇬🇧</div>
         <h3>London, England</h3>
         <p>Cross Tower Bridge with royal heritage commentary, British weather patterns, and West End theatre culture.</p>
         <a href="images/demos/london-demo.html" target="_blank" class="demo-btn">🚀 Launch London Demo</a>
@@ -784,7 +603,79 @@
   </div>
 
   <style>
-  /* Most styles moved to virtual-vacation.css for performance and maintainability */
+    .demo-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 60px 40px;
+      margin: 40px 0;
+      border-radius: 15px;
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .demo-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .demo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(118, 75, 162, 0.2);
+      border-color: #764ba2;
+    }
+    
+    .demo-flag {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    
+    .demo-card h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    
+    .demo-card p {
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .demo-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .demo-btn:hover {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+      .demo-section {
+        padding: 40px 20px;
+      }
+      
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 
 </body>

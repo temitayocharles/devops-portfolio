@@ -25,332 +25,80 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- ===== HERO / LANDING SECTION ===== -->
-  <section id="hero" aria-labelledby="hero-title">
-    <!-- Decorative background -->
-    <div class="hero-bg" aria-hidden="true">
-      <div class="hero-gradient"></div>
-      <svg class="hero-grid" viewBox="0 0 100 100" preserveAspectRatio="none" role="img" aria-label="">
-        <defs>
-          <pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse">
-            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="currentColor" stroke-width="0.2" opacity="0.25" />
-          </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)"></rect>
-      </svg>
-    </div>
+  <script src="global-sidebar.js"></script>
   
-    <div class="hero-inner">
-      <h1 id="hero-title" class="hero-title">
-        Engineering Secure, Scalable, and Automated Cloud Solutions — From Vision to Production.
-      </h1>
-  
-      <p class="hero-subtitle">
-        I design and deliver enterprise-grade DevSecOps, CI/CD pipelines, and cloud-native infrastructures
-        that let organizations deploy faster, operate safer, and scale without limits.
-      </p>
-  
-      <blockquote class="hero-quote">
-        “Your infrastructure should be a competitive advantage, not a bottleneck. I build systems where automation,
-        security, and resilience are the defaults — not afterthoughts.”
-      </blockquote>
-  
-      <ul class="hero-points" role="list">
-        <li><span class="dot"></span><strong>DevSecOps Expertise</strong> — Security embedded end-to-end</li>
-        <li><span class="dot"></span><strong>Enterprise CI/CD</strong> — Automated, zero-downtime releases</li>
-        <li><span class="dot"></span><strong>Cloud & Kubernetes</strong> — EKS-ready, production architectures</li>
-        <li><span class="dot"></span><strong>Observability</strong> — Real-time metrics, alerts, and SLOs</li>
-      </ul>
-  
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="/features.html" aria-label="View Projects and Case Studies">
-          View My Projects
-        </a>
-        <a class="btn btn-secondary" href="/resume.html" aria-label="Download Resume">
-          Download My Resume
-        </a>
-        <a class="btn btn-ghost" href="/contact.html" aria-label="Contact">
-          Contact
-        </a>
-      </div>
-  
-      <div class="hero-trust">
-        <span class="trust-pill">Kubernetes</span>
-        <span class="trust-pill">Terraform</span>
-        <span class="trust-pill">Vault</span>
-        <span class="trust-pill">Prometheus</span>
-        <span class="trust-pill">ArgoCD</span>
-        <span class="trust-pill">AWS</span>
-      </div>
-    </div>
-  </section>
-  <!-- ===== /HERO SECTION ===== -->
-
-  <!-- Sidebar Toggle Button -->
-  <button class="sidebar-toggle" id="sidebarToggle" aria-label="Open navigation sidebar">☰</button>
-
-<!-- Sidebar Navigation -->
-<aside class="global-sidebar" id="globalSidebar">
-  <div class="sidebar-header">
-    <h3>Navigation</h3>
-    <p>Quick access to all sections</p>
-    <button id="sidebarClose" aria-label="Close sidebar"
-      style="background:none;border:none;font-size:2rem;color:#a6e22e;cursor:pointer;position:absolute;top:20px;right:20px;">×</button>
-  </div>
-  <div class="sidebar-nav-group">
-    <div class="sidebar-nav-title">Projects</div>
-    <a href="projects.html" class="sidebar-nav-item" data-icon="📚">All Projects</a>
-    <a href="project-ultimate-devops-container.html" class="sidebar-nav-item" data-icon="🚀">Ultimate DevOps
-      Container</a>
-    <a href="project-virtual-vacation.html" class="sidebar-nav-item" data-icon="🌐">Virtual Vacation Platform</a>
-    <a href="project-enterprise-cicd.html" class="sidebar-nav-item" data-icon="⚡">Enterprise CI/CD Pipeline</a>
-    <a href="project-monitoring-stack.html" class="sidebar-nav-item" data-icon="📊">Monitoring Stack</a>
-  </div>
-  <div class="sidebar-nav-group">
-    <div class="sidebar-nav-title">Environments</div>
-    <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS Solutions</a>
-    <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="🔷">Azure Solutions</a>
-    <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="🌐">GCP Solutions</a>
-  </div>
-  <div class="sidebar-nav-group">
-    <div class="sidebar-nav-title">Solutions & More</div>
-    <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
-    <a href="skills.html" class="sidebar-nav-item" data-icon="🛠️">Skills</a>
-    <a href="blog.html" class="sidebar-nav-item" data-icon="📝">Blog</a>
-    <a href="contact.html" class="sidebar-nav-item" data-icon="✉️">Contact</a>
-  </div>
-  <div class="sidebar-footer">
-    <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> •
-    <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a> •
-    <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
-    <br><span style="color:#a6e22e;">&copy; 2025 Temitayo Charles</span>
-  </div>
-</aside>
-
-<!-- Sidebar Overlay -->
-<div id="sidebarOverlay"
-  style="position:fixed;top:0;left:0;width:100vw;height:100vh;background:rgba(44,62,80,0.25);z-index:999;display:none;transition:opacity 0.3s;">
-</div>
-<nav class="main-nav"
-  style="width:100%;background:#232526;padding:0.5rem 0 0.5rem 0;box-shadow:0 2px 12px rgba(0,0,0,0.08);display:flex;justify-content:center;align-items:center;z-index:1000;position:relative;">
-  <a href="index.html" class="nav-link active">Home</a>
-  <a href="about-me.html" class="nav-link">About</a>
-  <a href="skills.html" class="nav-link">Skills</a>
-  <a href="projects.html" class="nav-link">Projects</a>
-  <a href="aws-solutions.html" class="nav-link">AWS Solutions</a>
-  <a href="azure-solutions.html" class="nav-link">Azure Solutions</a>
-  <a href="gcp-solutions.html" class="nav-link">GCP Solutions</a>
-  <a href="blog.html" class="nav-link">Blog</a>
-  <a href="contact.html" class="nav-link">Contact</a>
-</nav>
+                  <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about-me.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                    <li><a href="aws-solutions.html">AWS Solutions</a></li>
+                    <li><a href="azure-solutions.html">Azure Solutions</a></li>
+                    <li><a href="gcp-solutions.html">GCP Solutions</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
   
   <div class="hero-section">
-  <div class="hero-banner" style="position:relative;width:100%;max-width:1200px;margin:0 auto;">
-    <img src="B57EDA65-F244-49EB-B5BA-504705128E03.PNG" alt="DevOps Banner"
-      style="width:100%;border-radius:18px;box-shadow:0 8px 32px rgba(0,0,0,0.18);object-fit:cover;max-height:320px;" />
-    <div class="hero-banner-overlay"
-      style="position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;">
-      <div class="hero-content" style="display:flex;align-items:center;gap:40px;width:100%;padding:40px;">
-        <div class="profile-section" style="display:flex;align-items:center;gap:32px;">
-          <div
-            style="width:170px;height:170px;border-radius:50%;overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,0.18);background:#fff;display:flex;align-items:center;justify-content:center;">
-            <img src="IMG_0907.JPG" alt="Temitayo Charles"
-              style="width:170px;height:170px;object-fit:cover;border-radius:50%;" />
-          </div>
-          <div class="profile-info" style="color:#fff;">
-            <h1 style="font-size:2.5rem;margin-bottom:8px;">Temitayo Charles Akinniranye</h1>
-            <p class="tagline" style="font-size:1.2rem;margin-bottom:8px;">DevOps | Cloud Infrastructure | Kubernetes |
-              CI/CD | DevSecOps</p>
-            <p class="hero-description" style="font-size:1.1rem;max-width:500px;">
-              I solve real-world infrastructure and automation problems for teams and businesses. My work streamlines
-              onboarding, reduces cloud costs, and delivers secure, scalable solutions using containers and cloud-native
-              tools.<br>
-              <span style="color:#a6e22e;font-weight:bold;">Explore my projects below to see how I deliver business impact
-                and technical excellence.</span>
+      <!-- Hero Banner Section -->
+  <div class="hero-banner">
+    <img src="images/banner.jpg" alt="DevOps Professional Banner" class="hero-banner-image" />
+    <div class="hero-banner-overlay">
+      <div class="hero-content">
+        <div class="profile-section">
+          <img src="images/profile.jpg" alt="Temitayo Charles - DevOps Engineer" class="profile-photo" />
+          <div class="profile-info">
+            <!-- Updated hero content to focus on personal branding rather than product marketing -->
+            <h1>Temitayo Charles</h1>
+            <p class="tagline">DevOps Engineer &amp; Container Specialist</p>
+            <p class="hero-description">
+              I streamline development pipelines using containerization, CI/CD automation and cloud infrastructure.
+              Explore my projects and learn how I deliver automated, secure and scalable solutions.
             </p>
           </div>
         </div>
-        <a href="getting-started.html" class="cta-button"
-          style="background:linear-gradient(135deg,#66d9ef,#a6e22e);color:#232526;padding:15px 32px;border-radius:10px;text-decoration:none;font-weight:bold;font-size:1.15rem;box-shadow:0 2px 12px #232526;margin-left:32px;">Get
-          Started Today</a>
+        <a href="getting-started.html" class="cta-button">Get Started Today</a>
       </div>
     </div>
   </div>
   </div>
 
   <div class="main">
-    <!-- New Hero Button Group -->
-    <div class="homepage-main-buttons" style="display:flex;justify-content:center;gap:32px;margin:40px 0 32px 0;">
-      <a href="index.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Home</a>
-      <a href="projects.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Projects</a>
-      <a href="about-me.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">About Me</a>
-      <a href="contact.html" class="cta-primary" style="font-size:1.2rem;min-width:140px;text-align:center;">Contact</a>
-    </div>
-    
-    <!-- Carousel for Project Highlights (Restored) -->
-    <section id="featured" style="margin-bottom:40px;">
-      <div class="carousel" style="max-width:900px;margin:0 auto;overflow:hidden;position:relative;">
-        <div class="carousel-track" style="display:flex;transition:transform 0.6s cubic-bezier(.4,0,.2,1);">
-          <div class="carousel-item"
-            style="min-width:100%;box-sizing:border-box;padding:30px;background:#232526;border-radius:20px;margin-right:20px;color:#fff;">
-            <h3 style="color:#66d9ef;font-size:2rem;margin-bottom:10px;">TC Enterprise DevOps Platform™</h3>
-            <p style="font-size:1.1rem;">A fully customized, production-grade DevOps laboratory engineered by Temitayo Charles.
-              Multi-master Kubernetes, GitOps, Service Mesh, Vault, Prometheus, Grafana, and more.</p>
-          </div>
-          <div class="carousel-item"
-            style="min-width:100%;box-sizing:border-box;padding:30px;background:#764ba2;border-radius:20px;margin-right:20px;color:#fff;">
-            <h3 style="color:#a6e22e;font-size:2rem;margin-bottom:10px;">Ultimate DevOps Container</h3>
-            <p style="font-size:1.1rem;">All-in-one containerized environment with 30+ tools, TLS security, and enterprise
-              monitoring.</p>
-          </div>
-          <div class="carousel-item"
-            style="min-width:100%;box-sizing:border-box;padding:30px;background:#667eea;border-radius:20px;margin-right:20px;color:#fff;">
-            <h3 style="color:#f39c12;font-size:2rem;margin-bottom:10px;">Virtual Vacation Platform</h3>
-            <p style="font-size:1.1rem;">Immersive tourism platform with AI recommendations, Kubernetes deployment, and GitOps
-              automation.</p>
-          </div>
-        </div>
-        <button class="carousel-btn prev"
-          style="position:absolute;top:50%;left:10px;transform:translateY(-50%);background:#232526;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;">&#8592;</button>
-        <button class="carousel-btn next"
-          style="position:absolute;top:50%;right:10px;transform:translateY(-50%);background:#232526;color:#fff;border:none;border-radius:50%;width:40px;height:40px;font-size:1.5rem;cursor:pointer;">&#8594;</button>
-      </div>
-    </section>
-    <!-- FIXED: Featured Project Section (malformed HTML removed) -->
-    <section class="featured-demo-section"
-      style="background: linear-gradient(135deg, #232526 0%, #414345 100%); border: 3px solid #66d9ef; border-radius: 24px; padding: 40px 30px; text-align: center; margin-bottom: 48px; box-shadow: 0 12px 40px rgba(102, 217, 239, 0.12); position: relative; overflow: hidden;">
-      <h2 style="color: #66d9ef; font-size: 2.7rem; margin-bottom: 18px; text-shadow: 0 2px 12px #232526;">
-        🧪 Featured Project: TC Enterprise DevOps Platform™
-      </h2>
-      <p
-        style="margin-bottom: 22px; font-size: 1.15em; color: #e0e0e0; max-width: 700px; margin-left: auto; margin-right: auto;">
-        <strong>TC Enterprise DevOps Platform™</strong>—a fully customized, production-grade DevOps laboratory engineered by
-        <span style="color: #764ba2; font-weight: bold;">Temitayo Charles</span>.<br>
-        <span style="color: #a6e22e;">Multi-master Kubernetes, GitOps, Service Mesh, Vault, Prometheus, Grafana, HA
-          PostgreSQL, Redis Sentinel, and more—tailored for enterprise CI/CD, security, monitoring, and disaster
-          recovery.</span>
+    <!-- Featured Demo Section -->
+    <section class="featured-demo-section" style="
+      background: linear-gradient(135deg, rgba(118, 75, 162, 0.1), rgba(102, 126, 234, 0.1));
+      border: 2px solid rgba(118, 75, 162, 0.3);
+      border-radius: 20px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 40px;
+      backdrop-filter: blur(10px);
+    ">
+      <h2 style="color: #764ba2; margin-bottom: 15px;">🌟 Featured Project: Virtual Vacation Platform</h2>
+      <p style="margin-bottom: 20px; font-size: 1.1em; color: #ccc;">
+        Experience my latest cloud-native application with <strong>real interactive demos</strong> across 7 global destinations
       </p>
-      <div
-        style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #e0e0e0; margin: 0 auto 18px auto; max-width: 700px; box-shadow: 0 2px 12px #232526;">
-        <h3 style="color: #66d9ef; margin-bottom: 8px;">What Problems Does This Lab Solve?</h3>
-        <ul style="text-align: left; font-size: 1.05em; color: #e0e0e0; margin: 0 0 0 18px;">
-          <li><strong>Cloud Cost:</strong> Simulates full enterprise infrastructure at zero cloud spend</li>
-          <li><strong>Complexity:</strong> One-click setup for multi-master Kubernetes, CI/CD, and monitoring</li>
-          <li><strong>Security:</strong> Zero-trust, dynamic secrets, policy enforcement, and runtime threat detection</li>
-          <li><strong>Reliability:</strong> HA clusters, automated failover, disaster recovery, and chaos engineering</li>
-          <li><strong>Onboarding:</strong> Hands-on training for staff/principal-level DevOps skills</li>
-          <li><strong>Operational Excellence:</strong> Automated scaling, monitoring, and compliance reporting</li>
-        </ul>
+      <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+        <a href="virtual-vacation-demo.html" target="_blank" style="
+          background: linear-gradient(135deg, #764ba2, #667eea);
+          color: white;
+          padding: 12px 25px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-weight: bold;
+          animation: pulse-glow 2s infinite;
+          box-shadow: 0 8px 25px rgba(118, 75, 162, 0.3);
+        ">🚀 Try Interactive Demo</a>
+        <a href="project-virtual-vacation.html" style="
+          background: rgba(255, 255, 255, 0.1);
+          color: #67ffcc;
+          padding: 12px 25px;
+          border-radius: 25px;
+          text-decoration: none;
+          font-weight: bold;
+          border: 2px solid #67ffcc;
+        ">📖 Project Details</a>
       </div>
-      <!-- Architectural Diagram SVG (draw.io/Lucidchart style) -->
-      <div style="display: flex; justify-content: center; margin-bottom: 28px;">
-        <div
-          style="background: #fff; border-radius: 16px; box-shadow: 0 4px 24px rgba(102,217,239,0.08); padding: 18px; max-width: 600px; width: 100%;">
-          <svg viewBox="0 0 600 320" width="100%" height="220" style="display: block; margin: 0 auto;">
-            <rect x="20" y="20" width="560" height="280" rx="24" fill="#f8f9fa" stroke="#66d9ef" stroke-width="2" />
-            <text x="300" y="50" text-anchor="middle" font-size="22" fill="#764ba2"
-              font-family="Segoe UI, sans-serif">Enterprise DevOps Platform</text>
-            <rect x="60" y="80" width="160" height="60" rx="12" fill="#e0e7ff" stroke="#764ba2" stroke-width="2" />
-            <text x="140" y="110" text-anchor="middle" font-size="16" fill="#232526">Kubernetes Cluster</text>
-            <rect x="380" y="80" width="160" height="60" rx="12" fill="#e0e7ff" stroke="#66d9ef" stroke-width="2" />
-            <text x="460" y="110" text-anchor="middle" font-size="16" fill="#232526">Service Mesh (Istio)</text>
-            <rect x="60" y="170" width="160" height="60" rx="12" fill="#fffbe6" stroke="#f39c12" stroke-width="2" />
-            <text x="140" y="200" text-anchor="middle" font-size="16" fill="#232526">Vault / Secrets</text>
-            <rect x="380" y="170" width="160" height="60" rx="12" fill="#e6fffa" stroke="#67ffcc" stroke-width="2" />
-            <text x="460" y="200" text-anchor="middle" font-size="16" fill="#232526">Monitoring (Prometheus/Grafana)</text>
-            <rect x="220" y="250" width="160" height="40" rx="10" fill="#e0ffe6" stroke="#a6e22e" stroke-width="2" />
-            <text x="300" y="275" text-anchor="middle" font-size="15" fill="#232526">CI/CD: GitHub Actions → Jenkins →
-              ArgoCD</text>
-            <line x1="140" y1="140" x2="140" y2="170" stroke="#764ba2" stroke-width="2" marker-end="url(#arrow)" />
-            <line x1="460" y1="140" x2="460" y2="170" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
-            <line x1="300" y1="140" x2="300" y2="250" stroke="#a6e22e" stroke-width="2" marker-end="url(#arrow)" />
-            <defs>
-              <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
-                <path d="M0,0 L10,5 L0,10 L2,5 Z" fill="#232526" />
-              </marker>
-            </defs>
-          </svg>
-        </div>
-      </div>
-      <!-- Demo Video Placeholder -->
-      <div style="margin-bottom: 24px;">
-        <h3 style="color:#66d9ef;margin-bottom:12px;">Ultimate DevOps Container Demo Journey</h3>
-        <div style="display:grid;grid-template-columns:1fr;gap:24px;max-width:700px;margin:0 auto;">
-          <div>
-            <video width="100%" height="270" controls poster="images/devops-demo-poster.png"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-01-dockerhub.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#a6e22e;font-size:1rem;margin-top:8px;">Step 1: Pulling the Ultimate DevOps Container from
-              DockerHub</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/devops-demo-poster.png"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-02-run-container.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#66d9ef;font-size:1rem;margin-top:8px;">Step 2: Running the Container and Initializing the
-              Environment</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/devops-demo-poster.png"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-03-initial-setup.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#f39c12;font-size:1rem;margin-top:8px;">Step 3: Initial Setup and Configuration</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/devops-demo-poster.png"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-04-tools-tour.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#764ba2;font-size:1rem;margin-top:8px;">Step 4: Exploring Built-in DevOps Tools</p>
-          </div>
-          <div>
-            <video width="100%" height="270" controls poster="images/devops-demo-poster.png"
-              style="border-radius:16px;box-shadow:0 4px 24px rgba(102,217,239,0.08);">
-              <source src="videos/devops-demo-05-monitoring.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            <p style="color:#28a745;font-size:1rem;margin-top:8px;">Step 5: Monitoring, Dashboards, and Observability</p>
-          </div>
-        </div>
-      </div>
-      <!-- Key Highlights -->
-      <div style="display: flex; gap: 32px; justify-content: center; flex-wrap: wrap; margin-bottom: 18px;">
-        <div
-          style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #a6e22e; min-width: 220px; box-shadow: 0 2px 12px #232526;">
-          <h3 style="margin-bottom: 8px;">🛡️ Zero-Trust Security</h3>
-          <p style="color: #e0e0e0;">Vault OIDC, Service Mesh, Policy Enforcement, Runtime Threat Detection</p>
-        </div>
-        <div
-          style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #66d9ef; min-width: 220px; box-shadow: 0 2px 12px #232526;">
-          <h3 style="margin-bottom: 8px;">📈 Enterprise Monitoring</h3>
-          <p style="color: #e0e0e0;">Prometheus, Grafana, Distributed Tracing, Alerting, SLI/SLO Dashboards</p>
-        </div>
-        <div
-          style="background: #232526; border-radius: 12px; padding: 18px 24px; color: #f39c12; min-width: 220px; box-shadow: 0 2px 12px #232526;">
-          <h3 style="margin-bottom: 8px;">🚀 Progressive Delivery</h3>
-          <p style="color: #e0e0e0;">Canary Deployments, GitOps, Automated Rollbacks, Event-Driven Scaling</p>
-        </div>
-      </div>
-      <a href="project-tc-enterprise-devops-platform.html" style="
-                    background: linear-gradient(135deg, #66d9ef, #a6e22e);
-                    color: #232526;
-                    padding: 15px 32px;
-                    border-radius: 10px;
-                    text-decoration: none;
-                    font-weight: bold;
-        font-size: 1.15rem;
-        box-shadow: 0 2px 12px #232526;
-        margin-top: 12px;
-        display: inline-block;
-        transition: background 0.3s;
-      ">� Explore Full Project Details</a>
     </section>
 
     <section class="intro-section">
@@ -651,10 +399,6 @@
   </div>
   
   <footer>
-  <!-- Floating Back to Top Button -->
-  <button id="backToTop"
-    style="position:fixed;bottom:30px;right:30px;background:#66d9ef;color:#232526;border:none;border-radius:50%;width:56px;height:56px;font-size:2rem;box-shadow:0 4px 16px rgba(102,217,239,0.18);cursor:pointer;z-index:9999;display:none;transition:background 0.3s;"
-    title="Back to Top">↑</button>
     <h3>Connect with Me</h3>
     <div class="social-links">
       <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
@@ -664,51 +408,6 @@
     <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
   </footer>
   <script>
-    // Carousel Functionality
-      let carouselIndex = 0;
-    const carouselTrack = document.querySelector('.carousel-track');
-    const carouselItems = document.querySelectorAll('.carousel-item');
-      const prevBtn = document.querySelector('.carousel-btn.prev');
-      const nextBtn = document.querySelector('.carousel-btn.next');
-
-      function updateCarousel() {
-        carouselTrack.style.transform = `translateX(-${carouselIndex * 100}%)`;
-      }
-      if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-          carouselIndex = (carouselIndex - 1 + carouselItems.length) % carouselItems.length;
-          updateCarousel();
-        });
-        nextBtn.addEventListener('click', () => {
-          carouselIndex = (carouselIndex + 1) % carouselItems.length;
-          updateCarousel();
-        });
-      }
-
-      // Animated Metrics
-      function animateCounter(element, target) {
-        let count = 0;
-        const duration = 1200;
-        const increment = target / (duration / 20);
-        const timer = setInterval(() => {
-          count += increment;
-          if (count >= target) {
-            element.textContent = target;
-            clearInterval(timer);
-          } else {
-            element.textContent = Math.floor(count);
-          }
-        }, 20);
-      }
-      function setupMetricsAnimation() {
-        const metricNumbers = document.querySelectorAll('.metric-number');
-        metricNumbers.forEach(metric => {
-          const target = parseInt(metric.getAttribute('data-target'), 10);
-          animateCounter(metric, target);
-        });
-      }
-      document.addEventListener('DOMContentLoaded', setupMetricsAnimation);
-
     // Interactive Demo Functionality
     function openDemo(demoType) {
       let demoModal = document.getElementById('demoModal');
@@ -857,7 +556,50 @@
               <h2 style="margin: 0 0 20px 0; color: #333;">🔄 Complete DevOps Workflow</h2>
               <img src="images/demos/demo-05-full-workflow.gif" alt="Full Workflow" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" />
               <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
-                <h3 style="margin: 0 0 15px  0; font-size: 1.5rem;">🎯 Project Highlights</h3>
+                <h3 style="margin: 0 0 15px 0;">End-to-End Process Flow:</h3>
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+                  <div style="text-align: center; flex: 1; min-width: 100px;">
+                    <div style="font-size: 2rem; margin-bottom: 5px;">💻</div>
+                    <div style="font-size: 0.9rem;">Code</div>
+                  </div>
+                  <div style="color: rgba(255,255,255,0.7);">→</div>
+                  <div style="text-align: center; flex: 1; min-width: 100px;">
+                    <div style="font-size: 2rem; margin-bottom: 5px;">🔨</div>
+                    <div style="font-size: 0.9rem;">Build</div>
+                  </div>
+                  <div style="color: rgba(255,255,255,0.7);">→</div>
+                  <div style="text-align: center; flex: 1; min-width: 100px;">
+                    <div style="font-size: 2rem; margin-bottom: 5px;">🧪</div>
+                    <div style="font-size: 0.9rem;">Test</div>
+                  </div>
+                  <div style="color: rgba(255,255,255,0.7);">→</div>
+                  <div style="text-align: center; flex: 1; min-width: 100px;">
+                    <div style="font-size: 2rem; margin-bottom: 5px;">🚀</div>
+                    <div style="font-size: 0.9rem;">Deploy</div>
+                  </div>
+                  <div style="color: rgba(255,255,255,0.7);">→</div>
+                  <div style="text-align: center; flex: 1; min-width: 100px;">
+                    <div style="font-size: 2rem; margin-bottom: 5px;">📊</div>
+                    <div style="font-size: 0.9rem;">Monitor</div>
+                  </div>
+                </div>
+              </div>
+              <p style="line-height: 1.6; color: #555;">
+                This comprehensive demo shows a real-world scenario: from committing code changes to seeing them live in production, complete with automated testing, security scanning, and performance monitoring.
+              </p>
+              <a href="use-cases.html" style="display: inline-block; padding: 12px 24px; background: #6f42c1; color: white; text-decoration: none; border-radius: 6px; margin-top: 15px;">Explore Use Cases</a>
+            </div>
+          `;
+          break;
+          
+        case 'virtual-vacation':
+          content = `
+            <div style="background: white; border-radius: 15px; padding: 30px; max-width: 1000px; max-height: 90vh; overflow-y: auto; position: relative;">
+              <button onclick="closeDemo()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
+              <h2 style="margin: 0 0 20px 0; color: #333;">🌐 Virtual Vacation Platform</h2>
+              <img src="images/technology-stack-showcase.svg" alt="Virtual Vacation Architecture" style="width: 100%; border-radius: 10px; margin-bottom: 20px; background: #f8f9fa; padding: 20px;" />
+              <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 25px; border-radius: 12px; margin-bottom: 25px;">
+                <h3 style="margin: 0 0 15px 0; font-size: 1.5rem;">🎯 Project Highlights</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
                   <div style="text-align: center;">
                     <div style="font-size: 2rem; margin-bottom: 8px;">🚀</div>
@@ -955,40 +697,6 @@
         closeDemo();
       }
     });
-
-  // FIXED: Sidebar Functionality
-  const sidebarToggle = document.getElementById('sidebarToggle');
-  const globalSidebar = document.getElementById('globalSidebar');
-  const sidebarClose = document.getElementById('sidebarClose');
-  const sidebarOverlay = document.getElementById('sidebarOverlay');
-
-  function openSidebar() {
-    globalSidebar.classList.add('open');
-    sidebarOverlay.style.display = 'block';
-    setTimeout(() => { sidebarOverlay.style.opacity = '1'; }, 10);
-    document.body.style.overflow = 'hidden';
-  }
-  function closeSidebar() {
-    globalSidebar.classList.remove('open');
-    sidebarOverlay.style.opacity = '0';
-    setTimeout(() => { sidebarOverlay.style.display = 'none'; }, 300);
-    document.body.style.overflow = 'auto';
-  }
-  sidebarToggle.addEventListener('click', openSidebar);
-  sidebarClose.addEventListener('click', closeSidebar);
-  sidebarOverlay.addEventListener('click', closeSidebar);
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeSidebar();
-  });
-  function handleSidebarToggleVisibility() {
-    if (window.innerWidth > 900) {
-      sidebarToggle.style.display = 'none';
-    } else {
-      sidebarToggle.style.display = 'block';
-    }
-  }
-  window.addEventListener('resize', handleSidebarToggleVisibility);
-  document.addEventListener('DOMContentLoaded', handleSidebarToggleVisibility);
   </script>
 </body>
 </html>
