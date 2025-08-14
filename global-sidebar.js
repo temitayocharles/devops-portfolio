@@ -55,12 +55,37 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
     
+<<<<<<< HEAD
     // Insert sidebar at beginning of body
     document.body.insertAdjacentHTML('afterbegin', sidebarHTML);
     
     // Wrap existing content
     const existingContent = document.body.innerHTML.replace(sidebarHTML, '');
     document.body.innerHTML = sidebarHTML + '<div class="content-wrapper">' + existingContent + '</div>';
+=======
+        // Create a container for the sidebar
+    const sidebarContainer = document.createElement('div');
+    sidebarContainer.innerHTML = sidebarHTML;
+    
+    // Create a container for existing content
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'content-wrapper';
+    
+    // Move all existing body content into the wrapper
+    while (document.body.firstChild) {
+        if (document.body.firstChild.tagName === 'SCRIPT') {
+            const script = document.body.firstChild;
+            document.body.removeChild(script);
+            document.body.appendChild(script);
+        } else {
+            contentWrapper.appendChild(document.body.firstChild);
+        }
+    }
+    
+    // Add both containers to the body
+    document.body.insertBefore(sidebarContainer.firstChild, document.body.firstChild);
+    document.body.appendChild(contentWrapper);
+>>>>>>> e2f3a67 (Rebrand)
     
     // Set active page
     setActivePage();
@@ -116,13 +141,34 @@ function closeSidebar() {
 
 // Set active page based on current URL
 function setActivePage() {
+<<<<<<< HEAD
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+=======
+    const currentPath = window.location.pathname;
+    const currentPage = currentPath.split('/').pop() || 'index.html';
+>>>>>>> e2f3a67 (Rebrand)
     const navItems = document.querySelectorAll('.sidebar-nav-item');
     
     navItems.forEach(item => {
         item.classList.remove('active');
+<<<<<<< HEAD
         if (item.getAttribute('href') === currentPage) {
             item.classList.add('active');
+=======
+        const href = item.getAttribute('href');
+        
+        // Check if the current page matches the href
+        if (href === currentPage || 
+            (currentPage === '' && href === 'index.html') ||
+            (href !== 'index.html' && currentPath.includes(href))) {
+            item.classList.add('active');
+            
+            // Expand parent group if it exists
+            const parentGroup = item.closest('.sidebar-nav-group');
+            if (parentGroup) {
+                parentGroup.classList.add('expanded');
+            }
+>>>>>>> e2f3a67 (Rebrand)
         }
     });
 }

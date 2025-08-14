@@ -81,7 +81,11 @@
 
 .sidebar-nav-item {
   display: block;
+<<<<<<< HEAD
   color: #ccc;
+=======
+  color: #e6e6e6;  /* Increased contrast for better readability */
+>>>>>>> e2f3a67 (Rebrand)
   text-decoration: none;
   padding: 12px 15px;
   border-radius: 8px;
@@ -89,6 +93,7 @@
   transition: all 0.3s ease;
   border-left: 3px solid transparent;
   position: relative;
+<<<<<<< HEAD
 }
 
 .sidebar-nav-item:hover {
@@ -102,6 +107,32 @@
   background: rgba(166, 226, 46, 0.1);
   color: #a6e22e;
   border-left-color: #a6e22e;
+=======
+  outline: none;  /* Remove default outline */
+}
+
+.sidebar-nav-item:hover,
+.sidebar-nav-item:focus {  /* Add focus styles for keyboard navigation */
+  background: rgba(102, 217, 239, 0.15);  /* Increased opacity for better contrast */
+  color: #66d9ef;
+  border-left-color: #66d9ef;
+  transform: translateX(5px);
+  outline: 2px solid #66d9ef;  /* Visible focus indicator */
+  outline-offset: -2px;
+}
+
+.sidebar-nav-item.active {
+  background: rgba(166, 226, 46, 0.15);  /* Increased opacity for better contrast */
+  color: #a6e22e;
+  border-left-color: #a6e22e;
+  font-weight: bold;  /* Make active state more prominent */
+}
+
+/* Add keyboard focus styles for active items */
+.sidebar-nav-item.active:focus {
+  outline: 2px solid #a6e22e;
+  outline-offset: -2px;
+>>>>>>> e2f3a67 (Rebrand)
 }
 
 .sidebar-nav-item::before {
@@ -249,6 +280,25 @@ nav a.active {
   background-color: rgba(166, 226, 46, 0.2);
 }
 
+<<<<<<< HEAD
+=======
+nav a.resume-btn {
+  background: linear-gradient(135deg, #66d9ef, #a6e22e);
+  color: #0e0e0e;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+nav a.resume-btn:hover {
+  color: #0e0e0e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(102, 217, 239, 0.3);
+  background: linear-gradient(135deg, #a6e22e, #66d9ef);
+}
+
+>>>>>>> e2f3a67 (Rebrand)
 /* Hero Banner Section */
 .hero-banner {
   position: relative;

@@ -56,3 +56,4 @@ yarn.lock
 ## Documentation Drafts
 *-draft.*
 *-temp.*
+.env.public.json
