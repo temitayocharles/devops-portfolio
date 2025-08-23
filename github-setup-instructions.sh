@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 🚀 GitHub Repository Creation Instructions
-# ==========================================
+# 
 
 echo "📋 Manual Repository Creation Steps:"
 echo ""

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# =============================================================================
+# 
 # Portfolio Thumbnail Generator
 # Converts architectural diagrams to optimized thumbnails for better UX
-# =============================================================================
+# 
 
 echo "🎨 Generating optimized project thumbnails..."
 

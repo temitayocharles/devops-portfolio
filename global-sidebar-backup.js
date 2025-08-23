@@ -1,4 +1,4 @@
-// Enhanced Global Sidebar Navigation JavaScript
+// Global Sidebar Navigation JavaScript
 document.addEventListener('DOMContentLoaded', function() {
     // Create sidebar HTML
     const sidebarHTML = `
@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="sidebar-nav-group hot-projects">
                 <div class="sidebar-nav-title">🌟 Featured & Trending</div>
-                <a href="project-tc-enterprise-lab.html" class="sidebar-nav-item viral" data-icon="🏭" title="TC-Enterprise Lab - Latest Innovation">TC-Enterprise Lab 🆕</a>
                 <a href="project-virtual-vacation.html" class="sidebar-nav-item viral" data-icon="🌍" title="Virtual Vacation - AI Tourism Platform">Virtual Vacation 🔥</a>
                 <a href="virtual-vacation-demo.html" class="sidebar-nav-item live" data-icon="🚀" title="Live Interactive Demo">Interactive Demo 🔴</a>
                 <a href="project-ultimate-devops-container.html" class="sidebar-nav-item exclusive" data-icon="🐳" title="Ultimate DevOps Container">DevOps Container ⭐</a>
@@ -77,7 +76,15 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
     `;
     
-    // Create a container for the sidebar
+
+    // Insert sidebar at beginning of body
+    document.body.insertAdjacentHTML('afterbegin', sidebarHTML);
+    
+    // Wrap existing content
+    const existingContent = document.body.innerHTML.replace(sidebarHTML, '');
+    document.body.innerHTML = sidebarHTML + '<div class="content-wrapper">' + existingContent + '</div>';
+
+        // Create a container for the sidebar
     const sidebarContainer = document.createElement('div');
     sidebarContainer.innerHTML = sidebarHTML;
     
@@ -99,12 +106,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add both containers to the body
     document.body.insertBefore(sidebarContainer.firstChild, document.body.firstChild);
     document.body.appendChild(contentWrapper);
+
     
     // Set active page
     setActivePage();
-    
-    // Initialize view counter
-    initializeViewCounter();
     
     // Close sidebar when clicking outside
     document.addEventListener('click', function(e) {
@@ -157,12 +162,20 @@ function closeSidebar() {
 
 // Set active page based on current URL
 function setActivePage() {
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
     const currentPath = window.location.pathname;
     const currentPage = currentPath.split('/').pop() || 'index.html';
+
     const navItems = document.querySelectorAll('.sidebar-nav-item');
     
     navItems.forEach(item => {
         item.classList.remove('active');
+
+        if (item.getAttribute('href') === currentPage) {
+            item.classList.add('active');
+
         const href = item.getAttribute('href');
         
         // Check if the current page matches the href
@@ -176,31 +189,7 @@ function setActivePage() {
             if (parentGroup) {
                 parentGroup.classList.add('expanded');
             }
+
         }
     });
 }
-
-// Initialize view counter
-function initializeViewCounter() {
-    const counter = document.getElementById('view-counter');
-    if (counter) {
-        let views = localStorage.getItem('portfolio-views') || 0;
-        views = parseInt(views) + 1;
-        localStorage.setItem('portfolio-views', views);
-        counter.textContent = views.toLocaleString();
-    }
-}
-
-// Add smooth scroll behavior for internal links
-document.addEventListener('click', function(e) {
-    const link = e.target.closest('a[href^="#"]');
-    if (link) {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const targetElement = document.getElementById(targetId);
-        if (targetElement) {
-            targetElement.scrollIntoView({ behavior: 'smooth' });
-            closeSidebar();
-        }
-    }
-});

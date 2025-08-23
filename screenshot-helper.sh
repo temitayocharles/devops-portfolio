@@ -2,7 +2,7 @@
 
 # Screenshot extraction script for DevOps container demos
 echo "DevOps Container Screenshot Extraction Utility"
-echo "=============================================="
+echo "===="
 
 # Create screenshots directory
 mkdir -p images/screenshots

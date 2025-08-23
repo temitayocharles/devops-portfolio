@@ -1,9 +1,9 @@
 #!/bin/bash
 
-# =============================================================================
+# 
 # Video Optimization Script for DevOps Container Demos
 # Converts .mov files to web-optimized MP4 and WebM formats
-# =============================================================================
+# 
 
 echo "🎬 Optimizing screen recording videos for web..."
 

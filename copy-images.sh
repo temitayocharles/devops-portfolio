@@ -2,7 +2,7 @@
 
 # Script to help copy your images to the correct location
 echo "Ultimate DevOps Portfolio - Image Setup"
-echo "======================================"
+echo "==="
 
 # Create images directory if it doesn't exist
 mkdir -p images

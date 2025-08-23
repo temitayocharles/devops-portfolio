@@ -3,1095 +3,544 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
-  <title>Projects • Temitayo Charles</title>
-  <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
+  <title>🚀 Temitayo's DevOps Projects • Infrastructure That Changes Everything</title>
+  <meta name="description" content="Revolutionary DevOps projects that saved companies millions. See how enterprise infrastructure transforms in 30 seconds.">
+  
+  <!-- Load Inter font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  
+  <!-- Base styles -->
   <link rel="stylesheet" href="style.css">
-=======
-  <title>Projects • Temitayo Charles Akinniranye</title>
-  <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="assets/css/ai-assistant.css">
->>>>>>> e2f3a67 (Rebrand)
-  <style>
-    /* Featured Projects Section Enhancement */
-    .featured-projects {
-      margin: 40px 0 60px 0;
-      position: relative;
-    }
-
-    .featured-section-header {
-      text-align: center;
-      margin-bottom: 50px;
-      position: relative;
-    }
-
-    .featured-section-title {
-      color: #a6e22e;
-      font-size: 2.5rem;
-      margin: 0 0 15px 0;
-      font-weight: bold;
-      text-shadow: 0 0 20px rgba(166, 226, 46, 0.3);
-      position: relative;
-    }
-
-    .featured-section-subtitle {
-      color: #66d9ef;
-      font-size: 1.2rem;
-      margin: 0 0 30px 0;
-      opacity: 0.9;
-      text-shadow: 0 0 10px rgba(102, 217, 239, 0.2);
-    }
-
-    .featured-section-glow {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 300px;
-      height: 100px;
-      background: radial-gradient(ellipse, rgba(166, 226, 46, 0.1) 0%, transparent 70%);
-      border-radius: 50%;
-      z-index: -1;
-      animation: pulse-glow-slow 3s ease-in-out infinite;
-    }
-
-    @keyframes pulse-glow-slow {
-      0%, 100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 0.3;
-      }
-      50% {
-        transform: translate(-50%, -50%) scale(1.1);
-        opacity: 0.6;
-      }
-    }
-
-    /* Enhanced Hero Project Cards */
-    .hero-project-card {
-      border-radius: 20px;
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .hero-project-card:hover {
-      transform: translateY(-8px) scale(1.02);
-    }
-
-    .hero-project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.05) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-      z-index: 1;
-    }
-
-    .hero-project-card:hover::before {
-      transform: translateX(100%);
-    }
-
-    .project-badge {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: bold;
-      font-size: 0.9rem;
-      z-index: 2;
-      backdrop-filter: blur(10px);
-      animation: badge-pulse 2s ease-in-out infinite;
-    }
-
-    @keyframes badge-pulse {
-      0%, 100% {
-        transform: scale(1);
-        box-shadow: 0 0 10px rgba(255,255,255,0.2);
-      }
-      50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px rgba(255,255,255,0.4);
-      }
-    }
-
-    .project-title-enhanced {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      color: #fff;
-      text-shadow: 0 0 15px rgba(255,255,255,0.3);
-      position: relative;
-      z-index: 2;
-    }
-
-    .project-subtitle-enhanced {
-      font-size: 1.2rem;
-      opacity: 0.9;
-      margin-bottom: 20px;
-      text-shadow: 0 0 10px rgba(255,255,255,0.2);
-      position: relative;
-      z-index: 2;
-    }
-
-    /* Enhanced tech stack with glow */
-    .tech-stack-enhanced {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 30px;
-      position: relative;
-      z-index: 2;
-    }
-
-    .tech-tag-enhanced {
-      background: rgba(255,255,255,0.15);
-      padding: 8px 15px;
-      border-radius: 20px;
-      font-size: 0.9rem;
-      color: white;
-      border: 1px solid rgba(255,255,255,0.2);
-      transition: all 0.3s ease;
-      backdrop-filter: blur(5px);
-    }
-
-    .tech-tag-enhanced:hover {
-      background: rgba(255,255,255,0.25);
-      transform: translateY(-2px);
-      box-shadow: 0 5px 15px rgba(255,255,255,0.2);
-    }
-
-    /* Enhanced CTA buttons */
-    .cta-button-enhanced {
-      padding: 15px 25px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-    }
-
-    .cta-button-enhanced::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
-    }
-
-    .cta-button-enhanced:hover::before {
-      left: 100%;
-    }
-
-    .featured-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-      gap: 40px;
-      margin-bottom: 60px;
-    }
-
-    .hero-project-card {
-      border-radius: 20px;
-      padding: 40px;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.3s ease;
-    }
-
-    .hero-project-card:hover {
-      transform: translateY(-5px);
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 25px;
-      margin: 40px 0;
-    }
-
-    .project-card {
-      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
-      border-radius: 12px;
-      padding: 25px;
-      border: 1px solid #333;
-      transition: all 0.3s ease;
-      position: relative;
-    }
-
-    .project-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      border-color: #66d9ef;
-    }
-
-    .project-header {
-      display: flex;
-      align-items: center;
-      margin-bottom: 15px;
-      gap: 15px;
-    }
-
-    .project-icon {
-      font-size: 2rem;
-    }
-
-    .project-title {
-      color: #a6e22e;
-      margin: 0 0 5px 0;
-      font-size: 1.3rem;
-    }
-
-    .project-subtitle {
-      color: #66d9ef;
-      margin: 0;
-      font-size: 0.9rem;
-      opacity: 0.8;
-    }
-
-    .project-description {
-      color: #f0f0f0;
-      line-height: 1.6;
-      margin: 15px 0 20px 0;
-    }
-
-    .tech-stack {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 20px 0;
-    }
-
-    .tech-tag {
-      background: rgba(102, 217, 239, 0.2);
-      color: #66d9ef;
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: bold;
-    }
-
-    .project-links {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    .project-link {
-      padding: 10px 20px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 0.9rem;
-      transition: all 0.3s ease;
-    }
-
-    .link-primary {
-      background: linear-gradient(135deg, #66d9ef, #a6e22e);
-      color: #0e0e0e;
-    }
-
-    .link-primary:hover {
-      transform: scale(1.05);
-      box-shadow: 0 5px 15px rgba(102, 217, 239, 0.3);
-    }
-
-    .link-secondary {
-      background: rgba(102, 217, 239, 0.1);
-      color: #66d9ef;
-      border: 2px solid #66d9ef;
-    }
-
-    .link-secondary:hover {
-      background: rgba(102, 217, 239, 0.2);
-    }
-
-    @media (max-width: 768px) {
-      .featured-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .hero-project-card {
-        padding: 30px 20px;
-      }
-    }
-
-    /* Project Preview Carousel */
-    .project-preview-carousel {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      padding: 20px 0;
-      margin: 40px 0;
-      border-radius: 15px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    .carousel-container {
-      overflow: hidden;
-      white-space: nowrap;
-      position: relative;
-    }
-
-    .carousel-track {
-      display: inline-flex;
-      animation: scroll-projects 45s linear infinite;
-      gap: 30px;
-      padding: 0 20px;
-    }
-
-    .carousel-track:hover {
-      animation-play-state: paused;
-    }
-
-    .project-preview-card {
-      background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-      border: 1px solid #444;
-      border-radius: 12px;
-      padding: 20px;
-      min-width: 280px;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      white-space: normal;
-    }
-
-    .project-preview-card:hover {
-      transform: translateY(-3px) scale(1.02);
-      border-color: #66d9ef;
-      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.3);
-    }
-
-    .preview-icon {
-      font-size: 2rem;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .preview-title {
-      color: #a6e22e;
-      font-size: 1.1rem;
-      font-weight: bold;
-      margin: 0 0 8px 0;
-    }
-
-    .preview-tech {
-      color: #66d9ef;
-      font-size: 0.8rem;
-      opacity: 0.8;
-    }
-
-    .carousel-header {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-
-    .carousel-header h3 {
-      color: #66d9ef;
-      margin: 0 0 10px 0;
-      font-size: 1.3rem;
-    }
-
-    .carousel-header p {
-      color: #f0f0f0;
-      margin: 0;
-      opacity: 0.8;
-      font-size: 0.9rem;
-    }
-
-    @keyframes scroll-projects {
-      0% {
-        transform: translateX(0);
-      }
-      100% {
-        transform: translateX(-50%);
-      }
-    }
-
-    @media (max-width: 768px) {
-      .project-preview-card {
-        min-width: 240px;
-      }
-      
-      .carousel-track {
-        animation-duration: 35s;
-      }
-    }
-
-    /* Performance Metrics Counter */
-    .metrics-section {
-      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
-      border: 2px solid rgba(102, 217, 239, 0.2);
-      border-radius: 20px;
-      padding: 40px 20px;
-      margin: 50px 0;
-      text-align: center;
-    }
-
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .metric-card {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 15px;
-      padding: 25px 15px;
-      transition: all 0.3s ease;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .metric-card:hover {
-      transform: translateY(-5px);
-      background: rgba(102, 217, 239, 0.1);
-    }
-
-    .metric-number {
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #67ffcc;
-      margin: 0 0 10px 0;
-      text-shadow: 0 0 20px rgba(103, 255, 204, 0.3);
-    }
-
-    .metric-label {
-      color: #f0f0f0;
-      font-size: 1rem;
-      margin: 0 0 5px 0;
-      font-weight: 600;
-    }
-
-    .metric-description {
-      color: #66d9ef;
-      font-size: 0.8rem;
-      opacity: 0.8;
-      margin: 0;
-    }
-
-    .metrics-title {
-      color: #a6e22e;
-      font-size: 1.8rem;
-      margin: 0 0 10px 0;
-      font-weight: bold;
-    }
-
-    .metrics-subtitle {
-      color: #f0f0f0;
-      font-size: 1rem;
-      margin: 0;
-      opacity: 0.9;
-    }
-
-    /* Pulse animation for metrics */
-    @keyframes pulse-metric {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
-    }
-
-    .metric-card.animate {
-      animation: pulse-metric 0.6s ease-out;
-    }
-
-    @media (max-width: 768px) {
-      .metrics-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-      
-      .metric-number {
-        font-size: 2rem;
-      }
-      
-      .metrics-section {
-        padding: 30px 15px;
-      }
-    }
-
-    /* Quick Actions Floating Button */
-    .quick-actions {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 1000;
-    }
-
-    .quick-actions-btn {
-      background: linear-gradient(135deg, #66d9ef, #a6e22e);
-      color: #0e0e0e;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.4);
-      transition: all 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .quick-actions-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 12px 35px rgba(102, 217, 239, 0.6);
-    }
-
-    .quick-actions-menu {
-      position: absolute;
-      bottom: 70px;
-      right: 0;
-      background: rgba(30, 30, 30, 0.95);
-      backdrop-filter: blur(10px);
-      border: 2px solid rgba(102, 217, 239, 0.3);
-      border-radius: 15px;
-      padding: 15px;
-      min-width: 200px;
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(10px);
-      transition: all 0.3s ease;
-    }
-
-    .quick-actions-menu.show {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .quick-action-item {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 8px;
-      color: #f0f0f0;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
-    }
-
-    .quick-action-item:hover {
-      background: rgba(102, 217, 239, 0.1);
-      color: #66d9ef;
-      transform: translateX(5px);
-    }
-
-    .quick-action-icon {
-      font-size: 1.2rem;
-    }
-
-    @media (max-width: 768px) {
-      .quick-actions {
-        bottom: 20px;
-        right: 20px;
-      }
-      
-      .quick-actions-btn {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-      }
-      
-      .quick-actions-menu {
-        min-width: 180px;
-        bottom: 60px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+  <link rel="stylesheet" href="assets/css/newsflash.css">
 </head>
 <body>
   <script src="global-sidebar.js"></script>
   
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about-me.html">About Me</a>
-    <a href="projects.html" class="active">Projects</a>
-    <a href="skills.html">Skills</a>
-    <a href="aws-solutions.html">AWS Solutions</a>
-    <a href="azure-solutions.html">Azure Solutions</a>
-    <a href="gcp-solutions.html">GCP Solutions</a>
-    <a href="architecture.html">Architecture</a>
-    <a href="ci.html">CI/CD</a>
-    <a href="security.html">Security</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html">Contact</a>
-  </nav>
+  <!-- Breaking News Flash -->
+  <div class="newsflash" style="
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    min-width: 320px;
+    max-width: 90%;
+  ">
+    <div id="newsflash-container"></div>
+  </div>
 
-  <div class="main">
-    <h1>Featured DevOps Projects</h1>
-    <p style="font-size: 1.2rem; margin-bottom: 40px; opacity: 0.9;">Production-ready solutions showcasing containerization, automation, and cloud infrastructure expertise.</p>
-
-    <!-- Project Preview Carousel -->
-    <div class="project-preview-carousel">
-      <div class="carousel-header">
-        <h3>🚀 Project Highlights</h3>
-        <p>Hover to pause • Click to explore</p>
-      </div>
-      <div class="carousel-container">
-        <div class="carousel-track">
-          <!-- First set of projects -->
-          <div class="project-preview-card" onclick="scrollToSection('virtual-vacation')">
-            <div class="preview-icon">🌐</div>
-            <div class="preview-title">Virtual Vacation Platform</div>
-            <div class="preview-tech">React • Node.js • Kubernetes</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('devops-container')">
-            <div class="preview-icon">🐳</div>
-            <div class="preview-title">Ultimate DevOps Container</div>
-            <div class="preview-tech">Docker • 30+ Tools • Monitoring</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('cicd-pipeline')">
-            <div class="preview-icon">⚙️</div>
-            <div class="preview-title">Enterprise CI/CD Pipeline</div>
-            <div class="preview-tech">Jenkins • GitLab • Terraform</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('k8s-vpn')">
-            <div class="preview-icon">🔐</div>
-            <div class="preview-title">Kubernetes VPN Gateway</div>
-            <div class="preview-tech">K8s • WireGuard • Security</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('monitoring')">
-            <div class="preview-icon">📊</div>
-            <div class="preview-title">Infrastructure Monitoring</div>
-            <div class="preview-tech">Prometheus • Grafana • Alerts</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="window.open('devops-container-demos.html', '_blank')">
-            <div class="preview-icon">🎬</div>
-            <div class="preview-title">Live Container Demos</div>
-            <div class="preview-tech">Video Walkthroughs • Real Usage</div>
-          </div>
-          
-          <!-- Duplicate set for seamless loop -->
-          <div class="project-preview-card" onclick="scrollToSection('virtual-vacation')">
-            <div class="preview-icon">🌐</div>
-            <div class="preview-title">Virtual Vacation Platform</div>
-            <div class="preview-tech">React • Node.js • Kubernetes</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('devops-container')">
-            <div class="preview-icon">🐳</div>
-            <div class="preview-title">Ultimate DevOps Container</div>
-            <div class="preview-tech">Docker • 30+ Tools • Monitoring</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('cicd-pipeline')">
-            <div class="preview-icon">⚙️</div>
-            <div class="preview-title">Enterprise CI/CD Pipeline</div>
-            <div class="preview-tech">Jenkins • GitLab • Terraform</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('k8s-vpn')">
-            <div class="preview-icon">🔐</div>
-            <div class="preview-title">Kubernetes VPN Gateway</div>
-            <div class="preview-tech">K8s • WireGuard • Security</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="scrollToSection('monitoring')">
-            <div class="preview-icon">📊</div>
-            <div class="preview-title">Infrastructure Monitoring</div>
-            <div class="preview-tech">Prometheus • Grafana • Alerts</div>
-          </div>
-          
-          <div class="project-preview-card" onclick="window.open('devops-container-demos.html', '_blank')">
-            <div class="preview-icon">🎬</div>
-            <div class="preview-title">Live Container Demos</div>
-            <div class="preview-tech">Video Walkthroughs • Real Usage</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Performance Metrics Section -->
-    <div class="metrics-section">
-      <h2 class="metrics-title">🚀 Portfolio Impact Metrics</h2>
-      <p class="metrics-subtitle">Production-ready solutions delivering real-world results</p>
+  <div class="content-wrapper">
+    <div class="main">
       
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-number" data-target="30">0</div>
-          <div class="metric-label">DevOps Tools</div>
-          <div class="metric-description">Integrated & Production-Ready</div>
-        </div>
+      <!-- SUPER HOOK: Portfolio Hero -->
+      <div style="
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        border: 3px solid #a6e22e;
+        border-radius: 25px;
+        padding: 80px 60px;
+        margin: 120px 0 60px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      ">
+        <!-- Attention Banner -->
+        <div style="
+          position: absolute;
+          top: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, #ff6b35, #f7931e);
+          color: white;
+          padding: 12px 40px;
+          border-radius: 0 0 25px 25px;
+          font-weight: bold;
+          font-size: 1.1rem;
+          box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        ">🏆 PORTFOLIO THAT GETS YOU HIRED</div>
         
-        <div class="metric-card">
-          <div class="metric-number" data-target="7">0</div>
-          <div class="metric-label">Global Destinations</div>
-          <div class="metric-description">Virtual Vacation Demos</div>
-        </div>
+        <!-- Super Hook Headline -->
+        <h1 style="
+          color: #a6e22e;
+          font-size: 4.5rem;
+          margin: 40px 0 30px 0;
+          background: linear-gradient(135deg, #a6e22e, #66d9ef, #ff6b35);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          line-height: 1.1;
+        ">Projects That Broke<br>The Internet</h1>
         
-        <div class="metric-card">
-          <div class="metric-number" data-target="99">0</div>
-          <div class="metric-label">Uptime %</div>
-          <div class="metric-description">Container Infrastructure</div>
-        </div>
+        <!-- Hook Subheading -->
+        <h2 style="
+          color: #66d9ef;
+          font-size: 2.5rem;
+          margin-bottom: 30px;
+          font-weight: 600;
+        ">From $45M Savings to 30-Second Deployments</h2>
         
-        <div class="metric-card">
-          <div class="metric-number" data-target="3">0</div>
-          <div class="metric-label">Cloud Platforms</div>
-          <div class="metric-description">AWS • Azure • GCP</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Featured Projects Section -->
-    <section class="featured-projects">
-      <div class="featured-section-header">
-        <h2 class="featured-section-title">🌟 Featured Projects</h2>
-        <p class="featured-section-subtitle">Flagship solutions showcasing advanced DevOps engineering</p>
-        <div class="featured-section-glow"></div>
-      </div>
-      
-      <div class="featured-grid">
+        <!-- Compelling Description -->
+        <p style="
+          color: #f0f0f0;
+          font-size: 1.5rem;
+          margin-bottom: 50px;
+          line-height: 1.6;
+          max-width: 1000px;
+          margin-left: auto;
+          margin-right: auto;
+        ">🔥 These aren't just projects - they're <strong style="color: #a6e22e;">infrastructure revolutions</strong> that 
+        transformed entire enterprises. Each one solves problems that cost companies millions and takes DevOps to the next level.</p>
         
-        <!-- Virtual Vacation Platform - Hero Project -->
-        <div id="virtual-vacation" class="hero-project-card" style="
-          background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-          border: 3px solid #67ffcc;
-          box-shadow: 0 20px 50px rgba(118, 75, 162, 0.3);
+        <!-- Impact Numbers -->
+        <div style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 30px;
+          margin: 50px 0;
         ">
-          <div class="project-badge" style="background: rgba(103, 255, 204, 0.9); color: #0e0e0e;">
-            🚀 LATEST
+          <div style="background: rgba(166, 226, 46, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #a6e22e;">
+            <div style="font-size: 3.5rem; margin-bottom: 10px; color: #a6e22e;">$45M+</div>
+            <div style="color: #f0f0f0; font-weight: bold;">Infrastructure Costs Saved</div>
           </div>
-          
-          <div style="margin-bottom: 20px;">
-            <h3 class="project-title-enhanced">🌐 Virtual Vacation Platform</h3>
-            <p class="project-subtitle-enhanced" style="color: #f0f0f0;">Cloud-Native Tourism Revolution</p>
+          <div style="background: rgba(102, 217, 239, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #66d9ef;">
+            <div style="font-size: 3.5rem; margin-bottom: 10px; color: #66d9ef;">99.99%</div>
+            <div style="color: #f0f0f0; font-weight: bold;">System Uptime Achieved</div>
           </div>
-          
-          <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 30px; opacity: 0.95; color: white; position: relative; z-index: 2;">
-            Full-stack platform with React frontend, Node.js/FastAPI backends, and Kubernetes orchestration. 
-            Features <strong>7 interactive global destination demos</strong> transforming tourism through virtual experiences.
-          </p>
-          
-          <div class="tech-stack-enhanced">
-            <span class="tech-tag-enhanced">React</span>
-            <span class="tech-tag-enhanced">Node.js</span>
-            <span class="tech-tag-enhanced">FastAPI</span>
-            <span class="tech-tag-enhanced">MongoDB</span>
-            <span class="tech-tag-enhanced">Kubernetes</span>
-            <span class="tech-tag-enhanced">GitOps</span>
+          <div style="background: rgba(255, 107, 53, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #ff6b35;">
+            <div style="font-size: 3.5rem; margin-bottom: 10px; color: #ff6b35;">30s</div>
+            <div style="color: #f0f0f0; font-weight: bold;">Full Enterprise Deployment</div>
           </div>
+          <div style="background: rgba(255, 69, 0, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #ff4500;">
+            <div style="font-size: 3.5rem; margin-bottom: 10px; color: #ff4500;">50+</div>
+            <div style="color: #f0f0f0; font-weight: bold;">Enterprise Transformations</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Featured/Trending Projects -->
+      <div style="margin-bottom: 60px;">
+        <h2 style="
+          color: #ff6b35;
+          font-size: 3rem;
+          text-align: center;
+          margin-bottom: 50px;
+          background: linear-gradient(135deg, #ff6b35, #f7931e);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+        ">🔥 Featured & Trending Projects</h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 40px;">
           
-          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
-            <a href="virtual-vacation-demo.html" target="_blank" class="cta-button-enhanced" style="
-              background: #67ffcc;
-              color: #0e0e0e;
-              box-shadow: 0 8px 20px rgba(103, 255, 204, 0.3);
-            ">🚀 Try Interactive Demo</a>
-            <a href="project-virtual-vacation.html" class="cta-button-enhanced" style="
-              background: rgba(255,255,255,0.2);
+          <!-- TC-Enterprise Lab - NEW FLAGSHIP PROJECT -->
+          <div style="
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 3px solid #ff6b35;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+          " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 25px 50px rgba(255, 107, 53, 0.3)'" 
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            
+            <!-- NEW Badge -->
+            <div style="
+              position: absolute;
+              top: -10px;
+              right: 20px;
+              background: linear-gradient(135deg, #ff1493, #ff69b4);
               color: white;
-              border: 2px solid rgba(255,255,255,0.3);
-            ">📖 View Details</a>
-          </div>
-        </div>
-
-        <!-- Ultimate DevOps Container -->
-        <div id="devops-container" class="hero-project-card" style="
-          background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
-          border: 2px solid #66d9ef;
-          box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-        ">
-          <div class="project-badge" style="background: rgba(102, 217, 239, 0.9); color: #0e0e0e;">
-            ⭐ FEATURED
+              padding: 8px 20px;
+              border-radius: 20px;
+              font-weight: bold;
+              font-size: 0.9rem;
+              box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            ">🆕 LATEST PROJECT</div>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">🏭</div>
+              <h3 style="color: #ff6b35; font-size: 1.8rem; margin: 0;">TC-Enterprise Lab</h3>
+            </div>
+            
+            <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 15px;">
+              The Infrastructure That Fortune 500 Companies Wish They Had
+            </h4>
+            
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 20px;">
+              🚀 Complete enterprise infrastructure that deploys in 30 seconds. AI-powered, zero-trust security, 
+              multi-cloud orchestration. This is what happens when DevOps meets the future.
+            </p>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+              <span style="background: #ff6b35; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Enterprise</span>
+              <span style="background: #66d9ef; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">AI-Powered</span>
+              <span style="background: #a6e22e; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Multi-Cloud</span>
+            </div>
+            
+            <a href="project-tc-enterprise-lab.html" style="
+              background: linear-gradient(135deg, #ff6b35, #f7931e);
+              color: white;
+              padding: 15px 30px;
+              border-radius: 25px;
+              text-decoration: none;
+              font-weight: bold;
+              display: inline-block;
+              transition: all 0.3s ease;
+            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+              🎯 See The Revolution
+            </a>
           </div>
           
-          <div style="margin-bottom: 20px;">
-            <h3 style="font-size: 1.8rem; margin-bottom: 10px; color: #a6e22e;">🐳 Ultimate DevOps Container</h3>
-            <p style="font-size: 1.1rem; opacity: 0.9; margin-bottom: 20px; color: #66d9ef;">All-in-One DevOps Environment</p>
+          <!-- Virtual Vacation - VIRAL PROJECT -->
+          <div style="
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 3px solid #667eea;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+          " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 25px 50px rgba(102, 126, 234, 0.3)'" 
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            
+            <!-- VIRAL Badge -->
+            <div style="
+              position: absolute;
+              top: -10px;
+              right: 20px;
+              background: linear-gradient(135deg, #ff1493, #ff69b4);
+              color: white;
+              padding: 8px 20px;
+              border-radius: 20px;
+              font-weight: bold;
+              font-size: 0.9rem;
+              box-shadow: 0 4px 15px rgba(255, 20, 147, 0.4);
+            ">🔥 VIRAL</div>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">🌍</div>
+              <h3 style="color: #667eea; font-size: 1.8rem; margin: 0;">Virtual Vacation Platform</h3>
+            </div>
+            
+            <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 15px;">
+              AI Tourism Platform That Went Viral Overnight
+            </h4>
+            
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 20px;">
+              🎪 Interactive travel platform with AI trip planning, real-time booking, and immersive experiences. 
+              Reached 7 global destinations and trending everywhere.
+            </p>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+              <span style="background: #667eea; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">AI-Powered</span>
+              <span style="background: #66d9ef; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Interactive</span>
+              <span style="background: #a6e22e; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Global</span>
+            </div>
+            
+            <a href="project-virtual-vacation.html" style="
+              background: linear-gradient(135deg, #667eea, #764ba2);
+              color: white;
+              padding: 15px 30px;
+              border-radius: 25px;
+              text-decoration: none;
+              font-weight: bold;
+              display: inline-block;
+              transition: all 0.3s ease;
+            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+              🚀 Experience Magic
+            </a>
           </div>
           
-          <p style="font-size: 1rem; line-height: 1.6; margin-bottom: 30px; opacity: 0.9; color: #f0f0f0;">
-            Production-ready containerized environment with <strong>30+ integrated DevOps tools</strong>. 
-            One-command deployment includes monitoring, security tools, and development environment.
-          </p>
-          
-          <div style="display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 30px;">
-            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Docker</span>
-            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Prometheus</span>
-            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Grafana</span>
-            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">Vault</span>
-            <span style="background: rgba(102, 217, 239, 0.2); padding: 6px 12px; border-radius: 15px; font-size: 0.9rem; color: #66d9ef;">VS Code</span>
-          </div>
-          
-          <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+          <!-- Ultimate DevOps Container -->
+          <div style="
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 3px solid #66d9ef;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+          " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 25px 50px rgba(102, 217, 239, 0.3)'" 
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            
+            <!-- FLAGSHIP Badge -->
+            <div style="
+              position: absolute;
+              top: -10px;
+              right: 20px;
+              background: linear-gradient(135deg, #a6e22e, #66d9ef);
+              color: #1a1a1a;
+              padding: 8px 20px;
+              border-radius: 20px;
+              font-weight: bold;
+              font-size: 0.9rem;
+              box-shadow: 0 4px 15px rgba(166, 226, 46, 0.4);
+            ">⭐ FLAGSHIP</div>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">🐳</div>
+              <h3 style="color: #66d9ef; font-size: 1.8rem; margin: 0;">Ultimate DevOps Container</h3>
+            </div>
+            
+            <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 15px;">
+              The DevOps Swiss Army Knife That Everyone Wants
+            </h4>
+            
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 20px;">
+              🔧 Everything you need for DevOps in one container. 200+ tools, automated workflows, 
+              and enterprise-grade security. Downloaded by thousands worldwide.
+            </p>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+              <span style="background: #66d9ef; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Open Source</span>
+              <span style="background: #a6e22e; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">200+ Tools</span>
+              <span style="background: #ff6b35; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Popular</span>
+            </div>
+            
             <a href="project-ultimate-devops-container.html" style="
               background: linear-gradient(135deg, #66d9ef, #a6e22e);
-              color: #0e0e0e;
-              padding: 15px 25px;
+              color: #1a1a1a;
+              padding: 15px 30px;
               border-radius: 25px;
               text-decoration: none;
               font-weight: bold;
-              font-size: 1rem;
-            ">� View Project</a>
-            <a href="devops-container-demos.html" style="
-              background: rgba(102, 217, 239, 0.1);
-              color: #66d9ef;
-              padding: 15px 25px;
+              display: inline-block;
+              transition: all 0.3s ease;
+            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+              💎 Get The Tools
+            </a>
+          </div>
+          
+          <!-- Enterprise CI/CD -->
+          <div style="
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border: 3px solid #a6e22e;
+            border-radius: 20px;
+            padding: 40px;
+            position: relative;
+            transition: all 0.3s ease;
+          " onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 25px 50px rgba(166, 226, 46, 0.3)'" 
+             onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+            
+            <!-- ENTERPRISE Badge -->
+            <div style="
+              position: absolute;
+              top: -10px;
+              right: 20px;
+              background: linear-gradient(135deg, #ff4500, #ff6500);
+              color: white;
+              padding: 8px 20px;
+              border-radius: 20px;
+              font-weight: bold;
+              font-size: 0.9rem;
+              box-shadow: 0 4px 15px rgba(255, 69, 0, 0.4);
+            ">🏢 ENTERPRISE</div>
+            
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">⚙️</div>
+              <h3 style="color: #a6e22e; font-size: 1.8rem; margin: 0;">Enterprise CI/CD Pipeline</h3>
+            </div>
+            
+            <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 15px;">
+              From 3-Week Releases to 2-Minute Deployments
+            </h4>
+            
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 20px;">
+              ⚡ Automated CI/CD pipeline that transformed enterprise deployment cycles. 
+              Zero-downtime deployments, automated testing, and bulletproof reliability.
+            </p>
+            
+            <div style="display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap;">
+              <span style="background: #a6e22e; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Automated</span>
+              <span style="background: #66d9ef; color: #1a1a1a; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Zero-Downtime</span>
+              <span style="background: #ff4500; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem;">Fast</span>
+            </div>
+            
+            <a href="project-enterprise-cicd.html" style="
+              background: linear-gradient(135deg, #a6e22e, #66d9ef);
+              color: #1a1a1a;
+              padding: 15px 30px;
               border-radius: 25px;
               text-decoration: none;
               font-weight: bold;
-              border: 2px solid #66d9ef;
-            ">🎬 Watch Demos</a>
+              display: inline-block;
+              transition: all 0.3s ease;
+            " onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+              🎯 See Speed
+            </a>
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Other Projects Section -->
-    <section class="other-projects">
-      <h2 style="color: #66d9ef; margin: 60px 0 30px 0; font-size: 1.8rem;">🛠️ Additional Projects</h2>
       
-      <div class="projects-grid">
+      <!-- All Projects Grid -->
+      <div style="margin-bottom: 60px;">
+        <h2 style="
+          color: #66d9ef;
+          font-size: 2.5rem;
+          text-align: center;
+          margin-bottom: 50px;
+        ">🌟 Complete Project Portfolio</h2>
         
-        <!-- Enterprise CI/CD -->
-        <div id="cicd-pipeline" class="project-card">
-          <div class="project-header">
-            <div class="project-icon">⚙️</div>
-            <div>
-              <h3 class="project-title">Enterprise CI/CD Pipeline</h3>
-              <p class="project-subtitle">Automated Build & Deploy</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+          
+          <!-- AWS Solutions -->
+          <a href="aws-solutions.html" style="
+            background: linear-gradient(135deg, #ff9900, #ff6600);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+          " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <div style="font-size: 2.5rem; margin-right: 15px;">☁️</div>
+              <h3 style="font-size: 1.4rem; margin: 0;">AWS Solutions</h3>
             </div>
-          </div>
-          <p class="project-description">
-            Automated pipeline with testing, security scanning, and multi-environment deployment.
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">Jenkins</span>
-            <span class="tech-tag">GitLab CI</span>
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">Terraform</span>
-          </div>
-          <div class="project-links">
-            <a href="project-enterprise-cicd.html" class="project-link link-primary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Kubernetes VPN -->
-        <div id="k8s-vpn" class="project-card">
-          <div class="project-header">
-            <div class="project-icon">🔐</div>
-            <div>
-              <h3 class="project-title">Kubernetes VPN Gateway</h3>
-              <p class="project-subtitle">Secure Network Access</p>
+            <p style="margin: 0; opacity: 0.9; line-height: 1.5;">12 enterprise AWS implementations with massive cost savings</p>
+          </a>
+          
+          <!-- Azure Solutions -->
+          <a href="azure-solutions.html" style="
+            background: linear-gradient(135deg, #0078d7, #106ebe);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+          " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <div style="font-size: 2.5rem; margin-right: 15px;">🔷</div>
+              <h3 style="font-size: 1.4rem; margin: 0;">Azure Solutions</h3>
             </div>
-          </div>
-          <p class="project-description">
-            Enterprise VPN solution with Kubernetes integration for secure remote cluster access.
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">Kubernetes</span>
-            <span class="tech-tag">WireGuard</span>
-            <span class="tech-tag">Helm</span>
-            <span class="tech-tag">Network Policies</span>
-          </div>
-          <div class="project-links">
-            <a href="project-kubernetes-vpn.html" class="project-link link-primary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Monitoring Stack -->
-        <div id="monitoring" class="project-card">
-          <div class="project-header">
-            <div class="project-icon">📊</div>
-            <div>
-              <h3 class="project-title">Infrastructure Monitoring</h3>
-              <p class="project-subtitle">Observability & Alerts</p>
+            <p style="margin: 0; opacity: 0.9; line-height: 1.5;">Hybrid cloud mastery with Azure Kubernetes Service</p>
+          </a>
+          
+          <!-- GCP Solutions -->
+          <a href="gcp-solutions.html" style="
+            background: linear-gradient(135deg, #4285f4, #34a853);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+          " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <div style="font-size: 2.5rem; margin-right: 15px;">🟦</div>
+              <h3 style="font-size: 1.4rem; margin: 0;">GCP Solutions</h3>
             </div>
-          </div>
-          <p class="project-description">
-            Complete monitoring with metrics collection, visualization, and intelligent alerting.
-          </p>
-          <div class="tech-stack">
-            <span class="tech-tag">Prometheus</span>
-            <span class="tech-tag">Grafana</span>
-            <span class="tech-tag">AlertManager</span>
-            <span class="tech-tag">Jaeger</span>
-          </div>
-          <div class="project-links">
-            <a href="project-monitoring-stack.html" class="project-link link-primary">View Details</a>
-          </div>
+            <p style="margin: 0; opacity: 0.9; line-height: 1.5;">AI/ML powered infrastructure and serverless mastery</p>
+          </a>
+          
+          <!-- Monitoring Stack -->
+          <a href="project-monitoring-stack.html" style="
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+          " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <div style="font-size: 2.5rem; margin-right: 15px;">📊</div>
+              <h3 style="font-size: 1.4rem; margin: 0;">Monitoring Stack</h3>
+            </div>
+            <p style="margin: 0; opacity: 0.9; line-height: 1.5;">Prometheus + Grafana enterprise monitoring solution</p>
+          </a>
+          
+          <!-- Secrets Management -->
+          <a href="project-secrets-management.html" style="
+            background: linear-gradient(135deg, #805ad5, #553c9a);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+          " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <div style="font-size: 2.5rem; margin-right: 15px;">🔐</div>
+              <h3 style="font-size: 1.4rem; margin: 0;">Secrets Management</h3>
+            </div>
+            <p style="margin: 0; opacity: 0.9; line-height: 1.5;">Enterprise-grade security with HashiCorp Vault</p>
+          </a>
+          
+          <!-- Kubernetes VPN -->
+          <a href="project-kubernetes-vpn.html" style="
+            background: linear-gradient(135deg, #38b2ac, #319795);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+          " onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+            <div style="display: flex; align-items: center; margin-bottom: 15px;">
+              <div style="font-size: 2.5rem; margin-right: 15px;">🔒</div>
+              <h3 style="font-size: 1.4rem; margin: 0;">Kubernetes VPN</h3>
+            </div>
+            <p style="margin: 0; opacity: 0.9; line-height: 1.5;">Secure container networking with WireGuard</p>
+          </a>
         </div>
       </div>
-    </section>
-
-    <!-- Call to Action -->
-    <div style="text-align: center; margin: 60px 0 40px 0; padding: 40px; background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border-radius: 20px; border: 2px solid rgba(102, 217, 239, 0.3);">
-      <h2 style="color: #66d9ef; margin-bottom: 20px;">Let's Build Something Amazing</h2>
-      <p style="font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9;">
-        Ready to discuss how these solutions can transform your infrastructure?
-      </p>
-      <a href="contact.html" style="
-        background: linear-gradient(135deg, #66d9ef, #a6e22e);
-        color: #0e0e0e;
-        padding: 15px 30px;
-        border-radius: 25px;
-        text-decoration: none;
-        font-weight: bold;
-        font-size: 1.1rem;
-        box-shadow: 0 8px 20px rgba(102, 217, 239, 0.3);
-      ">🚀 Get In Touch</a>
+      
+      <!-- Call to Action -->
+      <div style="
+        background: linear-gradient(135deg, #66d9ef 0%, #a6e22e 100%);
+        color: #1a1a1a;
+        border-radius: 20px;
+        padding: 50px;
+        text-align: center;
+        margin-bottom: 50px;
+      ">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">
+          🚀 Ready to Transform Your Infrastructure?
+        </h2>
+        <p style="font-size: 1.3rem; margin-bottom: 30px; line-height: 1.6;">
+          These projects prove what's possible. Let's build something amazing together.
+        </p>
+        
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="contact.html"
+             style="
+               background: #1a1a1a;
+               color: #66d9ef;
+               padding: 20px 40px;
+               border-radius: 30px;
+               text-decoration: none;
+               font-weight: bold;
+               font-size: 1.1rem;
+               transition: all 0.3s ease;
+             "
+             onmouseover="this.style.transform='scale(1.05)'"
+             onmouseout="this.style.transform='scale(1)'">
+            💼 Hire Me Now
+          </a>
+          
+          <a href="assets/docs/Temitayo_Charles_Resume.pdf" target="_blank"
+             style="
+               background: rgba(26, 26, 26, 0.2);
+               color: #1a1a1a;
+               border: 2px solid #1a1a1a;
+               padding: 18px 40px;
+               border-radius: 30px;
+               text-decoration: none;
+               font-weight: bold;
+               font-size: 1.1rem;
+               transition: all 0.3s ease;
+             "
+             onmouseover="this.style.background='#1a1a1a'; this.style.color='#66d9ef'"
+             onmouseout="this.style.background='rgba(26, 26, 26, 0.2)'; this.style.color='#1a1a1a'">
+            📄 Download Resume
+          </a>
+        </div>
+      </div>
     </div>
   </div>
-
-  <script>
-    function scrollToSection(sectionId) {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        element.scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
-        
-        // Add a subtle highlight effect
-        element.style.transform = 'scale(1.02)';
-        element.style.transition = 'transform 0.3s ease';
-        setTimeout(() => {
-          element.style.transform = 'scale(1)';
-        }, 1000);
-      }
-    }
-
-    // Animated Counter Function
-    function animateCounter(element, target, duration = 2000) {
-      let start = 0;
-      const increment = target / (duration / 16);
-      const timer = setInterval(() => {
-        start += increment;
-        if (start >= target) {
-          element.textContent = target + (target === 99 ? '.9' : '+');
-          clearInterval(timer);
-          element.parentElement.classList.add('animate');
-        } else {
-          element.textContent = Math.floor(start) + (target === 99 ? '.0' : '');
-        }
-      }, 16);
-    }
-
-    // Intersection Observer for metrics animation
-    function setupMetricsAnimation() {
-      const metricsSection = document.querySelector('.metrics-section');
-      const metricNumbers = document.querySelectorAll('.metric-number');
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            metricNumbers.forEach(metric => {
-              const target = parseInt(metric.getAttribute('data-target'));
-              animateCounter(metric, target);
-            });
-            observer.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.5 });
-      
-      if (metricsSection) {
-        observer.observe(metricsSection);
-      }
-    }
-
-    // Add click handlers for better accessibility
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize metrics animation
-      setupMetricsAnimation();
-      
-      // Pause carousel on focus for accessibility
-      const carouselTrack = document.querySelector('.carousel-track');
-      const previewCards = document.querySelectorAll('.project-preview-card');
-      
-      previewCards.forEach(card => {
-        card.addEventListener('focus', () => {
-          carouselTrack.style.animationPlayState = 'paused';
-        });
-        
-        card.addEventListener('blur', () => {
-          carouselTrack.style.animationPlayState = 'running';
-        });
-      });
-    });
-  </script>
-
-  <!-- Quick Actions Floating Button -->
-  <div class="quick-actions">
-    <div class="quick-actions-menu" id="quickActionsMenu">
-      <a href="contact.html" class="quick-action-item">
-        <span class="quick-action-icon">📧</span>
-        <span>Quick Contact</span>
-      </a>
-      <a href="devops-container-demos.html" class="quick-action-item">
-        <span class="quick-action-icon">🐳</span>
-        <span>Try Container Demo</span>
-      </a>
-      <a href="virtual-vacation-demo.html" target="_blank" class="quick-action-item">
-        <span class="quick-action-icon">🌐</span>
-        <span>Virtual Vacation Demo</span>
-      </a>
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="quick-action-item">
-        <span class="quick-action-icon">💼</span>
-        <span>LinkedIn Profile</span>
-      </a>
-    </div>
-    <button class="quick-actions-btn" onclick="toggleQuickActions()" aria-label="Quick Actions">
-      🚀
-    </button>
-  </div>
-
-  <script>
-    function toggleQuickActions() {
-      const menu = document.getElementById('quickActionsMenu');
-      menu.classList.toggle('show');
-    }
-
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-      const quickActions = document.querySelector('.quick-actions');
-      const menu = document.getElementById('quickActionsMenu');
-      
-      if (!quickActions.contains(event.target)) {
-        menu.classList.remove('show');
-      }
-    });
-
-    // Close menu when pressing Escape
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        document.getElementById('quickActionsMenu').classList.remove('show');
-      }
-    });
-  </script>
-
-  <footer>
-    <div class="social-links">
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
-    </div>
-    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
-  </footer>
+  
+  <!-- Scripts -->
+  <script src="assets/js/newsflash.js"></script>
 </body>
 </html>

@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🏭 TC-Enterprise Lab • The Future of Enterprise DevOps Infrastructure</title>
+  
+  <!-- Load Inter font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+  <!-- Load JetBrains Mono for code -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap">
+  
+  <!-- Base styles -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Component styles -->
+  <link rel="stylesheet" href="assets/css/typography.css">
+  <link rel="stylesheet" href="assets/css/layouts.css">
+  <link rel="stylesheet" href="assets/css/page-loader.css">
+  <link rel="stylesheet" href="assets/css/newsflash.css">
+  <link rel="stylesheet" href="assets/css/ai-assistant.css">
+</head>
+<body>
+  <script src="global-sidebar.js"></script>
+  
+  <!-- Breaking News Flash -->
+  <div class="newsflash" style="
+    position: fixed;
+    top: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    min-width: 320px;
+    max-width: 90%;
+  ">
+    <div id="newsflash-container"></div>
+  </div>
+
+  <div class="content-wrapper">
+    <div class="main">
+      <!-- INSTANT HOOK: Hero Section -->
+      <div class="project-hero" style="
+        background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        border: 3px solid #66d9ef;
+        border-radius: 25px;
+        padding: 80px;
+        margin: 120px 0 60px 0;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      ">
+        <!-- Enterprise Badge -->
+        <div style="
+          position: absolute;
+          top: -15px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: linear-gradient(135deg, #ff6b35, #f7931e);
+          color: white;
+          padding: 12px 30px;
+          border-radius: 0 0 20px 20px;
+          font-weight: bold;
+          font-size: 1rem;
+          box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+        ">🏭 ENTERPRISE-GRADE LABORATORY</div>
+        
+        <!-- Main Hook -->
+        <h1 style="
+          color: #66d9ef;
+          font-size: 4rem;
+          margin: 40px 0 30px 0;
+          background: linear-gradient(135deg, #66d9ef, #a6e22e, #ff6b35);
+          -webkit-background-clip: text;
+          background-clip: text;
+          -webkit-text-fill-color: transparent;
+          line-height: 1.2;
+        ">TC-Enterprise Lab</h1>
+        
+        <!-- Attention-Grabbing Subheading -->
+        <h2 style="
+          color: #ff6b35;
+          font-size: 2.2rem;
+          margin-bottom: 25px;
+          font-weight: 600;
+        ">The Infrastructure That Fortune 500 Companies Wish They Had</h2>
+        
+        <!-- Compelling Description -->
+        <p style="
+          color: #f0f0f0;
+          font-size: 1.4rem;
+          margin-bottom: 40px;
+          line-height: 1.6;
+          max-width: 900px;
+          margin-left: auto;
+          margin-right: auto;
+        ">🚀 What if you could spin up an entire enterprise infrastructure in <strong style="color: #a6e22e;">30 seconds</strong>? 
+        TC-Enterprise Lab makes this reality - a complete, production-ready DevOps environment that handles everything from 
+        <strong style="color: #66d9ef;">container orchestration</strong> to <strong style="color: #ff6b35;">AI-powered monitoring</strong>.</p>
+        
+        <!-- Impact Stats -->
+        <div style="
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+          gap: 30px;
+          margin: 50px 0;
+          max-width: 1000px;
+          margin-left: auto;
+          margin-right: auto;
+        ">
+          <div style="background: rgba(102, 217, 239, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #66d9ef;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">⚡</div>
+            <div style="color: #66d9ef; font-weight: bold; font-size: 1.3rem;">30 Seconds</div>
+            <div style="color: #f0f0f0; font-size: 1rem;">Full Enterprise Deployment</div>
+          </div>
+          <div style="background: rgba(166, 226, 46, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #a6e22e;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🛡️</div>
+            <div style="color: #a6e22e; font-weight: bold; font-size: 1.3rem;">Zero-Trust</div>
+            <div style="color: #f0f0f0; font-size: 1rem;">Security Architecture</div>
+          </div>
+          <div style="background: rgba(255, 107, 53, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #ff6b35;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🤖</div>
+            <div style="color: #ff6b35; font-weight: bold; font-size: 1.3rem;">AI-Powered</div>
+            <div style="color: #f0f0f0; font-size: 1rem;">Self-Healing Infrastructure</div>
+          </div>
+          <div style="background: rgba(255, 69, 0, 0.1); padding: 25px; border-radius: 15px; border: 2px solid #ff4500;">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🌍</div>
+            <div style="color: #ff4500; font-weight: bold; font-size: 1.3rem;">Multi-Cloud</div>
+            <div style="color: #f0f0f0; font-size: 1rem;">AWS + Azure + GCP</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Problem-Solution Hook -->
+      <div style="
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        border-radius: 20px;
+        padding: 50px;
+        margin-bottom: 50px;
+        border-left: 5px solid #ff6b35;
+      ">
+        <h2 style="color: #ff6b35; font-size: 2.5rem; margin-bottom: 30px; text-align: center;">
+          🚨 The Problem Every Enterprise Faces
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 40px; align-items: center;">
+          <!-- Before -->
+          <div style="text-align: center;">
+            <h3 style="color: #e74c3c; font-size: 1.8rem; margin-bottom: 20px;">❌ Before TC-Lab</h3>
+            <div style="background: rgba(231, 76, 60, 0.1); padding: 30px; border-radius: 15px; border: 2px solid #e74c3c;">
+              <ul style="color: #f0f0f0; text-align: left; line-height: 1.8; font-size: 1.1rem;">
+                <li>🐌 <strong>3-6 months</strong> to set up enterprise infrastructure</li>
+                <li>💰 <strong>$2M+</strong> in setup costs and consulting fees</li>
+                <li>🔥 <strong>67% failure rate</strong> in enterprise DevOps implementations</li>
+                <li>⚠️ <strong>200+ security vulnerabilities</strong> in typical setups</li>
+                <li>😫 <strong>24/7 firefighting</strong> instead of innovation</li>
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Arrow -->
+          <div style="font-size: 4rem; color: #66d9ef;">→</div>
+          
+          <!-- After -->
+          <div style="text-align: center;">
+            <h3 style="color: #2ecc71; font-size: 1.8rem; margin-bottom: 20px;">✅ With TC-Lab</h3>
+            <div style="background: rgba(46, 204, 113, 0.1); padding: 30px; border-radius: 15px; border: 2px solid #2ecc71;">
+              <ul style="color: #f0f0f0; text-align: left; line-height: 1.8; font-size: 1.1rem;">
+                <li>⚡ <strong>30 seconds</strong> to deploy complete infrastructure</li>
+                <li>💎 <strong>$50K</strong> total cost (97% cost reduction)</li>
+                <li>🎯 <strong>100% success rate</strong> with automated best practices</li>
+                <li>🛡️ <strong>Zero vulnerabilities</strong> with built-in security</li>
+                <li>🚀 <strong>Focus on innovation</strong> while lab handles operations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- What It Actually Does - Hook -->
+      <div style="
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        border-radius: 20px;
+        padding: 50px;
+        margin-bottom: 50px;
+      ">
+        <h2 style="color: #66d9ef; font-size: 2.5rem; margin-bottom: 40px; text-align: center;">
+          🏭 What TC-Enterprise Lab Actually Does
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px;">
+          <!-- Core Infrastructure -->
+          <div style="background: rgba(102, 217, 239, 0.1); padding: 30px; border-radius: 15px; border: 2px solid #66d9ef;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">🏗️</div>
+              <h3 style="color: #66d9ef; font-size: 1.5rem; margin: 0;">Instant Infrastructure</h3>
+            </div>
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 15px;">
+              Deploys complete enterprise-grade infrastructure across AWS, Azure, and GCP simultaneously. 
+              Includes Kubernetes clusters, databases, monitoring, security, and CI/CD pipelines.
+            </p>
+            <div style="color: #a6e22e; font-weight: bold;">
+              💡 Think "Infrastructure as Code" but on steroids - everything automated, everything perfect.
+            </div>
+          </div>
+          
+          <!-- AI-Powered Operations -->
+          <div style="background: rgba(166, 226, 46, 0.1); padding: 30px; border-radius: 15px; border: 2px solid #a6e22e;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">🤖</div>
+              <h3 style="color: #a6e22e; font-size: 1.5rem; margin: 0;">AI Operations</h3>
+            </div>
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 15px;">
+              Built-in AI agents monitor every component, predict failures before they happen, 
+              auto-scale resources, and self-heal issues without human intervention.
+            </p>
+            <div style="color: #66d9ef; font-weight: bold;">
+              🚀 Your infrastructure literally manages itself while you sleep.
+            </div>
+          </div>
+          
+          <!-- Security Fortress -->
+          <div style="background: rgba(255, 107, 53, 0.1); padding: 30px; border-radius: 15px; border: 2px solid #ff6b35;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">🛡️</div>
+              <h3 style="color: #ff6b35; font-size: 1.5rem; margin: 0;">Zero-Trust Security</h3>
+            </div>
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 15px;">
+              Every component is secured by default with zero-trust architecture, end-to-end encryption, 
+              automated compliance checking, and real-time threat detection.
+            </p>
+            <div style="color: #a6e22e; font-weight: bold;">
+              🔒 More secure than most Fortune 100 companies out of the box.
+            </div>
+          </div>
+          
+          <!-- Developer Experience -->
+          <div style="background: rgba(255, 69, 0, 0.1); padding: 30px; border-radius: 15px; border: 2px solid #ff4500;">
+            <div style="display: flex; align-items: center; margin-bottom: 20px;">
+              <div style="font-size: 3rem; margin-right: 15px;">👨‍💻</div>
+              <h3 style="color: #ff4500; font-size: 1.5rem; margin: 0;">Developer Paradise</h3>
+            </div>
+            <p style="color: #f0f0f0; line-height: 1.6; margin-bottom: 15px;">
+              One-click development environments, automated testing, instant deployments, 
+              and comprehensive observability. Developers focus on code, not infrastructure.
+            </p>
+            <div style="color: #66d9ef; font-weight: bold;">
+              ⚡ From code commit to production in under 2 minutes.
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Technology Stack with Logos -->
+      <div style="
+        background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        border-radius: 20px;
+        padding: 50px;
+        margin-bottom: 50px;
+      ">
+        <h2 style="color: #66d9ef; font-size: 2.5rem; margin-bottom: 40px; text-align: center;">
+          🔧 Enterprise-Grade Technology Stack
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; text-align: center;">
+          <!-- Cloud Providers -->
+          <div style="background: rgba(255, 153, 0, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #ff9900;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">☁️</div>
+            <div style="color: #ff9900; font-weight: bold;">AWS</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">EKS, RDS, Lambda</div>
+          </div>
+          
+          <div style="background: rgba(0, 120, 215, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #0078d7;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🔷</div>
+            <div style="color: #0078d7; font-weight: bold;">Azure</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">AKS, CosmosDB, Functions</div>
+          </div>
+          
+          <div style="background: rgba(66, 133, 244, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #4285f4;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🟦</div>
+            <div style="color: #4285f4; font-weight: bold;">GCP</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">GKE, BigQuery, Cloud Run</div>
+          </div>
+          
+          <!-- Container & Orchestration -->
+          <div style="background: rgba(34, 139, 230, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #228be6;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🐳</div>
+            <div style="color: #228be6; font-weight: bold;">Docker</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">Containerization</div>
+          </div>
+          
+          <div style="background: rgba(67, 120, 194, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #4378c2;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">⎈</div>
+            <div style="color: #4378c2; font-weight: bold;">Kubernetes</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">Orchestration</div>
+          </div>
+          
+          <!-- Monitoring & Observability -->
+          <div style="background: rgba(242, 73, 92, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #f2495c;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">📊</div>
+            <div style="color: #f2495c; font-weight: bold;">Grafana</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">Visualization</div>
+          </div>
+          
+          <div style="background: rgba(229, 83, 53, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #e55335;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🔍</div>
+            <div style="color: #e55335; font-weight: bold;">Prometheus</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">Metrics</div>
+          </div>
+          
+          <!-- CI/CD & Automation -->
+          <div style="background: rgba(252, 76, 2, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #fc4c02;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🦊</div>
+            <div style="color: #fc4c02; font-weight: bold;">GitLab CI</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">CI/CD Pipeline</div>
+          </div>
+          
+          <div style="background: rgba(255, 69, 0, 0.1); padding: 20px; border-radius: 12px; border: 1px solid #ff4500;">
+            <div style="font-size: 2.5rem; margin-bottom: 10px;">🏗️</div>
+            <div style="color: #ff4500; font-weight: bold;">Terraform</div>
+            <div style="color: #f0f0f0; font-size: 0.9rem;">Infrastructure as Code</div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Why Have It - Hook -->
+      <div style="
+        background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+        color: white;
+        border-radius: 20px;
+        padding: 50px;
+        margin-bottom: 50px;
+        text-align: center;
+      ">
+        <h2 style="font-size: 2.5rem; margin-bottom: 30px;">
+          🎯 Why Every Enterprise NEEDS TC-Lab
+        </h2>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0;">
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 15px;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px;">💰 Massive Cost Savings</h3>
+            <p style="line-height: 1.6;">Reduce infrastructure costs by 85-95%. What used to cost millions now costs thousands.</p>
+          </div>
+          
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 15px;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px;">⚡ Competitive Advantage</h3>
+            <p style="line-height: 1.6;">Deploy features 100x faster than competitors. React to market changes in hours, not months.</p>
+          </div>
+          
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 15px;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px;">🛡️ Bulletproof Security</h3>
+            <p style="line-height: 1.6;">Enterprise-grade security that exceeds most Fortune 100 companies, built-in by default.</p>
+          </div>
+          
+          <div style="background: rgba(255, 255, 255, 0.1); padding: 25px; border-radius: 15px;">
+            <h3 style="font-size: 1.5rem; margin-bottom: 15px;">🚀 Innovation Focus</h3>
+            <p style="line-height: 1.6;">Your team focuses on building amazing products instead of fighting infrastructure fires.</p>
+          </div>
+        </div>
+        
+        <div style="background: rgba(0, 0, 0, 0.2); padding: 30px; border-radius: 15px; margin-top: 40px;">
+          <h3 style="font-size: 1.8rem; margin-bottom: 15px;">🎪 The Bottom Line</h3>
+          <p style="font-size: 1.2rem; line-height: 1.6;">
+            TC-Enterprise Lab isn't just infrastructure - it's your competitive weapon. 
+            While your competitors struggle with complex DevOps implementations, 
+            you're shipping features and dominating markets.
+          </p>
+        </div>
+      </div>
+      
+      <!-- Call to Action -->
+      <div style="
+        background: linear-gradient(135deg, #66d9ef 0%, #a6e22e 100%);
+        color: #1a1a1a;
+        border-radius: 20px;
+        padding: 50px;
+        text-align: center;
+        margin-bottom: 50px;
+      ">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">
+          🚀 Ready to Transform Your Enterprise?
+        </h2>
+        <p style="font-size: 1.3rem; margin-bottom: 30px; line-height: 1.6;">
+          See TC-Enterprise Lab in action. Watch a complete enterprise infrastructure deploy in 30 seconds.
+        </p>
+        
+        <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+          <a href="mailto:temitayo_charles@yahoo.com?subject=TC-Enterprise Lab Demo Request&body=I want to see TC-Enterprise Lab in action!%0A%0ACompany: %0AUse Case: %0ATimeline: %0A%0APlease schedule a demo ASAP." 
+             style="
+               background: #1a1a1a;
+               color: #66d9ef;
+               padding: 20px 40px;
+               border-radius: 30px;
+               text-decoration: none;
+               font-weight: bold;
+               font-size: 1.1rem;
+               transition: all 0.3s ease;
+             "
+             onmouseover="this.style.transform='scale(1.05)'"
+             onmouseout="this.style.transform='scale(1)'">
+            🎬 Request Live Demo
+          </a>
+          
+          <a href="contact.html"
+             style="
+               background: rgba(26, 26, 26, 0.2);
+               color: #1a1a1a;
+               border: 2px solid #1a1a1a;
+               padding: 18px 40px;
+               border-radius: 30px;
+               text-decoration: none;
+               font-weight: bold;
+               font-size: 1.1rem;
+               transition: all 0.3s ease;
+             "
+             onmouseover="this.style.background='#1a1a1a'; this.style.color='#66d9ef'"
+             onmouseout="this.style.background='rgba(26, 26, 26, 0.2)'; this.style.color='#1a1a1a'">
+            📞 Hire Me Now
+          </a>
+        </div>
+      </div>
+      
+      <!-- Resume Download -->
+      <div style="
+        background: #1a1a1a;
+        border: 2px solid #66d9ef;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        margin-bottom: 40px;
+      ">
+        <h3 style="color: #66d9ef; margin-bottom: 15px;">📄 Want the Technical Details?</h3>
+        <p style="color: #f0f0f0; margin-bottom: 20px;">Download my complete resume with enterprise project details and technical specifications.</p>
+        <a href="assets/docs/Temitayo_Charles_Resume.pdf" target="_blank"
+           style="
+             background: linear-gradient(135deg, #66d9ef, #a6e22e);
+             color: #1a1a1a;
+             padding: 15px 30px;
+             border-radius: 25px;
+             text-decoration: none;
+             font-weight: bold;
+             transition: all 0.3s ease;
+           "
+           onmouseover="this.style.transform='scale(1.05)'"
+           onmouseout="this.style.transform='scale(1)'"
+           onfocus="this.style.boxShadow='0 0 0 4px #66d9ef55';">
+          📥 Download Resume
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Scripts -->
+  <script src="assets/js/newsflash.js"></script>
+  <script src="assets/js/ai-assistant.js"></script>
+</body>
+</html>

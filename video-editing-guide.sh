@@ -4,7 +4,7 @@
 # This script helps identify and process the screen recordings for professional presentation
 
 echo "🎬 Screen Recording Analysis and Editing Guide"
-echo "=============================================="
+echo "===="
 echo ""
 
 # List all screen recordings with their details

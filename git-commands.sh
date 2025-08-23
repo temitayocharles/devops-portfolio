@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 🚀 Git Commands for Repository Connection
-# ==========================================
+# 
 
 echo "📋 Run these commands after creating the GitHub repository:"
 echo ""

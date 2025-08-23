@@ -40,7 +40,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             <div class="sidebar-nav-group hot-projects">
                 <div class="sidebar-nav-title">🌟 Featured & Trending</div>
-                <a href="project-tc-enterprise-lab.html" class="sidebar-nav-item viral" data-icon="🏭" title="TC-Enterprise Lab - Latest Innovation">TC-Enterprise Lab 🆕</a>
                 <a href="project-virtual-vacation.html" class="sidebar-nav-item viral" data-icon="🌍" title="Virtual Vacation - AI Tourism Platform">Virtual Vacation 🔥</a>
                 <a href="virtual-vacation-demo.html" class="sidebar-nav-item live" data-icon="🚀" title="Live Interactive Demo">Interactive Demo 🔴</a>
                 <a href="project-ultimate-devops-container.html" class="sidebar-nav-item exclusive" data-icon="🐳" title="Ultimate DevOps Container">DevOps Container ⭐</a>

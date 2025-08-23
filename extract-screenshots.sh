@@ -4,7 +4,7 @@
 # This script would extract key frames from the GIF demos to create static screenshots
 
 echo "DevOps Container Screenshot Extraction Utility"
-echo "=============================================="
+echo "===="
 
 # Create screenshots directory
 mkdir -p images/screenshots

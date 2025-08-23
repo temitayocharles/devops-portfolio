@@ -148,11 +148,11 @@ open http://localhost:8000
 |----------|---------|---------|
 | **🐙 GitHub** | [@temitayocharles](https://github.com/temitayocharles) | Source code and projects |
 | **🐳 DockerHub** | [temitayocharles](https://hub.docker.com/u/temitayocharles) | Container images |
-<<<<<<< HEAD
+
 | **💼 LinkedIn** | [Temitayo Charles](https://linkedin.com/in/temitayocharles) | Professional network |
-=======
+
 | **💼 LinkedIn** | [Temitayo Charles Akinniranye](https://linkedin.com/in/temitayocharles) | Professional network |
->>>>>>> e2f3a67 (Rebrand)
+
 | **🌐 Portfolio** | [Live Website](https://temitayocharles.github.io/devops-portfolio/) | Project showcase |
 
 ## 📈 **Performance Metrics**

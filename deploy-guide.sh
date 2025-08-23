@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "🚀 GitHub Pages Deployment Guide"
-echo "================================"
+echo "===="
 echo ""
 echo "To deploy your portfolio to GitHub Pages:"
 echo ""
