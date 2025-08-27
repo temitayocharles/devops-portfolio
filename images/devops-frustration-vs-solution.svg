@@ -1,0 +1,133 @@
+<svg width="1200" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="frustration-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#dc2626;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#7f1d1d;stop-opacity:0.9" />
+    </linearGradient>
+    <linearGradient id="solution-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#059669;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#064e3b;stop-opacity:0.9" />
+    </linearGradient>
+  </defs>
+  
+  <rect width="1200" height="600" fill="#0f1419"/>
+  
+  <!-- Main Title -->
+  <text x="600" y="40" text-anchor="middle" style="font-family: Arial; font-size: 28px; font-weight: bold; fill: white;">
+    The DevOps Transformation Journey
+  </text>
+  
+  <!-- Before (Frustration) -->
+  <rect x="50" y="80" width="500" height="450" rx="20" fill="url(#frustration-grad)" stroke="#dc2626" stroke-width="3"/>
+  <text x="300" y="120" text-anchor="middle" style="font-family: Arial; font-size: 22px; font-weight: bold; fill: white;">
+    😤 BEFORE: The Pain Points
+  </text>
+  
+  <!-- Frustration Items -->
+  <g transform="translate(80, 150)">
+    <g>
+      <circle cx="15" cy="15" r="8" fill="#fee2e2"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #dc2626;">1</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Manual Deployment Hell</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• 6-hour deployment windows</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• Weekend work required</text>
+      <text x="40" y="65" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• High failure rates (40%+)</text>
+    </g>
+    
+    <g transform="translate(0, 90)">
+      <circle cx="15" cy="15" r="8" fill="#fee2e2"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #dc2626;">2</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Environment Inconsistencies</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• "Works on my machine" syndrome</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• Different configs everywhere</text>
+    </g>
+    
+    <g transform="translate(0, 150)">
+      <circle cx="15" cy="15" r="8" fill="#fee2e2"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #dc2626;">3</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Monitoring Blindness</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• Finding issues after customers</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• No observability</text>
+    </g>
+    
+    <g transform="translate(0, 210)">
+      <circle cx="15" cy="15" r="8" fill="#fee2e2"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #dc2626;">4</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Security Afterthoughts</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• Security scans at the end</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• Compliance nightmares</text>
+    </g>
+    
+    <g transform="translate(0, 270)">
+      <circle cx="15" cy="15" r="8" fill="#fee2e2"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #dc2626;">5</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Developer Frustration</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• Slow feedback loops</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #fecaca;">• Burnout from manual work</text>
+    </g>
+  </g>
+  
+  <!-- Arrow -->
+  <g transform="translate(550, 280)">
+    <polygon points="0,20 50,0 50,15 100,15 100,25 50,25 50,40" fill="#f59e0b"/>
+    <text x="50" y="55" text-anchor="middle" style="font-family: Arial; font-size: 14px; font-weight: bold; fill: #f59e0b;">
+      TRANSFORMATION
+    </text>
+  </g>
+  
+  <!-- After (Solution) -->
+  <rect x="650" y="80" width="500" height="450" rx="20" fill="url(#solution-grad)" stroke="#059669" stroke-width="3"/>
+  <text x="900" y="120" text-anchor="middle" style="font-family: Arial; font-size: 22px; font-weight: bold; fill: white;">
+    ✨ AFTER: DevOps Excellence
+  </text>
+  
+  <!-- Solution Items -->
+  <g transform="translate(680, 150)">
+    <g>
+      <circle cx="15" cy="15" r="8" fill="#d1fae5"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #059669;">✓</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Automated Everything</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• 5-minute deployments</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Zero-downtime releases</text>
+      <text x="40" y="65" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• 99.9% success rate</text>
+    </g>
+    
+    <g transform="translate(0, 90)">
+      <circle cx="15" cy="15" r="8" fill="#d1fae5"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #059669;">✓</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Consistent Environments</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Infrastructure as Code</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Container standardization</text>
+    </g>
+    
+    <g transform="translate(0, 150)">
+      <circle cx="15" cy="15" r="8" fill="#d1fae5"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #059669;">✓</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Complete Observability</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Real-time monitoring</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Predictive analytics</text>
+    </g>
+    
+    <g transform="translate(0, 210)">
+      <circle cx="15" cy="15" r="8" fill="#d1fae5"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #059669;">✓</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Security-First Approach</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Shift-left security</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Automated compliance</text>
+    </g>
+    
+    <g transform="translate(0, 270)">
+      <circle cx="15" cy="15" r="8" fill="#d1fae5"/>
+      <text x="15" y="20" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: #059669;">✓</text>
+      <text x="40" y="20" style="font-family: Arial; font-size: 14px; fill: white; font-weight: bold;">Developer Happiness</text>
+      <text x="40" y="35" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Fast feedback loops</text>
+      <text x="40" y="50" style="font-family: Arial; font-size: 12px; fill: #a7f3d0;">• Focus on innovation</text>
+    </g>
+  </g>
+  
+  <!-- Bottom Impact -->
+  <rect x="200" y="550" width="800" height="40" rx="10" fill="rgba(245, 158, 11, 0.2)" stroke="#f59e0b" stroke-width="2"/>
+  <text x="600" y="575" text-anchor="middle" style="font-family: Arial; font-size: 16px; font-weight: bold; fill: white;">
+    🎯 Result: 300% faster delivery • 60% cost reduction • 95% fewer production issues
+  </text>
+</svg>

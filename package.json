@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+    "cheerio": "^1.1.2",
+    "glob": "^11.0.3",
+    "html-minifier-terser": "^7.2.0"
+  },
+  "name": "devops-portfolio-main-2",
+  "version": "1.0.0",
+  "description": "[![Live Website](https://img.shields.io/badge/Live-Website-blue?style=for-the-badge&logo=github)](https://temitayocharles.github.io/devops-portfolio/) [![Docker Pulls](https://img.shields.io/docker/pulls/temitayocharles/devops-charlie?style=for-the-badge&logo=docker)](https://hub.docker.com/r/temitayocharles/devops-charlie) [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)",
+  "main": "chartjs-cdn.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/temitayocharles/devops-portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/temitayocharles/devops-portfolio/issues"
+  },
+  "homepage": "https://github.com/temitayocharles/devops-portfolio#readme"
+}

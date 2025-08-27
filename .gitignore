@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+*.swp
+node_modules/
+
+# Binaries / heavy media
+*.mov
+*.mp4
+*.webm
+*.gif
+videos/
+images/demos/
+images/screenshots/
+
+# Build artifacts
+dist/
+build/
+*.log
+.gitattributes # optional if you don’t want to commit it yet
+# allow optimized media during transition
+!videos/optimized/
+!videos/optimized/*.mp4
+!videos/optimized/*.webm

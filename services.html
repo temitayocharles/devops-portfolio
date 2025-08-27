@@ -1,0 +1,28 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>DevOps Services - Infrastructure, CI/CD, Cloud Solutions</title><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="assets/css/ai-assistant.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"><meta name="description" content="DevOps Services - Infrastructure, CI/CD, Cloud Solutions — page details pending curation."><link rel="canonical" href="https://charliedevops.dev/services.html"><meta property="og:type" content="website"><meta property="og:title" content="DevOps Services - Infrastructure, CI/CD, Cloud Solutions"><meta property="og:description" content="DevOps Services - Infrastructure, CI/CD, Cloud Solutions — page details pending curation."><meta property="og:url" content="https://charliedevops.dev/services.html"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="DevOps Services - Infrastructure, CI/CD, Cloud Solutions"></head><body class="dark-theme"><header></header><main><section class="hero-section"><h1>DevOps &amp; Cloud Engineering Services</h1><p>End-to-end solutions for modern infrastructure and automation needs</p></section><section class="services-grid"><div class="service-card"><i class="fas fa-code-branch"></i><h3>CI/CD Pipeline Implementation</h3><p>Automated deployment pipelines using industry-leading tools:</p><ul><li>Jenkins, GitLab CI, GitHub Actions integration</li><li>Automated testing and quality gates</li><li>Blue-green and canary deployments</li><li>Pipeline metrics and monitoring</li></ul></div><div class="service-card"><i class="fas fa-cloud"></i><h3>Cloud Infrastructure Design</h3><p>Scalable and secure cloud architectures:</p><ul><li>Multi-cloud and hybrid solutions</li><li>Infrastructure as Code (Terraform, CloudFormation)</li><li>High availability and disaster recovery</li><li>Cost optimization strategies</li></ul></div><div class="service-card"><i class="fas fa-shield-alt"></i><h3>Security &amp; Compliance</h3><p>Enterprise-grade security implementation:</p><ul><li>DevSecOps practices and tools</li><li>Compliance automation (SOC2, HIPAA, etc.)</li><li>Security scanning and monitoring</li><li>Access management and encryption</li></ul></div><div class="service-card"><i class="fas fa-tachometer-alt"></i><h3>Monitoring &amp; Observability</h3><p>Comprehensive system visibility:</p><ul><li>Prometheus &amp; Grafana dashboards</li><li>Log aggregation and analysis</li><li>Alert management and on-call</li><li>Performance optimization</li></ul></div><div class="service-card"><i class="fas fa-cubes"></i><h3>Container Orchestration</h3><p>Kubernetes and container expertise:</p><ul><li>Kubernetes cluster setup and management</li><li>Container optimization and security</li><li>Service mesh implementation</li><li>Microservices architecture</li></ul></div><div class="service-card"><i class="fas fa-sync-alt"></i><h3>Process Automation</h3><p>Streamline operations and reduce manual work:</p><ul><li>Workflow automation</li><li>Custom tooling development</li><li>Integration automation</li><li>Self-service platforms</li></ul></div></section><section class="stats-section"><div class="stats-container"><div class="stat-card"><span class="stat-number" data-target="99.99">99.99%</span> <span class="stat-label">Service Uptime</span></div><div class="stat-card"><span class="stat-number" data-target="50">50+</span> <span class="stat-label">Projects Delivered</span></div><div class="stat-card"><span class="stat-number" data-target="40">40%</span> <span class="stat-label">Cost Reduction</span></div><div class="stat-card"><span class="stat-number" data-target="10">10x</span> <span class="stat-label">Deployment Speed</span></div></div></section><section class="certs-section"><h2>Certifications &amp; Expertise</h2><div class="certs-container"><div class="cert-card"> <span class="cert-name">AWS Certified Solutions Architect</span></div><div class="cert-card"> <span class="cert-name">Certified Kubernetes Administrator</span></div><div class="cert-card"> <span class="cert-name">HashiCorp Terraform Associate</span></div></div></section></main><script src="assets/js/ai-assistant.js"></script><script>// Animate stats on scroll
+        const stats = document.querySelectorAll('.stat-number');
+        
+        function animateStats() {
+            stats.forEach(stat => {
+                const target = parseFloat(stat.getAttribute('data-target'));
+                const current = parseFloat(stat.innerText);
+                const increment = target / 100;
+                
+                if (current < target) {
+                    stat.innerText = Math.ceil(current + increment);
+                    setTimeout(animateStats, 20);
+                }
+            });
+        }
+
+        // Start animation when section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateStats();
+                }
+            });
+        });
+
+        document.querySelector('.stats-section').forEach(section => {
+            observer.observe(section);
+        });</script></body></html>
