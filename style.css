@@ -261,7 +261,7 @@ nav a.active {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.4);
+  filter: brightness(0.7);
 }
 
 .hero-banner-overlay {
@@ -270,7 +270,7 @@ nav a.active {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.3) 100%);
+  background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 100%);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Temitayo Charles • DevOps Engineer & Container Specialist</title>
+  <title>Temitayo Charles • DevOps Engineer &amp; Container Specialist</title>
   <meta name="description" content="DevOps Engineer specializing in containerization, automation, and cloud infrastructure. Creator of the Ultimate DevOps Container.">
   
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Temitayo Charles • DevOps Engineer & Container Specialist">
+  <meta property="og:title" content="Temitayo Charles • DevOps Engineer &amp; Container Specialist">
   <meta property="og:description" content="DevOps Engineer specializing in containerization, automation, and cloud infrastructure. Creator of the Ultimate DevOps Container.">
   <meta property="og:url" content="https://charliedevops.dev">
   <meta name="twitter:card" content="summary_large_image">
@@ -23,21 +23,67 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
   <link rel="stylesheet" href="style.css">
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(-50%) translateX(0px); }
+      50% { transform: translateY(-50%) translateX(5px); }
+    }
+    
+    @keyframes slideInRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    
+    .floating-quick-access:hover {
+      animation-play-state: paused;
+    }
+    
+    @media (max-width: 768px) {
+      .quick-access-cloud {
+        position: static !important;
+        margin: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .floating-quick-access {
+        display: none;
+      }
+      
+      .floating-project-cards {
+        display: none;
+      }
+      
+      .profile-info {
+        margin-top: 60px !important;
+      }
+      
+      .profile-photo {
+        max-width: 200px !important;
+        margin-right: 20px !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <script src="global-sidebar.js"></script>
   
-                  <ul class="nav-menu">
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="about-me.html">About</a></li>
-                    <li><a href="skills.html">Skills</a></li>
-                    <li><a href="projects.html">Projects</a></li>
-                    <li><a href="aws-solutions.html">AWS Solutions</a></li>
-                    <li><a href="azure-solutions.html">Azure Solutions</a></li>
-                    <li><a href="gcp-solutions.html">GCP Solutions</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                </ul>
+  <nav>
+    <ul class="nav-menu">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="about-me.html">About</a></li>
+      <li><a href="skills.html">Skills</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
   
   <div class="hero-section">
       <!-- Hero Banner Section -->
@@ -46,26 +92,244 @@
     <div class="hero-banner-overlay">
       <div class="hero-content">
         <div class="profile-section">
-          <img src="images/profile.jpg" alt="Temitayo Charles - DevOps Engineer" class="profile-photo" loading="lazy" />
-          <div class="profile-info">
+          <img src="images/profile.jpg" alt="Temitayo Charles - DevOps Engineer" class="profile-photo" loading="lazy" style="max-width: 300px; border-radius: 50%; box-shadow: 0 10px 30px rgba(0,0,0,0.3); margin-right: 40px;" />
+          <div class="profile-info" style="margin-top: 120px;">
             <!-- Updated hero content to focus on personal branding rather than product marketing -->
-            <h1>Temitayo Charles</h1>
-            <p class="tagline">DevOps Engineer &amp; Container Specialist</p>
-            <p class="hero-description">
+            <h1 style="font-size: 2.5rem; margin-bottom: 15px;">Temitayo Charles</h1>
+            <p class="tagline" style="font-size: 1.2rem; margin-bottom: 20px;">DevOps Engineer &amp; Container Specialist</p>
+            <p class="hero-description" style="font-size: 1rem; line-height: 1.6; margin-bottom: 25px;">
               I streamline development pipelines using containerization, CI/CD automation and cloud infrastructure.
               Explore my projects and learn how I deliver automated, secure and scalable solutions.
             </p>
           </div>
         </div>
-        <a href="getting-started.html" class="cta-button">Get Started Today</a>
+        <a href="getting-started.html" class="cta-button" style="margin-top: 30px;">Get Started Today</a>
       </div>
     </div>
   </div>
   </div>
 
+  <!-- Quick Access Cloud Solutions -->
+  <div class="quick-access-cloud" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  ">
+    <span style="font-size: 0.9rem; color: #333; font-weight: bold; margin-right: 5px;">Cloud:</span>
+    <a href="aws-solutions.html" style="
+      background: linear-gradient(135deg, #FF9900, #FF6600);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(255, 153, 0, 0.3);
+    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">AWS</a>
+    <a href="azure-solutions.html" style="
+      background: linear-gradient(135deg, #0078D4, #005A9E);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(0, 120, 212, 0.3);
+    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Azure</a>
+    <a href="gcp-solutions.html" style="
+      background: linear-gradient(135deg, #4285F4, #3367D6);
+      color: white;
+      padding: 8px 12px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">GCP</a>
+  </div>
+
+  <!-- Floating Quick Access Sidebar -->
+  <div class="floating-quick-access" style="
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+  ">
+    <div style="font-size: 0.8rem; color: #666; font-weight: bold; margin-bottom: 5px; writing-mode: vertical-rl; text-orientation: mixed;">Quick Access</div>
+    
+    <a href="#featured-demo" style="
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
+      position: relative;
+    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(118, 75, 162, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(118, 75, 162, 0.3)'" title="Featured Demo">
+      🌟
+    </a>
+    
+    <a href="#projects" style="
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+      position: relative;
+    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 53, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 53, 0.3)'" title="Project Deep Dives">
+      🚀
+    </a>
+    
+    <a href="#demos" style="
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+      position: relative;
+    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)'" title="Live Demos">
+      🎬
+    </a>
+    
+    <a href="#contact" style="
+      background: linear-gradient(135deg, #a6e22e, #66d9ef);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3);
+      position: relative;
+    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(166, 226, 46, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(166, 226, 46, 0.3)'" title="Contact Me">
+      💬
+    </a>
+  </div>
+
+  <!-- Floating Project Cards -->
+  <div class="floating-project-cards" style="
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 300px;
+  ">
+    <div class="floating-card" style="
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      animation: slideInRight 0.8s ease-out;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    " onclick="document.querySelector('#featured-demo').scrollIntoView({behavior: 'smooth'})" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.5rem;">🌟</span>
+        <div>
+          <h4 style="margin: 0; color: #764ba2; font-size: 0.9rem;">Virtual Vacation</h4>
+          <p style="margin: 0; color: #666; font-size: 0.8rem;">Interactive tourism platform</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="floating-card" style="
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      animation: slideInRight 1s ease-out;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    " onclick="document.querySelector('.project-highlights').scrollIntoView({behavior: 'smooth'})" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.5rem;">🚀</span>
+        <div>
+          <h4 style="margin: 0; color: #ff6b35; font-size: 0.9rem;">Project Deep Dives</h4>
+          <p style="margin: 0; color: #666; font-size: 0.8rem;">Technical architectures</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="floating-card" style="
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      animation: slideInRight 1.2s ease-out;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    " onclick="document.querySelector('.visual-showcase').scrollIntoView({behavior: 'smooth'})" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 1.5rem;">🎬</span>
+        <div>
+          <h4 style="margin: 0; color: #667eea; font-size: 0.9rem;">Live Demos</h4>
+          <p style="margin: 0; color: #666; font-size: 0.8rem;">Watch DevOps in action</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="main">
     <!-- Featured Demo Section -->
-    <section class="featured-demo-section" style="
+    <section class="featured-demo-section" id="featured-demo" style="
       background: linear-gradient(135deg, rgba(118, 75, 162, 0.1), rgba(102, 126, 234, 0.1));
       border: 2px solid rgba(118, 75, 162, 0.3);
       border-radius: 20px;
@@ -141,7 +405,7 @@
         </div>
         <div class="highlight-item">
           <h3>🔧 30+ Tools</h3>
-          <p>Docker, Terraform, AWS CLI, Kubernetes, Prometheus, Grafana, Vault & more</p>
+          <p>Docker, Terraform, AWS CLI, Kubernetes, Prometheus, Grafana, Vault &amp; more</p>
         </div>
         <div class="highlight-item">
           <h3>🔒 Security First</h3>
@@ -178,7 +442,7 @@
           <p>AWS services, Infrastructure as Code, and scalable architectures</p>
         </div>
         <div class="expertise-item">
-          <h3>🔒 Security & Monitoring</h3>
+          <h3>🔒 Security &amp; Monitoring</h3>
           <p>Vault secrets, Prometheus monitoring, and security best practices</p>
         </div>
       </div>
@@ -224,7 +488,7 @@
     </section>
 
 
-    <section class="project-highlights" style="background: #1e1e1e; padding: 60px 20px; margin: 40px 0;">
+    <section class="project-highlights" id="projects" style="background: #1e1e1e; padding: 60px 20px; margin: 40px 0;">
       <div style="max-width: 1200px; margin: 0 auto;">
         <h2 style="text-align: center; color: #66d9ef; margin-bottom: 20px; font-size: 2.5rem;">🚀 Featured Project Deep Dives</h2>
         <p style="text-align: center; color: #f0f0f0; margin-bottom: 40px; font-size: 1.1rem;">
@@ -291,7 +555,7 @@
       </div>
     </section>
     
-    <section class="visual-showcase" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 20px; margin: 40px 0; color: white;">
+    <section class="visual-showcase" id="demos" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 20px; margin: 40px 0; color: white;">
       <div style="max-width: 1200px; margin: 0 auto;">
         <h2 style="text-align: center; margin-bottom: 20px; font-size: 2.5rem;">🎬 Live DevOps in Action</h2>
         <p style="text-align: center; margin-bottom: 40px; font-size: 1.1rem; opacity: 0.9;">
@@ -376,7 +640,7 @@
             <div style="background: #000; border-radius: 10px; padding: 20px; margin-bottom: 20px; min-height: 200px; display: flex; align-items: center; justify-content: center; border: 2px solid #e53e3e;">
               <div style="text-align: center;">
                 <div style="font-size: 3rem; margin-bottom: 10px;">📸</div>
-                <p style="margin: 0; opacity: 0.8;">Screenshots & Gallery</p>
+                <p style="margin: 0; opacity: 0.8;">Screenshots &amp; Gallery</p>
                 <p style="margin: 5px 0 0 0; font-size: 0.9rem; opacity: 0.6;">Click to Explore</p>
               </div>
             </div>
@@ -398,14 +662,14 @@
     </section>
   </div>
   
-  <footer>
+  <footer id="contact">
     <h3>Connect with Me</h3>
     <div class="social-links">
       <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
       <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
       <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
     </div>
-    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+    <p>&copy; 2025 Temitayo Charles | DevOps Engineer &amp; Container Enthusiast</p>
   </footer>
   <script>
     // Interactive Demo Functionality
@@ -468,7 +732,7 @@
                   <p style="margin: 0; font-size: 0.9rem; color: #555;">Automated triggers</p>
                 </div>
                 <div style="background: #fff3e0; padding: 15px; border-radius: 8px; text-align: center;">
-                  <h4 style="margin: 0 0 5px 0; color: #f57c00;">Build & Test</h4>
+                  <h4 style="margin: 0 0 5px 0; color: #f57c00;">Build &amp; Test</h4>
                   <p style="margin: 0; font-size: 0.9rem; color: #555;">Quality gates</p>
                 </div>
                 <div style="background: #e8f5e8; padding: 15px; border-radius: 8px; text-align: center;">
@@ -502,15 +766,15 @@
                 <div style="background: #fff8f0; padding: 20px; border-radius: 8px; border-left: 4px solid #f39c12;">
                   <h4 style="margin: 0 0 10px 0; color: #f39c12;">DevOps Tools</h4>
                   <ul style="margin: 0; padding-left: 20px; color: #555;">
-                    <li>Docker & Docker Compose</li>
+                    <li>Docker &amp; Docker Compose</li>
                     <li>Kubernetes CLI (kubectl)</li>
-                    <li>Terraform & Ansible</li>
+                    <li>Terraform &amp; Ansible</li>
                   </ul>
                 </div>
                 <div style="background: #f0fff8; padding: 20px; border-radius: 8px; border-left: 4px solid #28a745;">
                   <h4 style="margin: 0 0 10px 0; color: #28a745;">Monitoring Stack</h4>
                   <ul style="margin: 0; padding-left: 20px; color: #555;">
-                    <li>Prometheus & Grafana</li>
+                    <li>Prometheus &amp; Grafana</li>
                     <li>ELK Stack</li>
                     <li>Custom dashboards</li>
                   </ul>
