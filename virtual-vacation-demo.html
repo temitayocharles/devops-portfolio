@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Vacation Platform - Interactive Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        .demo-header {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .demo-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 300"><circle cx="100" cy="50" r="20" fill="rgba(255,255,255,0.1)"/><circle cx="300" cy="80" r="15" fill="rgba(255,255,255,0.1)"/><circle cx="500" cy="40" r="25" fill="rgba(255,255,255,0.1)"/><circle cx="700" cy="70" r="18" fill="rgba(255,255,255,0.1)"/><circle cx="900" cy="60" r="22" fill="rgba(255,255,255,0.1)"/></svg>') repeat-x;
+            opacity: 0.3;
+            animation: float 10s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateX(0px); }
+            50% { transform: translateX(-20px); }
+        }
+
+        .demo-title {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            position: relative;
+            z-index: 2;
+        }
+
+        .demo-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 250px 1fr 300px;
+            gap: 20px;
+            min-height: calc(100vh - 120px);
+        }
+
+        .navigation-sidebar {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        .nav-section {
+            margin-bottom: 25px;
+        }
+
+        .nav-title {
+            color: #764ba2;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-item {
+            display: block;
+            color: #ccc;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-bottom: 5px;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .nav-item:hover {
+            background: rgba(118, 75, 162, 0.2);
+            color: #67ffcc;
+            border-left-color: #67ffcc;
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: rgba(103, 255, 204, 0.1);
+            color: #67ffcc;
+            border-left-color: #67ffcc;
+        }
+
+        .quick-stats {
+            background: rgba(118, 75, 162, 0.1);
+            border-radius: 10px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        .quick-stat {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .quick-stat:last-child {
+            margin-bottom: 0;
+        }
+
+        .main-content {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .sidebar {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: fit-content;
+        }
+
+        .destination-selector {
+            margin-bottom: 30px;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .destination-card {
+            background: linear-gradient(135deg, rgba(118, 75, 162, 0.3), rgba(102, 126, 234, 0.3));
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            text-align: center;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(118, 75, 162, 0.3);
+            border-color: #764ba2;
+        }
+
+        .destination-card.active {
+            border-color: #67ffcc;
+            background: linear-gradient(135deg, rgba(103, 255, 204, 0.2), rgba(118, 75, 162, 0.3));
+        }
+
+        .destination-flag {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .destination-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .destination-country {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .virtual-viewport {
+            background: #000;
+            border-radius: 15px;
+            height: 400px;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 3px solid #764ba2;
+        }
+
+        .viewport-content {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transition: all 0.5s ease;
+        }
+
+        .location-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .location-title {
+            font-size: 1.5em;
+            color: #67ffcc;
+            margin-bottom: 5px;
+        }
+
+        .location-info {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(118, 75, 162, 0.4);
+        }
+
+        .control-btn.active {
+            background: linear-gradient(135deg, #67ffcc, #764ba2);
+        }
+
+        .tour-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .feature-icon {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #67ffcc;
+        }
+
+        .feature-description {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .sidebar-section {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-title {
+            color: #764ba2;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            height: 8px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: linear-gradient(90deg, #67ffcc, #764ba2);
+            height: 100%;
+            transition: width 0.5s ease;
+            border-radius: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9em;
+        }
+
+        .live-data {
+            background: rgba(103, 255, 204, 0.1);
+            border: 1px solid rgba(103, 255, 204, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .live-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: #67ffcc;
+            border-radius: 50%;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .chat-simulator {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 15px;
+            height: 200px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .chat-message {
+            background: rgba(118, 75, 162, 0.3);
+            padding: 8px 12px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .ai-guide {
+            color: #67ffcc;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .demo-container {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .navigation-sidebar {
+                order: -1;
+                position: static;
+            }
+            
+            .destination-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .tour-features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-header">
+        <h1 class="demo-title">🌍 Virtual Vacation Platform</h1>
+        <p class="demo-subtitle">Interactive Demo - Experience Immersive Travel Technology</p>
+    </div>
+
+    <div class="demo-container">
+        <div class="navigation-sidebar">
+            <div class="nav-section">
+                <h3 class="nav-title">🏠 Portfolio</h3>
+                <a href="index.html" class="nav-item">← Back to Home</a>
+                <a href="projects.html" class="nav-item">← All Projects</a>
+                <a href="project-virtual-vacation.html" class="nav-item">← Project Details</a>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-title">🌍 Destinations</h3>
+                <a href="#" class="nav-item active" onclick="updateDestination('paris')">🇫🇷 Paris</a>
+                <a href="#" class="nav-item" onclick="updateDestination('tokyo')">🇯🇵 Tokyo</a>
+                <a href="#" class="nav-item" onclick="updateDestination('london')">🇬🇧 London</a>
+                <a href="#" class="nav-item" onclick="updateDestination('newyork')">🇺🇸 New York</a>
+                <a href="#" class="nav-item" onclick="updateDestination('mumbai')">🇮🇳 Mumbai</a>
+                <a href="#" class="nav-item" onclick="updateDestination('lagos')">🇳🇬 Lagos</a>
+            </div>
+
+            <div class="nav-section">
+                <h3 class="nav-title">🎛️ Controls</h3>
+                <a href="#" class="nav-item" onclick="setViewMode('360')">🌐 360° View</a>
+                <a href="#" class="nav-item" onclick="setViewMode('drone')">🚁 Drone Mode</a>
+                <a href="#" class="nav-item" onclick="setViewMode('street')">🚶 Street Level</a>
+                <a href="#" class="nav-item" onclick="setViewMode('historical')">⏳ Time Travel</a>
+            </div>
+
+            <div class="quick-stats">
+                <h4 style="color: #67ffcc; margin-bottom: 10px;">📊 Quick Stats</h4>
+                <div class="quick-stat">
+                    <span>Locations:</span>
+                    <span id="navLocations">3/8</span>
+                </div>
+                <div class="quick-stat">
+                    <span>Progress:</span>
+                    <span id="navProgress">35%</span>
+                </div>
+                <div class="quick-stat">
+                    <span>Time:</span>
+                    <span id="navTime">12m</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="destination-selector">
+                <h2>🎯 Select Your Virtual Destination</h2>
+                <div class="destination-grid">
+                    <div class="destination-card active" data-destination="paris">
+                        <div class="destination-flag">🇫🇷</div>
+                        <div class="destination-name">Paris</div>
+                        <div class="destination-country">France</div>
+                    </div>
+                    <div class="destination-card" data-destination="tokyo">
+                        <div class="destination-flag">🇯🇵</div>
+                        <div class="destination-name">Tokyo</div>
+                        <div class="destination-country">Japan</div>
+                    </div>
+                    <div class="destination-card" data-destination="london">
+                        <div class="destination-flag">🇬🇧</div>
+                        <div class="destination-name">London</div>
+                        <div class="destination-country">England</div>
+                    </div>
+                    <div class="destination-card" data-destination="newyork">
+                        <div class="destination-flag">🇺🇸</div>
+                        <div class="destination-name">New York</div>
+                        <div class="destination-country">United States</div>
+                    </div>
+                    <div class="destination-card" data-destination="mumbai">
+                        <div class="destination-flag">🇮🇳</div>
+                        <div class="destination-name">Mumbai</div>
+                        <div class="destination-country">India</div>
+                    </div>
+                    <div class="destination-card" data-destination="lagos">
+                        <div class="destination-flag">🇳🇬</div>
+                        <div class="destination-name">Lagos</div>
+                        <div class="destination-country">Nigeria</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="virtual-viewport">
+                <div class="viewport-content" id="viewport">
+                    <!-- Dynamic content will be loaded here -->
+                </div>
+                <div class="location-overlay">
+                    <div class="location-title" id="currentLocation">Eiffel Tower</div>
+                    <div class="location-info" id="locationInfo">📍 Paris, France • 🌤️ 22°C • ⏰ 3:45 PM</div>
+                </div>
+            </div>
+
+            <div class="control-panel">
+                <button class="control-btn active" onclick="setViewMode('360')">🌐 360° View</button>
+                <button class="control-btn" onclick="setViewMode('drone')">🚁 Drone Mode</button>
+                <button class="control-btn" onclick="setViewMode('street')">🚶 Street Level</button>
+                <button class="control-btn" onclick="setViewMode('historical')">⏳ Time Travel</button>
+            </div>
+
+            <div class="tour-features">
+                <div class="feature-card" onclick="toggleFeature('audio')">
+                    <div class="feature-icon">🎧</div>
+                    <div class="feature-title">Audio Guide</div>
+                    <div class="feature-description">Immersive narration in 15+ languages</div>
+                </div>
+                <div class="feature-card" onclick="toggleFeature('weather')">
+                    <div class="feature-icon">🌦️</div>
+                    <div class="feature-title">Real-time Weather</div>
+                    <div class="feature-description">Live weather data and conditions</div>
+                </div>
+                <div class="feature-card" onclick="toggleFeature('crowds')">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-title">Crowd Insights</div>
+                    <div class="feature-description">Live visitor density and timing</div>
+                </div>
+                <div class="feature-card" onclick="toggleFeature('culture')">
+                    <div class="feature-icon">🎭</div>
+                    <div class="feature-title">Cultural Context</div>
+                    <div class="feature-description">Historical insights and local customs</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">🤖 AI Tour Guide</h3>
+                <div class="chat-simulator" id="chatBox">
+                    <div class="chat-message">
+                        <span class="ai-guide">AI Guide:</span> Welcome to Paris! I'm your personal AI guide. Ready to explore the City of Light?
+                    </div>
+                </div>
+                <button class="control-btn" onclick="askAI()" style="width: 100%;">Ask AI Guide</button>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">📊 Tour Progress</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="tourProgress" style="width: 35%;"></div>
+                </div>
+                <div class="stat-item">
+                    <span>Locations Visited:</span>
+                    <span id="locationsVisited">3/8</span>
+                </div>
+                <div class="stat-item">
+                    <span>Time Spent:</span>
+                    <span id="timeSpent">12 minutes</span>
+                </div>
+                <div class="stat-item">
+                    <span>Distance Traveled:</span>
+                    <span id="distanceTraveled">2.4 km</span>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">📡 Live Data</h3>
+                <div class="live-data">
+                    <div><span class="live-indicator"></span><strong>Current Visitors:</strong> <span id="currentVisitors">1,247</span></div>
+                    <div><strong>Wait Time:</strong> <span id="waitTime">8 minutes</span></div>
+                    <div><strong>Best Photo Time:</strong> <span id="photoTime">6:30 PM</span></div>
+                </div>
+                
+                <div class="live-data">
+                    <div><span class="live-indicator"></span><strong>Local Events:</strong></div>
+                    <div id="localEvents">🎨 Art Exhibition at Louvre</div>
+                    <div>🎭 Opera Performance Tonight</div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">🎯 Recommendations</h3>
+                <div class="feature-card">
+                    <div class="feature-title">💡 Hidden Gem Nearby</div>
+                    <div class="feature-description">Shakespeare & Company Bookstore - 3 min walk</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Destination data
+        const destinations = {
+            paris: {
+                name: "Eiffel Tower",
+                info: "📍 Paris, France • 🌤️ 22°C • ⏰ 3:45 PM",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                visitors: "1,247",
+                waitTime: "8 minutes",
+                photoTime: "6:30 PM",
+                events: "🎨 Art Exhibition at Louvre"
+            },
+            tokyo: {
+                name: "Tokyo Tower",
+                info: "📍 Tokyo, Japan • 🌸 18°C • ⏰ 11:45 PM",
+                background: "linear-gradient(135deg, #e91e63 0%, #f06292 100%)",
+                visitors: "2,156",
+                waitTime: "15 minutes",
+                photoTime: "11:00 PM",
+                events: "🌸 Cherry Blossom Festival"
+            },
+            london: {
+                name: "Big Ben",
+                info: "📍 London, England • ☁️ 15°C • ⏰ 2:45 PM",
+                background: "linear-gradient(135deg, #003d82 0%, #cf142b 100%)",
+                visitors: "892",
+                waitTime: "5 minutes",
+                photoTime: "4:00 PM",
+                events: "👑 Royal Guard Ceremony"
+            },
+            newyork: {
+                name: "Times Square",
+                info: "📍 New York, USA • 🌆 25°C • ⏰ 9:45 AM",
+                background: "linear-gradient(135deg, #002868 0%, #bf0a30 100%)",
+                visitors: "3,421",
+                waitTime: "20 minutes",
+                photoTime: "8:00 PM",
+                events: "🎭 Broadway Shows Tonight"
+            },
+            mumbai: {
+                name: "Gateway of India",
+                info: "📍 Mumbai, India • ☀️ 32°C • ⏰ 9:15 PM",
+                background: "linear-gradient(135deg, #ff9933 0%, #138808 100%)",
+                visitors: "1,876",
+                waitTime: "12 minutes",
+                photoTime: "6:45 AM",
+                events: "🎪 Festival of Colors"
+            },
+            lagos: {
+                name: "National Theatre",
+                info: "📍 Lagos, Nigeria • 🌧️ 28°C • ⏰ 7:45 PM",
+                background: "linear-gradient(135deg, #2c5530 0%, #8bc34a 100%)",
+                visitors: "743",
+                waitTime: "3 minutes",
+                photoTime: "7:00 AM",
+                events: "🎵 Afrobeat Concert"
+            }
+        };
+
+        let currentDestination = 'paris';
+        let currentViewMode = '360';
+        let tourProgress = 35;
+        let locationsCount = 3;
+        let timeSpent = 12;
+        let distance = 2.4;
+
+        // AI responses
+        const aiResponses = [
+            "Did you know the Eiffel Tower was originally intended to be temporary?",
+            "I recommend visiting the nearby Seine River for beautiful sunset photos!",
+            "The current weather is perfect for outdoor exploration. Shall we continue?",
+            "Based on crowd data, the best time to visit would be early morning.",
+            "I can translate any signs or text you see during your virtual tour!",
+            "Would you like to learn about the architectural history of this location?",
+            "The local cuisine here is fantastic! I can recommend nearby restaurants.",
+            "This location has fascinating historical significance. Want to hear more?"
+        ];
+
+        // Initialize the demo
+        function initDemo() {
+            updateDestination('paris');
+            startDataUpdates();
+        }
+
+        // Update destination
+        function updateDestination(destination) {
+            currentDestination = destination;
+            const data = destinations[destination];
+            
+            // Update UI
+            document.getElementById('currentLocation').textContent = data.name;
+            document.getElementById('locationInfo').textContent = data.info;
+            document.getElementById('viewport').style.background = data.background;
+            document.getElementById('currentVisitors').textContent = data.visitors;
+            document.getElementById('waitTime').textContent = data.waitTime;
+            document.getElementById('photoTime').textContent = data.photoTime;
+            document.getElementById('localEvents').textContent = data.events;
+
+            // Update destination cards
+            document.querySelectorAll('.destination-card').forEach(card => {
+                card.classList.remove('active');
+                if (card.dataset.destination === destination) {
+                    card.classList.add('active');
+                }
+            });
+
+            // Update navigation sidebar
+            document.querySelectorAll('.navigation-sidebar .nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('onclick') && item.getAttribute('onclick').includes(destination)) {
+                    item.classList.add('active');
+                }
+            });
+
+            // Simulate tour progression
+            updateProgress();
+        }
+
+        // Set view mode
+        function setViewMode(mode) {
+            currentViewMode = mode;
+            document.querySelectorAll('.control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+
+            // Simulate different views
+            const viewport = document.getElementById('viewport');
+            switch(mode) {
+                case '360':
+                    viewport.style.transform = 'scale(1)';
+                    break;
+                case 'drone':
+                    viewport.style.transform = 'scale(1.2)';
+                    break;
+                case 'street':
+                    viewport.style.transform = 'scale(0.8)';
+                    break;
+                case 'historical':
+                    viewport.style.filter = 'sepia(0.3)';
+                    break;
+            }
+        }
+
+        // Toggle features
+        function toggleFeature(feature) {
+            const card = event.currentTarget;
+            card.style.background = 'rgba(103, 255, 204, 0.2)';
+            setTimeout(() => {
+                card.style.background = 'rgba(255, 255, 255, 0.05)';
+            }, 500);
+
+            // Add AI response about the feature
+            const responses = {
+                audio: "🎧 Audio guide activated! Now you'll hear detailed narration about each location.",
+                weather: "🌦️ Weather overlay enabled! Real-time conditions will be displayed.",
+                crowds: "👥 Crowd insights active! I'll show you the best times to visit.",
+                culture: "🎭 Cultural context mode on! Learn about local customs and history."
+            };
+
+            addAIMessage(responses[feature] || "Feature activated successfully!");
+        }
+
+        // Ask AI Guide
+        function askAI() {
+            const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
+            addAIMessage(randomResponse);
+        }
+
+        // Add AI message to chat
+        function addAIMessage(message) {
+            const chatBox = document.getElementById('chatBox');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chat-message';
+            messageDiv.innerHTML = `<span class="ai-guide">AI Guide:</span> ${message}`;
+            chatBox.appendChild(messageDiv);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        // Update progress
+        function updateProgress() {
+            tourProgress = Math.min(tourProgress + 5, 100);
+            locationsCount = Math.min(locationsCount + 1, 8);
+            timeSpent += 2;
+            distance += 0.3;
+
+            document.getElementById('tourProgress').style.width = tourProgress + '%';
+            document.getElementById('locationsVisited').textContent = `${locationsCount}/8`;
+            document.getElementById('timeSpent').textContent = `${timeSpent} minutes`;
+            document.getElementById('distanceTraveled').textContent = `${distance.toFixed(1)} km`;
+            
+            // Update navigation sidebar stats
+            document.getElementById('navLocations').textContent = `${locationsCount}/8`;
+            document.getElementById('navProgress').textContent = `${tourProgress}%`;
+            document.getElementById('navTime').textContent = `${timeSpent}m`;
+        }
+
+        // Start live data updates
+        function startDataUpdates() {
+            setInterval(() => {
+                const data = destinations[currentDestination];
+                const baseVisitors = parseInt(data.visitors.replace(',', ''));
+                const newCount = baseVisitors + Math.floor(Math.random() * 50) - 25;
+                document.getElementById('currentVisitors').textContent = newCount.toLocaleString();
+            }, 3000);
+        }
+
+        // Event listeners
+        document.querySelectorAll('.destination-card').forEach(card => {
+            card.addEventListener('click', (e) => {
+                const destination = e.currentTarget.dataset.destination;
+                updateDestination(destination);
+            });
+        });
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', initDemo);
+    </script>
+</body>
+</html>

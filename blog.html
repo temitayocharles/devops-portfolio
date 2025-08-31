@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog & Articles • Temitayo Charles</title>
+  <meta name="description" content="Technical articles and insights on DevOps, containerization, and automation by Temitayo Charles.">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .blog-card {
+      background-color: #1e1e1e;
+      border-radius: 12px;
+      padding: 25px;
+      border: 1px solid #333;
+      transition: all 0.3s ease;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-3px);
+      border-color: #66d9ef;
+      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.15);
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+      color: #66d9ef;
+    }
+
+    .blog-title {
+      color: #a6e22e;
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      line-height: 1.4;
+    }
+
+    .blog-excerpt {
+      color: #f0f0f0;
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .blog-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .blog-tag {
+      background-color: rgba(102, 217, 239, 0.2);
+      color: #66d9ef;
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+    }
+
+    .read-more {
+      color: #a6e22e;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .read-more:hover {
+      color: #8ac926;
+    }
+
+    .coming-soon {
+      text-align: center;
+      padding: 60px 40px;
+      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+      border-radius: 12px;
+      border: 2px dashed #66d9ef;
+      margin: 40px 0;
+    }
+
+    .coming-soon h3 {
+      color: #66d9ef;
+      margin-bottom: 15px;
+    }
+
+    .coming-soon p {
+      color: #ccc;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="blog.html" class="active">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="main">
+    <h1>Technical Articles & Insights</h1>
+    <p>Sharing knowledge and experiences in DevOps engineering, containerization, and automation.</p>
+
+    <div class="coming-soon">
+      <h3>📝 Blog Coming Soon</h3>
+      <p>I'm preparing technical articles covering DevOps best practices, containerization strategies, and automation tutorials.</p>
+      <p><strong>Planned Topics:</strong></p>
+      <ul style="text-align: left; max-width: 500px; margin: 20px auto;">
+        <li>Building Production-Ready Docker Images</li>
+        <li>Secrets Management with HashiCorp Vault</li>
+        <li>CI/CD Pipeline Security Best Practices</li>
+        <li>Monitoring Containerized Applications</li>
+        <li>Infrastructure as Code with Terraform</li>
+      </ul>
+    </div>
+
+    <!-- Future blog posts preview -->
+    <div class="blog-grid" style="opacity: 0.6;">
+      <div class="blog-card">
+        <div class="blog-meta">
+          <span>Coming Soon</span>
+          <span>5 min read</span>
+        </div>
+        <h3 class="blog-title">Building Secure Docker Images: A DevOps Guide</h3>
+        <p class="blog-excerpt">
+          Learn how to create production-ready Docker images with security scanning, multi-stage builds, 
+          and best practices for minimizing attack surface...
+        </p>
+        <div class="blog-tags">
+          <span class="blog-tag">Docker</span>
+          <span class="blog-tag">Security</span>
+          <span class="blog-tag">Best Practices</span>
+        </div>
+        <a href="#" class="read-more">Coming Soon →</a>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-meta">
+          <span>Coming Soon</span>
+          <span>8 min read</span>
+        </div>
+        <h3 class="blog-title">Automating Infrastructure with Terraform and AWS</h3>
+        <p class="blog-excerpt">
+          Step-by-step guide to creating modular, reusable Terraform configurations for AWS infrastructure 
+          with proper state management and team collaboration...
+        </p>
+        <div class="blog-tags">
+          <span class="blog-tag">Terraform</span>
+          <span class="blog-tag">AWS</span>
+          <span class="blog-tag">Infrastructure as Code</span>
+        </div>
+        <a href="#" class="read-more">Coming Soon →</a>
+      </div>
+
+      <div class="blog-card">
+        <div class="blog-meta">
+          <span>Coming Soon</span>
+          <span>6 min read</span>
+        </div>
+        <h3 class="blog-title">Container Monitoring with Prometheus and Grafana</h3>
+        <p class="blog-excerpt">
+          Complete setup guide for monitoring containerized applications with custom metrics, 
+          alerting rules, and beautiful dashboards for production environments...
+        </p>
+        <div class="blog-tags">
+          <span class="blog-tag">Monitoring</span>
+          <span class="blog-tag">Prometheus</span>
+          <span class="blog-tag">Grafana</span>
+        </div>
+        <a href="#" class="read-more">Coming Soon →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <h3>Connect with Me</h3>
+    <div class="social-links">
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+  </footer>
+</body>
+</html>

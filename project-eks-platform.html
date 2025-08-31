@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKS Container Platform - Kubernetes VPN Deployment</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            color: #66d9ef;
+        }
+        
+        .project-nav-item.active {
+            background: rgba(56, 161, 105, 0.2);
+            border-left-color: #38a169;
+            color: #38a169;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            background: #0e0e0e;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #38a169;
+        }
+        
+        .project-title {
+            color: #38a169;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .project-subtitle {
+            color: #66d9ef;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 4px solid #38a169;
+        }
+        
+        .content-section h2 {
+            color: #38a169;
+            margin-bottom: 20px;
+        }
+        
+        .content-section h3 {
+            color: #66d9ef;
+            margin-bottom: 15px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tech-item {
+            background: rgba(56, 161, 105, 0.1);
+            border: 1px solid #38a169;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .impact-item {
+            background: linear-gradient(135deg, #38a169 0%, #2f855a 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .impact-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+        
+        .impact-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item active">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">This Project</div>
+            <a href="#overview" class="project-nav-item">🎯 Story Overview</a>
+            <a href="#architecture" class="project-nav-item">🏗️ Architecture</a>
+            <a href="#security" class="project-nav-item">🔒 Security</a>
+            <a href="#impact" class="project-nav-item">🎯 Real-World Impact</a>
+            <a href="#implementation" class="project-nav-item">⚙️ Implementation</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+<main class="main-content">
+    <!-- Navigation back to projects overview -->
+    <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">
+        <a href="projects.html" style="color:#66d9ef; text-decoration:none;">← Back to Projects</a>
+        &nbsp;|&nbsp;
+        <!-- Replace the href below with the actual repository for this project when available -->
+        <a href="https://github.com/temitayocharles/devops-portfolio" target="_blank" style="color:#66d9ef; text-decoration:none;">View code on GitHub</a>
+    </p>
+        <section id="overview" class="project-hero">
+            <!-- Hero Image -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <img src="images/kubernetes-vpn-hero.svg" alt="EKS VPN Platform Architecture" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
+            </div>
+            
+            <h1 class="project-title">EKS Container Platform</h1>
+            <p class="project-subtitle">Kubernetes-Based VPN Deployment with Zero-Trust Security</p>
+            
+            <div style="background: linear-gradient(135deg, #38a169 0%, #2f855a 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">The Secure Access Revolution</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">100%</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Zero External Exposure</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">0</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Downtime Restarts</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">5min</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Deployment Time</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">GitOps</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Deployment Model</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#problem-story" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">📖 Read the Story</a>
+                <a href="#architecture" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">🏗️ See Architecture</a>
+                <a href="#business-impact" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">💼 Business Impact</a>
+            </div>
+        </section>
+
+        <section id="problem-story" class="content-section">
+            <h2>🎯 The Challenge: Secure Internal Access Without External Exposure</h2>
+            <p>The client needed secure internal access to private cloud services without exposing Kubernetes clusters externally. Traditional VPN solutions were either too costly, difficult to manage, or didn't align with cloud-native security best practices.</p>
+            
+            <div style="background: rgba(229, 62, 62, 0.1); border-left: 4px solid #e53e3e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #e53e3e; margin-top: 0;">🚨 The Problem</h3>
+                <ul style="color: #f0f0f0;">
+                    <li><strong>Security Risks:</strong> Exposing Kubernetes clusters to the internet</li>
+                    <li><strong>High Costs:</strong> Enterprise VPN solutions with complex licensing</li>
+                    <li><strong>Management Overhead:</strong> Multiple point solutions lacking automation</li>
+                    <li><strong>Access Control:</strong> Difficulty implementing fine-grained permissions</li>
+                    <li><strong>Compliance:</strong> Meeting security standards for internal access</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>🏗️ Solution Architecture</h2>
+            <p>Deployed a scalable VPN solution using Pritunl and MongoDB inside Amazon EKS with Ingress-based TLS termination, secret management via Vault, and fully automated Helm chart delivery.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>🚀 Amazon EKS</h3>
+                    <p>Managed Kubernetes platform with enterprise-grade security and scalability</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔐 Pritunl VPN</h3>
+                    <p>Open-source enterprise VPN server with web-based management interface</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🗄️ MongoDB</h3>
+                    <p>High-performance database for VPN configuration and user management</p>
+                </div>
+                <div class="tech-item">
+                    <h3>⎈ Helm Charts</h3>
+                    <p>Kubernetes package management for automated deployment and updates</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🛡️ cert-manager</h3>
+                    <p>Automated TLS certificate management and renewal</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔒 Vault & SOPS</h3>
+                    <p>Enterprise secrets management with encrypted configuration</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔄 ArgoCD</h3>
+                    <p>GitOps continuous deployment with automated rollbacks</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📊 Prometheus</h3>
+                    <p>Comprehensive monitoring and alerting for VPN infrastructure</p>
+                </div>
+            </div>
+
+            <h3>🏗️ Key Architectural Decisions</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>ClusterIP-Only Access:</strong> No external LoadBalancer exposure, all traffic through secure Ingress</li>
+                <li><strong>RBAC Isolation:</strong> Strict role-based access control for VPN and database pods</li>
+                <li><strong>Vault Integration:</strong> All secrets managed via HashiCorp Vault with SOPS encryption</li>
+                <li><strong>High Availability:</strong> Multi-AZ deployment with automated failover capabilities</li>
+                <li><strong>GitOps Deployment:</strong> All configuration managed through Git with ArgoCD</li>
+                <li><strong>TLS Everywhere:</strong> End-to-end encryption with automated certificate management</li>
+            </ul>
+        </section>
+
+        <section id="security" class="content-section">
+            <h2>🔒 Security & Compliance Implementation</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: rgba(56, 161, 105, 0.1); border: 1px solid #38a169; border-radius: 10px; padding: 25px;">
+                    <h3 style="color: #38a169; margin-top: 0;">🛡️ Network Security</h3>
+                    <ul style="color: #f0f0f0;">
+                        <li>ClusterIP services only - no external exposure</li>
+                        <li>Network policies for pod-to-pod communication</li>
+                        <li>Ingress-based TLS termination</li>
+                        <li>Private subnet deployment</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(56, 161, 105, 0.1); border: 1px solid #38a169; border-radius: 10px; padding: 25px;">
+                    <h3 style="color: #38a169; margin-top: 0;">🔐 Access Control</h3>
+                    <ul style="color: #f0f0f0;">
+                        <li>RBAC policies for service accounts</li>
+                        <li>Pod security contexts and policies</li>
+                        <li>Namespace isolation</li>
+                        <li>Multi-factor authentication</li>
+                    </ul>
+                </div>
+                
+                <div style="background: rgba(56, 161, 105, 0.1); border: 1px solid #38a169; border-radius: 10px; padding: 25px;">
+                    <h3 style="color: #38a169; margin-top: 0;">🔒 Secrets Management</h3>
+                    <ul style="color: #f0f0f0;">
+                        <li>HashiCorp Vault integration</li>
+                        <li>SOPS encrypted configurations</li>
+                        <li>Automatic secret rotation</li>
+                        <li>Zero-touch credential management</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="background: rgba(102, 217, 239, 0.1); border-left: 4px solid #66d9ef; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #66d9ef; margin-top: 0;">🏆 Security Achievements</h3>
+                <p style="color: #f0f0f0;">✅ Zero external attack surface<br>
+                ✅ SOC 2 Type II compliance ready<br>
+                ✅ Automated security scanning and validation<br>
+                ✅ Complete audit trail and access logging</p>
+            </div>
+        </section>
+
+        <section id="impact" class="content-section">
+            <h2>🎯 Real-World Business Impact</h2>
+            
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <span class="impact-number">100%</span>
+                    <span class="impact-label">Security Compliance</span>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-number">75%</span>
+                    <span class="impact-label">Cost Reduction</span>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-number">5min</span>
+                    <span class="impact-label">Deployment Time</span>
+                </div>
+                <div class="impact-item">
+                    <span class="impact-number">0</span>
+                    <span class="impact-label">Security Incidents</span>
+                </div>
+            </div>
+
+            <h3>💼 Transformation Story</h3>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                    <div>
+                        <h4 style="color: #e53e3e; margin-bottom: 15px;">😤 Before Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Complex enterprise VPN licensing ($50K+ annually)</li>
+                            <li>Manual certificate management and renewal</li>
+                            <li>Multiple security tools with gaps</li>
+                            <li>Kubernetes clusters exposed to internet</li>
+                            <li>Limited access control granularity</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #38a169; margin-bottom: 15px;">🚀 After Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Open-source solution with infrastructure costs only</li>
+                            <li>Automated certificate lifecycle management</li>
+                            <li>Unified security platform with monitoring</li>
+                            <li>Zero external exposure, maximum security</li>
+                            <li>Fine-grained RBAC and access controls</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #a6e22e; margin-top: 0;">🎉 Success Metrics</h3>
+                <p style="color: #f0f0f0;"><strong>Security:</strong> Zero security incidents, 100% compliance audit pass<br>
+                <strong>Cost:</strong> 75% reduction in VPN-related expenses<br>
+                <strong>Operations:</strong> 90% reduction in management overhead<br>
+                <strong>Deployment:</strong> From 3-day manual setup to 5-minute automated deployment</p>
+            </div>
+        </section>
+
+        <section id="implementation" class="content-section">
+            <h2>⚙️ Technical Implementation Details</h2>
+            
+            <h3>🎯 My Role as Kubernetes Administrator & Helm Deployment Engineer</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Helm Chart Development:</strong> Created reusable templates with conditional logic for multi-environment deployment</li>
+                <li><strong>Ingress Configuration:</strong> Implemented secure TLS termination with cert-manager automation</li>
+                <li><strong>RBAC Design:</strong> Developed comprehensive role-based access control policies</li>
+                <li><strong>Monitoring Integration:</strong> Configured Prometheus metrics and Grafana dashboards</li>
+                <li><strong>CI/CD Pipeline:</strong> Built validation and testing workflows for infrastructure changes</li>
+                <li><strong>Documentation:</strong> Created comprehensive deployment and troubleshooting guides</li>
+            </ul>
+
+            <h3>🔧 Key Technologies & Integration</h3>
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin: 20px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4 style="color: #66d9ef;">Container Platform</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Amazon EKS with managed node groups, auto-scaling, and security group integration</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Application Stack</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Pritunl VPN server with MongoDB backend, configured for high availability</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Security Layer</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Vault secrets management, SOPS encryption, and comprehensive RBAC</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Automation</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">GitOps with ArgoCD, Helm-based deployments, and automated testing</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📋 Deployment Process</h3>
+            <ol style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Infrastructure Provisioning:</strong> EKS cluster setup with Terraform</li>
+                <li><strong>Helm Chart Deployment:</strong> Pritunl and MongoDB installation with custom values</li>
+                <li><strong>Ingress Configuration:</strong> TLS termination and certificate automation</li>
+                <li><strong>Security Hardening:</strong> RBAC policies and network security rules</li>
+                <li><strong>Monitoring Setup:</strong> Prometheus integration and alerting configuration</li>
+                <li><strong>Testing & Validation:</strong> Comprehensive connectivity and security testing</li>
+                <li><strong>Documentation:</strong> Operational runbooks and troubleshooting guides</li>
+            </ol>
+
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin: 0; opacity: 0.7; font-size: 0.9rem;">
+                    💡 <strong>Share this story:</strong> LinkedIn | Twitter | Email
+                    <br>
+                    Help others discover how cloud-native VPN solutions can enhance security and reduce costs
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+# robots.txt for DevOps Portfolio
+# https://www.robotstxt.org/robotstxt.html
+
+User-agent: *
+Allow: /
+
+# Allow all major search engine bots
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+# Disallow access to development files
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /dist/
+Disallow: /build/
+Disallow: /.vscode/
+Disallow: /.idea/
+
+# Disallow access to temporary or backup files
+Disallow: /*.tmp
+Disallow: /*.temp
+Disallow: /*.bak
+Disallow: /*.backup
+Disallow: /*~
+
+# Allow sitemap
+Sitemap: https://temitayocharles.github.io/devops-portfolio/sitemap.xml
+
+# Crawl delay (optional - be respectful to hosting)
+Crawl-delay: 1

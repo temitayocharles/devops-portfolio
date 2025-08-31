@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Container Demos • Temitayo Charles</title>
+    <meta name="description" content="Watch live demonstrations of the Ultimate DevOps Container - 30+ tools in one-command deployment.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .demo-card {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+            border-radius: 15px;
+            padding: 20px;
+            border: 2px solid #333;
+            transition: all 0.3s ease;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .demo-video {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: #000;
+        }
+
+        .demo-title {
+            color: #a6e22e;
+            font-size: 1.3rem;
+            margin: 0 0 10px 0;
+        }
+
+        .demo-description {
+            color: #f0f0f0;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .demo-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .feature-tag {
+            background: rgba(102, 217, 239, 0.2);
+            color: #66d9ef;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .hero-demo {
+            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+            border: 3px solid #67ffcc;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .hero-demo h2 {
+            color: white;
+            margin: 0 0 20px 0;
+            font-size: 2.2rem;
+        }
+
+        .hero-demo p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <script src="global-sidebar.js"></script>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="about-me.html">About Me</a>
+        <a href="projects.html">Projects</a>
+        <a href="skills.html">Skills</a>
+        <a href="aws-solutions.html">AWS Solutions</a>
+        <a href="azure-solutions.html">Azure Solutions</a>
+        <a href="gcp-solutions.html">GCP Solutions</a>
+        <a href="architecture.html">Architecture</a>
+        <a href="ci.html">CI/CD</a>
+        <a href="security.html">Security</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="main">
+        <!-- Hero Section -->
+        <div class="hero-demo">
+            <h2>🐳 Ultimate DevOps Container Demos</h2>
+            <p>Watch real-time demonstrations of containerized DevOps environment deployment and usage</p>
+        </div>
+
+        <h1>Live Container Demonstrations</h1>
+        <p style="font-size: 1.1rem; margin-bottom: 40px; opacity: 0.9;">
+            Experience the complete DevOps workflow from container startup to tool integration. 
+            These recordings showcase real deployment scenarios and practical usage.
+        </p>
+
+        <!-- Demo Grid -->
+        <div class="demo-grid">
+            
+            <!-- Demo 1: Container Startup -->
+            <div class="demo-card">
+                <!-- Replace the old video element with a GIF that plays automatically -->
+                <img src="images/demos/demo-01-docker-pull.gif" class="demo-video" alt="Container startup and Docker pull demonstration" />
+                <h3 class="demo-title">🚀 Container Startup & Initialization</h3>
+                <p class="demo-description">
+                    Watch the Ultimate DevOps Container start up and automatically configure all 30+ integrated tools. 
+                    See real-time service initialization and health checks.
+                </p>
+                <div class="demo-features">
+                    <span class="feature-tag">Docker</span>
+                    <span class="feature-tag">Auto-config</span>
+                    <span class="feature-tag">Health Checks</span>
+                    <span class="feature-tag">30+ Tools</span>
+                </div>
+            </div>
+
+            <!-- Demo 2: VS Code Integration -->
+            <div class="demo-card">
+                <!-- Use the uploaded GIF for the VS Code Server demo -->
+                <img src="images/demos/demo-02-container-startup.gif" class="demo-video" alt="VS Code Server in action" />
+                <h3 class="demo-title">💻 VS Code Server in Action</h3>
+                <p class="demo-description">
+                    Experience the cloud-based development environment with VS Code Server. 
+                    See extensions, terminal access, and seamless development workflow.
+                </p>
+                <div class="demo-features">
+                    <span class="feature-tag">VS Code</span>
+                    <span class="feature-tag">Cloud IDE</span>
+                    <span class="feature-tag">Extensions</span>
+                </div>
+            </div>
+
+            <!-- Demo 3: Monitoring Stack -->
+            <div class="demo-card">
+                <!-- Use the uploaded GIF for the monitoring & observability demo -->
+                <img src="images/demos/demo-03-tools-showcase.gif" class="demo-video" alt="Monitoring & observability demo" />
+                <h3 class="demo-title">📊 Monitoring & Observability</h3>
+                <p class="demo-description">
+                    Explore Grafana dashboards, Prometheus metrics, and comprehensive monitoring setup. 
+                    Real-time metrics collection and visualization.
+                </p>
+                <div class="demo-features">
+                    <span class="feature-tag">Grafana</span>
+                    <span class="feature-tag">Prometheus</span>
+                    <span class="feature-tag">Metrics</span>
+                </div>
+            </div>
+
+            <!-- Demo 4: Security & Secrets -->
+            <div class="demo-card">
+                <!-- Use the uploaded GIF for the security & vault integration demo -->
+                <img src="images/demos/demo-04-environment-setup.gif" class="demo-video" alt="Security & secrets management demo" />
+                <h3 class="demo-title">🔒 Security & Vault Integration</h3>
+                <p class="demo-description">
+                    See HashiCorp Vault in action for secrets management. 
+                    Secure credential storage and automated security configurations.
+                </p>
+                <div class="demo-features">
+                    <span class="feature-tag">Vault</span>
+                    <span class="feature-tag">Security</span>
+                    <span class="feature-tag">Secrets</span>
+                </div>
+            </div>
+
+            <!-- Demo 5: Multi-Cloud Tools -->
+            <div class="demo-card">
+                <!-- Use the uploaded GIF for the multi-cloud CLI tools demo -->
+                <img src="images/demos/demo-05-full-workflow.gif" class="demo-video" alt="Multi-cloud CLI tools demo" />
+                <h3 class="demo-title">☁️ Multi-Cloud CLI Tools</h3>
+                <p class="demo-description">
+                    Experience integrated AWS, Azure, and GCP CLI tools. 
+                    Cross-cloud deployment capabilities and infrastructure management.
+                </p>
+                <div class="demo-features">
+                    <span class="feature-tag">AWS CLI</span>
+                    <span class="feature-tag">Azure CLI</span>
+                    <span class="feature-tag">GCP</span>
+                </div>
+            </div>
+
+            <!-- Demo 6: Complete Workflow -->
+            <div class="demo-card">
+                <!-- Use an extra GIF for the complete workflow demo -->
+                <img src="images/demos/extra-demo-1.gif" class="demo-video" alt="End‑to‑end DevOps workflow demo" />
+                <h3 class="demo-title">🚀 End-to-End DevOps Workflow</h3>
+                <p class="demo-description">
+                    Complete demonstration from code development to deployment. 
+                    See CI/CD pipeline, infrastructure provisioning, and monitoring integration.
+                </p>
+                <div class="demo-features">
+                    <span class="feature-tag">CI/CD</span>
+                    <span class="feature-tag">Pipeline</span>
+                    <span class="feature-tag">Deployment</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div style="text-align: center; margin: 60px 0 40px 0; padding: 40px; background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border-radius: 20px; border: 2px solid rgba(102, 217, 239, 0.3);">
+            <h2 style="color: #66d9ef; margin-bottom: 20px;">Ready to Try It Yourself?</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 30px; opacity: 0.9;">
+                Get the Ultimate DevOps Container and experience this powerful environment firsthand.
+            </p>
+            <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
+                <a href="project-ultimate-devops-container.html" style="
+                    background: linear-gradient(135deg, #66d9ef, #a6e22e);
+                    color: #0e0e0e;
+                    padding: 15px 30px;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    font-size: 1.1rem;
+                    box-shadow: 0 8px 20px rgba(102, 217, 239, 0.3);
+                ">📖 View Full Project</a>
+                <a href="https://hub.docker.com/r/temitayocharles/devops-charlie" target="_blank" style="
+                    background: rgba(102, 217, 239, 0.1);
+                    color: #66d9ef;
+                    padding: 15px 30px;
+                    border-radius: 25px;
+                    text-decoration: none;
+                    font-weight: bold;
+                    border: 2px solid #66d9ef;
+                ">🐳 Get from Docker Hub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+            <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+            <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+        </div>
+        <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+    </footer>
+</body>
+</html>

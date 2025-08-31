@@ -1,0 +1,19 @@
+<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="eksGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#326CE5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#2563EB;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <circle cx="30" cy="30" r="28" fill="url(#eksGradient)"/>
+  <circle cx="30" cy="30" r="20" fill="none" stroke="white" stroke-width="2"/>
+  <circle cx="30" cy="15" r="3" fill="white"/>
+  <circle cx="42" cy="30" r="3" fill="white"/>
+  <circle cx="30" cy="45" r="3" fill="white"/>
+  <circle cx="18" cy="30" r="3" fill="white"/>
+  <circle cx="36" cy="21" r="2" fill="white"/>
+  <circle cx="36" cy="39" r="2" fill="white"/>
+  <circle cx="24" cy="39" r="2" fill="white"/>
+  <circle cx="24" cy="21" r="2" fill="white"/>
+  <text x="30" y="32" font-family="Arial, sans-serif" font-size="6" font-weight="bold" text-anchor="middle" fill="white">K8s</text>
+</svg>

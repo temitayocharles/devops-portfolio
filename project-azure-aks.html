@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure AKS Platform - Enterprise Kubernetes Management</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            color: #66d9ef;
+        }
+        
+        .project-nav-item.active {
+            background: rgba(0, 158, 227, 0.2);
+            border-left-color: #009ee3;
+            color: #009ee3;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            background: #0e0e0e;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #009ee3;
+        }
+        
+        .project-title {
+            color: #009ee3;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .project-subtitle {
+            color: #66d9ef;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 4px solid #009ee3;
+        }
+        
+        .content-section h2 {
+            color: #009ee3;
+            margin-bottom: 20px;
+        }
+        
+        .content-section h3 {
+            color: #66d9ef;
+            margin-bottom: 15px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tech-item {
+            background: rgba(0, 158, 227, 0.1);
+            border: 1px solid #009ee3;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .azure-features {
+            background: linear-gradient(135deg, #0078d4 0%, #005a9e 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #fff;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item active">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">This Project</div>
+            <a href="#overview" class="project-nav-item">🎯 Story Overview</a>
+            <a href="#architecture" class="project-nav-item">🏗️ Architecture</a>
+            <a href="#features" class="project-nav-item">🚀 Azure Features</a>
+            <a href="#impact" class="project-nav-item">🎯 Real-World Impact</a>
+            <a href="#implementation" class="project-nav-item">⚙️ Implementation</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+<main class="main-content">
+    <!-- Navigation back to projects overview -->
+    <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">
+        <a href="projects.html" style="color:#66d9ef; text-decoration:none;">← Back to Projects</a>
+        &nbsp;|&nbsp;
+        <!-- Replace the href below with the actual repository for this project when available -->
+        <a href="https://github.com/temitayocharles/devops-portfolio" target="_blank" style="color:#66d9ef; text-decoration:none;">View code on GitHub</a>
+    </p>
+        <section id="overview" class="project-hero">
+            <h1 class="project-title">Azure AKS Platform</h1>
+            <p class="project-subtitle">Enterprise Container Orchestration with Azure Kubernetes Service</p>
+            
+            <div style="background: linear-gradient(135deg, #009ee3 0%, #0078d4 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">From Monolith to Microservices at Scale</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">15+</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Microservices</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">99.95%</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Uptime SLA</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">3x</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Faster Deployments</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">Auto</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Scaling</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#problem-story" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">📖 Read the Story</a>
+                <a href="#architecture" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">🏗️ See Architecture</a>
+                <a href="#business-impact" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">💼 Business Impact</a>
+            </div>
+        </section>
+
+        <section id="problem-story" class="content-section">
+            <h2>🎯 The Challenge: Enterprise Kubernetes on Azure</h2>
+            <p>Tasked with modernizing legacy applications by migrating to a microservices architecture on Azure Kubernetes Service. Required enterprise-grade security, monitoring, and automated scaling while maintaining high availability and performance.</p>
+            
+            <div style="background: rgba(229, 62, 62, 0.1); border-left: 4px solid #e53e3e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #e53e3e; margin-top: 0;">🚨 The Legacy Problem</h3>
+                <ul style="color: #f0f0f0;">
+                    <li><strong>Monolithic Architecture:</strong> Single point of failure with difficult scaling</li>
+                    <li><strong>Deployment Complexity:</strong> Hours-long deployment windows with manual processes</li>
+                    <li><strong>Resource Inefficiency:</strong> Over-provisioned infrastructure with poor utilization</li>
+                    <li><strong>Security Concerns:</strong> Limited isolation and access control mechanisms</li>
+                    <li><strong>Development Bottlenecks:</strong> Teams blocked by shared infrastructure dependencies</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>🏗️ Complete AKS Platform Architecture</h2>
+            <p>Designed and implemented a production-ready Azure Kubernetes Service platform with automated CI/CD, monitoring, security hardening, and multi-environment support for enterprise applications.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>☁️ Azure AKS</h3>
+                    <p>Managed Kubernetes service with enterprise security and monitoring</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔒 Azure AD</h3>
+                    <p>Identity integration with role-based access control</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔑 Azure Key Vault</h3>
+                    <p>Secure secrets management and certificate storage</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📊 Azure Monitor</h3>
+                    <p>Comprehensive observability and application insights</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🚀 Azure DevOps</h3>
+                    <p>Automated CI/CD pipelines with GitOps workflows</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔐 Azure Policy</h3>
+                    <p>Governance and compliance enforcement</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🌐 Azure Load Balancer</h3>
+                    <p>High-availability traffic distribution</p>
+                </div>
+                <div class="tech-item">
+                    <h3>💾 Azure Container Registry</h3>
+                    <p>Secure container image storage and scanning</p>
+                </div>
+            </div>
+
+            <h3>🏗️ Platform Components</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Multi-Cluster Setup:</strong> Production, staging, and development environments</li>
+                <li><strong>Network Security:</strong> Azure CNI with network policies and firewall rules</li>
+                <li><strong>Identity Integration:</strong> Azure AD pod identity and service mesh authentication</li>
+                <li><strong>Storage Solutions:</strong> Azure Disk and File storage with dynamic provisioning</li>
+                <li><strong>Monitoring Stack:</strong> Azure Monitor, Log Analytics, and Application Insights</li>
+                <li><strong>Backup & Recovery:</strong> Velero-based cluster and application backup strategies</li>
+            </ul>
+        </section>
+
+        <section id="features" class="azure-features">
+            <h2 style="text-align: center; margin-bottom: 30px;">🚀 Enterprise AKS Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>🔄 Auto-Scaling</h3>
+                    <ul>
+                        <li>Horizontal Pod Autoscaler (HPA)</li>
+                        <li>Vertical Pod Autoscaler (VPA)</li>
+                        <li>Cluster autoscaler for node management</li>
+                        <li>KEDA for event-driven scaling</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🔒 Security Hardening</h3>
+                    <ul>
+                        <li>Pod Security Standards enforcement</li>
+                        <li>Network policies and micro-segmentation</li>
+                        <li>Image vulnerability scanning</li>
+                        <li>Azure AD integration and RBAC</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>📈 Monitoring & Observability</h3>
+                    <ul>
+                        <li>Azure Monitor for containers</li>
+                        <li>Application Insights integration</li>
+                        <li>Custom metrics and dashboards</li>
+                        <li>Distributed tracing with Jaeger</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🚀 CI/CD Integration</h3>
+                    <ul>
+                        <li>Azure DevOps pipelines</li>
+                        <li>GitOps with ArgoCD</li>
+                        <li>Automated testing and security scanning</li>
+                        <li>Blue-green deployment strategies</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🌐 Service Mesh</h3>
+                    <ul>
+                        <li>Istio for traffic management</li>
+                        <li>mTLS encryption between services</li>
+                        <li>Circuit breakers and retry policies</li>
+                        <li>Distributed tracing and metrics</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>💾 Data Management</h3>
+                    <ul>
+                        <li>Azure Disk and File storage classes</li>
+                        <li>Database operators for managed services</li>
+                        <li>Backup automation with Velero</li>
+                        <li>Disaster recovery procedures</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="content-section">
+            <h2>🎯 Real-World Business Impact</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: linear-gradient(135deg, #009ee3 0%, #0078d4 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">15+</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Microservices Deployed</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #009ee3 0%, #0078d4 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">3x</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Faster Deployments</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #009ee3 0%, #0078d4 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">99.95%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Availability SLA</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #009ee3 0%, #0078d4 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">40%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Cost Reduction</span>
+                </div>
+            </div>
+
+            <h3>💼 Transformation Story</h3>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                    <div>
+                        <h4 style="color: #e53e3e; margin-bottom: 15px;">😤 Before AKS Platform</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Monolithic applications with single points of failure</li>
+                            <li>Manual deployment processes taking hours</li>
+                            <li>Over-provisioned VMs with poor resource utilization</li>
+                            <li>Limited scalability and development velocity</li>
+                            <li>Complex security management across environments</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #009ee3; margin-bottom: 15px;">🚀 After AKS Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Microservices architecture with fault isolation</li>
+                            <li>Automated deployments with zero-downtime releases</li>
+                            <li>Dynamic scaling based on demand with 40% cost savings</li>
+                            <li>Independent team deployments and faster time-to-market</li>
+                            <li>Centralized security policies with Azure AD integration</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #a6e22e; margin-top: 0;">🎉 Success Metrics</h3>
+                <p style="color: #f0f0f0;"><strong>Performance:</strong> 3x faster deployment cycles with automated rollbacks<br>
+                <strong>Reliability:</strong> 99.95% uptime SLA with zero data loss incidents<br>
+                <strong>Efficiency:</strong> 40% cost reduction through optimized resource utilization<br>
+                <strong>Security:</strong> 100% compliance with enterprise security standards</p>
+            </div>
+        </section>
+
+        <section id="implementation" class="content-section">
+            <h2>⚙️ Technical Implementation Details</h2>
+            
+            <h3>🎯 My Role as Platform Engineer & Kubernetes Architect</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Cluster Design:</strong> Multi-environment AKS clusters with enterprise security controls</li>
+                <li><strong>Network Architecture:</strong> Azure CNI with network policies and firewall integration</li>
+                <li><strong>Identity Management:</strong> Azure AD integration with pod identity and RBAC</li>
+                <li><strong>Monitoring Setup:</strong> Azure Monitor integration with custom dashboards and alerting</li>
+                <li><strong>CI/CD Pipelines:</strong> Azure DevOps with GitOps workflows and automated testing</li>
+                <li><strong>Security Hardening:</strong> Pod Security Standards, image scanning, and compliance policies</li>
+            </ul>
+
+            <h3>🔧 Key Technologies & Azure Integration</h3>
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin: 20px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4 style="color: #66d9ef;">Container Platform</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Azure AKS with auto-scaling, monitoring, and enterprise security</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Identity & Security</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Azure AD integration with pod identity and RBAC policies</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Secrets Management</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Azure Key Vault with CSI driver for secure secret injection</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Observability</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Azure Monitor with Application Insights and custom metrics</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📋 Implementation Workflow</h3>
+            <ol style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Infrastructure Planning:</strong> Resource group design and network architecture</li>
+                <li><strong>Cluster Provisioning:</strong> AKS clusters with Terraform automation</li>
+                <li><strong>Security Configuration:</strong> Azure AD integration and RBAC setup</li>
+                <li><strong>Monitoring Deployment:</strong> Azure Monitor and Application Insights configuration</li>
+                <li><strong>CI/CD Integration:</strong> Azure DevOps pipelines with GitOps workflows</li>
+                <li><strong>Application Migration:</strong> Containerization and microservices deployment</li>
+                <li><strong>Performance Tuning:</strong> Auto-scaling configuration and resource optimization</li>
+                <li><strong>Documentation:</strong> Operational runbooks and disaster recovery procedures</li>
+            </ol>
+
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin: 0; opacity: 0.7; font-size: 0.9rem;">
+                    💡 <strong>Share this story:</strong> LinkedIn | Twitter | Email
+                    <br>
+                    Help others discover how enterprise Kubernetes transforms application delivery
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

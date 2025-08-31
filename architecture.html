@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Architecture • Ultimate DevOps</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      margin: 0;
+    }
+    nav {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 220px;
+      height: 100%;
+      background-color: #161b22;
+      padding: 2rem 1rem;
+      overflow-y: auto;
+    }
+    nav a {
+      display: block;
+      margin: 0.75rem 0;
+      color: #58a6ff;
+      text-decoration: none;
+    }
+    nav a:hover {
+      text-shadow: 0 0 10px #58a6ff;
+    }
+    .main {
+      margin-left: 240px;
+      padding: 2rem;
+    }
+    h1 {
+      color: #58a6ff;
+      text-shadow: 0 0 8px #58a6ff;
+    }
+    img {
+      width: 100%;
+      margin-top: 1rem;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="projects.html">Projects</a>
+    <a href="aws-solutions.html">AWS Solutions</a>
+    <a href="azure-solutions.html">Azure Solutions</a>
+    <a href="gcp-solutions.html">GCP Solutions</a>
+    <a href="features.html">Features</a>
+    <a href="ci.html">CI/CD</a>
+    <a href="security.html">Security</a>
+    <a href="use-cases.html">Use Cases</a>
+    <a href="docs.html">Docs</a>
+    <a href="architecture.html" class="active">Architecture</a>
+  </nav>
+  <div class="main">
+    <h1>Architecture Overview</h1>
+    <p>
+      The Ultimate DevOps Container is powered by a multi-layer architecture that balances flexibility, performance, and security.
+    </p>
+    <ul>
+      <li><strong>Base Layer:</strong> Hardened Debian slim with Zsh, Docker, and essential CLI tools</li>
+      <li><strong>DevOps Layer:</strong> Terraform, Helm, Kubectl, Trivy, Checkov, AWS CLI</li>
+      <li><strong>Platform Layer:</strong> Prometheus, Grafana, Vault, Code-Server</li>
+      <li><strong>UX Layer:</strong> Oh My Zsh + Powerlevel10k, preloaded dashboards, reverse proxy with TLS</li>
+    </ul>
+    
+    <h2>Hybrid vs Ultimate DevOps Container</h2>
+    <p>
+      The Ultimate DevOps Container focuses on being a single, portable Docker image with all essential DevOps tools, 
+      while a Hybrid DevOps Lab provides a full multi-service architecture for team demonstrations and CI/CD simulation.
+    </p>
+    <img src="images/devops-comparison.png" alt="Hybrid DevOps Lab vs Ultimate DevOps Container" />
+    
+    <img src="images/container-architecture.png" alt="DevOps Container Architecture" />
+    <p>
+      The architecture enables modular builds, isolated services, volume mounting for persistence, and auto-provisioned secrets handling.
+    </p>
+
+    <h2>Cloud-Specific Architectural Solutions</h2>
+    <p>
+      Beyond the Ultimate DevOps Container, explore detailed architectural patterns and solutions designed for specific cloud platforms:
+    </p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin: 30px 0;">
+      <div style="background: linear-gradient(135deg, #FF9900, #FF6600); color: white; padding: 25px; border-radius: 10px;">
+        <h3 style="margin-top: 0;">AWS Enterprise Solutions</h3>
+        <p style="opacity: 0.9;">Enterprise CI/CD pipelines, EKS clusters, multi-environment infrastructure, and comprehensive monitoring stacks.</p>
+        <a href="aws-solutions.html" style="color: white; text-decoration: underline;">View AWS Architectures →</a>
+      </div>
+      
+      <div style="background: linear-gradient(135deg, #0078D4, #106EBE); color: white; padding: 25px; border-radius: 10px;">
+        <h3 style="margin-top: 0;">Azure Hybrid Solutions</h3>
+        <p style="opacity: 0.9;">Hybrid cloud architectures, serverless event-driven platforms, and AI/ML operations using Azure services.</p>
+        <a href="azure-solutions.html" style="color: white; text-decoration: underline;">View Azure Architectures →</a>
+      </div>
+      
+      <div style="background: linear-gradient(135deg, #4285F4, #34A853); color: white; padding: 25px; border-radius: 10px;">
+        <h3 style="margin-top: 0;">GCP Cloud-Native Solutions</h3>
+        <p style="opacity: 0.9;">Serverless microservices, AI/ML pipelines, and global-scale data processing architectures on Google Cloud.</p>
+        <a href="gcp-solutions.html" style="color: white; text-decoration: underline;">View GCP Architectures →</a>
+      </div>
+    </div>
+
+    <h2>Technical Deep Dive</h2>
+    <p>
+      Each cloud solution includes interactive architectural diagrams, detailed technical specifications, and real-world implementation examples.
+    </p>
+  </div>
+  
+  <footer>
+    <h3>Connect with Me</h3>
+    <div class="social-links">
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+  </footer>
+</body>
+</html>

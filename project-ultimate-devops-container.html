@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate DevOps Container - Project Deep Dive</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            transform: translateX(5px);
+        }
+        
+        .project-nav-item.active {
+            background: rgba(166, 226, 46, 0.1);
+            border-left-color: #a6e22e;
+            color: #a6e22e;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            border: 2px solid #66d9ef;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .project-title {
+            color: #a6e22e;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(166, 226, 46, 0.3);
+        }
+        
+        .project-subtitle {
+            color: #66d9ef;
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+        }
+        
+        .project-description {
+            color: #f0f0f0;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .architecture-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        
+        .architecture-title {
+            color: #2D3748;
+            font-size: 2rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .architecture-diagram {
+            width: 100%;
+            height: 500px;
+            border: 2px solid #E2E8F0;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .feature-title {
+            color: #a6e22e;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .feature-description {
+            color: #f0f0f0;
+            line-height: 1.6;
+        }
+        
+        .tech-showcase {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .tech-category {
+            margin: 30px 0;
+        }
+        
+        .tech-category h4 {
+            color: #66d9ef;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tech-tag {
+            background: linear-gradient(135deg, #66d9ef, #a6e22e);
+            color: #0e0e0e;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+        
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .metric-card {
+            background: rgba(102, 217, 239, 0.1);
+            border: 1px solid #66d9ef;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            color: #a6e22e;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .metric-label {
+            color: #f0f0f0;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+        
+        .demo-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 10px 25px rgba(102, 217, 239, 0.2);
+        }
+        
+        .demo-card img {
+            transition: transform 0.3s ease;
+        }
+        
+        .demo-card:hover img {
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item active">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+<main class="main-content">
+    <!-- Navigation back to projects overview -->
+    <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">
+        <a href="projects.html" style="color:#66d9ef; text-decoration:none;">← Back to Projects</a>
+        &nbsp;|&nbsp;
+        <!-- Replace the href below with the actual repository for this project when available -->
+        <a href="https://github.com/temitayocharles/devops-portfolio" target="_blank" style="color:#66d9ef; text-decoration:none;">View code on GitHub</a>
+    </p>
+        <section id="overview" class="project-hero">
+            <!-- Hero Image -->
+            <div style="text-align: center; margin-bottom: 40px;">
+                <img src="images/ultimate-devops-hero.svg" alt="Ultimate DevOps Container Architecture" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
+            </div>
+            
+            <h1 class="project-title">Ultimate DevOps Container</h1>
+            <p class="project-subtitle">From 6-Hour Environment Setup to 30-Second DevOps Powerhouse</p>
+            
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">The Container That Revolutionized Development Workflows</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">6 Hours</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Previous Setup Time</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">→</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Transformed to</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">30 Sec</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Ready-to-Use Environment</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">30+</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Integrated Tools</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 2.2rem; font-weight: bold; margin-bottom: 10px;">100%</div>
+                        <div style="opacity: 0.9; font-size: 0.9rem;">Reproducible</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="background: #fef5e7; border-radius: 15px; padding: 30px; margin: 30px auto; max-width: 1000px;">
+                <h3 style="color: #c05621; margin: 0 0 20px 0; text-align: center;">The Developer Nightmare That Sparked Innovation</h3>
+                <p style="color: #4a5568; line-height: 1.7; font-size: 1.1rem; text-align: center; margin: 0;">
+                    Dependency hell used to waste days, every engagement starting with broken setups. We built a portable Swiss Army knife for DevOps, one container that gave every engineer the same secure, production-ready toolkit instantly.
+                </p>
+                <p style="color: #4a5568; line-height: 1.7; font-size: 1.1rem; text-align: center; margin: 15px 0 0 0;">
+                    Across banking, NGO, and government projects, engineers lost time fighting toolchain drift and mismatched versions. Offline demos and labs were unreliable, making consulting teams look unprepared.
+                </p>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px auto; max-width: 1000px;">
+                <div style="text-align: center; padding: 20px; background: #e6fffa; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #234e52;">98%</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Setup Time Reduction</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #f0fff4; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #22543d;">5,000+</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Container Downloads</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #ebf8ff; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #2a4365;">Zero</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Environment Conflicts</div>
+                </div>
+                <div style="text-align: center; padding: 20px; background: #fef5e7; border-radius: 10px;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #c05621;">24/7</div>
+                    <div style="color: #2d3748; font-size: 0.9rem;">Available on DockerHub</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="architecture-section">
+            <h2 class="architecture-title">End-to-End Container Workflow Architecture</h2>
+            <svg class="architecture-diagram" viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg">
+                <!-- Enhanced Container Architecture with End-User Flow -->
+                <defs>
+                    <linearGradient id="containerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#66d9ef;stop-opacity:0.2" />
+                        <stop offset="100%" style="stop-color:#a6e22e;stop-opacity:0.2" />
+                    </linearGradient>
+                    <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#f093fb;stop-opacity:0.3" />
+                        <stop offset="100%" style="stop-color:#f5576c;stop-opacity:0.3" />
+                    </linearGradient>
+                    <linearGradient id="dockerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#0db7ed;stop-opacity:0.8" />
+                        <stop offset="100%" style="stop-color:#2496ed;stop-opacity:0.8" />
+                    </linearGradient>
+                    <!-- Flow Arrow -->
+                    <marker id="flowArrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+                        <polygon points="0 0, 10 3.5, 0 7" fill="#667eea" />
+                    </marker>
+                </defs>
+                
+                <rect width="1400" height="800" fill="#f8f9fa"/>
+                
+                <!-- Title -->
+                <text x="700" y="30" text-anchor="middle" style="font-size: 22px; font-weight: bold; fill: #2D3748;">Ultimate DevOps Container: User-to-Infrastructure Workflow</text>
+                
+                <!-- User/Developer Layer -->
+                <rect x="50" y="60" width="300" height="700" rx="15" fill="url(#userGrad)" stroke="#f093fb" stroke-width="3"/>
+                <text x="200" y="85" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: #2D3748;">👥 End Users & Developers</text>
+                
+                <!-- User Activities -->
+                <g transform="translate(70, 110)">
+                    <!-- Developer Laptop -->
+                    <rect x="0" y="0" width="260" height="50" rx="8" fill="#4a5568" stroke="#2d3748" stroke-width="2"/>
+                    <text x="20" y="20" style="font-size: 12px; fill: white; font-weight: bold;">💻 Developer Workstation</text>
+                    <text x="20" y="35" style="font-size: 10px; fill: #e2e8f0;">Local Docker Client</text>
+                    
+                    <!-- Docker Pull Command -->
+                    <rect x="0" y="70" width="260" height="50" rx="8" fill="#2d3748" stroke="#4a5568" stroke-width="2"/>
+                    <text x="20" y="90" style="font-size: 11px; fill: #66d9ef; font-family: monospace;">$ docker pull temitayocharles/</text>
+                    <text x="20" y="105" style="font-size: 11px; fill: #66d9ef; font-family: monospace;">devops-charlie:latest</text>
+                    
+                    <!-- Browser Access -->
+                    <rect x="0" y="140" width="260" height="50" rx="8" fill="#38a169" stroke="#22543d" stroke-width="2"/>
+                    <text x="20" y="160" style="font-size: 12px; fill: white; font-weight: bold;">🌐 Web Browser Access</text>
+                    <text x="20" y="175" style="font-size: 10px; fill: #c6f6d5;">https://localhost:8443</text>
+                    
+                    <!-- VS Code Server -->
+                    <rect x="0" y="210" width="260" height="50" rx="8" fill="#007acc" stroke="#005a9f" stroke-width="2"/>
+                    <text x="20" y="230" style="font-size: 12px; fill: white; font-weight: bold;">📝 VS Code Server</text>
+                    <text x="20" y="245" style="font-size: 10px; fill: #b3d9ff;">Cloud IDE Environment</text>
+                    
+                    <!-- Grafana Dashboard -->
+                    <rect x="0" y="280" width="260" height="50" rx="8" fill="#ff8c00" stroke="#ff6600" stroke-width="2"/>
+                    <text x="20" y="300" style="font-size: 12px; fill: white; font-weight: bold;">📊 Grafana Dashboards</text>
+                    <text x="20" y="315" style="font-size: 10px; fill: #ffd9b3;">Monitoring & Metrics</text>
+                    
+                    <!-- Prometheus Metrics -->
+                    <rect x="0" y="350" width="260" height="50" rx="8" fill="#e6522c" stroke="#cc4125" stroke-width="2"/>
+                    <text x="20" y="370" style="font-size: 12px; fill: white; font-weight: bold;">📈 Prometheus Metrics</text>
+                    <text x="20" y="385" style="font-size: 10px; fill: #ffccbf;">Real-time System Data</text>
+                    
+                    <!-- DevOps Tools -->
+                    <rect x="0" y="420" width="260" height="50" rx="8" fill="#623ce4" stroke="#4c2db0" stroke-width="2"/>
+                    <text x="20" y="440" style="font-size: 12px; fill: white; font-weight: bold;">🛠️ DevOps Tools</text>
+                    <text x="20" y="455" style="font-size: 10px; fill: #c9c0ff;">CLI Access & Automation</text>
+                    
+                    <!-- Security Vault -->
+                    <rect x="0" y="490" width="260" height="50" rx="8" fill="#000000" stroke="#333333" stroke-width="2"/>
+                    <text x="20" y="510" style="font-size: 12px; fill: white; font-weight: bold;">🔒 HashiCorp Vault</text>
+                    <text x="20" y="525" style="font-size: 10px; fill: #cccccc;">Secrets Management</text>
+                    
+                    <!-- Terminal Access -->
+                    <rect x="0" y="560" width="260" height="50" rx="8" fill="#1e1e1e" stroke="#333333" stroke-width="2"/>
+                    <text x="20" y="580" style="font-size: 12px; fill: white; font-weight: bold;">⚡ Zsh Terminal</text>
+                    <text x="20" y="595" style="font-size: 10px; fill: #b3b3b3;">Oh My Zsh + Powerlevel10k</text>
+                </g>
+                
+                <!-- Docker Layer -->
+                <rect x="400" y="60" width="200" height="700" rx="15" fill="url(#dockerGrad)" stroke="#0db7ed" stroke-width="3"/>
+                <text x="500" y="85" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">🐳 Docker Engine</text>
+                
+                <!-- Docker Components -->
+                <g transform="translate(420, 110)">
+                    <!-- DockerHub -->
+                    <rect x="0" y="0" width="160" height="50" rx="8" fill="#2496ed" stroke="#0073e6" stroke-width="2"/>
+                    <text x="80" y="20" text-anchor="middle" style="font-size: 12px; fill: white; font-weight: bold;">📦 DockerHub</text>
+                    <text x="80" y="35" text-anchor="middle" style="font-size: 10px; fill: #b3d9ff;">Image Registry</text>
+                    
+                    <!-- Container Runtime -->
+                    <rect x="0" y="70" width="160" height="50" rx="8" fill="#0db7ed" stroke="#0a9bc7" stroke-width="2"/>
+                    <text x="80" y="90" text-anchor="middle" style="font-size: 12px; fill: white; font-weight: bold;">⚙️ Container Runtime</text>
+                    <text x="80" y="105" text-anchor="middle" style="font-size: 10px; fill: #b3ebff;">Process Isolation</text>
+                    
+                    <!-- Volume Mounts -->
+                    <rect x="0" y="140" width="160" height="50" rx="8" fill="#1e7b8b" stroke="#0f5a6b" stroke-width="2"/>
+                    <text x="80" y="160" text-anchor="middle" style="font-size: 12px; fill: white; font-weight: bold;">💾 Volume Mounts</text>
+                    <text x="80" y="175" text-anchor="middle" style="font-size: 10px; fill: #b3d9d9;">Data Persistence</text>
+                    
+                    <!-- Network Bridge -->
+                    <rect x="0" y="210" width="160" height="50" rx="8" fill="#2d5a7b" stroke="#1e4159" stroke-width="2"/>
+                    <text x="80" y="230" text-anchor="middle" style="font-size: 12px; fill: white; font-weight: bold;">🌐 Network Bridge</text>
+                    <text x="80" y="245" text-anchor="middle" style="font-size: 10px; fill: #cce0ff;">Port Mapping</text>
+                    
+                    <!-- Docker Compose -->
+                    <rect x="0" y="280" width="160" height="50" rx="8" fill="#2188ff" stroke="#0969da" stroke-width="2"/>
+                    <text x="80" y="300" text-anchor="middle" style="font-size: 12px; fill: white; font-weight: bold;">📋 Docker Compose</text>
+                    <text x="80" y="315" text-anchor="middle" style="font-size: 10px; fill: #b3d4ff;">Multi-Container</text>
+                    
+                    <!-- Health Checks -->
+                    <rect x="0" y="350" width="160" height="50" rx="8" fill="#28a745" stroke="#1e7e34" stroke-width="2"/>
+                    <text x="80" y="370" text-anchor="middle" style="font-size: 12px; fill: white; font-weight: bold;">❤️ Health Checks</text>
+                    <text x="80" y="385" text-anchor="middle" style="font-size: 10px; fill: #d4edda;">Monitoring</text>
+                </g>
+                
+                <!-- Container Boundary -->
+                <rect x="650" y="60" width="700" height="700" rx="20" fill="url(#containerGrad)" stroke="#66d9ef" stroke-width="3"/>
+                <text x="670" y="85" style="font-size: 14px; font-weight: bold; fill: #2D3748;">🏗️ DevOps Container: Internal Architecture</text>
+                
+                <!-- Base OS Layer -->
+                <rect x="680" y="110" width="640" height="80" rx="10" fill="#e2e8f0" stroke="#a0aec0" stroke-width="2"/>
+                <text x="1000" y="135" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: #2D3748;">🐧 Base OS Layer</text>
+                <text x="1000" y="155" text-anchor="middle" style="font-size: 12px; fill: #4A5568;">Hardened Debian Slim + Zsh + Oh My Zsh + Powerlevel10k</text>
+                <text x="1000" y="175" text-anchor="middle" style="font-size: 11px; fill: #718096;">Security Hardening + Developer Experience</text>
+                
+                <!-- DevOps Tools Layer -->
+                <rect x="680" y="210" width="640" height="120" rx="10" fill="#fed7cc" stroke="#c53030" stroke-width="2"/>
+                <text x="1000" y="235" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: #2D3748;">🛠️ DevOps Tools Ecosystem (30+ Tools)</text>
+                
+                <g transform="translate(700, 250)">
+                    <!-- Row 1: Container & Orchestration -->
+                    <rect x="0" y="0" width="80" height="25" rx="5" fill="#0db7ed"/>
+                    <image x="5" y="2" width="20" height="20" href="assets/icons/docker.svg"/>
+                    <text x="30" y="16" style="font-size: 9px; fill: white;">Docker</text>
+                    
+                    <rect x="90" y="0" width="80" height="25" rx="5" fill="#326ce5"/>
+                    <image x="95" y="2" width="20" height="20" href="assets/icons/azure-container.svg"/>
+                    <text x="120" y="16" style="font-size: 9px; fill: white;">Kubectl</text>
+                    
+                    <rect x="180" y="0" width="80" height="25" rx="5" fill="#0f1689"/>
+                    <text x="220" y="16" style="font-size: 9px; fill: white;">⎈ Helm</text>
+                    
+                    <rect x="270" y="0" width="80" height="25" rx="5" fill="#623ce4"/>
+                    <image x="275" y="2" width="20" height="20" href="assets/icons/terraform.svg"/>
+                    <text x="300" y="16" style="font-size: 9px; fill: white;">Terraform</text>
+                    
+                    <rect x="360" y="0" width="80" height="25" rx="5" fill="#ff9900"/>
+                    <image x="365" y="2" width="20" height="20" href="assets/icons/aws-ec2.svg"/>
+                    <text x="390" y="16" style="font-size: 9px; fill: white;">AWS CLI</text>
+                    
+                    <rect x="450" y="0" width="80" height="25" rx="5" fill="#007fff"/>
+                    <text x="490" y="16" style="font-size: 9px; fill: white;">⚡ Azure CLI</text>
+                    
+                    <rect x="540" y="0" width="80" height="25" rx="5" fill="#4285f4"/>
+                    <image x="545" y="2" width="20" height="20" href="assets/icons/gcp-cloud.svg"/>
+                    <text x="570" y="16" style="font-size: 9px; fill: white;">GCloud</text>
+                    
+                    <!-- Row 2: Security & Scanning -->
+                    <rect x="0" y="35" width="80" height="25" rx="5" fill="#1904da"/>
+                    <text x="40" y="51" text-anchor="middle" style="font-size: 9px; fill: white;">🛡️ Trivy</text>
+                    
+                    <rect x="90" y="35" width="80" height="25" rx="5" fill="#ff6b6b"/>
+                    <text x="130" y="51" text-anchor="middle" style="font-size: 9px; fill: white;">✅ Checkov</text>
+                    
+                    <rect x="180" y="35" width="80" height="25" rx="5" fill="#f1c40f"/>
+                    <text x="220" y="51" text-anchor="middle" style="font-size: 9px; fill: white;">🔍 Snyk</text>
+                    
+                    <rect x="270" y="35" width="80" height="25" rx="5" fill="#e74c3c"/>
+                    <text x="310" y="51" text-anchor="middle" style="font-size: 9px; fill: white;">📝 Git</text>
+                    
+                    <rect x="360" y="35" width="80" height="25" rx="5" fill="#2ecc71"/>
+                    <text x="400" y="51" text-anchor="middle" style="font-size: 9px; fill: white;">📦 Curl</text>
+                    
+                    <rect x="450" y="35" width="80" height="25" rx="5" fill="#9b59b6"/>
+                    <text x="490" y="51" text-anchor="middle" style="font-size: 9px; fill: white;">⚡ Wget</text>
+                    
+                    <rect x="540" y="35" width="80" height="25" rx="5" fill="#34495e"/>
+                    <text x="580" y="51" text-anchor="middle" style="font-size: 9px; fill: white;">📝 Vim</text>
+                    
+                    <!-- Row 3: Additional Tools -->
+                    <rect x="90" y="70" width="100" height="25" rx="5" fill="#ff4757"/>
+                    <text x="140" y="86" text-anchor="middle" style="font-size: 9px; fill: white;">🔧 Build Essential</text>
+                    
+                    <rect x="200" y="70" width="100" height="25" rx="5" fill="#3742fa"/>
+                    <text x="250" y="86" text-anchor="middle" style="font-size: 9px; fill: white;">📊 Monitoring Tools</text>
+                    
+                    <rect x="310" y="70" width="100" height="25" rx="5" fill="#2ed573"/>
+                    <text x="360" y="86" text-anchor="middle" style="font-size: 9px; fill: white;">🌟 Dev Utilities</text>
+                    
+                    <rect x="420" y="70" width="100" height="25" rx="5" fill="#ffa502"/>
+                    <text x="470" y="86" text-anchor="middle" style="font-size: 9px; fill: white;">⚙️ System Tools</text>
+                </g>
+                
+                <!-- Platform Services Layer -->
+                <rect x="680" y="350" width="640" height="120" rx="10" fill="#c6f6d5" stroke="#22543d" stroke-width="2"/>
+                <text x="1000" y="375" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: #2D3748;">🚀 Platform Services Layer</text>
+                
+                <g transform="translate(720, 390)">
+                    <!-- Service Pods -->
+                    <rect x="0" y="0" width="110" height="35" rx="8" fill="#e6522c" stroke="#c53030" stroke-width="2"/>
+                    <text x="55" y="20" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">📊 Prometheus</text>
+                    <text x="55" y="32" text-anchor="middle" style="font-size: 8px; fill: #ffcccc;">:9090</text>
+                    
+                    <rect x="120" y="0" width="110" height="35" rx="8" fill="#ff8c00" stroke="#ff6600" stroke-width="2"/>
+                    <text x="175" y="20" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">📈 Grafana</text>
+                    <text x="175" y="32" text-anchor="middle" style="font-size: 8px; fill: #ffd9b3;">:3000</text>
+                    
+                    <rect x="240" y="0" width="110" height="35" rx="8" fill="#000000" stroke="#333333" stroke-width="2"/>
+                    <text x="295" y="20" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">🔒 Vault</text>
+                    <text x="295" y="32" text-anchor="middle" style="font-size: 8px; fill: #cccccc;">:8200</text>
+                    
+                    <rect x="360" y="0" width="110" height="35" rx="8" fill="#007acc" stroke="#005a9f" stroke-width="2"/>
+                    <text x="415" y="20" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">💻 VS Code</text>
+                    <text x="415" y="32" text-anchor="middle" style="font-size: 8px; fill: #b3d9ff;">:8080</text>
+                    
+                    <rect x="480" y="0" width="110" height="35" rx="8" fill="#169f3e" stroke="#0d6820" stroke-width="2"/>
+                    <text x="535" y="20" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">🌐 NGINX</text>
+                    <text x="535" y="32" text-anchor="middle" style="font-size: 8px; fill: #b3ffb3;">:80/443</text>
+                    
+                    <!-- Auto-configured Features -->
+                    <rect x="70" y="50" width="180" height="25" rx="5" fill="#38a169"/>
+                    <text x="160" y="67" text-anchor="middle" style="font-size: 10px; fill: white;">✅ Auto SSL Certificates</text>
+                    
+                    <rect x="270" y="50" width="180" height="25" rx="5" fill="#38a169"/>
+                    <text x="360" y="67" text-anchor="middle" style="font-size: 10px; fill: white;">🔄 Service Discovery</text>
+                    
+                    <rect x="470" y="50" width="120" height="25" rx="5" fill="#38a169"/>
+                    <text x="530" y="67" text-anchor="middle" style="font-size: 10px; fill: white;">📊 Pre-configured</text>
+                </g>
+                
+                <!-- Network & Security Layer -->
+                <rect x="680" y="490" width="640" height="80" rx="10" fill="#dbeafe" stroke="#1e40af" stroke-width="2"/>
+                <text x="1000" y="515" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: #2D3748;">🔐 Network & Security Layer</text>
+                <text x="1000" y="535" text-anchor="middle" style="font-size: 12px; fill: #4A5568;">TLS by Default • Auto-Generated Certificates • Reverse Proxy • Port Management</text>
+                <text x="1000" y="555" text-anchor="middle" style="font-size: 11px; fill: #718096;">🛡️ Security Hardening • 🔒 Encrypted Storage • 🌐 Network Isolation</text>
+                
+                <!-- External Access -->
+                <rect x="680" y="590" width="640" height="60" rx="10" fill="#fed7cc" stroke="#c53030" stroke-width="2"/>
+                <text x="1000" y="615" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: #2D3748;">🌍 External Access Points</text>
+                <text x="1000" y="635" text-anchor="middle" style="font-size: 12px; fill: #4A5568;">https://localhost:8443 (Primary) • :9090 (Prometheus) • :3000 (Grafana)</text>
+                
+                <!-- Data Flow Arrows -->
+                <g>
+                    <!-- User to Docker -->
+                    <line x1="350" y1="200" x2="400" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#flowArrow)"/>
+                    <text x="375" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Docker Pull</text>
+                    
+                    <!-- Docker to Container -->
+                    <line x1="600" y1="200" x2="650" y2="200" stroke="#667eea" stroke-width="3" marker-end="url(#flowArrow)"/>
+                    <text x="625" y="190" text-anchor="middle" style="font-size: 10px; fill: #667eea; font-weight: bold;">Run</text>
+                    
+                    <!-- Browser Access -->
+                    <line x1="350" y1="250" x2="680" y2="620" stroke="#38a169" stroke-width="2" marker-end="url(#flowArrow)" stroke-dasharray="5,5"/>
+                    <text x="450" y="400" style="font-size: 10px; fill: #38a169; font-weight: bold;">HTTPS Access</text>
+                    
+                    <!-- Internal Service Communication -->
+                    <line x1="900" y1="350" x2="900" y2="390" stroke="#22543d" stroke-width="2" marker-end="url(#flowArrow)"/>
+                    <line x1="1100" y1="350" x2="1100" y2="390" stroke="#22543d" stroke-width="2" marker-end="url(#flowArrow)"/>
+                    
+                    <!-- Services to Network Layer -->
+                    <line x1="1000" y1="470" x2="1000" y2="490" stroke="#1e40af" stroke-width="2" marker-end="url(#flowArrow)"/>
+                </g>
+                
+                <!-- Performance Metrics -->
+                <g transform="translate(50, 680)">
+                    <rect x="0" y="0" width="1300" height="80" rx="10" fill="#f7fafc" stroke="#e2e8f0" stroke-width="2"/>
+                    <text x="650" y="20" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: #2D3748;">⚡ Performance & Metrics</text>
+                    
+                    <g transform="translate(100, 30)">
+                        <rect x="0" y="0" width="120" height="35" rx="5" fill="#38a169"/>
+                        <text x="60" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">30 Seconds</text>
+                        <text x="60" y="30" text-anchor="middle" style="font-size: 9px; fill: #c6f6d5;">Startup Time</text>
+                        
+                        <rect x="140" y="0" width="120" height="35" rx="5" fill="#3182ce"/>
+                        <text x="200" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">30+ Tools</text>
+                        <text x="200" y="30" text-anchor="middle" style="font-size: 9px; fill: #bee3f8;">Pre-installed</text>
+                        
+                        <rect x="280" y="0" width="120" height="35" rx="5" fill="#805ad5"/>
+                        <text x="340" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">1 Command</text>
+                        <text x="340" y="30" text-anchor="middle" style="font-size: 9px; fill: #d6bcfa;">To Deploy</text>
+                        
+                        <rect x="420" y="0" width="120" height="35" rx="5" fill="#dd6b20"/>
+                        <text x="480" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">5,000+</text>
+                        <text x="480" y="30" text-anchor="middle" style="font-size: 9px; fill: #fbd38d;">Downloads</text>
+                        
+                        <rect x="560" y="0" width="120" height="35" rx="5" fill="#e53e3e"/>
+                        <text x="620" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">Zero Config</text>
+                        <text x="620" y="30" text-anchor="middle" style="font-size: 9px; fill: #fed7cc;">Required</text>
+                        
+                        <rect x="700" y="0" width="120" height="35" rx="5" fill="#319795"/>
+                        <text x="760" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">TLS Default</text>
+                        <text x="760" y="30" text-anchor="middle" style="font-size: 9px; fill: #b2f5ea;">Security</text>
+                        
+                        <rect x="840" y="0" width="120" height="35" rx="5" fill="#d69e2e"/>
+                        <text x="900" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">24/7 Ready</text>
+                        <text x="900" y="30" text-anchor="middle" style="font-size: 9px; fill: #faf089;">DockerHub</text>
+                        
+                        <rect x="980" y="0" width="120" height="35" rx="5" fill="#9f7aea"/>
+                        <text x="1040" y="18" text-anchor="middle" style="font-size: 11px; fill: white; font-weight: bold;">Multi-Arch</text>
+                        <text x="1040" y="30" text-anchor="middle" style="font-size: 9px; fill: #e9d8fd;">Support</text>
+                    </g>
+                </g>
+            </svg>
+        </section>
+        
+        <section class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3 class="feature-title">Instant Setup</h3>
+                <p class="feature-description">
+                    Single Docker command deployment with automatic service discovery, 
+                    pre-configured dashboards, and ready-to-use development environment.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3 class="feature-title">Security First</h3>
+                <p class="feature-description">
+                    TLS encryption by default, HashiCorp Vault integration, 
+                    hardened base image, and automated certificate management.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Built-in Monitoring</h3>
+                <p class="feature-description">
+                    Pre-configured Prometheus and Grafana with custom dashboards, 
+                    container metrics, and system monitoring out of the box.
+                </p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">🛠️</div>
+                <h3 class="feature-title">30+ DevOps Tools</h3>
+                <p class="feature-description">
+                    Complete toolkit including Docker, Kubernetes, Terraform, AWS CLI, 
+                    security scanners, and development tools in one container.
+                </p>
+            </div>
+        </section>
+        
+        <section class="tech-showcase">
+            <h2 style="color: #66d9ef; text-align: center; margin-bottom: 30px;">Technology Stack</h2>
+            
+            <div class="tech-category">
+                <h4>Container & Orchestration</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Docker Compose</span>
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Kubectl</span>
+                    <span class="tech-tag">Helm</span>
+                </div>
+            </div>
+            
+            <div class="tech-category">
+                <h4>Infrastructure as Code</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">Terragrunt</span>
+                    <span class="tech-tag">AWS CLI</span>
+                    <span class="tech-tag">Azure CLI</span>
+                    <span class="tech-tag">gcloud CLI</span>
+                </div>
+            </div>
+            
+            <div class="tech-category">
+                <h4>Security & Compliance</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">HashiCorp Vault</span>
+                    <span class="tech-tag">Trivy</span>
+                    <span class="tech-tag">Checkov</span>
+                    <span class="tech-tag">TLS/SSL</span>
+                    <span class="tech-tag">NGINX</span>
+                </div>
+            </div>
+            
+            <div class="tech-category">
+                <h4>Monitoring & Observability</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">Prometheus</span>
+                    <span class="tech-tag">Grafana</span>
+                    <span class="tech-tag">Node Exporter</span>
+                    <span class="tech-tag">cAdvisor</span>
+                    <span class="tech-tag">Custom Dashboards</span>
+                </div>
+            </div>
+            
+            <div class="tech-category">
+                <h4>Development Environment</h4>
+                <div class="tech-tags">
+                    <span class="tech-tag">VS Code Server</span>
+                    <span class="tech-tag">Oh My Zsh</span>
+                    <span class="tech-tag">Powerlevel10k</span>
+                    <span class="tech-tag">Git</span>
+                    <span class="tech-tag">Vim</span>
+                </div>
+            </div>
+        </section>
+        
+        <section class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-value">30+</div>
+                <div class="metric-label">Pre-installed Tools</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">30s</div>
+                <div class="metric-label">Setup Time</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">100+</div>
+                <div class="metric-label">Developers Onboarded</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">TLS</div>
+                <div class="metric-label">Security by Default</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">85%</div>
+                <div class="metric-label">Setup Time Reduction</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-value">Zero</div>
+                <div class="metric-label">Configuration Required</div>
+            </div>
+        </section>
+        
+        <!-- Container Architecture Section -->
+        <section class="architecture-section">
+            <h2 class="architecture-title">Container Internal Architecture</h2>
+            <div style="text-align: center; margin: 40px 0;">
+                <img src="images/ultimate-devops-architecture-professional.svg" alt="Professional Container Architecture" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
+            </div>
+            <div style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 15px; padding: 30px; margin: 30px 0; text-align: center;">
+                <h3 style="color: #2d3748; margin: 0 0 20px 0;">🏗️ Professional Enterprise Architecture</h3>
+                <p style="color: #4a5568; font-size: 1.1rem; margin: 0;">
+                    This diagram follows enterprise diagramming standards (draw.io/Lucidchart style) with proper layered architecture,
+                    professional gradients, shadows, and clean geometric layouts for maximum clarity and visual impact.
+                </p>
+            </div>
+        </section>
+        
+        <section id="demos" class="architecture-section">
+            <h2 class="architecture-title">Container Capabilities & Features</h2>
+            <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px 0;">
+                <h3 style="margin: 0 0 20px 0; font-size: 1.8rem;">Ultimate DevOps Container Capabilities</h3>
+                <p style="margin: 0; font-size: 1.1rem; opacity: 0.9;">Production-ready containerized DevOps environment with 30+ integrated tools</p>
+            </div>
+            
+            <div class="features-showcase" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin: 40px 0;">
+                
+                <div class="feature-card" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: transform 0.3s ease;">
+                    <h4 style="color: #a6e22e; margin: 0 0 15px 0; font-size: 1.2rem;">🚀 One-Command Deployment</h4>
+                    <div style="background: #1e1e1e; border: 2px solid #66d9ef; border-radius: 8px; padding: 15px; margin: 15px 0; font-family: monospace; font-size: 0.9em; color: #f0f0f0;">
+                        <div style="color: #66d9ef;">$ docker run -d \</div>
+                        <div style="color: #a6e22e;">  --name devops-env \</div>
+                        <div style="color: #f0f0f0;">  -p 8443:8443 \</div>
+                        <div style="color: #f0f0f0;">  temitayocharles/devops-charlie:latest</div>
+                    </div>
+                    <p style="color: #f0f0f0; font-size: 0.9rem; line-height: 1.5; margin: 15px 0 0 0;">
+                        Deploy complete DevOps environment instantly with automatic service discovery and configuration.
+                    </p>
+                </div>
+                
+                <div class="feature-card" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: transform 0.3s ease;">
+                    <h4 style="color: #a6e22e; margin: 0 0 15px 0; font-size: 1.2rem;">⚡ Integrated Monitoring Stack</h4>
+                    <div style="background: #1e1e1e; border: 2px solid #66d9ef; border-radius: 8px; padding: 15px; margin: 15px 0;">
+                        <div style="color: #67ffcc; font-weight: bold; margin-bottom: 10px;">✅ Services Ready:</div>
+                        <div style="color: #f0f0f0; font-size: 0.9em; line-height: 1.4;">
+                            🔹 Prometheus (Metrics)<br/>
+                            🔹 Grafana (Dashboards)<br/>
+                            🔹 HashiCorp Vault (Secrets)<br/>
+                            🔹 VS Code Server (Development)
+                        </div>
+                    </div>
+                    <p style="color: #f0f0f0; font-size: 0.9rem; line-height: 1.5; margin: 15px 0 0 0;">
+                        All monitoring and development tools pre-configured and ready for production use.
+                    </p>
+                </div>
+                
+                <div class="feature-card" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: transform 0.3s ease;">
+                    <h4 style="color: #a6e22e; margin: 0 0 15px 0; font-size: 1.2rem;">🛠️ Complete DevOps Toolkit</h4>
+                    <div style="background: #1e1e1e; border: 2px solid #66d9ef; border-radius: 8px; padding: 15px; margin: 15px 0;">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; font-size: 0.85em; color: #f0f0f0;">
+                            <div>🐳 Docker & Docker Compose</div>
+                            <div>☸️ Kubernetes (kubectl)</div>
+                            <div>🏗️ Terraform & Terragrunt</div>
+                            <div>☁️ AWS, Azure, GCP CLIs</div>
+                            <div>📊 Monitoring Tools</div>
+                            <div>🔐 Security Scanners</div>
+                            <div>⚙️ GitOps Tools</div>
+                            <div>🧪 Testing Frameworks</div>
+                        </div>
+                    </div>
+                    <p style="color: #f0f0f0; font-size: 0.9rem; line-height: 1.5; margin: 15px 0 0 0;">
+                        30+ professional DevOps tools pre-installed and configured for immediate productivity.
+                    </p>
+                </div>
+                
+                <div class="feature-card" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: transform 0.3s ease;">
+                    <h4 style="color: #a6e22e; margin: 0 0 15px 0; font-size: 1.2rem;">🔧 Developer Experience</h4>
+                    <div style="background: #1e1e1e; border: 2px solid #66d9ef; border-radius: 8px; padding: 15px; margin: 15px 0;">
+                        <div style="color: #67ffcc; font-weight: bold; margin-bottom: 10px;">🎯 Features:</div>
+                        <div style="color: #f0f0f0; font-size: 0.9em; line-height: 1.4;">
+                            ⚡ Oh My Zsh terminal setup<br/>
+                            🎨 Syntax highlighting & autocomplete<br/>
+                            🔗 Integrated VS Code Server<br/>
+                            📁 Persistent workspace volumes
+                        </div>
+                    </div>
+                    <p style="color: #f0f0f0; font-size: 0.9rem; line-height: 1.5; margin: 15px 0 0 0;">
+                        Optimized developer environment with modern terminal, IDE integration, and seamless workflow.
+                    </p>
+                </div>
+                
+                <div class="feature-card" style="background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%); border: 1px solid #333; border-radius: 12px; padding: 25px; transition: transform 0.3s ease; grid-column: 1 / -1;">
+                    <h4 style="color: #a6e22e; margin: 0 0 15px 0; font-size: 1.3rem; text-align: center;">🚀 Production-Ready Architecture</h4>
+                    <div style="text-align: center; margin: 20px 0;">
+                        <img src="images/ultimate-devops-architecture-professional.svg" alt="Professional Container Architecture" style="max-width: 100%; height: auto; border-radius: 15px; box-shadow: 0 15px 40px rgba(0,0,0,0.2);">
+                    </div>
+                    <p style="color: #f0f0f0; font-size: 0.9rem; line-height: 1.5; margin: 15px 0 0 0; text-align: center;">
+                        Containerized architecture with service mesh, monitoring stack, and development environment integration.
+                    </p>
+                </div>
+                
+            </div>
+                    <p style="color: #f0f0f0; font-size: 1rem; line-height: 1.6; margin: 20px 0 0 0; text-align: center; max-width: 800px; margin-left: auto; margin-right: auto;">
+                        Experience the complete DevOps workflow from container startup to infrastructure deployment, 
+                        monitoring setup, and real-world development scenarios using multiple tools in harmony.
+                    </p>
+                </div>
+                
+            </div>
+            
+            <div style="background: #f7fafc; border-radius: 15px; padding: 30px; margin: 40px 0; text-align: center;">
+                <h3 style="color: #2d3748; margin: 0 0 20px 0;">Ready to Try It Yourself?</h3>
+                <div style="background: #2d3748; color: #e2e8f0; padding: 20px; border-radius: 10px; font-family: monospace; margin: 20px 0; text-align: left;">
+                    <pre style="margin: 0; line-height: 1.6; overflow-x: auto;">
+# Pull and run the Ultimate DevOps Container
+docker run -d --name devops-charlie \
+  -p 8443:8443 \
+  -v $(pwd)/workspace:/workspace \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  temitayocharles/devops-charlie:latest
+
+# Access your new DevOps environment
+open https://localhost:8443</pre>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 20px 0;">
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #38a169;">🚀 VS Code Server</div>
+                        <div style="color: #4a5568; font-size: 0.9rem;">Ready at port 8443</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #3182ce;">📊 Grafana Dashboards</div>
+                        <div style="color: #4a5568; font-size: 0.9rem;">admin/admin credentials</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #805ad5;">🔒 Vault Secrets</div>
+                        <div style="color: #4a5568; font-size: 0.9rem;">Auto-configured & ready</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #e53e3e;">📈 Prometheus Metrics</div>
+                        <div style="color: #4a5568; font-size: 0.9rem;">Built-in monitoring</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="architecture-section">
+            <h2 class="architecture-title">Implementation & Usage</h2>
+            <div style="background: #2d3748; color: #e2e8f0; padding: 30px; border-radius: 10px; font-family: monospace; margin: 20px 0;">
+                <h4 style="color: #66d9ef; margin-top: 0;">Quick Start</h4>
+                <pre style="margin: 0; line-height: 1.6;">
+# Pull and run the Ultimate DevOps Container
+docker run -d --name devops-charlie \
+  -p 8443:8443 \
+  -v $(pwd)/workspace:/workspace \
+  -v /var/run/docker.sock:/var/run/docker.sock \
+  temitayocharles/devops-charlie:latest
+
+# Access the environment
+open https://localhost:8443
+                </pre>
+                
+                <h4 style="color: #66d9ef; margin-top: 30px;">Features Included</h4>
+                <ul style="color: #a6e22e; margin: 0;">
+                    <li>🚀 VS Code Server with extensions</li>
+                    <li>📊 Grafana dashboards (admin/admin)</li>
+                    <li>🔒 Vault secrets management</li>
+                    <li>📈 Prometheus metrics collection</li>
+                    <li>🐳 Docker-in-Docker capabilities</li>
+                    <li>☁️ Multi-cloud CLI tools</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

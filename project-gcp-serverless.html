@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serverless Microservices - Google Cloud Functions & Firestore</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .project-nav-sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-right: 2px solid #66d9ef;
+            padding: 20px;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #333;
+        }
+        
+        .sidebar-header h3 {
+            color: #a6e22e;
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            color: #66d9ef;
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .project-nav-group {
+            margin-bottom: 25px;
+        }
+        
+        .nav-group-title {
+            color: #66d9ef;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .project-nav-item {
+            display: block;
+            padding: 12px 15px;
+            margin: 5px 0;
+            color: #f0f0f0;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .project-nav-item:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-left-color: #66d9ef;
+            color: #66d9ef;
+        }
+        
+        .project-nav-item.active {
+            background: rgba(59, 130, 246, 0.2);
+            border-left-color: #3b82f6;
+            color: #3b82f6;
+            font-weight: bold;
+        }
+        
+        .main-content {
+            margin-left: 300px;
+            padding: 40px;
+            background: #0e0e0e;
+            min-height: 100vh;
+        }
+        
+        .project-hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            border-radius: 20px;
+            padding: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #3b82f6;
+        }
+        
+        .project-title {
+            color: #3b82f6;
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .project-subtitle {
+            color: #66d9ef;
+            font-size: 1.3rem;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .content-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .content-section h2 {
+            color: #3b82f6;
+            margin-bottom: 20px;
+        }
+        
+        .content-section h3 {
+            color: #66d9ef;
+            margin-bottom: 15px;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .tech-item {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3b82f6;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .gcp-features {
+            background: linear-gradient(135deg, #1a73e8 0%, #3b82f6 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #fff;
+        }
+        
+        @media (max-width: 1024px) {
+            .project-nav-sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .project-nav-sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                top: 20px;
+                left: 20px;
+                z-index: 1001;
+                background: #66d9ef;
+                color: #0e0e0e;
+                border: none;
+                padding: 10px;
+                border-radius: 5px;
+                font-weight: bold;
+            }
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    
+    <nav class="project-nav-sidebar" id="projectSidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <p>Project Deep Dives</p>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Featured Project</div>
+            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">AWS Projects</div>
+            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
+            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
+            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
+            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Azure Projects</div>
+            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
+            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
+            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">GCP Projects</div>
+            <a href="project-gcp-serverless.html" class="project-nav-item active">Serverless Microservices</a>
+            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Cross-Platform</div>
+            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
+            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">This Project</div>
+            <a href="#overview" class="project-nav-item">🎯 Story Overview</a>
+            <a href="#architecture" class="project-nav-item">🏗️ Architecture</a>
+            <a href="#features" class="project-nav-item">☁️ GCP Features</a>
+            <a href="#impact" class="project-nav-item">🎯 Real-World Impact</a>
+            <a href="#implementation" class="project-nav-item">⚙️ Implementation</a>
+        </div>
+        
+        <div class="project-nav-group">
+            <div class="nav-group-title">Navigation</div>
+            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
+            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
+        </div>
+    </nav>
+    
+<main class="main-content">
+    <!-- Navigation back to projects overview -->
+    <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">
+        <a href="projects.html" style="color:#66d9ef; text-decoration:none;">← Back to Projects</a>
+        &nbsp;|&nbsp;
+        <!-- Replace the href below with the actual repository for this project when available -->
+        <a href="https://github.com/temitayocharles/devops-portfolio" target="_blank" style="color:#66d9ef; text-decoration:none;">View code on GitHub</a>
+    </p>
+        <section id="overview" class="project-hero">
+            <h1 class="project-title">Serverless Microservices</h1>
+            <p class="project-subtitle">Google Cloud Functions & Firestore Microservices Platform</p>
+            
+            <div style="background: linear-gradient(135deg, #3b82f6 0%, #1a73e8 100%); border-radius: 15px; padding: 40px; color: white; text-align: center; margin: 30px auto; max-width: 1000px;">
+                <h3 style="margin: 0 0 30px 0; font-size: 1.8rem;">From Monolith to Serverless Microservices</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 30px;">
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">20+</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Microservices</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">5M+</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Requests/Day</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">&lt;100ms</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Cold Start</span>
+                    </div>
+                    <div>
+                        <span style="display: block; font-size: 2.5rem; font-weight: bold;">99.99%</span>
+                        <span style="font-size: 0.9rem; opacity: 0.9;">Availability</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-top: 30px;">
+                <a href="#problem-story" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">📖 Read the Story</a>
+                <a href="#architecture" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">🏗️ See Architecture</a>
+                <a href="#business-impact" style="background: rgba(255, 255, 255, 0.2); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: bold;">💼 Business Impact</a>
+            </div>
+        </section>
+
+        <section id="problem-story" class="content-section">
+            <h2>🎯 The Challenge: Serverless Microservices at Scale</h2>
+            <p>Required to architect and implement a highly scalable microservices platform using Google Cloud's serverless technologies. The goal was to handle millions of requests daily with sub-100ms cold starts while maintaining cost efficiency and developer productivity.</p>
+            
+            <div style="background: rgba(229, 62, 62, 0.1); border-left: 4px solid #e53e3e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #e53e3e; margin-top: 0;">🚨 The Scalability Challenge</h3>
+                <ul style="color: #f0f0f0;">
+                    <li><strong>Monolithic Constraints:</strong> Single deployment unit limiting independent scaling</li>
+                    <li><strong>Infrastructure Overhead:</strong> Managing servers and scaling policies manually</li>
+                    <li><strong>Development Velocity:</strong> Teams blocked by shared codebase dependencies</li>
+                    <li><strong>Cold Start Latency:</strong> Unacceptable response times for user-facing services</li>
+                    <li><strong>Cost Optimization:</strong> Need for true pay-per-use pricing model</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="architecture" class="content-section">
+            <h2>🏗️ Google Cloud Serverless Architecture</h2>
+            <p>Designed and implemented a comprehensive serverless microservices platform using Cloud Functions, Firestore, Pub/Sub, and Cloud Run with optimized cold start performance and global distribution.</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>⚡ Cloud Functions</h3>
+                    <p>Event-driven serverless compute with sub-100ms cold starts</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔥 Firestore</h3>
+                    <p>NoSQL database with real-time synchronization</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📨 Cloud Pub/Sub</h3>
+                    <p>Asynchronous messaging for service communication</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🏃 Cloud Run</h3>
+                    <p>Containerized services with automatic scaling</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔒 Cloud IAM</h3>
+                    <p>Fine-grained access control and service authentication</p>
+                </div>
+                <div class="tech-item">
+                    <h3>📊 Cloud Monitoring</h3>
+                    <p>Comprehensive observability and alerting</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🌐 Cloud CDN</h3>
+                    <p>Global content delivery and edge caching</p>
+                </div>
+                <div class="tech-item">
+                    <h3>🔐 Secret Manager</h3>
+                    <p>Secure configuration and secret management</p>
+                </div>
+            </div>
+
+            <h3>🏗️ Serverless Platform Components</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>API Gateway:</strong> Cloud Endpoints for API management and authentication</li>
+                <li><strong>Event Processing:</strong> Cloud Functions with multiple trigger types</li>
+                <li><strong>Data Layer:</strong> Firestore with real-time listeners and offline support</li>
+                <li><strong>Message Bus:</strong> Pub/Sub for decoupled service communication</li>
+                <li><strong>Container Services:</strong> Cloud Run for stateful and long-running processes</li>
+                <li><strong>Observability:</strong> Cloud Trace, Logging, and Monitoring integration</li>
+            </ul>
+        </section>
+
+        <section id="features" class="gcp-features">
+            <h2 style="text-align: center; margin-bottom: 30px;">☁️ Google Cloud Serverless Features</h2>
+            
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>⚡ Ultra-Fast Scaling</h3>
+                    <ul>
+                        <li>Sub-100ms cold start optimization</li>
+                        <li>Automatic scaling from zero to millions</li>
+                        <li>Concurrency control and rate limiting</li>
+                        <li>Regional and global traffic distribution</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🔄 Event-Driven Architecture</h3>
+                    <ul>
+                        <li>Pub/Sub messaging for loose coupling</li>
+                        <li>Cloud Storage and Firestore triggers</li>
+                        <li>HTTP and scheduled function triggers</li>
+                        <li>Event replay and dead letter queues</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🔥 Real-Time Data</h3>
+                    <ul>
+                        <li>Firestore real-time listeners</li>
+                        <li>Global data replication</li>
+                        <li>Offline-first synchronization</li>
+                        <li>ACID transactions at scale</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🛡️ Security & Compliance</h3>
+                    <ul>
+                        <li>Zero-trust service-to-service auth</li>
+                        <li>VPC-native networking</li>
+                        <li>Binary authorization for containers</li>
+                        <li>Audit logging and compliance</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>📊 Observability</h3>
+                    <ul>
+                        <li>Distributed tracing with Cloud Trace</li>
+                        <li>Custom metrics and SLIs</li>
+                        <li>Error reporting and alerting</li>
+                        <li>Performance profiling</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-item">
+                    <h3>🚀 Developer Experience</h3>
+                    <ul>
+                        <li>Local development with Functions Framework</li>
+                        <li>CI/CD integration with Cloud Build</li>
+                        <li>Source-to-production automation</li>
+                        <li>Multi-language runtime support</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="impact" class="content-section">
+            <h2>🎯 Real-World Business Impact</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #1a73e8 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">20+</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Microservices</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #1a73e8 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">5M+</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Daily Requests</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #1a73e8 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">&lt;100ms</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Cold Start Time</span>
+                </div>
+                <div style="background: linear-gradient(135deg, #3b82f6 0%, #1a73e8 100%); color: white; border-radius: 15px; padding: 30px; text-align: center;">
+                    <span style="display: block; font-size: 2.5rem; font-weight: bold;">60%</span>
+                    <span style="font-size: 0.9rem; opacity: 0.9;">Cost Reduction</span>
+                </div>
+            </div>
+
+            <h3>💼 Transformation Story</h3>
+            <div style="background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border-radius: 15px; padding: 30px; margin: 30px 0;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                    <div>
+                        <h4 style="color: #e53e3e; margin-bottom: 15px;">😤 Before Serverless</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Monolithic application with shared deployment cycles</li>
+                            <li>Always-on infrastructure with high operational costs</li>
+                            <li>Manual scaling and capacity planning</li>
+                            <li>Limited fault isolation between components</li>
+                            <li>Slow development velocity with tight coupling</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #3b82f6; margin-bottom: 15px;">🚀 After Serverless Implementation</h4>
+                        <ul style="color: #f0f0f0; line-height: 1.6;">
+                            <li>Independent microservices with autonomous deployments</li>
+                            <li>True pay-per-use model with 60% cost reduction</li>
+                            <li>Automatic scaling from zero to millions of requests</li>
+                            <li>Complete fault isolation and independent scaling</li>
+                            <li>Accelerated development with team autonomy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 20px; margin: 20px 0; border-radius: 8px;">
+                <h3 style="color: #a6e22e; margin-top: 0;">🎉 Success Metrics</h3>
+                <p style="color: #f0f0f0;"><strong>Performance:</strong> Sub-100ms cold starts with 99.99% availability<br>
+                <strong>Scale:</strong> 5M+ daily requests handled seamlessly<br>
+                <strong>Cost Efficiency:</strong> 60% reduction through serverless consumption<br>
+                <strong>Development Speed:</strong> 3x faster feature delivery with autonomous teams</p>
+            </div>
+        </section>
+
+        <section id="implementation" class="content-section">
+            <h2>⚙️ Technical Implementation Details</h2>
+            
+            <h3>🎯 My Role as Serverless Architect & Microservices Engineer</h3>
+            <ul style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Architecture Design:</strong> Serverless-first microservices with event-driven patterns</li>
+                <li><strong>Function Optimization:</strong> Cold start reduction and performance tuning</li>
+                <li><strong>Data Architecture:</strong> Firestore schema design and real-time synchronization</li>
+                <li><strong>Service Communication:</strong> Pub/Sub messaging patterns and API design</li>
+                <li><strong>Monitoring Setup:</strong> Comprehensive observability with custom metrics</li>
+                <li><strong>Security Implementation:</strong> Zero-trust service authentication and authorization</li>
+            </ul>
+
+            <h3>🔧 Key Technologies & GCP Integration</h3>
+            <div style="background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 25px; margin: 20px 0;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4 style="color: #66d9ef;">Serverless Compute</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Cloud Functions with optimized runtime and cold start performance</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Data Platform</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Firestore with real-time synchronization and global replication</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Event System</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Pub/Sub messaging with guaranteed delivery and ordering</p>
+                    </div>
+                    <div>
+                        <h4 style="color: #66d9ef;">Container Platform</h4>
+                        <p style="color: #f0f0f0; font-size: 0.9rem;">Cloud Run for stateful services with automatic scaling</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>📋 Implementation Workflow</h3>
+            <ol style="color: #f0f0f0; line-height: 1.8;">
+                <li><strong>Service Decomposition:</strong> Monolith analysis and microservice boundary definition</li>
+                <li><strong>Function Development:</strong> Cloud Functions with optimized cold start performance</li>
+                <li><strong>Data Modeling:</strong> Firestore schema design and indexing strategy</li>
+                <li><strong>Event Architecture:</strong> Pub/Sub topics and subscription configuration</li>
+                <li><strong>API Gateway Setup:</strong> Cloud Endpoints with authentication and rate limiting</li>
+                <li><strong>Security Configuration:</strong> IAM policies and service-to-service authentication</li>
+                <li><strong>Monitoring Integration:</strong> Cloud Monitoring with custom SLIs and alerting</li>
+                <li><strong>Performance Testing:</strong> Load testing and optimization for high-volume scenarios</li>
+            </ol>
+
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.2);">
+                <p style="margin: 0; opacity: 0.7; font-size: 0.9rem;">
+                    💡 <strong>Share this story:</strong> LinkedIn | Twitter | Email
+                    <br>
+                    Help others discover how serverless microservices enable true scalability and cost efficiency
+                </p>
+            </div>
+        </section>
+    </main>
+    
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.getElementById('projectSidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('projectSidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 1024 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target)) {
+                sidebar.classList.remove('open');
+            }
+        });
+    </script>
+</body>
+</html>

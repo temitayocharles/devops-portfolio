@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virtual Vacation Platform • Cloud-Native Tourism Solution</title>
+  <meta name="description" content="Full-stack, TLS-secured, containerized web application transforming tourism through immersive virtual experiences. Docker Compose to Kubernetes with GitOps automation.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="global-sidebar.js"></script>
+  
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About Me</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="blog.html">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="main">
+    <!-- Navigation back to projects overview -->
+    <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">
+      <a href="projects.html" style="color:#66d9ef; text-decoration:none;">← Back to Projects</a>
+      &nbsp;|&nbsp;
+      <!-- Replace the href below with the actual repository for this project when available -->
+      <a href="https://github.com/temitayocharles/devops-portfolio" target="_blank" style="color:#66d9ef; text-decoration:none;">View code on GitHub</a>
+    </p>
+    <div class="project-header">
+      <div class="project-title-section">
+        <h1>🌐 Virtual Vacation Platform</h1>
+        <p class="project-tagline">Immersive Tourism, Reimagined Through Cloud-Native DevOps</p>
+      </div>
+      
+      <div class="project-badges">
+        <span class="badge primary">Full-Stack Application</span>
+        <span class="badge secondary">Kubernetes</span>
+        <span class="badge accent">Docker Compose</span>
+        <span class="badge success">GitOps</span>
+      </div>
+      
+      <!-- Interactive Demo Link -->
+      <div class="demo-launch-section" style="margin-top: 20px; text-align: center;">
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-launch-btn" style="
+          display: inline-block;
+          background: linear-gradient(135deg, #764ba2, #667eea);
+          color: white;
+          padding: 15px 30px;
+          border-radius: 50px;
+          text-decoration: none;
+          font-weight: bold;
+          font-size: 1.1em;
+          transition: all 0.3s ease;
+          box-shadow: 0 8px 25px rgba(118, 75, 162, 0.3);
+          animation: pulse-glow 2s infinite;
+        ">
+          🚀 Try Interactive Demo - Experience Virtual Vacation Live!
+        </a>
+        <p style="margin-top: 10px; color: #666; font-style: italic;">
+          ↑ Click to experience the fully functional Virtual Vacation platform with real interactions
+        </p>
+      </div>
+    </div>
+
+    <!-- Problem Statement -->
+    <section class="problem-statement">
+      <div class="problem-content">
+        <h2>🚧 The Challenge</h2>
+        <p>
+          Millions of people worldwide face barriers to travel—health conditions, financial constraints, 
+          pandemic restrictions, or physical immobility. Traditional tourism remains inaccessible to many, 
+          keeping education, cultural exchange, and global exploration locked behind physical borders.
+        </p>
+        
+        <div class="challenge-stats">
+          <div class="stat-item">
+            <div class="stat-number">2.7B</div>
+            <div class="stat-label">People with limited travel access</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">$8.9T</div>
+            <div class="stat-label">Tourism market opportunity</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Digital accessibility</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Solution Overview -->
+    <section class="solution-overview">
+      <h2>💡 The Solution</h2>
+      <div class="solution-grid">
+        <div class="solution-feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Democratized Exploration</h3>
+          <p>Cloud-native application offering immersive, multimedia-rich tours of global destinations</p>
+        </div>
+        <div class="solution-feature">
+          <div class="feature-icon">🤖</div>
+          <h3>AI-Powered Recommendations</h3>
+          <p>Dynamic narration, panoramic imagery, and intelligent tour suggestions</p>
+        </div>
+        <div class="solution-feature">
+          <div class="feature-icon">🔒</div>
+          <h3>Enterprise Security</h3>
+          <p>TLS-secured, Vault-managed secrets, and production-grade observability</p>
+        </div>
+        <div class="solution-feature">
+          <div class="feature-icon">⚡</div>
+          <h3>Browser Teleportation</h3>
+          <p>Transform any browser into a secure, responsive, scalable exploration platform</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Architecture Evolution -->
+    <section class="architecture-evolution">
+      <h2>🏗️ Architecture Evolution</h2>
+      
+      <div class="evolution-phases">
+        <div class="phase-card">
+          <div class="phase-header">
+            <span class="phase-number">01</span>
+            <h3>MVP with Docker Compose</h3>
+            <span class="phase-status mvp">Rapid Validation</span>
+          </div>
+          <div class="phase-content">
+            <p>Containerized full-stack application for quick validation and collaborator onboarding</p>
+            <div class="tech-pills">
+              <span class="tech-pill">React + NGINX</span>
+              <span class="tech-pill">Node.js API</span>
+              <span class="tech-pill">FastAPI ML</span>
+              <span class="tech-pill">MongoDB</span>
+              <span class="tech-pill">Vault Dev</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="evolution-arrow">→</div>
+
+        <div class="phase-card">
+          <div class="phase-header">
+            <span class="phase-number">02</span>
+            <h3>Kubernetes Production</h3>
+            <span class="phase-status production">Enterprise Ready</span>
+          </div>
+          <div class="phase-content">
+            <p>GitOps-managed Kubernetes infrastructure with multi-namespace deployment</p>
+            <div class="tech-pills">
+              <span class="tech-pill">EKS Cluster</span>
+              <span class="tech-pill">Helm Charts</span>
+              <span class="tech-pill">ArgoCD</span>
+              <span class="tech-pill">cert-manager</span>
+              <span class="tech-pill">Prometheus</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Technical Architecture -->
+    <section class="technical-architecture">
+      <h2>⚙️ Technical Architecture</h2>
+      
+      <div class="architecture-tabs">
+        <div class="tab-buttons">
+          <button class="tab-btn active" onclick="showTab('compose')">Docker Compose MVP</button>
+          <button class="tab-btn" onclick="showTab('kubernetes')">Kubernetes Production</button>
+        </div>
+        
+        <div id="compose-tab" class="tab-content active">
+          <div class="services-grid">
+            <div class="service-card frontend">
+              <h4>🎨 Frontend (React + NGINX)</h4>
+              <p>Intuitive, responsive UI with immersive tour experience</p>
+            </div>
+            <div class="service-card backend">
+              <h4>🔧 Backend API (Node.js)</h4>
+              <p>Authentication, destination metadata, and routing logic</p>
+            </div>
+            <div class="service-card media">
+              <h4>📹 Media Gateway</h4>
+              <p>Streams 360° videos and assets via reverse proxy</p>
+            </div>
+            <div class="service-card ai">
+              <h4>🤖 AI Recommendation Engine</h4>
+              <p>FastAPI + ML model for personalized tour suggestions</p>
+            </div>
+            <div class="service-card database">
+              <h4>🗄️ MongoDB</h4>
+              <p>User data, preferences, and activity logs storage</p>
+            </div>
+            <div class="service-card security">
+              <h4>🔐 Vault (Dev Mode)</h4>
+              <p>Secure injection of API keys, DB URIs, and secrets</p>
+            </div>
+          </div>
+        </div>
+        
+        <div id="kubernetes-tab" class="tab-content">
+          <div class="k8s-layers">
+            <div class="k8s-layer">
+              <h4>🌐 Platform Layer</h4>
+              <div class="layer-services">
+                <span>KIND (Dev)</span>
+                <span>Amazon EKS (Prod)</span>
+              </div>
+            </div>
+            <div class="k8s-layer">
+              <h4>🔒 Ingress & TLS</h4>
+              <div class="layer-services">
+                <span>NGINX Ingress Controller</span>
+                <span>cert-manager</span>
+              </div>
+            </div>
+            <div class="k8s-layer">
+              <h4>🔐 Secrets Management</h4>
+              <div class="layer-services">
+                <span>HashiCorp Vault</span>
+                <span>Vault Agent Injector</span>
+              </div>
+            </div>
+            <div class="k8s-layer">
+              <h4>📊 Observability</h4>
+              <div class="layer-services">
+                <span>Prometheus</span>
+                <span>Grafana</span>
+                <span>Loki</span>
+                <span>Alertmanager</span>
+              </div>
+            </div>
+            <div class="k8s-layer">
+              <h4>⚡ Autoscaling & CI/CD</h4>
+              <div class="layer-services">
+                <span>HPA</span>
+                <span>GitHub Actions</span>
+                <span>ArgoCD</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CI/CD Pipeline -->
+    <section class="cicd-pipeline">
+      <h2>🔄 End-to-End CI/CD Automation</h2>
+      
+      <div class="pipeline-flow">
+        <div class="pipeline-stage">
+          <div class="stage-icon">📝</div>
+          <h4>Code Commit</h4>
+          <p>Developer pushes to GitHub repository</p>
+        </div>
+        
+        <div class="pipeline-arrow">→</div>
+        
+        <div class="pipeline-stage">
+          <div class="stage-icon">🔍</div>
+          <h4>GitHub Actions</h4>
+          <p>Linting, Trivy/Checkov scans, Docker builds</p>
+        </div>
+        
+        <div class="pipeline-arrow">→</div>
+        
+        <div class="pipeline-stage">
+          <div class="stage-icon">📦</div>
+          <h4>Container Registry</h4>
+          <p>Push to GitHub Container Registry (GHCR)</p>
+        </div>
+        
+        <div class="pipeline-arrow">→</div>
+        
+        <div class="pipeline-stage">
+          <div class="stage-icon">🚀</div>
+          <h4>ArgoCD Sync</h4>
+          <p>GitOps deployment to Kubernetes cluster</p>
+        </div>
+      </div>
+      
+      <div class="pipeline-features">
+        <div class="feature-item">
+          <h4>🛡️ Security First</h4>
+          <p>Trivy vulnerability scanning, Checkov policy validation, and secrets management with Vault</p>
+        </div>
+        <div class="feature-item">
+          <h4>📋 GitOps Governance</h4>
+          <p>Declarative infrastructure-as-code with full audit trails and automated rollbacks</p>
+        </div>
+        <div class="feature-item">
+          <h4>🔄 Environment Promotion</h4>
+          <p>Namespaced dev → staging → prod pipelines with automated testing gates</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Security & Observability -->
+    <section class="security-observability">
+      <h2>🔐 Security & Observability</h2>
+      
+      <div class="security-grid">
+        <div class="security-feature">
+          <div class="security-icon">🔒</div>
+          <h3>TLS Everywhere</h3>
+          <p>End-to-end encryption with cert-manager automated certificate management</p>
+        </div>
+        <div class="security-feature">
+          <div class="security-icon">🗝️</div>
+          <h3>Dynamic Secrets</h3>
+          <p>Vault dynamically injects secrets into running pods with automatic rotation</p>
+        </div>
+        <div class="security-feature">
+          <div class="security-icon">📊</div>
+          <h3>Real-time Monitoring</h3>
+          <p>Prometheus metrics scraping with Grafana dashboards and Alertmanager notifications</p>
+        </div>
+        <div class="security-feature">
+          <div class="security-icon">🚨</div>
+          <h3>Incident Response</h3>
+          <p>Automated alerting to Mattermost with traffic, latency, and error monitoring</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Business Impact -->
+    <section class="business-impact">
+      <h2>📈 Outcomes & Business Value</h2>
+      
+      <div class="impact-grid">
+        <div class="impact-item success">
+          <div class="impact-icon">✅</div>
+          <h3>Accessible Digital Tourism</h3>
+          <p>Breaking down physical barriers to global exploration and cultural exchange</p>
+        </div>
+        <div class="impact-item success">
+          <div class="impact-icon">✅</div>
+          <h3>Viral-Ready Scalability</h3>
+          <p>Built-in horizontal scaling for unexpected traffic spikes and growth</p>
+        </div>
+        <div class="impact-item success">
+          <div class="impact-icon">✅</div>
+          <h3>Cloud-Native Architecture</h3>
+          <p>Fully vendor-agnostic, resilient, and fault-tolerant deployment model</p>
+        </div>
+        <div class="impact-item success">
+          <div class="impact-icon">✅</div>
+          <h3>Zero-Downtime Operations</h3>
+          <p>GitOps ensures traceability, rollback capability, and continuous delivery</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Summary -->
+    <section class="tech-stack-summary">
+      <h2>🛠️ Complete Technology Stack</h2>
+      
+      <div class="stack-categories">
+        <div class="stack-category">
+          <h4>Frontend</h4>
+          <div class="stack-items">
+            <span class="stack-item">React</span>
+            <span class="stack-item">NGINX</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h4>Backend</h4>
+          <div class="stack-items">
+            <span class="stack-item">Node.js Express</span>
+            <span class="stack-item">FastAPI ML</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h4>Data & Storage</h4>
+          <div class="stack-items">
+            <span class="stack-item">MongoDB</span>
+            <span class="stack-item">S3-Compatible Storage</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h4>Security</h4>
+          <div class="stack-items">
+            <span class="stack-item">HashiCorp Vault</span>
+            <span class="stack-item">cert-manager</span>
+            <span class="stack-item">mkcert (dev)</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h4>Observability</h4>
+          <div class="stack-items">
+            <span class="stack-item">Prometheus</span>
+            <span class="stack-item">Grafana</span>
+            <span class="stack-item">Loki</span>
+            <span class="stack-item">Alertmanager</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h4>CI/CD & GitOps</h4>
+          <div class="stack-items">
+            <span class="stack-item">GitHub Actions</span>
+            <span class="stack-item">ArgoCD</span>
+            <span class="stack-item">Helm</span>
+          </div>
+        </div>
+        <div class="stack-category">
+          <h4>Container Orchestration</h4>
+          <div class="stack-items">
+            <span class="stack-item">Docker Compose</span>
+            <span class="stack-item">Kubernetes</span>
+            <span class="stack-item">KIND/EKS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Deployment Environments -->
+    <section class="deployment-environments">
+      <h2>📦 Deployment Environments</h2>
+      
+      <div class="environment-cards">
+        <div class="env-card development">
+          <h4>🏠 Local Development</h4>
+          <p>Docker Compose with mkcert TLS and Vault dev mode</p>
+          <div class="env-features">
+            <span>Hot reloading</span>
+            <span>Local secrets</span>
+            <span>Fast iteration</span>
+          </div>
+        </div>
+        <div class="env-card staging">
+          <h4>🧪 Dev/Staging</h4>
+          <p>KIND cluster with cert-manager and production-like Vault</p>
+          <div class="env-features">
+            <span>Integration testing</span>
+            <span>Pre-prod validation</span>
+            <span>Performance testing</span>
+          </div>
+        </div>
+        <div class="env-card production">
+          <h4>🚀 Production</h4>
+          <p>Amazon EKS with S3, cert-manager, Vault, and ArgoCD</p>
+          <div class="env-features">
+            <span>Auto-scaling</span>
+            <span>High availability</span>
+            <span>Global distribution</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Learnings -->
+    <section class="key-learnings">
+      <h2>🧠 Key Learnings & Insights</h2>
+      
+      <div class="learning-items">
+        <div class="learning-item">
+          <div class="learning-icon">🏗️</div>
+          <h4>Scale-First Architecture</h4>
+          <p>Building for enterprise scale from day one accelerates production readiness and reduces technical debt</p>
+        </div>
+        <div class="learning-item">
+          <div class="learning-icon">🔄</div>
+          <h4>GitOps Consistency</h4>
+          <p>GitOps workflows enforce consistency across environments and provide audit trails for compliance</p>
+        </div>
+        <div class="learning-item">
+          <div class="learning-icon">🤖</div>
+          <h4>Automation Excellence</h4>
+          <p>TLS, Vault, and CI/CD can be fully automated—even in local development environments</p>
+        </div>
+        <div class="learning-item">
+          <div class="learning-icon">📐</div>
+          <h4>Structured Complexity</h4>
+          <p>Kubernetes readiness isn't about complexity—it's about proper structure and modular design</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="project-cta">
+      <div class="cta-content">
+        <h2>Ready to Transform Your Tourism Platform?</h2>
+        <p>
+          Experience how cloud-native architecture can democratize global exploration while maintaining 
+          enterprise-grade security and scalability.
+        </p>
+        <div class="cta-buttons">
+          <a href="contact.html" class="cta-btn primary">Discuss Implementation</a>
+          <a href="projects.html" class="cta-btn secondary">Explore More Projects</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer>
+    <h3>Connect with Me</h3>
+    <div class="social-links">
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+  </footer>
+
+  <script>
+    function showTab(tabName) {
+      // Hide all tab contents
+      const tabContents = document.querySelectorAll('.tab-content');
+      tabContents.forEach(tab => tab.classList.remove('active'));
+      
+      // Remove active class from all buttons
+      const tabButtons = document.querySelectorAll('.tab-btn');
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      
+      // Show selected tab
+      document.getElementById(tabName + '-tab').classList.add('active');
+      event.target.classList.add('active');
+    }
+  </script>
+
+  <!-- Interactive Demos Section -->
+  <div class="demo-section">
+    <h2 style="color: #764ba2; margin-bottom: 30px; text-align: center;">🌍 Experience Virtual Vacation Demos</h2>
+    <p style="text-align: center; margin-bottom: 40px; color: #666;">
+      Explore our realistic platform simulations showcasing immersive virtual travel experiences across different cultures and destinations.
+    </p>
+    
+    <div class="demo-grid">
+      <div class="demo-card">
+        <div class="demo-flag">🇳🇬</div>
+        <h3>Lagos, Nigeria</h3>
+        <p>Experience West African culture with Victoria Island exploration, Afrobeats ambiance, and local market insights.</p>
+        <a href="images/demos/lagos-demo.html" target="_blank" class="demo-btn">🚀 Launch Lagos Demo</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-flag">🇯🇵</div>
+        <h3>Tokyo, Japan</h3>
+        <p>Navigate Shibuya Crossing with real-time crowd data, Japanese language translation, and cultural etiquette guides.</p>
+        <a href="images/demos/tokyo-demo.html" target="_blank" class="demo-btn">🚀 Launch Tokyo Demo</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-flag">🇫🇷</div>
+        <h3>Paris, France</h3>
+        <p>Stroll the Champs-Élysées with French cultural insights, luxury shopping guides, and café culture immersion.</p>
+        <a href="images/demos/paris-demo.html" target="_blank" class="demo-btn">🚀 Launch Paris Demo</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-flag">🇨🇦</div>
+        <h3>Toronto, Canada</h3>
+        <p>Explore CN Tower with bilingual guides, Canadian weather patterns, and hockey culture experiences.</p>
+        <a href="images/demos/toronto-demo.html" target="_blank" class="demo-btn">🚀 Launch Toronto Demo</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-flag">🇺🇸</div>
+        <h3>New York City, USA</h3>
+        <p>Experience Times Square with Broadway shows, subway navigation, and authentic American urban culture.</p>
+        <a href="images/demos/new-york-demo.html" target="_blank" class="demo-btn">🚀 Launch NYC Demo</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-flag">🇮🇳</div>
+        <h3>Mumbai, India</h3>
+        <p>Walk Marine Drive during sunset with Hindi/Marathi translations, Bollywood culture, and monsoon experiences.</p>
+        <a href="images/demos/mumbai-demo.html" target="_blank" class="demo-btn">🚀 Launch Mumbai Demo</a>
+      </div>
+      
+      <div class="demo-card">
+        <div class="demo-flag">🇬🇧</div>
+        <h3>London, England</h3>
+        <p>Cross Tower Bridge with royal heritage commentary, British weather patterns, and West End theatre culture.</p>
+        <a href="images/demos/london-demo.html" target="_blank" class="demo-btn">🚀 Launch London Demo</a>
+      </div>
+    </div>
+    
+    <div class="demo-features" style="margin-top: 40px; text-align: center;">
+      <h3 style="color: #764ba2; margin-bottom: 20px;">Demo Features</h3>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 1000px; margin: 0 auto;">
+        <div style="padding: 20px; background: rgba(118, 75, 162, 0.1); border-radius: 8px;">
+          <strong>🌐 360° Navigation</strong><br>
+          <small>Immersive movement controls with panoramic views</small>
+        </div>
+        <div style="padding: 20px; background: rgba(118, 75, 162, 0.1); border-radius: 8px;">
+          <strong>🗣️ Multi-Language Support</strong><br>
+          <small>Local language integration with real-time translation</small>
+        </div>
+        <div style="padding: 20px; background: rgba(118, 75, 162, 0.1); border-radius: 8px;">
+          <strong>📊 Real-Time Data</strong><br>
+          <small>Live weather, crowd density, and local information</small>
+        </div>
+        <div style="padding: 20px; background: rgba(118, 75, 162, 0.1); border-radius: 8px;">
+          <strong>🎭 Cultural Immersion</strong><br>
+          <small>Authentic local insights and cultural education</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .demo-section {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      padding: 60px 40px;
+      margin: 40px 0;
+      border-radius: 15px;
+    }
+    
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .demo-card {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .demo-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(118, 75, 162, 0.2);
+      border-color: #764ba2;
+    }
+    
+    .demo-flag {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+    
+    .demo-card h3 {
+      color: #333;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    
+    .demo-card p {
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+    
+    .demo-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .demo-btn:hover {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      transform: scale(1.05);
+    }
+    
+    @media (max-width: 768px) {
+      .demo-section {
+        padding: 40px 20px;
+      }
+      
+      .demo-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+</body>
+</html>

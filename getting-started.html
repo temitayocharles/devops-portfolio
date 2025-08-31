@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Getting Started • Ultimate DevOps</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="getting-started.html">Getting Started</a>
+  </nav>
+  <div class="main">
+    <h1>Getting Started</h1>
+    <p>
+      Want to get rolling instantly?
+      <br/>
+      Here's how to use the Ultimate DevOps Container on any system:
+    </p>
+    <pre><code>
+docker run -d \
+  --name devops-lab \
+  -p 443:443 \
+  -v /Volumes/256-B:/mnt/data \
+  temitayocharles/devops-charlie
+    </code></pre>
+    <p>
+      The container will start with:
+      <ul>
+        <li>📂 Persistent storage mapped</li>
+        <li>🌐 HTTPS services for vault.local, grafana.local, code.local</li>
+        <li>🔐 TLS certs auto-generated via mkcert</li>
+      </ul>
+    </p>
+  </div>
+  
+  <footer>
+    <h3>Connect with Me</h3>
+    <div class="social-links">
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+    </div>
+    <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+  </footer>
+</body>
+</html>

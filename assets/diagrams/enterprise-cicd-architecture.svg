@@ -1,0 +1,205 @@
+<svg width="1200" height="800" viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: 'Arial', sans-serif; font-size: 24px; font-weight: bold; fill: #2D3748; }
+      .subtitle { font-family: 'Arial', sans-serif; font-size: 16px; fill: #4A5568; }
+      .label { font-family: 'Arial', sans-serif; font-size: 12px; fill: #2D3748; font-weight: bold; }
+      .tech { font-family: 'Arial', sans-serif; font-size: 10px; fill: #666; }
+      .arrow { stroke: #4299E1; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .security-flow { stroke: #E53E3E; stroke-width: 2; stroke-dasharray: 5,5; fill: none; }
+      .data-flow { stroke: #38A169; stroke-width: 2; fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#4299E1" />
+    </marker>
+    <linearGradient id="awsGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9900;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#FF6600;stop-opacity:0.1" />
+    </linearGradient>
+    <linearGradient id="cicdGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4299E1;stop-opacity:0.1" />
+      <stop offset="100%" style="stop-color:#3182CE;stop-opacity:0.1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="#F7FAFC"/>
+  
+  <!-- Title -->
+  <text x="600" y="40" class="title" text-anchor="middle">Enterprise CI/CD Pipeline - AWS Architecture</text>
+  <text x="600" y="65" class="subtitle" text-anchor="middle">Secure Application Delivery with Zero Downtime Deployment</text>
+  
+  <!-- AWS Cloud Boundary -->
+  <rect x="400" y="100" width="750" height="650" rx="20" fill="url(#awsGrad)" stroke="#FF9900" stroke-width="2" stroke-dasharray="10,5"/>
+  <text x="420" y="125" class="label" fill="#FF9900">AWS Cloud</text>
+  
+  <!-- Developer Zone -->
+  <rect x="50" y="150" width="300" height="500" rx="15" fill="#EDF2F7" stroke="#A0AEC0" stroke-width="2"/>
+  <text x="200" y="175" class="label" text-anchor="middle">Development Environment</text>
+  
+  <!-- Developer Workstation -->
+  <rect x="80" y="200" width="80" height="60" rx="8" fill="#4A5568"/>
+  <text x="120" y="220" class="label" fill="white" text-anchor="middle">Developer</text>
+  <text x="120" y="235" class="tech" fill="white" text-anchor="middle">IDE + Git</text>
+  <text x="120" y="250" class="tech" fill="white" text-anchor="middle">SonarLint</text>
+  
+  <!-- Source Control -->
+  <rect x="200" y="200" width="80" height="60" rx="8" fill="#24292E"/>
+  <text x="240" y="220" class="label" fill="white" text-anchor="middle">Forgejo</text>
+  <text x="240" y="235" class="tech" fill="white" text-anchor="middle">Git Repos</text>
+  <text x="240" y="250" class="tech" fill="white" text-anchor="middle">Webhooks</text>
+  
+  <!-- Security Scanning Zone -->
+  <rect x="80" y="300" width="200" height="120" rx="8" fill="#FED7D7" stroke="#E53E3E" stroke-width="2"/>
+  <text x="180" y="320" class="label" text-anchor="middle" fill="#E53E3E">Security Gates</text>
+  
+  <rect x="100" y="340" width="60" height="35" rx="5" fill="#E53E3E"/>
+  <text x="130" y="355" class="tech" fill="white" text-anchor="middle">Gitleaks</text>
+  <text x="130" y="367" class="tech" fill="white" text-anchor="middle">Secrets</text>
+  
+  <rect x="180" y="340" width="60" height="35" rx="5" fill="#E53E3E"/>
+  <text x="210" y="355" class="tech" fill="white" text-anchor="middle">SonarQube</text>
+  <text x="210" y="367" class="tech" fill="white" text-anchor="middle">Quality</text>
+  
+  <rect x="140" y="385" width="60" height="25" rx="5" fill="#E53E3E"/>
+  <text x="170" y="400" class="tech" fill="white" text-anchor="middle">Trivy Scan</text>
+  
+  <!-- CI/CD Pipeline Zone -->
+  <rect x="450" y="150" width="300" height="500" rx="15" fill="url(#cicdGrad)" stroke="#4299E1" stroke-width="2"/>
+  <text x="600" y="175" class="label" text-anchor="middle" fill="#3182CE">CI/CD Pipeline</text>
+  
+  <!-- Build Stage -->
+  <rect x="480" y="200" width="80" height="60" rx="8" fill="#2B6CB0"/>
+  <text x="520" y="220" class="label" fill="white" text-anchor="middle">Build</text>
+  <text x="520" y="235" class="tech" fill="white" text-anchor="middle">Docker</text>
+  <text x="520" y="250" class="tech" fill="white" text-anchor="middle">Multi-stage</text>
+  
+  <!-- Test Stage -->
+  <rect x="590" y="200" width="80" height="60" rx="8" fill="#2B6CB0"/>
+  <text x="630" y="220" class="label" fill="white" text-anchor="middle">Test</text>
+  <text x="630" y="235" class="tech" fill="white" text-anchor="middle">Unit Tests</text>
+  <text x="630" y="250" class="tech" fill="white" text-anchor="middle">Integration</text>
+  
+  <!-- Container Registry -->
+  <rect x="480" y="300" width="80" height="60" rx="8" fill="#FF9900"/>
+  <text x="520" y="320" class="label" fill="white" text-anchor="middle">ECR</text>
+  <text x="520" y="335" class="tech" fill="white" text-anchor="middle">Container</text>
+  <text x="520" y="350" class="tech" fill="white" text-anchor="middle">Registry</text>
+  
+  <!-- Helm Charts -->
+  <rect x="590" y="300" width="80" height="60" rx="8" fill="#0F1689"/>
+  <text x="630" y="320" class="label" fill="white" text-anchor="middle">Helm</text>
+  <text x="630" y="335" class="tech" fill="white" text-anchor="middle">Charts</text>
+  <text x="630" y="350" class="tech" fill="white" text-anchor="middle">SOPS</text>
+  
+  <!-- Deployment Stages -->
+  <rect x="480" y="400" width="60" height="40" rx="5" fill="#38A169"/>
+  <text x="510" y="415" class="tech" fill="white" text-anchor="middle">Dev</text>
+  <text x="510" y="427" class="tech" fill="white" text-anchor="middle">Deploy</text>
+  
+  <rect x="560" y="400" width="60" height="40" rx="5" fill="#D69E2E"/>
+  <text x="590" y="415" class="tech" fill="white" text-anchor="middle">Staging</text>
+  <text x="590" y="427" class="tech" fill="white" text-anchor="middle">Deploy</text>
+  
+  <rect x="640" y="400" width="60" height="40" rx="5" fill="#E53E3E"/>
+  <text x="670" y="415" class="tech" fill="white" text-anchor="middle">Prod</text>
+  <text x="670" y="427" class="tech" fill="white" text-anchor="middle">Deploy</text>
+  
+  <!-- EKS Cluster -->
+  <rect x="800" y="200" width="300" height="400" rx="15" fill="#EBF8FF" stroke="#3182CE" stroke-width="2"/>
+  <text x="950" y="225" class="label" text-anchor="middle" fill="#3182CE">Amazon EKS Cluster</text>
+  
+  <!-- Kubernetes Namespaces -->
+  <rect x="820" y="250" width="80" height="80" rx="8" fill="#48BB78"/>
+  <text x="860" y="270" class="label" fill="white" text-anchor="middle">Dev</text>
+  <text x="860" y="285" class="tech" fill="white" text-anchor="middle">Namespace</text>
+  <text x="860" y="300" class="tech" fill="white" text-anchor="middle">Apps</text>
+  <text x="860" y="315" class="tech" fill="white" text-anchor="middle">Services</text>
+  
+  <rect x="920" y="250" width="80" height="80" rx="8" fill="#ED8936"/>
+  <text x="960" y="270" class="label" fill="white" text-anchor="middle">Staging</text>
+  <text x="960" y="285" class="tech" fill="white" text-anchor="middle">Namespace</text>
+  <text x="960" y="300" class="tech" fill="white" text-anchor="middle">Apps</text>
+  <text x="960" y="315" class="tech" fill="white" text-anchor="middle">Services</text>
+  
+  <rect x="1020" y="250" width="80" height="80" rx="8" fill="#E53E3E"/>
+  <text x="1060" y="270" class="label" fill="white" text-anchor="middle">Production</text>
+  <text x="1060" y="285" class="tech" fill="white" text-anchor="middle">Namespace</text>
+  <text x="1060" y="300" class="tech" fill="white" text-anchor="middle">Apps</text>
+  <text x="1060" y="315" class="tech" fill="white" text-anchor="middle">Services</text>
+  
+  <!-- Monitoring Stack -->
+  <rect x="820" y="360" width="260" height="120" rx="8" fill="#FFF5F5" stroke="#E53E3E" stroke-width="2"/>
+  <text x="950" y="380" class="label" text-anchor="middle" fill="#E53E3E">Monitoring & Observability</text>
+  
+  <rect x="840" y="400" width="60" height="30" rx="5" fill="#E6522C"/>
+  <text x="870" y="418" class="tech" fill="white" text-anchor="middle">Prometheus</text>
+  
+  <rect x="920" y="400" width="60" height="30" rx="5" fill="#F46800"/>
+  <text x="950" y="418" class="tech" fill="white" text-anchor="middle">Grafana</text>
+  
+  <rect x="1000" y="400" width="60" height="30" rx="5" fill="#9F7AEA"/>
+  <text x="1030" y="418" class="tech" fill="white" text-anchor="middle">Jaeger</text>
+  
+  <rect x="840" y="440" width="60" height="30" rx="5" fill="#4299E1"/>
+  <text x="870" y="458" class="tech" fill="white" text-anchor="middle">Loki</text>
+  
+  <rect x="920" y="440" width="60" height="30" rx="5" fill="#ED8936"/>
+  <text x="950" y="458" class="tech" fill="white" text-anchor="middle">AlertManager</text>
+  
+  <!-- Notification Zone -->
+  <rect x="80" y="500" width="200" height="80" rx="8" fill="#EDF2F7" stroke="#4A5568" stroke-width="2"/>
+  <text x="180" y="520" class="label" text-anchor="middle">Notifications</text>
+  
+  <rect x="100" y="540" width="70" height="25" rx="5" fill="#7C3AED"/>
+  <text x="135" y="555" class="tech" fill="white" text-anchor="middle">Mattermost</text>
+  
+  <rect x="190" y="540" width="70" height="25" rx="5" fill="#4299E1"/>
+  <text x="225" y="555" class="tech" fill="white" text-anchor="middle">Prometheus</text>
+  
+  <!-- Arrows and Flow -->
+  <!-- Developer to Git -->
+  <path d="M160 230 L200 230" class="arrow"/>
+  
+  <!-- Git to Security -->
+  <path d="M240 260 L240 300" class="arrow"/>
+  
+  <!-- Security to CI/CD -->
+  <path d="M280 360 L450 360" class="arrow"/>
+  
+  <!-- Build Flow -->
+  <path d="M560 230 L590 230" class="arrow"/>
+  <path d="M520 260 L520 300" class="arrow"/>
+  <path d="M630 260 L630 300" class="arrow"/>
+  
+  <!-- Deploy Flow -->
+  <path d="M520 360 L510 400" class="arrow"/>
+  <path d="M630 360 L590 400" class="arrow"/>
+  <path d="M630 360 L670 400" class="arrow"/>
+  
+  <!-- To EKS -->
+  <path d="M510 440 L820 290" class="arrow"/>
+  <path d="M590 440 L920 290" class="arrow"/>
+  <path d="M670 440 L1020 290" class="arrow"/>
+  
+  <!-- Monitoring Flow -->
+  <path d="M950 330 L950 360" class="data-flow"/>
+  
+  <!-- Notification Flow -->
+  <path d="M820 450 L300 550" class="data-flow"/>
+  
+  <!-- Security Flow Lines -->
+  <path d="M130 340 L520 210" class="security-flow"/>
+  <path d="M210 340 L630 210" class="security-flow"/>
+  <path d="M170 385 L520 320" class="security-flow"/>
+  
+  <!-- Legend -->
+  <rect x="50" y="680" width="300" height="80" rx="8" fill="white" stroke="#A0AEC0" stroke-width="1"/>
+  <text x="200" y="700" class="label" text-anchor="middle">Legend</text>
+  <line x1="70" y1="720" x2="100" y2="720" class="arrow"/>
+  <text x="110" y="725" class="tech">CI/CD Flow</text>
+  <line x1="70" y1="735" x2="100" y2="735" class="security-flow"/>
+  <text x="110" y="740" class="tech">Security Validation</text>
+  <line x1="70" y1="750" x2="100" y2="750" class="data-flow"/>
+  <text x="110" y="755" class="tech">Monitoring Data</text>
+</svg>
