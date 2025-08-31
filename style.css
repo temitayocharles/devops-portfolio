@@ -41,7 +41,7 @@
   justify-content: center;
 }
 
-.sidebar-toggle:hover {
+.rocket-toggle:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(102, 217, 239, 0.5);
 }
@@ -156,9 +156,17 @@
     height: 45px;
   }
 
+  .rocket-toggle {
+    bottom: 15px !important;
+    right: 15px !important;
+    width: 45px !important;
+    height: 45px !important;
+    padding: 10px !important;
+  }
+
   .rocket-menu {
-    left: 10px !important;
-    top: 70px !important;
+    bottom: 70px !important;
+    right: 15px !important;
     min-width: 180px !important;
     padding: 12px !important;
   }
@@ -318,11 +326,10 @@ nav a.active {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.6);
+  border: 2px solid rgba(255,255,255,0.8);
   box-shadow: 0 0 20px rgba(255,255,255,0.2);
   object-fit: cover;
-  opacity: 0.7;
-  filter: grayscale(20%) blur(0.5px);
+  opacity: 0.9;
 }
 
 .profile-info h1 {
@@ -1812,14 +1819,14 @@ footer p {
 }
 
 /* Interactive Demo Button Animation */
-@keyframes slideInLeft {
+@keyframes slideInUp {
   from {
     opacity: 0;
-    transform: translateX(-20px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateX(0);
+    transform: translateY(0);
   }
 }
 

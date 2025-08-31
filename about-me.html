@@ -6,6 +6,109 @@
   <title>About Temitayo Charles • DevOps Engineer</title>
   <meta name="description" content="DevOps Engineer specializing in containerization, CI/CD, and cloud infrastructure automation.">
   <link rel="stylesheet" href="style.css">
+  <style>
+    .flash-cards-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .flash-card {
+      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+      border-radius: 15px;
+      height: 300px;
+      perspective: 1000px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    .flash-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(102, 217, 239, 0.2);
+    }
+
+    .flash-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .flash-card.flipped .flash-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flash-card-front, .flash-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .flash-card-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .card-icon {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .flash-card-front h4 {
+      color: #66d9ef;
+      margin: 10px 0;
+      font-size: 1.3rem;
+    }
+
+    .flash-card-front p {
+      color: #ccc;
+      margin: 5px 0 15px 0;
+      font-size: 0.9rem;
+    }
+
+    .card-flip-hint {
+      color: #a6e22e;
+      font-size: 0.8rem;
+      font-style: italic;
+      margin-top: 10px;
+    }
+
+    .flash-card-back h4 {
+      color: white;
+      margin: 0 0 15px 0;
+      font-size: 1.2rem;
+    }
+
+    .flash-card-back ul {
+      text-align: left;
+      padding-left: 20px;
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .flash-card-back li {
+      margin: 8px 0;
+    }
+
+    @keyframes cardFlip {
+      0% { transform: rotateY(0deg); }
+      100% { transform: rotateY(180deg); }
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -45,40 +148,67 @@
       </ul>
 
       <h3>Professional Experience</h3>
-      <div class="experience-item">
-        <h4>Senior DevOps Engineer &amp; Healthcare Technology Specialist</h4>
-        <p class="experience-meta">Current Role • Multi-Industry Focus</p>
-        <ul>
-          <li>Designed and maintained containerized DevOps environments serving 100+ developers across healthcare, government, and startup sectors</li>
-          <li>Reduced onboarding time from 3 days to 30 seconds with automated container solutions and streamlined CI/CD pipelines</li>
-          <li>Implemented comprehensive healthcare platforms with HIPAA compliance, secure medical data exchange, and patient privacy protection</li>
-          <li>Created security-first infrastructure with Vault integration, TLS automation, and enterprise-grade monitoring</li>
-          <li>Developed AI-powered healthcare solutions including medication adherence platforms and telemedicine systems</li>
-          <li>Built virtual tourism platforms with immersive experiences and global destination management</li>
-        </ul>
-      </div>
+      <div class="flash-cards-container">
+        <div class="flash-card" onclick="flipCard(this)">
+          <div class="flash-card-inner">
+            <div class="flash-card-front">
+              <div class="card-icon">👨‍💼</div>
+              <h4>Senior DevOps Engineer</h4>
+              <p>Current Role • Multi-Industry Focus</p>
+              <div class="card-flip-hint">Click to explore achievements</div>
+            </div>
+            <div class="flash-card-back">
+              <h4>Senior DevOps Engineer & Healthcare Technology Specialist</h4>
+              <ul>
+                <li>Designed containerized DevOps environments for 100+ developers</li>
+                <li>Reduced onboarding from 3 days to 30 seconds</li>
+                <li>Implemented HIPAA-compliant healthcare platforms</li>
+                <li>Created security-first infrastructure with Vault & TLS</li>
+                <li>Developed AI-powered healthcare solutions</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-      <h3>Industry Expertise</h3>
-      <div class="experience-item">
-        <h4>Healthcare Technology</h4>
-        <p class="experience-meta">HIPAA • HL7 FHIR • Medical Data Exchange</p>
-        <ul>
-          <li>DockerNet: Secure medical data exchange platform with containerized healthcare workflows</li>
-          <li>DailyDose: AI-powered medication adherence platform with smart notifications and provider integration</li>
-          <li>MindBridge Nigeria: Healthcare access platform connecting patients with providers across Nigeria</li>
-          <li>HIPAA-compliant infrastructure with encrypted data transmission and audit logging</li>
-        </ul>
-      </div>
+        <div class="flash-card" onclick="flipCard(this)">
+          <div class="flash-card-inner">
+            <div class="flash-card-front">
+              <div class="card-icon">🏥</div>
+              <h4>Healthcare Technology</h4>
+              <p>HIPAA • HL7 FHIR • Medical Data Exchange</p>
+              <div class="card-flip-hint">Click to explore projects</div>
+            </div>
+            <div class="flash-card-back">
+              <h4>Healthcare Technology Innovation</h4>
+              <ul>
+                <li>DockerNet: Secure medical data exchange platform</li>
+                <li>DailyDose: AI-powered medication adherence platform</li>
+                <li>MindBridge Nigeria: Healthcare access platform</li>
+                <li>HIPAA-compliant infrastructure with encrypted transmission</li>
+              </ul>
+            </div>
+          </div>
+        </div>
 
-      <div class="experience-item">
-        <h4>Startup &amp; Innovation</h4>
-        <p class="experience-meta">Virtual Tourism • Cloud-Native Applications</p>
-        <ul>
-          <li>Virtual Vacation Platform: Full-stack tourism solution with 7 global destination demos</li>
-          <li>Virtual Tourism Apps: Collection of immersive travel experiences and cultural exploration tools</li>
-          <li>Cloud-native architecture with Kubernetes orchestration and GitOps deployment</li>
-          <li>Cross-platform mobile applications with React Native and modern UX design</li>
-        </ul>
+        <div class="flash-card" onclick="flipCard(this)">
+          <div class="flash-card-inner">
+            <div class="flash-card-front">
+              <div class="card-icon">🚀</div>
+              <h4>Startup & Innovation</h4>
+              <p>Virtual Tourism • Cloud-Native Applications</p>
+              <div class="card-flip-hint">Click to explore innovations</div>
+            </div>
+            <div class="flash-card-back">
+              <h4>Startup & Innovation Projects</h4>
+              <ul>
+                <li>Virtual Vacation Platform: 7 global destination demos</li>
+                <li>Virtual Tourism Apps: Immersive travel experiences</li>
+                <li>Cloud-native architecture with Kubernetes</li>
+                <li>Cross-platform mobile applications</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
 
       <h3>Featured Achievements</h3>
@@ -138,5 +268,20 @@
     </div>
     <p>&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
   </footer>
+
+  <script>
+    function flipCard(card) {
+      card.classList.toggle('flipped');
+    }
+
+    // Add click outside to close cards
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.flash-card')) {
+        document.querySelectorAll('.flash-card.flipped').forEach(card => {
+          card.classList.remove('flipped');
+        });
+      }
+    });
+  </script>
 </body>
 </html>
