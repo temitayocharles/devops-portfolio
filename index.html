@@ -72,6 +72,98 @@
   </style>
 </head>
 <body>
+  <button class="sidebar-toggle" id="rocket-toggle" onclick="toggleRocketMenu()">
+    🚀
+  </button>
+
+  <!-- Enhanced Rocket Menu -->
+  <div class="rocket-menu" id="rocket-menu" style="
+    position: fixed;
+    left: 20px;
+    top: 80px;
+    z-index: 1001;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    display: none;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 200px;
+    animation: slideInLeft 0.3s ease-out;
+  ">
+    <div style="font-size: 0.9rem; color: #333; font-weight: bold; margin-bottom: 5px; text-align: center;">Quick Actions</div>
+
+    <a href="contact.html" class="rocket-menu-item" style="
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(102, 126, 234, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(102, 126, 234, 0.3)'">
+      💼 Hire Me
+    </a>
+
+    <a href="https://www.buymeacoffee.com/temitayocharles" target="_blank" class="rocket-menu-item" style="
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background: linear-gradient(135deg, #FFDD00, #FF8C00);
+      color: #333;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(255, 221, 0, 0.3);
+    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(255, 221, 0, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(255, 221, 0, 0.3)'">
+      ☕ Buy Me a Coffee
+    </a>
+
+    <a href="contact.html" class="rocket-menu-item" style="
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background: linear-gradient(135deg, #a6e22e, #66d9ef);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(166, 226, 46, 0.3);
+    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(166, 226, 46, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(166, 226, 46, 0.3)'">
+      💬 Quick Question
+    </a>
+
+    <a href="getting-started.html" class="rocket-menu-item" style="
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 15px;
+      background: linear-gradient(135deg, #ff6b35, #f7931e);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 8px rgba(255, 107, 53, 0.3);
+    " onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(255, 107, 53, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 8px rgba(255, 107, 53, 0.3)'">
+      📄 View Resume
+    </a>
+  </div>
   <script src="global-sidebar.js"></script>
   
   <nav>
@@ -103,229 +195,13 @@
             </p>
           </div>
         </div>
-        <a href="getting-started.html" class="cta-button" style="margin-top: 30px;">Get Started Today</a>
+        <a href="getting-started.html" class="cta-button" style="margin-top: 30px;">View Resume</a>
       </div>
     </div>
   </div>
   </div>
 
-  <!-- Quick Access Cloud Solutions -->
-  <div class="quick-access-cloud" style="
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  ">
-    <span style="font-size: 0.9rem; color: #333; font-weight: bold; margin-right: 5px;">Cloud:</span>
-    <a href="aws-solutions.html" style="
-      background: linear-gradient(135deg, #FF9900, #FF6600);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(255, 153, 0, 0.3);
-    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">AWS</a>
-    <a href="azure-solutions.html" style="
-      background: linear-gradient(135deg, #0078D4, #005A9E);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(0, 120, 212, 0.3);
-    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Azure</a>
-    <a href="gcp-solutions.html" style="
-      background: linear-gradient(135deg, #4285F4, #3367D6);
-      color: white;
-      padding: 8px 12px;
-      border-radius: 20px;
-      text-decoration: none;
-      font-size: 0.8rem;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
-    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">GCP</a>
-  </div>
 
-  <!-- Floating Quick Access Sidebar -->
-  <div class="floating-quick-access" style="
-    position: fixed;
-    left: 20px;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 1000;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 20px 15px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    animation: float 3s ease-in-out infinite;
-  ">
-    <div style="font-size: 0.8rem; color: #666; font-weight: bold; margin-bottom: 5px; writing-mode: vertical-rl; text-orientation: mixed;">Quick Access</div>
-    
-    <a href="#featured-demo" style="
-      background: linear-gradient(135deg, #764ba2, #667eea);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3);
-      position: relative;
-    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(118, 75, 162, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(118, 75, 162, 0.3)'" title="Featured Demo">
-      🌟
-    </a>
-    
-    <a href="#projects" style="
-      background: linear-gradient(135deg, #ff6b35, #f7931e);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-      position: relative;
-    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(255, 107, 53, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(255, 107, 53, 0.3)'" title="Project Deep Dives">
-      🚀
-    </a>
-    
-    <a href="#demos" style="
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-      position: relative;
-    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(102, 126, 234, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(102, 126, 234, 0.3)'" title="Live Demos">
-      🎬
-    </a>
-    
-    <a href="#contact" style="
-      background: linear-gradient(135deg, #a6e22e, #66d9ef);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      font-size: 1.2rem;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3);
-      position: relative;
-    " onmouseover="this.style.transform='scale(1.1)'; this.style.boxShadow='0 6px 20px rgba(166, 226, 46, 0.4)'" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 15px rgba(166, 226, 46, 0.3)'" title="Contact Me">
-      💬
-    </a>
-  </div>
-
-  <!-- Floating Project Cards -->
-  <div class="floating-project-cards" style="
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 300px;
-  ">
-    <div class="floating-card" style="
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(15px);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      animation: slideInRight 0.8s ease-out;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    " onclick="document.querySelector('#featured-demo').scrollIntoView({behavior: 'smooth'})" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 1.5rem;">🌟</span>
-        <div>
-          <h4 style="margin: 0; color: #764ba2; font-size: 0.9rem;">Virtual Vacation</h4>
-          <p style="margin: 0; color: #666; font-size: 0.8rem;">Interactive tourism platform</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="floating-card" style="
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(15px);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      animation: slideInRight 1s ease-out;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    " onclick="document.querySelector('.project-highlights').scrollIntoView({behavior: 'smooth'})" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 1.5rem;">🚀</span>
-        <div>
-          <h4 style="margin: 0; color: #ff6b35; font-size: 0.9rem;">Project Deep Dives</h4>
-          <p style="margin: 0; color: #666; font-size: 0.8rem;">Technical architectures</p>
-        </div>
-      </div>
-    </div>
-    
-    <div class="floating-card" style="
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(15px);
-      border-radius: 15px;
-      padding: 20px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      animation: slideInRight 1.2s ease-out;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    " onclick="document.querySelector('.visual-showcase').scrollIntoView({behavior: 'smooth'})" onmouseover="this.style.transform='translateY(-5px)'" onmouseout="this.style.transform='translateY(0)'">
-      <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 1.5rem;">🎬</span>
-        <div>
-          <h4 style="margin: 0; color: #667eea; font-size: 0.9rem;">Live Demos</h4>
-          <p style="margin: 0; color: #666; font-size: 0.8rem;">Watch DevOps in action</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <div class="main">
     <!-- Featured Demo Section -->
@@ -959,6 +835,34 @@
     document.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
         closeDemo();
+      }
+    });
+
+    // Rocket Menu Toggle Function
+    function toggleRocketMenu() {
+      const menu = document.getElementById('rocket-menu');
+      const toggle = document.getElementById('rocket-toggle');
+
+      if (menu.style.display === 'none' || menu.style.display === '') {
+        menu.style.display = 'flex';
+        toggle.style.transform = 'scale(1.1)';
+        toggle.style.boxShadow = '0 6px 20px rgba(102, 217, 239, 0.5)';
+      } else {
+        menu.style.display = 'none';
+        toggle.style.transform = 'scale(1)';
+        toggle.style.boxShadow = '0 4px 15px rgba(102, 217, 239, 0.3)';
+      }
+    }
+
+    // Close rocket menu when clicking outside
+    document.addEventListener('click', function(e) {
+      const menu = document.getElementById('rocket-menu');
+      const toggle = document.getElementById('rocket-toggle');
+
+      if (!menu.contains(e.target) && !toggle.contains(e.target)) {
+        menu.style.display = 'none';
+        toggle.style.transform = 'scale(1)';
+        toggle.style.boxShadow = '0 4px 15px rgba(102, 217, 239, 0.3)';
       }
     });
   </script>
