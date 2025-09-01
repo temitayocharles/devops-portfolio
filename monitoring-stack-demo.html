@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitoring Stack Interactive Demo - Real-time Observability</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .demo-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .demo-title {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24, #ff8c00);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .demo-subtitle {
+            color: #66d9ef;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+
+        .demo-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .control-button {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        .control-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.4);
+        }
+
+        .control-button:active {
+            transform: translateY(0);
+        }
+
+        .demo-workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .grafana-dashboard, .prometheus-metrics {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .window-header {
+            background: #2a2a2a;
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .window-title {
+            color: #f0f0f0;
+            font-weight: bold;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 5px;
+            margin-left: auto;
+        }
+
+        .window-control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            border: none;
+        }
+
+        .red { background: #ff5f57; }
+        .yellow { background: #ffbd2e; }
+        .green { background: #28ca42; }
+
+        .dashboard-content {
+            padding: 20px;
+            height: 500px;
+            overflow-y: auto;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-panel {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .metric-title {
+            color: #ff8c00;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            margin-bottom: 5px;
+        }
+
+        .metric-change {
+            font-size: 0.8rem;
+            color: #66d9ef;
+        }
+
+        .metric-change.positive {
+            color: #a6e22e;
+        }
+
+        .metric-change.negative {
+            color: #f92672;
+        }
+
+        .chart-container {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .chart-title {
+            color: #ff8c00;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .chart-placeholder {
+            height: 150px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border: 1px dashed #444;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-style: italic;
+        }
+
+        .alerts-panel {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .alerts-title {
+            color: #ff8c00;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .alert-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+            margin-bottom: 5px;
+        }
+
+        .alert-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .alert-severity {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .alert-critical { background: #f92672; }
+        .alert-warning { background: #ff8c00; }
+        .alert-info { background: #66d9ef; }
+
+        .alert-message {
+            flex: 1;
+            color: #f0f0f0;
+            font-size: 0.9rem;
+        }
+
+        .alert-time {
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        .prometheus-content {
+            padding: 20px;
+            height: 500px;
+            overflow-y: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            color: #f0f0f0;
+        }
+
+        .query-section {
+            background: #2a2a2a;
+            border: 1px solid #444;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .query-title {
+            color: #ff8c00;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .query-input {
+            width: 100%;
+            background: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 8px;
+            color: #f0f0f0;
+            font-family: 'Monaco', 'Menlo', monospace;
+            margin-bottom: 10px;
+        }
+
+        .query-result {
+            background: #1a1a1a;
+            border: 1px solid #444;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 0.9rem;
+            max-height: 100px;
+            overflow-y: auto;
+        }
+
+        .demo-steps {
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid #ff6b6b;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .steps-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .steps-title {
+            font-size: 1.8rem;
+            color: #a6e22e;
+            margin-bottom: 10px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .step-card {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+            border-color: #ff6b6b;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin: 0 auto 10px;
+        }
+
+        .step-title {
+            font-weight: bold;
+            color: #f0f0f0;
+            margin-bottom: 10px;
+        }
+
+        .step-description {
+            color: #f0f0f0;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .sparkline {
+            display: inline-block;
+            width: 100px;
+            height: 20px;
+            background: linear-gradient(90deg, #a6e22e 0%, #66d9ef 50%, #f92672 100%);
+            border-radius: 2px;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .demo-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .demo-controls {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <div class="demo-header">
+            <h1 class="demo-title">📊 Monitoring Stack Interactive Demo</h1>
+            <p class="demo-subtitle">Experience real-time observability with Prometheus, Grafana, and AlertManager</p>
+        </div>
+
+        <div class="demo-steps">
+            <div class="steps-header">
+                <h2 class="steps-title">🚀 Demo Scenarios</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card" id="step1">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">System Overview</h3>
+                    <p class="step-description">Monitor CPU, memory, disk, and network metrics</p>
+                </div>
+                <div class="step-card" id="step2">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Application Performance</h3>
+                    <p class="step-description">Track response times, error rates, and throughput</p>
+                </div>
+                <div class="step-card" id="step3">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Alert Simulation</h3>
+                    <p class="step-description">Trigger and resolve monitoring alerts</p>
+                </div>
+                <div class="step-card" id="step4">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Custom Queries</h3>
+                    <p class="step-description">Execute PromQL queries and analyze results</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-controls">
+            <div class="control-panel">
+                <h3 style="color: #a6e22e; margin-bottom: 15px;">🎮 Demo Controls</h3>
+                <button class="control-button" onclick="startDemo()">▶️ Start Demo</button>
+                <button class="control-button" onclick="simulateTraffic()">🚗 Generate Traffic</button>
+                <button class="control-button" onclick="triggerAlert()">🚨 Trigger Alert</button>
+                <button class="control-button" onclick="resetDemo()">🔄 Reset</button>
+            </div>
+            <div class="control-panel">
+                <h3 style="color: #a6e22e; margin-bottom: 15px;">📈 Live Status</h3>
+                <div style="display: flex; justify-content: space-around; margin-top: 10px;">
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #28ca42;">●</div>
+                        <div style="font-size: 0.8rem; color: #f0f0f0;">Prometheus</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #ff8c00;">●</div>
+                        <div style="font-size: 0.8rem; color: #f0f0f0;">Grafana</div>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: #ff5f57;">●</div>
+                        <div style="font-size: 0.8rem; color: #f0f0f0;">AlertManager</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="demo-workspace">
+            <div class="grafana-dashboard">
+                <div class="window-header">
+                    <span class="window-title">📊 Grafana Dashboard - System Monitoring</span>
+                    <div class="window-controls">
+                        <div class="window-control red"></div>
+                        <div class="window-control yellow"></div>
+                        <div class="window-control green"></div>
+                    </div>
+                </div>
+                <div class="dashboard-content">
+                    <div class="metrics-grid">
+                        <div class="metric-panel">
+                            <div class="metric-title">CPU Usage</div>
+                            <div class="metric-value" id="cpuUsage">45%</div>
+                            <div class="metric-change positive" id="cpuChange">+2.1%</div>
+                        </div>
+                        <div class="metric-panel">
+                            <div class="metric-title">Memory Usage</div>
+                            <div class="metric-value" id="memoryUsage">67%</div>
+                            <div class="metric-change negative" id="memoryChange">-1.5%</div>
+                        </div>
+                        <div class="metric-panel">
+                            <div class="metric-title">Disk I/O</div>
+                            <div class="metric-value" id="diskIO">1.2K</div>
+                            <div class="metric-change positive" id="diskChange">+150</div>
+                        </div>
+                        <div class="metric-panel">
+                            <div class="metric-title">Network Traffic</div>
+                            <div class="metric-value" id="networkTraffic">45MB/s</div>
+                            <div class="metric-change positive" id="networkChange">+5.2MB/s</div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-title">Response Time Distribution</div>
+                        <div class="chart-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 10px;">📈</div>
+                                <div>Real-time response time chart</div>
+                                <div style="font-size: 0.8rem; margin-top: 5px;">P95: 245ms | P99: 890ms</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="chart-container">
+                        <div class="chart-title">Error Rate by Service</div>
+                        <div class="chart-placeholder">
+                            <div style="text-align: center;">
+                                <div style="font-size: 2rem; margin-bottom: 10px;">⚠️</div>
+                                <div>Error rate monitoring</div>
+                                <div style="font-size: 0.8rem; margin-top: 5px;">API: 0.02% | DB: 0.01% | Cache: 0.00%</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alerts-panel">
+                        <div class="alerts-title">🚨 Active Alerts</div>
+                        <div id="alertsList">
+                            <div class="alert-item">
+                                <div class="alert-severity alert-info"></div>
+                                <div class="alert-message">High memory usage on web-01</div>
+                                <div class="alert-time">2m ago</div>
+                            </div>
+                            <div class="alert-item">
+                                <div class="alert-severity alert-warning"></div>
+                                <div class="alert-message">Slow response time on API endpoint</div>
+                                <div class="alert-time">5m ago</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="prometheus-metrics">
+                <div class="window-header">
+                    <span class="window-title">📈 Prometheus Query Interface</span>
+                    <div class="window-controls">
+                        <div class="window-control red"></div>
+                        <div class="window-control yellow"></div>
+                        <div class="window-control green"></div>
+                    </div>
+                </div>
+                <div class="prometheus-content">
+                    <div class="query-section">
+                        <div class="query-title">CPU Usage Query</div>
+                        <div class="query-input" readonly>rate(cpu_usage_percent[5m]) * 100</div>
+                        <div class="query-result" id="cpuQueryResult">
+                            cpu_usage_percent{instance="web-01"} 45.23<br/>
+                            cpu_usage_percent{instance="web-02"} 42.18<br/>
+                            cpu_usage_percent{instance="db-01"} 67.89
+                        </div>
+                    </div>
+
+                    <div class="query-section">
+                        <div class="query-title">HTTP Request Rate</div>
+                        <div class="query-input" readonly>sum(rate(http_requests_total[5m])) by (status_code)</div>
+                        <div class="query-result" id="httpQueryResult">
+                            {status_code="200"} 1247<br/>
+                            {status_code="404"} 23<br/>
+                            {status_code="500"} 2
+                        </div>
+                    </div>
+
+                    <div class="query-section">
+                        <div class="query-title">Memory Usage Trend</div>
+                        <div class="query-input" readonly>memory_usage_bytes / memory_total_bytes * 100</div>
+                        <div class="query-result" id="memoryQueryResult">
+                            memory_usage_percent{instance="web-01"} 67.45<br/>
+                            memory_usage_percent{instance="web-02"} 71.23<br/>
+                            memory_usage_percent{instance="db-01"} 82.67
+                        </div>
+                    </div>
+
+                    <div class="query-section">
+                        <div class="query-title">Error Rate Alert</div>
+                        <div class="query-input" readonly">rate(http_requests_total{status_code=~"5.."}[5m]) / rate(http_requests_total[5m]) * 100 > 1</div>
+                        <div class="query-result" id="errorQueryResult">
+                            ALERTS{alertname="HighErrorRate", severity="warning"} 1<br/>
+                            <span style="color: #f92672;">⚠️ Alert triggered: Error rate above 1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let demoRunning = false;
+        let trafficInterval;
+        let alertInterval;
+        let currentStep = 0;
+
+        const demoSteps = [
+            { name: "System Overview", duration: 8000 },
+            { name: "Application Performance", duration: 8000 },
+            { name: "Alert Simulation", duration: 8000 },
+            { name: "Custom Queries", duration: 8000 }
+        ];
+
+        // Simulated metrics
+        let metrics = {
+            cpu: 45,
+            memory: 67,
+            disk: 1200,
+            network: 45,
+            responseTime: 245,
+            errorRate: 0.02
+        };
+
+        function startDemo() {
+            if (demoRunning) return;
+            demoRunning = true;
+            currentStep = 0;
+            runDemoSequence();
+        }
+
+        function runDemoSequence() {
+            updateStepIndicators();
+
+            const step = demoSteps[currentStep];
+
+            // Simulate metrics updates
+            trafficInterval = setInterval(() => {
+                updateMetrics();
+            }, 2000);
+
+            // Auto-advance to next step
+            setTimeout(() => {
+                if (currentStep < demoSteps.length - 1) {
+                    currentStep++;
+                    runDemoSequence();
+                } else {
+                    stopDemo();
+                }
+            }, step.duration);
+        }
+
+        function stopDemo() {
+            demoRunning = false;
+            clearInterval(trafficInterval);
+            clearInterval(alertInterval);
+        }
+
+        function resetDemo() {
+            stopDemo();
+            currentStep = 0;
+            metrics = {
+                cpu: 45,
+                memory: 67,
+                disk: 1200,
+                network: 45,
+                responseTime: 245,
+                errorRate: 0.02
+            };
+            updateDisplay();
+            updateStepIndicators();
+            clearAlerts();
+        }
+
+        function simulateTraffic() {
+            if (!demoRunning) return;
+
+            // Simulate traffic spike
+            metrics.cpu += Math.random() * 20;
+            metrics.memory += Math.random() * 15;
+            metrics.network += Math.random() * 30;
+            metrics.disk += Math.random() * 500;
+
+            updateDisplay();
+
+            // Auto-recover after 10 seconds
+            setTimeout(() => {
+                metrics.cpu = Math.max(45, metrics.cpu - 15);
+                metrics.memory = Math.max(67, metrics.memory - 10);
+                metrics.network = Math.max(45, metrics.network - 20);
+                metrics.disk = Math.max(1200, metrics.disk - 300);
+                updateDisplay();
+            }, 10000);
+        }
+
+        function triggerAlert() {
+            if (!demoRunning) return;
+
+            const alerts = [
+                { severity: 'critical', message: 'Database connection timeout', time: '1m ago' },
+                { severity: 'warning', message: 'High CPU usage on app server', time: '30s ago' },
+                { severity: 'info', message: 'Memory usage above 80%', time: '2m ago' }
+            ];
+
+            const alert = alerts[Math.floor(Math.random() * alerts.length)];
+            addAlert(alert.severity, alert.message, alert.time);
+
+            // Simulate alert resolution
+            setTimeout(() => {
+                resolveAlert(alert.message);
+            }, 30000);
+        }
+
+        function updateMetrics() {
+            if (!demoRunning) return;
+
+            // Simulate natural metric fluctuations
+            metrics.cpu += (Math.random() - 0.5) * 4;
+            metrics.memory += (Math.random() - 0.5) * 3;
+            metrics.disk += (Math.random() - 0.5) * 100;
+            metrics.network += (Math.random() - 0.5) * 10;
+
+            // Keep metrics in reasonable ranges
+            metrics.cpu = Math.max(10, Math.min(95, metrics.cpu));
+            metrics.memory = Math.max(30, Math.min(90, metrics.memory));
+            metrics.disk = Math.max(500, Math.min(2500, metrics.disk));
+            metrics.network = Math.max(10, Math.min(200, metrics.network));
+
+            updateDisplay();
+        }
+
+        function updateDisplay() {
+            document.getElementById('cpuUsage').textContent = Math.round(metrics.cpu) + '%';
+            document.getElementById('memoryUsage').textContent = Math.round(metrics.memory) + '%';
+            document.getElementById('diskIO').textContent = Math.round(metrics.disk);
+            document.getElementById('networkTraffic').textContent = Math.round(metrics.network) + 'MB/s';
+
+            // Update change indicators
+            updateChangeIndicator('cpuChange', metrics.cpu > 50 ? 'positive' : 'negative');
+            updateChangeIndicator('memoryChange', metrics.memory > 75 ? 'negative' : 'positive');
+            updateChangeIndicator('diskChange', metrics.disk > 1500 ? 'positive' : 'negative');
+            updateChangeIndicator('networkChange', metrics.network > 60 ? 'positive' : 'negative');
+        }
+
+        function updateChangeIndicator(elementId, type) {
+            const element = document.getElementById(elementId);
+            element.className = 'metric-change ' + type;
+            const value = (Math.random() * 5).toFixed(1);
+            element.textContent = (type === 'positive' ? '+' : '-') + value + '%';
+        }
+
+        function addAlert(severity, message, time) {
+            const alertsList = document.getElementById('alertsList');
+            const alertDiv = document.createElement('div');
+            alertDiv.className = 'alert-item fade-in';
+            alertDiv.innerHTML = `
+                <div class="alert-severity alert-${severity}"></div>
+                <div class="alert-message">${message}</div>
+                <div class="alert-time">${time}</div>
+            `;
+            alertsList.appendChild(alertDiv);
+        }
+
+        function resolveAlert(message) {
+            const alertsList = document.getElementById('alertsList');
+            const alerts = alertsList.querySelectorAll('.alert-item');
+            alerts.forEach(alert => {
+                if (alert.textContent.includes(message)) {
+                    alert.style.opacity = '0.5';
+                    alert.querySelector('.alert-message').textContent += ' (Resolved)';
+                }
+            });
+        }
+
+        function clearAlerts() {
+            document.getElementById('alertsList').innerHTML = `
+                <div class="alert-item">
+                    <div class="alert-severity alert-info"></div>
+                    <div class="alert-message">System monitoring active</div>
+                    <div class="alert-time">Just now</div>
+                </div>
+            `;
+        }
+
+        function updateStepIndicators() {
+            const progress = ((currentStep + 1) / demoSteps.length) * 100;
+            document.getElementById('progressFill').style.width = progress + '%';
+
+            // Update step card styles
+            for (let i = 0; i < demoSteps.length; i++) {
+                const stepCard = document.getElementById('step' + (i + 1));
+                if (i < currentStep) {
+                    stepCard.style.borderColor = '#28ca42';
+                    stepCard.style.background = 'rgba(40, 202, 66, 0.1)';
+                } else if (i === currentStep) {
+                    stepCard.style.borderColor = '#ff6b6b';
+                    stepCard.style.background = 'rgba(255, 107, 107, 0.1)';
+                } else {
+                    stepCard.style.borderColor = 'rgba(255, 107, 107, 0.3)';
+                    stepCard.style.background = 'rgba(255, 107, 107, 0.1)';
+                }
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updateDisplay();
+            updateStepIndicators();
+        });
+    </script>
+</body>
+</html>

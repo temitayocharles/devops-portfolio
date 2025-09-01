@@ -175,7 +175,7 @@
 
     .carousel-track {
       display: flex;
-      animation: scroll-projects 12s linear infinite;
+      animation: scroll-projects 20s linear infinite;
       gap: 2rem;
       padding: 1rem 0;
     }
@@ -449,7 +449,6 @@
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
-      margin-bottom: 3rem;
     }
 
     .project-card {
@@ -543,65 +542,6 @@
 
     .project-card-link:hover {
       transform: translateY(-2px);
-    }
-
-    /* Pagination */
-    .pagination {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 3rem;
-      padding: 2rem 0;
-    }
-
-    .pagination-btn {
-      background: rgba(102, 217, 239, 0.1);
-      color: #66d9ef;
-      border: 1px solid #66d9ef;
-      padding: 0.8rem 1.2rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .pagination-btn:hover,
-    .pagination-btn.active {
-      background: #66d9ef;
-      color: #0e0e0e;
-      transform: translateY(-2px);
-    }
-
-    .pagination-info {
-      color: #f0f0f0;
-      opacity: 0.8;
-      font-size: 0.9rem;
-    }
-
-    .pagination-arrow {
-      background: rgba(102, 217, 239, 0.1);
-      color: #66d9ef;
-      border: 1px solid #66d9ef;
-      padding: 0.8rem 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-
-    .pagination-arrow:hover {
-      background: #66d9ef;
-      color: #0e0e0e;
-      transform: translateY(-2px);
-    }
-
-    .pagination-arrow.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-      transform: none;
     }
 
     /* CTA Section */
@@ -778,7 +718,7 @@
       }
 
       .carousel-track {
-        animation-duration: 8s;
+        animation-duration: 15s;
       }
 
       .preview-card {
@@ -865,18 +805,6 @@
     </div>
   </header>
 
-  <!-- Mobile Sidebar -->
-  <div class="global-sidebar" id="sidebar">
-    <nav class="sidebar-nav">
-      <a href="index.html" class="sidebar-nav-item">Home</a>
-      <a href="about-me.html" class="sidebar-nav-item">About</a>
-      <a href="skills.html" class="sidebar-nav-item">Skills</a>
-      <a href="projects.html" class="sidebar-nav-item active">Projects</a>
-      <a href="contact.html" class="sidebar-nav-item">Contact</a>
-    </nav>
-  </div>
-  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
-
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-container">
@@ -902,34 +830,10 @@
             <p class="preview-tech">React • Node.js • Kubernetes</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('ultimate-devops-container-demo.html', '_blank')">
+          <div class="preview-card" onclick="scrollToSection('devops-container')">
             <span class="preview-icon">🐳</span>
             <h3 class="preview-title">Ultimate DevOps Container</h3>
             <p class="preview-tech">Docker • 30+ Tools • Monitoring</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('aws-infrastructure-demo.html', '_blank')">
-            <span class="preview-icon">☁️</span>
-            <h3 class="preview-title">AWS Infrastructure</h3>
-            <p class="preview-tech">Amplify • Lambda • CloudFront</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('azure-aks-demo.html', '_blank')">
-            <span class="preview-icon">🔷</span>
-            <h3 class="preview-title">Azure AKS Cluster</h3>
-            <p class="preview-tech">Kubernetes • AKS • Monitoring</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('gcp-serverless-demo.html', '_blank')">
-            <span class="preview-icon">🔥</span>
-            <h3 class="preview-title">GCP Serverless Functions</h3>
-            <p class="preview-tech">Cloud Functions • Auto-scaling</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('secrets-management-demo.html', '_blank')">
-            <span class="preview-icon">🔐</span>
-            <h3 class="preview-title">Secrets Management</h3>
-            <p class="preview-tech">HashiCorp Vault • Key Rotation</p>
           </div>
 
           <div class="preview-card" onclick="scrollToSection('cicd-pipeline')">
@@ -963,34 +867,10 @@
             <p class="preview-tech">React • Node.js • Kubernetes</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('ultimate-devops-container-demo.html', '_blank')">
+          <div class="preview-card" onclick="scrollToSection('devops-container')">
             <span class="preview-icon">🐳</span>
             <h3 class="preview-title">Ultimate DevOps Container</h3>
             <p class="preview-tech">Docker • 30+ Tools • Monitoring</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('aws-infrastructure-demo.html', '_blank')">
-            <span class="preview-icon">☁️</span>
-            <h3 class="preview-title">AWS Infrastructure</h3>
-            <p class="preview-tech">Amplify • Lambda • CloudFront</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('azure-aks-demo.html', '_blank')">
-            <span class="preview-icon">🔷</span>
-            <h3 class="preview-title">Azure AKS Cluster</h3>
-            <p class="preview-tech">Kubernetes • AKS • Monitoring</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('gcp-serverless-demo.html', '_blank')">
-            <span class="preview-icon">🔥</span>
-            <h3 class="preview-title">GCP Serverless Functions</h3>
-            <p class="preview-tech">Cloud Functions • Auto-scaling</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('secrets-management-demo.html', '_blank')">
-            <span class="preview-icon">🔐</span>
-            <h3 class="preview-title">Secrets Management</h3>
-            <p class="preview-tech">HashiCorp Vault • Key Rotation</p>
           </div>
 
           <div class="preview-card" onclick="scrollToSection('cicd-pipeline')">
@@ -1106,8 +986,8 @@
           </div>
 
           <div class="project-links">
-            <a href="ultimate-devops-container-demo.html" class="project-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-ultimate-devops-container.html" class="project-link secondary">📖 View Details</a>
+            <a href="project-ultimate-devops-container.html" class="project-link primary">→ View Project</a>
+            <a href="devops-container-demos.html" class="project-link secondary">🎬 Watch Demos</a>
           </div>
         </div>
       </div>
@@ -1121,94 +1001,6 @@
       </div>
 
       <div class="projects-grid">
-        <!-- AWS Infrastructure -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">☁️</span>
-            <div class="project-meta">
-              <h3>AWS Infrastructure</h3>
-              <p class="project-type">Cloud-Native Deployment</p>
-            </div>
-          </div>
-          <p class="project-desc">Complete AWS Amplify deployment with Lambda functions, API Gateway, and CloudFront CDN. Interactive demo shows real deployment workflows.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">AWS Amplify</span>
-            <span class="project-tech-tag">Lambda</span>
-            <span class="project-tech-tag">API Gateway</span>
-            <span class="project-tech-tag">CloudFront</span>
-          </div>
-          <div class="project-card-links">
-            <a href="aws-infrastructure-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-aws-infrastructure.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Azure AKS -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🔷</span>
-            <div class="project-meta">
-              <h3>Azure AKS Cluster</h3>
-              <p class="project-type">Managed Kubernetes</p>
-            </div>
-          </div>
-          <p class="project-desc">Production Azure Kubernetes Service with monitoring, scaling, and service mesh. Interactive demo shows cluster management and deployment.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Azure AKS</span>
-            <span class="project-tech-tag">Kubernetes</span>
-            <span class="project-tech-tag">Istio</span>
-            <span class="project-tech-tag">Monitoring</span>
-          </div>
-          <div class="project-card-links">
-            <a href="azure-aks-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-azure-aks.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- GCP Serverless -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🔥</span>
-            <div class="project-meta">
-              <h3>GCP Serverless Functions</h3>
-              <p class="project-type">Auto-scaling Functions</p>
-            </div>
-          </div>
-          <p class="project-desc">Google Cloud Functions with automatic scaling, monitoring, and traffic simulation. Interactive demo shows real serverless workflows.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Cloud Functions</span>
-            <span class="project-tech-tag">Auto-scaling</span>
-            <span class="project-tech-tag">Cloud Monitoring</span>
-            <span class="project-tech-tag">Serverless</span>
-          </div>
-          <div class="project-card-links">
-            <a href="gcp-serverless-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-gcp-serverless.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Secrets Management -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🔐</span>
-            <div class="project-meta">
-              <h3>Secrets Management</h3>
-              <p class="project-type">Key Rotation & Security</p>
-            </div>
-          </div>
-          <p class="project-desc">HashiCorp Vault implementation with automated key rotation, access policies, and audit logging. Interactive demo shows security workflows.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">HashiCorp Vault</span>
-            <span class="project-tech-tag">Key Rotation</span>
-            <span class="project-tech-tag">Access Control</span>
-            <span class="project-tech-tag">Audit Logs</span>
-          </div>
-          <div class="project-card-links">
-            <a href="secrets-management-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-secrets-management.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
         <!-- Enterprise CI/CD -->
         <div id="cicd-pipeline" class="project-card">
           <div class="project-header">
@@ -1230,16 +1022,16 @@
           </div>
         </div>
 
-        <!-- Kubernetes VPN - Enterprise Homelab -->
+        <!-- Kubernetes VPN -->
         <div id="k8s-vpn" class="project-card">
           <div class="project-header">
-            <span class="project-icon">🏠</span>
+            <span class="project-icon">🔐</span>
             <div class="project-meta">
-              <h3>Enterprise Kubernetes Homelab</h3>
-              <p class="project-type">Production-Ready Home Lab</p>
+              <h3>Kubernetes VPN Gateway</h3>
+              <p class="project-type">Secure Network Access</p>
             </div>
           </div>
-          <p class="project-desc">My biggest project: Complete enterprise-grade Kubernetes homelab with VPN access, monitoring, and production workloads running on personal infrastructure.</p>
+          <p class="project-desc">Enterprise VPN solution with Kubernetes integration for secure remote cluster access.</p>
           <div class="project-tech-stack">
             <span class="project-tech-tag">Kubernetes</span>
             <span class="project-tech-tag">WireGuard</span>
@@ -1247,7 +1039,7 @@
             <span class="project-tech-tag">Network Policies</span>
           </div>
           <div class="project-card-links">
-            <a href="project-kubernetes-vpn.html" class="project-card-link primary">🏆 View Biggest Project</a>
+            <a href="project-kubernetes-vpn.html" class="project-card-link primary">View Details</a>
           </div>
         </div>
 
@@ -1268,25 +1060,24 @@
             <span class="project-tech-tag">Jaeger</span>
           </div>
           <div class="project-card-links">
-            <a href="monitoring-stack-demo.html" class="project-card-link primary">🚀 Try Demo</a>
-            <a href="project-monitoring-stack.html" class="project-card-link secondary">View Details</a>
+            <a href="project-monitoring-stack.html" class="project-card-link primary">View Details</a>
           </div>
         </div>
 
         <!-- Enterprise Projects Section -->
         <div class="project-card">
           <div class="project-header">
-            <span class="project-icon">�</span>
+            <span class="project-icon">🏛️</span>
             <div class="project-meta">
               <h3>Docker Ansible Role</h3>
-              <p class="project-type">Enterprise Infrastructure Automation</p>
+              <p class="project-type">Government Infrastructure Automation</p>
             </div>
           </div>
           <p class="project-desc">Automated infrastructure deployment with Docker containers and Ansible orchestration for enterprise systems.</p>
           <div class="project-tech-stack">
             <span class="project-tech-tag">Docker</span>
             <span class="project-tech-tag">Ansible</span>
-            <span class="project-tech-tag">Automation</span>
+            <span class="project-tech-tag">FISMA</span>
             <span class="project-tech-tag">Compliance</span>
           </div>
           <div class="project-card-links">
@@ -1414,11 +1205,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Pagination Controls -->
-      <div class="pagination">
-        <!-- Pagination controls will be generated by JavaScript -->
-      </div>
     </section>
 
     <!-- Call to Action -->
@@ -1484,7 +1270,7 @@
     }
 
     // Animated Counter Function
-    function animateCounter(element, target, duration = 1000) {
+    function animateCounter(element, target, duration = 2000) {
       let start = 0;
       const increment = target / (duration / 16);
       const timer = setInterval(() => {
@@ -1521,131 +1307,9 @@
       }
     }
 
-    // Pagination functionality
-    let currentPage = 1;
-    const projectsPerPage = 6;
-    let totalProjects = 0;
-    let totalPages = 0;
-
-    function initializePagination() {
-      const projectCards = document.querySelectorAll('.projects-grid .project-card');
-      totalProjects = projectCards.length;
-      totalPages = Math.ceil(totalProjects / projectsPerPage);
-
-      // Hide all projects initially
-      projectCards.forEach(card => card.style.display = 'none');
-
-      // Show first page
-      showPage(1);
-
-      // Create pagination controls
-      createPaginationControls();
-    }
-
-    function showPage(page) {
-      currentPage = page;
-      const projectCards = document.querySelectorAll('.projects-grid .project-card');
-      const startIndex = (page - 1) * projectsPerPage;
-      const endIndex = startIndex + projectsPerPage;
-
-      // Hide all projects
-      projectCards.forEach(card => card.style.display = 'none');
-
-      // Show projects for current page
-      for (let i = startIndex; i < endIndex && i < totalProjects; i++) {
-        projectCards[i].style.display = 'block';
-      }
-
-      // Update pagination controls
-      updatePaginationControls();
-    }
-
-    function createPaginationControls() {
-      const paginationContainer = document.querySelector('.pagination');
-      if (!paginationContainer) return;
-
-      paginationContainer.innerHTML = '';
-
-      // Previous button
-      const prevButton = document.createElement('button');
-      prevButton.className = 'pagination-arrow';
-      prevButton.innerHTML = '← Previous';
-      prevButton.onclick = () => changePage(currentPage - 1);
-      if (currentPage === 1) prevButton.classList.add('disabled');
-      paginationContainer.appendChild(prevButton);
-
-      // Page numbers
-      for (let i = 1; i <= totalPages; i++) {
-        const pageButton = document.createElement('button');
-        pageButton.className = 'pagination-btn';
-        pageButton.textContent = i;
-        pageButton.onclick = () => showPage(i);
-        if (i === currentPage) pageButton.classList.add('active');
-        paginationContainer.appendChild(pageButton);
-      }
-
-      // Next button
-      const nextButton = document.createElement('button');
-      nextButton.className = 'pagination-arrow';
-      nextButton.innerHTML = 'Next →';
-      nextButton.onclick = () => changePage(currentPage + 1);
-      if (currentPage === totalPages) nextButton.classList.add('disabled');
-      paginationContainer.appendChild(nextButton);
-
-      // Page info
-      const pageInfo = document.createElement('div');
-      pageInfo.className = 'pagination-info';
-      pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-      paginationContainer.appendChild(pageInfo);
-    }
-
-    function updatePaginationControls() {
-      const paginationContainer = document.querySelector('.pagination');
-      if (!paginationContainer) return;
-
-      // Update page buttons
-      const pageButtons = paginationContainer.querySelectorAll('.pagination-btn');
-      pageButtons.forEach((button, index) => {
-        button.classList.toggle('active', index + 1 === currentPage);
-      });
-
-      // Update previous button
-      const prevButton = paginationContainer.querySelector('.pagination-arrow:first-child');
-      if (prevButton) {
-        prevButton.classList.toggle('disabled', currentPage === 1);
-      }
-
-      // Update next button
-      const nextButton = paginationContainer.querySelector('.pagination-arrow:last-child');
-      if (nextButton) {
-        nextButton.classList.toggle('disabled', currentPage === totalPages);
-      }
-
-      // Update page info
-      const pageInfo = paginationContainer.querySelector('.pagination-info');
-      if (pageInfo) {
-        pageInfo.textContent = `Page ${currentPage} of ${totalPages}`;
-      }
-    }
-
-    function changePage(page) {
-      if (page < 1 || page > totalPages) return;
-      showPage(page);
-
-      // Smooth scroll to top of projects section
-      const projectsSection = document.querySelector('.projects-section');
-      if (projectsSection) {
-        projectsSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }
-
     // Initialize animations on page load
     document.addEventListener('DOMContentLoaded', function() {
       setupMetricsAnimation();
-      initializePagination();
     });
 
     // Smooth scrolling for anchor links

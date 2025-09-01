@@ -3,305 +3,908 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact • Ultimate DevOps</title>
+  <title>Contact • Temitayo Charles</title>
+  <meta name="description" content="Get in touch with DevOps Engineer Temitayo Charles for consulting, collaboration, and DevOps solutions.">
   <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
-    .contact-form-section {
-      margin-top: 30px;
-      padding: 25px;
-      background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
-      border-radius: 15px;
-      border: 1px solid #66d9ef;
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    
-    .contact-form-section h3 {
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+      color: #f0f0f0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Header Navigation */
+    .header-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 14, 14, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+      z-index: 1000;
+      padding: 1rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #66d9ef;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+    }
+
+    .nav-link:hover {
+      color: #66d9ef;
+      background: rgba(102, 217, 239, 0.1);
+    }
+
+    .nav-link.active {
       color: #a6e22e;
-      margin-bottom: 20px;
-      font-size: 1.4rem;
+      background: rgba(166, 226, 46, 0.1);
     }
-    
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: #66d9ef;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      padding: 120px 0 80px;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.05), rgba(166, 226, 46, 0.05));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 20% 80%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 20%, rgba(166, 226, 46, 0.1) 0%, transparent 50%);
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #66d9ef;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #f0f0f0;
+      opacity: 0.9;
+      line-height: 1.6;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Main Content */
+    .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    /* Contact Section */
+    .contact-section {
+      padding: 5rem 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #66d9ef;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 4rem;
+    }
+
+    /* Contact Info Card */
+    .contact-info-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .contact-info-card:hover {
+      transform: translateY(-5px);
+      border-color: #66d9ef;
+      box-shadow: 0 15px 40px rgba(102, 217, 239, 0.2);
+    }
+
+    .contact-info-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .contact-info-icon {
+      font-size: 2rem;
+      margin-right: 1rem;
+      color: #a6e22e;
+    }
+
+    .contact-info-title {
+      color: #66d9ef;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    .contact-detail {
+      margin-bottom: 1.5rem;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 10px;
+      border: 1px solid rgba(102, 217, 239, 0.1);
+    }
+
+    .contact-detail h4 {
+      color: #f0f0f0;
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .contact-link {
+      color: #66d9ef;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .contact-link:hover {
+      color: #a6e22e;
+    }
+
+    .response-time {
+      color: #a6e22e;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-top: 0.5rem;
+      display: block;
+    }
+
+    /* Contact Form */
+    .contact-form-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+    }
+
+    .contact-form-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .contact-form-icon {
+      font-size: 2rem;
+      margin-right: 1rem;
+      color: #a6e22e;
+    }
+
+    .contact-form-title {
+      color: #66d9ef;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
     .contact-form {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 1.5rem;
     }
-    
+
     .form-group {
       display: flex;
       flex-direction: column;
     }
-    
-    .form-group label {
+
+    .form-label {
       color: #f0f0f0;
-      margin-bottom: 8px;
+      margin-bottom: 0.5rem;
       font-weight: 500;
+      font-size: 0.9rem;
     }
-    
-    .form-group input,
-    .form-group textarea {
-      padding: 12px 15px;
-      border: 2px solid #333;
+
+    .form-input,
+    .form-textarea {
+      padding: 1rem;
+      border: 2px solid rgba(102, 217, 239, 0.2);
       border-radius: 8px;
-      background: #1a1a1a;
+      background: rgba(255, 255, 255, 0.05);
       color: #f0f0f0;
       font-size: 1rem;
-      transition: border-color 0.3s ease;
+      transition: all 0.3s ease;
     }
-    
-    .form-group input:focus,
-    .form-group textarea:focus {
+
+    .form-input:focus,
+    .form-textarea:focus {
       outline: none;
       border-color: #66d9ef;
-      box-shadow: 0 0 10px rgba(102, 217, 239, 0.3);
+      box-shadow: 0 0 15px rgba(102, 217, 239, 0.3);
+      background: rgba(255, 255, 255, 0.08);
     }
-    
-    .form-group textarea {
+
+    .form-textarea {
       resize: vertical;
       min-height: 120px;
     }
-    
+
     .submit-btn {
-      padding: 15px 30px;
+      padding: 1rem 2rem;
       background: linear-gradient(135deg, #66d9ef, #a6e22e);
       color: #0e0e0e;
       border: none;
       border-radius: 25px;
       font-size: 1.1rem;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
       transition: all 0.3s ease;
       align-self: flex-start;
+      box-shadow: 0 4px 15px rgba(102, 217, 239, 0.3);
     }
-    
+
     .submit-btn:hover {
-      transform: translateY(-2px);
+      transform: translateY(-3px);
       box-shadow: 0 8px 25px rgba(102, 217, 239, 0.4);
     }
-    
+
     .submit-btn:disabled {
       opacity: 0.6;
       cursor: not-allowed;
       transform: none;
     }
-    
+
     .form-message {
-      padding: 15px;
+      padding: 1rem;
       border-radius: 8px;
-      margin-top: 20px;
+      margin-top: 1rem;
       font-weight: 500;
+      display: none;
     }
-    
+
     .form-message.success {
       background: rgba(166, 226, 46, 0.2);
       border: 1px solid #a6e22e;
       color: #a6e22e;
     }
-    
+
     .form-message.error {
       background: rgba(229, 62, 62, 0.2);
       border: 1px solid #e53e3e;
       color: #e53e3e;
     }
+
+    /* Social Networks Section */
+    .social-section {
+      padding: 5rem 0;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .social-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .social-card:hover {
+      transform: translateY(-5px);
+      border-color: #66d9ef;
+      box-shadow: 0 15px 40px rgba(102, 217, 239, 0.2);
+    }
+
+    .social-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .social-title {
+      color: #66d9ef;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .social-handle {
+      color: #f0f0f0;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+
+    .social-description {
+      color: #f0f0f0;
+      opacity: 0.8;
+      font-size: 0.9rem;
+    }
+
+    /* Collaboration Section */
+    .collaboration-section {
+      padding: 5rem 0;
+    }
+
+    .collaboration-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .collab-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .collab-card:hover {
+      transform: translateY(-5px);
+      border-color: #a6e22e;
+      box-shadow: 0 15px 40px rgba(166, 226, 46, 0.2);
+    }
+
+    .collab-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .collab-title {
+      color: #a6e22e;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .collab-description {
+      color: #f0f0f0;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(14, 14, 14, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(102, 217, 239, 0.2);
+      padding: 3rem 0 2rem;
+      text-align: center;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    .footer-title {
+      color: #66d9ef;
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .social-link {
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .social-link:hover {
+      color: #66d9ef;
+      background: rgba(102, 217, 239, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .footer-text {
+      color: #f0f0f0;
+      opacity: 0.7;
+      font-size: 0.9rem;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1.1rem;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .social-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .collaboration-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .social-links {
+        flex-direction: column;
+        gap: 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-container {
+        padding: 0 1rem;
+      }
+
+      .main-content {
+        padding: 0 1rem;
+      }
+
+      .hero-section {
+        padding: 100px 0 60px;
+      }
+
+      .hero-title {
+        font-size: 2rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .contact-info-card,
+      .contact-form-card,
+      .social-card,
+      .collab-card {
+        padding: 1.5rem;
+      }
+    }
+
+    /* Global Sidebar (Mobile) */
+    .global-sidebar {
+      position: fixed;
+      top: 0;
+      left: -300px;
+      width: 300px;
+      height: 100vh;
+      background: rgba(14, 14, 14, 0.95);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid rgba(102, 217, 239, 0.2);
+      z-index: 2000;
+      transition: left 0.3s ease;
+      padding: 5rem 0 2rem;
+      overflow-y: auto;
+    }
+
+    .global-sidebar.open {
+      left: 0;
+    }
+
+    .sidebar-nav {
+      padding: 0 2rem;
+    }
+
+    .sidebar-nav-item {
+      display: block;
+      color: #f0f0f0;
+      text-decoration: none;
+      font-weight: 500;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(102, 217, 239, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-nav-item:hover {
+      color: #66d9ef;
+      padding-left: 1rem;
+    }
+
+    .sidebar-nav-item.active {
+      color: #a6e22e;
+      border-bottom-color: #a6e22e;
+    }
+
+    .sidebar-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 1999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .sidebar-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about-me.html">About Me</a>
-    <a href="projects.html">Projects</a>
-    <a href="skills.html">Skills</a>
-    <a href="blog.html">Blog</a>
-    <a href="contact.html" class="active">Contact</a>
-  </nav>
-  <div class="main">
-    <div class="contact-hero">
-      <h1>🤝 Let's Connect</h1>
-      <p class="contact-subtitle">Ready to transform your DevOps workflow? Let's discuss how we can streamline your development pipeline together.</p>
+  <!-- Header Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Temitayo Charles</a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about-me.html" class="nav-link">About</a>
+        <a href="skills.html" class="nav-link">Skills</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="contact.html" class="nav-link active">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
-    
-    <div class="contact-grid">
-      <div class="contact-section">
-        <h2>📧 Direct Contact</h2>
-        <div class="contact-card primary">
-          <div class="contact-icon">✉️</div>
-          <div class="contact-details">
-            <h3>Email</h3>
-            <p><a href="mailto:temitayo_charles@yahoo.com" class="contact-link">temitayo_charles@yahoo.com</a></p>
+  </header>
+
+  <!-- Mobile Sidebar -->
+  <div class="global-sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sidebar-nav-item">Home</a>
+      <a href="about-me.html" class="sidebar-nav-item">About</a>
+      <a href="skills.html" class="sidebar-nav-item">Skills</a>
+      <a href="projects.html" class="sidebar-nav-item">Projects</a>
+      <a href="contact.html" class="sidebar-nav-item active">Contact</a>
+    </nav>
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-container">
+      <h1 class="hero-title">Let's Connect</h1>
+      <p class="hero-subtitle">Ready to transform your DevOps workflow? Let's discuss how we can streamline your development pipeline, accelerate your team's productivity, or explore exciting job opportunities together.</p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+        <p class="section-subtitle">Whether you need DevOps consulting, collaboration opportunities, exciting job offers, or just want to connect, I'd love to hear from you.</p>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact Info -->
+        <div class="contact-info-card">
+          <div class="contact-info-header">
+            <span class="contact-info-icon">📧</span>
+            <h3 class="contact-info-title">Direct Contact</h3>
+          </div>
+
+          <div class="contact-detail">
+            <h4>Email</h4>
+            <a href="mailto:temitayo_charles@yahoo.com" class="contact-link">temitayo_charles@yahoo.com</a>
             <span class="response-time">Response within 24 hours</span>
           </div>
+
+          <div class="contact-detail">
+            <h4>Availability</h4>
+            <p style="color: #f0f0f0; opacity: 0.9; margin: 0;">Available for consulting, collaboration, job opportunities, and freelance projects</p>
+          </div>
         </div>
-        
+
         <!-- Contact Form -->
-        <div class="contact-form-section">
-          <h3>📝 Send a Message</h3>
+        <div class="contact-form-card">
+          <div class="contact-form-header">
+            <span class="contact-form-icon">📝</span>
+            <h3 class="contact-form-title">Send a Message</h3>
+          </div>
+
           <form id="contactForm" class="contact-form">
             <div class="form-group">
-              <label for="name">Name *</label>
-              <input type="text" id="name" name="name" required>
+              <label for="name" class="form-label">Name *</label>
+              <input type="text" id="name" name="name" class="form-input" required>
             </div>
-            
+
             <div class="form-group">
-              <label for="email">Email *</label>
-              <input type="email" id="email" name="email" required>
+              <label for="email" class="form-label">Email *</label>
+              <input type="email" id="email" name="email" class="form-input" required>
             </div>
-            
+
             <div class="form-group">
-              <label for="subject">Subject *</label>
-              <input type="text" id="subject" name="subject" required>
+              <label for="subject" class="form-label">Subject *</label>
+              <input type="text" id="subject" name="subject" class="form-input" required>
             </div>
-            
+
             <div class="form-group">
-              <label for="message">Message *</label>
-              <textarea id="message" name="message" rows="5" required></textarea>
+              <label for="message" class="form-label">Message *</label>
+              <textarea id="message" name="message" class="form-textarea" rows="5" required></textarea>
             </div>
-            
+
             <button type="submit" class="submit-btn">🚀 Send Message</button>
           </form>
-          
-          <div id="formMessage" class="form-message" style="display: none;"></div>
+
+          <div id="formMessage" class="form-message"></div>
         </div>
       </div>
-      
-      <div class="contact-section">
-        <h2>🌐 Professional Networks</h2>
-        <div class="social-contact-grid">
-          <a href="https://github.com/temitayocharles" target="_blank" class="social-contact-card github">
-            <div class="social-icon">🐙</div>
-            <div class="social-details">
-              <h3>GitHub</h3>
-              <p>@temitayocharles</p>
-              <span class="social-description">Open source projects &amp; code samples</span>
-            </div>
-          </a>
-          
-          <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-contact-card docker">
-            <div class="social-icon">🐳</div>
-            <div class="social-details">
-              <h3>DockerHub</h3>
-              <p>temitayocharles</p>
-              <span class="social-description">Container images &amp; DevOps tools</span>
-            </div>
-          </a>
-          
-          <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-contact-card linkedin">
-            <div class="social-icon">💼</div>
-            <div class="social-details">
-              <h3>LinkedIn</h3>
-              <p>Temitayo Charles</p>
-              <span class="social-description">Professional experience &amp; network</span>
-            </div>
-          </a>
-        </div>
+    </section>
+
+    <!-- Social Networks Section -->
+    <section class="social-section">
+      <div class="section-header">
+        <h2 class="section-title">Professional Networks</h2>
+        <p class="section-subtitle">Connect with me on professional platforms and explore my work</p>
       </div>
-    </div>
-    
-    <div class="featured-section">
-      <h2>🚀 Featured Project Spotlight</h2>
-      <div class="featured-project-card">
-        <div class="project-icon">🎯</div>
-        <div class="project-content">
-          <h3>Ultimate DevOps Container</h3>
-          <p>A comprehensive containerized DevOps environment featuring 30+ pre-installed tools for seamless development, testing, and deployment workflows.</p>
-          <div class="project-features">
-            <span class="feature-tag">Docker Ready</span>
-            <span class="feature-tag">30+ Tools</span>
-            <span class="feature-tag">Production-Grade</span>
-          </div>
-          <a href="https://hub.docker.com/r/temitayocharles/devops-charlie" target="_blank" class="project-link">
-            Explore on DockerHub →
-          </a>
-        </div>
+
+      <div class="social-grid">
+        <a href="https://github.com/temitayocharles" target="_blank" class="social-card">
+          <span class="social-icon">🐙</span>
+          <h3 class="social-title">GitHub</h3>
+          <p class="social-handle">@temitayocharles</p>
+          <p class="social-description">Open source projects, code samples, and DevOps tools</p>
+        </a>
+
+        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-card">
+          <span class="social-icon">🐳</span>
+          <h3 class="social-title">DockerHub</h3>
+          <p class="social-handle">temitayocharles</p>
+          <p class="social-description">Container images and DevOps container solutions</p>
+        </a>
+
+        <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-card">
+          <span class="social-icon">💼</span>
+          <h3 class="social-title">LinkedIn</h3>
+          <p class="social-handle">Temitayo Charles</p>
+          <p class="social-description">Professional experience and industry network</p>
+        </a>
       </div>
-    </div>
-    
-    <div class="collaboration-section">
-      <h2>🤔 Interested in Collaboration?</h2>
+    </section>
+
+    <!-- Collaboration Section -->
+    <section class="collaboration-section">
+      <div class="section-header">
+        <h2 class="section-title">Collaboration Opportunities</h2>
+        <p class="section-subtitle">I'm always interested in meaningful collaborations, partnerships, and exciting job opportunities</p>
+      </div>
+
       <div class="collaboration-grid">
-        <div class="collab-item">
-          <div class="collab-icon">🔧</div>
-          <h3>DevOps Consulting</h3>
-          <p>Infrastructure automation, CI/CD pipeline optimization, and containerization strategies</p>
+        <div class="collab-card">
+          <span class="collab-icon">�</span>
+          <h3 class="collab-title">Career Opportunities</h3>
+          <p class="collab-description">Open to exciting job opportunities in DevOps, cloud engineering, and container technologies. Let's discuss how we can work together to build amazing solutions.</p>
         </div>
-        <div class="collab-item">
-          <div class="collab-icon">🏗️</div>
-          <h3>Architecture Review</h3>
-          <p>System design evaluation, scalability planning, and best practices implementation</p>
+
+        <div class="collab-card">
+          <span class="collab-icon">�🔧</span>
+          <h3 class="collab-title">DevOps Consulting</h3>
+          <p class="collab-description">Infrastructure automation, CI/CD pipeline optimization, containerization strategies, and cloud architecture design for enterprise teams.</p>
         </div>
-        <div class="collab-item">
-          <div class="collab-icon">📚</div>
-          <h3>Knowledge Sharing</h3>
-          <p>Technical presentations, workshops, and documentation for your development teams</p>
+
+        <div class="collab-card">
+          <span class="collab-icon">🏗️</span>
+          <h3 class="collab-title">Architecture Review</h3>
+          <p class="collab-description">System design evaluation, scalability planning, security assessments, and implementation of DevOps best practices.</p>
+        </div>
+
+        <div class="collab-card">
+          <span class="collab-icon">📚</span>
+          <h3 class="collab-title">Knowledge Sharing</h3>
+          <p class="collab-description">Technical presentations, workshops, team training sessions, and documentation for development and operations teams.</p>
         </div>
       </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3 class="footer-title">Connect with Me</h3>
+      <div class="social-links">
+        <a href="https://github.com/temitayocharles" target="_blank" class="social-link">GitHub</a>
+        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
+        <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
+      </div>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
     </div>
-  </div>
-  
-  <footer>
-    <h3>Connect with Me</h3>
-    <div class="social-links">
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
-    </div>
-    <p>&copy; 2025 Temitayo Charles | DevOps Engineer &amp; Container Enthusiast</p>
   </footer>
-  
-  <script src="global-sidebar.js"></script>
+
   <script>
+    // Mobile sidebar functionality
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('active');
+    }
+
+    function closeSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.remove('open');
+      overlay.classList.remove('active');
+    }
+
+    // Close sidebar when clicking on a link
+    document.querySelectorAll('.sidebar-nav-item').forEach(link => {
+      link.addEventListener('click', closeSidebar);
+    });
+
+    // Form handling
     document.addEventListener('DOMContentLoaded', function() {
       const contactForm = document.getElementById('contactForm');
       const submitBtn = document.querySelector('.submit-btn');
       const formMessage = document.getElementById('formMessage');
-      
+
       contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        
+
         // Get form data
         const formData = new FormData(this);
         const data = Object.fromEntries(formData);
-        
+
         // Basic validation
         if (!data.name || !data.email || !data.subject || !data.message) {
           showMessage('Please fill in all required fields.', 'error');
           return;
         }
-        
+
         // Email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(data.email)) {
           showMessage('Please enter a valid email address.', 'error');
           return;
         }
-        
+
         // Show loading state
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending...';
-        
+
         // Simulate form submission (replace with actual backend endpoint)
         setTimeout(() => {
           // For demo purposes, show success message
           // In production, replace this with actual form submission
           showMessage('Thank you for your message! I\'ll get back to you soon.', 'success');
-          
+
           // Reset form
           contactForm.reset();
-          
+
           // Reset button
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Send Message';
+          submitBtn.textContent = '🚀 Send Message';
         }, 2000);
       });
-      
+
       function showMessage(text, type) {
         formMessage.textContent = text;
         formMessage.className = `form-message ${type}`;
         formMessage.style.display = 'block';
-        
+
         // Hide message after 5 seconds
         setTimeout(() => {
           formMessage.style.display = 'none';
         }, 5000);
       }
+    });
+
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
     });
   </script>
 </body>

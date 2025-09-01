@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AWS Monitoring Stack - DevOps Portfolio</title>
-    <meta name="description" content="Comprehensive AWS monitoring solution with CloudWatch, X-Ray, and automated alerting. Enterprise-grade observability platform with 99.9% uptime and proactive incident response.">
+    <title>Azure AKS Platform - DevOps Portfolio</title>
+    <meta name="description" content="Enterprise Kubernetes platform on Azure AKS with microservices architecture, automated scaling, and 99.95% uptime SLA. Complete container orchestration solution.">
     <link rel="icon" href="favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
         header {
             background: rgba(14, 14, 14, 0.95);
             backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(102, 217, 239, 0.1);
+            border-bottom: 1px solid rgba(0, 158, 227, 0.1);
             position: fixed;
             top: 0;
             left: 0;
@@ -54,7 +54,7 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #66d9ef;
+            color: #009ee3;
             text-decoration: none;
         }
 
@@ -72,12 +72,12 @@
         }
 
         .nav-links a:hover {
-            color: #66d9ef;
+            color: #009ee3;
         }
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.1) 0%, rgba(102, 217, 239, 0.1) 100%);
+            background: linear-gradient(135deg, rgba(0, 158, 227, 0.1) 0%, rgba(102, 217, 239, 0.1) 100%);
             padding: 120px 20px 80px;
             text-align: center;
             position: relative;
@@ -91,7 +91,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,193,7,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="azureGrid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(0,158,227,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23azureGrid)"/></svg>');
             opacity: 0.3;
         }
 
@@ -105,7 +105,7 @@
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            color: #ffc107;
+            color: #009ee3;
             margin-bottom: 1rem;
             line-height: 1.2;
         }
@@ -134,7 +134,7 @@
         .metric-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 193, 7, 0.3);
+            border: 1px solid rgba(0, 158, 227, 0.3);
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
@@ -143,7 +143,7 @@
 
         .metric-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 193, 7, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 158, 227, 0.3);
         }
 
         .metric-value {
@@ -168,7 +168,7 @@
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #ffc107 0%, #66d9ef 100%);
+            background: linear-gradient(135deg, #009ee3 0%, #66d9ef 100%);
             color: #0e0e0e;
             padding: 1rem 2rem;
             border-radius: 10px;
@@ -179,7 +179,7 @@
 
         .cta-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 158, 227, 0.4);
         }
 
         /* Section Styles */
@@ -190,7 +190,7 @@
         .section-title {
             font-size: 2.5rem;
             font-weight: 700;
-            color: #ffc107;
+            color: #009ee3;
             text-align: center;
             margin-bottom: 3rem;
             position: relative;
@@ -204,7 +204,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, #ffc107 0%, #66d9ef 100%);
+            background: linear-gradient(90deg, #009ee3 0%, #66d9ef 100%);
             border-radius: 2px;
         }
 
@@ -218,7 +218,7 @@
         .content-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(0, 158, 227, 0.2);
             border-radius: 15px;
             padding: 2rem;
             transition: transform 0.3s ease;
@@ -243,7 +243,7 @@
         .architecture-diagram {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(0, 158, 227, 0.2);
             border-radius: 15px;
             padding: 3rem;
             margin: 3rem 0;
@@ -267,7 +267,7 @@
         .feature-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(0, 158, 227, 0.2);
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
@@ -284,7 +284,7 @@
         }
 
         .feature-card h4 {
-            color: #ffc107;
+            color: #009ee3;
             margin-bottom: 1rem;
             font-size: 1.2rem;
         }
@@ -294,40 +294,40 @@
             line-height: 1.6;
         }
 
-        /* Monitoring Stack */
-        .monitoring-grid {
+        /* Technology Stack */
+        .tech-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 2rem;
             margin: 3rem 0;
         }
 
-        .monitoring-card {
+        .tech-card {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(0, 158, 227, 0.2);
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
             transition: transform 0.3s ease;
         }
 
-        .monitoring-card:hover {
+        .tech-card:hover {
             transform: translateY(-5px);
         }
 
-        .monitoring-icon {
+        .tech-icon {
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
-        .monitoring-card h4 {
-            color: #ffc107;
+        .tech-card h4 {
+            color: #009ee3;
             margin-bottom: 1rem;
             font-size: 1.1rem;
         }
 
-        .monitoring-card p {
+        .tech-card p {
             color: #e2e8f0;
             line-height: 1.6;
             font-size: 0.9rem;
@@ -342,8 +342,8 @@
         }
 
         .impact-card {
-            background: linear-gradient(135deg, rgba(255, 193, 7, 0.2) 0%, rgba(102, 217, 239, 0.2) 100%);
-            border: 1px solid rgba(255, 193, 7, 0.3);
+            background: linear-gradient(135deg, rgba(0, 158, 227, 0.2) 0%, rgba(102, 217, 239, 0.2) 100%);
+            border: 1px solid rgba(0, 158, 227, 0.3);
             border-radius: 15px;
             padding: 2rem;
             text-align: center;
@@ -365,7 +365,7 @@
         footer {
             background: rgba(14, 14, 14, 0.95);
             backdrop-filter: blur(10px);
-            border-top: 1px solid rgba(255, 193, 7, 0.1);
+            border-top: 1px solid rgba(0, 158, 227, 0.1);
             padding: 3rem 20px 1rem;
             text-align: center;
         }
@@ -391,7 +391,7 @@
         }
 
         .footer-links a:hover {
-            color: #ffc107;
+            color: #009ee3;
         }
 
         .footer-text {
@@ -464,12 +464,12 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: linear-gradient(135deg, #ffc107 0%, #66d9ef 100%);
+            background: linear-gradient(135deg, #009ee3 0%, #66d9ef 100%);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(135deg, #66d9ef 0%, #ffc107 100%);
+            background: linear-gradient(135deg, #66d9ef 0%, #009ee3 100%);
         }
     </style>
 </head>
@@ -491,38 +491,37 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>AWS Monitoring Stack</h1>
-                <p class="hero-subtitle">Enterprise Observability Platform with Proactive Incident Response</p>
+                <h1>Azure AKS Platform</h1>
+                <p class="hero-subtitle">Enterprise Kubernetes Orchestration with Azure Integration</p>
                 <div class="hero-description">
-                    <p>📊 <strong>The Challenge:</strong> A large enterprise struggled with reactive monitoring, missing critical alerts,
-                    and spending 40% of their time on manual incident response. Their cloud infrastructure had grown complex
-                    with multiple services across regions.</p>
-                    <p>🚨 <strong>The Solution:</strong> Built a comprehensive monitoring stack using AWS native services,
-                    custom dashboards, and automated alerting that reduced MTTR by 85% and improved system reliability to 99.9%.</p>
+                    <p>🏗️ <strong>The Challenge:</strong> A large enterprise needed to modernize their monolithic applications
+                    into microservices while maintaining enterprise-grade security, monitoring, and scalability.</p>
+                    <p>🚀 <strong>The Solution:</strong> Built a complete Azure Kubernetes Service platform with automated
+                    CI/CD, Azure AD integration, and comprehensive monitoring that achieved 99.95% uptime SLA.</p>
                 </div>
 
                 <div class="metrics-grid">
                     <div class="metric-card">
-                        <div class="metric-value">99.9%</div>
-                        <div class="metric-label">System Uptime</div>
+                        <div class="metric-value">15+</div>
+                        <div class="metric-label">Microservices</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">85%</div>
-                        <div class="metric-label">MTTR Reduction</div>
+                        <div class="metric-value">99.95%</div>
+                        <div class="metric-label">Uptime SLA</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">15min</div>
-                        <div class="metric-label">Alert Response Time</div>
+                        <div class="metric-value">3x</div>
+                        <div class="metric-label">Faster Deployments</div>
                     </div>
                     <div class="metric-card">
-                        <div class="metric-value">500+</div>
-                        <div class="metric-label">Monitored Resources</div>
+                        <div class="metric-value">40%</div>
+                        <div class="metric-label">Cost Reduction</div>
                     </div>
                 </div>
 
                 <div class="cta-buttons">
                     <a href="#architecture" class="cta-button">🏗️ View Architecture</a>
-                    <a href="#monitoring" class="cta-button">📊 Monitoring Stack</a>
+                    <a href="#features" class="cta-button">🚀 Azure Features</a>
                     <a href="#impact" class="cta-button">💼 Business Impact</a>
                 </div>
             </div>
@@ -531,37 +530,37 @@
 
     <!-- Problem & Solution Section -->
     <section id="problem" class="container">
-        <h2 class="section-title">🚨 The Monitoring Crisis & Solution</h2>
+        <h2 class="section-title">🚨 The Legacy Challenge & Modern Solution</h2>
 
         <div class="content-grid">
             <div class="content-card">
                 <h3>The Problem</h3>
-                <p>The enterprise had grown their AWS infrastructure rapidly but their monitoring capabilities hadn't kept pace. They were dealing with:</p>
+                <p>The enterprise was struggling with monolithic applications that created bottlenecks in development and deployment. Their legacy infrastructure couldn't scale with business demands.</p>
                 <div style="background: rgba(229, 62, 62, 0.1); border-left: 4px solid #e53e3e; padding: 1rem; margin-top: 1rem; border-radius: 8px;">
                     <strong>Critical Issues:</strong>
                     <ul style="margin-top: 0.5rem;">
-                        <li>Reactive monitoring with delayed alerts</li>
-                        <li>Multiple disconnected monitoring tools</li>
-                        <li>40% of time spent on manual incident response</li>
-                        <li>Missing critical infrastructure changes</li>
-                        <li>No predictive analytics or anomaly detection</li>
-                        <li>Complex multi-region infrastructure blind spots</li>
+                        <li>Monolithic architecture with single points of failure</li>
+                        <li>Hours-long deployment windows with manual processes</li>
+                        <li>Over-provisioned infrastructure with poor utilization</li>
+                        <li>Limited security isolation and access controls</li>
+                        <li>Development teams blocked by shared dependencies</li>
+                        <li>Complex scaling and resource management</li>
                     </ul>
                 </div>
             </div>
 
             <div class="content-card">
                 <h3>The Solution</h3>
-                <p>Implemented a comprehensive AWS monitoring stack with CloudWatch, X-Ray, and automated alerting systems that provided complete observability.</p>
+                <p>Implemented Azure Kubernetes Service with enterprise-grade security, automated scaling, and comprehensive monitoring to transform their application delivery.</p>
                 <div style="background: rgba(72, 187, 120, 0.1); border-left: 4px solid #48bb78; padding: 1rem; margin: 1rem 0; border-radius: 8px;">
                     <strong>Key Improvements:</strong>
                     <ul style="margin-top: 0.5rem;">
-                        <li>Proactive monitoring with predictive alerts</li>
-                        <li>Unified dashboard for all AWS services</li>
-                        <li>85% reduction in manual incident response</li>
-                        <li>Real-time infrastructure change detection</li>
-                        <li>AI-powered anomaly detection</li>
-                        <li>Complete multi-region visibility</li>
+                        <li>Microservices architecture with fault isolation</li>
+                        <li>Automated deployments with zero-downtime releases</li>
+                        <li>Dynamic scaling based on demand patterns</li>
+                        <li>Enterprise security with Azure AD integration</li>
+                        <li>Independent team deployments and faster delivery</li>
+                        <li>Comprehensive monitoring and observability</li>
                     </ul>
                 </div>
             </div>
@@ -569,173 +568,180 @@
     </section>
 
     <!-- Architecture Section -->
-    <section id="architecture" style="background: rgba(255, 193, 7, 0.05);">
+    <section id="architecture" style="background: rgba(0, 158, 227, 0.05);">
         <div class="container">
-            <h2 class="section-title">🏗️ Monitoring Architecture</h2>
+            <h2 class="section-title">🏗️ Complete AKS Architecture</h2>
 
             <div class="architecture-diagram">
-                <h3 style="color: #ffc107; margin-bottom: 2rem;">Complete AWS Observability Stack</h3>
+                <h3 style="color: #009ee3; margin-bottom: 2rem;">Enterprise Kubernetes Platform on Azure</h3>
                 <p style="color: #e2e8f0; margin-bottom: 2rem; font-size: 1.1rem;">
-                    Multi-layered monitoring architecture providing complete visibility across all AWS services and resources.
+                    Multi-layered architecture with Azure integration, security hardening, and automated operations.
                 </p>
 
                 <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
                     <defs>
-                        <linearGradient id="cloudwatchGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#ff9900;stop-opacity:0.8" />
-                            <stop offset="100%" style="stop-color:#ffc107;stop-opacity:0.8" />
+                        <linearGradient id="aksGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#0078d4;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#009ee3;stop-opacity:0.8" />
                         </linearGradient>
-                        <linearGradient id="xrayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#66d9ef;stop-opacity:0.8" />
-                            <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.8" />
-                        </linearGradient>
-                        <linearGradient id="alertGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <linearGradient id="securityGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                             <stop offset="0%" style="stop-color:#e53e3e;stop-opacity:0.8" />
                             <stop offset="100%" style="stop-color:#c53030;stop-opacity:0.8" />
                         </linearGradient>
+                        <linearGradient id="monitorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#66d9ef;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.8" />
+                        </linearGradient>
                     </defs>
 
-                    <!-- AWS Infrastructure Layer -->
-                    <rect x="50" y="50" width="700" height="500" rx="15" fill="url(#cloudwatchGrad)" stroke="#ffc107" stroke-width="3"/>
-                    <text x="400" y="80" text-anchor="middle" style="font-size: 18px; font-weight: bold; fill: white;">🗂️ AWS Infrastructure & Services</text>
+                    <!-- Azure Cloud Layer -->
+                    <rect x="50" y="50" width="700" height="500" rx="15" fill="url(#aksGrad)" stroke="#009ee3" stroke-width="3"/>
+                    <text x="400" y="80" text-anchor="middle" style="font-size: 18px; font-weight: bold; fill: white;">☁️ Azure Cloud Platform</text>
+
+                    <!-- AKS Cluster Layer -->
+                    <rect x="100" y="120" width="600" height="120" rx="10" fill="#2b77c6" stroke="#0078d4" stroke-width="2"/>
+                    <text x="400" y="145" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🚢 Azure Kubernetes Service (AKS)</text>
+                    <text x="400" y="165" text-anchor="middle" style="font-size: 12px; fill: #b3d9ff;">Managed Kubernetes • Auto-scaling • Enterprise Security</text>
+                    <text x="400" y="180" text-anchor="middle" style="font-size: 12px; fill: #b3d9ff;">Azure AD Integration • Network Policies • Monitoring</text>
 
                     <!-- Application Layer -->
-                    <rect x="100" y="120" width="600" height="100" rx="10" fill="#38a169" stroke="#2f855a" stroke-width="2"/>
-                    <text x="400" y="145" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🚀 Applications & Microservices</text>
-                    <text x="400" y="165" text-anchor="middle" style="font-size: 12px; fill: #c6f6d5;">EC2 • Lambda • ECS • EKS • API Gateway</text>
+                    <rect x="100" y="260" width="600" height="80" rx="10" fill="#48bb78" stroke="#2f855a" stroke-width="2"/>
+                    <text x="400" y="285" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🚀 Microservices Applications</text>
+                    <text x="400" y="305" text-anchor="middle" style="font-size: 12px; fill: #c6f6d5;">15+ Services • API Gateway • Service Mesh • Auto-scaling</text>
 
                     <!-- Data Layer -->
-                    <rect x="100" y="240" width="600" height="80" rx="10" fill="#2f855a" stroke="#22543d" stroke-width="2"/>
-                    <text x="400" y="265" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🗄️ Data & Storage</text>
-                    <text x="400" y="285" text-anchor="middle" style="font-size: 12px; fill: #c6f6d5;">RDS • DynamoDB • S3 • ElastiCache • Redshift</text>
+                    <rect x="100" y="360" width="600" height="80" rx="10" fill="#2f855a" stroke="#22543d" stroke-width="2"/>
+                    <text x="400" y="385" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🗄️ Data & Storage</text>
+                    <text x="400" y="405" text-anchor="middle" style="font-size: 12px; fill: #c6f6d5;">Azure SQL • Cosmos DB • Redis Cache • Blob Storage</text>
 
                     <!-- Infrastructure Layer -->
-                    <rect x="100" y="340" width="600" height="80" rx="10" fill="#22543d" stroke="#1a365d" stroke-width="2"/>
-                    <text x="400" y="365" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🏗️ Infrastructure</text>
-                    <text x="400" y="385" text-anchor="middle" style="font-size: 12px; fill: #c6f6d5;">VPC • ELB • CloudFront • Route 53 • Direct Connect</text>
+                    <rect x="100" y="460" width="600" height="60" rx="10" fill="#22543d" stroke="#1a365d" stroke-width="2"/>
+                    <text x="400" y="485" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🏗️ Azure Infrastructure</text>
 
-                    <!-- Monitoring Layer -->
-                    <rect x="150" y="450" width="500" height="80" rx="10" fill="url(#xrayGrad)" stroke="#66d9ef" stroke-width="2"/>
-                    <text x="400" y="475" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📊 CloudWatch Monitoring</text>
-                    <text x="400" y="495" text-anchor="middle" style="font-size: 12px; fill: #b3e0ff;">Metrics • Logs • Alarms • Dashboards</text>
+                    <!-- Security Components -->
+                    <circle cx="200" cy="200" r="45" fill="url(#securityGrad)" stroke="#e53e3e" stroke-width="3"/>
+                    <text x="200" y="195" text-anchor="middle" style="font-size: 20px;">🔒</text>
+                    <text x="200" y="215" text-anchor="middle" style="font-size: 12px; fill: white;">Azure AD</text>
+                    <text x="200" y="230" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">RBAC</text>
 
-                    <!-- X-Ray Tracing -->
-                    <circle cx="200" cy="200" r="50" fill="url(#xrayGrad)" stroke="#66d9ef" stroke-width="3"/>
-                    <text x="200" y="195" text-anchor="middle" style="font-size: 24px;">🔍</text>
-                    <text x="200" y="215" text-anchor="middle" style="font-size: 12px; fill: white;">X-Ray</text>
-                    <text x="200" y="230" text-anchor="middle" style="font-size: 10px; fill: #b3e0ff;">Tracing</text>
+                    <!-- Monitoring Components -->
+                    <circle cx="600" cy="200" r="45" fill="url(#monitorGrad)" stroke="#66d9ef" stroke-width="3"/>
+                    <text x="600" y="195" text-anchor="middle" style="font-size: 20px;">📊</text>
+                    <text x="600" y="215" text-anchor="middle" style="font-size: 12px; fill: white;">Monitor</text>
+                    <text x="600" y="230" text-anchor="middle" style="font-size: 10px; fill: #b3e0ff;">Insights</text>
 
-                    <!-- Alerting System -->
-                    <circle cx="600" cy="200" r="50" fill="url(#alertGrad)" stroke="#e53e3e" stroke-width="3"/>
-                    <text x="600" y="195" text-anchor="middle" style="font-size: 24px;">🚨</text>
-                    <text x="600" y="215" text-anchor="middle" style="font-size: 12px; fill: white;">Alerts</text>
-                    <text x="600" y="230" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">SNS</text>
+                    <!-- CI/CD Pipeline -->
+                    <circle cx="400" cy="200" r="45" fill="#a6e22e" stroke="#48bb78" stroke-width="3"/>
+                    <text x="400" y="195" text-anchor="middle" style="font-size: 20px;">🚀</text>
+                    <text x="400" y="215" text-anchor="middle" style="font-size: 12px; fill: white;">DevOps</text>
+                    <text x="400" y="230" text-anchor="middle" style="font-size: 10px; fill: #d4edda;">Pipelines</text>
 
                     <!-- Data Flow Arrows -->
-                    <path d="M 200 250 L 200 320" stroke="#66d9ef" stroke-width="3" marker-end="url(#arrow)"/>
-                    <path d="M 600 250 L 600 320" stroke="#e53e3e" stroke-width="3" marker-end="url(#arrow)"/>
-                    <path d="M 300 420 L 300 450" stroke="#ffc107" stroke-width="2" marker-end="url(#arrow)"/>
-                    <path d="M 500 420 L 500 450" stroke="#ffc107" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M 200 245 L 200 320" stroke="#e53e3e" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 600 245 L 600 320" stroke="#66d9ef" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 400 245 L 400 320" stroke="#a6e22e" stroke-width="3" marker-end="url(#arrow)"/>
+                    <path d="M 300 420 L 300 460" stroke="#009ee3" stroke-width="2" marker-end="url(#arrow)"/>
+                    <path d="M 500 420 L 500 460" stroke="#009ee3" stroke-width="2" marker-end="url(#arrow)"/>
 
                     <defs>
                         <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
-                            <path d="M0,0 L0,10 L9,5 z" fill="#66d9ef"/>
+                            <path d="M0,0 L0,10 L9,5 z" fill="#009ee3"/>
                         </marker>
                     </defs>
 
-                    <!-- Monitoring Indicators -->
-                    <text x="150" y="440" text-anchor="middle" style="font-size: 10px; fill: #ffc107; font-weight: bold;">📈 Metrics Collection</text>
-                    <text x="650" y="440" text-anchor="middle" style="font-size: 10px; fill: #e53e3e; font-weight: bold;">🔔 Automated Alerts</text>
+                    <!-- Integration Labels -->
+                    <text x="150" y="440" text-anchor="middle" style="font-size: 10px; fill: #009ee3; font-weight: bold;">🔗 Azure Integration</text>
+                    <text x="650" y="440" text-anchor="middle" style="font-size: 10px; fill: #66d9ef; font-weight: bold;">📈 Observability</text>
                 </svg>
             </div>
         </div>
     </section>
 
-    <!-- Monitoring Stack Section -->
-    <section id="monitoring">
+    <!-- Technology Stack Section -->
+    <section id="tech-stack">
         <div class="container">
-            <h2 class="section-title">📊 Complete Monitoring Stack</h2>
+            <h2 class="section-title">🔧 Technology Stack & Azure Integration</h2>
 
-            <div class="monitoring-grid">
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">📈</div>
-                    <h4>CloudWatch Metrics</h4>
-                    <p>Comprehensive metrics collection from all AWS services with custom dashboards and advanced analytics.</p>
+            <div class="tech-grid">
+                <div class="tech-card">
+                    <div class="tech-icon">☁️</div>
+                    <h4>Azure AKS</h4>
+                    <p>Managed Kubernetes service with enterprise security, auto-scaling, and Azure integration.</p>
                 </div>
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">📋</div>
-                    <h4>CloudWatch Logs</h4>
-                    <p>Centralized log aggregation with real-time processing, filtering, and automated retention policies.</p>
+                <div class="tech-card">
+                    <div class="tech-icon">🔒</div>
+                    <h4>Azure AD</h4>
+                    <p>Identity integration with role-based access control and pod identity for secure authentication.</p>
                 </div>
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">🔍</div>
-                    <h4>X-Ray Tracing</h4>
-                    <p>Distributed tracing for microservices with performance insights and bottleneck identification.</p>
+                <div class="tech-card">
+                    <div class="tech-icon">🔑</div>
+                    <h4>Azure Key Vault</h4>
+                    <p>Secure secrets management and certificate storage with CSI driver integration.</p>
                 </div>
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">🚨</div>
-                    <h4>CloudWatch Alarms</h4>
-                    <p>Intelligent alerting with anomaly detection and automated incident response workflows.</p>
+                <div class="tech-card">
+                    <div class="tech-icon">📊</div>
+                    <h4>Azure Monitor</h4>
+                    <p>Comprehensive observability with Application Insights and custom metrics dashboards.</p>
                 </div>
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">📊</div>
-                    <h4>Custom Dashboards</h4>
-                    <p>Executive and operational dashboards with real-time KPIs and business metrics visualization.</p>
+                <div class="tech-card">
+                    <div class="tech-icon">🚀</div>
+                    <h4>Azure DevOps</h4>
+                    <p>Automated CI/CD pipelines with GitOps workflows and blue-green deployment strategies.</p>
                 </div>
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">🤖</div>
-                    <h4>Anomaly Detection</h4>
-                    <p>AI-powered anomaly detection using machine learning to predict and prevent issues.</p>
+                <div class="tech-card">
+                    <div class="tech-icon">🔐</div>
+                    <h4>Azure Policy</h4>
+                    <p>Governance and compliance enforcement with automated policy remediation.</p>
                 </div>
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">📱</div>
-                    <h4>Mobile Alerts</h4>
-                    <p>Critical alerts delivered to mobile devices with escalation policies and on-call schedules.</p>
+                <div class="tech-card">
+                    <div class="tech-icon">🌐</div>
+                    <h4>Azure Load Balancer</h4>
+                    <p>High-availability traffic distribution with global load balancing capabilities.</p>
                 </div>
-                <div class="monitoring-card">
-                    <div class="monitoring-icon">🔄</div>
-                    <h4>Auto Scaling Events</h4>
-                    <p>Monitoring and alerting for auto scaling events with predictive capacity planning.</p>
+                <div class="tech-card">
+                    <div class="tech-icon">💾</div>
+                    <h4>Azure Container Registry</h4>
+                    <p>Secure container image storage with vulnerability scanning and geo-replication.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section id="features" style="background: rgba(255, 193, 7, 0.05);">
+    <section id="features" style="background: rgba(0, 158, 227, 0.05);">
         <div class="container">
-            <h2 class="section-title">⚡ Key Features & Capabilities</h2>
+            <h2 class="section-title">🚀 Enterprise AKS Features</h2>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="feature-icon">🎯</div>
-                    <h4>Proactive Monitoring</h4>
-                    <p>Predictive analytics and anomaly detection to identify issues before they impact users.</p>
+                    <div class="feature-icon">🔄</div>
+                    <h4>Auto-Scaling</h4>
+                    <p>Horizontal and vertical pod autoscaling with KEDA event-driven scaling for optimal resource utilization.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">⚡</div>
-                    <h4>Real-Time Alerts</h4>
-                    <p>Instant notifications with intelligent filtering and automated escalation procedures.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🌍</div>
-                    <h4>Multi-Region Coverage</h4>
-                    <p>Complete visibility across all AWS regions with cross-region monitoring and alerting.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h4>Business Metrics</h4>
-                    <p>Application performance monitoring tied to business outcomes and user experience.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h4>Automated Remediation</h4>
-                    <p>Self-healing capabilities with automated responses to common infrastructure issues.</p>
+                    <div class="feature-icon">🔒</div>
+                    <h4>Security Hardening</h4>
+                    <p>Pod Security Standards, network policies, Azure AD integration, and automated vulnerability scanning.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">📈</div>
-                    <h4>Cost Optimization</h4>
-                    <p>Resource utilization monitoring with recommendations for cost optimization.</p>
+                    <h4>Monitoring & Observability</h4>
+                    <p>Azure Monitor integration with Application Insights, distributed tracing, and custom dashboards.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h4>CI/CD Integration</h4>
+                    <p>Azure DevOps pipelines with GitOps workflows, automated testing, and blue-green deployments.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h4>Service Mesh</h4>
+                    <p>Istio integration with mTLS encryption, traffic management, and distributed tracing capabilities.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h4>Data Management</h4>
+                    <p>Azure managed databases, persistent volumes, backup automation, and disaster recovery procedures.</p>
                 </div>
             </div>
         </div>
@@ -748,44 +754,44 @@
 
             <div class="impact-grid">
                 <div class="impact-card">
-                    <div class="impact-value">85%</div>
-                    <div class="impact-label">MTTR Reduction</div>
+                    <div class="impact-value">15+</div>
+                    <div class="impact-label">Microservices Deployed</div>
                 </div>
                 <div class="impact-card">
-                    <div class="impact-value">99.9%</div>
-                    <div class="impact-label">System Uptime</div>
+                    <div class="impact-value">3x</div>
+                    <div class="impact-label">Faster Deployments</div>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-value">99.95%</div>
+                    <div class="impact-label">Uptime SLA</div>
                 </div>
                 <div class="impact-card">
                     <div class="impact-value">40%</div>
-                    <div class="impact-label">Time Savings</div>
-                </div>
-                <div class="impact-card">
-                    <div class="impact-value">$2.5M</div>
-                    <div class="impact-label">Annual Savings</div>
+                    <div class="impact-label">Cost Reduction</div>
                 </div>
             </div>
 
             <div class="content-grid" style="margin-top: 3rem;">
                 <div class="content-card">
-                    <h3>Before Implementation</h3>
+                    <h3>Before AKS Implementation</h3>
                     <ul style="color: #e2e8f0; line-height: 1.6;">
-                        <li>Reactive monitoring with delayed incident response</li>
-                        <li>Multiple disconnected monitoring tools</li>
-                        <li>40% of time spent on manual troubleshooting</li>
-                        <li>Missing critical infrastructure changes</li>
-                        <li>No predictive analytics or anomaly detection</li>
-                        <li>Limited visibility into multi-region deployments</li>
+                        <li>Monolithic applications with single points of failure</li>
+                        <li>Hours-long deployment windows with manual processes</li>
+                        <li>Over-provisioned infrastructure with poor utilization</li>
+                        <li>Limited security isolation and access controls</li>
+                        <li>Development teams blocked by shared dependencies</li>
+                        <li>Complex scaling and resource management challenges</li>
                     </ul>
                 </div>
                 <div class="content-card">
-                    <h3>After Implementation</h3>
+                    <h3>After AKS Implementation</h3>
                     <ul style="color: #e2e8f0; line-height: 1.6;">
-                        <li>Proactive monitoring with 15-minute alert response</li>
-                        <li>Unified AWS monitoring platform</li>
-                        <li>85% reduction in manual incident response</li>
-                        <li>Real-time infrastructure change detection</li>
-                        <li>AI-powered predictive maintenance</li>
-                        <li>Complete multi-region observability</li>
+                        <li>Microservices architecture with fault isolation</li>
+                        <li>Automated deployments with zero-downtime releases</li>
+                        <li>Dynamic scaling based on demand patterns</li>
+                        <li>Enterprise security with Azure AD integration</li>
+                        <li>Independent team deployments and faster delivery</li>
+                        <li>Comprehensive monitoring and observability</li>
                     </ul>
                 </div>
             </div>
@@ -793,10 +799,10 @@
             <div style="background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 2rem; margin: 3rem 0; border-radius: 15px;">
                 <h3 style="color: #a6e22e; margin-bottom: 1rem;">Success Metrics</h3>
                 <p style="color: #e2e8f0;">
-                    <strong>Reliability:</strong> 99.9% uptime with proactive issue prevention<br>
-                    <strong>Efficiency:</strong> 85% reduction in mean time to resolution<br>
-                    <strong>Cost:</strong> $2.5M annual savings from optimized resource usage<br>
-                    <strong>Productivity:</strong> 40% reduction in manual monitoring tasks
+                    <strong>Performance:</strong> 3x faster deployment cycles with automated rollbacks<br>
+                    <strong>Reliability:</strong> 99.95% uptime SLA with zero data loss incidents<br>
+                    <strong>Efficiency:</strong> 40% cost reduction through optimized resource utilization<br>
+                    <strong>Security:</strong> 100% compliance with enterprise security standards
                 </p>
             </div>
         </div>

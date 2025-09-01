@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Infrastructure Deployment Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', monospace;
+            background: #0e0e0e;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #ff9900 0%, #ff6b35 100%);
+            margin: -20px -20px 40px -20px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #fff3cd;
+            font-size: 1.1rem;
+        }
+
+        .project-overview {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(10px);
+        }
+
+        .overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .overview-item {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .overview-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .overview-title {
+            color: #ff9900;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .overview-desc {
+            color: #e2e8f0;
+            font-size: 0.9rem;
+        }
+
+        .terminal {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            height: 400px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .terminal::before {
+            content: "AWS CloudShell - Infrastructure Deployment";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #2a2a2a;
+            padding: 8px 20px;
+            font-size: 12px;
+            color: #888;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-content {
+            margin-top: 40px;
+        }
+
+        .command-line {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: #ff9900;
+            margin-right: 10px;
+        }
+
+        .command {
+            color: #66d9ef;
+            flex: 1;
+        }
+
+        .output {
+            color: #a6e22e;
+            margin: 5px 0;
+            white-space: pre-wrap;
+        }
+
+        .error {
+            color: #f92672;
+        }
+
+        .status-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(102, 217, 239, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .status-item {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+        }
+
+        .status-label {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 5px;
+        }
+
+        .status-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #66d9ef;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff9900, #a6e22e);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .control-panel {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #ff9900, #ff6b35);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 153, 0, 0.4);
+        }
+
+        .control-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .architecture-diagram {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 153, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .architecture-title {
+            color: #ff9900;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+
+        .flow-diagram {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .flow-step {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            min-width: 120px;
+        }
+
+        .flow-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .flow-label {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .arrow {
+            color: #ff9900;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .terminal {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🚀 AWS Infrastructure Deployment Demo</h1>
+            <p>From Manual FTP to Global CDN in 15 Minutes</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="control-panel">
+            <button class="control-btn" id="startBtn" onclick="startDeployment()">Start Deployment</button>
+            <button class="control-btn" id="resetBtn" onclick="resetDemo()" disabled>Reset Demo</button>
+            <button class="control-btn" id="previewBtn" onclick="showPreview()">Show Preview</button>
+        </div>
+
+        <div class="status-panel">
+            <div class="status-grid">
+                <div class="status-item">
+                    <div class="status-label">Deployment Status</div>
+                    <div class="status-value" id="deployStatus">Ready</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">CDN Edge Locations</div>
+                    <div class="status-value" id="cdnCount">0/200</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Build Progress</div>
+                    <div class="status-value" id="buildProgress">0%</div>
+                </div>
+                <div class="status-item">
+                    <div class="status-label">Global Reach</div>
+                    <div class="status-value" id="globalReach">0ms</div>
+                </div>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <div class="demo-grid">
+            <div class="demo-panel">
+                <h3>⚡ AWS Amplify Build Pipeline</h3>
+                <div class="terminal" id="buildTerminal">
+                    <div class="terminal-content" id="buildContent">
+                        <div class="command-line">
+                            <span class="prompt">$</span>
+                            <span class="command">amplify init</span>
+                        </div>
+                        <div class="output">Initializing Amplify project...</div>
+                        <div class="output">Project initialized successfully!</div>
+                        <div class="output">Connected to GitHub repository.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-panel">
+                <h3>🌐 Global CDN Deployment</h3>
+                <div class="terminal" id="cdnTerminal">
+                    <div class="terminal-content" id="cdnContent">
+                        <div class="command-line">
+                            <span class="prompt">$</span>
+                            <span class="command">aws cloudfront create-distribution</span>
+                        </div>
+                        <div class="output">Creating CloudFront distribution...</div>
+                        <div class="output">Distribution ID: E1A2B3C4D5F6G7</div>
+                        <div class="output">Status: In Progress</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="architecture-diagram">
+            <h3 class="architecture-title">🏗️ Deployment Architecture Flow</h3>
+            <div class="flow-diagram">
+                <div class="flow-step">
+                    <span class="flow-icon">👨‍💻</span>
+                    <div class="flow-label">Developer</div>
+                    <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">Git Push</div>
+                </div>
+                <span class="arrow">→</span>
+                <div class="flow-step">
+                    <span class="flow-icon">⚡</span>
+                    <div class="flow-label">AWS Amplify</div>
+                    <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">Build & Test</div>
+                </div>
+                <span class="arrow">→</span>
+                <div class="flow-step">
+                    <span class="flow-icon">🌐</span>
+                    <div class="flow-label">CloudFront CDN</div>
+                    <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">200+ Edges</div>
+                </div>
+                <span class="arrow">→</span>
+                <div class="flow-step">
+                    <span class="flow-icon">👥</span>
+                    <div class="flow-label">Global Users</div>
+                    <div style="font-size: 0.8rem; color: #666; margin-top: 5px;">15min Deploy</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let deploymentStep = 0;
+        let progressInterval;
+        let isDeploying = false;
+
+        const deploymentSteps = [
+            {
+                terminal: 'build',
+                command: 'amplify init',
+                output: [
+                    'Initializing Amplify project...',
+                    '✓ Project initialized successfully!',
+                    '✓ Connected to GitHub repository',
+                    '✓ Build configuration created',
+                    '✓ Environment variables configured'
+                ]
+            },
+            {
+                terminal: 'build',
+                command: 'amplify add hosting',
+                output: [
+                    'Adding hosting configuration...',
+                    '✓ Hosting service added',
+                    '✓ Custom domain configured',
+                    '✓ SSL certificate requested'
+                ]
+            },
+            {
+                terminal: 'build',
+                command: 'amplify publish',
+                output: [
+                    'Publishing to production...',
+                    '✓ Build started',
+                    '✓ Testing completed',
+                    '✓ Security scan passed',
+                    '✓ Deployment initiated'
+                ]
+            },
+            {
+                terminal: 'cdn',
+                command: 'aws cloudfront create-distribution',
+                output: [
+                    'Creating CloudFront distribution...',
+                    '✓ Distribution created: E1A2B3C4D5F6G7',
+                    '✓ Origins configured',
+                    '✓ Behaviors set up',
+                    '✓ SSL certificate attached'
+                ]
+            },
+            {
+                terminal: 'cdn',
+                command: 'aws cloudfront get-distribution-config',
+                output: [
+                    'Checking distribution status...',
+                    '✓ Distribution deployed',
+                    '✓ 200+ edge locations active',
+                    '✓ Custom domain: example.com',
+                    '✓ HTTPS enabled globally'
+                ]
+            }
+        ];
+
+        function startDeployment() {
+            if (isDeploying) return;
+
+            isDeploying = true;
+            deploymentStep = 0;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('startBtn').textContent = 'Deploying...';
+            document.getElementById('resetBtn').disabled = false;
+            document.getElementById('deployStatus').textContent = 'In Progress';
+            document.getElementById('deployStatus').style.color = '#ff9900';
+
+            // Clear terminals
+            document.getElementById('buildContent').innerHTML = '';
+            document.getElementById('cdnContent').innerHTML = '';
+
+            // Start progress animation
+            let progress = 0;
+            progressInterval = setInterval(() => {
+                progress += Math.random() * 3;
+                if (progress > 100) progress = 100;
+                document.getElementById('progressFill').style.width = progress + '%';
+                document.getElementById('buildProgress').textContent = Math.round(progress) + '%';
+            }, 200);
+
+            // Execute deployment steps
+            executeStep();
+        }
+
+        function executeStep() {
+            if (deploymentStep >= deploymentSteps.length) {
+                completeDeployment();
+                return;
+            }
+
+            const step = deploymentSteps[deploymentStep];
+            const terminal = document.getElementById(step.terminal + 'Content');
+
+            // Add command
+            const commandLine = document.createElement('div');
+            commandLine.className = 'command-line';
+            commandLine.innerHTML = `
+                <span class="prompt">$</span>
+                <span class="command">${step.command}</span>
+            `;
+            terminal.appendChild(commandLine);
+
+            // Add outputs with delay
+            step.output.forEach((output, index) => {
+                setTimeout(() => {
+                    const outputLine = document.createElement('div');
+                    outputLine.className = 'output';
+                    outputLine.textContent = output;
+                    terminal.appendChild(outputLine);
+                    terminal.scrollTop = terminal.scrollHeight;
+                }, (index + 1) * 800);
+            });
+
+            // Move to next step
+            setTimeout(() => {
+                deploymentStep++;
+                executeStep();
+            }, step.output.length * 800 + 1000);
+        }
+
+        function completeDeployment() {
+            clearInterval(progressInterval);
+            document.getElementById('progressFill').style.width = '100%';
+            document.getElementById('buildProgress').textContent = '100%';
+            document.getElementById('deployStatus').textContent = 'Complete';
+            document.getElementById('deployStatus').style.color = '#a6e22e';
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('startBtn').textContent = 'Redeploy';
+            isDeploying = false;
+
+            // Update metrics
+            updateMetrics();
+
+            // Add completion message
+            setTimeout(() => {
+                const buildTerminal = document.getElementById('buildContent');
+                const completionMsg = document.createElement('div');
+                completionMsg.className = 'output';
+                completionMsg.innerHTML = '<strong>🎉 Deployment Complete!</strong><br>Global CDN active in 200+ locations<br>Site available at: https://example.amplifyapp.com';
+                buildTerminal.appendChild(completionMsg);
+                buildTerminal.scrollTop = buildTerminal.scrollHeight;
+            }, 1000);
+        }
+
+        function updateMetrics() {
+            let cdnCount = 0;
+            const cdnInterval = setInterval(() => {
+                cdnCount += Math.floor(Math.random() * 20) + 5;
+                if (cdnCount >= 200) {
+                    cdnCount = 200;
+                    clearInterval(cdnInterval);
+                }
+                document.getElementById('cdnCount').textContent = cdnCount + '/200';
+            }, 100);
+
+            setTimeout(() => {
+                document.getElementById('globalReach').textContent = '<50ms';
+            }, 2000);
+        }
+
+        function resetDemo() {
+            clearInterval(progressInterval);
+            deploymentStep = 0;
+            isDeploying = false;
+
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('startBtn').textContent = 'Start Deployment';
+            document.getElementById('resetBtn').disabled = true;
+            document.getElementById('deployStatus').textContent = 'Ready';
+            document.getElementById('deployStatus').style.color = '#66d9ef';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('buildProgress').textContent = '0%';
+            document.getElementById('cdnCount').textContent = '0/200';
+            document.getElementById('globalReach').textContent = '0ms';
+
+            // Clear terminals
+            document.getElementById('buildContent').innerHTML = `
+                <div class="command-line">
+                    <span class="prompt">$</span>
+                    <span class="command">amplify init</span>
+                </div>
+                <div class="output">Initializing Amplify project...</div>
+                <div class="output">Project initialized successfully!</div>
+                <div class="output">Connected to GitHub repository.</div>
+            `;
+
+            document.getElementById('cdnContent').innerHTML = `
+                <div class="command-line">
+                    <span class="prompt">$</span>
+                    <span class="command">aws cloudfront create-distribution</span>
+                </div>
+                <div class="output">Creating CloudFront distribution...</div>
+                <div class="output">Distribution ID: E1A2B3C4D5F6G7</div>
+                <div class="output">Status: In Progress</div>
+            `;
+        }
+
+        function showPreview() {
+            const previewWindow = window.open('', '_blank', 'width=1200,height=800');
+            previewWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>AWS Amplify Preview</title>
+                    <style>
+                        body { font-family: Arial, sans-serif; margin: 40px; background: #f5f5f5; }
+                        .preview-header { background: linear-gradient(135deg, #ff9900, #ff6b35); color: white; padding: 20px; border-radius: 10px; text-align: center; }
+                        .preview-content { background: white; padding: 30px; margin: 20px 0; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+                        .status { display: inline-block; padding: 10px 20px; background: #a6e22e; color: white; border-radius: 20px; margin: 10px; }
+                    </style>
+                </head>
+                <body>
+                    <div class="preview-header">
+                        <h1>🚀 AWS Amplify Preview Environment</h1>
+                        <p>Live preview of your website before production deployment</p>
+                    </div>
+                    <div class="preview-content">
+                        <h2>✅ Preview Environment Active</h2>
+                        <div class="status">Build Status: Success</div>
+                        <div class="status">Tests: Passed</div>
+                        <div class="status">Security: Clean</div>
+                        <br>
+                        <p><strong>Preview URL:</strong> https://preview.amplifyapp.com</p>
+                        <p><strong>Build Time:</strong> 2 minutes 34 seconds</p>
+                        <p><strong>CDN Status:</strong> 200+ edge locations ready</p>
+                        <br>
+                        <p>This preview environment allows stakeholders to review changes before the 15-minute global deployment to production.</p>
+                    </div>
+                </body>
+                </html>
+            `);
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            resetDemo();
+        });
+    </script>
+</body>
+</html></content>
+<parameter name="filePath">/Users/charlie/Downloads/devops-portfolio-main-2/aws-infrastructure-demo.html

@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azure AKS Cluster Management Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', monospace;
+            background: #0e0e0e;
+            color: #f0f0f0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #0078d4 0%, #106ebe 100%);
+            margin: -20px -20px 40px -20px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #b3d9ff;
+            font-size: 1.1rem;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .main-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .sidebar-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .terminal {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 20px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            height: 500px;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .terminal::before {
+            content: "Azure Cloud Shell - AKS Management";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #2a2a2a;
+            padding: 8px 20px;
+            font-size: 12px;
+            color: #888;
+            border-bottom: 1px solid #333;
+        }
+
+        .terminal-content {
+            margin-top: 40px;
+        }
+
+        .command-line {
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .prompt {
+            color: #0078d4;
+            margin-right: 10px;
+        }
+
+        .command {
+            color: #66d9ef;
+            flex: 1;
+        }
+
+        .output {
+            color: #a6e22e;
+            margin: 5px 0;
+            white-space: pre-wrap;
+        }
+
+        .error {
+            color: #f92672;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .metric-card {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0078d4;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .cluster-visualization {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            min-height: 300px;
+            position: relative;
+        }
+
+        .node {
+            position: absolute;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(135deg, #0078d4, #106ebe);
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            border: 2px solid #0078d4;
+            transition: all 0.3s ease;
+        }
+
+        .node.active {
+            border-color: #a6e22e;
+            box-shadow: 0 0 20px rgba(166, 226, 46, 0.5);
+        }
+
+        .node-icon {
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+
+        .pod {
+            position: absolute;
+            width: 30px;
+            height: 25px;
+            background: #48bb78;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            border: 1px solid #2f855a;
+        }
+
+        .control-panel {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .control-btn {
+            background: linear-gradient(135deg, #0078d4, #106ebe);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 120, 212, 0.4);
+        }
+
+        .control-btn:disabled {
+            background: #555;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .scaling-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .scale-btn {
+            background: rgba(0, 120, 212, 0.2);
+            color: #0078d4;
+            border: 1px solid #0078d4;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .scale-btn:hover {
+            background: #0078d4;
+            color: white;
+        }
+
+        .scale-input {
+            width: 60px;
+            padding: 8px;
+            border: 1px solid #0078d4;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #f0f0f0;
+            text-align: center;
+        }
+
+        .service-status {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .service-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 6px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .service-name {
+            color: #66d9ef;
+            margin-bottom: 5px;
+        }
+
+        .service-status-indicator {
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #48bb78;
+        }
+
+        .service-status-indicator.warning {
+            background: #ff9900;
+        }
+
+        .service-status-indicator.error {
+            background: #f92672;
+        }
+
+        .logs-panel {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 120, 212, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .logs-header {
+            color: #0078d4;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .logs-content {
+            background: #1a1a1a;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: monospace;
+            font-size: 12px;
+            height: 200px;
+            overflow-y: auto;
+            color: #a6e22e;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .terminal {
+                height: 300px;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>🚢 Azure AKS Cluster Management Demo</h1>
+            <p>Enterprise Kubernetes Platform with Auto-scaling & Monitoring</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="control-panel">
+            <button class="control-btn" id="startBtn" onclick="startCluster()">Start AKS Cluster</button>
+            <button class="control-btn" id="scaleBtn" onclick="scaleCluster()" disabled>Scale Cluster</button>
+            <button class="control-btn" id="deployBtn" onclick="deployApp()" disabled>Deploy Application</button>
+            <button class="control-btn" id="monitorBtn" onclick="startMonitoring()" disabled>Start Monitoring</button>
+            <button class="control-btn" id="resetBtn" onclick="resetDemo()" disabled>Reset Demo</button>
+        </div>
+
+        <div class="dashboard-grid">
+            <div class="main-panel">
+                <h3 style="color: #0078d4; margin-bottom: 20px;">⚡ AKS Control Plane</h3>
+
+                <div class="terminal" id="aksTerminal">
+                    <div class="terminal-content" id="aksContent">
+                        <div class="command-line">
+                            <span class="prompt">azureuser@aks-demo:~$</span>
+                            <span class="command">az aks create --resource-group aks-demo-rg --name aks-cluster --node-count 3</span>
+                        </div>
+                        <div class="output">Creating AKS cluster...</div>
+                        <div class="output">Cluster creation initiated.</div>
+                    </div>
+                </div>
+
+                <div class="cluster-visualization" id="clusterViz">
+                    <h4 style="color: #0078d4; text-align: center; margin-bottom: 20px;">🗂️ Cluster Topology</h4>
+                    <!-- Nodes and pods will be dynamically added here -->
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="sidebar-panel">
+                    <h4 style="color: #0078d4; margin-bottom: 15px;">📊 Cluster Metrics</h4>
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value" id="nodeCount">0</div>
+                            <div class="metric-label">Active Nodes</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="podCount">0</div>
+                            <div class="metric-label">Running Pods</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="cpuUsage">0%</div>
+                            <div class="metric-label">CPU Usage</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value" id="memoryUsage">0%</div>
+                            <div class="metric-label">Memory Usage</div>
+                        </div>
+                    </div>
+
+                    <div class="scaling-controls">
+                        <button class="scale-btn" onclick="scaleNodes(-1)">-</button>
+                        <input type="number" class="scale-input" id="nodeScaleInput" value="3" min="1" max="10">
+                        <button class="scale-btn" onclick="scaleNodes(1)">+</button>
+                        <span style="color: #888; margin-left: 10px;">Nodes</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-panel">
+                    <h4 style="color: #0078d4; margin-bottom: 15px;">🔧 Services Status</h4>
+                    <div class="service-status" id="serviceStatus">
+                        <div class="service-item">
+                            <div class="service-name">API Server</div>
+                            <span class="service-status-indicator" id="apiStatus"></span>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">etcd</div>
+                            <span class="service-status-indicator" id="etcdStatus"></span>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">Scheduler</div>
+                            <span class="service-status-indicator" id="schedulerStatus"></span>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">Controller</div>
+                            <span class="service-status-indicator" id="controllerStatus"></span>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">Kubelet</div>
+                            <span class="service-status-indicator" id="kubeletStatus"></span>
+                        </div>
+                        <div class="service-item">
+                            <div class="service-name">CNI</div>
+                            <span class="service-status-indicator" id="cniStatus"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="logs-panel">
+            <h3 class="logs-header">📋 Cluster Logs & Events</h3>
+            <div class="logs-content" id="logsContent">
+                Waiting for cluster initialization...
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let clusterActive = false;
+        let nodeCount = 0;
+        let podCount = 0;
+        let monitoringActive = false;
+
+        const clusterCommands = [
+            {
+                command: 'az aks create --resource-group aks-demo-rg --name aks-cluster --node-count 3',
+                output: [
+                    'Creating AKS cluster...',
+                    '✓ Resource group created',
+                    '✓ Control plane provisioning...',
+                    '✓ Node pool creation initiated',
+                    '✓ Network configuration applied',
+                    '✓ Security policies configured'
+                ]
+            },
+            {
+                command: 'kubectl get nodes',
+                output: [
+                    'NAME                       STATUS   ROLES   AGE   VERSION',
+                    'aks-nodepool1-12345678-0   Ready    agent   2m    v1.25.6',
+                    'aks-nodepool1-12345678-1   Ready    agent   2m    v1.25.6',
+                    'aks-nodepool1-12345678-2   Ready    agent   2m    v1.25.6'
+                ]
+            },
+            {
+                command: 'kubectl apply -f deployment.yaml',
+                output: [
+                    'deployment.apps/web-app created',
+                    'service/web-app-service created',
+                    'ingress.networking.k8s.io/web-app-ingress created',
+                    '✓ Application deployed successfully'
+                ]
+            }
+        ];
+
+        function startCluster() {
+            if (clusterActive) return;
+
+            clusterActive = true;
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('startBtn').textContent = 'Cluster Starting...';
+            document.getElementById('scaleBtn').disabled = false;
+
+            // Clear terminal
+            document.getElementById('aksContent').innerHTML = '';
+
+            // Start cluster creation
+            executeCommand(0);
+
+            // Initialize cluster visualization
+            setTimeout(() => {
+                initializeCluster(3);
+                updateMetrics();
+                updateServiceStatus();
+            }, 2000);
+        }
+
+        function executeCommand(index) {
+            if (index >= clusterCommands.length) {
+                completeClusterSetup();
+                return;
+            }
+
+            const cmd = clusterCommands[index];
+            const terminal = document.getElementById('aksContent');
+
+            // Add command
+            const commandLine = document.createElement('div');
+            commandLine.className = 'command-line';
+            commandLine.innerHTML = `
+                <span class="prompt">azureuser@aks-demo:~$</span>
+                <span class="command">${cmd.command}</span>
+            `;
+            terminal.appendChild(commandLine);
+
+            // Add outputs with delay
+            cmd.output.forEach((output, i) => {
+                setTimeout(() => {
+                    const outputLine = document.createElement('div');
+                    outputLine.className = 'output';
+                    outputLine.textContent = output;
+                    terminal.appendChild(outputLine);
+                    terminal.scrollTop = terminal.scrollHeight;
+
+                    // Add to logs
+                    addLogEntry(output);
+                }, (i + 1) * 1000);
+            });
+
+            // Move to next command
+            setTimeout(() => {
+                executeCommand(index + 1);
+            }, cmd.output.length * 1000 + 1500);
+        }
+
+        function completeClusterSetup() {
+            document.getElementById('startBtn').textContent = 'Cluster Active';
+            document.getElementById('deployBtn').disabled = false;
+            document.getElementById('monitorBtn').disabled = false;
+            document.getElementById('resetBtn').disabled = false;
+
+            addLogEntry('🎉 AKS cluster fully operational!');
+            addLogEntry('📊 Monitoring enabled');
+            addLogEntry('🔒 Security policies active');
+        }
+
+        function initializeCluster(nodeCount) {
+            const viz = document.getElementById('clusterViz');
+            viz.innerHTML = '<h4 style="color: #0078d4; text-align: center; margin-bottom: 20px;">🗂️ Cluster Topology</h4>';
+
+            // Create control plane
+            createNode(viz, 50, 50, 'Control Plane', '🎛️', true);
+
+            // Create worker nodes
+            for (let i = 0; i < nodeCount; i++) {
+                const x = 200 + (i * 150);
+                const y = 150;
+                createNode(viz, x, y, `Worker ${i + 1}`, '🖥️', false);
+
+                // Add some pods to each node
+                for (let j = 0; j < 3; j++) {
+                    createPod(viz, x + 10 + (j * 35), y + 70 + (j % 2 * 30));
+                }
+            }
+
+            updateMetrics();
+        }
+
+        function createNode(container, x, y, name, icon, isControlPlane) {
+            const node = document.createElement('div');
+            node.className = 'node' + (isControlPlane ? ' active' : '');
+            node.style.left = x + 'px';
+            node.style.top = y + 'px';
+            node.innerHTML = `
+                <div class="node-icon">${icon}</div>
+                <div style="font-size: 10px;">${name}</div>
+            `;
+            container.appendChild(node);
+        }
+
+        function createPod(container, x, y) {
+            const pod = document.createElement('div');
+            pod.className = 'pod';
+            pod.style.left = x + 'px';
+            pod.style.top = y + 'px';
+            pod.textContent = '📦';
+            container.appendChild(pod);
+            podCount++;
+        }
+
+        function scaleCluster() {
+            const newNodeCount = parseInt(document.getElementById('nodeScaleInput').value);
+            if (newNodeCount !== nodeCount) {
+                addLogEntry(`🔄 Scaling cluster to ${newNodeCount} nodes...`);
+                setTimeout(() => {
+                    initializeCluster(newNodeCount);
+                    nodeCount = newNodeCount;
+                    addLogEntry(`✅ Cluster scaled to ${newNodeCount} nodes`);
+                }, 2000);
+            }
+        }
+
+        function scaleNodes(delta) {
+            const input = document.getElementById('nodeScaleInput');
+            const newValue = parseInt(input.value) + delta;
+            if (newValue >= 1 && newValue <= 10) {
+                input.value = newValue;
+                if (clusterActive) {
+                    scaleCluster();
+                }
+            }
+        }
+
+        function deployApp() {
+            const terminal = document.getElementById('aksContent');
+
+            const commandLine = document.createElement('div');
+            commandLine.className = 'command-line';
+            commandLine.innerHTML = `
+                <span class="prompt">azureuser@aks-demo:~$</span>
+                <span class="command">kubectl apply -f web-app-deployment.yaml</span>
+            `;
+            terminal.appendChild(commandLine);
+
+            const outputs = [
+                'deployment.apps/web-app created',
+                'service/web-app-service created',
+                'ingress.networking.k8s.io/web-app-ingress created',
+                '✓ Application deployed to AKS cluster',
+                '✓ Load balancer configured',
+                '✓ Health checks passing'
+            ];
+
+            outputs.forEach((output, i) => {
+                setTimeout(() => {
+                    const outputLine = document.createElement('div');
+                    outputLine.className = 'output';
+                    outputLine.textContent = output;
+                    terminal.appendChild(outputLine);
+                    terminal.scrollTop = terminal.scrollHeight;
+                    addLogEntry(output);
+                }, (i + 1) * 800);
+            });
+
+            // Add more pods to visualization
+            setTimeout(() => {
+                const viz = document.getElementById('clusterViz');
+                for (let i = 0; i < 5; i++) {
+                    const x = 200 + (Math.random() * 400);
+                    const y = 200 + (Math.random() * 100);
+                    createPod(viz, x, y);
+                }
+                updateMetrics();
+            }, 3000);
+        }
+
+        function startMonitoring() {
+            if (monitoringActive) return;
+
+            monitoringActive = true;
+            document.getElementById('monitorBtn').textContent = 'Monitoring Active';
+            document.getElementById('monitorBtn').disabled = true;
+
+            // Start CPU/Memory monitoring
+            setInterval(() => {
+                const cpu = Math.floor(Math.random() * 30) + 20;
+                const memory = Math.floor(Math.random() * 25) + 15;
+                document.getElementById('cpuUsage').textContent = cpu + '%';
+                document.getElementById('memoryUsage').textContent = memory + '%';
+            }, 2000);
+
+            addLogEntry('📊 Azure Monitor integration activated');
+            addLogEntry('🔍 Application Insights configured');
+        }
+
+        function updateMetrics() {
+            document.getElementById('nodeCount').textContent = nodeCount;
+            document.getElementById('podCount').textContent = podCount;
+        }
+
+        function updateServiceStatus() {
+            const services = ['apiStatus', 'etcdStatus', 'schedulerStatus', 'controllerStatus', 'kubeletStatus', 'cniStatus'];
+            services.forEach(service => {
+                document.getElementById(service).className = 'service-status-indicator';
+            });
+        }
+
+        function addLogEntry(message) {
+            const logs = document.getElementById('logsContent');
+            const timestamp = new Date().toLocaleTimeString();
+            const logEntry = document.createElement('div');
+            logEntry.textContent = `[${timestamp}] ${message}`;
+            logs.appendChild(logEntry);
+            logs.scrollTop = logs.scrollHeight;
+        }
+
+        function resetDemo() {
+            clusterActive = false;
+            monitoringActive = false;
+            nodeCount = 0;
+            podCount = 0;
+
+            document.getElementById('startBtn').disabled = false;
+            document.getElementById('startBtn').textContent = 'Start AKS Cluster';
+            document.getElementById('scaleBtn').disabled = true;
+            document.getElementById('deployBtn').disabled = true;
+            document.getElementById('monitorBtn').disabled = false;
+            document.getElementById('monitorBtn').textContent = 'Start Monitoring';
+            document.getElementById('resetBtn').disabled = true;
+
+            document.getElementById('nodeCount').textContent = '0';
+            document.getElementById('podCount').textContent = '0';
+            document.getElementById('cpuUsage').textContent = '0%';
+            document.getElementById('memoryUsage').textContent = '0%';
+
+            document.getElementById('aksContent').innerHTML = `
+                <div class="command-line">
+                    <span class="prompt">azureuser@aks-demo:~$</span>
+                    <span class="command">az aks create --resource-group aks-demo-rg --name aks-cluster --node-count 3</span>
+                </div>
+                <div class="output">Creating AKS cluster...</div>
+                <div class="output">Cluster creation initiated.</div>
+            `;
+
+            document.getElementById('clusterViz').innerHTML = '<h4 style="color: #0078d4; text-align: center; margin-bottom: 20px;">🗂️ Cluster Topology</h4>';
+            document.getElementById('logsContent').textContent = 'Waiting for cluster initialization...';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            resetDemo();
+        });
+    </script>
+</body>
+</html></content>
+<parameter name="filePath">/Users/charlie/Downloads/devops-portfolio-main-2/azure-aks-demo.html
