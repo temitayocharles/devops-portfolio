@@ -894,8 +894,12 @@
           <h2 class="carousel-title">🚀 Project Highlights</h2>
           <p class="carousel-subtitle">Hover to pause • Click to explore</p>
         </div>
-        <div class="carousel-track">
-          <!-- First set of projects -->
+          <div class="preview-card" onclick="window.open('project-foodshare-app.html', '_blank')">
+            <span class="preview-icon">🍽️</span>
+            <h3 class="preview-title">FoodShare Platform</h3>
+            <p class="preview-tech">React • Node.js • Kubernetes</p>
+          </div>
+
           <div class="preview-card" onclick="scrollToSection('virtual-vacation')">
             <span class="preview-icon">🌐</span>
             <h3 class="preview-title">Virtual Vacation Platform</h3>
@@ -956,7 +960,19 @@
             <p class="preview-tech">Video Walkthroughs • Real Usage</p>
           </div>
 
+          <div class="preview-card" onclick="window.open('project-foodshare-app.html', '_blank')">
+            <span class="preview-icon">🍽️</span>
+            <h3 class="preview-title">FoodShare Platform</h3>
+            <p class="preview-tech">React • Node.js • Kubernetes</p>
+          </div>
+
           <!-- Duplicate set for seamless loop -->
+          <div class="preview-card" onclick="window.open('project-foodshare-app.html', '_blank')">
+            <span class="preview-icon">🍽️</span>
+            <h3 class="preview-title">FoodShare Platform</h3>
+            <p class="preview-tech">React • Node.js • Kubernetes</p>
+          </div>
+
           <div class="preview-card" onclick="scrollToSection('virtual-vacation')">
             <span class="preview-icon">🌐</span>
             <h3 class="preview-title">Virtual Vacation Platform</h3>
@@ -1028,15 +1044,15 @@
 
         <div class="metrics-grid">
           <div class="metric-card">
-            <div class="metric-number" data-target="44">0</div>
+            <div class="metric-number" data-target="45">0</div>
             <div class="metric-label">DevOps Projects</div>
             <div class="metric-description">Industry-Specific Solutions</div>
           </div>
 
           <div class="metric-card">
-            <div class="metric-number" data-target="7">0</div>
+            <div class="metric-number" data-target="8">0</div>
             <div class="metric-label">Global Destinations</div>
-            <div class="metric-description">Virtual Vacation Demos</div>
+            <div class="metric-description">Virtual Vacation + FoodShare Impact</div>
           </div>
 
           <div class="metric-card">
@@ -1046,9 +1062,9 @@
           </div>
 
           <div class="metric-card">
-            <div class="metric-number" data-target="5">0</div>
+            <div class="metric-number" data-target="6">0</div>
             <div class="metric-label">Industry Sectors</div>
-            <div class="metric-description">Enterprise • Healthcare • Startup • Enterprise • Tourism</div>
+            <div class="metric-description">DevOps • Healthcare • Tourism • Food Service</div>
           </div>
         </div>
       </div>
@@ -1062,6 +1078,32 @@
       </div>
 
       <div class="featured-grid">
+        <!-- FoodShare - Featured Project -->
+        <div id="foodshare" class="hero-project-card">
+          <div class="project-badge" style="background: rgba(72, 187, 120, 0.9); color: #0e0e0e;">
+            🌟 IMPACT
+          </div>
+        
+          <h3 class="project-title">🍽️ FoodShare Platform</h3>
+          <p class="project-subtitle">Enterprise Food Donation & Waste Reduction</p>
+          <p class="project-description">Production-ready food donation platform connecting restaurants, grocery stores, and
+            food banks. Built with React, Node.js, PostgreSQL, and Kubernetes to reduce food waste and fight hunger through
+            real-time food matching.</p>
+        
+          <div class="tech-stack">
+            <span class="tech-tag">React 18</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">PostgreSQL</span>
+            <span class="tech-tag">Kubernetes</span>
+            <span class="tech-tag">WebSocket</span>
+          </div>
+        
+          <div class="project-links">
+            <a href="project-foodshare-app.html" class="project-link primary">🍽️ View FoodShare Project</a>
+            <a href="#foodshare" class="project-link secondary">📊 Impact Metrics</a>
+          </div>
+        </div>
+
         <!-- Virtual Vacation Platform - Hero Project -->
         <div id="virtual-vacation" class="hero-project-card">
           <div class="project-badge" style="background: rgba(103, 255, 204, 0.9); color: #0e0e0e;">
@@ -1086,6 +1128,7 @@
             <a href="project-virtual-vacation.html" class="project-link secondary">📖 View Details</a>
           </div>
         </div>
+      </div>
 
         <!-- Ultimate DevOps Container -->
         <div id="devops-container" class="hero-project-card">
@@ -1121,6 +1164,31 @@
       </div>
 
       <div class="projects-grid">
+        <!-- FoodShare Platform -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🍽️</span>
+            <div class="project-meta">
+              <h3>FoodShare Platform</h3>
+              <p class="project-type">Enterprise Food Donation & Waste Reduction</p>
+            </div>
+          </div>
+          <p class="project-desc">Production-ready food donation platform connecting restaurants, grocery stores, and food
+            banks. Real-time food matching with React frontend, Node.js backend, PostgreSQL database, and Kubernetes deployment.
+          </p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">React 18</span>
+            <span class="project-tech-tag">Node.js</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">WebSocket</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-foodshare-app.html" class="project-card-link primary">🍽️ View FoodShare Project</a>
+            <a href="#foodshare" class="project-card-link secondary">📊 Impact Details</a>
+          </div>
+        </div>
+
         <!-- AWS Infrastructure -->
         <div class="project-card">
           <div class="project-header">

@@ -342,7 +342,182 @@
         <section id="architecture" class="content-section">
             <h2>🏗️ Google Cloud Serverless Architecture</h2>
             <p>Designed and implemented a comprehensive serverless microservices platform using Cloud Functions, Firestore, Pub/Sub, and Cloud Run with optimized cold start performance and global distribution.</p>
+
+            <div class="architecture-diagram">
+                <h3 style="color: #3b82f6; margin-bottom: 2rem;">Complete Serverless Microservices Workflow</h3>
+                <p style="color: #e2e8f0; margin-bottom: 2rem; font-size: 1.1rem;">
+                    End-to-end serverless architecture with event-driven processing, real-time data synchronization, and automatic
+                    scaling.
+                </p>
             
+                <svg viewBox="0 0 900 700" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#1a73e8;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="apiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#48bb78;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#2f855a;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="functionGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e53e3e;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#c53030;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f6ad55;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#dd6b20;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="eventGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#805ad5;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#6b46c1;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="containerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#66d9ef;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+            
+                    <!-- User Layer -->
+                    <rect x="350" y="30" width="200" height="60" rx="15" fill="url(#userGrad)" stroke="#3b82f6" stroke-width="3" />
+                    <text x="450" y="55" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">👥 End
+                        Users</text>
+                    <text x="450" y="75" text-anchor="middle" style="font-size: 12px; fill: #e9d5ff;">Web • Mobile • APIs</text>
+            
+                    <!-- API Gateway Layer -->
+                    <rect x="350" y="120" width="200" height="50" rx="10" fill="url(#apiGrad)" stroke="#48bb78" stroke-width="2" />
+                    <text x="450" y="140" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌐 API
+                        Gateway</text>
+                    <text x="450" y="155" text-anchor="middle" style="font-size: 10px; fill: #c6f6d5;">Cloud Endpoints</text>
+            
+                    <!-- Cloud Functions Layer -->
+                    <rect x="200" y="200" width="180" height="60" rx="10" fill="url(#functionGrad)" stroke="#e53e3e"
+                        stroke-width="2" />
+                    <text x="290" y="220" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">⚡ Cloud
+                        Functions</text>
+                    <text x="290" y="235" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Serverless Compute</text>
+            
+                    <!-- Pub/Sub Layer -->
+                    <rect x="420" y="200" width="180" height="60" rx="10" fill="url(#eventGrad)" stroke="#805ad5"
+                        stroke-width="2" />
+                    <text x="510" y="220" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">📨 Cloud
+                        Pub/Sub</text>
+                    <text x="510" y="235" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Event Messaging</text>
+            
+                    <!-- Cloud Run Layer -->
+                    <rect x="640" y="200" width="180" height="60" rx="10" fill="url(#containerGrad)" stroke="#66d9ef"
+                        stroke-width="2" />
+                    <text x="730" y="220" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🏃 Cloud
+                        Run</text>
+                    <text x="730" y="235" text-anchor="middle" style="font-size: 10px; fill: #b3e0ff;">Container Services</text>
+            
+                    <!-- Firestore Layer -->
+                    <rect x="350" y="300" width="200" height="60" rx="10" fill="url(#dataGrad)" stroke="#f6ad55" stroke-width="2" />
+                    <text x="450" y="320" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔥
+                        Firestore</text>
+                    <text x="450" y="335" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Real-time Database</text>
+            
+                    <!-- Storage Layer -->
+                    <rect x="100" y="400" width="180" height="50" rx="10" fill="#4299e1" stroke="#3182ce" stroke-width="2" />
+                    <text x="190" y="415" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">📦 Cloud
+                        Storage</text>
+                    <text x="190" y="430" text-anchor="middle" style="font-size: 10px; fill: #bee3f8;">Object Storage</text>
+            
+                    <!-- BigQuery Layer -->
+                    <rect x="320" y="400" width="180" height="50" rx="10" fill="#ed8936" stroke="#dd6b20" stroke-width="2" />
+                    <text x="410" y="415" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">📊
+                        BigQuery</text>
+                    <text x="410" y="430" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Data Analytics</text>
+            
+                    <!-- Monitoring Layer -->
+                    <rect x="620" y="400" width="180" height="50" rx="10" fill="#48bb78" stroke="#2f855a" stroke-width="2" />
+                    <text x="710" y="415" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">📈 Cloud
+                        Monitoring</text>
+                    <text x="710" y="430" text-anchor="middle" style="font-size: 10px; fill: #c6f6d5;">Observability</text>
+            
+                    <!-- Flow Arrows -->
+                    <!-- User to API Gateway -->
+                    <path d="M 450 90 L 450 120" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow)" />
+            
+                    <!-- API Gateway to Functions -->
+                    <path d="M 350 145 L 290 200" stroke="#48bb78" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 450 170 L 450 200" stroke="#48bb78" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Functions to Pub/Sub -->
+                    <path d="M 380 200 L 420 200" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 290 260 L 290 300" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 290 300 L 350 300" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Pub/Sub to Functions -->
+                    <path d="M 510 260 L 510 300" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 510 300 L 450 300" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Functions to Cloud Run -->
+                    <path d="M 510 260 L 640 260" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Cloud Run to Firestore -->
+                    <path d="M 730 260 L 730 300" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 730 300 L 550 300" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Firestore to Storage -->
+                    <path d="M 350 360 L 280 400" stroke="#f6ad55" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 350 360 L 190 400" stroke="#f6ad55" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Firestore to BigQuery -->
+                    <path d="M 450 360 L 410 400" stroke="#f6ad55" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- All services to Monitoring -->
+                    <path d="M 190 450 L 190 500" stroke="#4299e1" stroke-width="1" marker-end="url(#arrow)" />
+                    <path d="M 190 500 L 710 500" stroke="#4299e1" stroke-width="1" marker-end="url(#arrow)" />
+                    <path d="M 410 450 L 410 480" stroke="#ed8936" stroke-width="1" marker-end="url(#arrow)" />
+                    <path d="M 410 480 L 710 480" stroke="#ed8936" stroke-width="1" marker-end="url(#arrow)" />
+                    <path d="M 710 450 L 710 460" stroke="#48bb78" stroke-width="1" marker-end="url(#arrow)" />
+            
+                    <!-- Processing Nodes -->
+                    <circle cx="290" cy="225" r="20" fill="#e53e3e" stroke="#c53030" stroke-width="2" />
+                    <text x="290" y="230" text-anchor="middle" style="font-size: 14px;">🔄</text>
+            
+                    <circle cx="510" cy="225" r="20" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+                    <text x="510" y="230" text-anchor="middle" style="font-size: 14px;">📨</text>
+            
+                    <circle cx="730" cy="225" r="20" fill="#66d9ef" stroke="#4a9eff" stroke-width="2" />
+                    <text x="730" y="230" text-anchor="middle" style="font-size: 14px;">🏃</text>
+            
+                    <!-- Data Nodes -->
+                    <circle cx="450" cy="325" r="18" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" />
+                    <text x="450" y="330" text-anchor="middle" style="font-size: 12px;">🔥</text>
+            
+                    <circle cx="190" cy="415" r="15" fill="#4299e1" stroke="#3182ce" stroke-width="2" />
+                    <text x="190" y="420" text-anchor="middle" style="font-size: 10px;">📦</text>
+            
+                    <circle cx="410" cy="415" r="15" fill="#ed8936" stroke="#dd6b20" stroke-width="2" />
+                    <text x="410" y="420" text-anchor="middle" style="font-size: 10px;">📊</text>
+            
+                    <circle cx="710" cy="415" r="15" fill="#48bb78" stroke="#2f855a" stroke-width="2" />
+                    <text x="710" y="420" text-anchor="middle" style="font-size: 10px;">📈</text>
+            
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"
+                            markerUnits="strokeWidth">
+                            <path d="M0,0 L0,10 L9,5 z" fill="#3b82f6" />
+                        </marker>
+                    </defs>
+            
+                    <!-- Labels -->
+                    <text x="290" y="285" text-anchor="middle" style="font-size: 8px; fill: #e53e3e; font-weight: bold;">Event
+                        Processing</text>
+                    <text x="510" y="285" text-anchor="middle" style="font-size: 8px; fill: #805ad5; font-weight: bold;">Message
+                        Routing</text>
+                    <text x="730" y="285" text-anchor="middle" style="font-size: 8px; fill: #66d9ef; font-weight: bold;">Container
+                        Services</text>
+                    <text x="190" y="470" text-anchor="middle" style="font-size: 8px; fill: #4299e1; font-weight: bold;">File
+                        Storage</text>
+                    <text x="410" y="470" text-anchor="middle" style="font-size: 8px; fill: #ed8936; font-weight: bold;">Data
+                        Analytics</text>
+                    <text x="710" y="470" text-anchor="middle"
+                        style="font-size: 8px; fill: #48bb78; font-weight: bold;">Observability</text>
+                </svg>
+            </div>
             <div class="tech-grid">
                 <div class="tech-item">
                     <h3>⚡ Cloud Functions</h3>

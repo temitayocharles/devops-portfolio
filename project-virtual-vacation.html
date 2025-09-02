@@ -166,6 +166,268 @@
     <section class="technical-architecture">
       <h2>⚙️ Technical Architecture</h2>
       
+      <div class="architecture-diagram">
+        <h3 style="color: #764ba2; margin-bottom: 2rem;">Complete Virtual Tourism Workflow</h3>
+        <p style="color: #e2e8f0; margin-bottom: 2rem; font-size: 1.1rem;">
+          End-to-end platform architecture from global users through immersive experiences to destination services and
+          real-time data integration.
+        </p>
+      
+        <svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="userGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#764ba2;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#667eea;stop-opacity:0.8" />
+            </linearGradient>
+            <linearGradient id="frontendGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#48bb78;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#2f855a;stop-opacity:0.8" />
+            </linearGradient>
+            <linearGradient id="apiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#1a73e8;stop-opacity:0.8" />
+            </linearGradient>
+            <linearGradient id="mlGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#e53e3e;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#c53030;stop-opacity:0.8" />
+            </linearGradient>
+            <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#f6ad55;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#dd6b20;stop-opacity:0.8" />
+            </linearGradient>
+            <linearGradient id="destinationGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#805ad5;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#6b46c1;stop-opacity:0.8" />
+            </linearGradient>
+            <linearGradient id="storageGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#66d9ef;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.8" />
+            </linearGradient>
+            <linearGradient id="monitoringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#ed8936;stop-opacity:0.8" />
+              <stop offset="100%" style="stop-color:#dd6b20;stop-opacity:0.8" />
+            </linearGradient>
+          </defs>
+      
+          <!-- Global Users Layer -->
+          <rect x="50" y="30" width="900" height="80" rx="15" fill="url(#userGrad)" stroke="#764ba2" stroke-width="3" />
+          <text x="475" y="55" text-anchor="middle" style="font-size: 18px; font-weight: bold; fill: white;">🌍 Global
+            Users</text>
+          <text x="475" y="80" text-anchor="middle" style="font-size: 14px; fill: #e9d5ff;">Web • Mobile • VR/AR • Worldwide
+            Access</text>
+      
+          <!-- Frontend Layer -->
+          <rect x="350" y="130" width="300" height="60" rx="10" fill="url(#frontendGrad)" stroke="#48bb78" stroke-width="2" />
+          <text x="500" y="150" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🌐 React
+            Frontend</text>
+          <text x="500" y="165" text-anchor="middle" style="font-size: 10px; fill: #c6f6d5;">NGINX • PWA • Real-time UI</text>
+      
+          <!-- API Gateway Layer -->
+          <rect x="400" y="210" width="200" height="50" rx="10" fill="url(#apiGrad)" stroke="#3b82f6" stroke-width="2" />
+          <text x="500" y="225" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🚪 API
+            Gateway</text>
+          <text x="500" y="240" text-anchor="middle" style="font-size: 10px; fill: #bee3f8;">Load Balancing • Auth</text>
+      
+          <!-- Backend Services Layer -->
+          <rect x="200" y="280" width="180" height="60" rx="10" fill="url(#apiGrad)" stroke="#3b82f6" stroke-width="2" />
+          <text x="290" y="300" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🔧 Node.js
+            API</text>
+          <text x="290" y="315" text-anchor="middle" style="font-size: 10px; fill: #bee3f8;">Express • REST • GraphQL</text>
+      
+          <rect x="420" y="280" width="180" height="60" rx="10" fill="url(#mlGrad)" stroke="#e53e3e" stroke-width="2" />
+          <text x="510" y="300" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🤖 ML
+            Service</text>
+          <text x="510" y="315" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">FastAPI • Recommendations</text>
+      
+          <rect x="640" y="280" width="180" height="60" rx="10" fill="url(#dataGrad)" stroke="#f6ad55" stroke-width="2" />
+          <text x="730" y="300" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">📊 Data
+            Service</text>
+          <text x="730" y="315" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Analytics • User Tracking</text>
+      
+          <!-- Destination Services Layer -->
+          <rect x="100" y="360" width="180" height="60" rx="10" fill="url(#destinationGrad)" stroke="#805ad5"
+            stroke-width="2" />
+          <text x="190" y="380" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🇳🇬 Lagos
+            Service</text>
+          <text x="190" y="395" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Cultural Data • Local Info</text>
+      
+          <rect x="320" y="360" width="180" height="60" rx="10" fill="url(#destinationGrad)" stroke="#805ad5"
+            stroke-width="2" />
+          <text x="410" y="380" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🇯🇵 Tokyo
+            Service</text>
+          <text x="410" y="395" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Real-time • Translation</text>
+      
+          <rect x="540" y="360" width="180" height="60" rx="10" fill="url(#destinationGrad)" stroke="#805ad5"
+            stroke-width="2" />
+          <text x="630" y="380" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🇫🇷 Paris
+            Service</text>
+          <text x="630" y="395" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Cultural • Historical</text>
+      
+          <rect x="760" y="360" width="180" height="60" rx="10" fill="url(#destinationGrad)" stroke="#805ad5"
+            stroke-width="2" />
+          <text x="850" y="380" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🇺🇸 NYC
+            Service</text>
+          <text x="850" y="395" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Urban • Entertainment</text>
+      
+          <!-- Storage & Cache Layer -->
+          <rect x="200" y="440" width="180" height="50" rx="10" fill="url(#storageGrad)" stroke="#66d9ef" stroke-width="2" />
+          <text x="290" y="455" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">📦
+            MongoDB</text>
+          <text x="290" y="470" text-anchor="middle" style="font-size: 10px; fill: #b3e0ff;">User Data • Sessions</text>
+      
+          <rect x="420" y="440" width="180" height="50" rx="10" fill="url(#storageGrad)" stroke="#66d9ef" stroke-width="2" />
+          <text x="510" y="455" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🗄️ Redis
+            Cache</text>
+          <text x="510" y="470" text-anchor="middle" style="font-size: 10px; fill: #b3e0ff;">Real-time Data • Sessions</text>
+      
+          <rect x="640" y="440" width="180" height="50" rx="10" fill="url(#storageGrad)" stroke="#66d9ef" stroke-width="2" />
+          <text x="730" y="455" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">☁️ S3
+            Storage</text>
+          <text x="730" y="470" text-anchor="middle" style="font-size: 10px; fill: #b3e0ff;">Media • 360° Images</text>
+      
+          <!-- External APIs Layer -->
+          <rect x="300" y="510" width="400" height="50" rx="10" fill="#4299e1" stroke="#3182ce" stroke-width="2" />
+          <text x="500" y="525" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🌐 External APIs
+            & Data Sources</text>
+          <text x="500" y="540" text-anchor="middle" style="font-size: 10px; fill: #bee3f8;">Weather • Translation • Maps •
+            Cultural Data</text>
+      
+          <!-- Monitoring Layer -->
+          <rect x="350" y="580" width="300" height="60" rx="10" fill="url(#monitoringGrad)" stroke="#ed8936"
+            stroke-width="2" />
+          <text x="500" y="600" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📊 Monitoring &
+            Observability</text>
+          <text x="500" y="615" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Prometheus • Grafana •
+            Alertmanager</text>
+      
+          <!-- Security Layer -->
+          <rect x="400" y="660" width="200" height="50" rx="10" fill="#e53e3e" stroke="#c53030" stroke-width="2" />
+          <text x="500" y="675" text-anchor="middle" style="font-size: 12px; font-weight: bold; fill: white;">🔐 Security &
+            Secrets</text>
+          <text x="500" y="690" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Vault • TLS • cert-manager</text>
+      
+          <!-- Flow Arrows -->
+          <!-- Users to Frontend -->
+          <path d="M 450 110 L 450 130" stroke="#764ba2" stroke-width="3" marker-end="url(#arrow)" />
+          <path d="M 550 110 L 550 130" stroke="#764ba2" stroke-width="3" marker-end="url(#arrow)" />
+      
+          <!-- Frontend to API Gateway -->
+          <path d="M 500 190 L 500 210" stroke="#48bb78" stroke-width="2" marker-end="url(#arrow)" />
+      
+          <!-- API Gateway to Services -->
+          <path d="M 400 260 L 290 280" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 500 260 L 510 280" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 600 260 L 730 280" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)" />
+      
+          <!-- Services to Destinations -->
+          <path d="M 290 340 L 190 360" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 510 340 L 410 360" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 510 340 L 630 360" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 730 340 L 850 360" stroke="#f6ad55" stroke-width="2" marker-end="url(#arrow)" />
+      
+          <!-- Destinations to Storage -->
+          <path d="M 190 420 L 290 440" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 410 420 L 510 440" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 630 420 L 510 440" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 850 420 L 730 440" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+      
+          <!-- Storage to External APIs -->
+          <path d="M 290 490 L 350 510" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 510 490 L 450 510" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 510 490 L 550 510" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 730 490 L 650 510" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
+      
+          <!-- External APIs to Monitoring -->
+          <path d="M 400 560 L 400 580" stroke="#4299e1" stroke-width="2" marker-end="url(#arrow)" />
+          <path d="M 600 560 L 600 580" stroke="#4299e1" stroke-width="2" marker-end="url(#arrow)" />
+      
+          <!-- Monitoring to Security -->
+          <path d="M 500 640 L 500 660" stroke="#ed8936" stroke-width="2" marker-end="url(#arrow)" />
+      
+          <!-- Security feedback to Services -->
+          <path d="M 400 710 L 290 720" stroke="#e53e3e" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="5,5" />
+          <path d="M 400 710 L 510 720" stroke="#e53e3e" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="5,5" />
+          <path d="M 600 710 L 730 720" stroke="#e53e3e" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="5,5" />
+          <path d="M 600 710 L 350 720" stroke="#e53e3e" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="5,5" />
+          <path d="M 600 710 L 650 720" stroke="#e53e3e" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="5,5" />
+      
+          <!-- Processing Nodes -->
+          <circle cx="290" cy="305" r="18" fill="#3b82f6" stroke="#1a73e8" stroke-width="2" />
+          <text x="290" y="310" text-anchor="middle" style="font-size: 12px;">🔧</text>
+      
+          <circle cx="510" cy="305" r="18" fill="#e53e3e" stroke="#c53030" stroke-width="2" />
+          <text x="510" y="310" text-anchor="middle" style="font-size: 12px;">🤖</text>
+      
+          <circle cx="730" cy="305" r="18" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" />
+          <text x="730" y="310" text-anchor="middle" style="font-size: 12px;">📊</text>
+      
+          <circle cx="190" cy="385" r="15" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+          <text x="190" y="390" text-anchor="middle" style="font-size: 10px;">🇳🇬</text>
+      
+          <circle cx="410" cy="385" r="15" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+          <text x="410" y="390" text-anchor="middle" style="font-size: 10px;">🇯🇵</text>
+      
+          <circle cx="630" cy="385" r="15" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+          <text x="630" y="390" text-anchor="middle" style="font-size: 10px;">🇫🇷</text>
+      
+          <circle cx="850" cy="385" r="15" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+          <text x="850" y="390" text-anchor="middle" style="font-size: 10px;">🇺🇸</text>
+      
+          <circle cx="290" cy="455" r="15" fill="#66d9ef" stroke="#4a9eff" stroke-width="2" />
+          <text x="290" y="460" text-anchor="middle" style="font-size: 10px;">📦</text>
+      
+          <circle cx="510" cy="455" r="15" fill="#66d9ef" stroke="#4a9eff" stroke-width="2" />
+          <text x="510" y="460" text-anchor="middle" style="font-size: 10px;">🗄️</text>
+      
+          <circle cx="730" cy="455" r="15" fill="#66d9ef" stroke="#4a9eff" stroke-width="2" />
+          <text x="730" y="460" text-anchor="middle" style="font-size: 10px;">☁️</text>
+      
+          <circle cx="500" cy="525" r="18" fill="#4299e1" stroke="#3182ce" stroke-width="2" />
+          <text x="500" y="530" text-anchor="middle" style="font-size: 12px;">🌐</text>
+      
+          <circle cx="500" cy="605" r="18" fill="#ed8936" stroke="#dd6b20" stroke-width="2" />
+          <text x="500" y="610" text-anchor="middle" style="font-size: 12px;">📊</text>
+      
+          <circle cx="500" cy="675" r="15" fill="#e53e3e" stroke="#c53030" stroke-width="2" />
+          <text x="500" y="680" text-anchor="middle" style="font-size: 10px;">🔐</text>
+      
+          <defs>
+            <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto" markerUnits="strokeWidth">
+              <path d="M0,0 L0,10 L9,5 z" fill="#764ba2" />
+            </marker>
+          </defs>
+      
+          <!-- Labels -->
+          <text x="290" y="350" text-anchor="middle" style="font-size: 8px; fill: #3b82f6; font-weight: bold;">API
+            Services</text>
+          <text x="510" y="350" text-anchor="middle" style="font-size: 8px; fill: #e53e3e; font-weight: bold;">ML
+            Recommendations</text>
+          <text x="730" y="350" text-anchor="middle" style="font-size: 8px; fill: #f6ad55; font-weight: bold;">Analytics
+            Engine</text>
+          <text x="190" y="430" text-anchor="middle" style="font-size: 8px; fill: #805ad5; font-weight: bold;">Cultural
+            Services</text>
+          <text x="410" y="430" text-anchor="middle" style="font-size: 8px; fill: #805ad5; font-weight: bold;">Real-time
+            Data</text>
+          <text x="630" y="430" text-anchor="middle" style="font-size: 8px; fill: #805ad5; font-weight: bold;">Historical
+            Data</text>
+          <text x="850" y="430" text-anchor="middle"
+            style="font-size: 8px; fill: #805ad5; font-weight: bold;">Entertainment</text>
+          <text x="290" y="500" text-anchor="middle" style="font-size: 8px; fill: #66d9ef; font-weight: bold;">User
+            Data</text>
+          <text x="510" y="500" text-anchor="middle" style="font-size: 8px; fill: #66d9ef; font-weight: bold;">Cache
+            Layer</text>
+          <text x="730" y="500" text-anchor="middle" style="font-size: 8px; fill: #66d9ef; font-weight: bold;">Media
+            Storage</text>
+          <text x="350" y="570" text-anchor="middle" style="font-size: 8px; fill: #4299e1; font-weight: bold;">Weather
+            APIs</text>
+          <text x="650" y="570" text-anchor="middle" style="font-size: 8px; fill: #4299e1; font-weight: bold;">Translation
+            APIs</text>
+          <text x="500" y="650" text-anchor="middle"
+            style="font-size: 8px; fill: #ed8936; font-weight: bold;">Observability</text>
+          <text x="500" y="720" text-anchor="middle" style="font-size: 8px; fill: #e53e3e; font-weight: bold;">Zero-Trust
+            Security</text>
+        </svg>
+      </div>
       <div class="architecture-tabs">
         <div class="tab-buttons">
           <button class="tab-btn active" onclick="showTab('compose')">Docker Compose MVP</button>

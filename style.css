@@ -41,7 +41,7 @@
   justify-content: center;
 }
 
-.rocket-toggle:hover {
+.sidebar-toggle:hover {
   transform: scale(1.1);
   box-shadow: 0 6px 20px rgba(102, 217, 239, 0.5);
 }
@@ -154,6 +154,8 @@
     font-size: 1em;
     width: 45px;
     height: 45px;
+    display: block !important;
+      /* Show sidebar toggle on mobile */
   }
 
   .rocket-toggle {
@@ -179,6 +181,49 @@
   body {
     padding-top: 70px !important; /* Adjust for mobile navigation */
   }
+/* Mobile Navigation */
+.nav-container {
+  flex-direction: column;
+  height: auto;
+  padding: 1rem;
+  gap: 1rem;
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.nav-link {
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.nav-actions {
+  width: 100%;
+  text-align: center;
+}
+
+.cta-nav {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+}
+
+.nav-brand {
+  text-align: center;
+}
+
+.brand-text {
+  font-size: 1.1rem;
+}
+
+.brand-title {
+  font-size: 0.7rem;
+}
 }
 
 body {
@@ -237,6 +282,247 @@ body {
   
   .gallery img {
     max-width: 100% !important;
+  }
+/* Container responsiveness */
+.container {
+  padding: 0 1rem !important;
+}
+
+/* Project cards mobile */
+.projects-grid {
+  grid-template-columns: 1fr !important;
+  gap: 1.5rem !important;
+}
+
+.project-card {
+  padding: 1.5rem !important;
+}
+
+/* Technology showcase mobile */
+.tech-showcase {
+  grid-template-columns: 1fr !important;
+  gap: 2rem !important;
+}
+
+.tech-grid {
+  grid-template-columns: 1fr !important;
+}
+
+/* Stats and benefits mobile */
+.value-stats {
+  grid-template-columns: 1fr !important;
+}
+
+.stat-card {
+  padding: 1.5rem !important;
+}
+
+.benefit-item {
+  padding: 1.5rem !important;
+}
+
+/* CTA buttons mobile */
+.cta-buttons {
+  flex-direction: column !important;
+  align-items: center !important;
+}
+
+.cta-primary,
+.cta-secondary {
+  width: 100% !important;
+  text-align: center !important;
+}
+}
+
+@media (max-width: 480px) {
+
+  /* Very small screen adjustments */
+  .hero-content h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .hero-content h2 {
+    font-size: 1rem !important;
+  }
+
+  .hero-description {
+    font-size: 0.9rem !important;
+  }
+
+  .stat-card {
+    padding: 1rem !important;
+  }
+
+  .stat-number {
+    font-size: 1.5rem !important;
+  }
+
+  .benefit-item {
+    padding: 1rem !important;
+  }
+
+  .benefit-icon {
+    font-size: 2rem !important;
+  }
+
+  .project-card {
+    padding: 1rem !important;
+  }
+
+  .tech-item {
+    padding: 0.6rem 0.8rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    padding: 0.8rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+/* Image and Media Responsiveness */
+@media (max-width: 768px) {
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  .hero-profile-image {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 200px !important;
+  }
+
+  .project-icon {
+    font-size: 2rem !important;
+  }
+
+  .cloud-icon {
+    font-size: 2.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-profile-image {
+    max-width: 150px !important;
+  }
+
+  .project-icon {
+    font-size: 1.8rem !important;
+  }
+
+  .cloud-icon {
+    font-size: 2rem !important;
+  }
+}
+
+/* Additional Mobile Optimizations */
+@media (max-width: 768px) {
+
+  /* Prevent horizontal scrolling */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Improve touch targets */
+  a,
+  button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better text readability */
+  p,
+  li {
+    line-height: 1.6;
+  }
+
+  /* Optimize images for mobile */
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Better spacing for mobile */
+  .container,
+  .main-content {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Focus states for keyboard navigation */
+  a:focus,
+  button:focus,
+  input:focus,
+  textarea:focus {
+    outline: 2px solid #66d9ef;
+    outline-offset: 2px;
+  }
+
+  /* Improve contrast for mobile */
+  .nav-link,
+  .cta-primary,
+  .cta-secondary {
+    border: 2px solid transparent;
+  }
+
+  .nav-link:focus,
+  .cta-primary:focus,
+  .cta-secondary:focus {
+    border-color: #66d9ef;
+  }
+}
+
+@media (max-width: 480px) {
+
+  /* Even better touch targets for small screens */
+  .nav-link,
+  .cta-primary,
+  .cta-secondary {
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Optimize font sizes for very small screens */
+  body {
+    font-size: 16px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  h3 {
+    font-size: 1.25rem;
+  }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero-content {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+  }
+
+  .hero-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .tech-showcase {
+    grid-template-columns: 1fr !important;
+  }
+
+  .value-stats {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 }
 

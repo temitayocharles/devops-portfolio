@@ -312,7 +312,222 @@
         <section id="architecture" class="content-section">
             <h2>🏗️ Complete MLOps Platform Architecture</h2>
             <p>Architected and implemented an end-to-end MLOps platform using Vertex AI, Kubeflow Pipelines, MLflow, and BigQuery with automated training, deployment, monitoring, and governance workflows.</p>
+
+            <div class="architecture-diagram">
+                <h3 style="color: #22c55e; margin-bottom: 2rem;">End-to-End MLOps Workflow Architecture</h3>
+                <p style="color: #e2e8f0; margin-bottom: 2rem; font-size: 1.1rem;">
+                    Complete machine learning lifecycle from data ingestion through model deployment, monitoring, and automated
+                    retraining.
+                </p>
             
+                <svg viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="dataGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#1a73e8;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="pipelineGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#48bb78;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#2f855a;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="trainingGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e53e3e;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#c53030;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="modelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#f6ad55;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#dd6b20;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="deployGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#805ad5;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#6b46c1;stop-opacity:0.8" />
+                        </linearGradient>
+                        <linearGradient id="monitorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#66d9ef;stop-opacity:0.8" />
+                            <stop offset="100%" style="stop-color:#4a9eff;stop-opacity:0.8" />
+                        </linearGradient>
+                    </defs>
+            
+                    <!-- Data Sources Layer -->
+                    <rect x="50" y="50" width="900" height="80" rx="15" fill="url(#dataGrad)" stroke="#3b82f6" stroke-width="3" />
+                    <text x="475" y="75" text-anchor="middle" style="font-size: 18px; font-weight: bold; fill: white;">📊 Data
+                        Sources & Ingestion</text>
+                    <text x="475" y="100" text-anchor="middle" style="font-size: 14px; fill: #e9d5ff;">BigQuery • Cloud Storage •
+                        Pub/Sub • External APIs</text>
+            
+                    <!-- Data Processing Layer -->
+                    <rect x="150" y="160" width="200" height="60" rx="10" fill="url(#pipelineGrad)" stroke="#48bb78"
+                        stroke-width="2" />
+                    <text x="250" y="180" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔄 Data
+                        Pipeline</text>
+                    <text x="250" y="195" text-anchor="middle" style="font-size: 10px; fill: #c6f6d5;">Feature Engineering</text>
+            
+                    <!-- Experimentation Layer -->
+                    <rect x="400" y="160" width="200" height="60" rx="10" fill="url(#trainingGrad)" stroke="#e53e3e"
+                        stroke-width="2" />
+                    <text x="500" y="180" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🧪
+                        Experimentation</text>
+                    <text x="500" y="195" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">MLflow Tracking</text>
+            
+                    <!-- Training Layer -->
+                    <rect x="650" y="160" width="200" height="60" rx="10" fill="url(#trainingGrad)" stroke="#e53e3e"
+                        stroke-width="2" />
+                    <text x="750" y="180" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🎯 Model
+                        Training</text>
+                    <text x="750" y="195" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Vertex AI Training</text>
+            
+                    <!-- Model Registry Layer -->
+                    <rect x="400" y="250" width="200" height="60" rx="10" fill="url(#modelGrad)" stroke="#f6ad55"
+                        stroke-width="2" />
+                    <text x="500" y="270" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📦 Model
+                        Registry</text>
+                    <text x="500" y="285" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Version Control</text>
+            
+                    <!-- Deployment Layer -->
+                    <rect x="150" y="340" width="200" height="60" rx="10" fill="url(#deployGrad)" stroke="#805ad5"
+                        stroke-width="2" />
+                    <text x="250" y="360" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🚀 Model
+                        Deployment</text>
+                    <text x="250" y="375" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Cloud Run Serving</text>
+            
+                    <!-- Inference Layer -->
+                    <rect x="400" y="340" width="200" height="60" rx="10" fill="url(#deployGrad)" stroke="#805ad5"
+                        stroke-width="2" />
+                    <text x="500" y="360" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">⚡ Real-time
+                        Inference</text>
+                    <text x="500" y="375" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Online Prediction</text>
+            
+                    <!-- Batch Inference Layer -->
+                    <rect x="650" y="340" width="200" height="60" rx="10" fill="url(#deployGrad)" stroke="#805ad5"
+                        stroke-width="2" />
+                    <text x="750" y="360" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📊 Batch
+                        Inference</text>
+                    <text x="750" y="375" text-anchor="middle" style="font-size: 10px; fill: #e9d8fd;">Scheduled Processing</text>
+            
+                    <!-- Monitoring Layer -->
+                    <rect x="300" y="430" width="400" height="60" rx="10" fill="url(#monitorGrad)" stroke="#66d9ef"
+                        stroke-width="2" />
+                    <text x="500" y="450" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">📈 Model
+                        Monitoring & Drift Detection</text>
+                    <text x="500" y="465" text-anchor="middle" style="font-size: 10px; fill: #b3e0ff;">Performance Tracking</text>
+            
+                    <!-- Retraining Layer -->
+                    <rect x="400" y="520" width="200" height="60" rx="10" fill="#ed8936" stroke="#dd6b20" stroke-width="2" />
+                    <text x="500" y="540" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔄 Automated
+                        Retraining</text>
+                    <text x="500" y="555" text-anchor="middle" style="font-size: 10px; fill: #fed7cc;">Continuous Learning</text>
+            
+                    <!-- Governance Layer -->
+                    <rect x="150" y="610" width="200" height="60" rx="10" fill="#48bb78" stroke="#2f855a" stroke-width="2" />
+                    <text x="250" y="630" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">🔒
+                        Governance</text>
+                    <text x="250" y="645" text-anchor="middle" style="font-size: 10px; fill: #c6f6d5;">Audit & Compliance</text>
+            
+                    <!-- Feedback Layer -->
+                    <rect x="650" y="610" width="200" height="60" rx="10" fill="#4299e1" stroke="#3182ce" stroke-width="2" />
+                    <text x="750" y="630" text-anchor="middle" style="font-size: 14px; font-weight: bold; fill: white;">💬 User
+                        Feedback</text>
+                    <text x="750" y="645" text-anchor="middle" style="font-size: 10px; fill: #bee3f8;">Model Improvement</text>
+            
+                    <!-- Flow Arrows -->
+                    <!-- Data Sources to Processing -->
+                    <path d="M 250 130 L 250 160" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow)" />
+                    <path d="M 500 130 L 500 160" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow)" />
+                    <path d="M 750 130 L 750 160" stroke="#3b82f6" stroke-width="3" marker-end="url(#arrow)" />
+            
+                    <!-- Processing to Experimentation -->
+                    <path d="M 350 190 L 400 190" stroke="#48bb78" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Experimentation to Training -->
+                    <path d="M 600 190 L 650 190" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Training to Registry -->
+                    <path d="M 750 220 L 750 250" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 750 250 L 600 250" stroke="#e53e3e" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Registry to Deployment -->
+                    <path d="M 400 310 L 350 340" stroke="#f6ad55" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 400 310 L 500 340" stroke="#f6ad55" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 600 310 L 650 340" stroke="#f6ad55" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Deployment to Monitoring -->
+                    <path d="M 250 400 L 300 430" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 500 400 L 500 430" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 750 400 L 700 430" stroke="#805ad5" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Monitoring to Retraining -->
+                    <path d="M 500 490 L 500 520" stroke="#66d9ef" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Retraining to Registry -->
+                    <path d="M 400 580 L 400 610" stroke="#ed8936" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 400 610 L 350 640" stroke="#ed8936" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 600 580 L 600 610" stroke="#ed8936" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 600 610 L 650 640" stroke="#ed8936" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Feedback to Retraining -->
+                    <path d="M 750 580 L 750 520" stroke="#4299e1" stroke-width="2" marker-end="url(#arrow)" />
+                    <path d="M 750 520 L 600 520" stroke="#4299e1" stroke-width="2" marker-end="url(#arrow)" />
+            
+                    <!-- Processing Nodes -->
+                    <circle cx="250" cy="185" r="20" fill="#48bb78" stroke="#2f855a" stroke-width="2" />
+                    <text x="250" y="190" text-anchor="middle" style="font-size: 14px;">🔄</text>
+            
+                    <circle cx="500" cy="185" r="20" fill="#e53e3e" stroke="#c53030" stroke-width="2" />
+                    <text x="500" y="190" text-anchor="middle" style="font-size: 14px;">🧪</text>
+            
+                    <circle cx="750" cy="185" r="20" fill="#e53e3e" stroke="#c53030" stroke-width="2" />
+                    <text x="750" y="190" text-anchor="middle" style="font-size: 14px;">🎯</text>
+            
+                    <circle cx="500" cy="275" r="18" fill="#f6ad55" stroke="#dd6b20" stroke-width="2" />
+                    <text x="500" y="280" text-anchor="middle" style="font-size: 12px;">📦</text>
+            
+                    <circle cx="250" cy="365" r="18" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+                    <text x="250" y="370" text-anchor="middle" style="font-size: 12px;">🚀</text>
+            
+                    <circle cx="500" cy="365" r="18" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+                    <text x="500" y="370" text-anchor="middle" style="font-size: 12px;">⚡</text>
+            
+                    <circle cx="750" cy="365" r="18" fill="#805ad5" stroke="#6b46c1" stroke-width="2" />
+                    <text x="750" y="370" text-anchor="middle" style="font-size: 12px;">📊</text>
+            
+                    <circle cx="500" cy="455" r="18" fill="#66d9ef" stroke="#4a9eff" stroke-width="2" />
+                    <text x="500" y="460" text-anchor="middle" style="font-size: 12px;">📈</text>
+            
+                    <circle cx="500" cy="545" r="18" fill="#ed8936" stroke="#dd6b20" stroke-width="2" />
+                    <text x="500" y="550" text-anchor="middle" style="font-size: 12px;">🔄</text>
+            
+                    <circle cx="250" cy="635" r="18" fill="#48bb78" stroke="#2f855a" stroke-width="2" />
+                    <text x="250" y="640" text-anchor="middle" style="font-size: 12px;">🔒</text>
+            
+                    <circle cx="750" cy="635" r="18" fill="#4299e1" stroke="#3182ce" stroke-width="2" />
+                    <text x="750" y="640" text-anchor="middle" style="font-size: 12px;">💬</text>
+            
+                    <defs>
+                        <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"
+                            markerUnits="strokeWidth">
+                            <path d="M0,0 L0,10 L9,5 z" fill="#3b82f6" />
+                        </marker>
+                    </defs>
+            
+                    <!-- Labels -->
+                    <text x="250" y="240" text-anchor="middle" style="font-size: 8px; fill: #48bb78; font-weight: bold;">Data
+                        Processing</text>
+                    <text x="500" y="240" text-anchor="middle" style="font-size: 8px; fill: #e53e3e; font-weight: bold;">Experiment
+                        Tracking</text>
+                    <text x="750" y="240" text-anchor="middle" style="font-size: 8px; fill: #e53e3e; font-weight: bold;">Distributed
+                        Training</text>
+                    <text x="250" y="410" text-anchor="middle" style="font-size: 8px; fill: #805ad5; font-weight: bold;">Model
+                        Serving</text>
+                    <text x="500" y="410" text-anchor="middle" style="font-size: 8px; fill: #805ad5; font-weight: bold;">Online
+                        Prediction</text>
+                    <text x="750" y="410" text-anchor="middle" style="font-size: 8px; fill: #805ad5; font-weight: bold;">Batch
+                        Processing</text>
+                    <text x="250" y="680" text-anchor="middle"
+                        style="font-size: 8px; fill: #48bb78; font-weight: bold;">Compliance</text>
+                    <text x="750" y="680" text-anchor="middle" style="font-size: 8px; fill: #4299e1; font-weight: bold;">Continuous
+                        Learning</text>
+                </svg>
+            </div>
             <div class="tech-grid">
                 <div class="tech-item">
                     <h3>🧠 Vertex AI</h3>

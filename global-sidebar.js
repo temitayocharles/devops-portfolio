@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function toggleSidebar() {
     const sidebar = document.getElementById('globalSidebar');
     const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebar-toggle');
     const body = document.body;
 
     if (sidebar.classList.contains('open')) {
@@ -70,21 +71,31 @@ function toggleSidebar() {
 function openSidebar() {
     const sidebar = document.getElementById('globalSidebar');
     const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebar-toggle');
     const body = document.body;
 
     sidebar.classList.add('open');
     overlay.classList.add('active');
     body.style.overflow = 'hidden';
+
+    if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', 'true');
+    }
 }
 
 function closeSidebar() {
     const sidebar = document.getElementById('globalSidebar');
     const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebar-toggle');
     const body = document.body;
 
     sidebar.classList.remove('open');
     overlay.classList.remove('active');
     body.style.overflow = '';
+
+    if (toggleBtn) {
+        toggleBtn.setAttribute('aria-expanded', 'false');
+    }
 }
 
 // Set active page based on current URL

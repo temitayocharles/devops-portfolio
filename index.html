@@ -6,6 +6,15 @@
   <title>Temitayo Charles • DevOps Engineer &amp; Container Specialist</title>
   <meta name="description" content="DevOps Engineer specializing in containerization, automation, and cloud infrastructure. Creator of the Ultimate DevOps Container.">
   
+  <!-- Mobile optimization meta tags -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0e0e0e">
+  
+  <!-- Performance optimization for mobile -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Temitayo Charles • DevOps Engineer &amp; Container Specialist">
@@ -23,6 +32,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
   <link rel="stylesheet" href="style.css">
+  <script src="global-sidebar.js"></script>
   <style>
     /* Redesigned Hero Section Styles */
     .hero-section {
@@ -142,6 +152,7 @@
     .stat-item {
       text-align: center;
       padding: 1.5rem;
+      background: rgba(14, 14, 14, 0.9);
       background: rgba(255, 255, 255, 0.05);
       border-radius: 1rem;
       border: 1px solid rgba(102, 217, 239, 0.2);
@@ -195,6 +206,7 @@
 
     .cta-secondary {
       display: inline-block;
+      background: rgba(14, 14, 14, 0.8);
       background: rgba(255, 255, 255, 0.1);
       color: #66d9ef;
       padding: 1rem 2rem;
@@ -340,6 +352,38 @@
       .scroll-indicator {
         display: none;
       }
+
+      /* Mobile Navigation */
+      .nav-container {
+        flex-direction: column;
+        height: auto;
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      .nav-menu {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        text-align: center;
+      }
+
+      .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+      }
+
+      .nav-actions {
+        width: 100%;
+        text-align: center;
+      }
+
+      .cta-nav {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+      }
     }
 
     @media (max-width: 480px) {
@@ -355,6 +399,18 @@
       .cta-primary, .cta-secondary {
         width: 100%;
         text-align: center;
+      }
+
+      .nav-brand {
+        text-align: center;
+      }
+
+      .brand-text {
+        font-size: 1.1rem;
+      }
+
+      .brand-title {
+        font-size: 0.7rem;
       }
     }
 
@@ -473,6 +529,7 @@
       top: 20px;
       left: 20px;
       z-index: 1001;
+      background: rgba(14, 14, 14, 0.95);
       background: rgba(14, 14, 14, 0.9);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(102, 217, 239, 0.2);
@@ -497,6 +554,7 @@
       left: -320px;
       width: 300px;
       height: 100vh;
+      background: rgba(14, 14, 14, 0.95);
       background: rgba(14, 14, 14, 0.98);
       backdrop-filter: blur(20px);
       border-right: 1px solid rgba(102, 217, 239, 0.2);
@@ -715,6 +773,7 @@
     }
 
     .stat-card {
+      background: rgba(14, 14, 14, 0.9);
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(102, 217, 239, 0.2);
@@ -796,6 +855,7 @@
     }
 
     .project-card {
+      background: rgba(14, 14, 14, 0.9);
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(102, 217, 239, 0.2);
@@ -986,6 +1046,7 @@
     }
 
     .cta-secondary {
+      background: rgba(14, 14, 14, 0.8);
       background: rgba(255, 255, 255, 0.1);
       color: #66d9ef;
       padding: 1rem 2.5rem;
@@ -1174,6 +1235,7 @@
 
     /* Project Cards */
     .project-card-large {
+      background: rgba(14, 14, 14, 0.9);
       background: rgba(255, 255, 255, 0.05);
       backdrop-filter: blur(10px);
       border: 1px solid rgba(102, 217, 239, 0.2);
@@ -1433,7 +1495,8 @@
   </style>
 </head>
 <body>
-  <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+  <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu"
+    aria-expanded="false">☰</button>
 
   <!-- Simplified Navigation -->
   <nav class="main-navigation">
@@ -1510,7 +1573,8 @@
 
       <div class="hero-visual">
         <div class="hero-image-container">
-          <img src="images/B57EDA65-F244-49EB-B5BA-504705128E03 copy.PNG" alt="Temitayo Charles - DevOps Engineer" class="hero-profile-image" loading="lazy" />
+          <img src="images/B57EDA65-F244-49EB-B5BA-504705128E03 copy.PNG" alt="Temitayo Charles - DevOps Engineer"
+            class="hero-profile-image" loading="lazy" onerror="this.src='images/profile-optimized.jpg'" />
           <div class="hero-image-glow"></div>
         </div>
       </div>
@@ -1826,7 +1890,10 @@
             <div style="background: white; border-radius: 15px; padding: 30px; max-width: 800px; max-height: 90vh; overflow-y: auto; position: relative;">
               <button onclick="closeDemo()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
               <h2 style="margin: 0 0 20px 0; color: #333;">🚀 Container Deployment Demo</h2>
-              <img src="images/demos/demo-01-docker-pull.gif" alt="Container Deployment" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" loading="lazy" />
+              <video controls preload="metadata" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" loading="lazy">
+                <source src="images/demos/demo-01-docker-pull.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
               <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 10px 0; color: #495057;">Quick Start Commands:</h3>
                 <code style="display: block; background: #e9ecef; padding: 10px; border-radius: 4px; font-family: monospace; color: #495057;">
@@ -1915,7 +1982,10 @@
             <div style="background: white; border-radius: 15px; padding: 30px; max-width: 800px; max-height: 90vh; overflow-y: auto; position: relative;">
               <button onclick="closeDemo()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
               <h2 style="margin: 0 0 20px 0; color: #333;">🛠️ DevOps Tools Tour</h2>
-              <img src="images/demos/demo-03-tools-showcase.gif" alt="Tools Showcase" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" loading="lazy" />
+              <video controls preload="metadata" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" loading="lazy">
+                <source src="images/demos/demo-03-tools-showcase.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
               <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 15px 0; color: #495057;">Featured Tools (30+ available):</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
@@ -1940,7 +2010,10 @@
             <div style="background: white; border-radius: 15px; padding: 30px; max-width: 900px; max-height: 90vh; overflow-y: auto; position: relative;">
               <button onclick="closeDemo()" style="position: absolute; top: 15px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">×</button>
               <h2 style="margin: 0 0 20px 0; color: #333;">🔄 Complete DevOps Workflow</h2>
-              <img src="images/demos/demo-05-full-workflow.gif" alt="Full Workflow" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" loading="lazy" />
+              <video controls preload="metadata" style="width: 100%; border-radius: 10px; margin-bottom: 20px;" loading="lazy">
+                <source src="images/demos/demo-05-full-workflow.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
               <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
                 <h3 style="margin: 0 0 15px 0;">End-to-End Process Flow:</h3>
                 <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
