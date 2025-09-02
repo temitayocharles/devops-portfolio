@@ -1074,6 +1074,8 @@
     <div class="shape"></div>
     <div class="shape"></div>
   </div>
+<!-- Header Navigation -->
+<header class="header-nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">Temitayo Charles</a>
       <nav class="nav-links">
@@ -1112,11 +1114,11 @@
     <!-- Project Preview Carousel -->
     <section class="carousel-section fade-in-up">
       <div class="carousel-container">
-      <div class="carousel-container">
         <div class="carousel-header">
           <h2 class="carousel-title">🚀 Project Highlights</h2>
           <p class="carousel-subtitle">Hover to pause • Click to explore</p>
         </div>
+        <div class="carousel-track">
           <div class="preview-card" onclick="window.open('project-foodshare-app.html', '_blank')">
             <span class="preview-icon">🍽️</span>
             <h3 class="preview-title">FoodShare Platform</h3>
@@ -1181,12 +1183,6 @@
             <span class="preview-icon">🎬</span>
             <h3 class="preview-title">Live Container Demos</h3>
             <p class="preview-tech">Video Walkthroughs • Real Usage</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('project-foodshare-app.html', '_blank')">
-            <span class="preview-icon">🍽️</span>
-            <h3 class="preview-title">FoodShare Platform</h3>
-            <p class="preview-tech">React • Node.js • Kubernetes</p>
           </div>
 
           <!-- Duplicate set for seamless loop -->
@@ -1256,12 +1252,7 @@
             <p class="preview-tech">Video Walkthroughs • Real Usage</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Performance Metrics Section -->
     <section class="metrics-section fade-in-up">
-      <div class="metrics-container">
       <div class="metrics-container">
         <h2 class="metrics-title">🚀 Portfolio Impact Metrics</h2>
         <p class="metrics-subtitle">Production-ready solutions delivering real-world results</p>
@@ -1296,7 +1287,6 @@
 
     <!-- Featured Projects Section -->
     <section class="featured-section fade-in-up">
-      <div class="section-header">
       <div class="section-header">
         <h2 class="section-title">🌟 Featured Projects</h2>
         <p class="section-subtitle">Flagship solutions showcasing advanced DevOps engineering</p>
@@ -1383,7 +1373,6 @@
 
     <!-- Additional Projects Section -->
     <section class="projects-section fade-in-up">
-      <div class="section-header">
       <div class="section-header">
         <h2 class="section-title">🛠️ Additional Projects</h2>
         <p class="section-subtitle">More solutions across various industries and technologies</p>
@@ -1718,7 +1707,6 @@
     <!-- Call to Action -->
     <section class="cta-section fade-in-up">
       <div class="cta-container">
-      <div class="cta-container">
         <h2 class="cta-title">Let's Build Something Amazing</h2>
         <p class="cta-description">Ready to discuss how these solutions can transform your infrastructure?</p>
         <a href="contact.html" class="cta-button">🚀 Get In Touch</a>
@@ -1740,32 +1728,60 @@
   </footer>
 
   <script>
-    // En      eSystem {
+      // Enhanced Interactive Features
+      class ParticleSystem {
       constructor() {
-        this.canvas = do      ctx = this.canvas.getContext('2d');
-        this.particles =            this.init();
-        this.animate      as.style.position = 'fixed';
-          .canvas.style.left = '0';
-        th         this.canvas.style.zIndex = '1';
-        this.canvas.widt      ight = window.innerHeight;
+        this.canvas = document.createElement('canvas');
+        this.ctx = this.canvas.getContext('2d');
+        this.particles = [];
+        this.mouse = { x: 0, y: 0 };
 
-        document.body.appendChi      
+        this.init();
+        this.animate();
+      }
+
+      init() {
+        this.canvas.style.position = 'fixed';
+        this.canvas.style.top = '0';
+        this.canvas.style.left = '0';
+        this.canvas.style.pointerEvents = 'none';
+        this.canvas.style.zIndex = '1';
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+
+        document.body.appendChild(this.canvas);
+
+      // Create particles
         for (let i = 0; i < 50; i++) {
-          this.par      this.canvas.width,
-            y: Math.ran      Math.random() - 0.5) * 0.5,
-            vy: (Math.random() - 0.5) *      ,
+          this.particles.push({
+            x: Math.random() * this.canvas.width,
+            y: Math.random() * this.canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            size: Math.random() * 2 + 1,
             opacity: Math.random() * 0.5 + 0.2
-          }         document.addEventListener('mousemove', (e) => {
-       this.mouse.y = e.clientY;
+          });
+        }
+
+        // Mouse tracking
+        document.addEventListener('mousemove', (e) => {
+          this.mouse.x = e.clientX;
+          this.mouse.y = e.clientY;
         });
       }
 
-      an      is.canvas.width, this.canvas.height);
+      animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        this.particle      osition
-          particle.x += particl               // Wrap around edges
-         canvas.width;
-          if (particle           if (particle.y < 0) particle.y = this.canvas.height;
+        this.particles.forEach(particle => {
+          // Update position
+          particle.x += particle.vx;
+          particle.y += particle.vy;
+
+          // Wrap around edges
+          if (particle.x < 0) particle.x = this.canvas.width;
+          if (particle.x > this.canvas.width) particle.x = 0;
+          if (particle.y < 0) particle.y = this.canvas.height;
           if (particle.y > this.canvas.height) particle.y = 0;
 
           // Mouse interaction
@@ -1779,69 +1795,83 @@
             particle.vy += (dy / distance) * force * 0.01;
           }
 
-          // Draw part       this.ctx.beginPath();
-          t      ctx.arc(particle.x, par        y, particle.size          h.PI * 2);
-          this.ctx.fillStyle = `rgba(          , 239, ${particle.opacity})`;
-          t          fill();
+          // Draw particle
+          this.ctx.beginPath();
+          this.ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+          this.ctx.fillStyle = `rgba(102, 217, 239, ${particle.opacity})`;
+          this.ctx.fill();
         });
 
-          requestAnimationFrame(() => th          te());
-                
-    // Scroll-t        ed         ions
-               setupScrollAnimations() {
-      const          rOptions = {
-        threshol                  rootMargin: '0px 0px -          '
+              requestAnimationFrame(() => this.animate());
+            }
+          }
+          // Scroll-triggered animations
+          function setupScrollAnimations() {
+            const observerOptions = {
+              threshold: 0.1,
+              rootMargin: '0px 0px -50px 0px'
       };
 
-      const observer = new Int          nObserver((entries) => {
-                 .forEach(entry => {
-          if (entry          secting) {
-            entry.target.classL          'animate');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
           }
         });
-               rverOptions);
+      }, observerOptions);
 
-               rve all animated elements
-                 querySelectorAll('.fad              ide-in-left, .slide-in-right, .scale-i              el => {
+      // Observe all animated elements
+      document.querySelectorAll('.fade-in-up, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
         observer.observe(el);
-                }
-
-    // Enhanced hover effects              n setupEnhancedHoverEffects() {
-               stagger animation to tech tag              ment.querySelectorAll('.tech-stack'            stac                       t tags = stack.que          orAll('.tech-tag');
-        tags.forEach((tag, i            
-          tag.style.trans             = `${index * 0.1}s`;
-                          
-           Add magneti           to project cards
-      document.querySelectorAll('.hero-project-c          rEach(card => {
-        card.addEvent            mousemove', (e) =>               const rect = card.getBoun            Rect();
-          const x =             - rect.left;
-                    = e.clientY - rect.top;
-
-          const centerX = r            / 2;
-          const centerY = rect.height / 2;
-
-               st rotateX = (y - centerY) / 10;
-          const rota            terX - x) / 10;
-
-          card.style.transform = `tra            0px) rotateX(${rotate            ateY(${rotateY}deg)`;
-        });
-
-               addEventListener('mouseleave', () => {             card.style.transform = 'translateY(-10px) rotat            otateY(0deg)';
-                     );
+      });
     }
 
-    // Typing effect for her              function setupTypingEffect() {
-      const titl              .querySelector('.hero-title');
-      const text            ext                 title.textCo            ;
+      // Enhanced hover effects
+      function setupEnhancedHoverEffects() {
+        // Add stagger animation to tech tags
+        document.querySelectorAll('.tech-stack').forEach(stack => {
+          const tags = stack.querySelectorAll('.tech-tag');
+          tags.forEach((tag, index) => {
+            tag.style.transitionDelay = `${index * 0.1}s`;
+          });
+        });
+
+      // Add magnetic effect to project cards
+      document.querySelectorAll('.hero-project-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+
+          card.style.transform = `translateY(-10px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(-10px) rotateX(0deg) rotateY(0deg)';
+        });
+      });
+    }
+
+      // Typing effect for hero title
+      function setupTypingEffect() {
+        const title = document.querySelector('.hero-title');
+        const text = title.textContent;
+        title.textContent = '';
 
       let i = 0;
-              timer = setInterval(() => {
+      const timer = setInterval(() => {
         if (i < text.length) {
-                      Content += text.charAt(i);
+          title.textContent += text.charAt(i);
           i++;
         } else {
-                  nterval(timer);
-           
+          clearInterval(timer);
+        }
       }, 100);
     }
 

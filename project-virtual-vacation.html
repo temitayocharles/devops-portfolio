@@ -778,8 +778,15 @@
       tabButtons.forEach(btn => btn.classList.remove('active'));
       
       // Show selected tab
-      document.getElementById(tabName + '-tab').classList.add('active');
-      event.target.classList.add('active');
+      const targetTab = document.getElementById(tabName + '-tab');
+      const targetButton = event.target;
+
+      if (targetTab) {
+        targetTab.classList.add('active');
+      }
+      if (targetButton) {
+        targetButton.classList.add('active');
+      }
     }
   </script>
 
@@ -795,49 +802,49 @@
         <div class="demo-flag">🇳🇬</div>
         <h3>Lagos, Nigeria</h3>
         <p>Experience West African culture with Victoria Island exploration, Afrobeats ambiance, and local market insights.</p>
-        <a href="images/demos/lagos-demo.html" target="_blank" class="demo-btn">🚀 Launch Lagos Demo</a>
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-btn">🚀 Launch Lagos Demo</a>
       </div>
       
       <div class="demo-card">
         <div class="demo-flag">🇯🇵</div>
         <h3>Tokyo, Japan</h3>
         <p>Navigate Shibuya Crossing with real-time crowd data, Japanese language translation, and cultural etiquette guides.</p>
-        <a href="images/demos/tokyo-demo.html" target="_blank" class="demo-btn">🚀 Launch Tokyo Demo</a>
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-btn">🚀 Launch Tokyo Demo</a>
       </div>
       
       <div class="demo-card">
         <div class="demo-flag">🇫🇷</div>
         <h3>Paris, France</h3>
         <p>Stroll the Champs-Élysées with French cultural insights, luxury shopping guides, and café culture immersion.</p>
-        <a href="images/demos/paris-demo.html" target="_blank" class="demo-btn">🚀 Launch Paris Demo</a>
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-btn">🚀 Launch Paris Demo</a>
       </div>
       
       <div class="demo-card">
         <div class="demo-flag">🇨🇦</div>
         <h3>Toronto, Canada</h3>
         <p>Explore CN Tower with bilingual guides, Canadian weather patterns, and hockey culture experiences.</p>
-        <a href="images/demos/toronto-demo.html" target="_blank" class="demo-btn">🚀 Launch Toronto Demo</a>
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-btn">🚀 Launch Toronto Demo</a>
       </div>
       
       <div class="demo-card">
         <div class="demo-flag">🇺🇸</div>
         <h3>New York City, USA</h3>
         <p>Experience Times Square with Broadway shows, subway navigation, and authentic American urban culture.</p>
-        <a href="images/demos/new-york-demo.html" target="_blank" class="demo-btn">🚀 Launch NYC Demo</a>
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-btn">🚀 Launch NYC Demo</a>
       </div>
       
       <div class="demo-card">
         <div class="demo-flag">🇮🇳</div>
         <h3>Mumbai, India</h3>
         <p>Walk Marine Drive during sunset with Hindi/Marathi translations, Bollywood culture, and monsoon experiences.</p>
-        <a href="images/demos/mumbai-demo.html" target="_blank" class="demo-btn">🚀 Launch Mumbai Demo</a>
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-btn">🚀 Launch Mumbai Demo</a>
       </div>
       
       <div class="demo-card">
         <div class="demo-flag">🇬🇧</div>
         <h3>London, England</h3>
         <p>Cross Tower Bridge with royal heritage commentary, British weather patterns, and West End theatre culture.</p>
-        <a href="images/demos/london-demo.html" target="_blank" class="demo-btn">🚀 Launch London Demo</a>
+        <a href="virtual-vacation-demo.html" target="_blank" class="demo-btn">🚀 Launch London Demo</a>
       </div>
     </div>
     
@@ -865,6 +872,461 @@
   </div>
 
   <style>
+    /* Architecture Section Styles */
+    .technical-architecture {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      border-radius: 15px;
+    }
+    
+    .architecture-diagram {
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    .architecture-diagram svg {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .architecture-tabs {
+      margin-top: 40px;
+    }
+    
+    .tab-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .tab-btn {
+      padding: 12px 24px;
+      border: 2px solid #764ba2;
+      background: white;
+      color: #764ba2;
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .tab-btn.active {
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      color: white;
+      border-color: #764ba2;
+    }
+    
+    .tab-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(118, 75, 162, 0.3);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .service-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .service-card h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .service-card p {
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    .k8s-layers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .k8s-layer {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .k8s-layer h4 {
+      color: #333;
+      margin-bottom: 15px;
+    }
+    
+    .layer-services {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .layer-services span {
+      background: #f0f4f8;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+    
+    /* CI/CD Pipeline Styles */
+    .cicd-pipeline {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #fff5f5 0%, #fed7d7 100%);
+      border-radius: 15px;
+    }
+    
+    .pipeline-flow {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+    
+    .pipeline-stage {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      min-width: 150px;
+      transition: all 0.3s ease;
+    }
+    
+    .pipeline-stage:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .pipeline-stage h4 {
+      color: #333;
+      margin: 10px 0;
+    }
+    
+    .pipeline-stage p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+    
+    .pipeline-arrow {
+      font-size: 24px;
+      color: #e53e3e;
+      font-weight: bold;
+    }
+    
+    .pipeline-features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .feature-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .feature-item h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .feature-item p {
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    /* Security & Observability Styles */
+    .security-observability {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #f0fff4 0%, #c6f6d5 100%);
+      border-radius: 15px;
+    }
+    
+    .security-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .security-feature {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .security-feature:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .security-feature h3 {
+      color: #333;
+      margin: 15px 0 10px 0;
+    }
+    
+    .security-feature p {
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    /* Business Impact Styles */
+    .business-impact {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #ebf8ff 0%, #bee3f8 100%);
+      border-radius: 15px;
+    }
+    
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .impact-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    
+    .impact-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .impact-item h3 {
+      color: #333;
+      margin: 15px 0 10px 0;
+    }
+    
+    .impact-item p {
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    /* Tech Stack Styles */
+    .tech-stack-summary {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #faf5ff 0%, #e9d8fd 100%);
+      border-radius: 15px;
+    }
+    
+    .stack-categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+    }
+    
+    .stack-category {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .stack-category h4 {
+      color: #333;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+    
+    .stack-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+    }
+    
+    .stack-item {
+      background: #f0f4f8;
+      padding: 5px 10px;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    
+    /* Deployment Environments Styles */
+    .deployment-environments {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #fffaf0 0%, #feebc8 100%);
+      border-radius: 15px;
+    }
+    
+    .environment-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    
+    .env-card {
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .env-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .env-card h4 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .env-card p {
+      color: #666;
+      margin-bottom: 15px;
+      line-height: 1.5;
+    }
+    
+    .env-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    
+    .env-features span {
+      background: #e6fffa;
+      color: #234e52;
+      padding: 4px 8px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+    }
+    
+    /* Key Learnings Styles */
+    .key-learnings {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+      border-radius: 15px;
+    }
+    
+    .learning-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    
+    .learning-item {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+    
+    .learning-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    
+    .learning-item h4 {
+      color: #333;
+      margin: 15px 0 10px 0;
+    }
+    
+    .learning-item p {
+      color: #666;
+      line-height: 1.5;
+    }
+    
+    /* CTA Section Styles */
+    .project-cta {
+      margin: 60px 0;
+      padding: 40px;
+      background: linear-gradient(135deg, #764ba2, #667eea);
+      color: white;
+      border-radius: 15px;
+      text-align: center;
+    }
+    
+    .cta-content h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+    
+    .cta-content p {
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .cta-btn {
+      padding: 12px 24px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .cta-btn.primary {
+      background: white;
+      color: #764ba2;
+    }
+    
+    .cta-btn.secondary {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+    
+    /* Demo Section Styles */
     .demo-section {
       background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
       padding: 60px 40px;
@@ -936,6 +1398,20 @@
       
       .demo-grid {
         grid-template-columns: 1fr;
+      }
+      
+      .pipeline-flow {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .pipeline-arrow {
+        transform: rotate(90deg);
+      }
+      
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
       }
     }
   </style>
