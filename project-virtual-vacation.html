@@ -19,6 +19,88 @@
     <a href="contact.html">Contact</a>
   </nav>
 
+  <style>
+    /* Mobile-responsive navigation for Virtual Vacation page */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 15px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+    }
+
+    nav a {
+      color: #66d9ef;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      padding: 8px 16px;
+      border-radius: 4px;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: #a6e22e;
+      background-color: rgba(166, 226, 46, 0.1);
+      transform: translateY(-2px);
+    }
+
+    nav a.active {
+      color: #a6e22e;
+      background-color: rgba(166, 226, 46, 0.2);
+    }
+
+    /* Mobile navigation styles */
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+        position: relative;
+        box-shadow: none;
+        border-bottom: none;
+        background: rgba(26, 26, 26, 0.9);
+      }
+
+      nav a {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        margin: 2px 0;
+      }
+
+      /* Adjust body padding for mobile */
+      body {
+        padding-top: 120px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        padding: 8px;
+        gap: 8px;
+      }
+
+      nav a {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+      }
+
+      body {
+        padding-top: 100px;
+      }
+    }
+  </style>
+
   <div class="main">
     <!-- Navigation back to projects overview -->
     <p style="margin-top:0; margin-bottom:20px; font-size:0.9rem;">

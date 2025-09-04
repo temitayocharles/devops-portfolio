@@ -891,12 +891,13 @@ footer p {
 }
 
 .cta-primary, .cta-secondary {
-  padding: 12px 30px;
+  padding: 12px 20px;
   border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
   transition: all 0.3s ease;
   display: inline-block;
+  font-size: 0.9rem;
 }
 
 .cta-primary {
@@ -1026,6 +1027,14 @@ footer p {
   .cta-buttons {
     flex-direction: column;
     align-items: center;
+  }
+  
+  .cta-primary, .cta-secondary {
+    width: 100%;
+    max-width: 280px;
+    padding: 14px 20px;
+    font-size: 0.95rem;
+    margin: 5px 0;
   }
   
   .project-links {
@@ -2223,17 +2232,6 @@ footer p {
       }
     }
   
-    @media (max-width: 480px) {
-  
-      /* Extra small screen optimizations */
-      .project-hero-card {
-        padding: 1.5rem !important;
-      }
-  
-      .project-card-large {
-        padding: 1.25rem !important;
-      }
-  
       .hero-action-btn {
         padding: 0.875rem 1rem !important;
         font-size: 0.85rem !important;
@@ -2244,82 +2242,86 @@ footer p {
       }
     }
   
-    /* Ensure proper body padding on mobile when main nav is hidden */
+    /* Global Mobile Centering and No Horizontal Scroll */
     @media (max-width: 768px) {
-      body {
-        padding-top: 20px !important;
+      /* Prevent horizontal scrolling globally */
+      html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
       }
-  
-      .main {
-        padding: 20px 1rem !important;
+      
+      /* Ensure all containers are centered and fit viewport */
+      .container, .main, .hero-section, .project-categories, 
+      .expertise-section, .cta-section, .featured-projects-grid {
+        max-width: 100vw !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+        box-sizing: border-box !important;
+        overflow-x: hidden !important;
       }
-  
-      /* Better mobile navigation spacing */
-      .sidebar-toggle {
-        top: 15px !important;
-        left: 15px !important;
-      }
-  
-      /* Ensure hero content is properly centered and readable */
-      .hero-content {
+      
+      /* Center all content sections */
+      .section-header, .value-header, .featured-section, 
+      .collaboration-section, .cloud-showcase {
         text-align: center !important;
+        margin: 0 auto !important;
+        max-width: 100% !important;
         padding: 0 1rem !important;
       }
-  
-      .hero-title {
-        font-size: clamp(2rem, 8vw, 3.5rem) !important;
-        line-height: 1.2 !important;
+      
+      /* Ensure all grids and flex containers center properly */
+      .projects-grid, .value-stats, .benefit-item, .expertise-grid,
+      .tech-showcase, .collaboration-grid, .cloud-cards {
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: 0 auto !important;
       }
-  
-      .hero-subtitle {
-        font-size: 1rem !important;
-        line-height: 1.5 !important;
+      
+      /* Fix any elements that might cause horizontal overflow */
+      .hero-content, .project-hero-content, .contact-card,
+      .featured-project-card, .project-card-large {
+        max-width: 100% !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: 0 1rem !important;
+        box-sizing: border-box !important;
+        word-wrap: break-word !important;
+        overflow-wrap: break-word !important;
       }
-  
-      /* Prevent any horizontal scrolling */
-      html,
-      body {
-        overflow-x: hidden;
-        max-width: 100vw;
+      
+      /* Ensure images and media don't overflow */
+      img, video, svg, .hero-profile-image, .project-icon, 
+      .cloud-icon, .architecture-diagram {
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 0 auto !important;
+        display: block !important;
       }
-  
-      .container {
-        max-width: 100vw;
-        overflow-x: hidden;
+      
+      /* Fix navigation and header elements */
+      nav, .main-navigation, .sidebar-toggle {
+        max-width: 100vw !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
-  
-      /* Ensure all content stays within viewport */
-      .main,
-      .hero-section,
-      .project-categories,
-      .expertise-section,
-      .cta-section {
-        max-width: 100vw;
-        overflow-x: hidden;
+      
+      /* Ensure footer is properly centered */
+      footer {
+        max-width: 100vw !important;
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: 30px 1rem !important;
+        box-sizing: border-box !important;
+        text-align: center !important;
       }
-  
-      /* Featured Projects Grid Container */
-      .featured-projects-grid {
-        width: 100%;
-        max-width: 100vw;
-        padding: 0;
-        margin: 0 auto;
-        box-sizing: border-box;
-      }
-  
-      /* Individual project cards */
-      .project-hero-card,
-      .project-card-large {
-        width: 100%;
-        max-width: 100%;
-        margin: 0 auto;
-        box-sizing: border-box;
-      }
-  
-      /* Ensure project content doesn't overflow */
-      .project-hero-content,
-      .project-card-header {
-        width: 100%;
-        box-sizing: border-box;
+      
+      .social-links {
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
       }
     }
