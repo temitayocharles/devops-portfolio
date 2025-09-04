@@ -179,7 +179,8 @@
   }
 
   body {
-    padding-top: 70px !important; /* Adjust for mobile navigation */
+    padding-top: 20px !important;
+      /* Reduced padding since main nav is hidden on mobile */
   }
 /* Mobile Navigation */
 .nav-container {
@@ -223,6 +224,10 @@
 
 .brand-title {
   font-size: 0.7rem;
+}
+/* Hide main navigation on mobile */
+.main-navigation {
+  display: none;
 }
 }
 
