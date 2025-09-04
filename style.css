@@ -679,38 +679,17 @@ nav a.active {
   box-shadow: 0 0 20px rgba(166, 226, 46, 0.2);
 }
 
-/* Responsive Design for Hero Banner */
+/* Fix hero section height on mobile to prevent content cutoff */
 @media (max-width: 768px) {
-  .hero-banner {
-    height: 400px;
+  .hero-section {
+      min-height: auto !important;
+      padding: 60px 20px !important;
   }
-  
-  .profile-section {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-  
-  .profile-photo {
-    width: 100px;
-    height: 100px;
-  }
-  
-  .profile-info h1 {
-    font-size: 2.2rem;
-  }
-  
-  .profile-info .tagline {
-    font-size: 1rem;
-  }
-  
-  .hero-description {
-    font-size: 1rem;
-  }
-  
-  .cta-button {
-    padding: 12px 24px;
-    font-size: 1rem;
+
+        .hero-banner {
+          min-height: auto !important;
+          height: auto !important;
+          padding: 40px 0 !important;
   }
 }
 
@@ -2136,3 +2115,211 @@ footer p {
   transform: scale(1.05) !important;
   box-shadow: 0 15px 40px rgba(118, 75, 162, 0.6) !important;
 }
+
+    /* Additional Mobile Improvements for Better Centering */
+    @media (max-width: 768px) {
+  
+      /* Project cards better centering */
+      .projects-grid {
+        justify-items: center;
+      }
+  
+      .project-card {
+        width: 100% !important;
+        max-width: 400px !important;
+      }
+  
+      .project-card-large {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+      }
+  
+      .project-hero-card {
+        width: 100% !important;
+        max-width: 400px !important;
+        margin: 0 auto !important;
+      }
+  
+      /* Better spacing for mobile sections */
+      .container {
+        padding: 0 1rem !important;
+      }
+  
+      .section-header {
+        margin-bottom: 2rem !important;
+      }
+  
+      .section-header h2 {
+        font-size: 2rem !important;
+      }
+  
+      /* Improve project showcase layout */
+      .featured-projects-grid {
+        gap: 2rem !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+  
+      /* Better button spacing */
+      .project-actions {
+        gap: 0.75rem !important;
+      }
+  
+      .project-action-btn {
+        padding: 0.75rem 1.25rem !important;
+        font-size: 0.9rem !important;
+      }
+  
+      /* Prevent horizontal overflow */
+      .project-hero-card,
+      .project-card-large {
+        overflow: hidden;
+        word-wrap: break-word;
+        box-sizing: border-box;
+      }
+  
+      /* Better text handling for mobile */
+      .project-hero-text h3,
+      .project-card-meta h3 {
+        word-wrap: break-word;
+        hyphens: auto;
+        font-size: 1.2rem !important;
+      }
+  
+      .project-description {
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+  
+      /* Ensure tech tags don't overflow */
+      .project-tech-stack,
+      .project-hero-tech {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+  
+      .tech-tag,
+      .tech-pill {
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+  
+      /* Better button layout for mobile */
+      .project-hero-actions,
+      .project-actions {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.75rem !important;
+      }
+  
+      .hero-action-btn,
+      .project-action-btn {
+        width: 100% !important;
+        text-align: center;
+        box-sizing: border-box;
+      }
+    }
+  
+    @media (max-width: 480px) {
+  
+      /* Extra small screen optimizations */
+      .project-hero-card {
+        padding: 1.5rem !important;
+      }
+  
+      .project-card-large {
+        padding: 1.25rem !important;
+      }
+  
+      .hero-action-btn {
+        padding: 0.875rem 1rem !important;
+        font-size: 0.85rem !important;
+      }
+  
+      .section-header h2 {
+        font-size: 1.75rem !important;
+      }
+    }
+  
+    /* Ensure proper body padding on mobile when main nav is hidden */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 20px !important;
+      }
+  
+      .main {
+        padding: 20px 1rem !important;
+      }
+  
+      /* Better mobile navigation spacing */
+      .sidebar-toggle {
+        top: 15px !important;
+        left: 15px !important;
+      }
+  
+      /* Ensure hero content is properly centered and readable */
+      .hero-content {
+        text-align: center !important;
+        padding: 0 1rem !important;
+      }
+  
+      .hero-title {
+        font-size: clamp(2rem, 8vw, 3.5rem) !important;
+        line-height: 1.2 !important;
+      }
+  
+      .hero-subtitle {
+        font-size: 1rem !important;
+        line-height: 1.5 !important;
+      }
+  
+      /* Prevent any horizontal scrolling */
+      html,
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+  
+      .container {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+  
+      /* Ensure all content stays within viewport */
+      .main,
+      .hero-section,
+      .project-categories,
+      .expertise-section,
+      .cta-section {
+        max-width: 100vw;
+        overflow-x: hidden;
+      }
+  
+      /* Featured Projects Grid Container */
+      .featured-projects-grid {
+        width: 100%;
+        max-width: 100vw;
+        padding: 0;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+  
+      /* Individual project cards */
+      .project-hero-card,
+      .project-card-large {
+        width: 100%;
+        max-width: 100%;
+        margin: 0 auto;
+        box-sizing: border-box;
+      }
+  
+      /* Ensure project content doesn't overflow */
+      .project-hero-content,
+      .project-card-header {
+        width: 100%;
+        box-sizing: border-box;
+      }
+    }

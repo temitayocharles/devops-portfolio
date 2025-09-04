@@ -9,11 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="sidebar-nav-group">
-                <a href="index.html" class="sidebar-nav-item" data-icon="�">Home</a>
-                <a href="about-me.html" class="sidebar-nav-item" data-icon="👨‍�">About</a>
+                <a href="index.html" class="sidebar-nav-item" data-icon="🏠">Home</a>
+                <a href="about-me.html" class="sidebar-nav-item" data-icon="�">About</a>
                 <a href="skills.html" class="sidebar-nav-item" data-icon="⚡">Skills</a>
                 <a href="projects.html" class="sidebar-nav-item" data-icon="🚀">Projects</a>
-                <a href="contact.html" class="sidebar-nav-item" data-icon="�">Contact</a>
+                <a href="contact.html" class="sidebar-nav-item" data-icon="📧">Contact</a>
             </div>
 
             <div class="sidebar-nav-group">
@@ -25,9 +25,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="sidebar-nav-group">
                 <div class="sidebar-nav-title">Cloud Solutions</div>
-                <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="�">AWS</a>
-                <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="�">Azure</a>
-                <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="�">GCP</a>
+                <a href="aws-solutions.html" class="sidebar-nav-item" data-icon="☁️">AWS</a>
+                <a href="azure-solutions.html" class="sidebar-nav-item" data-icon="☁️">Azure</a>
+                <a href="gcp-solutions.html" class="sidebar-nav-item" data-icon="☁️">GCP</a>
             </div>
 
             <div class="sidebar-footer">
