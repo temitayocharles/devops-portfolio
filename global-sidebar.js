@@ -52,7 +52,11 @@ document.addEventListener('DOMContentLoaded', function() {
             closeSidebar();
         }
     });
-});
+
+    // Close sidebar when clicking on a nav item
+    document.querySelectorAll('.sidebar-nav-item').forEach(link => {
+        link.addEventListener('click', closeSidebar);
+    });
 
 // Toggle sidebar function
 function toggleSidebar() {
