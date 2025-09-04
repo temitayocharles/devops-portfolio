@@ -99,6 +99,136 @@
         padding-top: 100px;
       }
     }
+
+    /* Global mobile fixes for Virtual Vacation page */
+    @media (max-width: 768px) {
+      body {
+        overflow-x: hidden;
+        max-width: 100vw;
+      }
+
+      .main {
+        padding: 0 15px;
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      /* Fix SVG diagrams */
+      svg {
+        max-width: 100%;
+        height: auto;
+      }
+
+      /* Fix wide content */
+      .architecture-diagram,
+      .pipeline-flow,
+      .security-grid,
+      .impact-grid,
+      .tech-stack-summary,
+      .deployment-environments,
+      .key-learnings,
+      .demo-section {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      /* Better spacing for mobile sections */
+      section {
+        margin: 40px 0;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+
+      /* Fix grid layouts */
+      .solution-grid,
+      .challenge-stats,
+      .evolution-phases,
+      .services-grid,
+      .k8s-layers,
+      .pipeline-features,
+      .security-grid,
+      .impact-grid,
+      .stack-categories,
+      .environment-cards,
+      .learning-items,
+      .demo-grid {
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+      }
+
+      /* Fix text and headings */
+      h1, h2, h3 {
+        word-wrap: break-word;
+        hyphens: auto;
+      }
+
+      /* Fix buttons and CTAs */
+      .cta-buttons,
+      .project-actions,
+      .hero-action-btn {
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+
+      .cta-btn,
+      .project-action-btn,
+      .hero-action-btn {
+        width: 100% !important;
+        text-align: center !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* Fix demo cards */
+      .demo-card {
+        max-width: 100%;
+      }
+
+      /* Better touch targets */
+      button, a, .demo-btn {
+        min-height: 44px;
+        min-width: 44px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .main {
+        padding: 0 10px;
+      }
+
+      section {
+        padding: 15px;
+        margin: 30px 0;
+      }
+
+      /* Smaller text for very small screens */
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+
+      /* Fix very small screens */
+      .hero-profile-image {
+        max-width: 150px;
+      }
+
+      .project-icon {
+        font-size: 2rem;
+      }
+    }
   </style>
 
   <div class="main">
