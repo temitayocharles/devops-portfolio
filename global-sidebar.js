@@ -58,3 +58,52 @@ document.addEventListener('DOMContentLoaded', function() {
         link.addEventListener('click', closeSidebar);
     });
 });
+
+// Toggle sidebar function
+function toggleSidebar() {
+    const sidebar = document.getElementById('globalSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+        
+        // Update aria-expanded for accessibility
+        if (toggleBtn) {
+            const isOpen = sidebar.classList.contains('open');
+            toggleBtn.setAttribute('aria-expanded', isOpen);
+        }
+    }
+}
+
+// Close sidebar function
+function closeSidebar() {
+    const sidebar = document.getElementById('globalSidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+    const toggleBtn = document.getElementById('sidebar-toggle');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        
+        // Update aria-expanded for accessibility
+        if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
+    }
+}
+
+// Set active page function
+function setActivePage() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav-item');
+    
+    sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href && (href === currentPage || (currentPage === '' && href === 'index.html'))) {
+            link.classList.add('active');
+        }
+    });
+}

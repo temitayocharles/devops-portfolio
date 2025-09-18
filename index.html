@@ -624,6 +624,18 @@
       display: none;
     }
 
+    /* Show sidebar toggle on mobile devices */
+    @media (max-width: 768px) {
+      .sidebar-toggle {
+        display: block !important;
+      }
+
+      /* Hide main navigation on mobile */
+      .nav-menu {
+        display: none;
+      }
+    }
+
     .sidebar-toggle:hover {
       background: rgba(102, 217, 239, 0.1);
       transform: scale(1.05);
