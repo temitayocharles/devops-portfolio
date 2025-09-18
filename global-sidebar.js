@@ -37,11 +37,20 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 
-        <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+        <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
     `;
 
     // Insert sidebar at beginning of body
     document.body.insertAdjacentHTML('afterbegin', sidebarHTML);
+
+    // Clean up duplicate overlays if they exist
+    const overlays = document.querySelectorAll('.sidebar-overlay');
+    if (overlays.length > 1) {
+        // Keep the first one (newly injected), remove the rest
+        for (let i = 1; i < overlays.length; i++) {
+            overlays[i].remove();
+        }
+    }
 
     // Set active page
     setActivePage();
@@ -62,7 +71,10 @@ document.addEventListener('DOMContentLoaded', function() {
 // Toggle sidebar function
 function toggleSidebar() {
     const sidebar = document.getElementById('globalSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
+    // Robust overlay selection with fallbacks for backward compatibility
+    const overlay = document.getElementById('sidebar-overlay') || 
+                   document.getElementById('sidebarOverlay') || 
+                   document.querySelector('.sidebar-overlay');
     const toggleBtn = document.getElementById('sidebar-toggle');
     
     if (sidebar && overlay) {
@@ -80,7 +92,10 @@ function toggleSidebar() {
 // Close sidebar function
 function closeSidebar() {
     const sidebar = document.getElementById('globalSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
+    // Robust overlay selection with fallbacks for backward compatibility
+    const overlay = document.getElementById('sidebar-overlay') || 
+                   document.getElementById('sidebarOverlay') || 
+                   document.querySelector('.sidebar-overlay');
     const toggleBtn = document.getElementById('sidebar-toggle');
     
     if (sidebar && overlay) {
@@ -92,6 +107,10 @@ function closeSidebar() {
             toggleBtn.setAttribute('aria-expanded', 'false');
         }
     }
+    
+    // Defensive cleanup: remove .active from any remaining overlays
+    const allOverlays = document.querySelectorAll('.sidebar-overlay');
+    allOverlays.forEach(ol => ol.classList.remove('active'));
 }
 
 // Set active page function
