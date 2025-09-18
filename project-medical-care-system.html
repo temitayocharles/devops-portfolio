@@ -1,0 +1,1104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Medical Care System • HIPAA-Compliant Healthcare Platform • Temitayo Charles</title>
+  <meta name="description" content="Enterprise healthcare management system with HIPAA compliance, real-time patient monitoring, secure medical records, and automated workflow processing built with .NET Core, SQL Server, and Azure cloud services.">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    /* Enhanced Project Page Styles */
+    .project-hero {
+      padding: 120px 0 80px;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(102, 217, 239, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(166, 226, 46, 0.15) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #66d9ef;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: #a6e22e;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      opacity: 0.9;
+      line-height: 1.6;
+      max-width: 800px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-item {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(102, 217, 239, 0.2);
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #67ffcc;
+      display: block;
+    }
+
+    .metric-label {
+      color: #66d9ef;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-badge {
+      background: rgba(102, 217, 239, 0.2);
+      color: #66d9ef;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .tech-badge:hover {
+      background: rgba(166, 226, 46, 0.2);
+      color: #a6e22e;
+      border-color: #a6e22e;
+      transform: translateY(-2px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #66d9ef;
+      border: 1px solid #66d9ef;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(102, 217, 239, 0.3);
+    }
+
+    /* Content Sections */
+    .content-section {
+      padding: 4rem 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #66d9ef;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Architecture Diagram */
+    .architecture-diagram {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+
+    .diagram-content {
+      font-family: 'Courier New', monospace;
+      color: #a6e22e;
+      line-height: 1.6;
+      white-space: pre;
+      min-width: 800px;
+    }
+
+    /* Feature Cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #66d9ef;
+      box-shadow: 0 15px 40px rgba(102, 217, 239, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      color: #66d9ef;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .feature-description {
+      color: #f0f0f0;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Code Blocks */
+    .code-block {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      color: #a6e22e;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .code-header {
+      background: rgba(102, 217, 239, 0.1);
+      color: #66d9ef;
+      padding: 0.5rem 1rem;
+      border-radius: 5px 5px 0 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin: -1.5rem -1.5rem 1rem -1.5rem;
+    }
+
+    /* Performance Metrics */
+    .performance-metrics {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      border: 2px solid rgba(102, 217, 239, 0.2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      margin: 3rem 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .performance-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .performance-card:hover {
+      transform: translateY(-5px);
+      background: rgba(102, 217, 239, 0.1);
+    }
+
+    .performance-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #67ffcc;
+      margin-bottom: 0.5rem;
+    }
+
+    .performance-label {
+      color: #f0f0f0;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .performance-description {
+      color: #66d9ef;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Business Impact */
+    .business-impact {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 4rem 0;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .impact-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(166, 226, 46, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .impact-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #a6e22e;
+      margin-bottom: 1rem;
+    }
+
+    .impact-label {
+      color: #f0f0f0;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-description {
+      color: #66d9ef;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Call to Action */
+    .cta-section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .cta-container {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      border: 2px solid rgba(102, 217, 239, 0.2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+    }
+
+    .cta-title {
+      color: #66d9ef;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .cta-description {
+      color: #f0f0f0;
+      opacity: 0.9;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-tech-stack {
+        justify-content: center;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-content {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Temitayo Charles</a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about-me.html" class="nav-link">About</a>
+        <a href="skills.html" class="nav-link">Skills</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Sidebar -->
+  <div class="global-sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sidebar-nav-item">Home</a>
+      <a href="about-me.html" class="sidebar-nav-item">About</a>
+      <a href="skills.html" class="sidebar-nav-item">Skills</a>
+      <a href="projects.html" class="sidebar-nav-item">Projects</a>
+      <a href="contact.html" class="sidebar-nav-item">Contact</a>
+    </nav>
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <!-- Project Hero Section -->
+  <section class="project-hero">
+    <div class="hero-content">
+      <div class="hero-badge">HEALTHCARE TECHNOLOGY</div>
+      <h1 class="hero-title">Medical Care System</h1>
+      <h2 class="hero-subtitle">HIPAA-Compliant Healthcare Management Platform</h2>
+      <p class="hero-description">
+        Enterprise healthcare management system featuring HIPAA compliance, real-time patient monitoring, 
+        secure medical records management, and automated workflow processing. Built with .NET Core, 
+        SQL Server, and Azure cloud services for mission-critical healthcare operations.
+      </p>
+
+      <div class="hero-metrics">
+        <div class="metric-item">
+          <span class="metric-value">100K+</span>
+          <span class="metric-label">Patient Records</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">500+</span>
+          <span class="metric-label">Healthcare Providers</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">99.9%</span>
+          <span class="metric-label">HIPAA Compliance</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">&lt;200ms</span>
+          <span class="metric-label">Critical Data Access</span>
+        </div>
+      </div>
+
+      <div class="hero-tech-stack">
+        <span class="tech-badge">.NET Core 7</span>
+        <span class="tech-badge">ASP.NET Web API</span>
+        <span class="tech-badge">SQL Server 2022</span>
+        <span class="tech-badge">Azure AD B2C</span>
+        <span class="tech-badge">Blazor Server</span>
+        <span class="tech-badge">Entity Framework</span>
+        <span class="tech-badge">Azure Key Vault</span>
+        <span class="tech-badge">SignalR</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#architecture" class="btn btn-primary">
+          View Architecture
+        </a>
+        <a href="#compliance" class="btn btn-secondary">
+          HIPAA Compliance
+        </a>
+        <a href="projects.html" class="btn btn-secondary">
+          ← Back to Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section id="architecture" class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">Healthcare System Architecture</h2>
+      <p class="section-subtitle">HIPAA-compliant infrastructure with enterprise security and scalability</p>
+    </div>
+
+    <div class="architecture-diagram">
+      <div class="diagram-content">
+┌─────────────────────────────────────┐
+│       Azure Application Gateway     │
+│   WAF │ SSL Termination │ DDoS     │
+└─────────────────┬───────────────────┘
+                  │
+┌─────────────────▼───────────────────┐
+│      .NET Core Web API Gateway     │
+│  Auth │ Rate Limiting │ Logging   │
+└─────────────────┬───────────────────┘
+                  │
+  ┌───────────────┼───────────────┐
+  │               │               │
+┌─▼───────┐ ┌─────▼─────┐ ┌───────▼─┐
+│Patient  │ │Provider   │ │Admin    │
+│Service  │ │ Service   │ │Service  │
+│(.NET)   │ │ (.NET)    │ │(.NET)   │
+└─────────┘ └───────────┘ └─────────┘
+  │               │               │
+┌─▼───────┐ ┌─────▼─────┐ ┌───────▼─┐
+│Records  │ │Appointment│ │Billing  │
+│Service  │ │  Service  │ │Service  │
+│(.NET)   │ │  (.NET)   │ │(.NET)   │
+└─────────┘ └───────────┘ └─────────┘
+  │               │               │
+  └───────────────┼───────────────┘
+                  │
+┌─────────────────▼───────────────────┐
+│        Security & Compliance       │
+│Azure AD B2C│Key Vault│Audit Logs  │
+└─────────────────┬───────────────────┘
+                  │
+┌─────────────────▼───────────────────┐
+│           Data Layer               │
+│SQL Server│Azure Storage│Cosmos DB │
+└─────────────────────────────────────┘
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">⚕️</span>
+        <h3 class="feature-title">.NET Core Healthcare APIs</h3>
+        <p class="feature-description">
+          High-performance ASP.NET Core Web APIs with Entity Framework, providing secure, 
+          scalable healthcare data management with advanced caching and optimization.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔒</span>
+        <h3 class="feature-title">HIPAA Compliance</h3>
+        <p class="feature-description">
+          Complete HIPAA compliance with encrypted data storage, audit trails, access controls, 
+          and privacy safeguards protecting sensitive patient health information.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">👨‍⚕️</span>
+        <h3 class="feature-title">Patient Management</h3>
+        <p class="feature-description">
+          Comprehensive patient records management with medical history, treatment plans, 
+          medication tracking, and real-time health monitoring capabilities.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📅</span>
+        <h3 class="feature-title">Appointment Scheduling</h3>
+        <p class="feature-description">
+          Advanced scheduling system with provider availability, patient preferences, 
+          automated reminders, and integration with calendar systems.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">💉</span>
+        <h3 class="feature-title">Treatment Workflows</h3>
+        <p class="feature-description">
+          Automated healthcare workflows for treatment protocols, medication management, 
+          lab results processing, and clinical decision support systems.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3 class="feature-title">Healthcare Analytics</h3>
+        <p class="feature-description">
+          Advanced analytics and reporting for population health management, 
+          treatment outcomes, and operational efficiency optimization.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Implementation -->
+  <section class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">Technical Implementation</h2>
+      <p class="section-subtitle">Enterprise .NET patterns and healthcare compliance architecture</p>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">.NET Core Patient Management API</div>
+      <pre><code>[ApiController]
+[Route("api/[controller]")]
+[Authorize(Policy = "HealthcareProvider")]
+public class PatientController : ControllerBase
+{
+    private readonly IPatientService _patientService;
+    private readonly ILogger&lt;PatientController&gt; _logger;
+    private readonly IAuditService _auditService;
+    
+    public PatientController(
+        IPatientService patientService,
+        ILogger&lt;PatientController&gt; logger,
+        IAuditService auditService)
+    {
+        _patientService = patientService;
+        _logger = logger;
+        _auditService = auditService;
+    }
+    
+    [HttpGet("{patientId}")]
+    [RequireScope("patient.read")]
+    public async Task&lt;ActionResult&lt;PatientDto&gt;&gt; GetPatient(Guid patientId)
+    {
+        try
+        {
+            // Verify provider has access to this patient
+            var currentUser = User.Identity.Name;
+            if (!await _patientService.HasPatientAccessAsync(currentUser, patientId))
+            {
+                await _auditService.LogUnauthorizedAccessAsync(
+                    currentUser, "Patient", patientId, "Read");
+                return Forbid("Access denied to patient record");
+            }
+            
+            var patient = await _patientService.GetPatientAsync(patientId);
+            if (patient == null)
+                return NotFound();
+            
+            // Log HIPAA audit trail
+            await _auditService.LogDataAccessAsync(
+                currentUser, "Patient", patientId, "Read", 
+                HttpContext.Connection.RemoteIpAddress?.ToString());
+            
+            return Ok(patient);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error retrieving patient {PatientId}", patientId);
+            return StatusCode(500, "Internal server error");
+        }
+    }
+    
+    [HttpPost]
+    [RequireScope("patient.write")]
+    public async Task&lt;ActionResult&lt;PatientDto&gt;&gt; CreatePatient(CreatePatientRequest request)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        
+        try
+        {
+            // Validate provider permissions
+            var currentUser = User.Identity.Name;
+            if (!await _patientService.CanCreatePatientAsync(currentUser))
+            {
+                return Forbid("Insufficient permissions to create patient");
+            }
+            
+            // Create patient with encryption
+            var patient = await _patientService.CreatePatientAsync(request, currentUser);
+            
+            // HIPAA audit logging
+            await _auditService.LogDataCreationAsync(
+                currentUser, "Patient", patient.Id, 
+                request.GetSensitiveDataFields());
+            
+            return CreatedAtAction(
+                nameof(GetPatient), 
+                new { patientId = patient.Id }, 
+                patient);
+        }
+        catch (ValidationException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating patient");
+            return StatusCode(500, "Internal server error");
+        }
+    }
+}
+
+public class PatientService : IPatientService
+{
+    private readonly ApplicationDbContext _context;
+    private readonly IEncryptionService _encryptionService;
+    private readonly IMemoryCache _cache;
+    
+    public PatientService(
+        ApplicationDbContext context,
+        IEncryptionService encryptionService,
+        IMemoryCache cache)
+    {
+        _context = context;
+        _encryptionService = encryptionService;
+        _cache = cache;
+    }
+    
+    public async Task&lt;PatientDto&gt; GetPatientAsync(Guid patientId)
+    {
+        // Check cache first (with expiration for sensitive data)
+        var cacheKey = $"patient_{patientId}";
+        if (_cache.TryGetValue(cacheKey, out PatientDto cachedPatient))
+        {
+            return cachedPatient;
+        }
+        
+        // Query database with encrypted data handling
+        var patient = await _context.Patients
+            .Include(p =&gt; p.MedicalHistory)
+            .Include(p =&gt; p.Appointments)
+            .Include(p =&gt; p.Medications)
+            .FirstOrDefaultAsync(p =&gt; p.Id == patientId);
+        
+        if (patient == null)
+            return null;
+        
+        // Decrypt sensitive fields
+        var patientDto = new PatientDto
+        {
+            Id = patient.Id,
+            FirstName = await _encryptionService.DecryptAsync(patient.EncryptedFirstName),
+            LastName = await _encryptionService.DecryptAsync(patient.EncryptedLastName),
+            DateOfBirth = patient.DateOfBirth,
+            SocialSecurityNumber = await _encryptionService.DecryptAsync(patient.EncryptedSSN),
+            MedicalRecordNumber = patient.MedicalRecordNumber,
+            ContactInfo = await DecryptContactInfoAsync(patient.EncryptedContactInfo),
+            MedicalHistory = patient.MedicalHistory.Select(h =&gt; new MedicalHistoryDto
+            {
+                Id = h.Id,
+                Condition = h.Condition,
+                DiagnosisDate = h.DiagnosisDate,
+                TreatmentPlan = h.TreatmentPlan,
+                Notes = h.Notes
+            }).ToList()
+        };
+        
+        // Cache for 5 minutes only (sensitive data)
+        _cache.Set(cacheKey, patientDto, TimeSpan.FromMinutes(5));
+        
+        return patientDto;
+    }
+    
+    public async Task&lt;bool&gt; HasPatientAccessAsync(string providerId, Guid patientId)
+    {
+        // Check provider-patient relationship
+        return await _context.ProviderPatientAccess
+            .AnyAsync(ppa =&gt; ppa.ProviderId == providerId 
+                           && ppa.PatientId == patientId 
+                           && ppa.IsActive 
+                           && ppa.ExpiresAt &gt; DateTime.UtcNow);
+    }
+}</code></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">HIPAA Audit Logging Service</div>
+      <pre><code>public class AuditService : IAuditService
+{
+    private readonly ApplicationDbContext _context;
+    private readonly IConfiguration _configuration;
+    private readonly ILogger&lt;AuditService&gt; _logger;
+    
+    public AuditService(
+        ApplicationDbContext context,
+        IConfiguration configuration,
+        ILogger&lt;AuditService&gt; logger)
+    {
+        _context = context;
+        _configuration = configuration;
+        _logger = logger;
+    }
+    
+    public async Task LogDataAccessAsync(
+        string userId, 
+        string resourceType, 
+        Guid resourceId, 
+        string action,
+        string ipAddress = null)
+    {
+        try
+        {
+            var auditLog = new AuditLog
+            {
+                Id = Guid.NewGuid(),
+                UserId = userId,
+                ResourceType = resourceType,
+                ResourceId = resourceId,
+                Action = action,
+                Timestamp = DateTime.UtcNow,
+                IpAddress = ipAddress,
+                UserAgent = GetUserAgent(),
+                SessionId = GetSessionId(),
+                ComplianceLevel = "HIPAA",
+                TenantId = GetTenantId(),
+                Severity = GetActionSeverity(action)
+            };
+            
+            _context.AuditLogs.Add(auditLog);
+            await _context.SaveChangesAsync();
+            
+            // Send to compliance monitoring system
+            await SendToComplianceMonitoringAsync(auditLog);
+            
+            // Check for suspicious patterns
+            await DetectSuspiciousActivityAsync(userId, resourceType, action);
+            
+        }
+        catch (Exception ex)
+        {
+            // Critical: Audit logging must not fail
+            _logger.LogCritical(ex, 
+                "CRITICAL: Audit logging failed for user {UserId} accessing {ResourceType} {ResourceId}",
+                userId, resourceType, resourceId);
+            
+            // Failsafe: Log to secondary system
+            await LogToSecondaryAuditSystemAsync(userId, resourceType, resourceId, action, ex);
+        }
+    }
+    
+    public async Task LogUnauthorizedAccessAsync(
+        string userId, 
+        string resourceType, 
+        Guid resourceId, 
+        string attemptedAction)
+    {
+        var unauthorizedAccess = new UnauthorizedAccessLog
+        {
+            Id = Guid.NewGuid(),
+            UserId = userId,
+            ResourceType = resourceType,
+            ResourceId = resourceId,
+            AttemptedAction = attemptedAction,
+            Timestamp = DateTime.UtcNow,
+            IpAddress = GetIpAddress(),
+            UserAgent = GetUserAgent(),
+            RiskLevel = "HIGH",
+            AutoBlocked = ShouldAutoBlock(userId),
+            ComplianceAlert = true
+        };
+        
+        _context.UnauthorizedAccessLogs.Add(unauthorizedAccess);
+        await _context.SaveChangesAsync();
+        
+        // Immediate security response
+        await TriggerSecurityResponseAsync(unauthorizedAccess);
+        
+        // Notify compliance officer
+        await NotifyComplianceOfficerAsync(unauthorizedAccess);
+    }
+    
+    private async Task DetectSuspiciousActivityAsync(
+        string userId, 
+        string resourceType, 
+        string action)
+    {
+        var recentAccess = await _context.AuditLogs
+            .Where(al =&gt; al.UserId == userId 
+                      && al.Timestamp &gt; DateTime.UtcNow.AddMinutes(-10))
+            .CountAsync();
+        
+        // Alert if more than 50 records accessed in 10 minutes
+        if (recentAccess &gt; 50)
+        {
+            await TriggerSuspiciousActivityAlertAsync(userId, recentAccess);
+        }
+        
+        // Check for after-hours access
+        var currentHour = DateTime.Now.Hour;
+        if (currentHour &lt; 6 || currentHour &gt; 22)
+        {
+            await LogAfterHoursAccessAsync(userId, resourceType, action);
+        }
+    }
+    
+    public async Task&lt;ComplianceReport&gt; GenerateComplianceReportAsync(
+        DateTime startDate, 
+        DateTime endDate)
+    {
+        var auditLogs = await _context.AuditLogs
+            .Where(al =&gt; al.Timestamp &gt;= startDate && al.Timestamp &lt;= endDate)
+            .ToListAsync();
+        
+        return new ComplianceReport
+        {
+            ReportPeriod = $"{startDate:yyyy-MM-dd} to {endDate:yyyy-MM-dd}",
+            TotalDataAccess = auditLogs.Count,
+            UniqueUsers = auditLogs.Select(al =&gt; al.UserId).Distinct().Count(),
+            UnauthorizedAttempts = await _context.UnauthorizedAccessLogs
+                .CountAsync(ual =&gt; ual.Timestamp &gt;= startDate && ual.Timestamp &lt;= endDate),
+            ComplianceScore = CalculateComplianceScore(auditLogs),
+            SecurityIncidents = await GetSecurityIncidentsAsync(startDate, endDate),
+            DataBreachAnalysis = await AnalyzeDataBreachRiskAsync(auditLogs),
+            RecommendedActions = await GenerateComplianceRecommendationsAsync(auditLogs)
+        };
+    }
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- HIPAA Compliance -->
+  <section id="compliance" class="content-section">
+    <div class="performance-metrics">
+      <div class="section-header">
+        <h2 class="section-title">HIPAA Compliance Excellence</h2>
+        <p class="section-subtitle">Meeting healthcare regulatory requirements with enterprise security</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="performance-card">
+          <div class="performance-value">256-bit</div>
+          <div class="performance-label">AES Encryption</div>
+          <div class="performance-description">All patient data at rest</div>
+        </div>
+
+        <div class="performance-card">
+          <div class="performance-value">100%</div>
+          <div class="performance-label">Audit Trail Coverage</div>
+          <div class="performance-description">Every data access logged</div>
+        </div>
+
+        <div class="performance-card">
+          <div class="performance-value">&lt;500ms</div>
+          <div class="performance-label">Access Control Validation</div>
+          <div class="performance-description">Real-time authorization</div>
+        </div>
+
+        <div class="performance-card">
+          <div class="performance-value">99.95%</div>
+          <div class="performance-label">System Availability</div>
+          <div class="performance-description">Mission-critical uptime</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Impact -->
+  <section class="business-impact">
+    <div class="content-section">
+      <div class="section-header">
+        <h2 class="section-title">Healthcare Impact</h2>
+        <p class="section-subtitle">Transforming patient care through secure technology</p>
+      </div>
+
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-value">100K+</div>
+          <div class="impact-label">Patient Records Managed</div>
+          <div class="impact-description">Comprehensive healthcare data</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-value">45%</div>
+          <div class="impact-label">Administrative Time Reduction</div>
+          <div class="impact-description">Automated workflow processing</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-value">95%</div>
+          <div class="impact-label">Provider Satisfaction</div>
+          <div class="impact-description">Improved clinical workflow</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-value">Zero</div>
+          <div class="impact-label">HIPAA Violations</div>
+          <div class="impact-description">Perfect compliance record</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="content-section">
+      <div class="cta-container">
+        <h2 class="cta-title">Ready to Build Healthcare Solutions?</h2>
+        <p class="cta-description">
+          Interested in developing HIPAA-compliant healthcare systems? Let's discuss how these 
+          .NET enterprise patterns can transform your healthcare technology infrastructure.
+        </p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">
+            Discuss This Project
+          </a>
+          <a href="projects.html" class="btn btn-secondary">
+            View More Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3 class="footer-title">Connect with Me</h3>
+      <div class="social-links">
+        <a href="https://github.com/temitayocharles" target="_blank" class="social-link">GitHub</a>
+        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
+        <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
+      </div>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Full-Stack Developer</p>
+    </div>
+  </footer>
+
+  <script src="global-sidebar.js"></script>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animate metrics on scroll
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards and metrics
+    document.querySelectorAll('.feature-card, .performance-card, .impact-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</body>
+</html>
