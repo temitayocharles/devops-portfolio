@@ -21,7 +21,7 @@
   <g transform="translate(50, 80)">
     <!-- Stage 1: Code -->
     <rect x="0" y="0" width="120" height="80" rx="10" fill="#4ade80" stroke="#22c55e" stroke-width="2"/>
-    <text x="60" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">📝 Code</text>
+    <text x="60" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">ğŸ“� Code</text>
     <text x="60" y="50" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Git Push</text>
     <text x="60" y="65" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Branch Protection</text>
     
@@ -30,7 +30,7 @@
     
     <!-- Stage 2: Build -->
     <rect x="170" y="0" width="120" height="80" rx="10" fill="#3b82f6" stroke="#2563eb" stroke-width="2"/>
-    <text x="230" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">🔨 Build</text>
+    <text x="230" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">ğŸ”¨ Build</text>
     <text x="230" y="50" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Docker Build</text>
     <text x="230" y="65" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Vulnerability Scan</text>
     
@@ -39,7 +39,7 @@
     
     <!-- Stage 3: Test -->
     <rect x="340" y="0" width="120" height="80" rx="10" fill="#f59e0b" stroke="#d97706" stroke-width="2"/>
-    <text x="400" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">🧪 Test</text>
+    <text x="400" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">ğŸ§ª Test</text>
     <text x="400" y="50" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Unit Tests</text>
     <text x="400" y="65" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Integration Tests</text>
     
@@ -48,7 +48,7 @@
     
     <!-- Stage 4: Security -->
     <rect x="510" y="0" width="120" height="80" rx="10" fill="#ef4444" stroke="#dc2626" stroke-width="2"/>
-    <text x="570" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">🔐 Security</text>
+    <text x="570" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">ğŸ”� Security</text>
     <text x="570" y="50" text-anchor="middle" style="font-family: Arial; font-size: 10px;">SAST/DAST</text>
     <text x="570" y="65" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Policy Check</text>
     
@@ -57,7 +57,7 @@
     
     <!-- Stage 5: Deploy -->
     <rect x="680" y="0" width="120" height="80" rx="10" fill="#8b5cf6" stroke="#7c3aed" stroke-width="2"/>
-    <text x="740" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">🚀 Deploy</text>
+    <text x="740" y="30" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold;">ğŸš€ Deploy</text>
     <text x="740" y="50" text-anchor="middle" style="font-family: Arial; font-size: 10px;">GitOps</text>
     <text x="740" y="65" text-anchor="middle" style="font-family: Arial; font-size: 10px;">Multi-Environment</text>
   </g>
@@ -70,7 +70,7 @@
     
     <!-- Dev Environment -->
     <rect x="0" y="40" width="150" height="60" rx="8" fill="rgba(74, 222, 128, 0.3)" stroke="#4ade80" stroke-width="2"/>
-    <text x="75" y="60" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">🔬 Development</text>
+    <text x="75" y="60" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">ğŸ”¬ Development</text>
     <text x="75" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: #f0f0f0;">Auto Deploy</text>
     
     <!-- Arrow -->
@@ -78,7 +78,7 @@
     
     <!-- Staging Environment -->
     <rect x="200" y="40" width="150" height="60" rx="8" fill="rgba(245, 158, 11, 0.3)" stroke="#f59e0b" stroke-width="2"/>
-    <text x="275" y="60" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">🎭 Staging</text>
+    <text x="275" y="60" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">ğŸ�­ Staging</text>
     <text x="275" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: #f0f0f0;">Manual Approval</text>
     
     <!-- Arrow -->
@@ -86,16 +86,16 @@
     
     <!-- Production Environment -->
     <rect x="400" y="40" width="150" height="60" rx="8" fill="rgba(239, 68, 68, 0.3)" stroke="#ef4444" stroke-width="2"/>
-    <text x="475" y="60" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">🏭 Production</text>
+    <text x="475" y="60" text-anchor="middle" style="font-family: Arial; font-size: 12px; font-weight: bold; fill: white;">ğŸ�­ Production</text>
     <text x="475" y="80" text-anchor="middle" style="font-family: Arial; font-size: 10px; fill: #f0f0f0;">Blue/Green Deploy</text>
   </g>
   
   <!-- Metrics -->
   <rect x="50" y="320" width="800" height="50" rx="10" fill="rgba(255, 255, 255, 0.1)"/>
   <text x="450" y="340" text-anchor="middle" style="font-family: Arial; font-size: 14px; font-weight: bold; fill: white;">
-    📊 Pipeline Metrics: 99.2% Success Rate • 8min Average Build Time • Zero Downtime Deployments
+    ğŸ“Š Pipeline Metrics: 99.2% Success Rate â€¢ 8min Average Build Time â€¢ Zero Downtime Deployments
   </text>
   <text x="450" y="355" text-anchor="middle" style="font-family: Arial; font-size: 12px; fill: #f0f0f0;">
-    Automated rollbacks • Real-time monitoring • Compliance reporting
+    Automated rollbacks â€¢ Real-time monitoring â€¢ Compliance reporting
   </text>
 </svg>

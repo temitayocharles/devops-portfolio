@@ -41,7 +41,7 @@
   <!-- Developer Section -->
   <g id="developer">
     <rect x="50" y="100" width="200" height="100" rx="10" fill="url(#gitGrad)" stroke="#24292e" stroke-width="2" filter="url(#shadow)"/>
-    <text x="150" y="130" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">👨‍💻 Developer</text>
+    <text x="150" y="130" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">ğŸ‘¨â€�ğŸ’» Developer</text>
     <text x="150" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #f6f8fa;">Feature Branch</text>
     <text x="150" y="170" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #f6f8fa;">Code Changes</text>
     <text x="150" y="185" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #c9d1d9;">git push origin feature-branch</text>
@@ -54,7 +54,7 @@
   <!-- GitHub Section -->
   <g id="github">
     <rect x="340" y="100" width="200" height="100" rx="10" fill="url(#gitGrad)" stroke="#24292e" stroke-width="2" filter="url(#shadow)"/>
-    <text x="440" y="130" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">📦 GitHub</text>
+    <text x="440" y="130" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">ğŸ“¦ GitHub</text>
     <text x="440" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #f6f8fa;">Repository</text>
     <text x="440" y="170" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #f6f8fa;">Pull Request</text>
     <text x="440" y="185" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #c9d1d9;">Branch Protection Rules</text>
@@ -68,26 +68,26 @@
   <g id="pipeline">
     <rect x="630" y="80" width="600" height="140" rx="10" fill="#ffffff" stroke="#1976d2" stroke-width="3" filter="url(#shadow)"/>
     <rect x="630" y="80" width="600" height="30" rx="10" fill="url(#ciGrad)"/>
-    <text x="930" y="100" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">🔄 CI/CD Pipeline (GitHub Actions)</text>
+    <text x="930" y="100" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">ğŸ”„ CI/CD Pipeline (GitHub Actions)</text>
     
     <!-- Pipeline stages -->
     <rect x="650" y="130" width="100" height="70" rx="6" fill="#e3f2fd" stroke="#1976d2" stroke-width="1"/>
-    <text x="700" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #1976d2;">🔨 Build</text>
+    <text x="700" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #1976d2;">ğŸ”¨ Build</text>
     <text x="700" y="170" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Docker Build</text>
     <text x="700" y="185" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Multi-arch</text>
     
     <rect x="770" y="130" width="100" height="70" rx="6" fill="#ffebee" stroke="#d32f2f" stroke-width="1"/>
-    <text x="820" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">🛡️ Security</text>
+    <text x="820" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">ğŸ›¡ï¸� Security</text>
     <text x="820" y="170" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Trivy Scan</text>
     <text x="820" y="185" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">SAST/DAST</text>
     
     <rect x="890" y="130" width="100" height="70" rx="6" fill="#fff3e0" stroke="#ff9800" stroke-width="1"/>
-    <text x="940" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #f57c00;">🧪 Test</text>
+    <text x="940" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #f57c00;">ğŸ§ª Test</text>
     <text x="940" y="170" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Unit Tests</text>
     <text x="940" y="185" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Integration</text>
     
     <rect x="1010" y="130" width="100" height="70" rx="6" fill="#e8f5e8" stroke="#4caf50" stroke-width="1"/>
-    <text x="1060" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #2e7d32;">📦 Package</text>
+    <text x="1060" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #2e7d32;">ğŸ“¦ Package</text>
     <text x="1060" y="170" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Container</text>
     <text x="1060" y="185" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Registry Push</text>
     
@@ -100,7 +100,7 @@
   <!-- GitOps Section -->
   <g id="gitops">
     <rect x="1270" y="100" width="120" height="100" rx="10" fill="url(#deployGrad)" stroke="#4caf50" stroke-width="2" filter="url(#shadow)"/>
-    <text x="1330" y="130" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #ffffff;">🔄 GitOps</text>
+    <text x="1330" y="130" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; font-weight: 600; fill: #ffffff;">ğŸ”„ GitOps</text>
     <text x="1330" y="150" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e8f5e8;">ArgoCD</text>
     <text x="1330" y="170" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e8f5e8;">Config Sync</text>
     <text x="1330" y="185" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #c8e6c9;">Auto Deploy</text>
@@ -111,11 +111,11 @@
   
   <!-- Environment Tiers -->
   <g id="environments">
-    <text x="700" y="290" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #424242;">🏗️ Multi-Environment Deployment</text>
+    <text x="700" y="290" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #424242;">ğŸ�—ï¸� Multi-Environment Deployment</text>
     
     <!-- Development -->
     <rect x="150" y="320" width="250" height="120" rx="10" fill="url(#deployGrad)" stroke="#4caf50" stroke-width="2" filter="url(#shadow)"/>
-    <text x="275" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">🔬 Development</text>
+    <text x="275" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">ğŸ”¬ Development</text>
     <text x="275" y="375" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e8f5e8;">Auto Deploy on PR Merge</text>
     <text x="275" y="395" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e8f5e8;">Feature Testing</text>
     <text x="275" y="415" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e8f5e8;">Integration Validation</text>
@@ -123,7 +123,7 @@
     
     <!-- Staging -->
     <rect x="450" y="320" width="250" height="120" rx="10" fill="url(#ciGrad)" stroke="#1976d2" stroke-width="2" filter="url(#shadow)"/>
-    <text x="575" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">🎭 Staging</text>
+    <text x="575" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">ğŸ�­ Staging</text>
     <text x="575" y="375" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e3f2fd;">Manual Approval Gate</text>
     <text x="575" y="395" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e3f2fd;">E2E Testing</text>
     <text x="575" y="415" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #e3f2fd;">Performance Testing</text>
@@ -131,7 +131,7 @@
     
     <!-- Production -->
     <rect x="750" y="320" width="250" height="120" rx="10" fill="url(#securityGrad)" stroke="#d32f2f" stroke-width="2" filter="url(#shadow)"/>
-    <text x="875" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">🏭 Production</text>
+    <text x="875" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #ffffff;">ğŸ�­ Production</text>
     <text x="875" y="375" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #ffebee;">Blue/Green Deployment</text>
     <text x="875" y="395" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #ffebee;">Zero Downtime</text>
     <text x="875" y="415" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #ffebee;">Automatic Rollback</text>
@@ -151,7 +151,7 @@
   <!-- Monitoring & Observability -->
   <g id="monitoring">
     <rect x="1050" y="320" width="300" height="120" rx="10" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2" filter="url(#shadow)"/>
-    <text x="1200" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #6a1b9a;">📊 Monitoring & Observability</text>
+    <text x="1200" y="350" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #6a1b9a;">ğŸ“Š Monitoring & Observability</text>
     
     <rect x="1070" y="365" width="80" height="60" rx="4" fill="#ffffff" stroke="#9c27b0" stroke-width="1"/>
     <text x="1110" y="385" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 11px; font-weight: 600; fill: #6a1b9a;">Prometheus</text>
@@ -172,30 +172,30 @@
   <!-- Security Layer -->
   <g id="security">
     <rect x="50" y="500" width="1300" height="100" rx="10" fill="#ffebee" stroke="#d32f2f" stroke-width="2" filter="url(#shadow)"/>
-    <text x="700" y="530" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #c62828;">🔒 Security & Compliance Layer</text>
+    <text x="700" y="530" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #c62828;">ğŸ”’ Security & Compliance Layer</text>
     
-    <text x="200" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">🛡️ SAST/DAST</text>
+    <text x="200" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">ğŸ›¡ï¸� SAST/DAST</text>
     <text x="200" y="575" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Static Analysis</text>
     
-    <text x="400" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">🔍 Trivy Scanning</text>
+    <text x="400" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">ğŸ”� Trivy Scanning</text>
     <text x="400" y="575" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">Vulnerability</text>
     
-    <text x="600" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">📋 Policy Checks</text>
+    <text x="600" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">ğŸ“‹ Policy Checks</text>
     <text x="600" y="575" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">OPA Gatekeeper</text>
     
-    <text x="800" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">🔐 Secrets Management</text>
+    <text x="800" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">ğŸ”� Secrets Management</text>
     <text x="800" y="575" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">HashiCorp Vault</text>
     
-    <text x="1000" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">📜 Compliance</text>
+    <text x="1000" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">ğŸ“œ Compliance</text>
     <text x="1000" y="575" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">SOC2, PCI DSS</text>
     
-    <text x="1200" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">📊 Audit Logging</text>
+    <text x="1200" y="555" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; font-weight: 600; fill: #d32f2f;">ğŸ“Š Audit Logging</text>
     <text x="1200" y="575" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 10px; fill: #666;">ELK Stack</text>
   </g>
   
   <!-- Performance Metrics -->
   <rect x="50" y="650" width="1300" height="100" rx="10" fill="#e8f5e8" stroke="#4caf50" stroke-width="2" filter="url(#shadow)"/>
-  <text x="700" y="680" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #2e7d32;">📈 Pipeline Performance Metrics</text>
+  <text x="700" y="680" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 18px; font-weight: 600; fill: #2e7d32;">ğŸ“ˆ Pipeline Performance Metrics</text>
   
   <text x="200" y="705" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 16px; font-weight: 600; fill: #2e7d32;">8 min</text>
   <text x="200" y="725" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #666;">Avg Build Time</text>
@@ -217,6 +217,6 @@
   
   <!-- Footer -->
   <text x="700" y="830" text-anchor="middle" style="font-family: 'Segoe UI', Arial, sans-serif; font-size: 12px; fill: #999;">
-    Enterprise-grade CI/CD pipeline with GitOps automation • Multi-environment deployment • Security-first approach
+    Enterprise-grade CI/CD pipeline with GitOps automation â€¢ Multi-environment deployment â€¢ Security-first approach
   </text>
 </svg>

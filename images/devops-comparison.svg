@@ -20,55 +20,55 @@
   <!-- Before Section -->
   <rect x="50" y="80" width="400" height="480" rx="20" fill="url(#before-grad)" stroke="#e53e3e" stroke-width="3"/>
   <text x="250" y="120" text-anchor="middle" style="font-family: Arial; font-size: 24px; font-weight: bold; fill: white;">
-    ❌ Before: Traditional Approach
+    â�Œ Before: Traditional Approach
   </text>
   
   <!-- Before Problems -->
   <g transform="translate(80, 150)">
     <rect x="0" y="0" width="340" height="40" rx="8" fill="rgba(229, 62, 62, 0.3)"/>
-    <text x="20" y="25" style="font-family: Arial; font-size: 14px; fill: white;">⏰ Manual deployments taking hours</text>
+    <text x="20" y="25" style="font-family: Arial; font-size: 14px; fill: white;">â�° Manual deployments taking hours</text>
     
     <rect x="0" y="60" width="340" height="40" rx="8" fill="rgba(229, 62, 62, 0.3)"/>
-    <text x="20" y="85" style="font-family: Arial; font-size: 14px; fill: white;">🔥 Inconsistent environments</text>
+    <text x="20" y="85" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ”¥ Inconsistent environments</text>
     
     <rect x="0" y="120" width="340" height="40" rx="8" fill="rgba(229, 62, 62, 0.3)"/>
-    <text x="20" y="145" style="font-family: Arial; font-size: 14px; fill: white;">📈 High failure rates (40%+)</text>
+    <text x="20" y="145" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ“ˆ High failure rates (40%+)</text>
     
     <rect x="0" y="180" width="340" height="40" rx="8" fill="rgba(229, 62, 62, 0.3)"/>
-    <text x="20" y="205" style="font-family: Arial; font-size: 14px; fill: white;">💰 Resource waste and high costs</text>
+    <text x="20" y="205" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ’° Resource waste and high costs</text>
     
     <rect x="0" y="240" width="340" height="40" rx="8" fill="rgba(229, 62, 62, 0.3)"/>
-    <text x="20" y="265" style="font-family: Arial; font-size: 14px; fill: white;">🚫 Limited monitoring visibility</text>
+    <text x="20" y="265" style="font-family: Arial; font-size: 14px; fill: white;">ğŸš« Limited monitoring visibility</text>
     
     <rect x="0" y="300" width="340" height="40" rx="8" fill="rgba(229, 62, 62, 0.3)"/>
-    <text x="20" y="325" style="font-family: Arial; font-size: 14px; fill: white;">😰 Developer frustration</text>
+    <text x="20" y="325" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ˜° Developer frustration</text>
   </g>
   
   <!-- After Section -->
   <rect x="550" y="80" width="400" rx="20" height="480" fill="url(#after-grad)" stroke="#38a169" stroke-width="3"/>
   <text x="750" y="120" text-anchor="middle" style="font-family: Arial; font-size: 24px; font-weight: bold; fill: white;">
-    ✅ After: DevOps Excellence
+    âœ… After: DevOps Excellence
   </text>
   
   <!-- After Benefits -->
   <g transform="translate(580, 150)">
     <rect x="0" y="0" width="340" height="40" rx="8" fill="rgba(56, 161, 105, 0.3)"/>
-    <text x="20" y="25" style="font-family: Arial; font-size: 14px; fill: white;">⚡ Automated deployments in minutes</text>
+    <text x="20" y="25" style="font-family: Arial; font-size: 14px; fill: white;">âš¡ Automated deployments in minutes</text>
     
     <rect x="0" y="60" width="340" height="40" rx="8" fill="rgba(56, 161, 105, 0.3)"/>
-    <text x="20" y="85" style="font-family: Arial; font-size: 14px; fill: white;">🎯 Consistent, reproducible environments</text>
+    <text x="20" y="85" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ�¯ Consistent, reproducible environments</text>
     
     <rect x="0" y="120" width="340" height="40" rx="8" fill="rgba(56, 161, 105, 0.3)"/>
-    <text x="20" y="145" style="font-family: Arial; font-size: 14px; fill: white;">📊 99.9% deployment success rate</text>
+    <text x="20" y="145" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ“Š 99.9% deployment success rate</text>
     
     <rect x="0" y="180" width="340" height="40" rx="8" fill="rgba(56, 161, 105, 0.3)"/>
-    <text x="20" y="205" style="font-family: Arial; font-size: 14px; fill: white;">💎 35% cost reduction achieved</text>
+    <text x="20" y="205" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ’� 35% cost reduction achieved</text>
     
     <rect x="0" y="240" width="340" height="40" rx="8" fill="rgba(56, 161, 105, 0.3)"/>
-    <text x="20" y="265" style="font-family: Arial; font-size: 14px; fill: white;">👁️ Complete observability stack</text>
+    <text x="20" y="265" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ‘�ï¸� Complete observability stack</text>
     
     <rect x="0" y="300" width="340" height="40" rx="8" fill="rgba(56, 161, 105, 0.3)"/>
-    <text x="20" y="325" style="font-family: Arial; font-size: 14px; fill: white;">😊 Developer productivity +300%</text>
+    <text x="20" y="325" style="font-family: Arial; font-size: 14px; fill: white;">ğŸ˜Š Developer productivity +300%</text>
   </g>
   
   <!-- Arrow -->
