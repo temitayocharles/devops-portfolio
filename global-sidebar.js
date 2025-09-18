@@ -1,5 +1,14 @@
 // Simplified Sidebar Navigation JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    // Inject small CSS override to ensure toggle is visible on all viewports
+    const styleEl = document.createElement('style');
+    styleEl.type = 'text/css';
+    styleEl.appendChild(document.createTextNode(`
+        /* Ensure the sidebar toggle is visible on all sizes and sits above the overlay */
+        .sidebar-toggle { display: block !important; position: fixed; top: 20px; left: 20px; z-index: 1003; }
+    `));
+    document.head.appendChild(styleEl);
+
     // Create simplified sidebar HTML
     const sidebarHTML = `
         <div class="global-sidebar" id="globalSidebar">
@@ -40,8 +49,21 @@ document.addEventListener('DOMContentLoaded', function() {
         <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
     `;
 
-    // Insert sidebar at beginning of body
+    // Insert sidebar at beginning of body (before any other elements)
     document.body.insertAdjacentHTML('afterbegin', sidebarHTML);
+
+    // Ensure there is a visible toggle button (create if missing)
+    if (!document.getElementById('sidebar-toggle')) {
+        const btn = document.createElement('button');
+        btn.id = 'sidebar-toggle';
+        btn.className = 'sidebar-toggle';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.setAttribute('aria-label', 'Open navigation');
+        btn.innerHTML = '☰';
+        btn.addEventListener('click', toggleSidebar);
+        // append to body so it inherits existing .sidebar-toggle styles
+        document.body.appendChild(btn);
+    }
 
     // Set active page
     setActivePage();
