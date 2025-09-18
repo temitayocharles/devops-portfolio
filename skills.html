@@ -505,7 +505,7 @@
         <a href="projects.html" class="nav-link">Projects</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
-      <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+      <button class="mobile-menu-btn sidebar-toggle" aria-expanded="false" aria-controls="global-sidebar">☰</button>
     </div>
   </header>
 
@@ -519,7 +519,7 @@
       <a href="contact.html" class="sidebar-nav-item">Contact</a>
     </nav>
   </div>
-  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
 
   <!-- Hero Section -->
   <section class="hero-section">
@@ -925,28 +925,7 @@
     </div>
   </footer>
 
-  <script>
-    // Mobile sidebar functionality
-    function toggleSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebar-overlay');
-      sidebar.classList.toggle('open');
-      overlay.classList.toggle('active');
-    }
-
-    function closeSidebar() {
-      const sidebar = document.getElementById('sidebar');
-      const overlay = document.getElementById('sidebar-overlay');
-      sidebar.classList.remove('open');
-      overlay.classList.remove('active');
-    }
-
-    // Close sidebar when clicking on a link
-    document.querySelectorAll('.sidebar-nav-item').forEach(link => {
-      link.addEventListener('click', closeSidebar);
-    });
-
-    // Smooth scrolling for anchor links
+  <script>    // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -960,5 +939,7 @@
       });
     });
   </script>
+  <script src="global-sidebar.js"></script>
+
 </body>
 </html>

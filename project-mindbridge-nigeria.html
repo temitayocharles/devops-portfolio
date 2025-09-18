@@ -227,9 +227,9 @@
     </style>
 </head>
 <body>
-    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    <button class="mobile-menu-toggle sidebar-toggle" aria-expanded="false" aria-controls="projectSidebar">☰ Projects</button>
 
-    <nav class="project-nav-sidebar" id="projectSidebar">
+    <nav class="project-nav-sidebar global-sidebar" id="projectSidebar">
         <div class="sidebar-header">
             <h3>DevOps Portfolio</h3>
             <p>Project Deep Dives</p>
@@ -840,10 +840,7 @@ mindbridge-nigeria/
 </main>
 
 <script>
-    function toggleSidebar() {
-        const sidebar = document.getElementById('projectSidebar');
-        sidebar.classList.toggle('open');
-    }
+    
 
     // Close sidebar when clicking outside on mobile
     document.addEventListener('click', function(event) {
@@ -857,5 +854,7 @@ mindbridge-nigeria/
         }
     });
 </script>
+  <script src="global-sidebar.js"></script>
+
 </body>
 </html>

@@ -227,7 +227,7 @@
     </style>
 </head>
 <body>
-    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
+    <button class="mobile-menu-toggle">☰ Projects</button>
 
     <nav class="project-nav-sidebar" id="projectSidebar">
         <div class="sidebar-header">
@@ -835,10 +835,7 @@ ansible-role-docker/
 </main>
 
 <script>
-    function toggleSidebar() {
-        const sidebar = document.getElementById('projectSidebar');
-        sidebar.classList.toggle('open');
-    }
+    
 
     // Close sidebar when clicking outside on mobile
     document.addEventListener('click', function(event) {
@@ -852,5 +849,7 @@ ansible-role-docker/
         }
     });
 </script>
+  <script src="global-sidebar.js"></script>
+
 </body>
 </html>

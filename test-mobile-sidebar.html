@@ -86,9 +86,11 @@
             margin: 20px 0;
         }
     </style>
+
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu">☰</button>
+    <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle navigation menu">☰</button>
     
     <div class="content">
         <h1>Mobile Sidebar Test</h1>
@@ -113,7 +115,7 @@
             const sidebarHTML = `
                 <div class="global-sidebar" id="globalSidebar">
                     <div class="sidebar-header">
-                        <div class="sidebar-close" onclick="closeSidebar()">×</div>
+                        <div class="sidebar-close">×</div>
                         <h3>Navigation</h3>
                     </div>
                     <div class="sidebar-nav-group">
@@ -124,7 +126,7 @@
                         <a href="contact.html" class="sidebar-nav-item">📧 Contact</a>
                     </div>
                 </div>
-                <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+                <div class="sidebar-overlay" id="sidebarOverlay"></div>
             `;
 
             // Insert sidebar at beginning of body
@@ -135,20 +137,7 @@
         });
 
         // Toggle sidebar function
-        function toggleSidebar() {
-            const sidebar = document.getElementById('globalSidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const toggleBtn = document.getElementById('sidebar-toggle');
-            
-            if (sidebar && overlay) {
-                sidebar.classList.toggle('open');
-                overlay.classList.toggle('active');
-                
-                // Update aria-expanded for accessibility
-                if (toggleBtn) {
-                    const isOpen = sidebar.classList.contains('open');
-                    toggleBtn.setAttribute('aria-expanded', isOpen);
-                }
+        
                 
                 // Update test status
                 const status = sidebar.classList.contains('open') ? 'Sidebar opened successfully!' : 'Sidebar closed successfully!';
@@ -157,24 +146,14 @@
         }
 
         // Close sidebar function
-        function closeSidebar() {
-            const sidebar = document.getElementById('globalSidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            const toggleBtn = document.getElementById('sidebar-toggle');
-            
-            if (sidebar && overlay) {
-                sidebar.classList.remove('open');
-                overlay.classList.remove('active');
-                
-                // Update aria-expanded for accessibility
-                if (toggleBtn) {
-                    toggleBtn.setAttribute('aria-expanded', 'false');
-                }
+        
                 
                 // Update test status
                 document.getElementById('test-status').innerText = 'Sidebar closed successfully!';
             }
         }
     </script>
+  <script src="global-sidebar.js"></script>
+
 </body>
 </html>
