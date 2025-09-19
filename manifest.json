@@ -1,0 +1,72 @@
+{
+  "name": "Temitayo Charles - DevOps Portfolio",
+  "short_name": "DevOps Portfolio",
+  "description": "Professional DevOps Engineering portfolio showcasing containerization, automation, and cloud infrastructure expertise",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0e0e0e",
+  "theme_color": "#66d9ef",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "developer"],
+  "screenshots": [
+    {
+      "src": "/images/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop view of DevOps Portfolio"
+    },
+    {
+      "src": "/images/screenshot-mobile.png", 
+      "sizes": "390x844",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Mobile view of DevOps Portfolio"
+    }
+  ],
+  "icons": [
+    {
+      "src": "/images/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/android-chrome-512x512.png",
+      "sizes": "512x512", 
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "View Projects",
+      "short_name": "Projects",
+      "description": "Browse DevOps projects and solutions",
+      "url": "/projects.html",
+      "icons": [{"src": "/images/shortcut-projects.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "Contact Me",
+      "short_name": "Contact", 
+      "description": "Get in touch for collaborations",
+      "url": "/contact.html",
+      "icons": [{"src": "/images/shortcut-contact.png", "sizes": "96x96"}]
+    },
+    {
+      "name": "Ultimate DevOps Container",
+      "short_name": "DevOps Container",
+      "description": "All-in-one development environment",
+      "url": "/project-ultimate-devops-container.html",
+      "icons": [{"src": "/images/shortcut-container.png", "sizes": "96x96"}]
+    }
+  ]
+}

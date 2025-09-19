@@ -1,0 +1,39 @@
+{
+  "name": "devops-portfolio-backend",
+  "version": "1.0.0",
+  "description": "Backend functions for DevOps Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "dev": "netlify dev",
+    "build": "echo 'No build step required'",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint netlify/functions/",
+    "lint:fix": "eslint netlify/functions/ --fix"
+  },
+  "dependencies": {
+    "nodemailer": "^6.9.8",
+    "@netlify/functions": "^2.4.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "eslint": "^8.56.0",
+    "netlify-cli": "^17.15.4"
+  },
+  "keywords": [
+    "devops",
+    "portfolio",
+    "netlify",
+    "serverless",
+    "contact-form"
+  ],
+  "author": "Temitayo Charles",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/temitayocharles/devops-portfolio.git"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

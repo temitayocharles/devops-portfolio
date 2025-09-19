@@ -1,0 +1,47 @@
+name: 🔗 Link Checker
+
+on:
+  schedule:
+    # Check links daily at 3 AM UTC
+    - cron: '0 3 * * *'
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - '*.html'
+      - '**/*.md'
+
+jobs:
+  link-check:
+    name: 🔍 Check All Links
+    runs-on: ubuntu-latest
+    steps:
+    - name: 📥 Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: 🔗 Check Links
+      uses: lycheeverse/lychee-action@v1.8.0
+      with:
+        args: --verbose --no-progress './**/*.html' './**/*.md'
+        format: markdown
+        output: link-report.md
+        
+    - name: 📊 Create Link Report
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: link-check-report
+        path: link-report.md
+
+    - name: 💬 Comment on PR
+      if: failure() && github.event_name == 'pull_request'
+      uses: actions/github-script@v6
+      with:
+        script: |
+          const fs = require('fs');
+          const report = fs.readFileSync('link-report.md', 'utf8');
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: `## 🔗 Link Check Results\n\n${report}`
+          });

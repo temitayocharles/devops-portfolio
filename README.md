@@ -226,7 +226,7 @@ While this is a personal portfolio, feedback and suggestions are welcome:
 **Temitayo Charles**  
 *DevOps Engineer & Container Specialist*
 
-- 📧 **Email**: [temitayo@example.com](mailto:temitayo@example.com)
+- 📧 **Email**: [temitayo_charles@yahoo.com](mailto:temitayo_charles@yahoo.com)
 - 💼 **LinkedIn**: [Temitayo Charles](https://linkedin.com/in/temitayocharles)
 - 🐙 **GitHub**: [@temitayocharles](https://github.com/temitayocharles)
 - 🌐 **Portfolio**: [devops-portfolio](https://temitayocharles.github.io/devops-portfolio/)
