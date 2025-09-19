@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Sidebar Test</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #0e0e0e;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        
+        .test-content {
+            margin-top: 80px;
+            padding: 20px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+        }
+        
+        .mobile-info {
+            background: rgba(102, 217, 239, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+    </style>
+    <script src="global-sidebar.js"></script>
+</head>
+<body>
+    <!-- Sidebar Toggle Button -->
+    <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu">☰</button>
+
+    <div class="test-content">
+        <h1>Mobile Sidebar Test</h1>
+        <div class="mobile-info">
+            <h3>Testing Mobile Sidebar Position</h3>
+            <p>If you're on mobile, you should see a round button with ☰ in the top-left corner (not stretching across the page).</p>
+            
+            <h4>Expected Behavior:</h4>
+            <ul>
+                <li>✅ Button should be circular and compact (45px x 45px)</li>
+                <li>✅ Button should be positioned in top-left corner</li>
+                <li>✅ Button should NOT stretch across the full width</li>
+                <li>✅ Button should have gradient background</li>
+                <li>✅ Button should be clickable and trigger sidebar</li>
+            </ul>
+            
+            <p><strong>Screen Size:</strong> <span id="screen-size"></span></p>
+            <p><strong>Button Visible:</strong> <span id="button-visible"></span></p>
+        </div>
+    </div>
+
+    <!-- Global Sidebar -->
+    <div class="global-sidebar" id="global-sidebar">
+        <div class="sidebar-header">
+            <h3>DevOps Portfolio</h3>
+            <button class="sidebar-close" onclick="toggleSidebar()">×</button>
+        </div>
+        <nav class="sidebar-nav">
+            <div class="sidebar-nav-group">
+                <div class="sidebar-nav-title">Main</div>
+                <a href="index.html" class="sidebar-nav-item">🏠 Home</a>
+                <a href="about.html" class="sidebar-nav-item">👨‍💻 About</a>
+                <a href="projects.html" class="sidebar-nav-item">🚀 Projects</a>
+                <a href="contact.html" class="sidebar-nav-item">📧 Contact</a>
+            </div>
+        </nav>
+    </div>
+
+    <div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+    <script>
+        // Display screen size info
+        function updateScreenInfo() {
+            const screenSize = `${window.innerWidth}px x ${window.innerHeight}px`;
+            document.getElementById('screen-size').textContent = screenSize;
+            
+            const button = document.getElementById('sidebar-toggle');
+            const buttonStyle = window.getComputedStyle(button);
+            const isVisible = buttonStyle.display !== 'none';
+            
+            document.getElementById('button-visible').textContent = isVisible ? 'Yes' : 'No';
+            document.getElementById('button-visible').style.color = isVisible ? '#a6e22e' : '#ff6b6b';
+        }
+        
+        window.addEventListener('load', updateScreenInfo);
+        window.addEventListener('resize', updateScreenInfo);
+    </script>
+</body>
+</html>
