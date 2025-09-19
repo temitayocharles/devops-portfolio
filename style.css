@@ -450,8 +450,64 @@ body {
   gap: 1.5rem !important;
 }
 
-.project-card {
-  padding: 1.5rem !important;
+/* Grid layouts for consistent card display */
+html body .featured-projects-grid,
+html body .projects-grid,
+html body .project-showcase {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)) !important;
+  gap: 2rem !important;
+  align-items: stretch !important;
+  justify-items: center !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+@media (max-width: 768px) {
+  html body .featured-projects-grid,
+  html body .projects-grid,
+  html body .project-showcase {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+}
+
+/* Unified project card system with maximum specificity */
+html body .project-card,
+html body .project-card-large,
+html body .project-hero-card,
+html body .featured-project-card {
+  /* Consistent dimensions */
+  min-height: 320px !important;
+  max-width: 450px !important;
+  width: 100% !important;
+  
+  /* Consistent padding */
+  padding: 2rem !important;
+  
+  /* Consistent styling */
+  background: rgba(255, 255, 255, 0.05) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(102, 217, 239, 0.2) !important;
+  border-radius: 15px !important;
+  
+  /* Consistent layout */
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  box-sizing: border-box !important;
+  
+  /* Consistent transitions */
+  transition: all 0.3s ease !important;
+}
+
+html body .project-card:hover,
+html body .project-card-large:hover,
+html body .project-hero-card:hover,
+html body .featured-project-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: #66d9ef !important;
+  box-shadow: 0 15px 40px rgba(102, 217, 239, 0.2) !important;
 }
 
 /* Technology showcase mobile */
@@ -521,9 +577,14 @@ body {
     font-size: 2rem !important;
   }
 
-  .project-card {
-    padding: 1rem !important;
-  }
+      /* Mobile card adjustments */
+      html body .project-card,
+      html body .project-card-large,
+      html body .project-hero-card,
+      html body .featured-project-card {
+        padding: 1rem !important;
+        min-height: 240px !important;
+      }
 
   .tech-item {
     padding: 0.6rem 0.8rem !important;
@@ -1528,15 +1589,7 @@ footer p {
   font-size: 2rem;
 }
 
-.featured-project-card {
-  background: rgba(255,255,255,0.1);
-  padding: 30px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  backdrop-filter: blur(10px);
-}
+/* .featured-project-card - using unified card system above */
 
 .project-icon {
   font-size: 4rem;
@@ -2284,21 +2337,16 @@ footer p {
         justify-items: center;
       }
   
-      .project-card {
+      /* Unified card system - mobile optimized */
+      html body .project-card,
+      html body .project-card-large,
+      html body .project-hero-card,
+      html body .featured-project-card {
         width: 100% !important;
-        max-width: 400px !important;
-      }
-  
-      .project-card-large {
-        width: 100% !important;
-        max-width: 400px !important;
+        max-width: 100% !important;
+        min-height: 280px !important;
         margin: 0 auto !important;
-      }
-  
-      .project-hero-card {
-        width: 100% !important;
-        max-width: 400px !important;
-        margin: 0 auto !important;
+        padding: 1.5rem !important;
       }
   
       /* Better spacing for mobile sections */
@@ -2433,7 +2481,7 @@ footer p {
       
       /* Fix any elements that might cause horizontal overflow */
       .hero-content, .project-hero-content, .contact-card,
-      .featured-project-card, .project-card-large {
+      .featured-project-card, .project-card-large, .project-card, .project-hero-card {
         max-width: 100% !important;
         width: 100% !important;
         margin: 0 auto !important;
