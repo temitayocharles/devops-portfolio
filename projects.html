@@ -6,6 +6,7 @@
   <title>Projects • Temitayo Charles</title>
   <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
   <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="css/pagination.css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     /* Global Styles */
@@ -1346,7 +1347,7 @@
       </div>
 
         <!-- Ultimate DevOps Container -->
-        <div id="devops-container" class="hero-project-card">
+        <div id="devops-container" class="hero-project-card" data-category="containers" data-keywords="docker container devops tools monitoring security development environment">
           <div class="project-badge" style="background: rgba(102, 217, 239, 0.9); color: #0e0e0e;">
             ⭐ FEATURED
           </div>
@@ -1380,7 +1381,7 @@
 
       <div class="projects-grid">
         <!-- FoodShare Platform -->
-        <div class="project-card">
+        <div class="project-card" data-category="web" data-keywords="react nodejs postgresql kubernetes food platform">
           <div class="project-header">
             <span class="project-icon">🍽️</span>
             <div class="project-meta">
@@ -1405,7 +1406,7 @@
         </div>
 
         <!-- AWS Infrastructure -->
-        <div class="project-card">
+        <div class="project-card" data-category="cloud" data-keywords="aws amplify lambda api gateway cloudfront cdn deployment infrastructure">
           <div class="project-header">
             <span class="project-icon">☁️</span>
             <div class="project-meta">
@@ -2238,6 +2239,27 @@
           });
         }
       });
+    });
+  </script>
+
+  <!-- Pagination System -->
+  <script src="js/pagination.js"></script>
+  <script>
+    // Initialize pagination after DOM loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize pagination for projects
+      setTimeout(() => {
+        new PortfolioPagination({
+          itemsPerPage: 6,
+          container: '.projects-grid',
+          itemSelector: '.project-card, .hero-project-card',
+          categories: ['cloud', 'containers', 'automation', 'infrastructure', 'monitoring', 'security', 'web'],
+          enableFiltering: true,
+          enableSearch: true,
+          showProgress: true,
+          autoScroll: true
+        });
+      }, 100);
     });
   </script>
 </body>
