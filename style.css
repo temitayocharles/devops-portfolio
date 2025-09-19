@@ -195,14 +195,25 @@
 /* Mobile responsiveness for rocket menu */
 @media (max-width: 768px) {
   .sidebar-toggle {
-    left: 10px;
-    top: 10px;
-    padding: 10px;
-    font-size: 1em;
-    width: 45px;
-    height: 45px;
-    display: block !important;
-      /* Show sidebar toggle on mobile */
+    left: 10px !important;
+    top: 10px !important;
+    padding: 10px !important;
+    font-size: 1em !important;
+    width: 45px !important;
+    height: 45px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    position: fixed !important;
+    z-index: 1001 !important;
+    /* Ensure it's not stretching */
+    max-width: 45px !important;
+    min-width: 45px !important;
+    max-height: 45px !important;
+    min-height: 45px !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
   }
 
   .mobile-menu-btn {
@@ -2467,6 +2478,32 @@ footer p {
         box-sizing: border-box !important;
         text-align: center !important;
       }
+
+/* CRITICAL FIX: Force mobile sidebar toggle to be compact button */
+@media screen and (max-width: 768px) {
+  body .sidebar-toggle,
+  html .sidebar-toggle,
+  * .sidebar-toggle {
+    width: 45px !important;
+    height: 45px !important;
+    min-width: 45px !important;
+    max-width: 45px !important;
+    min-height: 45px !important;
+    max-height: 45px !important;
+    position: fixed !important;
+    left: 10px !important;
+    top: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    z-index: 1001 !important;
+    flex: none !important;
+    flex-shrink: 0 !important;
+    flex-grow: 0 !important;
+    box-sizing: border-box !important;
+  }
+}
       
       .social-links {
         justify-content: center !important;

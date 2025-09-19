@@ -27,6 +27,24 @@
             border-radius: 8px;
             margin: 20px 0;
         }
+        
+        .debug-info {
+            background: rgba(255, 255, 0, 0.1);
+            border: 1px solid #a6e22e;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        
+        .current-styles {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff6b6b;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
     </style>
     <script src="global-sidebar.js"></script>
 </head>
@@ -51,6 +69,19 @@
             
             <p><strong>Screen Size:</strong> <span id="screen-size"></span></p>
             <p><strong>Button Visible:</strong> <span id="button-visible"></span></p>
+            
+            <div class="debug-info">
+                <h4>🔧 Debug Information:</h4>
+                <p><strong>Button Width:</strong> <span id="button-width"></span></p>
+                <p><strong>Button Height:</strong> <span id="button-height"></span></p>
+                <p><strong>Button Position:</strong> <span id="button-position"></span></p>
+                <p><strong>Display Type:</strong> <span id="display-type"></span></p>
+            </div>
+            
+            <div class="current-styles" id="styles-debug">
+                <h4>🎨 Applied Styles:</h4>
+                <div id="computed-styles"></div>
+            </div>
         </div>
     </div>
 
@@ -85,6 +116,43 @@
             
             document.getElementById('button-visible').textContent = isVisible ? 'Yes' : 'No';
             document.getElementById('button-visible').style.color = isVisible ? '#a6e22e' : '#ff6b6b';
+            
+            // Debug information
+            const rect = button.getBoundingClientRect();
+            document.getElementById('button-width').textContent = `${rect.width}px (should be 45px)`;
+            document.getElementById('button-height').textContent = `${rect.height}px (should be 45px)`;
+            document.getElementById('button-position').textContent = `Left: ${rect.left}px, Top: ${rect.top}px`;
+            document.getElementById('display-type').textContent = buttonStyle.display;
+            
+            // Show important computed styles
+            const importantStyles = {
+                'width': buttonStyle.width,
+                'height': buttonStyle.height,
+                'position': buttonStyle.position,
+                'left': buttonStyle.left,
+                'top': buttonStyle.top,
+                'display': buttonStyle.display,
+                'border-radius': buttonStyle.borderRadius,
+                'z-index': buttonStyle.zIndex
+            };
+            
+            let stylesHtml = '';
+            for (const [property, value] of Object.entries(importantStyles)) {
+                const isCorrect = (
+                    (property === 'width' && value === '45px') ||
+                    (property === 'height' && value === '45px') ||
+                    (property === 'position' && value === 'fixed') ||
+                    (property === 'left' && value === '10px') ||
+                    (property === 'top' && value === '10px') ||
+                    (property === 'display' && (value === 'flex' || value === 'block')) ||
+                    (property === 'border-radius' && value.includes('50%'))
+                );
+                
+                const color = isCorrect ? '#a6e22e' : '#ff6b6b';
+                stylesHtml += `<p style="color: ${color}"><strong>${property}:</strong> ${value}</p>`;
+            }
+            
+            document.getElementById('computed-styles').innerHTML = stylesHtml;
         }
         
         window.addEventListener('load', updateScreenInfo);
