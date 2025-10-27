@@ -1,231 +1,87 @@
-# DevOps Portfolio - Production Docker Configuration
-# Multi-stage build for optimized production deployment
-
-# Build stage
-FROM node:18-alpine AS builder
-
-# Set working directory
-WORKDIR /app
-
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci --only=production && npm cache clean --force
-
-# Copy source code
-COPY . .
-
-# Build optimizations
-RUN npm run build 2>/dev/null || echo "No build script found"
-
-# Remove development files
-RUN rm -rf node_modules/.cache \
-    && rm -rf .git \
-    && rm -rf .github \
-    && rm -rf docs \
-    && rm -rf tests
-
-# Production stage
-FROM nginx:1.24-alpine AS production
+# Multi-stage build for optimized production container
+# Multi-stage build for optimized production container
+FROM nginx:1.25-alpine AS base
 
 # Install security updates
+RUN apk update && apk upgrade --no-cache
+
+# Stage 2: Production
+FROM nginx:1.25-alpine
+
+# Build arguments for multi-arch
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
+ARG TARGETOS
+ARG TARGETARCH
+
+# Labels for OCI compliance and metadata
+LABEL org.opencontainers.image.title="DevOps Portfolio"
+LABEL org.opencontainers.image.description="Production-ready DevOps portfolio with enterprise security"
+LABEL org.opencontainers.image.authors="Temitayo Charles <temitayo_charles@yahoo.com>"
+LABEL org.opencontainers.image.vendor="Temitayo Charles"
+LABEL org.opencontainers.image.licenses="MIT"
+LABEL org.opencontainers.image.url="https://github.com/temitayocharles/devops-portfolio"
+LABEL org.opencontainers.image.source="https://github.com/temitayocharles/devops-portfolio"
+LABEL org.opencontainers.image.documentation="https://github.com/temitayocharles/devops-portfolio#readme"
+LABEL org.opencontainers.image.version="1.0.0"
+LABEL maintainer="Temitayo Charles <temitayo_charles@yahoo.com>"
+
+# Install security updates and required tools
 RUN apk update && apk upgrade && apk add --no-cache \
     curl \
     ca-certificates \
+    dumb-init \
     && rm -rf /var/cache/apk/*
 
-# Create non-root user
-RUN addgroup -g 1001 -S portfoliogroup && \
-    adduser -S portfoliouser -u 1001 -G portfoliogroup
+# Create non-root user for nginx
+RUN addgroup -g 1001 -S nginx-user && \
+    adduser -S nginx-user -u 1001 -G nginx-user
 
 # Copy custom nginx configuration
-COPY infrastructure/docker/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/docker/default.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
-# Copy application files from builder stage
-COPY --from=builder --chown=portfoliouser:portfoliogroup /app /usr/share/nginx/html
+# Copy all static files to nginx html directory
+COPY --chown=nginx-user:nginx-user *.html /usr/share/nginx/html/
+COPY --chown=nginx-user:nginx-user *.css /usr/share/nginx/html/
+COPY --chown=nginx-user:nginx-user *.js /usr/share/nginx/html/
+COPY --chown=nginx-user:nginx-user *.json /usr/share/nginx/html/
+COPY --chown=nginx-user:nginx-user *.txt /usr/share/nginx/html/
+COPY --chown=nginx-user:nginx-user *.ico /usr/share/nginx/html/
+COPY --chown=nginx-user:nginx-user *.pdf /usr/share/nginx/html/
+COPY --chown=nginx-user:nginx-user *.sh /usr/share/nginx/html/
 
-# Copy security headers configuration
-COPY infrastructure/docker/security-headers.conf /etc/nginx/conf.d/security-headers.conf
+# Copy directories
+COPY --chown=nginx-user:nginx-user css/ /usr/share/nginx/html/css/
+COPY --chown=nginx-user:nginx-user js/ /usr/share/nginx/html/js/
+COPY --chown=nginx-user:nginx-user assets/ /usr/share/nginx/html/assets/
+COPY --chown=nginx-user:nginx-user images/ /usr/share/nginx/html/images/
+COPY --chown=nginx-user:nginx-user scripts/ /usr/share/nginx/html/scripts/
 
-# Create necessary directories and set permissions
-RUN mkdir -p /var/cache/nginx /var/log/nginx /var/run \
-    && chown -R portfoliouser:portfoliogroup /var/cache/nginx /var/log/nginx /var/run \
-    && chmod -R 755 /usr/share/nginx/html \
-    && chmod 644 /etc/nginx/nginx.conf /etc/nginx/conf.d/*.conf
+# Create necessary directories with proper permissions
+RUN mkdir -p /var/cache/nginx/client_temp \
+             /var/cache/nginx/proxy_temp \
+             /var/cache/nginx/fastcgi_temp \
+             /var/cache/nginx/uwsgi_temp \
+             /var/cache/nginx/scgi_temp \
+             /var/run && \
+    chown -R nginx-user:nginx-user /var/cache/nginx /var/run /usr/share/nginx/html && \
+    chmod -R 755 /usr/share/nginx/html && \
+    # Make nginx.pid writable
+    touch /var/run/nginx.pid && \
+    chown nginx-user:nginx-user /var/run/nginx.pid
+
+# Switch to non-root user
+USER nginx-user
+
+# Expose port
+EXPOSE 8080
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8080/health || exit 1
+    CMD curl -f http://localhost:8080/ || exit 1
 
-# Switch to non-root user
-USER portfoliouser
-
-# Expose port
-EXPOSE 8080
-
-# Start nginx
-CMD ["nginx", "-g", "daemon off;"]
-
-# Development stage (for local development)
-FROM node:18-alpine AS development
-
-WORKDIR /app
-
-# Install development dependencies
-RUN apk add --no-cache git
-
-# Copy package files
-COPY package*.json ./
-
-# Install all dependencies (including dev)
-RUN npm install
-
-# Copy source code
-COPY . .
-
-# Create development user
-RUN addgroup -g 1001 -S devgroup && \
-    adduser -S devuser -u 1001 -G devgroup
-
-# Change ownership
-RUN chown -R devuser:devgroup /app
-
-USER devuser
-
-# Expose development port
-EXPOSE 3000
-
-# Start development server
-CMD ["npm", "run", "dev"]
-
-# Testing stage
-FROM node:18-alpine AS testing
-
-WORKDIR /app
-
-# Install testing dependencies
-RUN apk add --no-cache git chromium
-
-# Set Puppeteer to use installed Chromium
-ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
-
-# Copy package files
-COPY package*.json ./
-
-# Install dependencies
-RUN npm ci
-
-# Copy source code
-COPY . .
-
-# Run tests
-RUN npm test 2>/dev/null || echo "No tests configured"
-
-# Lint code
-RUN npm run lint 2>/dev/null || echo "No linting configured"
-
-# Security scanning stage
-FROM alpine:latest AS security
-
-# Install security scanning tools
-RUN apk add --no-cache \
-    git \
-    curl \
-    bash
-
-# Copy application for scanning
-COPY . /app
-WORKDIR /app
-
-# Run security checks (placeholder for actual security tools)
-RUN echo "Running security scans..." \
-    && echo "✓ No vulnerabilities detected" \
-    && echo "✓ Security scan completed"
-
-# Documentation stage
-FROM node:18-alpine AS docs
-
-WORKDIR /app
-
-# Install documentation tools
-RUN npm install -g @compodoc/compodoc jsdoc
-
-# Copy source
-COPY . .
-
-# Generate documentation
-RUN mkdir -p docs \
-    && echo "Generating documentation..." \
-    && echo "Documentation would be generated here"
-
-# Final production image with multi-architecture support
-FROM --platform=$BUILDPLATFORM nginx:1.24-alpine AS final
-
-# Build arguments
-ARG BUILDPLATFORM
-ARG TARGETPLATFORM
-ARG TARGETARCH
-ARG TARGETOS
-
-# Labels for metadata
-LABEL maintainer="Temitayo Charles <temitayo_charles@yahoo.com>" \
-      version="1.0.0" \
-      description="DevOps Portfolio - Production Ready Container" \
-      org.opencontainers.image.title="DevOps Portfolio" \
-      org.opencontainers.image.description="Production-ready DevOps portfolio showcase" \
-      org.opencontainers.image.authors="Temitayo Charles" \
-      org.opencontainers.image.vendor="Temitayo Charles" \
-      org.opencontainers.image.licenses="MIT" \
-      org.opencontainers.image.url="https://temitayocharles.github.io/devops-portfolio/" \
-      org.opencontainers.image.source="https://github.com/temitayocharles/devops-portfolio" \
-      org.opencontainers.image.version="1.0.0" \
-      org.opencontainers.image.created="$(date -u +'%Y-%m-%dT%H:%M:%SZ')" \
-      architecture="$TARGETARCH" \
-      os="$TARGETOS"
-
-# Security and optimization updates
-RUN apk update && apk upgrade && apk add --no-cache \
-    curl \
-    ca-certificates \
-    tini \
-    && rm -rf /var/cache/apk/*
-
-# Create application user
-RUN addgroup -g 1001 -S portfoliogroup && \
-    adduser -S portfoliouser -u 1001 -G portfoliogroup
-
-# Copy nginx configurations
-COPY infrastructure/docker/nginx.conf /etc/nginx/nginx.conf
-COPY infrastructure/docker/default.conf /etc/nginx/conf.d/default.conf
-COPY infrastructure/docker/security-headers.conf /etc/nginx/conf.d/security-headers.conf
-
-# Copy application files
-COPY --from=production --chown=portfoliouser:portfoliogroup /usr/share/nginx/html /usr/share/nginx/html
-
-# Set proper permissions
-RUN mkdir -p /var/cache/nginx /var/log/nginx /var/run \
-    && chown -R portfoliouser:portfoliogroup /var/cache/nginx /var/log/nginx /var/run /usr/share/nginx/html \
-    && chmod -R 755 /usr/share/nginx/html
-
-# Health check endpoint
-RUN echo '#!/bin/sh\ncurl -f http://localhost:8080/ || exit 1' > /usr/local/bin/healthcheck \
-    && chmod +x /usr/local/bin/healthcheck
-
-# Health check
-HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD /usr/local/bin/healthcheck
-
-# Use tini as init system
-ENTRYPOINT ["/sbin/tini", "--"]
-
-# Switch to non-root user
-USER portfoliouser
-
-# Expose port
-EXPOSE 8080
+# Use dumb-init for proper signal handling
+ENTRYPOINT ["dumb-init", "--"]
 
 # Start nginx
 CMD ["nginx", "-g", "daemon off;"]
