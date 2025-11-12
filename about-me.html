@@ -90,12 +90,11 @@
     /* Hero Section */
     .hero-section {
       padding: 120px 0 80px;
-      background: linear-gradient(135deg, rgba(102, 217, 239, 0.05), rgba(166, 226, 46, 0.05)),
-                  url('images/B57EDA65-F244-49EB-B5BA-504705128E03 copy.PNG') center/cover no-repeat;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.15), rgba(166, 226, 46, 0.15)),
+                  url('images/corporate-office-confident.jpeg') center/cover no-repeat;
       position: relative;
       overflow: hidden;
       background-blend-mode: soft-light;
-      opacity: 0.15;
     }
 
     .hero-section::before {
@@ -206,12 +205,63 @@
 
     .about-content {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      margin-bottom: 4rem;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 3rem;
+      align-items: start;
     }
 
-    .about-text {
+    .about-image-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 15px;
+      border: 3px solid rgba(102, 217, 239, 0.4);
+      box-shadow: 
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(102, 217, 239, 0.2),
+        inset 0 0 20px rgba(102, 217, 239, 0.05);
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.05), rgba(166, 226, 46, 0.05));
+    }
+
+    .about-image {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(1) contrast(1.05);
+    }
+
+    .about-image-container:hover {
+      border-color: rgba(166, 226, 46, 0.6);
+      box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(166, 226, 46, 0.3),
+        inset 0 0 30px rgba(166, 226, 46, 0.1);
+      transform: translateY(-5px);
+    }
+
+    .about-image-container:hover .about-image {
+      transform: scale(1.03);
+      filter: brightness(1.1) contrast(1.1);
+    }
+
+    .about-image-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1) 0%, transparent 50%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .about-image-container:hover::before {
+      opacity: 1;
+    }    .about-text {
       font-size: 1.1rem;
       line-height: 1.7;
       color: #f0f0f0;
@@ -403,6 +453,180 @@
       color: #f0f0f0;
       font-size: 0.8rem;
       opacity: 0.8;
+    }
+    
+    /* Collaboration Section */
+    .collaboration-section {
+      padding: 4rem 1rem;
+      background: var(--bg-primary);
+    }
+    
+    .collaboration-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .collaboration-content {
+      padding: 2rem;
+    }
+    
+    .collaboration-points {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .collab-point {
+      display: flex;
+      gap: 1.5rem;
+      align-items: flex-start;
+    }
+    
+    .collab-icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+    
+    .collab-text h3 {
+      font-size: 1.3rem;
+      color: #66d9ef;
+      margin-bottom: 0.5rem;
+    }
+    
+    .collab-text p {
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    
+    .collaboration-image {
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(102, 217, 239, 0.2);
+      border: 3px solid rgba(102, 217, 239, 0.3);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .collaboration-image:hover {
+      transform: translateY(-8px);
+      box-shadow: 
+        0 20px 70px rgba(0, 0, 0, 0.4),
+        0 0 40px rgba(166, 226, 46, 0.3);
+      border-color: rgba(166, 226, 46, 0.5);
+    }
+    
+    .collaboration-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    
+    @media (max-width: 968px) {
+      .collaboration-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .collaboration-image {
+        order: -1;
+        max-height: 400px;
+      }
+    }
+    
+    /* Resume Section Styles */
+    .resume-section {
+      padding: 4rem 1rem;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.05), rgba(166, 226, 46, 0.05));
+      margin-top: 3rem;
+    }
+    
+    .resume-section .section-title {
+      text-align: center;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+    
+    .resume-section .section-subtitle {
+      text-align: center;
+      color: var(--text-secondary);
+      margin-bottom: 3rem;
+      font-size: 1.1rem;
+    }
+    
+    .resume-buttons {
+      display: flex;
+      gap: 2rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .resume-btn {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 1.5rem 2rem;
+      border-radius: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      flex: 1;
+      min-width: 320px;
+      max-width: 400px;
+    }
+    
+    .btn-icon {
+      font-size: 2.5rem;
+    }
+    
+    .btn-content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      text-align: left;
+    }
+    
+    .btn-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+    
+    .btn-desc {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+    
+    .ats-btn {
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      color: #1a1a1a;
+      border: 2px solid #66d9ef;
+    }
+    
+    .ats-btn:hover {
+      background: linear-gradient(135deg, #66d9ef, #5ac8de);
+      color: #ffffff;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(102, 217, 239, 0.4);
+    }
+    
+    .visual-btn {
+      background: linear-gradient(135deg, #a6e22e, #8bc922);
+      color: #ffffff;
+      border: 2px solid #a6e22e;
+    }
+    
+    .visual-btn:hover {
+      background: linear-gradient(135deg, #c0f550, #a6e22e);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(166, 226, 46, 0.4);
     }
 
     /* Footer */
@@ -760,29 +984,33 @@
           <p>I thrive in collaborative environments and view DevOps as more than tools. It is a cultural bridge that drives innovation and accelerates delivery.</p>
           <br>
           <p>Outside of work, I expand my lab environments, experiment with new technologies, and document my projects to share practical, real-world solutions.</p>
+        
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <span class="highlight-icon">🚀</span>
+              <span class="highlight-text">Container Orchestration Expert</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">⚙️</span>
+              <span class="highlight-text">CI/CD Pipeline Architect</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">☁️</span>
+              <span class="highlight-text">Multi-Cloud Infrastructure</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🏥</span>
+              <span class="highlight-text">Healthcare Technology Specialist</span>
+            </div>
+            <div class="highlight-item">
+              <span class="highlight-icon">🔒</span>
+              <span class="highlight-text">Security & Compliance Focus</span>
+            </div>
+          </div>
         </div>
 
-        <div class="about-highlights">
-          <div class="highlight-item">
-            <span class="highlight-icon">🚀</span>
-            <span class="highlight-text">Container Orchestration Expert</span>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-icon">⚙️</span>
-            <span class="highlight-text">CI/CD Pipeline Architect</span>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-icon">☁️</span>
-            <span class="highlight-text">Multi-Cloud Infrastructure</span>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-icon">🏥</span>
-            <span class="highlight-text">Healthcare Technology Specialist</span>
-          </div>
-          <div class="highlight-item">
-            <span class="highlight-icon">🔒</span>
-            <span class="highlight-text">Security & Compliance Focus</span>
-          </div>
+        <div class="about-image-container">
+          <img src="images/working-devops-engineer.jpeg" alt="Temitayo Charles working on DevOps infrastructure" class="about-image" loading="lazy">
         </div>
       </div>
     </section>
@@ -881,6 +1109,68 @@
               <span class="achievement-stat-label">Uptime</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Collaboration Section -->
+    <section class="collaboration-section">
+      <div class="container">
+        <div class="collaboration-grid">
+          <div class="collaboration-content">
+            <h2 class="section-title">Collaborative Leadership</h2>
+            <p class="section-subtitle">Building high-performing teams through effective communication and mentorship</p>
+            <div class="collaboration-points">
+              <div class="collab-point">
+                <span class="collab-icon">👥</span>
+                <div class="collab-text">
+                  <h3>Team Mentorship</h3>
+                  <p>Mentored 4+ junior DevOps engineers on best practices for infrastructure automation and cloud architecture</p>
+                </div>
+              </div>
+              <div class="collab-point">
+                <span class="collab-icon">💡</span>
+                <div class="collab-text">
+                  <h3>Cross-Functional Collaboration</h3>
+                  <p>Worked closely with development, QA, and security teams to optimize workflows and ensure seamless deployments</p>
+                </div>
+              </div>
+              <div class="collab-point">
+                <span class="collab-icon">📊</span>
+                <div class="collab-text">
+                  <h3>Process Improvement</h3>
+                  <p>Led initiatives to improve deployment processes, reducing time to production by 60% while maintaining quality</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="collaboration-image">
+            <img src="images/team-collaboration-whiteboard.jpeg" alt="Team collaboration and whiteboard planning" />
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Resume Download Section -->
+    <section class="resume-section">
+      <div class="container">
+        <h2 class="section-title">Download My Resume</h2>
+        <p class="section-subtitle">Get a comprehensive overview of my experience, skills, and achievements</p>
+        <div class="resume-buttons">
+          <a href="resume-ats.html" download="Temitayo_Charles_Akinniranye_Resume.pdf" class="resume-btn ats-btn">
+            <span class="btn-icon">📄</span>
+            <div class="btn-content">
+              <span class="btn-title">Download PDF Resume</span>
+              <span class="btn-desc">Professional format ready for applications</span>
+            </div>
+          </a>
+          <a href="resume-visual.html" target="_blank" class="resume-btn visual-btn">
+            <span class="btn-icon">🎨</span>
+            <div class="btn-content">
+              <span class="btn-title">View Detailed Version</span>
+              <span class="btn-desc">Interactive online resume with full details</span>
+            </div>
+          </a>
         </div>
       </div>
     </section>

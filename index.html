@@ -23,6 +23,17 @@
   <!-- Performance optimization for mobile -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="global-sidebar.js" as="script">
+  <link rel="preload" href="images/hero-headshot-professional.jpeg" as="image">
+  
+  <!-- Prefetch next pages -->
+  <link rel="prefetch" href="projects.html">
+  <link rel="prefetch" href="about-me.html">
+  <link rel="prefetch" href="contact.html">
+  
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Temitayo Charles • DevOps Engineer &amp; Container Specialist">
@@ -40,6 +51,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
   <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
   <script src="global-sidebar.js"></script>
   <style>
     /* Redesigned Hero Section Styles */
@@ -313,6 +325,67 @@
       background: rgba(102, 217, 239, 0.1);
       transform: translateY(-2px);
     }
+    
+    .resume-downloads {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border-radius: 1rem;
+      border: 2px solid rgba(102, 217, 239, 0.2);
+    }
+    
+    .resume-intro {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-weight: 500;
+      text-align: center;
+    }
+    
+    .resume-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 0.8rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .ats-btn {
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      color: #1a1a1a;
+      border: 2px solid #66d9ef;
+    }
+    
+    .ats-btn:hover {
+      background: linear-gradient(135deg, #66d9ef, #5ac8de);
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(102, 217, 239, 0.4);
+    }
+    
+    .visual-btn {
+      background: linear-gradient(135deg, #a6e22e, #8bc922);
+      color: #ffffff;
+      border: 2px solid #a6e22e;
+    }
+    
+    .visual-btn:hover {
+      background: linear-gradient(135deg, #c0f550, #a6e22e);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(166, 226, 46, 0.4);
+    }
 
     .hero-visual {
       display: flex;
@@ -326,9 +399,22 @@
       height: 300px;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid transparent;
+      border: 5px solid rgba(102, 217, 239, 0.5);
       background: linear-gradient(135deg, #66d9ef, #a6e22e) border-box;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(102, 217, 239, 0.3),
+        inset 0 2px 10px rgba(255, 255, 255, 0.1);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hero-image-container:hover {
+      border-color: rgba(166, 226, 46, 0.7);
+      box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(166, 226, 46, 0.4),
+        inset 0 2px 15px rgba(255, 255, 255, 0.15);
+      transform: translateY(-8px);
     }
 
     .hero-profile-image {
@@ -336,7 +422,13 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(1.05) contrast(1.1);
+    }
+    
+    .hero-profile-image:hover {
+      transform: scale(1.08);
+      filter: brightness(1.15) contrast(1.15);
     }
 
     .hero-image-glow {
@@ -1577,9 +1669,57 @@
         font-size: 2.5rem;
       }
     }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: rgba(102, 217, 239, 0.1);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      color: var(--primary-cyan);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.2);
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* Skip Navigation for Accessibility */
+    .skip-nav {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      background: var(--primary-cyan);
+      color: var(--bg-primary);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      z-index: 10000;
+      border-radius: 0 0 0.5rem 0;
+    }
+
+    .skip-nav:focus {
+      top: 0;
+    }
   </style>
 </head>
 <body>
+  <!-- Skip Navigation Link for Accessibility -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+  
   <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu"
     aria-expanded="false">☰</button>
 
@@ -1602,6 +1742,9 @@
       </div>
 
       <div class="nav-actions">
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          🌙
+        </button>
         <a href="contact.html" class="cta-nav">Hire Me</a>
       </div>
     </div>
@@ -1658,18 +1801,30 @@
 
         <div class="hero-cta">
           <a href="#projects-showcase" class="cta-primary">
-            � View My Work
+            🚀 View My Work
           </a>
           <a href="contact.html" class="cta-secondary">
-            � Let's Work Together
+            📧 Let's Work Together
           </a>
+        </div>
+        
+        <div class="resume-downloads">
+          <p class="resume-intro">Download my resume:</p>
+          <div class="resume-buttons">
+            <a href="resume-ats.html" download="Temitayo_Charles_Akinniranye_Resume.pdf" class="resume-btn ats-btn">
+              📄 Download PDF Resume
+            </a>
+            <a href="resume-visual.html" target="_blank" class="resume-btn visual-btn">
+              🎨 View Detailed Version
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="hero-image-container">
-          <img src="images/B57EDA65-F244-49EB-B5BA-504705128E03 copy.PNG" alt="Temitayo Charles - DevOps Engineer"
-            class="hero-profile-image" loading="lazy" onerror="this.src='images/profile-optimized.jpg'" />
+          <img src="images/hero-headshot-professional.jpeg" alt="Temitayo Charles - DevOps Engineer and Container Specialist"
+            class="hero-profile-image" loading="eager" onerror="this.src='images/hero-headshot-casual.jpeg'" />
           <div class="hero-image-glow"></div>
         </div>
       </div>
@@ -1687,7 +1842,7 @@
 
 
 
-  <div class="main">
+  <div class="main" id="main-content" role="main">
     <!-- Project Categories Section -->
     <section id="projects-showcase" class="project-categories">
       <div class="container">
@@ -1782,105 +1937,6 @@
             </div>
           </div>
 
-          <!-- Weather Data Platform -->
-          <div class="project-card-large" data-category="enterprise">
-            <div class="project-card-header">
-              <div class="project-card-icon">🌤️</div>
-              <div class="project-card-meta">
-                <h3>Weather Data Platform</h3>
-                <span class="project-category">ML Analytics Platform</span>
-              </div>
-            </div>
-            <p class="project-description">
-              Intelligent weather platform with ML forecasting, real-time data processing, and predictive analytics handling 1M+ daily API calls.
-            </p>
-            <div class="project-tech-stack">
-              <span class="tech-tag">Python Django</span>
-              <span class="tech-tag">TensorFlow</span>
-              <span class="tech-tag">Celery</span>
-              <span class="tech-tag">PostgreSQL</span>
-            </div>
-            <div class="project-actions">
-              <a href="project-weather-platform.html" class="project-action-btn primary">
-                ⛅ View Weather
-              </a>
-            </div>
-          </div>
-
-          <!-- Medical Care System -->
-          <div class="project-card-large" data-category="enterprise">
-            <div class="project-card-header">
-              <div class="project-card-icon">🏥</div>
-              <div class="project-card-meta">
-                <h3>Medical Care System</h3>
-                <span class="project-category">Healthcare Solution</span>
-              </div>
-            </div>
-            <p class="project-description">
-              HIPAA-compliant healthcare management system with patient records, appointment scheduling, and audit logging for 100K+ patients.
-            </p>
-            <div class="project-tech-stack">
-              <span class="tech-tag">.NET Core</span>
-              <span class="tech-tag">SQL Server</span>
-              <span class="tech-tag">Azure</span>
-              <span class="tech-tag">HIPAA</span>
-            </div>
-            <div class="project-actions">
-              <a href="project-medical-care-system.html" class="project-action-btn primary">
-                🩺 View Healthcare
-              </a>
-            </div>
-          </div>
-
-          <!-- Task Management Platform -->
-          <div class="project-card-large" data-category="enterprise">
-            <div class="project-card-header">
-              <div class="project-card-icon">📋</div>
-              <div class="project-card-meta">
-                <h3>Task Management Platform</h3>
-                <span class="project-category">AI-Powered Collaboration</span>
-              </div>
-            </div>
-            <p class="project-description">
-              Enterprise collaboration platform with AI automation, real-time sync, and intelligent optimization serving 10K+ teams.
-            </p>
-            <div class="project-tech-stack">
-              <span class="tech-tag">Go</span>
-              <span class="tech-tag">gRPC</span>
-              <span class="tech-tag">MongoDB</span>
-              <span class="tech-tag">WebSocket</span>
-            </div>
-            <div class="project-actions">
-              <a href="project-task-management-platform.html" class="project-action-btn primary">
-                ✅ View Tasks
-              </a>
-            </div>
-          </div>
-
-          <!-- Social Media Platform -->
-          <div class="project-card-large" data-category="enterprise">
-            <div class="project-card-header">
-              <div class="project-card-icon">💬</div>
-              <div class="project-card-meta">
-                <h3>Social Media Platform</h3>
-                <span class="project-category">Scalable Social Network</span>
-              </div>
-            </div>
-            <p class="project-description">
-              High-scale social networking platform with real-time messaging, intelligent feeds, and content moderation serving 1M+ users.
-            </p>
-            <div class="project-tech-stack">
-              <span class="tech-tag">Ruby on Rails</span>
-              <span class="tech-tag">PostgreSQL</span>
-              <span class="tech-tag">Redis</span>
-              <span class="tech-tag">Action Cable</span>
-            </div>
-            <div class="project-actions">
-              <a href="project-social-media-platform.html" class="project-action-btn primary">
-                💭 View Social
-              </a>
-            </div>
-          </div>
         </div>
 
         <!-- View All Projects CTA -->
