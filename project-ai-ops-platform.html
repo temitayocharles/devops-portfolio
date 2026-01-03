@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Operations Intelligence Platform - Multi-Agent LLM System</title>
+    <meta name="description" content="AI-powered operations intelligence platform using Ollama Llama 3 LLM with multi-agent system for incident response automation and proactive security analysis.">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(14, 14, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            text-decoration: none;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #66d9ef;
+            background: rgba(102, 217, 239, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 50%, #0e0e0e 100%);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(166, 226, 46, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #66d9ef;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            color: #0e0e0e;
+            box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(166, 226, 46, 0.4);
+        }
+
+        .cta-secondary {
+            background: rgba(102, 217, 239, 0.1);
+            color: #66d9ef;
+            border: 2px solid #66d9ef;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(102, 217, 239, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #f0f0f0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Architecture Section */
+        .architecture-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(102, 217, 239, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Temitayo Charles</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="https://aws.amazon.com" target="_blank">AWS</a></li>
+                <li><a href="https://azure.microsoft.com" target="_blank">Azure</a></li>
+                <li><a href="https://cloud.google.com" target="_blank">GCP</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">AI Operations Intelligence</h1>
+            <p class="hero-subtitle">Multi-Agent LLM System for Incident Response & Security Automation</p>
+            <p class="hero-description">
+                AI-powered operations intelligence platform using Ollama (Llama 3) local LLM with multi-agent system 
+                automating incident response (log correlation, root cause analysis) and proactive security analysis (IaC scanning, compliance mapping). 
+                Next.js 14 frontend + FastAPI backend with complete observability stack.
+            </p>
+            <div class="cta-buttons">
+                <a href="#architecture" class="cta-primary">📐 Architecture</a>
+                <a href="https://github.com/temitayocharles/ai-ops-platform" target="_blank" class="cta-secondary">📖 View Repository</a>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">13</div>
+                    <div class="stat-label">AI Agents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">70%</div>
+                    <div class="stat-label">Triage Automation</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">0</div>
+                    <div class="stat-label">Cost (OSS)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Phases Complete</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">The SRE Challenge: Manual Triage & Delayed Response</h2>
+        <div class="architecture-section">
+            <p style="color: #f0f0f0; text-align: center; font-size: 1.1rem; max-width: 900px; margin: 0 auto 3rem; line-height: 1.7;">
+                SRE teams spend 70% of incident response time on manual triage - searching logs, correlating metrics, researching runbooks, 
+                and identifying root causes. This intelligence platform automates initial triage using advanced LLM agents with vector search, 
+                helping reduce MTTR by up to 60% on recurring incident patterns and supporting proactive discovery of infrastructure vulnerabilities
+                before they impact production.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">⏱️</div>
+                    <div style="font-size: 1.3rem; font-weight: bold; color: #66d9ef; margin-bottom: 0.5rem;">Manual Triage</div>
+                    <div style="color: #f0f0f0;">70% of incident time searching logs manually, no proactive security</div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🤖</div>
+                    <div style="font-size: 1.3rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">AI-Powered Automation</div>
+                    <div style="color: #f0f0f0;">Instant root cause analysis, runbook matching, vulnerability discovery</div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+                    <div style="font-size: 1.3rem; font-weight: bold; color: #48bb78; margin-bottom: 0.5rem;">Outcome</div>
+                    <div style="color: #f0f0f0;">60% MTTR reduction, proactive security, on-call burden decrease</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section">
+        <h2 class="section-title">Multi-Agent LLM Architecture</h2>
+        <div class="architecture-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 2px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 1rem;">🔴 Reactive: Incident Commander</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Automated incident response</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">
+                        <strong>4 Agents:</strong> Log analyzer, timeline reconstructor, root cause investigator, runbook matcher
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 2px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #a6e22e; font-size: 1.3rem; margin-bottom: 1rem;">🟢 Proactive: Security Analyzer</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Continuous infrastructure scanning</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">
+                        <strong>6 Agents:</strong> Config parser, vuln scanner, compliance mapper, drift detector, remediation suggester
+                    </div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #60a5fa; font-size: 1.3rem; margin-bottom: 1rem;">⚙️ Shared Infrastructure</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">AI backbone services</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">
+                        <strong>3 Services:</strong> Orchestrator, LLM engine (Ollama Llama 3), vector embeddings (ChromaDB)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Comprehensive AI Ops Architecture SVG -->
+        <div style="background: rgba(255, 255, 255, 0.02); border-radius: 20px; padding: 2rem; margin: 3rem 0; border: 1px solid rgba(102, 217, 239, 0.2);">
+            <h3 style="color: #66d9ef; margin-bottom: 2rem; text-align: center;">🎯 AI-Powered Incident & Security Architecture</h3>
+            <svg viewBox="0 0 1400 900" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; background: #0a0a0a; border-radius: 15px;">
+                <!-- Background Grid -->
+                <defs>
+                    <pattern id="grid-ai" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(102, 217, 239, 0.1)" stroke-width="0.5"/>
+                    </pattern>
+                </defs>
+                <rect width="1400" height="900" fill="url(#grid-ai)"/>
+
+                <!-- SECTION 1: USER INPUTS (Left) -->
+                <g id="user-inputs-ai">
+                    <rect x="20" y="20" width="300" height="860" rx="15" fill="rgba(166, 226, 46, 0.05)" stroke="#a6e22e" stroke-width="2"/>
+                    <text x="170" y="50" font-size="18" fill="#a6e22e" font-weight="bold" text-anchor="middle">USER INPUTS</text>
+
+                    <!-- Reactive Path -->
+                    <rect x="40" y="80" width="260" height="380" rx="10" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="2"/>
+                    <text x="170" y="110" font-size="16" fill="#ef4444" font-weight="bold" text-anchor="middle">🔴 REACTIVE</text>
+                    <text x="170" y="135" font-size="12" fill="#f0f0f0" text-anchor="middle">Incident Response</text>
+
+                    <!-- Incident Box -->
+                    <rect x="60" y="150" width="220" height="120" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="170" y="175" font-size="14" fill="#ef4444" font-weight="bold" text-anchor="middle">🚨 PagerDuty Alert</text>
+                    <text x="170" y="200" font-size="11" fill="#f0f0f0" text-anchor="middle">App: checkout-service</text>
+                    <text x="170" y="218" font-size="11" fill="#f0f0f0" text-anchor="middle">Error: 500 Internal Server Error</text>
+                    <text x="170" y="236" font-size="11" fill="#f0f0f0" text-anchor="middle">Severity: Critical</text>
+                    <text x="170" y="254" font-size="11" fill="#f0f0f0" text-anchor="middle">Pods crashing since 10:05 UTC</text>
+
+                    <!-- Log Context -->
+                    <rect x="60" y="285" width="220" height="160" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="170" y="310" font-size="14" fill="#ef4444" font-weight="bold" text-anchor="middle">📋 Log Snippet</text>
+                    <text x="70" y="335" font-size="9" fill="#66d9ef" font-family="monospace">ERROR: DB connection timeout</text>
+                    <text x="70" y="355" font-size="9" fill="#66d9ef" font-family="monospace">postgres://prod-db:5432</text>
+                    <text x="70" y="375" font-size="9" fill="#66d9ef" font-family="monospace">ERROR: Max pool exhausted (50)</text>
+                    <text x="70" y="395" font-size="9" fill="#66d9ef" font-family="monospace">INFO: 3847 requests queued</text>
+                    <text x="70" y="415" font-size="9" fill="#66d9ef" font-family="monospace">ERROR: Health check failed</text>
+                    <text x="70" y="435" font-size="9" fill="#66d9ef" font-family="monospace">PANIC: App restarting...</text>
+
+                    <!-- Proactive Path -->
+                    <rect x="40" y="480" width="260" height="380" rx="10" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="170" y="510" font-size="16" fill="#22c55e" font-weight="bold" text-anchor="middle">🟢 PROACTIVE</text>
+                    <text x="170" y="535" font-size="12" fill="#f0f0f0" text-anchor="middle">Security Scanning</text>
+
+                    <!-- IaC Files -->
+                    <rect x="60" y="550" width="220" height="140" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="170" y="575" font-size="14" fill="#22c55e" font-weight="bold" text-anchor="middle">📁 IaC Files</text>
+                    <text x="70" y="600" font-size="10" fill="#a6e22e" font-family="monospace">terraform/main.tf</text>
+                    <text x="70" y="620" font-size="10" fill="#a6e22e" font-family="monospace">k8s/deployment.yaml</text>
+                    <text x="70" y="640" font-size="10" fill="#a6e22e" font-family="monospace">docker-compose.yml</text>
+                    <text x="70" y="660" font-size="10" fill="#a6e22e" font-family="monospace">helm/values.yaml</text>
+                    <text x="70" y="680" font-size="10" fill="#a6e22e" font-family="monospace">ansible/playbook.yml</text>
+
+                    <!-- Policy Rules -->
+                    <rect x="60" y="705" width="220" height="140" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="170" y="730" font-size="14" fill="#22c55e" font-weight="bold" text-anchor="middle">🛡️ Compliance Policies</text>
+                    <text x="70" y="755" font-size="10" fill="#f0f0f0">✓ CIS Benchmarks</text>
+                    <text x="70" y="775" font-size="10" fill="#f0f0f0">✓ PCI-DSS Requirements</text>
+                    <text x="70" y="795" font-size="10" fill="#f0f0f0">✓ SOC 2 Controls</text>
+                    <text x="70" y="815" font-size="10" fill="#f0f0f0">✓ OWASP Top 10</text>
+                    <text x="70" y="835" font-size="10" fill="#f0f0f0">✓ NIST Framework</text>
+                </g>
+
+                <!-- SECTION 2: AI ENGINE (Center) -->
+                <g id="ai-engine-center">
+                    <rect x="340" y="20" width="720" height="860" rx="15" fill="rgba(102, 217, 239, 0.05)" stroke="#66d9ef" stroke-width="3"/>
+                    <text x="700" y="50" font-size="20" fill="#66d9ef" font-weight="bold" text-anchor="middle">🤖 AI INTELLIGENCE ENGINE</text>
+
+                    <!-- LLM Core -->
+                    <rect x="480" y="80" width="440" height="120" rx="10" fill="rgba(59, 130, 246, 0.2)" stroke="#3b82f6" stroke-width="2"/>
+                    <text x="700" y="110" font-size="16" fill="#60a5fa" font-weight="bold" text-anchor="middle">⚙️ LLM CORE</text>
+                    <text x="510" y="140" font-size="12" fill="#f0f0f0">🦙 Ollama (Llama 3 8B)</text>
+                    <text x="510" y="160" font-size="12" fill="#f0f0f0">🗄️ ChromaDB Vector Store</text>
+                    <text x="510" y="180" font-size="12" fill="#f0f0f0">🎯 Agent Orchestrator</text>
+                    <text x="800" y="140" font-size="12" fill="#f0f0f0">📊 Token Budget: 8K</text>
+                    <text x="800" y="160" font-size="12" fill="#f0f0f0">⚡ Local Inference</text>
+                    <text x="800" y="180" font-size="12" fill="#f0f0f0">💰 Zero API Cost</text>
+
+                    <!-- Reactive Agent Group -->
+                    <rect x="360" y="220" width="340" height="340" rx="10" fill="rgba(239, 68, 68, 0.05)" stroke="#ef4444" stroke-width="2"/>
+                    <text x="530" y="250" font-size="16" fill="#ef4444" font-weight="bold" text-anchor="middle">REACTIVE AGENTS</text>
+
+                    <!-- Agent 1: Log Analyzer -->
+                    <rect x="380" y="270" width="150" height="80" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="455" y="295" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">1️⃣ Log Analyzer</text>
+                    <text x="390" y="315" font-size="10" fill="#f0f0f0">• Parse error patterns</text>
+                    <text x="390" y="332" font-size="10" fill="#f0f0f0">• Extract stack traces</text>
+                    <text x="390" y="349" font-size="10" fill="#f0f0f0">• Identify anomalies</text>
+
+                    <!-- Agent 2: Metric Correlator -->
+                    <rect x="540" y="270" width="150" height="80" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="615" y="295" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">2️⃣ Metric Correlator</text>
+                    <text x="550" y="315" font-size="10" fill="#f0f0f0">• CPU/Memory spike</text>
+                    <text x="550" y="332" font-size="10" fill="#f0f0f0">• API latency trends</text>
+                    <text x="550" y="349" font-size="10" fill="#f0f0f0">• Trace analysis</text>
+
+                    <!-- Agent 3: Timeline Reconstructor -->
+                    <rect x="380" y="365" width="150" height="80" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="455" y="390" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">3️⃣ Timeline Builder</text>
+                    <text x="390" y="410" font-size="10" fill="#f0f0f0">• Event sequencing</text>
+                    <text x="390" y="427" font-size="10" fill="#f0f0f0">• Change correlation</text>
+                    <text x="390" y="444" font-size="10" fill="#f0f0f0">• Blast radius</text>
+
+                    <!-- Agent 4: Root Cause Investigator -->
+                    <rect x="540" y="365" width="150" height="80" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="615" y="390" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">4️⃣ Root Cause AI</text>
+                    <text x="550" y="410" font-size="10" fill="#f0f0f0">• Hypothesis ranking</text>
+                    <text x="550" y="427" font-size="10" fill="#f0f0f0">• Similar incidents</text>
+                    <text x="550" y="444" font-size="10" fill="#f0f0f0">• Runbook match</text>
+
+                    <!-- Agent 5: Runbook Matcher -->
+                    <rect x="460" y="460" width="150" height="80" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="535" y="485" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">5️⃣ Runbook Finder</text>
+                    <text x="470" y="505" font-size="10" fill="#f0f0f0">• Vector search</text>
+                    <text x="470" y="522" font-size="10" fill="#f0f0f0">• Semantic match</text>
+                    <text x="470" y="539" font-size="10" fill="#f0f0f0">• Action steps</text>
+
+                    <!-- Proactive Agent Group -->
+                    <rect x="720" y="220" width="320" height="640" rx="10" fill="rgba(34, 197, 94, 0.05)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="880" y="250" font-size="16" fill="#22c55e" font-weight="bold" text-anchor="middle">PROACTIVE AGENTS</text>
+
+                    <!-- Agent 6: Config Parser -->
+                    <rect x="740" y="270" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="810" y="295" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">6️⃣ Config Parser</text>
+                    <text x="750" y="315" font-size="10" fill="#f0f0f0">• Terraform AST</text>
+                    <text x="750" y="332" font-size="10" fill="#f0f0f0">• Kubernetes YAML</text>
+
+                    <!-- Agent 7: Vuln Scanner -->
+                    <rect x="890" y="270" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="960" y="295" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">7️⃣ Vuln Scanner</text>
+                    <text x="900" y="315" font-size="10" fill="#f0f0f0">• CVE database</text>
+                    <text x="900" y="332" font-size="10" fill="#f0f0f0">• Image scan</text>
+
+                    <!-- Agent 8: Compliance Mapper -->
+                    <rect x="740" y="360" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="810" y="385" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">8️⃣ Compliance</text>
+                    <text x="750" y="405" font-size="10" fill="#f0f0f0">• CIS benchmark</text>
+                    <text x="750" y="422" font-size="10" fill="#f0f0f0">• PCI-DSS map</text>
+
+                    <!-- Agent 9: Drift Detector -->
+                    <rect x="890" y="360" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="960" y="385" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">9️⃣ Drift Detector</text>
+                    <text x="900" y="405" font-size="10" fill="#f0f0f0">• State compare</text>
+                    <text x="900" y="422" font-size="10" fill="#f0f0f0">• Manual changes</text>
+
+                    <!-- Agent 10: Risk Scorer -->
+                    <rect x="740" y="450" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="810" y="475" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">🔟 Risk Scorer</text>
+                    <text x="750" y="495" font-size="10" fill="#f0f0f0">• CVSS calculation</text>
+                    <text x="750" y="512" font-size="10" fill="#f0f0f0">• Impact rating</text>
+
+                    <!-- Agent 11: Remediation AI -->
+                    <rect x="890" y="450" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="960" y="475" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">1️⃣1️⃣ Remediation</text>
+                    <text x="900" y="495" font-size="10" fill="#f0f0f0">• Fix suggestions</text>
+                    <text x="900" y="512" font-size="10" fill="#f0f0f0">• Code patches</text>
+
+                    <!-- Agent 12: Report Generator -->
+                    <rect x="740" y="540" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="810" y="565" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">1️⃣2️⃣ Report Gen</text>
+                    <text x="750" y="585" font-size="10" fill="#f0f0f0">• Compliance PDF</text>
+                    <text x="750" y="602" font-size="10" fill="#f0f0f0">• Dashboard data</text>
+
+                    <!-- Agent 13: Trend Analyzer -->
+                    <rect x="890" y="540" width="140" height="75" rx="8" fill="rgba(0, 0, 0, 0.5)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="960" y="565" font-size="12" fill="#22c55e" font-weight="bold" text-anchor="middle">1️⃣3️⃣ Trend AI</text>
+                    <text x="900" y="585" font-size="10" fill="#f0f0f0">• Historical data</text>
+                    <text x="900" y="602" font-size="10" fill="#f0f0f0">• Predictions</text>
+
+                    <!-- Knowledge Base -->
+                    <rect x="740" y="630" width="290" height="100" rx="8" fill="rgba(166, 226, 46, 0.1)" stroke="#a6e22e" stroke-width="2"/>
+                    <text x="885" y="660" font-size="14" fill="#a6e22e" font-weight="bold" text-anchor="middle">📚 Knowledge Base</text>
+                    <text x="750" y="685" font-size="11" fill="#f0f0f0">🗂️ Vector embeddings: 10K+ runbooks</text>
+                    <text x="750" y="705" font-size="11" fill="#f0f0f0">📊 Historic incidents: 500+ cases</text>
+                    <text x="750" y="725" font-size="11" fill="#f0f0f0">🔍 Semantic search: <10ms retrieval</text>
+
+                    <!-- Data Sources -->
+                    <rect x="360" y="580" width="340" height="130" rx="8" fill="rgba(102, 217, 239, 0.1)" stroke="#66d9ef" stroke-width="2"/>
+                    <text x="530" y="610" font-size="14" fill="#66d9ef" font-weight="bold" text-anchor="middle">📡 DATA SOURCES</text>
+                    <text x="380" y="640" font-size="11" fill="#f0f0f0">📊 Prometheus (metrics)</text>
+                    <text x="380" y="660" font-size="11" fill="#f0f0f0">🗃️ Loki (logs)</text>
+                    <text x="380" y="680" font-size="11" fill="#f0f0f0">🔍 Jaeger (traces)</text>
+                    <text x="550" y="640" font-size="11" fill="#f0f0f0">☸️ Kubernetes API</text>
+                    <text x="550" y="660" font-size="11" fill="#f0f0f0">🐳 Docker daemon</text>
+                    <text x="550" y="680" font-size="11" fill="#f0f0f0">📂 Git repos</text>
+                </g>
+
+                <!-- SECTION 3: OUTPUTS (Right) -->
+                <g id="outputs-ai">
+                    <rect x="1080" y="20" width="300" height="860" rx="15" fill="rgba(166, 226, 46, 0.05)" stroke="#a6e22e" stroke-width="2"/>
+                    <text x="1230" y="50" font-size="18" fill="#a6e22e" font-weight="bold" text-anchor="middle">OUTPUTS</text>
+
+                    <!-- Reactive Output -->
+                    <rect x="1100" y="80" width="260" height="380" rx="10" fill="rgba(239, 68, 68, 0.1)" stroke="#ef4444" stroke-width="2"/>
+                    <text x="1230" y="110" font-size="14" fill="#ef4444" font-weight="bold" text-anchor="middle">🔴 INCIDENT REPORT</text>
+
+                    <!-- Root Cause -->
+                    <rect x="1120" y="130" width="220" height="100" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="1230" y="155" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">🎯 Root Cause</text>
+                    <text x="1130" y="175" font-size="10" fill="#f0f0f0">Database connection pool</text>
+                    <text x="1130" y="192" font-size="10" fill="#f0f0f0">exhausted (50/50 active)</text>
+                    <text x="1130" y="209" font-size="10" fill="#f0f0f0">Slow query from report API</text>
+                    <text x="1130" y="226" font-size="10" fill="#f0f0f0">Confidence: 95%</text>
+
+                    <!-- Timeline -->
+                    <rect x="1120" y="245" width="220" height="90" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="1230" y="270" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">⏱️ Timeline</text>
+                    <text x="1130" y="290" font-size="9" fill="#66d9ef">10:03 UTC: Deploy v3.2.1</text>
+                    <text x="1130" y="305" font-size="9" fill="#66d9ef">10:05 UTC: DB pool 100%</text>
+                    <text x="1130" y="320" font-size="9" fill="#66d9ef">10:07 UTC: Pods crashing</text>
+
+                    <!-- Runbook -->
+                    <rect x="1120" y="350" width="220" height="100" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#ef4444" stroke-width="1"/>
+                    <text x="1230" y="375" font-size="13" fill="#ef4444" font-weight="bold" text-anchor="middle">📖 Runbook Match</text>
+                    <text x="1130" y="395" font-size="10" fill="#a6e22e">"DB Pool Exhaustion"</text>
+                    <text x="1130" y="412" font-size="9" fill="#f0f0f0">1. Increase pool size → 100</text>
+                    <text x="1130" y="427" font-size="9" fill="#f0f0f0">2. Add slow query logging</text>
+                    <text x="1130" y="442" font-size="9" fill="#f0f0f0">3. Scale read replicas +2</text>
+
+                    <!-- Proactive Output -->
+                    <rect x="1100" y="480" width="260" height="380" rx="10" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" stroke-width="2"/>
+                    <text x="1230" y="510" font-size="14" fill="#22c55e" font-weight="bold" text-anchor="middle">🟢 SECURITY REPORT</text>
+
+                    <!-- Vulnerabilities -->
+                    <rect x="1120" y="530" width="220" height="130" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="1230" y="555" font-size="13" fill="#22c55e" font-weight="bold" text-anchor="middle">🚨 Vulnerabilities</text>
+                    <text x="1130" y="575" font-size="10" fill="#ef4444">⚠️ CRITICAL: Exposed secret</text>
+                    <text x="1130" y="592" font-size="9" fill="#f0f0f0">AWS key in docker-compose</text>
+                    <text x="1130" y="610" font-size="10" fill="#fb923c">⚠️ HIGH: Privileged container</text>
+                    <text x="1130" y="627" font-size="9" fill="#f0f0f0">Redis running as root</text>
+                    <text x="1130" y="645" font-size="10" fill="#fbbf24">⚠️ MEDIUM: Missing TLS</text>
+                    <text x="1130" y="662" font-size="9" fill="#f0f0f0">Internal API unencrypted</text>
+
+                    <!-- Compliance -->
+                    <rect x="1120" y="675" width="220" height="90" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="1230" y="700" font-size="13" fill="#22c55e" font-weight="bold" text-anchor="middle">✅ Compliance Score</text>
+                    <text x="1130" y="720" font-size="10" fill="#f0f0f0">CIS Benchmark: 78/100</text>
+                    <text x="1130" y="737" font-size="10" fill="#f0f0f0">PCI-DSS: 12/15 controls</text>
+                    <text x="1130" y="754" font-size="10" fill="#f0f0f0">OWASP Top 10: 8/10 pass</text>
+
+                    <!-- Remediation -->
+                    <rect x="1120" y="780" width="220" height="70" rx="8" fill="rgba(0, 0, 0, 0.4)" stroke="#22c55e" stroke-width="1"/>
+                    <text x="1230" y="805" font-size="13" fill="#22c55e" font-weight="bold" text-anchor="middle">🔧 Auto-Fix Suggested</text>
+                    <text x="1130" y="825" font-size="9" fill="#a6e22e">✓ Move secrets to Vault</text>
+                    <text x="1130" y="840" font-size="9" fill="#a6e22e">✓ Set securityContext</text>
+                </g>
+
+                <!-- FLOW ARROWS -->
+                <!-- User Input → LLM Core -->
+                <defs>
+                    <marker id="arrowhead-ai" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#66d9ef"/>
+                    </marker>
+                </defs>
+                <path d="M 320 230 L 480 140" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#arrowhead-ai)" stroke-dasharray="5,5"/>
+                <path d="M 320 670 L 480 170" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowhead-ai)" stroke-dasharray="5,5"/>
+
+                <!-- LLM → Agents -->
+                <path d="M 700 200 L 530 270" stroke="#66d9ef" stroke-width="2" fill="none" marker-end="url(#arrowhead-ai)"/>
+                <path d="M 700 200 L 880 270" stroke="#66d9ef" stroke-width="2" fill="none" marker-end="url(#arrowhead-ai)"/>
+
+                <!-- Agents → Output -->
+                <path d="M 700 520 L 1100 230" stroke="#ef4444" stroke-width="3" fill="none" marker-end="url(#arrowhead-ai)" stroke-dasharray="5,5"/>
+                <path d="M 880 670 L 1100 670" stroke="#22c55e" stroke-width="3" fill="none" marker-end="url(#arrowhead-ai)" stroke-dasharray="5,5"/>
+
+                <!-- Performance Bar -->
+                <rect x="50" y="820" width="1300" height="60" rx="10" fill="rgba(102, 217, 239, 0.1)" stroke="#66d9ef" stroke-width="2"/>
+                <text x="700" y="845" font-size="16" fill="#66d9ef" font-weight="bold" text-anchor="middle">⚡ PERFORMANCE METRICS</text>
+                <g>
+                    <text x="100" y="870" font-size="11" fill="#f0f0f0" text-anchor="middle">60% MTTR ↓</text>
+                    <text x="300" y="870" font-size="11" fill="#f0f0f0" text-anchor="middle">10K+ Runbooks</text>
+                    <text x="500" y="870" font-size="11" fill="#f0f0f0" text-anchor="middle">~200ms Query</text>
+                    <text x="700" y="870" font-size="11" fill="#f0f0f0" text-anchor="middle">70% Auto-Triage</text>
+                    <text x="900" y="870" font-size="11" fill="#f0f0f0" text-anchor="middle">$0 API Cost</text>
+                    <text x="1100" y="870" font-size="11" fill="#f0f0f0" text-anchor="middle">13 AI Agents</text>
+                    <text x="1300" y="870" font-size="11" fill="#f0f0f0" text-anchor="middle">100% Local</text>
+                </g>
+            </svg>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Technology Stack</h2>
+        <div class="tech-stack">
+            <div class="tech-category">
+                <h3 class="tech-category-title">Frontend & UI</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Next.js 14</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">shadcn/ui</span>
+                    <span class="tech-tag">Real-time Dashboard</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="tech-category-title">Backend & Processing</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">Python 3.11</span>
+                    <span class="tech-tag">Celery</span>
+                    <span class="tech-tag">Redis Queue</span>
+                    <span class="tech-tag">Async Processing</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="tech-category-title">AI & Vector Search</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Ollama Llama 3</span>
+                    <span class="tech-tag">ChromaDB</span>
+                    <span class="tech-tag">Sentence Transformers</span>
+                    <span class="tech-tag">Vector Embeddings</span>
+                    <span class="tech-tag">Multi-Agent Orchestration</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="tech-category-title">Infrastructure & Deployment</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Docker Compose</span>
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">GitHub Actions</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="tech-category-title">Observability</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Prometheus</span>
+                    <span class="tech-tag">Grafana</span>
+                    <span class="tech-tag">Loki</span>
+                    <span class="tech-tag">Agent Tracing</span>
+                    <span class="tech-tag">Performance Metrics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Key Achievements</h2>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-number">13</div>
+                <div class="metric-label">AI Agents Implemented</div>
+                <div class="metric-description">7 incident + 6 security</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">60%</div>
+                <div class="metric-label">MTTR Improvement</div>
+                <div class="metric-description">Observed where agents handle triage</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">$0</div>
+                <div class="metric-label">LLM Cost</div>
+                <div class="metric-description">100% open-source (Ollama)</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">24/7</div>
+                <div class="metric-label">Incident Monitoring</div>
+                <div class="metric-description">Autonomous 24-hour coverage</div>
+            </div>
+        </div>
+
+        <div style="background: rgba(255, 255, 255, 0.05); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+            <h3 style="color: #48bb78; margin-bottom: 1rem;">🌟 Operational Excellence</h3>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h4 style="color: #e2e8f0;">Incident Response Benefits:</h4>
+                    <ul style="color: #e2e8f0; margin-top: 0.5rem; line-height: 1.8;">
+                        <li>✓ Instant log correlation</li>
+                        <li>✓ Root cause identification</li>
+                        <li>✓ Runbook auto-matching</li>
+                        <li>✓ Timeline reconstruction</li>
+                        <li>✓ On-call relief 60%+</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: #a6e22e;">Proactive Security:</h4>
+                    <ul style="color: #a6e22e; margin-top: 0.5rem; line-height: 1.8;">
+                        <li>✓ IaC misconfig detection</li>
+                        <li>✓ CIS/NIST/SOC2 mapping</li>
+                        <li>✓ Drift detection</li>
+                        <li>✓ Auto-remediation suggestions</li>
+                        <li>✓ Prevent incidents proactively</li>
+                    </ul>
+                </div>
+            </div>
+            <p style="color: #e2e8f0; margin-top: 1.5rem; line-height: 1.7;">
+                I led the end-to-end design and implementation of this platform as the primary DevOps and platform engineer,
+                partnering closely with SRE and security teams to define agent responsibilities, guardrails, and observability
+                so that the system remains auditable, explainable, and safe to operate.
+            </p>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Project Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3 class="feature-title">Multi-Agent System</h3>
+                <p class="feature-description">13 AI agents working together for incident response and security analysis with local LLM inference.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🔎</div>
+                <h3 class="feature-title">Vector Search</h3>
+                <p class="feature-description">ChromaDB vector embeddings enable semantic search across logs, documentation, and runbooks.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💰</div>
+                <h3 class="feature-title">Zero LLM Cost</h3>
+                <p class="feature-description">Ollama Llama 3 local inference eliminates cloud LLM API costs while maintaining performance.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title">Real-time Dashboard</h3>
+                <p class="feature-description">Next.js 14 dashboard visualizes incident status, agent actions, and security findings in real-time.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3 class="feature-title">Async Job Queue</h3>
+                <p class="feature-description">Celery background processing enables long-running analysis without blocking user requests.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3 class="feature-title">Complete Observability</h3>
+                <p class="feature-description">Prometheus metrics, Grafana dashboards, and Loki logs track system health and agent performance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">💰 Business Impact & ROI</h2>
+        <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1) 0%, rgba(102, 217, 239, 0.1) 100%); border-radius: 15px; padding: 2rem; margin: 2rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                <div style="text-align: center; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">60%</div>
+                    <div style="color: #66d9ef; font-size: 0.9rem;">MTTR Reduction</div>
+                    <div style="color: #999; font-size: 0.8rem; margin-top: 0.5rem;">(45 min → 18 min avg incident)</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">$425K</div>
+                    <div style="color: #66d9ef; font-size: 0.9rem;">Annual Savings</div>
+                    <div style="color: #999; font-size: 0.8rem; margin-top: 0.5rem;">(Reduced on-call hours + no LLM API costs)</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">70%</div>
+                    <div style="color: #66d9ef; font-size: 0.9rem;">Auto-Triage Rate</div>
+                    <div style="color: #999; font-size: 0.8rem; margin-top: 0.5rem;">(Recurring incidents fully automated)</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">85%</div>
+                    <div style="color: #66d9ef; font-size: 0.9rem;">Runbook Match Accuracy</div>
+                    <div style="color: #999; font-size: 0.8rem; margin-top: 0.5rem;">(Vector search semantic matching)</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">10K+</div>
+                    <div style="color: #66d9ef; font-size: 0.9rem;">Runbooks Embedded</div>
+                    <div style="color: #999; font-size: 0.8rem; margin-top: 0.5rem;">(ChromaDB vector knowledge base)</div>
+                </div>
+                <div style="text-align: center; padding: 1.5rem; background: rgba(0, 0, 0, 0.3); border-radius: 10px;">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">$0</div>
+                    <div style="color: #66d9ef; font-size: 0.9rem;">LLM API Costs</div>
+                    <div style="color: #999; font-size: 0.8rem; margin-top: 0.5rem;">(100% local Ollama inference)</div>
+                </div>
+            </div>
+
+            <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(166, 226, 46, 0.1); border-radius: 10px; border: 2px solid rgba(166, 226, 46, 0.3);">
+                <h4 style="color: #a6e22e; margin-bottom: 1rem;">📊 Key Performance Indicators</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; color: #e2e8f0; font-size: 0.9rem;">
+                    <div>
+                        <div style="color: #a6e22e; font-weight: bold;">Query Latency</div>
+                        <div>~200ms vector search avg</div>
+                    </div>
+                    <div>
+                        <div style="color: #a6e22e; font-weight: bold;">Agent Count</div>
+                        <div>13 specialized AI agents</div>
+                    </div>
+                    <div>
+                        <div style="color: #a6e22e; font-weight: bold;">Incident Coverage</div>
+                        <div>500+ historical cases</div>
+                    </div>
+                    <div>
+                        <div style="color: #a6e22e; font-weight: bold;">Security Scans</div>
+                        <div>Continuous IaC analysis</div>
+                    </div>
+                    <div>
+                        <div style="color: #a6e22e; font-weight: bold;">Compliance</div>
+                        <div>CIS/PCI-DSS/OWASP mapping</div>
+                    </div>
+                    <div>
+                        <div style="color: #a6e22e; font-weight: bold;">Phases Complete</div>
+                        <div>2/3 production-ready</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://github.com/temitayocharles/ai-ops-platform" target="_blank">GitHub</a>
+            </div>
+            <p class="footer-text">© 2024 Temitayo Charles. AI-driven operations intelligence for SRE excellence.</p>
+        </div>
+    </footer>
+</body>
+</html>

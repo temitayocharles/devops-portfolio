@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Virtual Vacation Platform - Next.js Tourism Experience</title>
+    <meta name="description" content="Full-stack tourism platform with Next.js 15, virtual tours, real-time booking, payment processing, tour guide matching, user reviews, and Stripe integration for seamless travel experiences.">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(14, 14, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+            padding: 1rem 0;
+            position: relative;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            text-decoration: none;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+
+        .nav-links a:hover {
+            color: #66d9ef;
+            background: rgba(102, 217, 239, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 50%, #0e0e0e 100%);
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(166, 226, 46, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #66d9ef;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            color: #0e0e0e;
+            box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(166, 226, 46, 0.4);
+        }
+
+        .cta-secondary {
+            background: rgba(102, 217, 239, 0.1);
+            color: #66d9ef;
+            border: 2px solid #66d9ef;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(102, 217, 239, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #f0f0f0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Architecture Section */
+        .architecture-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(102, 217, 239, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .section {
+                padding: 3rem 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 6rem 1rem 3rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Temitayo Charles</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="https://aws.amazon.com" target="_blank">AWS</a></li>
+                <li><a href="https://azure.microsoft.com" target="_blank">Azure</a></li>
+                <li><a href="https://cloud.google.com" target="_blank">GCP</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Virtual Vacation Platform</h1>
+            <p class="hero-subtitle">Next-Generation Tourism & Experience Booking</p>
+            <p class="hero-description">
+                Modern travel platform built with Next.js 15 featuring immersive virtual tours, 
+                real-time tour guide matching, seamless booking & payment processing, user reviews & ratings, 
+                and personalized recommendations for exploring destinations globally.
+            </p>
+            <div class="cta-buttons">
+                <a href="#architecture" class="cta-primary">📐 Architecture</a>
+                <a href="https://github.com/temitayocharles" target="_blank" class="cta-secondary">📖 View Repository</a>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">50K+</div>
+                    <div class="stat-label">Bookings Processed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2000+</div>
+                    <div class="stat-label">Tour Guides</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label">Destinations</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.8/5</div>
+                    <div class="stat-label">Average Rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">The Challenge: Transforming Tourism Experience</h2>
+        <div class="architecture-section">
+            <p style="color: #f0f0f0; text-align: center; font-size: 1.1rem; max-width: 900px; margin: 0 auto 3rem; line-height: 1.7;">
+                Traditional travel booking is fragmented - multiple platforms, inconsistent experiences, limited guide transparency, 
+                and poor real-time communication. Virtual Vacation creates a unified, immersive platform where travelers discover destinations, 
+                connect with local guides, and book experiences with confidence and ease.
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">❌</div>
+                    <div style="font-size: 1.3rem; font-weight: bold; color: #66d9ef; margin-bottom: 0.5rem;">Fragmented Booking</div>
+                    <div style="color: #f0f0f0;">Multiple platforms, poor guide info, limited transparency</div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">✨</div>
+                    <div style="font-size: 1.3rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">Unified Experience</div>
+                    <div style="color: #f0f0f0;">Single platform, vetted guides, secure payments, real-time chat</div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🚀</div>
+                    <div style="font-size: 1.3rem; font-weight: bold; color: #48bb78; margin-bottom: 0.5rem;">Business Growth</div>
+                    <div style="color: #f0f0f0;">50K+ bookings, 2000+ guides, 150+ destinations, 4.8★ rating</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section">
+        <h2 class="section-title">Platform Components</h2>
+        <div class="architecture-section">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 2px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 1rem;">🗺️ Virtual Tours</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Immersive destination exploration</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">360° tours, video highlights, photo galleries, interactive maps, AR preview</div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 2px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #a6e22e; font-size: 1.3rem; margin-bottom: 1rem;">👥 Guide Matching</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">AI-powered local guide discovery</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Profile matching, availability calendar, rating system, verification checks</div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #60a5fa; font-size: 1.3rem; margin-bottom: 1rem;">💳 Smart Booking</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Seamless reservation system</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Real-time availability, flexible cancellation, group bookings, instant confirmation</div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #ef4444; font-size: 1.3rem; margin-bottom: 1rem;">💰 Payment Processing</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Secure global transactions</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Stripe integration, multi-currency, fraud detection, instant payouts</div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05)); border: 2px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #d8b4fe; font-size: 1.3rem; margin-bottom: 1rem;">⭐ Reviews & Ratings</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Community-driven quality assurance</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Verified reviews, photo uploads, rating system, moderation, insights</div>
+                </div>
+
+                <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 16px; padding: 2rem;">
+                    <h4 style="color: #22c55e; font-size: 1.3rem; margin-bottom: 1rem;">💬 Real-Time Chat</h4>
+                    <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Instant guide-traveler communication</p>
+                    <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">WebSocket messaging, file sharing, group chat, translation, read receipts</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Core Technologies</h2>
+        <div class="tech-stack">
+            <div class="tech-category">
+                <h3 class="tech-category-title">Frontend</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Next.js 15</span>
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">TypeScript</span>
+                    <span class="tech-tag">Tailwind CSS</span>
+                    <span class="tech-tag">Mapbox</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="tech-category-title">Backend & APIs</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">WebSocket</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="tech-category-title">Payments & Media</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Stripe</span>
+                    <span class="tech-tag">AWS S3</span>
+                    <span class="tech-tag">Cloudinary</span>
+                    <span class="tech-tag">Multi-Currency</span>
+                    <span class="tech-tag">PCI Compliance</span>
+                </div>
+            </div>
+
+            <div class="tech-category">
+                <h3 class="tech-category-title">Search & AI</h3>
+                <div class="tech-tags">
+                    <span class="tech-tag">Elasticsearch</span>
+                    <span class="tech-tag">Algolia</span>
+                    <span class="tech-tag">Machine Learning</span>
+                    <span class="tech-tag">Recommendations</span>
+                    <span class="tech-tag">Analytics</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Virtual Tourism Architecture</h2>
+        <div class="architecture-section">
+            <svg viewBox="0 0 1400 950" style="width: 100%; max-width: 100%; margin: 2rem 0; background: rgba(0,0,0,0.3); border-radius: 16px; border: 1px solid rgba(102, 217, 239, 0.3);">
+                <!-- User Layer -->
+                <g id="user-layer">
+                    <rect x="30" y="30" width="280" height="140" fill="rgba(102, 217, 239, 0.1)" stroke="rgba(102, 217, 239, 0.5)" stroke-width="2" rx="8"/>
+                    <text x="170" y="55" text-anchor="middle" fill="#66d9ef" font-size="18" font-weight="bold">👥 Platform Users</text>
+                    <text x="100" y="90" fill="#f0f0f0" font-size="13">Travelers</text>
+                    <text x="100" y="110" fill="#f0f0f0" font-size="12">(50K+ bookings,</text>
+                    <text x="100" y="125" fill="#f0f0f0" font-size="12">4.8★ rating)</text>
+                    <text x="240" y="90" fill="#f0f0f0" font-size="13">Tour Guides</text>
+                    <text x="240" y="110" fill="#f0f0f0" font-size="12">(2000+ verified,</text>
+                    <text x="240" y="125" fill="#f0f0f0" font-size="12">150+ destinations)</text>
+                </g>
+
+                <!-- API Gateway -->
+                <g id="gateway">
+                    <rect x="400" y="40" width="200" height="120" fill="rgba(168, 85, 247, 0.15)" stroke="rgba(168, 85, 247, 0.5)" stroke-width="2" rx="8"/>
+                    <text x="500" y="65" text-anchor="middle" fill="#d8b4fe" font-size="16" font-weight="bold">⚙️ API Gateway</text>
+                    <text x="500" y="90" text-anchor="middle" fill="#f0f0f0" font-size="12">Load Balancer</text>
+                    <text x="500" y="110" text-anchor="middle" fill="#f0f0f0" font-size="12">Rate Limiting</text>
+                    <text x="500" y="130" text-anchor="middle" fill="#f0f0f0" font-size="12">Request Routing</text>
+                    <!-- Arrows from users to gateway -->
+                    <path d="M 310 100 L 400 100" stroke="rgba(102, 217, 239, 0.6)" stroke-width="2" marker-end="url(#arrowhead)"/>
+                </g>
+
+                <!-- Core Services -->
+                <g id="core-services">
+                    <!-- Virtual Tour Service -->
+                    <rect x="30" y="250" width="200" height="160" fill="rgba(102, 217, 239, 0.15)" stroke="rgba(102, 217, 239, 0.5)" stroke-width="2" rx="8"/>
+                    <text x="130" y="280" text-anchor="middle" fill="#66d9ef" font-size="15" font-weight="bold">🎥 Virtual Tours</text>
+                    <text x="130" y="305" text-anchor="middle" fill="#f0f0f0" font-size="12">360° video streaming</text>
+                    <text x="130" y="325" text-anchor="middle" fill="#f0f0f0" font-size="12">Interactive hotspots</text>
+                    <text x="130" y="345" text-anchor="middle" fill="#f0f0f0" font-size="12">Photo galleries</text>
+                    <text x="130" y="365" text-anchor="middle" fill="#f0f0f0" font-size="12">Destination maps</text>
+                    <text x="130" y="380" text-anchor="middle" fill="#f0f0f0" font-size="12">Instances: 5-15</text>
+
+                    <!-- Booking Service -->
+                    <rect x="290" y="250" width="200" height="160" fill="rgba(166, 226, 46, 0.15)" stroke="rgba(166, 226, 46, 0.5)" stroke-width="2" rx="8"/>
+                    <text x="390" y="280" text-anchor="middle" fill="#a6e22e" font-size="15" font-weight="bold">📅 Booking Engine</text>
+                    <text x="390" y="305" text-anchor="middle" fill="#f0f0f0" font-size="12">Guide availability</text>
+                    <text x="390" y="325" text-anchor="middle" fill="#f0f0f0" font-size="12">Reservation tracking</text>
+                    <text x="390" y="345" text-anchor="middle" fill="#f0f0f0" font-size="12">Conflict resolution</text>
+                    <text x="390" y="365" text-anchor="middle" fill="#f0f0f0" font-size="12">Auto-confirmation</text>
+                    <text x="390" y="380" text-anchor="middle" fill="#f0f0f0" font-size="12">Instances: 4-10</text>
+
+                    <!-- Payment Service -->
+                    <rect x="550" y="250" width="200" height="160" fill="rgba(59, 130, 246, 0.15)" stroke="rgba(59, 130, 246, 0.5)" stroke-width="2" rx="8"/>
+                    <text x="650" y="280" text-anchor="middle" fill="#60a5fa" font-size="15" font-weight="bold">💳 Payments</text>
+                    <text x="650" y="305" text-anchor="middle" fill="#f0f0f0" font-size="12">Stripe integration</text>
+                    <text x="650" y="325" text-anchor="middle" fill="#f0f0f0" font-size="12">Multi-currency</text>
+                    <text x="650" y="345" text-anchor="middle" fill="#f0f0f0" font-size="12">PCI compliance</text>
+                    <text x="650" y="365" text-anchor="middle" fill="#f0f0f0" font-size="12">Instant payouts</text>
+                    <text x="650" y="380" text-anchor="middle" fill="#f0f0f0" font-size="12">Instances: 3-8</text>
+
+                    <!-- Guide Matching AI -->
+                    <rect x="810" y="250" width="200" height="160" fill="rgba(239, 68, 68, 0.15)" stroke="rgba(239, 68, 68, 0.5)" stroke-width="2" rx="8"/>
+                    <text x="910" y="280" text-anchor="middle" fill="#ef4444" font-size="15" font-weight="bold">🤖 Guide Matching</text>
+                    <text x="910" y="305" text-anchor="middle" fill="#f0f0f0" font-size="12">ML matching algorithm</text>
+                    <text x="910" y="325" text-anchor="middle" fill="#f0f0f0" font-size="12">Interest scoring</text>
+                    <text x="910" y="345" text-anchor="middle" fill="#f0f0f0" font-size="12">Language matching</text>
+                    <text x="910" y="365" text-anchor="middle" fill="#f0f0f0" font-size="12">Availability check</text>
+                    <text x="910" y="380" text-anchor="middle" fill="#f0f0f0" font-size="12">Instances: 3-8</text>
+                </g>
+
+                <!-- Data & Media Layer -->
+                <g id="data-layer">
+                    <rect x="30" y="500" width="180" height="140" fill="rgba(166, 226, 46, 0.1)" stroke="rgba(166, 226, 46, 0.4)" stroke-width="2" rx="8"/>
+                    <text x="120" y="535" text-anchor="middle" fill="#a6e22e" font-size="14" font-weight="bold">🗄️ PostgreSQL</text>
+                    <text x="120" y="560" text-anchor="middle" fill="#f0f0f0" font-size="12">User data</text>
+                    <text x="120" y="575" text-anchor="middle" fill="#f0f0f0" font-size="12">Bookings & tours</text>
+                    <text x="120" y="590" text-anchor="middle" fill="#f0f0f0" font-size="12">Reviews & ratings</text>
+                    <text x="120" y="610" text-anchor="middle" fill="#f0f0f0" font-size="11" font-style="italic">Replication</text>
+
+                    <rect x="270" y="500" width="180" height="140" fill="rgba(102, 217, 239, 0.1)" stroke="rgba(102, 217, 239, 0.4)" stroke-width="2" rx="8"/>
+                    <text x="360" y="535" text-anchor="middle" fill="#66d9ef" font-size="14" font-weight="bold">🎬 CDN</text>
+                    <text x="360" y="560" text-anchor="middle" fill="#f0f0f0" font-size="12">360° videos</text>
+                    <text x="360" y="575" text-anchor="middle" fill="#f0f0f0" font-size="12">Photo galleries</text>
+                    <text x="360" y="590" text-anchor="middle" fill="#f0f0f0" font-size="12">Global delivery</text>
+                    <text x="360" y="610" text-anchor="middle" fill="#f0f0f0" font-size="11" font-style="italic">Edge caching</text>
+
+                    <rect x="510" y="500" width="180" height="140" fill="rgba(239, 100, 100, 0.1)" stroke="rgba(239, 100, 100, 0.4)" stroke-width="2" rx="8"/>
+                    <text x="600" y="535" text-anchor="middle" fill="#ff6b6b" font-size="14" font-weight="bold">⚡ Redis</text>
+                    <text x="600" y="560" text-anchor="middle" fill="#f0f0f0" font-size="12">Session cache</text>
+                    <text x="600" y="575" text-anchor="middle" fill="#f0f0f0" font-size="12">Leaderboards</text>
+                    <text x="600" y="590" text-anchor="middle" fill="#f0f0f0" font-size="12">Real-time updates</text>
+                    <text x="600" y="610" text-anchor="middle" fill="#f0f0f0" font-size="11" font-style="italic">Sub-100ms</text>
+
+                    <rect x="750" y="500" width="180" height="140" fill="rgba(244, 164, 96, 0.1)" stroke="rgba(244, 164, 96, 0.4)" stroke-width="2" rx="8"/>
+                    <text x="840" y="535" text-anchor="middle" fill="#ffa500" font-size="14" font-weight="bold">💬 WebSocket</text>
+                    <text x="840" y="560" text-anchor="middle" fill="#f0f0f0" font-size="12">Real-time chat</text>
+                    <text x="840" y="575" text-anchor="middle" fill="#f0f0f0" font-size="12">Live notifications</text>
+                    <text x="840" y="590" text-anchor="middle" fill="#f0f0f0" font-size="12">Group messaging</text>
+                    <text x="840" y="610" text-anchor="middle" fill="#f0f0f0" font-size="11" font-style="italic">Bi-directional</text>
+                </g>
+
+                <!-- Observability -->
+                <g id="observability">
+                    <rect x="1050" y="250" width="320" height="390" fill="rgba(102, 217, 239, 0.08)" stroke="rgba(102, 217, 239, 0.3)" stroke-width="2" rx="8"/>
+                    <text x="1210" y="280" text-anchor="middle" fill="#66d9ef" font-size="16" font-weight="bold">🔍 Observability</text>
+                    
+                    <rect x="1070" y="300" width="140" height="70" fill="rgba(102, 217, 239, 0.15)" stroke="rgba(102, 217, 239, 0.4)" stroke-width="1" rx="6"/>
+                    <text x="1140" y="325" text-anchor="middle" fill="#66d9ef" font-size="12" font-weight="bold">📊 Prometheus</text>
+                    <text x="1140" y="345" text-anchor="middle" fill="#f0f0f0" font-size="11">Video streaming</text>
+                    <text x="1140" y="360" text-anchor="middle" fill="#f0f0f0" font-size="11">Booking metrics</text>
+
+                    <rect x="1220" y="300" width="140" height="70" fill="rgba(255, 165, 0, 0.15)" stroke="rgba(255, 165, 0, 0.4)" stroke-width="1" rx="6"/>
+                    <text x="1290" y="325" text-anchor="middle" fill="#ffa500" font-size="12" font-weight="bold">📈 Grafana</text>
+                    <text x="1290" y="345" text-anchor="middle" fill="#f0f0f0" font-size="11">Booking dashboards</text>
+                    <text x="1290" y="360" text-anchor="middle" fill="#f0f0f0" font-size="11">Guide analytics</text>
+
+                    <rect x="1070" y="380" width="140" height="70" fill="rgba(166, 226, 46, 0.15)" stroke="rgba(166, 226, 46, 0.4)" stroke-width="1" rx="6"/>
+                    <text x="1140" y="405" text-anchor="middle" fill="#a6e22e" font-size="12" font-weight="bold">📝 Logs</text>
+                    <text x="1140" y="425" text-anchor="middle" fill="#f0f0f0" font-size="11">Centralized logs</text>
+                    <text x="1140" y="440" text-anchor="middle" fill="#f0f0f0" font-size="11">Error tracking</text>
+
+                    <rect x="1220" y="380" width="140" height="70" fill="rgba(59, 130, 246, 0.15)" stroke="rgba(59, 130, 246, 0.4)" stroke-width="1" rx="6"/>
+                    <text x="1290" y="405" text-anchor="middle" fill="#60a5fa" font-size="12" font-weight="bold">🔗 Tracing</text>
+                    <text x="1290" y="425" text-anchor="middle" fill="#f0f0f0" font-size="11">Request tracing</text>
+                    <text x="1290" y="440" text-anchor="middle" fill="#f0f0f0" font-size="11">Video playback</text>
+                </g>
+
+                <!-- Data Flow -->
+                <g id="data-flow">
+                    <rect x="30" y="750" width="1000" height="160" fill="rgba(102, 217, 239, 0.05)" stroke="rgba(102, 217, 239, 0.3)" stroke-width="2" rx="8"/>
+                    <text x="540" y="780" text-anchor="middle" fill="#66d9ef" font-size="16" font-weight="bold">🎬 Virtual Experience Flow</text>
+                    <text x="540" y="810" text-anchor="middle" fill="#f0f0f0" font-size="13">Traveler → Browse Tours → View 360° Videos → Match Guide → Book → Pay (Stripe) → Chat → Rate Review</text>
+                    <text x="540" y="835" text-anchor="middle" fill="#f0f0f0" font-size="13">Engagement Metrics: 50K bookings, 2000 guides, 4.8★ rating, 150+ destinations, 95% booking completion</text>
+                    <text x="540" y="860" text-anchor="middle" fill="#f0f0f0" font-size="13">Video Streaming: 360° 4K @ 30fps, CDN global delivery, &lt;2sec buffering, 99.9% uptime</text>
+                    <text x="540" y="885" text-anchor="middle" fill="#f0f0f0" font-size="13">Real-time Chat: &lt;100ms latency, 5000 concurrent connections, group chat, media sharing, translation</text>
+                </g>
+
+                <!-- Arrow markers -->
+                <defs>
+                    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="rgba(102, 217, 239, 0.6)"/>
+                    </marker>
+                </defs>
+            </svg>
+
+            <!-- Performance Metrics -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.15), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 12px; padding: 1.5rem;">
+                    <div style="color: #66d9ef; font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">50K+</div>
+                    <div style="color: #f0f0f0; font-size: 0.95rem;">Successful Bookings Processed</div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.15), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 12px; padding: 1.5rem;">
+                    <div style="color: #a6e22e; font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">&lt;2s</div>
+                    <div style="color: #f0f0f0; font-size: 0.95rem;">360° Video Buffer Time</div>
+                </div>
+                <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 1.5rem;">
+                    <div style="color: #60a5fa; font-size: 1.5rem; font-weight: bold; margin-bottom: 0.5rem;">99.9%</div>
+                    <div style="color: #f0f0f0; font-size: 0.95rem;">Platform Uptime (Video CDN)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Technology Stack</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚛️</div>
+                <div style="color: #66d9ef; font-weight: bold; margin-bottom: 0.3rem;">Next.js 15</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Full-stack web</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐘</div>
+                <div style="color: #a6e22e; font-weight: bold; margin-bottom: 0.3rem;">PostgreSQL</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Data storage</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(239, 100, 100, 0.1), rgba(239, 100, 100, 0.05)); border: 1px solid rgba(239, 100, 100, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚡</div>
+                <div style="color: #ff6b6b; font-weight: bold; margin-bottom: 0.3rem;">Redis</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Caching</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">☸️</div>
+                <div style="color: #66d9ef; font-weight: bold; margin-bottom: 0.3rem;">Kubernetes</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Orchestration</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(255, 165, 0, 0.1), rgba(255, 165, 0, 0.05)); border: 1px solid rgba(255, 165, 0, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🎬</div>
+                <div style="color: #ffa500; font-weight: bold; margin-bottom: 0.3rem;">CDN</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Media delivery</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🐳</div>
+                <div style="color: #a6e22e; font-weight: bold; margin-bottom: 0.3rem;">Docker</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Containers</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💳</div>
+                <div style="color: #60a5fa; font-weight: bold; margin-bottom: 0.3rem;">Stripe</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Payments</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05)); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
+                <div style="color: #d8b4fe; font-weight: bold; margin-bottom: 0.3rem;">Prometheus</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Metrics</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(244, 164, 96, 0.1), rgba(244, 164, 96, 0.05)); border: 1px solid rgba(244, 164, 96, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📈</div>
+                <div style="color: #ffa500; font-weight: bold; margin-bottom: 0.3rem;">Grafana</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Dashboards</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔌</div>
+                <div style="color: #66d9ef; font-weight: bold; margin-bottom: 0.3rem;">WebSocket</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Real-time chat</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 12px; padding: 1.5rem; text-align: center;">
+                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🤖</div>
+                <div style="color: #a6e22e; font-weight: bold; margin-bottom: 0.3rem;">ML Matching</div>
+                <div style="color: #f0f0f0; font-size: 0.85rem;">Guide AI</div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding: 3rem 2rem; background: linear-gradient(135deg, rgba(102, 217, 239, 0.08), rgba(166, 226, 46, 0.08)); margin: 3rem 0; border-radius: 16px; border: 1px solid rgba(102, 217, 239, 0.3);">
+        <h2 style="text-align: center; margin-bottom: 40px; color: #a6e22e; font-size: 2rem;">Platform Success Metrics</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; max-width: 1200px; margin: 0 auto;">
+            <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.15), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 12px; padding: 2rem;">
+                <div style="color: #66d9ef; font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">50K+</div>
+                <div style="color: #f0f0f0; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem;">Bookings Processed</div>
+                <div style="color: #f0f0f0; font-size: 0.95rem;">Successful travel experiences booked and completed</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.15), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 12px; padding: 2rem;">
+                <div style="color: #a6e22e; font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">4.8/5</div>
+                <div style="color: #f0f0f0; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem;">Average Platform Rating</div>
+                <div style="color: #f0f0f0; font-size: 0.95rem;">User satisfaction with travel experience and guides</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05)); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px; padding: 2rem;">
+                <div style="color: #60a5fa; font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">2000+</div>
+                <div style="color: #f0f0f0; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem;">Verified Tour Guides</div>
+                <div style="color: #f0f0f0; font-size: 0.95rem;">Local experts across 150+ global destinations</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05)); border: 1px solid rgba(239, 68, 68, 0.3); border-radius: 12px; padding: 2rem;">
+                <div style="color: #ef4444; font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">150+</div>
+                <div style="color: #f0f0f0; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem;">Destinations Available</div>
+                <div style="color: #f0f0f0; font-size: 0.95rem;">Global coverage with immersive virtual tours</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.15), rgba(168, 85, 247, 0.05)); border: 1px solid rgba(168, 85, 247, 0.3); border-radius: 12px; padding: 2rem;">
+                <div style="color: #d8b4fe; font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">95%</div>
+                <div style="color: #f0f0f0; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem;">Booking Completion Rate</div>
+                <div style="color: #f0f0f0; font-size: 0.95rem;">Seamless checkout and payment experience</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(244, 164, 96, 0.15), rgba(244, 164, 96, 0.05)); border: 1px solid rgba(244, 164, 96, 0.3); border-radius: 12px; padding: 2rem;">
+                <div style="color: #ffa500; font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">$5M+</div>
+                <div style="color: #f0f0f0; font-size: 1.1rem; font-weight: bold; margin-bottom: 0.3rem;">Annual Booking Value</div>
+                <div style="color: #f0f0f0; font-size: 0.95rem;">Multi-currency platform with instant guide payouts</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Key Achievements</h2>
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div class="metric-number">50K+</div>
+                <div class="metric-label">Successful Bookings</div>
+                <div class="metric-description">Travel experiences booked</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">2000+</div>
+                <div class="metric-label">Tour Guides</div>
+                <div class="metric-description">Verified guides network</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">150+</div>
+                <div class="metric-label">Destinations</div>
+                <div class="metric-description">Worldwide coverage</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-number">4.8/5</div>
+                <div class="metric-label">Average Rating</div>
+                <div class="metric-description">User satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Project Features</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3 class="feature-title">Virtual Tours</h3>
+                <p class="feature-description">Immersive 360° virtual tours with video highlights, photo galleries, and interactive destination maps for pre-trip exploration.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👥</div>
+                <h3 class="feature-title">Guide Matching</h3>
+                <p class="feature-description">AI-powered matching connects travelers with vetted local guides based on interests, language, and availability.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Smart Recommendations</h3>
+                <p class="feature-description">Machine learning algorithms personalize tour suggestions based on travel history, preferences, and rating patterns.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💳</div>
+                <h3 class="feature-title">Secure Payments</h3>
+                <p class="feature-description">Stripe integration with PCI compliance, multi-currency support, and instant payouts to tour guides worldwide.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⭐</div>
+                <h3 class="feature-title">Verified Reviews</h3>
+                <p class="feature-description">Community reviews with verified purchase badges, photo uploads, and analytics for guides and travelers.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">💬</div>
+                <h3 class="feature-title">Real-Time Communication</h3>
+                <p class="feature-description">WebSocket-based instant messaging, file sharing, and group chat between guides and travelers with translation support.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="contact.html">Contact</a>
+                <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
+            </div>
+            <p class="footer-text">© 2024 Temitayo Charles. Next-generation tourism platform with 50K+ bookings and 4.8★ rating.</p>
+        </div>
+    </footer>
+</body>
+</html>
