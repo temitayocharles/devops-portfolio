@@ -10,7 +10,8 @@
 
 This professional portfolio demonstrates advanced DevOps engineering capabilities through real-world projects, comprehensive technical documentation, and production-ready solutions.
 
-### 🎯 **Featured Projects**
+
+### 🏆 **Featured Projects**
 
 | Project | Description | Technology Stack | Status |
 |---------|-------------|------------------|--------|
@@ -19,6 +20,11 @@ This professional portfolio demonstrates advanced DevOps engineering capabilitie
 | **☁️ AWS Infrastructure Automation** | Terraform-managed cloud infrastructure | AWS, Terraform, EKS, RDS | ✅ Active |
 | **📊 Cross-Platform Monitoring** | Complete observability solution | Prometheus, Grafana, Jaeger | ✅ Active |
 | **🔒 Kubernetes VPN Platform** | Enterprise security with zero-trust architecture | WireGuard, Network Policies, K8s | ✅ Active |
+
+> **Note:** Some architecture diagrams are marked "Coming Soon" in project pages. These will be added or refreshed in the next update. If you need a specific diagram, please open an issue.
+
+### Guides & Documentation
+All guides are regularly updated to reflect new features. If you find outdated instructions, please report them or submit a pull request.
 
 ## 🏗️ **Architecture Excellence**
 
