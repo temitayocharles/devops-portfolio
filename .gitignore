@@ -56,3 +56,10 @@ yarn.lock
 ## Documentation Drafts
 *-draft.*
 *-temp.*
+
+# Additions for production-ready
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.tsbuildinfo
