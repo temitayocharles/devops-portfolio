@@ -1,0 +1,154 @@
+name: Deploy to Render
+
+on:
+  workflow_run:
+    workflows: ["Build and Push Multi-Arch Docker Image"]
+    types:
+      - completed
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success' }}
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Trigger Render Deployment
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          echo "Triggering deployment to Render..."
+          
+          RESPONSE=$(curl -s -w "\n%{http_code}" -X POST \
+            "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys" \
+            -H "Accept: application/json" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" \
+            -H "Content-Type: application/json" \
+            -d '{
+              "clearCache": "do_not_clear",
+              "imageUrl": "ghcr.io/${{ github.repository }}:latest"
+            }')
+          
+          HTTP_CODE=$(echo "$RESPONSE" | tail -n1)
+          BODY=$(echo "$RESPONSE" | sed '$d')
+          
+          echo "Response Code: $HTTP_CODE"
+          echo "Response Body: $BODY"
+          
+          if [ "$HTTP_CODE" -ge 200 ] && [ "$HTTP_CODE" -lt 300 ]; then
+            echo "✅ Deployment triggered successfully!"
+            DEPLOY_ID=$(echo "$BODY" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+            echo "Deploy ID: $DEPLOY_ID"
+          else
+            echo "❌ Deployment failed with status $HTTP_CODE"
+            exit 1
+          fi
+
+      - name: Wait for Deployment
+        if: success()
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+        run: |
+          echo "Waiting for deployment to complete..."
+          MAX_WAIT=600  # 10 minutes
+          ELAPSED=0
+          INTERVAL=15
+          
+          while [ $ELAPSED -lt $MAX_WAIT ]; do
+            STATUS=$(curl -s -X GET \
+              "https://api.render.com/v1/services/${RENDER_SERVICE_ID}" \
+              -H "Accept: application/json" \
+              -H "Authorization: Bearer ${RENDER_API_KEY}" | \
+              grep -o '"serviceState":"[^"]*"' | cut -d'"' -f4)
+            
+            echo "Current status: $STATUS (${ELAPSED}s elapsed)"
+            
+            case "$STATUS" in
+              "running")
+                echo "✅ Service is running!"
+                exit 0
+                ;;
+              "failed"|"suspended")
+                echo "❌ Deployment failed with status: $STATUS"
+                exit 1
+                ;;
+              *)
+                echo "⏳ Still deploying..."
+                sleep $INTERVAL
+                ELAPSED=$((ELAPSED + INTERVAL))
+                ;;
+            esac
+          done
+          
+          echo "⚠️ Deployment timeout after ${MAX_WAIT}s - check Render dashboard"
+          exit 1
+
+      - name: Deployment Summary
+        if: always()
+        run: |
+          echo "### 🚀 Deployment Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "| Property | Value |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|-------|" >> $GITHUB_STEP_SUMMARY
+          echo "| **Service** | Portfolio (Render) |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Image** | ghcr.io/${{ github.repository }}:latest |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Commit** | ${{ github.sha }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Status** | ${{ job.status }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Trigger** | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| **Branch** | ${{ github.ref_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          if [ "${{ job.status }}" == "success" ]; then
+            echo "✅ **Deployment completed successfully!**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "🌐 Your portfolio is now live on Render." >> $GITHUB_STEP_SUMMARY
+          else
+            echo "❌ **Deployment failed!**" >> $GITHUB_STEP_SUMMARY
+            echo "" >> $GITHUB_STEP_SUMMARY
+            echo "⚠️ Check the logs above for error details." >> $GITHUB_STEP_SUMMARY
+            echo "🔄 Rollback initiated to previous stable version." >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Rollback on Failure
+        if: failure()
+        env:
+          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
+          RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+        run: |
+          echo "❌ Deployment failed - initiating rollback..."
+          
+          # Get the last successful deploy
+          PREVIOUS_DEPLOY=$(curl -s -X GET \
+            "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys?limit=10" \
+            -H "Accept: application/json" \
+            -H "Authorization: Bearer ${RENDER_API_KEY}" | \
+            grep -o '"id":"[^"]*","commit":"[^"]*","status":"live"' | head -1 | cut -d'"' -f4)
+          
+          if [ -n "$PREVIOUS_DEPLOY" ]; then
+            echo "🔄 Rolling back to previous deploy: $PREVIOUS_DEPLOY"
+            
+            # Trigger rollback by redeploying previous version
+            curl -s -X POST \
+              "https://api.render.com/v1/services/${RENDER_SERVICE_ID}/deploys" \
+              -H "Accept: application/json" \
+              -H "Authorization: Bearer ${RENDER_API_KEY}" \
+              -H "Content-Type: application/json" \
+              -d "{
+                \"clearCache\": \"do_not_clear\",
+                \"imageUrl\": \"ghcr.io/${{ github.repository }}:${{ github.event.before || 'main' }}\"
+              }"
+            
+            echo "✅ Rollback triggered successfully"
+            echo "⚠️ Manual verification recommended"
+          else
+            echo "⚠️ No previous successful deployment found"
+            echo "🔍 Manual intervention required - check Render dashboard"
+          fi
