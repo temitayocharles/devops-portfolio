@@ -6,6 +6,7 @@
   <title>Projects • Temitayo Charles</title>
   <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
   <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="css/pagination.css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     /* Global Styles */
@@ -1285,102 +1286,16 @@
       </div>
     </section>
 
-    <!-- Featured Projects Section -->
-    <section class="featured-section fade-in-up">
-      <div class="section-header">
-        <h2 class="section-title">🌟 Featured Projects</h2>
-        <p class="section-subtitle">Flagship solutions showcasing advanced DevOps engineering</p>
-      </div>
-
-      <div class="featured-grid">
-        <!-- FoodShare - Featured Project -->
-        <div id="foodshare" class="hero-project-card">
-          <div class="project-badge" style="background: rgba(72, 187, 120, 0.9); color: #0e0e0e;">
-            🌟 IMPACT
-          </div>
-        
-          <h3 class="project-title">🍽️ FoodShare Platform</h3>
-          <p class="project-subtitle">Enterprise Food Donation & Waste Reduction</p>
-          <p class="project-description">Production-ready food donation platform connecting restaurants, grocery stores, and
-            food banks. Built with React, Node.js, PostgreSQL, and Kubernetes to reduce food waste and fight hunger through
-            real-time food matching.</p>
-        
-          <div class="tech-stack">
-            <span class="tech-tag">React 18</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">PostgreSQL</span>
-            <span class="tech-tag">Kubernetes</span>
-            <span class="tech-tag">WebSocket</span>
-          </div>
-        
-          <div class="project-links">
-            <a href="project-foodshare-app.html" class="project-link primary">🍽️ View FoodShare Project</a>
-            <a href="#foodshare" class="project-link secondary">📊 Impact Metrics</a>
-          </div>
-        </div>
-
-        <!-- Virtual Vacation Platform - Hero Project -->
-        <div id="virtual-vacation" class="hero-project-card">
-          <div class="project-badge" style="background: rgba(103, 255, 204, 0.9); color: #0e0e0e;">
-            🚀 LATEST
-          </div>
-
-          <h3 class="project-title">🌐 Virtual Vacation Platform</h3>
-          <p class="project-subtitle">Cloud-Native Tourism Revolution</p>
-          <p class="project-description">Full-stack platform with React frontend, Node.js/FastAPI backends, and Kubernetes orchestration. Features 7 interactive global destination demos transforming tourism through virtual experiences.</p>
-
-          <div class="tech-stack">
-            <span class="tech-tag">React</span>
-            <span class="tech-tag">Node.js</span>
-            <span class="tech-tag">FastAPI</span>
-            <span class="tech-tag">MongoDB</span>
-            <span class="tech-tag">Kubernetes</span>
-            <span class="tech-tag">GitOps</span>
-          </div>
-
-          <div class="project-links">
-            <a href="virtual-vacation-demo.html" class="project-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-virtual-vacation.html" class="project-link secondary">📖 View Details</a>
-          </div>
-        </div>
-      </div>
-
-        <!-- Ultimate DevOps Container -->
-        <div id="devops-container" class="hero-project-card">
-          <div class="project-badge" style="background: rgba(102, 217, 239, 0.9); color: #0e0e0e;">
-            ⭐ FEATURED
-          </div>
-
-          <h3 class="project-title">🐳 Ultimate DevOps Container</h3>
-          <p class="project-subtitle">All-in-One DevOps Environment</p>
-          <p class="project-description">Production-ready containerized environment with 30+ integrated DevOps tools. One-command deployment includes monitoring, security tools, and development environment.</p>
-
-          <div class="tech-stack">
-            <span class="tech-tag">Docker</span>
-            <span class="tech-tag">Prometheus</span>
-            <span class="tech-tag">Grafana</span>
-            <span class="tech-tag">Vault</span>
-            <span class="tech-tag">VS Code</span>
-          </div>
-
-          <div class="project-links">
-            <a href="ultimate-devops-container-demo.html" class="project-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-ultimate-devops-container.html" class="project-link secondary">📖 View Details</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Additional Projects Section -->
     <section class="projects-section fade-in-up">
       <div class="section-header">
-        <h2 class="section-title">🛠️ Additional Projects</h2>
-        <p class="section-subtitle">More solutions across various industries and technologies</p>
+        <h2 class="section-title">🛠️ All Projects</h2>
+        <p class="section-subtitle">Complete portfolio of DevOps solutions across various industries and technologies</p>
       </div>
 
       <div class="projects-grid">
         <!-- FoodShare Platform -->
-        <div class="project-card">
+        <div class="project-card" data-category="web" data-keywords="react nodejs postgresql kubernetes food platform">
           <div class="project-header">
             <span class="project-icon">🍽️</span>
             <div class="project-meta">
@@ -1405,7 +1320,7 @@
         </div>
 
         <!-- AWS Infrastructure -->
-        <div class="project-card">
+        <div class="project-card" data-category="cloud" data-keywords="aws amplify lambda api gateway cloudfront cdn deployment infrastructure">
           <div class="project-header">
             <span class="project-icon">☁️</span>
             <div class="project-meta">
@@ -1694,6 +1609,139 @@
           </div>
           <div class="project-card-links">
             <a href="project-virtual-tourism-apps.html" class="project-card-link primary">View Details</a>
+          </div>
+        </div>
+
+        <!-- Full-Stack Applications Portfolio -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🛒</span>
+            <div class="project-meta">
+              <h3>E-commerce Platform</h3>
+              <p class="project-type">Enterprise-Grade Commerce Solution</p>
+            </div>
+          </div>
+          <p class="project-desc">High-performance e-commerce platform handling $10M+ annual transactions with real-time inventory, secure payment processing, and microservices architecture. Built with Node.js, MongoDB, and Kubernetes.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Node.js 18</span>
+            <span class="project-tech-tag">MongoDB</span>
+            <span class="project-tech-tag">React</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">Redis</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-ecommerce-platform.html" class="project-card-link primary">View Platform</a>
+            <a href="#" class="project-card-link secondary">Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🎓</span>
+            <div class="project-meta">
+              <h3>Educational Platform</h3>
+              <p class="project-type">Enterprise EdTech LMS</p>
+            </div>
+          </div>
+          <p class="project-desc">Comprehensive Learning Management System serving 50K+ students with real-time collaboration, FERPA compliance, and AI-powered recommendations. Built with Java Spring Boot and microservices.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Java 17</span>
+            <span class="project-tech-tag">Spring Boot</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">Azure</span>
+            <span class="project-tech-tag">Kafka</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-educational-platform.html" class="project-card-link primary">View Platform</a>
+            <a href="#" class="project-card-link secondary">Live Demo</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🌦️</span>
+            <div class="project-meta">
+              <h3>Weather Data Platform</h3>
+              <p class="project-type">Real-Time Meteorological Intelligence</p>
+            </div>
+          </div>
+          <p class="project-desc">High-performance weather data platform processing 1M+ daily API calls with real-time data streams, ML forecasting, and global coverage. Built with Python FastAPI and Apache Kafka.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Python 3.11</span>
+            <span class="project-tech-tag">FastAPI</span>
+            <span class="project-tech-tag">Redis Cluster</span>
+            <span class="project-tech-tag">InfluxDB</span>
+            <span class="project-tech-tag">ML Models</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-weather-platform.html" class="project-card-link primary">View Platform</a>
+            <a href="#" class="project-card-link secondary">API Docs</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🏥</span>
+            <div class="project-meta">
+              <h3>Medical Care System</h3>
+              <p class="project-type">HIPAA-Compliant Healthcare Platform</p>
+            </div>
+          </div>
+          <p class="project-desc">Enterprise healthcare management system serving 500+ providers and 100K+ patients with HIPAA compliance, telemedicine capabilities, and electronic health records. Built with .NET Core.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">.NET 8</span>
+            <span class="project-tech-tag">SQL Server</span>
+            <span class="project-tech-tag">Azure</span>
+            <span class="project-tech-tag">HIPAA</span>
+            <span class="project-tech-tag">HL7 FHIR</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-medical-care-system.html" class="project-card-link primary">View System</a>
+            <a href="#" class="project-card-link secondary">Compliance</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">📋</span>
+            <div class="project-meta">
+              <h3>Task Management Platform</h3>
+              <p class="project-type">AI-Powered Collaborative Workflow</p>
+            </div>
+          </div>
+          <p class="project-desc">Next-generation task management platform with AI automation, real-time collaboration, and intelligent prioritization. Serving 50K+ users with Go microservices and ML integration.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Go 1.21</span>
+            <span class="project-tech-tag">CouchDB</span>
+            <span class="project-tech-tag">TensorFlow</span>
+            <span class="project-tech-tag">WebSockets</span>
+            <span class="project-tech-tag">AI/ML</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-task-management-platform.html" class="project-card-link primary">View Platform</a>
+            <a href="#" class="project-card-link secondary">AI Features</a>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">📱</span>
+            <div class="project-meta">
+              <h3>Social Media Platform</h3>
+              <p class="project-type">Massive-Scale Real-Time Social Network</p>
+            </div>
+          </div>
+          <p class="project-desc">Global social media platform supporting 1M+ users with real-time messaging, content moderation, and intelligent feeds. Built with Ruby on Rails and horizontal scaling architecture.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Ruby on Rails</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">React Native</span>
+            <span class="project-tech-tag">ActionCable</span>
+            <span class="project-tech-tag">CDN</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-social-media-platform.html" class="project-card-link primary">View Platform</a>
+            <a href="#" class="project-card-link secondary">Live Demo</a>
           </div>
         </div>
       </div>
@@ -2105,6 +2153,27 @@
           });
         }
       });
+    });
+  </script>
+
+  <!-- Pagination System -->
+  <script src="js/pagination.js"></script>
+  <script>
+    // Initialize pagination after DOM loads
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize pagination for projects
+      setTimeout(() => {
+        new PortfolioPagination({
+          itemsPerPage: 6,
+          container: '.projects-grid',
+          itemSelector: '.project-card, .hero-project-card',
+          categories: ['cloud', 'containers', 'automation', 'infrastructure', 'monitoring', 'security', 'web'],
+          enableFiltering: true,
+          enableSearch: true,
+          showProgress: true,
+          autoScroll: true
+        });
+      }, 100);
     });
   </script>
 </body>

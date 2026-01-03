@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Security Headers -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://www.google-analytics.com;">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+  <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+  
   <title>Temitayo Charles • DevOps Engineer &amp; Container Specialist</title>
   <meta name="description" content="DevOps Engineer specializing in containerization, automation, and cloud infrastructure. Creator of the Ultimate DevOps Container.">
   
@@ -15,6 +23,17 @@
   <!-- Performance optimization for mobile -->
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link rel="preload" href="global-sidebar.js" as="script">
+  <link rel="preload" href="images/hero-headshot-professional.jpeg" as="image">
+  
+  <!-- Prefetch next pages -->
+  <link rel="prefetch" href="projects.html">
+  <link rel="prefetch" href="about-me.html">
+  <link rel="prefetch" href="contact.html">
+  
   <!-- Open Graph / Social Media Meta Tags -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="Temitayo Charles • DevOps Engineer &amp; Container Specialist">
@@ -32,6 +51,7 @@
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   
   <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
   <script src="global-sidebar.js"></script>
   <style>
     /* Redesigned Hero Section Styles */
@@ -83,6 +103,88 @@
         radial-gradient(circle at 25% 25%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, rgba(166, 226, 46, 0.1) 0%, transparent 50%);
       opacity: 0.6;
+    }
+
+    /* Floating Shapes Background Animation */
+    .floating-shapes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      background: linear-gradient(45deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+    }
+
+    .shape:nth-child(1) {
+      width: 80px;
+      height: 80px;
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .shape:nth-child(2) {
+      width: 60px;
+      height: 60px;
+      top: 20%;
+      right: 15%;
+      animation-delay: -5s;
+    }
+
+    .shape:nth-child(3) {
+      width: 100px;
+      height: 100px;
+      bottom: 20%;
+      left: 20%;
+      animation-delay: -10s;
+    }
+
+    .shape:nth-child(4) {
+      width: 70px;
+      height: 70px;
+      bottom: 30%;
+      right: 10%;
+      animation-delay: -15s;
+    }
+
+    .shape:nth-child(5) {
+      width: 90px;
+      height: 90px;
+      top: 60%;
+      left: 70%;
+      animation-delay: -8s;
+    }
+
+    .shape:nth-child(6) {
+      width: 50px;
+      height: 50px;
+      top: 40%;
+      right: 30%;
+      animation-delay: -12s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(0deg);
+        opacity: 0.3;
+      }
+      50% {
+        transform: translateY(-20px) rotate(180deg);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(0px) rotate(360deg);
+        opacity: 0.3;
+      }
     }
 
     .hero-content {
@@ -223,6 +325,67 @@
       background: rgba(102, 217, 239, 0.1);
       transform: translateY(-2px);
     }
+    
+    .resume-downloads {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border-radius: 1rem;
+      border: 2px solid rgba(102, 217, 239, 0.2);
+    }
+    
+    .resume-intro {
+      font-size: 1rem;
+      color: var(--text-primary);
+      margin-bottom: 1rem;
+      font-weight: 500;
+      text-align: center;
+    }
+    
+    .resume-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .resume-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.9rem 1.8rem;
+      border-radius: 0.8rem;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .ats-btn {
+      background: linear-gradient(135deg, #ffffff, #f0f0f0);
+      color: #1a1a1a;
+      border: 2px solid #66d9ef;
+    }
+    
+    .ats-btn:hover {
+      background: linear-gradient(135deg, #66d9ef, #5ac8de);
+      color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(102, 217, 239, 0.4);
+    }
+    
+    .visual-btn {
+      background: linear-gradient(135deg, #a6e22e, #8bc922);
+      color: #ffffff;
+      border: 2px solid #a6e22e;
+    }
+    
+    .visual-btn:hover {
+      background: linear-gradient(135deg, #c0f550, #a6e22e);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(166, 226, 46, 0.4);
+    }
 
     .hero-visual {
       display: flex;
@@ -236,9 +399,22 @@
       height: 300px;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid transparent;
+      border: 5px solid rgba(102, 217, 239, 0.5);
       background: linear-gradient(135deg, #66d9ef, #a6e22e) border-box;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.4),
+        0 0 30px rgba(102, 217, 239, 0.3),
+        inset 0 2px 10px rgba(255, 255, 255, 0.1);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .hero-image-container:hover {
+      border-color: rgba(166, 226, 46, 0.7);
+      box-shadow: 
+        0 25px 80px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(166, 226, 46, 0.4),
+        inset 0 2px 15px rgba(255, 255, 255, 0.15);
+      transform: translateY(-8px);
     }
 
     .hero-profile-image {
@@ -246,7 +422,13 @@
       height: 100%;
       object-fit: cover;
       border-radius: 50%;
-      transition: all 0.3s ease;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: brightness(1.05) contrast(1.1);
+    }
+    
+    .hero-profile-image:hover {
+      transform: scale(1.08);
+      filter: brightness(1.15) contrast(1.15);
     }
 
     .hero-image-glow {
@@ -523,23 +705,18 @@
       box-shadow: 0 4px 20px rgba(102, 217, 239, 0.4);
     }
 
-    /* Sidebar Toggle */
-    .sidebar-toggle {
-      position: fixed;
-      top: 20px;
-      left: 20px;
-      z-index: 1001;
-      background: rgba(14, 14, 14, 0.95);
-      background: rgba(14, 14, 14, 0.9);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(102, 217, 239, 0.2);
-      color: #66d9ef;
-      padding: 0.8rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      font-size: 1.2rem;
-      display: none;
+    /* Sidebar Toggle - Using external CSS styles */
+
+    /* Show sidebar toggle on mobile devices */
+    @media (max-width: 768px) {
+      .sidebar-toggle {
+        display: block !important;
+      }
+
+      /* Hide main navigation on mobile */
+      .nav-menu {
+        display: none;
+      }
     }
 
     .sidebar-toggle:hover {
@@ -1492,9 +1669,57 @@
         font-size: 2.5rem;
       }
     }
+
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: rgba(102, 217, 239, 0.1);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      color: var(--primary-cyan);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.2);
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
+    /* Skip Navigation for Accessibility */
+    .skip-nav {
+      position: absolute;
+      top: -100px;
+      left: 0;
+      background: var(--primary-cyan);
+      color: var(--bg-primary);
+      padding: 0.75rem 1.5rem;
+      text-decoration: none;
+      font-weight: 600;
+      z-index: 10000;
+      border-radius: 0 0 0.5rem 0;
+    }
+
+    .skip-nav:focus {
+      top: 0;
+    }
   </style>
 </head>
 <body>
+  <!-- Skip Navigation Link for Accessibility -->
+  <a href="#main-content" class="skip-nav">Skip to main content</a>
+  
   <button class="sidebar-toggle" id="sidebar-toggle" onclick="toggleSidebar()" aria-label="Toggle navigation menu"
     aria-expanded="false">☰</button>
 
@@ -1517,10 +1742,23 @@
       </div>
 
       <div class="nav-actions">
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          🌙
+        </button>
         <a href="contact.html" class="cta-nav">Hire Me</a>
       </div>
     </div>
   </nav>
+
+  <!-- Floating Shapes Background -->
+  <div class="floating-shapes">
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+    <div class="shape"></div>
+  </div>
   
   <div class="hero-section">
       <!-- Redesigned Hero Banner Section -->
@@ -1563,18 +1801,30 @@
 
         <div class="hero-cta">
           <a href="#projects-showcase" class="cta-primary">
-            � View My Work
+            🚀 View My Work
           </a>
           <a href="contact.html" class="cta-secondary">
-            � Let's Work Together
+            📧 Let's Work Together
           </a>
+        </div>
+        
+        <div class="resume-downloads">
+          <p class="resume-intro">Download my resume:</p>
+          <div class="resume-buttons">
+            <a href="resume-ats.html" download="Temitayo_Charles_Akinniranye_Resume.pdf" class="resume-btn ats-btn">
+              📄 Download PDF Resume
+            </a>
+            <a href="resume-visual.html" target="_blank" class="resume-btn visual-btn">
+              🎨 View Detailed Version
+            </a>
+          </div>
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="hero-image-container">
-          <img src="images/B57EDA65-F244-49EB-B5BA-504705128E03 copy.PNG" alt="Temitayo Charles - DevOps Engineer"
-            class="hero-profile-image" loading="lazy" onerror="this.src='images/profile-optimized.jpg'" />
+          <img src="images/hero-headshot-professional.jpeg" alt="Temitayo Charles - DevOps Engineer and Container Specialist"
+            class="hero-profile-image" loading="eager" onerror="this.src='images/hero-headshot-casual.jpeg'" />
           <div class="hero-image-glow"></div>
         </div>
       </div>
@@ -1592,7 +1842,7 @@
 
 
 
-  <div class="main">
+  <div class="main" id="main-content" role="main">
     <!-- Project Categories Section -->
     <section id="projects-showcase" class="project-categories">
       <div class="container">
@@ -1637,136 +1887,56 @@
             </div>
           </div>
 
-          <!-- Virtual Vacation Platform -->
-          <div class="project-card-large" data-category="cloud">
+          <!-- E-commerce Platform -->
+          <div class="project-card-large" data-category="enterprise">
             <div class="project-card-header">
-              <div class="project-card-icon">🌐</div>
+              <div class="project-card-icon">🛒</div>
               <div class="project-card-meta">
-                <h3>Virtual Vacation Platform</h3>
-                <span class="project-category">Full-Stack Application</span>
+                <h3>E-commerce Platform</h3>
+                <span class="project-category">Enterprise Application</span>
               </div>
             </div>
             <p class="project-description">
-              Immersive tourism platform with AI recommendations, built from Docker Compose MVP to Kubernetes production with 7 global destination demos.
+              Scalable microservices e-commerce platform with payment processing, inventory management, and real-time analytics serving 500K+ users.
             </p>
             <div class="project-tech-stack">
-              <span class="tech-tag">React</span>
               <span class="tech-tag">Node.js</span>
-              <span class="tech-tag">Kubernetes</span>
-              <span class="tech-tag">AI/ML</span>
+              <span class="tech-tag">MongoDB</span>
+              <span class="tech-tag">Redis</span>
+              <span class="tech-tag">Stripe</span>
             </div>
             <div class="project-actions">
-              <a href="virtual-vacation-demo.html" target="_blank" class="project-action-btn primary">
-                🎬 Live Demo
-              </a>
-              <a href="project-virtual-vacation.html" class="project-action-btn secondary">
-                📖 Details
+              <a href="project-ecommerce-platform.html" class="project-action-btn primary">
+                🏪 View Platform
               </a>
             </div>
           </div>
 
-          <!-- Enterprise CI/CD Pipeline -->
+          <!-- Educational Platform -->
           <div class="project-card-large" data-category="enterprise">
             <div class="project-card-header">
-              <div class="project-card-icon">⚙️</div>
+              <div class="project-card-icon">🎓</div>
               <div class="project-card-meta">
-                <h3>Enterprise CI/CD Pipeline</h3>
-                <span class="project-category">Infrastructure Solution</span>
+                <h3>Educational Platform</h3>
+                <span class="project-category">Learning Management System</span>
               </div>
             </div>
             <p class="project-description">
-              GitOps-powered deployment platform with security scanning and zero-downtime releases for enterprise teams.
+              Advanced learning platform with course management, video streaming, and AI-powered recommendations serving 100K+ students globally.
             </p>
             <div class="project-tech-stack">
-              <span class="tech-tag">Jenkins</span>
-              <span class="tech-tag">GitLab CI</span>
-              <span class="tech-tag">Terraform</span>
-              <span class="tech-tag">GitOps</span>
+              <span class="tech-tag">Java Spring</span>
+              <span class="tech-tag">PostgreSQL</span>
+              <span class="tech-tag">AWS S3</span>
+              <span class="tech-tag">ML/AI</span>
             </div>
             <div class="project-actions">
-              <a href="project-enterprise-cicd.html" class="project-action-btn primary">
-                🔧 Architecture
-              </a>
-              <a href="projects.html" class="project-action-btn secondary">
-                📚 All Projects
+              <a href="project-educational-platform.html" class="project-action-btn primary">
+                📚 View Learning
               </a>
             </div>
           </div>
 
-          <!-- Kubernetes VPN Gateway -->
-          <div class="project-card-large" data-category="cloud">
-            <div class="project-card-header">
-              <div class="project-card-icon">🔐</div>
-              <div class="project-card-meta">
-                <h3>Kubernetes VPN Gateway</h3>
-                <span class="project-category">Security Solution</span>
-              </div>
-            </div>
-            <p class="project-description">
-              Enterprise VPN solution with Kubernetes integration for secure remote cluster access and network policies.
-            </p>
-            <div class="project-tech-stack">
-              <span class="tech-tag">Kubernetes</span>
-              <span class="tech-tag">WireGuard</span>
-              <span class="tech-tag">Helm</span>
-              <span class="tech-tag">Security</span>
-            </div>
-            <div class="project-actions">
-              <a href="project-kubernetes-vpn.html" class="project-action-btn primary">
-                🔒 View Security
-              </a>
-            </div>
-          </div>
-
-          <!-- Infrastructure Monitoring -->
-          <div class="project-card-large" data-category="monitoring">
-            <div class="project-card-header">
-              <div class="project-card-icon">📊</div>
-              <div class="project-card-meta">
-                <h3>Infrastructure Monitoring</h3>
-                <span class="project-category">Observability Platform</span>
-              </div>
-            </div>
-            <p class="project-description">
-              Complete monitoring stack with metrics collection, visualization, and intelligent alerting for production environments.
-            </p>
-            <div class="project-tech-stack">
-              <span class="tech-tag">Prometheus</span>
-              <span class="tech-tag">Grafana</span>
-              <span class="tech-tag">AlertManager</span>
-              <span class="tech-tag">ELK</span>
-            </div>
-            <div class="project-actions">
-              <a href="project-monitoring-stack.html" class="project-action-btn primary">
-                📈 View Dashboard
-              </a>
-            </div>
-          </div>
-
-          <!-- Enterprise Infrastructure -->
-          <div class="project-card-large" data-category="enterprise">
-            <div class="project-card-header">
-              <div class="project-card-icon">�</div>
-              <div class="project-card-meta">
-                <h3>Enterprise Infrastructure</h3>
-                <span class="project-category">Automated Deployment</span>
-              </div>
-            </div>
-            <p class="project-description">
-              Automated infrastructure deployment with Docker containers and configuration management for enterprise systems.
-            </p>
-            <div class="project-tech-stack">
-              <span class="tech-tag">Docker</span>
-              <span class="tech-tag">Ansible</span>
-              <span class="tech-tag">Automation</span>
-              <span class="tech-tag">Compliance</span>
-            </div>
-            <div class="project-actions">
-              <a href="project-docker-ansible-role.html" class="project-action-btn primary">
-                � Enterprise Solutions
-              </a>
-            </div>
-          </div>
         </div>
 
         <!-- View All Projects CTA -->

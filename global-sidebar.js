@@ -2,7 +2,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Create simplified sidebar HTML
     const sidebarHTML = `
-        <div class="global-sidebar" id="globalSidebar">
+        <div class="global-sidebar" id="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-close" onclick="closeSidebar()">×</div>
                 <h3>Navigation</h3>
@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             <div class="sidebar-nav-group">
                 <a href="index.html" class="sidebar-nav-item" data-icon="🏠">Home</a>
-                <a href="about-me.html" class="sidebar-nav-item" data-icon="�">About</a>
+                <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
                 <a href="skills.html" class="sidebar-nav-item" data-icon="⚡">Skills</a>
                 <a href="projects.html" class="sidebar-nav-item" data-icon="🚀">Projects</a>
                 <a href="contact.html" class="sidebar-nav-item" data-icon="📧">Contact</a>
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
 
-        <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+        <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
     `;
 
     // Insert sidebar at beginning of body
@@ -52,61 +52,58 @@ document.addEventListener('DOMContentLoaded', function() {
             closeSidebar();
         }
     });
+
+    // Close sidebar when clicking on a nav item
+    document.querySelectorAll('.sidebar-nav-item').forEach(link => {
+        link.addEventListener('click', closeSidebar);
+    });
 });
 
 // Toggle sidebar function
 function toggleSidebar() {
-    const sidebar = document.getElementById('globalSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
     const toggleBtn = document.getElementById('sidebar-toggle');
-    const body = document.body;
-
-    if (sidebar.classList.contains('open')) {
-        closeSidebar();
-    } else {
-        openSidebar();
+    
+    if (sidebar && overlay) {
+        sidebar.classList.toggle('open');
+        overlay.classList.toggle('active');
+        
+        // Update aria-expanded for accessibility
+        if (toggleBtn) {
+            const isOpen = sidebar.classList.contains('open');
+            toggleBtn.setAttribute('aria-expanded', isOpen);
+        }
     }
 }
 
-function openSidebar() {
-    const sidebar = document.getElementById('globalSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-    const toggleBtn = document.getElementById('sidebar-toggle');
-    const body = document.body;
-
-    sidebar.classList.add('open');
-    overlay.classList.add('active');
-    body.style.overflow = 'hidden';
-
-    if (toggleBtn) {
-        toggleBtn.setAttribute('aria-expanded', 'true');
-    }
-}
-
+// Close sidebar function
 function closeSidebar() {
-    const sidebar = document.getElementById('globalSidebar');
-    const overlay = document.getElementById('sidebarOverlay');
+    const sidebar = document.getElementById('sidebar');
+    const overlay = document.getElementById('sidebar-overlay');
     const toggleBtn = document.getElementById('sidebar-toggle');
-    const body = document.body;
-
-    sidebar.classList.remove('open');
-    overlay.classList.remove('active');
-    body.style.overflow = '';
-
-    if (toggleBtn) {
-        toggleBtn.setAttribute('aria-expanded', 'false');
+    
+    if (sidebar && overlay) {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
+        
+        // Update aria-expanded for accessibility
+        if (toggleBtn) {
+            toggleBtn.setAttribute('aria-expanded', 'false');
+        }
     }
 }
 
-// Set active page based on current URL
+// Set active page function
 function setActivePage() {
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navItems = document.querySelectorAll('.sidebar-nav-item');
-
-    navItems.forEach(item => {
-        item.classList.remove('active');
-        if (item.getAttribute('href') === currentPage) {
-            item.classList.add('active');
+    const sidebarLinks = document.querySelectorAll('.sidebar-nav-item');
+    
+    sidebarLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+        if (href && (href === currentPage || (currentPage === '' && href === 'index.html'))) {
+            link.classList.add('active');
         }
     });
 }

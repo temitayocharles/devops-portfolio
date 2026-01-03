@@ -6,6 +6,92 @@
 
 > **Enterprise-grade DevOps portfolio showcasing containerization expertise, automation solutions, and cloud infrastructure mastery.**
 
+## 🐳 Containerization
+
+This portfolio is fully containerized following DevOps best practices for security, optimization, and production readiness.
+
+### Multi-Architecture Support
+
+Built for multiple platforms:
+- `linux/amd64` - Intel/AMD 64-bit
+- `linux/arm64` - Apple Silicon (M1/M2/M3), AWS Graviton
+- `linux/arm/v7` - Raspberry Pi
+
+### Quick Start
+
+**Pull from GitHub Container Registry:**
+```bash
+# Pull latest multi-arch image
+docker pull ghcr.io/temitayocharles/devops-portfolio:latest
+
+# Run on any platform
+docker run -d -p 3000:8080 \
+  --name portfolio \
+  --tmpfs /var/cache/nginx:uid=1001,gid=1001 \
+  --tmpfs /var/run:uid=1001,gid=1001 \
+  --security-opt no-new-privileges \
+  ghcr.io/temitayocharles/devops-portfolio:latest
+
+# Access at http://localhost:3000
+```
+
+**Build Locally:**
+```bash
+# Clone the repository
+git clone https://github.com/temitayocharles/devops-portfolio.git
+cd devops-portfolio
+
+# Build and run with Docker Compose
+docker-compose up --build
+
+# Access at http://localhost:8080
+```
+
+**Multi-Architecture Build:**
+```bash
+# Build for all platforms
+./build-multiarch.sh
+
+# Build and push to registry
+./build-multiarch.sh --push --tag v1.0.0
+```
+
+### Docker Security Features
+
+- ✅ **Nginx Alpine** - Minimal base image (~40MB total)
+- ✅ **Non-root user** - Runs as nginx-user (UID 1001)
+- ✅ **Read-only filesystem** - Immutable container
+- ✅ **Security headers** - CSP, HSTS, X-Frame-Options, etc.
+- ✅ **Gzip compression** - Optimized asset delivery
+- ✅ **Health checks** - Container monitoring
+- ✅ **No secrets** - Pure static content
+
+### Image Optimization
+
+- 🎯 **Size**: ~40MB (vs 200MB+ for typical Node.js images)
+- ⚡ **Startup**: <2 seconds
+- 🔒 **Layers**: Minimal layers for faster pulls
+- 📦 **Caching**: Browser caching for static assets (1 year)
+- 🗜️ **Compression**: Gzip enabled for all text assets
+
+### Production Deployment
+
+```bash
+# Build production image
+docker build -t portfolio:latest .
+
+# Run with security options
+docker run -d \
+  --name portfolio \
+  --read-only \
+  --tmpfs /var/cache/nginx \
+  --tmpfs /var/run \
+  --tmpfs /var/log/nginx \
+  --security-opt no-new-privileges \
+  -p 8080:8080 \
+  portfolio:latest
+```
+
 ## 🌟 Portfolio Highlights
 
 This professional portfolio demonstrates advanced DevOps engineering capabilities through real-world projects, comprehensive technical documentation, and production-ready solutions.
@@ -232,7 +318,7 @@ While this is a personal portfolio, feedback and suggestions are welcome:
 **Temitayo Charles**  
 *DevOps Engineer & Container Specialist*
 
-- 📧 **Email**: [temitayo@example.com](mailto:temitayo@example.com)
+- 📧 **Email**: [temitayo_charles@yahoo.com](mailto:temitayo_charles@yahoo.com)
 - 💼 **LinkedIn**: [Temitayo Charles](https://linkedin.com/in/temitayocharles)
 - 🐙 **GitHub**: [@temitayocharles](https://github.com/temitayocharles)
 - 🌐 **Portfolio**: [devops-portfolio](https://temitayocharles.github.io/devops-portfolio/)

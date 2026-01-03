@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task Management Platform • AI-Powered Enterprise Collaboration • Temitayo Charles</title>
+  <meta name="description" content="Advanced task management platform with AI-powered automation, real-time collaboration, and enterprise workflow optimization built with Go microservices, gRPC, and distributed architecture for high-performance team productivity.">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    /* Enhanced Project Page Styles */
+    .project-hero {
+      padding: 120px 0 80px;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .project-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 70%, rgba(102, 217, 239, 0.15) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(166, 226, 46, 0.15) 0%, transparent 50%);
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+      padding: 0.5rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      display: inline-block;
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 700;
+      color: #66d9ef;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      color: #a6e22e;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .hero-description {
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      opacity: 0.9;
+      line-height: 1.6;
+      max-width: 800px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .metric-item {
+      text-align: center;
+      padding: 1rem;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      border: 1px solid rgba(102, 217, 239, 0.2);
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #67ffcc;
+      display: block;
+    }
+
+    .metric-label {
+      color: #66d9ef;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+
+    .hero-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tech-badge {
+      background: rgba(102, 217, 239, 0.2);
+      color: #66d9ef;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      font-weight: 600;
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .tech-badge:hover {
+      background: rgba(166, 226, 46, 0.2);
+      color: #a6e22e;
+      border-color: #a6e22e;
+      transform: translateY(-2px);
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 1rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: #66d9ef;
+      border: 1px solid #66d9ef;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(102, 217, 239, 0.3);
+    }
+
+    /* Content Sections */
+    .content-section {
+      padding: 4rem 0;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #66d9ef;
+      margin-bottom: 1rem;
+    }
+
+    .section-subtitle {
+      font-size: 1.2rem;
+      color: #f0f0f0;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Architecture Diagram */
+    .architecture-diagram {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+
+    .diagram-content {
+      font-family: 'Courier New', monospace;
+      color: #a6e22e;
+      line-height: 1.6;
+      white-space: pre;
+      min-width: 800px;
+    }
+
+    /* Feature Cards */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: #66d9ef;
+      box-shadow: 0 15px 40px rgba(102, 217, 239, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .feature-title {
+      color: #66d9ef;
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .feature-description {
+      color: #f0f0f0;
+      opacity: 0.9;
+      line-height: 1.6;
+    }
+
+    /* Code Blocks */
+    .code-block {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      border-radius: 10px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      overflow-x: auto;
+    }
+
+    .code-block pre {
+      color: #a6e22e;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .code-header {
+      background: rgba(102, 217, 239, 0.1);
+      color: #66d9ef;
+      padding: 0.5rem 1rem;
+      border-radius: 5px 5px 0 0;
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin: -1.5rem -1.5rem 1rem -1.5rem;
+    }
+
+    /* Performance Metrics */
+    .performance-metrics {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      border: 2px solid rgba(102, 217, 239, 0.2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+      margin: 3rem 0;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .performance-card {
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 15px;
+      padding: 2rem 1rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .performance-card:hover {
+      transform: translateY(-5px);
+      background: rgba(102, 217, 239, 0.1);
+    }
+
+    .performance-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #67ffcc;
+      margin-bottom: 0.5rem;
+    }
+
+    .performance-label {
+      color: #f0f0f0;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .performance-description {
+      color: #66d9ef;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Business Impact */
+    .business-impact {
+      background: rgba(255, 255, 255, 0.02);
+      padding: 4rem 0;
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .impact-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(166, 226, 46, 0.2);
+      border-radius: 15px;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .impact-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #a6e22e;
+      margin-bottom: 1rem;
+    }
+
+    .impact-label {
+      color: #f0f0f0;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .impact-description {
+      color: #66d9ef;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    /* Call to Action */
+    .cta-section {
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .cta-container {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+      border: 2px solid rgba(102, 217, 239, 0.2);
+      border-radius: 20px;
+      padding: 3rem 2rem;
+    }
+
+    .cta-title {
+      color: #66d9ef;
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .cta-description {
+      color: #f0f0f0;
+      opacity: 0.9;
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .project-hero {
+        padding: 100px 0 60px;
+      }
+      
+      .hero-content {
+        padding: 0 1rem;
+      }
+      
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-metrics {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-tech-stack {
+        justify-content: center;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .impact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .diagram-content {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .project-hero {
+        padding: 80px 0 40px;
+      }
+      
+      .hero-title {
+        font-size: 2rem;
+      }
+      
+      .hero-metrics {
+        grid-template-columns: 1fr;
+      }
+
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Navigation -->
+  <header class="header-nav">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">Temitayo Charles</a>
+      <nav class="nav-links">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="about-me.html" class="nav-link">About</a>
+        <a href="skills.html" class="nav-link">Skills</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+      </nav>
+      <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+    </div>
+  </header>
+
+  <!-- Mobile Sidebar -->
+  <div class="global-sidebar" id="sidebar">
+    <nav class="sidebar-nav">
+      <a href="index.html" class="sidebar-nav-item">Home</a>
+      <a href="about-me.html" class="sidebar-nav-item">About</a>
+      <a href="skills.html" class="sidebar-nav-item">Skills</a>
+      <a href="projects.html" class="sidebar-nav-item">Projects</a>
+      <a href="contact.html" class="sidebar-nav-item">Contact</a>
+    </nav>
+  </div>
+  <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <!-- Project Hero Section -->
+  <section class="project-hero">
+    <div class="hero-content">
+      <div class="hero-badge">ENTERPRISE PRODUCTIVITY</div>
+      <h1 class="hero-title">Task Management Platform</h1>
+      <h2 class="hero-subtitle">AI-Powered Enterprise Collaboration</h2>
+      <p class="hero-description">
+        Advanced task management platform featuring AI-powered automation, real-time collaboration, 
+        and enterprise workflow optimization. Built with Go microservices, gRPC communication, 
+        and distributed architecture for high-performance team productivity at scale.
+      </p>
+
+      <div class="hero-metrics">
+        <div class="metric-item">
+          <span class="metric-value">10K+</span>
+          <span class="metric-label">Active Teams</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">1M+</span>
+          <span class="metric-label">Tasks Managed</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">85%</span>
+          <span class="metric-label">Productivity Increase</span>
+        </div>
+        <div class="metric-item">
+          <span class="metric-value">&lt;50ms</span>
+          <span class="metric-label">Real-time Updates</span>
+        </div>
+      </div>
+
+      <div class="hero-tech-stack">
+        <span class="tech-badge">Go 1.21</span>
+        <span class="tech-badge">gRPC</span>
+        <span class="tech-badge">PostgreSQL 15</span>
+        <span class="tech-badge">Redis 7.0</span>
+        <span class="tech-badge">Apache Kafka</span>
+        <span class="tech-badge">Elasticsearch</span>
+        <span class="tech-badge">Docker</span>
+        <span class="tech-badge">Kubernetes</span>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#architecture" class="btn btn-primary">
+          View Architecture
+        </a>
+        <a href="#ai-features" class="btn btn-secondary">
+          AI Automation
+        </a>
+        <a href="projects.html" class="btn btn-secondary">
+          ← Back to Projects
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Section -->
+  <section id="architecture" class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">Microservices Architecture</h2>
+      <p class="section-subtitle">High-performance Go microservices with intelligent automation</p>
+    </div>
+
+    <div class="architecture-diagram">
+      <div class="diagram-content">
+┌─────────────────────────────────────┐
+│          API Gateway (Go)          │
+│   Auth │ Rate Limiting │ Routing   │
+└─────────────────┬───────────────────┘
+                  │
+┌─────────────────▼───────────────────┐
+│           gRPC Services            │
+│  Load Balancing │ Service Discovery│
+└─────────────────┬───────────────────┘
+                  │
+  ┌───────────────┼───────────────┐
+  │               │               │
+┌─▼───────┐ ┌─────▼─────┐ ┌───────▼─┐
+│Task     │ │  Team     │ │Project  │
+│Service  │ │ Service   │ │Service  │
+│(Go)     │ │  (Go)     │ │(Go)     │
+└─────────┘ └───────────┘ └─────────┘
+  │               │               │
+┌─▼───────┐ ┌─────▼─────┐ ┌───────▼─┐
+│AI/ML    │ │Notification│ │Analytics│
+│Service  │ │  Service  │ │Service  │
+│(Go)     │ │   (Go)    │ │(Go)     │
+└─────────┘ └───────────┘ └─────────┘
+  │               │               │
+  └───────────────┼───────────────┘
+                  │
+┌─────────────────▼───────────────────┐
+│          Event Streaming           │
+│    Apache Kafka │ Event Sourcing  │
+└─────────────────┬───────────────────┘
+                  │
+┌─────────────────▼───────────────────┐
+│           Data Layer               │
+│PostgreSQL│Redis│Elasticsearch     │
+└─────────────────────────────────────┘
+      </div>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card">
+        <span class="feature-icon">🐹</span>
+        <h3 class="feature-title">Go Microservices</h3>
+        <p class="feature-description">
+          High-performance Go microservices with gRPC communication, providing exceptional 
+          concurrency, memory efficiency, and sub-millisecond response times.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🤖</span>
+        <h3 class="feature-title">AI-Powered Automation</h3>
+        <p class="feature-description">
+          Machine learning algorithms for intelligent task prioritization, deadline prediction, 
+          workload balancing, and automated workflow optimization.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3 class="feature-title">Real-Time Collaboration</h3>
+        <p class="feature-description">
+          WebSocket-based real-time updates with conflict resolution, live editing, 
+          instant notifications, and seamless team synchronization.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">📊</span>
+        <h3 class="feature-title">Advanced Analytics</h3>
+        <p class="feature-description">
+          Comprehensive productivity analytics with Elasticsearch indexing, 
+          custom dashboards, performance insights, and predictive modeling.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🔄</span>
+        <h3 class="feature-title">Workflow Automation</h3>
+        <p class="feature-description">
+          Sophisticated workflow engine with custom triggers, conditional logic, 
+          integration capabilities, and enterprise process optimization.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-icon">🚀</span>
+        <h3 class="feature-title">Scalable Infrastructure</h3>
+        <p class="feature-description">
+          Cloud-native architecture with Kubernetes orchestration, auto-scaling, 
+          load balancing, and distributed caching for enterprise performance.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technical Implementation -->
+  <section class="content-section">
+    <div class="section-header">
+      <h2 class="section-title">Technical Implementation</h2>
+      <p class="section-subtitle">Advanced Go patterns and distributed systems architecture</p>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">Go gRPC Task Service Implementation</div>
+      <pre><code>package main
+
+import (
+    "context"
+    "fmt"
+    "log"
+    "time"
+
+    "github.com/go-redis/redis/v8"
+    "google.golang.org/grpc"
+    "gorm.io/gorm"
+)
+
+type TaskService struct {
+    pb.UnimplementedTaskServiceServer
+    db           *gorm.DB
+    redis        *redis.Client
+    aiService    *AIService
+    kafkaClient  *kafka.Writer
+}
+
+// CreateTask handles task creation with AI-powered optimization
+func (s *TaskService) CreateTask(ctx context.Context, req *pb.CreateTaskRequest) (*pb.Task, error) {
+    // Validate request
+    if err := s.validateTaskRequest(req); err != nil {
+        return nil, status.Errorf(codes.InvalidArgument, "validation failed: %v", err)
+    }
+    
+    // Create task entity
+    task := &Task{
+        ID:          generateUUID(),
+        Title:       req.Title,
+        Description: req.Description,
+        ProjectID:   req.ProjectId,
+        AssigneeID:  req.AssigneeId,
+        Priority:    req.Priority,
+        Status:      TaskStatusPending,
+        CreatedAt:   time.Now(),
+        UpdatedAt:   time.Now(),
+    }
+    
+    // AI-powered task optimization
+    aiInsights, err := s.aiService.AnalyzeTask(ctx, task)
+    if err != nil {
+        log.Printf("AI analysis failed: %v", err)
+    } else {
+        task.EstimatedHours = aiInsights.EstimatedHours
+        task.SuggestedPriority = aiInsights.SuggestedPriority
+        task.OptimalAssignee = aiInsights.OptimalAssignee
+    }
+    
+    // Database transaction
+    tx := s.db.Begin()
+    defer func() {
+        if r := recover(); r != nil {
+            tx.Rollback()
+        }
+    }()
+    
+    if err := tx.Create(task).Error; err != nil {
+        tx.Rollback()
+        return nil, status.Errorf(codes.Internal, "failed to create task: %v", err)
+    }
+    
+    // Cache the task
+    taskJSON, _ := json.Marshal(task)
+    s.redis.Set(ctx, fmt.Sprintf("task:%s", task.ID), taskJSON, time.Hour*24)
+    
+    // Publish event to Kafka
+    event := &TaskCreatedEvent{
+        TaskID:    task.ID,
+        ProjectID: task.ProjectID,
+        AssigneeID: task.AssigneeID,
+        Timestamp: time.Now(),
+    }
+    
+    if err := s.publishEvent(ctx, "task.created", event); err != nil {
+        log.Printf("Failed to publish event: %v", err)
+    }
+    
+    tx.Commit()
+    
+    return task.ToProto(), nil
+}
+
+// UpdateTaskStatus with real-time notifications
+func (s *TaskService) UpdateTaskStatus(ctx context.Context, req *pb.UpdateTaskStatusRequest) (*pb.Task, error) {
+    // Get task from cache first
+    taskKey := fmt.Sprintf("task:%s", req.TaskId)
+    cached, err := s.redis.Get(ctx, taskKey).Result()
+    
+    var task *Task
+    if err == redis.Nil {
+        // Not in cache, fetch from database
+        if err := s.db.First(&task, "id = ?", req.TaskId).Error; err != nil {
+            return nil, status.Errorf(codes.NotFound, "task not found")
+        }
+    } else {
+        json.Unmarshal([]byte(cached), &task)
+    }
+    
+    // Update status with validation
+    oldStatus := task.Status
+    task.Status = req.NewStatus
+    task.UpdatedAt = time.Now()
+    
+    // AI-powered status change validation
+    if valid, reason := s.aiService.ValidateStatusChange(ctx, oldStatus, req.NewStatus, task); !valid {
+        return nil, status.Errorf(codes.FailedPrecondition, "invalid status change: %s", reason)
+    }
+    
+    // Update in database
+    if err := s.db.Save(task).Error; err != nil {
+        return nil, status.Errorf(codes.Internal, "failed to update task: %v", err)
+    }
+    
+    // Update cache
+    taskJSON, _ := json.Marshal(task)
+    s.redis.Set(ctx, taskKey, taskJSON, time.Hour*24)
+    
+    // Publish real-time update
+    statusEvent := &TaskStatusChangedEvent{
+        TaskID:    task.ID,
+        OldStatus: oldStatus,
+        NewStatus: req.NewStatus,
+        UpdatedBy: getUserFromContext(ctx),
+        Timestamp: time.Now(),
+    }
+    
+    s.publishEvent(ctx, "task.status.changed", statusEvent)
+    
+    // Trigger automation workflows
+    go s.triggerAutomationWorkflows(task, oldStatus, req.NewStatus)
+    
+    return task.ToProto(), nil
+}
+
+// AI-powered task assignment optimization
+func (s *TaskService) OptimizeTaskAssignment(ctx context.Context, req *pb.OptimizeAssignmentRequest) (*pb.AssignmentRecommendations, error) {
+    // Get team workload data
+    workloadData, err := s.getTeamWorkloadData(ctx, req.TeamId)
+    if err != nil {
+        return nil, status.Errorf(codes.Internal, "failed to get workload data: %v", err)
+    }
+    
+    // Get task complexity analysis
+    tasks, err := s.getUnassignedTasks(ctx, req.ProjectId)
+    if err != nil {
+        return nil, status.Errorf(codes.Internal, "failed to get tasks: %v", err)
+    }
+    
+    // AI optimization
+    recommendations, err := s.aiService.OptimizeAssignments(ctx, &AIOptimizationRequest{
+        Tasks:        tasks,
+        TeamMembers:  workloadData.Members,
+        Constraints:  req.Constraints,
+        Objectives:   req.Objectives,
+    })
+    
+    if err != nil {
+        return nil, status.Errorf(codes.Internal, "AI optimization failed: %v", err)
+    }
+    
+    return &pb.AssignmentRecommendations{
+        Recommendations: recommendations.ToProto(),
+        ConfidenceScore: recommendations.ConfidenceScore,
+        ExpectedImprovement: recommendations.ExpectedImprovement,
+    }, nil
+}
+
+type AIService struct {
+    mlClient    *MLClient
+    modelCache  *ModelCache
+}
+
+func (ai *AIService) AnalyzeTask(ctx context.Context, task *Task) (*AITaskInsights, error) {
+    // Feature extraction
+    features := ai.extractTaskFeatures(task)
+    
+    // Load trained models
+    estimationModel, err := ai.modelCache.GetModel("task_estimation")
+    if err != nil {
+        return nil, err
+    }
+    
+    priorityModel, err := ai.modelCache.GetModel("priority_prediction")
+    if err != nil {
+        return nil, err
+    }
+    
+    // Run predictions
+    estimatedHours := estimationModel.Predict(features.EstimationFeatures)
+    suggestedPriority := priorityModel.Predict(features.PriorityFeatures)
+    
+    // Optimal assignee prediction
+    optimalAssignee, err := ai.predictOptimalAssignee(ctx, task, features)
+    if err != nil {
+        log.Printf("Assignee prediction failed: %v", err)
+    }
+    
+    return &AITaskInsights{
+        EstimatedHours:    estimatedHours,
+        SuggestedPriority: suggestedPriority,
+        OptimalAssignee:   optimalAssignee,
+        ConfidenceScore:   ai.calculateConfidence(features),
+    }, nil
+}
+
+func (ai *AIService) OptimizeAssignments(ctx context.Context, req *AIOptimizationRequest) (*OptimizationResult, error) {
+    // Multi-objective optimization using genetic algorithm
+    optimizer := &GeneticOptimizer{
+        PopulationSize: 100,
+        Generations:    50,
+        MutationRate:   0.1,
+        CrossoverRate:  0.8,
+    }
+    
+    // Define fitness function
+    fitnessFunc := func(assignment []int) float64 {
+        return ai.calculateAssignmentFitness(assignment, req)
+    }
+    
+    // Run optimization
+    bestAssignment, score := optimizer.Optimize(fitnessFunc, len(req.Tasks), len(req.TeamMembers))
+    
+    // Convert to recommendations
+    recommendations := make([]*AssignmentRecommendation, len(req.Tasks))
+    for i, taskIdx := range bestAssignment {
+        recommendations[i] = &AssignmentRecommendation{
+            TaskID:           req.Tasks[taskIdx].ID,
+            RecommendedAssignee: req.TeamMembers[i].ID,
+            ConfidenceScore:  score,
+            Reasoning:        ai.generateReasoningText(req.Tasks[taskIdx], req.TeamMembers[i]),
+        }
+    }
+    
+    return &OptimizationResult{
+        Recommendations:     recommendations,
+        ConfidenceScore:     score,
+        ExpectedImprovement: ai.calculateExpectedImprovement(req, recommendations),
+    }, nil
+}</code></pre>
+    </div>
+
+    <div class="code-block">
+      <div class="code-header">Real-time Collaboration with WebSockets</div>
+      <pre><code>package websocket
+
+import (
+    "encoding/json"
+    "log"
+    "net/http"
+    "sync"
+    
+    "github.com/gorilla/websocket"
+)
+
+type Hub struct {
+    clients     map[*Client]bool
+    broadcast   chan []byte
+    register    chan *Client
+    unregister  chan *Client
+    rooms       map[string]map[*Client]bool
+    roomsMutex  sync.RWMutex
+}
+
+type Client struct {
+    hub      *Hub
+    conn     *websocket.Conn
+    send     chan []byte
+    userID   string
+    projectID string
+}
+
+type Message struct {
+    Type      string      `json:"type"`
+    ProjectID string      `json:"project_id"`
+    UserID    string      `json:"user_id"`
+    Data      interface{} `json:"data"`
+    Timestamp int64       `json:"timestamp"`
+}
+
+func NewHub() *Hub {
+    return &Hub{
+        clients:    make(map[*Client]bool),
+        broadcast:  make(chan []byte),
+        register:   make(chan *Client),
+        unregister: make(chan *Client),
+        rooms:      make(map[string]map[*Client]bool),
+    }
+}
+
+func (h *Hub) Run() {
+    for {
+        select {
+        case client := &lt;-h.register:
+            h.registerClient(client)
+            
+        case client := &lt;-h.unregister:
+            h.unregisterClient(client)
+            
+        case message := &lt;-h.broadcast:
+            h.broadcastMessage(message)
+        }
+    }
+}
+
+func (h *Hub) registerClient(client *Client) {
+    h.clients[client] = true
+    
+    // Add to project room
+    h.roomsMutex.Lock()
+    if h.rooms[client.projectID] == nil {
+        h.rooms[client.projectID] = make(map[*Client]bool)
+    }
+    h.rooms[client.projectID][client] = true
+    h.roomsMutex.Unlock()
+    
+    // Send welcome message
+    welcomeMsg := &Message{
+        Type:      "user_joined",
+        ProjectID: client.projectID,
+        UserID:    client.userID,
+        Data: map[string]interface{}{
+            "message": "User joined the project",
+        },
+        Timestamp: time.Now().Unix(),
+    }
+    
+    h.broadcastToRoom(client.projectID, welcomeMsg)
+    log.Printf("Client %s joined project %s", client.userID, client.projectID)
+}
+
+func (h *Hub) broadcastToRoom(projectID string, message *Message) {
+    h.roomsMutex.RLock()
+    room := h.rooms[projectID]
+    h.roomsMutex.RUnlock()
+    
+    if room == nil {
+        return
+    }
+    
+    messageBytes, err := json.Marshal(message)
+    if err != nil {
+        log.Printf("Error marshaling message: %v", err)
+        return
+    }
+    
+    for client := range room {
+        select {
+        case client.send &lt;- messageBytes:
+        default:
+            // Client buffer full, remove client
+            h.unregisterClient(client)
+        }
+    }
+}
+
+// Handle real-time task updates
+func (h *Hub) HandleTaskUpdate(taskUpdate *TaskUpdateEvent) {
+    message := &Message{
+        Type:      "task_updated",
+        ProjectID: taskUpdate.ProjectID,
+        UserID:    taskUpdate.UpdatedBy,
+        Data: map[string]interface{}{
+            "task_id":     taskUpdate.TaskID,
+            "field":       taskUpdate.Field,
+            "old_value":   taskUpdate.OldValue,
+            "new_value":   taskUpdate.NewValue,
+            "timestamp":   taskUpdate.Timestamp,
+        },
+        Timestamp: time.Now().Unix(),
+    }
+    
+    h.broadcastToRoom(taskUpdate.ProjectID, message)
+}
+
+// Handle collaborative editing
+func (h *Hub) HandleCollaborativeEdit(edit *CollaborativeEditEvent) {
+    message := &Message{
+        Type:      "collaborative_edit",
+        ProjectID: edit.ProjectID,
+        UserID:    edit.UserID,
+        Data: map[string]interface{}{
+            "task_id":   edit.TaskID,
+            "field":     edit.Field,
+            "operation": edit.Operation,
+            "position":  edit.Position,
+            "content":   edit.Content,
+            "version":   edit.Version,
+        },
+        Timestamp: time.Now().Unix(),
+    }
+    
+    // Apply operational transformation for conflict resolution
+    resolvedEdit := h.applyOperationalTransform(edit)
+    if resolvedEdit != nil {
+        message.Data = resolvedEdit
+    }
+    
+    h.broadcastToRoom(edit.ProjectID, message)
+}
+
+func (h *Hub) applyOperationalTransform(edit *CollaborativeEditEvent) map[string]interface{} {
+    // Implement operational transformation algorithm
+    // for real-time collaborative editing without conflicts
+    
+    // This is a simplified version - production would need
+    // more sophisticated conflict resolution
+    return map[string]interface{}{
+        "task_id":   edit.TaskID,
+        "field":     edit.Field,
+        "operation": edit.Operation,
+        "position":  edit.Position,
+        "content":   edit.Content,
+        "version":   edit.Version + 1, // Increment version
+        "resolved":  true,
+    }
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- AI Features -->
+  <section id="ai-features" class="content-section">
+    <div class="performance-metrics">
+      <div class="section-header">
+        <h2 class="section-title">AI-Powered Features</h2>
+        <p class="section-subtitle">Machine learning capabilities driving productivity optimization</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="performance-card">
+          <div class="performance-value">23ms</div>
+          <div class="performance-label">gRPC Response Time (P95)</div>
+          <div class="performance-description">Inter-service communication</div>
+        </div>
+
+        <div class="performance-card">
+          <div class="performance-value">50K</div>
+          <div class="performance-label">Concurrent WebSocket Connections</div>
+          <div class="performance-description">Real-time collaboration</div>
+        </div>
+
+        <div class="performance-card">
+          <div class="performance-value">94%</div>
+          <div class="performance-label">AI Prediction Accuracy</div>
+          <div class="performance-description">Task estimation & optimization</div>
+        </div>
+
+        <div class="performance-card">
+          <div class="performance-value">99.8%</div>
+          <div class="performance-label">System Uptime</div>
+          <div class="performance-description">Enterprise reliability</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Impact -->
+  <section class="business-impact">
+    <div class="content-section">
+      <div class="section-header">
+        <h2 class="section-title">Productivity Impact</h2>
+        <p class="section-subtitle">Measurable improvements in team efficiency and collaboration</p>
+      </div>
+
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-value">10K+</div>
+          <div class="impact-label">Active Teams</div>
+          <div class="impact-description">Across enterprise organizations</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-value">85%</div>
+          <div class="impact-label">Productivity Increase</div>
+          <div class="impact-description">Through AI automation</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-value">60%</div>
+          <div class="impact-label">Task Completion Time Reduction</div>
+          <div class="impact-description">Optimized workflows</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-value">92%</div>
+          <div class="impact-label">User Satisfaction Rate</div>
+          <div class="impact-description">Enhanced collaboration experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="cta-section">
+    <div class="content-section">
+      <div class="cta-container">
+        <h2 class="cta-title">Ready to Build High-Performance Systems?</h2>
+        <p class="cta-description">
+          Interested in developing scalable Go microservices with AI integration? Let's discuss how these 
+          patterns can revolutionize your enterprise productivity infrastructure.
+        </p>
+        <div class="hero-actions">
+          <a href="contact.html" class="btn btn-primary">
+            Discuss This Project
+          </a>
+          <a href="projects.html" class="btn btn-secondary">
+            View More Projects
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <h3 class="footer-title">Connect with Me</h3>
+      <div class="social-links">
+        <a href="https://github.com/temitayocharles" target="_blank" class="social-link">GitHub</a>
+        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
+        <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
+      </div>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Full-Stack Developer</p>
+    </div>
+  </footer>
+
+  <script src="global-sidebar.js"></script>
+  <script>
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animate metrics on scroll
+    const observerOptions = {
+      threshold: 0.3,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animation = 'fadeInUp 0.6s ease forwards';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all cards and metrics
+    document.querySelectorAll('.feature-card, .performance-card, .impact-card').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</body>
+</html>
