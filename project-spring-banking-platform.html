@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spring Banking Platform - Enterprise Java Microservices</title>
+    <meta name="description" content="Enterprise Java microservices platform using Spring Boot 3.x, Maven, GitHub Actions CI/CD, Kubernetes deployment, PostgreSQL, and comprehensive RBAC security.">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .header {
+            background: rgba(14, 14, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            text-decoration: none;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            color: #66d9ef;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(102, 217, 239, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 50%, #0e0e0e 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(166, 226, 46, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #66d9ef;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .cta-primary, .cta-secondary {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            color: #0e0e0e;
+            box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(166, 226, 46, 0.4);
+        }
+
+        .cta-secondary {
+            background: rgba(102, 217, 239, 0.1);
+            color: #66d9ef;
+            border: 2px solid #66d9ef;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(102, 217, 239, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #f0f0f0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: #a6e22e;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #f0f0f0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        .architecture-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(102, 217, 239, 0.1);
+        }
+
+        .tech-stack {
+            background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(102, 217, 239, 0.2);
+        }
+
+        .tech-category {
+            margin-bottom: 2rem;
+        }
+
+        .tech-category-title {
+            font-size: 1.3rem;
+            color: #a6e22e;
+            margin-bottom: 1rem;
+            border-left: 3px solid #66d9ef;
+            padding-left: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(102, 217, 239, 0.2);
+            color: #66d9ef;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(102, 217, 239, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(102, 217, 239, 0.3);
+            transform: translateY(-2px);
+        }
+
+        ul {
+            margin-left: 2rem;
+            color: #f0f0f0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #a6e22e;
+            font-weight: bold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #999;
+            border-top: 1px solid rgba(102, 217, 239, 0.2);
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Temitayo Charles</a>
+            <a href="projects.html" class="back-btn">← Back to Projects</a>
+        </div>
+    </header>
+
+    <main style="margin-top: 70px;">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">☕ Spring Banking Platform</h1>
+                <p class="hero-subtitle">Enterprise Java Microservices</p>
+                <p class="hero-description">
+                    Production-grade banking platform demonstrating enterprise Java development with Spring Boot 3.x microservices, 
+                    Maven build automation, GitHub Actions CI/CD pipeline, Docker containerization, and Kubernetes deployment with 
+                    role-based access control and comprehensive security.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#architecture" class="cta-primary">📐 Architecture</a>
+                    <a href="#features" class="cta-secondary">✨ Features</a>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">Spring Boot</div>
+                        <div class="stat-label">3.x Latest</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">Java 17</div>
+                        <div class="stat-label">LTS Release</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">JUnit 5</div>
+                        <div class="stat-label">Full Test Coverage</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Manual Deployments</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Enterprise Java Development Challenge</h2>
+            <div class="architecture-section">
+                <p style="color: #f0f0f0; text-align: center; font-size: 1.1rem; max-width: 900px; margin: 0 auto 3rem; line-height: 1.7;">
+                    Developing enterprise banking applications requires rigorous testing, code quality standards, security compliance, 
+                    and reliable deployments. Spring Banking Platform demonstrates best practices using Spring Boot microservices, 
+                    automated testing pipelines, container orchestration, and infrastructure-as-code principles.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">❌</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #66d9ef; margin-bottom: 0.5rem;">Manual Testing</div>
+                        <div style="color: #f0f0f0;">Slow deployments, high error rates, inconsistent quality</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">Automated Pipeline</div>
+                        <div style="color: #f0f0f0;">Instant feedback, quality gates, reliable deployments</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🚀</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #48bb78; margin-bottom: 0.5rem;">Production Ready</div>
+                        <div style="color: #f0f0f0;">Secure, compliant, scalable, maintainable code</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="section">
+            <h2 class="section-title">Microservices Architecture</h2>
+            <div class="architecture-section">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 2px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 1rem;">💳 Account Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Account management</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">User accounts, profiles, account creation, balance tracking</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 2px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #a6e22e; font-size: 1.3rem; margin-bottom: 1rem;">📤 Transaction Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Payment processing</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Transfers, payments, transaction ledger, settlement</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #60a5fa; font-size: 1.3rem; margin-bottom: 1rem;">🔐 Auth Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Security & RBAC</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">JWT tokens, role mapping, permission validation, security</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #ef4444; font-size: 1.3rem; margin-bottom: 1rem;">📊 Reporting Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Analytics & insights</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Business reports, metrics, dashboards, analytics</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05)); border: 2px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #d8b4fe; font-size: 1.3rem; margin-bottom: 1rem;">📧 Notification Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Communication</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Email, SMS, alerts, user notifications</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #22c55e; font-size: 1.3rem; margin-bottom: 1rem;">🔗 API Gateway</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Request routing</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Load balancing, auth proxy, rate limiting, logging</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <h2 class="section-title">Development Best Practices</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">✅</div>
+                    <div class="feature-title">Automated Testing</div>
+                    <div class="feature-description">JUnit 5, Mockito, and integration tests with 80%+ code coverage and continuous validation.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📐</div>
+                    <div class="feature-title">Microservices Design</div>
+                    <div class="feature-description">Independent, scalable services with clear boundaries and loose coupling.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <div class="feature-title">Spring Security</div>
+                    <div class="feature-description">Framework-level authentication, RBAC, JWT tokens, and method-level authorization.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-title">Zero-Downtime Deployments</div>
+                    <div class="feature-description">Rolling updates via Kubernetes with automatic health checks and instant rollback.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Code Quality Gates</div>
+                    <div class="feature-description">SonarQube analysis for technical debt, complexity, and maintainability standards.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-title">Kubernetes Orchestration</div>
+                    <div class="feature-description">Container auto-scaling, self-healing, service discovery, and resource management.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Java Framework</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Spring Boot 3.x</span>
+                        <span class="tech-tag">Java 17</span>
+                        <span class="tech-tag">Spring Security</span>
+                        <span class="tech-tag">Spring Data JPA</span>
+                        <span class="tech-tag">Spring Web</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Build & Testing</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Maven</span>
+                        <span class="tech-tag">JUnit 5</span>
+                        <span class="tech-tag">Mockito</span>
+                        <span class="tech-tag">Integration Tests</span>
+                        <span class="tech-tag">TestContainers</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Infrastructure</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Redis</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Quality & DevOps</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">SonarQube</span>
+                        <span class="tech-tag">Prometheus</span>
+                        <span class="tech-tag">Grafana</span>
+                        <span class="tech-tag">Helm Charts</span>
+                        <span class="tech-tag">Terraform</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">CI/CD Pipeline Stages</h2>
+            <div style="background: rgba(255, 255, 255, 0.02); border-radius: 20px; padding: 3rem; margin: 3rem 0; border: 1px solid rgba(102, 217, 239, 0.1);">
+                <ol style="margin-left: 2rem; color: #f0f0f0; line-height: 2.2;">
+                    <li><span style="color: #a6e22e; font-weight: bold;">Maven Clean & Test</span> - Run JUnit 5 suite with Mockito</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">SonarQube Analysis</span> - Code quality and technical debt scan</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">Maven Build</span> - Compile and package JAR artifact</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">Docker Build & Push</span> - Create and push container image</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">Kubernetes Deploy</span> - Rolling update to production cluster</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">Health Checks</span> - Verify deployment health and readiness</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">Smoke Tests</span> - Run critical integration tests</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">Metrics Collection</span> - Prometheus monitoring begins</li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Key Achievements</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0;">
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">80%+</div>
+                    <div style="color: #f0f0f0;">Code coverage with automated tests</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">6</div>
+                    <div style="color: #f0f0f0;">Independent microservices deployed</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">0</div>
+                    <div style="color: #f0f0f0;">Manual deployment steps</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">15min</div>
+                    <div style="color: #f0f0f0;">End-to-end pipeline execution</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Temitayo Charles. All rights reserved.</p>
+    </footer>
+</body>
+</html>

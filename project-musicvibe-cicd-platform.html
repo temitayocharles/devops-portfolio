@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MusicVibe CI/CD Platform - Enterprise 8-Stage Pipeline</title>
+    <meta name="description" content="Enterprise-grade CI/CD platform with 8-stage automated pipeline, Terraform infrastructure-as-code, 5-server AWS deployment, Jenkins, Kubernetes, SonarQube, and Prometheus monitoring.">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%); color: #f0f0f0; line-height: 1.6; overflow-x: hidden; }
+        .header { background: rgba(14, 14, 14, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(102, 217, 239, 0.2); padding: 1rem 0; position: fixed; top: 0; width: 100%; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+        .logo { font-size: 1.5rem; font-weight: bold; color: #a6e22e; text-decoration: none; background: linear-gradient(45deg, #a6e22e, #66d9ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .back-btn { color: #66d9ef; text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s ease; }
+        .back-btn:hover { background: rgba(102, 217, 239, 0.1); transform: translateY(-2px); }
+        .hero { background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 50%, #0e0e0e 100%); padding: 8rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at 30% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%); pointer-events: none; }
+        .hero-content { max-width: 1200px; margin: 0 auto; position: relative; z-index: 1; }
+        .hero-title { font-size: 3.5rem; font-weight: bold; background: linear-gradient(45deg, #a6e22e, #66d9ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 1rem; text-shadow: 0 0 30px rgba(166, 226, 46, 0.3); }
+        .hero-subtitle { font-size: 1.5rem; color: #66d9ef; margin-bottom: 2rem; opacity: 0.9; }
+        .hero-description { font-size: 1.2rem; color: #f0f0f0; max-width: 800px; margin: 0 auto 3rem; line-height: 1.7; }
+        .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem; }
+        .cta-primary, .cta-secondary { padding: 1rem 2rem; border-radius: 12px; font-weight: bold; text-decoration: none; transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 0.5rem; font-size: 1.1rem; }
+        .cta-primary { background: linear-gradient(45deg, #a6e22e, #66d9ef); color: #0e0e0e; box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3); }
+        .cta-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(166, 226, 46, 0.4); }
+        .cta-secondary { background: rgba(102, 217, 239, 0.1); color: #66d9ef; border: 2px solid #66d9ef; }
+        .cta-secondary:hover { background: rgba(102, 217, 239, 0.2); transform: translateY(-3px); }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .stat-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 16px; padding: 2rem; text-align: center; transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); border-color: #66d9ef; box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2); }
+        .stat-number { font-size: 2.5rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem; }
+        .stat-label { color: #f0f0f0; font-size: 1rem; opacity: 0.9; }
+        .section { padding: 5rem 2rem; max-width: 1200px; margin: 0 auto; }
+        .section-title { font-size: 2.5rem; text-align: center; margin-bottom: 3rem; background: linear-gradient(45deg, #a6e22e, #66d9ef); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .feature-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 16px; padding: 2rem; transition: all 0.3s ease; }
+        .feature-card:hover { transform: translateY(-5px); border-color: #66d9ef; box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2); }
+        .feature-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+        .feature-title { font-size: 1.3rem; color: #a6e22e; margin-bottom: 1rem; }
+        .feature-description { color: #f0f0f0; line-height: 1.6; font-size: 0.95rem; }
+        .architecture-section { background: rgba(255, 255, 255, 0.02); border-radius: 20px; padding: 3rem; margin: 3rem 0; border: 1px solid rgba(102, 217, 239, 0.1); }
+        .tech-stack { background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border-radius: 20px; padding: 3rem; margin: 3rem 0; border: 1px solid rgba(102, 217, 239, 0.2); }
+        .tech-category { margin-bottom: 2rem; }
+        .tech-category-title { font-size: 1.3rem; color: #a6e22e; margin-bottom: 1rem; border-left: 3px solid #66d9ef; padding-left: 1rem; }
+        .tech-tags { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .tech-tag { background: rgba(102, 217, 239, 0.2); color: #66d9ef; padding: 0.6rem 1.2rem; border-radius: 8px; font-size: 0.9rem; border: 1px solid rgba(102, 217, 239, 0.3); transition: all 0.3s ease; }
+        .tech-tag:hover { background: rgba(102, 217, 239, 0.3); transform: translateY(-2px); }
+        ul { margin-left: 2rem; color: #f0f0f0; }
+        li { margin-bottom: 1rem; line-height: 1.7; }
+        .highlight { color: #a6e22e; font-weight: bold; }
+        footer { text-align: center; padding: 3rem 2rem; color: #999; border-top: 1px solid rgba(102, 217, 239, 0.2); margin-top: 5rem; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Temitayo Charles</a>
+            <a href="projects.html" class="back-btn">← Back to Projects</a>
+        </div>
+    </header>
+
+    <main style="margin-top: 70px;">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">🎵 MusicVibe CI/CD Platform</h1>
+                <p class="hero-subtitle">Enterprise 8-Stage Pipeline with Infrastructure as Code</p>
+                <p class="hero-description">
+                    Production-grade CI/CD platform showcasing advanced DevOps practices with an 8-stage automated pipeline, 
+                    complete Infrastructure-as-Code using Terraform, 5-server AWS deployment with Jenkins master and Kubernetes cluster, 
+                    comprehensive code quality gates, and full observability with Prometheus and Grafana.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#architecture" class="cta-primary">📐 Architecture</a>
+                    <a href="#features" class="cta-secondary">✨ Features</a>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Pipeline Stages</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">5</div>
+                        <div class="stat-label">AWS Servers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">IaC Coverage</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">Downtime</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Enterprise DevOps at Scale</h2>
+            <div class="architecture-section">
+                <p style="color: #f0f0f0; text-align: center; font-size: 1.1rem; max-width: 900px; margin: 0 auto 3rem; line-height: 1.7;">
+                    Organizations struggle with slow, error-prone deployments. MusicVibe demonstrates a mature CI/CD culture with fully automated 8-stage pipeline, 
+                    complete infrastructure-as-code, continuous quality gates, and 24/7 observability enabling confidence in production releases.
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">❌</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #66d9ef; margin-bottom: 0.5rem;">Manual Deployments</div>
+                        <div style="color: #f0f0f0;">Slow, error-prone, no consistency or visibility</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🤖</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">Automated Pipeline</div>
+                        <div style="color: #f0f0f0;">Fast, reliable, quality-gated, fully observable</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #48bb78; margin-bottom: 0.5rem;">Results</div>
+                        <div style="color: #f0f0f0;">10x faster releases, zero downtime, continuous delivery</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="section">
+            <h2 class="section-title">8-Stage Pipeline Architecture</h2>
+            <div class="architecture-section">
+                <ol style="margin-left: 2rem; color: #f0f0f0; line-height: 2.3;">
+                    <li><span style="color: #a6e22e; font-weight: bold;">🔍 Git Checkout</span> - Clone repository, trigger on push</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">🛡️ SAST Security Scan</span> - Filesystem vulnerability scanning</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">📊 SonarQube Analysis</span> - Code quality, technical debt, hotspots</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">🐳 Docker Build</span> - Build and tag container images</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">📦 Push to Registry</span> - Store in Nexus Repository</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">☸️ Deploy to K8s</span> - Rolling deployment, zero downtime</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">✔️ Smoke Tests</span> - Verify application health</li>
+                    <li><span style="color: #a6e22e; font-weight: bold;">📈 Prometheus Metrics</span> - Continuous monitoring</li>
+                </ol>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <h2 class="section-title">Infrastructure as Code</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-title">Terraform Modules</div>
+                    <div class="feature-description">Reusable infrastructure components for VPC, EC2, security groups, load balancers, and networking.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">☁️</div>
+                    <div class="feature-title">AWS Resources</div>
+                    <div class="feature-description">Complete 5-server infrastructure: 1 Jenkins master, 4 Kubernetes nodes with auto-scaling.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-title">State Management</div>
+                    <div class="feature-description">Terraform state versioning, remote backend, state locking for consistency.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-title">Security Gates</div>
+                    <div class="feature-description">SAST scanning, vulnerability detection, automated remediation suggestions.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-title">Quality Metrics</div>
+                    <div class="feature-description">SonarQube gates enforce minimum coverage, complexity limits, and code standards.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📡</div>
+                    <div class="feature-title">Observability Stack</div>
+                    <div class="feature-description">Prometheus metrics, Grafana dashboards, alert thresholds, performance tracking.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h3 class="tech-category-title">CI/CD Orchestration</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Jenkins Master</span>
+                        <span class="tech-tag">Declarative Pipelines</span>
+                        <span class="tech-tag">GitHub Webhooks</span>
+                        <span class="tech-tag">Build Agents</span>
+                        <span class="tech-tag">Pipeline as Code</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Infrastructure & Cloud</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">AWS EC2</span>
+                        <span class="tech-tag">VPC & Networking</span>
+                        <span class="tech-tag">Security Groups</span>
+                        <span class="tech-tag">Load Balancers</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Container & Orchestration</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Helm Charts</span>
+                        <span class="tech-tag">Rolling Deployments</span>
+                        <span class="tech-tag">StatefulSets</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Quality & Monitoring</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">SonarQube</span>
+                        <span class="tech-tag">SAST Scanning</span>
+                        <span class="tech-tag">Prometheus</span>
+                        <span class="tech-tag">Grafana</span>
+                        <span class="tech-tag">Nexus Repository</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Key Achievements</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0;">
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">8</div>
+                    <div style="color: #f0f0f0;">Fully automated pipeline stages</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">100%</div>
+                    <div style="color: #f0f0f0;">Infrastructure as Code coverage</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">0</div>
+                    <div style="color: #f0f0f0;">Downtime with rolling deployments</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">10x</div>
+                    <div style="color: #f0f0f0;">Faster deployment cycles</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Temitayo Charles. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+    </main>
+
+    <footer style="text-align: center; padding: 3rem 2rem; color: #999; border-top: 1px solid rgba(102, 217, 239, 0.2);">
+        <p>&copy; 2024 Temitayo Charles. All rights reserved.</p>
+    </footer>
+</body>
+</html>

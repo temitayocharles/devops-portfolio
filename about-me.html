@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Temitayo Charles • DevOps Engineer</title>
-  <meta name="description" content="DevOps Engineer specializing in containerization, CI/CD, and cloud infrastructure automation.">
+  <title>About Temitayo Charles • DevOps, Platform &amp; Reliability Engineer</title>
+  <meta name="description" content="Senior DevOps and platform engineer focused on cloud infrastructure, CI/CD, and secure, observable platforms.">
   <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     /* Global Styles */
@@ -29,7 +30,7 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(102, 217, 239, 0.2);
       z-index: 1000;
@@ -75,6 +76,38 @@
     .nav-link.active {
       color: #a6e22e;
       background: rgba(166, 226, 46, 0.1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: rgba(102, 217, 239, 0.1);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      color: var(--primary-cyan);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.2);
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
     }
 
     .mobile-menu-btn {
@@ -205,9 +238,15 @@
 
     .about-content {
       display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      grid-template-columns: 1fr 1fr;
       gap: 3rem;
       align-items: start;
+    }
+
+    @media (max-width: 1024px) {
+      .about-content {
+        grid-template-columns: 1fr;
+      }
     }
 
     .about-image-container {
@@ -229,6 +268,9 @@
       display: block;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       filter: brightness(1) contrast(1.05);
+      object-fit: cover;
+      object-position: center top;
+      max-height: 600px;
     }
 
     .about-image-container:hover {
@@ -399,8 +441,14 @@
 
     .achievements-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .achievements-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .achievement-card {
@@ -631,7 +679,7 @@
 
     /* Footer */
     .footer {
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(102, 217, 239, 0.2);
       padding: 3rem 0 2rem;
@@ -765,7 +813,7 @@
       left: -300px;
       width: 300px;
       height: 100vh;
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(20px);
       border-right: 1px solid rgba(102, 217, 239, 0.2);
       z-index: 2000;
@@ -913,8 +961,17 @@
         <a href="about-me.html" class="nav-link active">About</a>
         <a href="skills.html" class="nav-link">Skills</a>
         <a href="projects.html" class="nav-link">Projects</a>
+        <a href="aws-solutions.html" class="nav-link">AWS</a>
+        <a href="azure-solutions.html" class="nav-link">Azure</a>
+        <a href="gcp-solutions.html" class="nav-link">GCP</a>
+        <a href="blog.html" class="nav-link">Blog</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          🌙
+        </button>
+      </div>
       <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
   </header>
@@ -926,6 +983,10 @@
       <a href="about-me.html" class="sidebar-nav-item active">About</a>
       <a href="skills.html" class="sidebar-nav-item">Skills</a>
       <a href="projects.html" class="sidebar-nav-item">Projects</a>
+      <a href="aws-solutions.html" class="sidebar-nav-item">AWS</a>
+      <a href="azure-solutions.html" class="sidebar-nav-item">Azure</a>
+      <a href="gcp-solutions.html" class="sidebar-nav-item">GCP</a>
+      <a href="blog.html" class="sidebar-nav-item">Blog</a>
       <a href="contact.html" class="sidebar-nav-item">Contact</a>
     </nav>
   </div>
@@ -946,8 +1007,8 @@
     <div class="hero-container">
       <div class="hero-content">
         <h1 class="hero-title">Temitayo Charles</h1>
-        <h2 class="hero-subtitle">DevOps Engineer & Container Specialist</h2>
-        <p class="hero-tagline">Transforming development workflows through intelligent automation and containerization</p>
+        <h2 class="hero-subtitle">Senior DevOps &amp; Platform Engineer</h2>
+        <p class="hero-tagline">Helping teams design and run reliable, secure cloud platforms</p>
         <div class="hero-stats">
           <div class="hero-stat">
             <span class="hero-stat-number">5+</span>
@@ -972,7 +1033,7 @@
     <section class="about-section">
       <div class="section-header">
         <h2 class="section-title">About Me</h2>
-        <p class="section-subtitle">Passionate DevOps engineer bridging development and operations through innovative tooling and healthcare technology solutions</p>
+        <p class="section-subtitle">Senior engineer focused on DevOps and cloud platforms for high-growth and regulated teams</p>
       </div>
 
       <div class="about-content">
@@ -1113,6 +1174,40 @@
       </div>
     </section>
     
+    <!-- How I Work Section -->
+    <section class="achievements-section">
+      <div class="section-header">
+        <h2 class="section-title">How I Work</h2>
+        <p class="section-subtitle">Principles that guide how I build, run, and improve platforms</p>
+      </div>
+
+      <div class="achievements-grid">
+        <div class="achievement-card">
+          <h3 class="achievement-title">Collaboration First</h3>
+          <p class="achievement-description">
+            I co-design solutions with developers, SREs, and security from the start so infrastructure decisions
+            reflect product needs, compliance requirements, and how teams actually ship software.
+          </p>
+        </div>
+
+        <div class="achievement-card">
+          <h3 class="achievement-title">Healthy Incident Culture</h3>
+          <p class="achievement-description">
+            I treat incidents as learning opportunities, driving blameless reviews, clear runbooks, and better
+            alerts so people feel safe to surface issues early and we continuously improve reliability.
+          </p>
+        </div>
+
+        <div class="achievement-card">
+          <h3 class="achievement-title">Pragmatic Delivery</h3>
+          <p class="achievement-description">
+            I prefer simple, observable designs over clever complexity. Every change ships with the dashboards,
+            alerts, and documentation teams need to operate it confidently in production.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <!-- Collaboration Section -->
     <section class="collaboration-section">
       <div class="container">
@@ -1157,18 +1252,18 @@
         <h2 class="section-title">Download My Resume</h2>
         <p class="section-subtitle">Get a comprehensive overview of my experience, skills, and achievements</p>
         <div class="resume-buttons">
-          <a href="resume-ats.html" download="Temitayo_Charles_Akinniranye_Resume.pdf" class="resume-btn ats-btn">
+          <a href="resume-ats.html" target="_blank" class="resume-btn ats-btn">
             <span class="btn-icon">📄</span>
             <div class="btn-content">
-              <span class="btn-title">Download PDF Resume</span>
-              <span class="btn-desc">Professional format ready for applications</span>
+              <span class="btn-title">ATS-Optimized Resume</span>
+              <span class="btn-desc">Best for online applications (print to PDF)</span>
             </div>
           </a>
           <a href="resume-visual.html" target="_blank" class="resume-btn visual-btn">
             <span class="btn-icon">🎨</span>
             <div class="btn-content">
-              <span class="btn-title">View Detailed Version</span>
-              <span class="btn-desc">Interactive online resume with full details</span>
+              <span class="btn-title">Visual Resume</span>
+              <span class="btn-desc">Interactive online version with details</span>
             </div>
           </a>
         </div>
@@ -1185,7 +1280,7 @@
         <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
         <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
       </div>
-      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | Senior DevOps, Platform &amp; Reliability Engineer</p>
     </div>
   </footer>
 

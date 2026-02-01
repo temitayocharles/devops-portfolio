@@ -12,6 +12,38 @@ Successfully implemented major improvements across 5 phases to transform the Dev
 
 ---
 
+## 🧱 Portfolio Project Tiers (2026 Alignment)
+
+To make the portfolio read like a consulting catalog and highlight the most production-ready work, projects are now grouped into two tiers. This tiering is used by the architecture, projects, and case study pages.
+
+### Tier A — Anchor Case Studies
+
+These are the deepest end-to-end examples and should carry the most architectural, security, and operational detail (including mini threat models, DR/backup notes, cost/performance considerations, and ADRs):
+
+- **AI Ops Platform** ([project-ai-ops-platform.html](project-ai-ops-platform.html))
+   - Multi-agent SRE/operations platform focused on MTTR reduction, triage automation, and safer incident workflows.
+- **MindBridge Nigeria Healthcare Platform** ([project-mindbridge-nigeria.html](project-mindbridge-nigeria.html))
+   - National-scale healthcare architecture emphasizing regulated data, reliability, and resilient multi-environment design.
+
+### Tier B — Strategic Case Studies
+
+These projects still follow the global reference architecture and get architecture diagrams, IaC links, CI/CD overviews, and observability + runbook examples, but with slightly lighter depth than Tier A:
+
+- **Cila Health Platform** ([project-cila-health-platform.html](project-cila-health-platform.html))
+   - Clinical and telehealth platform that reinforces healthcare patterns at a more focused scale.
+- **DevOps Mission Control** ([project-devops-mission-control.html](project-devops-mission-control.html))
+   - Internal operations cockpit showcasing platform tooling, SRE workflows, and centralized observability.
+- **Yelb Odilia Observability Stack** ([project-yelb-odilia-stack.html](project-yelb-odilia-stack.html))
+   - Kubernetes and AWS-based monitoring stack demonstrating logging, metrics, traces, and day-2 operations.
+- **RideCo Transit Platform** ([project-rideco-transit-platform.html](project-rideco-transit-platform.html))
+   - Real-time transit and mobility platform focusing on event-driven services and latency-sensitive workloads.
+- **FoodShare App Platform** ([project-foodshare-app.html](project-foodshare-app.html))
+   - Social impact matching platform that highlights multi-environment CI/CD, data flows, and user-centric reliability.
+
+Other portfolio projects (for example, the Virtual Vacation Platform) remain available as supporting showcases but are intentionally documented with lighter depth to keep attention on the primary consulting offerings above.
+
+---
+
 ## ✅ COMPLETED IMPLEMENTATIONS
 
 ### **Phase 1: Homepage Structure & Photo Integration**

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skills & Technologies • Temitayo Charles</title>
-  <meta name="description" content="Technical skills in DevOps, containerization, cloud platforms, and automation tools.">
+  <meta name="description" content="Technical skills in DevOps, cloud platforms, observability, and automation tools.">
   <link rel="stylesheet" href="style.css"/>
+  <script src="js/dark-mode.js"></script>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     /* Global Styles */
@@ -29,7 +30,7 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(102, 217, 239, 0.2);
       z-index: 1000;
@@ -75,6 +76,38 @@
     .nav-link.active {
       color: #a6e22e;
       background: rgba(166, 226, 46, 0.1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: rgba(102, 217, 239, 0.1);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      color: var(--primary-cyan);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.2);
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
     }
 
     .mobile-menu-btn {
@@ -320,7 +353,7 @@
 
     /* Footer */
     .footer {
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(102, 217, 239, 0.2);
       padding: 3rem 0 2rem;
@@ -438,7 +471,7 @@
       left: -300px;
       width: 300px;
       height: 100vh;
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(20px);
       border-right: 1px solid rgba(102, 217, 239, 0.2);
       z-index: 2000;
@@ -504,8 +537,17 @@
         <a href="about-me.html" class="nav-link">About</a>
         <a href="skills.html" class="nav-link active">Skills</a>
         <a href="projects.html" class="nav-link">Projects</a>
+        <a href="aws-solutions.html" class="nav-link">AWS</a>
+        <a href="azure-solutions.html" class="nav-link">Azure</a>
+        <a href="gcp-solutions.html" class="nav-link">GCP</a>
+        <a href="blog.html" class="nav-link">Blog</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          🌙
+        </button>
+      </div>
       <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
   </header>
@@ -517,6 +559,10 @@
       <a href="about-me.html" class="sidebar-nav-item">About</a>
       <a href="skills.html" class="sidebar-nav-item active">Skills</a>
       <a href="projects.html" class="sidebar-nav-item">Projects</a>
+      <a href="aws-solutions.html" class="sidebar-nav-item">AWS</a>
+      <a href="azure-solutions.html" class="sidebar-nav-item">Azure</a>
+      <a href="gcp-solutions.html" class="sidebar-nav-item">GCP</a>
+      <a href="blog.html" class="sidebar-nav-item">Blog</a>
       <a href="contact.html" class="sidebar-nav-item">Contact</a>
     </nav>
   </div>
@@ -526,7 +572,7 @@
   <section class="hero-section">
     <div class="hero-container">
       <h1 class="hero-title">Technical Skills & Expertise</h1>
-      <p class="hero-subtitle">A comprehensive overview of my technical capabilities in DevOps engineering, containerization, and cloud technologies</p>
+      <p class="hero-subtitle">A comprehensive overview of my technical capabilities in DevOps engineering, cloud platforms, observability, and AI-powered operations</p>
     </div>
   </section>
 
@@ -922,7 +968,7 @@
         <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
         <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
       </div>
-      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | Senior DevOps, Platform &amp; Reliability Engineer</p>
     </div>
   </footer>
 

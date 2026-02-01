@@ -6,302 +6,114 @@
     <title>Docker Ansible Role - Enterprise Infrastructure Automation</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        .project-nav-sidebar {
+        /* Header Styles */
+        .header {
+            background: rgba(14, 14, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+            padding: 1rem 0;
             position: fixed;
-            left: 0;
             top: 0;
-            width: 280px;
-            height: 100vh;
-            background: linear-gradient(180deg, #1a1a1a 0%, #2a2a2a 100%);
-            border-right: 2px solid #66d9ef;
-            padding: 20px;
-            overflow-y: auto;
+            width: 100%;
             z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .sidebar-header {
-            text-align: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #333;
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
         }
 
-        .sidebar-header h3 {
-            color: #a6e22e;
-            margin: 0;
-            font-size: 1.2rem;
-        }
-
-        .sidebar-header p {
-            color: #66d9ef;
-            margin: 5px 0 0 0;
-            font-size: 0.9rem;
-        }
-
-        .project-nav-group {
-            margin-bottom: 25px;
-        }
-
-        .nav-group-title {
-            color: #66d9ef;
-            font-size: 0.9rem;
+        .logo {
+            font-size: 1.5rem;
             font-weight: bold;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #a6e22e;
+            text-decoration: none;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .project-nav-item {
-            display: block;
-            padding: 12px 15px;
-            margin: 5px 0;
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
             color: #f0f0f0;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 0.9rem;
+            font-weight: 500;
             transition: all 0.3s ease;
-            border-left: 3px solid transparent;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
         }
 
-        .project-nav-item:hover {
+        .nav-links a:hover {
+            color: #66d9ef;
             background: rgba(102, 217, 239, 0.1);
-            border-left-color: #66d9ef;
-            transform: translateX(5px);
-        }
-
-        .project-nav-item.active {
-            background: rgba(166, 226, 46, 0.1);
-            border-left-color: #a6e22e;
-            color: #a6e22e;
+            transform: translateY(-2px);
         }
 
         .main-content {
-            margin-left: 300px;
-            padding: 40px;
-            min-height: 100vh;
+            margin-top: 4rem;
+            padding: 2rem;
+            min-height: calc(100vh - 4rem);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .project-hero {
-            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
-            border: 2px solid #f39c12;
-            border-radius: 15px;
-            padding: 40px;
-            margin-bottom: 40px;
-            text-align: center;
-        }
-
-        .project-title {
-            color: #f39c12;
-            font-size: 3rem;
-            margin-bottom: 15px;
-            text-shadow: 0 0 20px rgba(243, 156, 18, 0.3);
-        }
-
-        .project-subtitle {
-            color: #66d9ef;
-            font-size: 1.3rem;
-            margin-bottom: 20px;
-        }
-
-        .infrastructure-layer {
-            background: white;
-            border: 2px solid #e67e22;
-            border-radius: 15px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .layer-title {
-            color: #2D3748;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .layer-icon {
-            background: linear-gradient(135deg, #f39c12, #e67e22);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-size: 1.5rem;
-        }
-
-        .architecture-diagram {
-            width: 100%;
-            height: 600px;
-            margin: 40px 0;
-        }
-
-        .automation-features {
-            background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin: 40px 0;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .feature-item {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            border-left: 4px solid #90cdf4;
-        }
-
-        .cost-optimization {
-            background: linear-gradient(135deg, #22543d 0%, #38a169 100%);
-            color: white;
-            border-radius: 15px;
-            padding: 40px;
-            margin: 40px 0;
-        }
-
-        .cost-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .cost-card {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 20px;
-            text-align: center;
-            border: 2px solid #c6f6d5;
-        }
-
-        .cost-value {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #c6f6d5;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 1024px) {
-            .project-nav-sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .project-nav-sidebar.open {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 20px;
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
             }
 
             .mobile-menu-toggle {
                 display: block;
-                position: fixed;
-                top: 20px;
-                left: 20px;
-                z-index: 1001;
-                background: #66d9ef;
-                color: #0e0e0e;
-                border: none;
-                padding: 10px;
-                border-radius: 5px;
-                font-weight: bold;
+            }
+
+            .main-content {
+                padding: 1rem;
             }
         }
 
         .mobile-menu-toggle {
             display: none;
+            background: #66d9ef;
+            color: #0e0e0e;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <button class="mobile-menu-toggle" onclick="toggleSidebar()">☰ Projects</button>
-
-    <nav class="project-nav-sidebar" id="projectSidebar">
-        <div class="sidebar-header">
-            <h3>DevOps Portfolio</h3>
-            <p>Project Deep Dives</p>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">Featured Project</div>
-            <a href="project-ultimate-devops-container.html" class="project-nav-item">Ultimate DevOps Container</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">AWS Projects</div>
-            <a href="project-enterprise-cicd.html" class="project-nav-item">Enterprise CI/CD Pipeline</a>
-            <a href="project-aws-infrastructure.html" class="project-nav-item">AWS Infrastructure Automation</a>
-            <a href="project-eks-platform.html" class="project-nav-item">EKS Container Platform</a>
-            <a href="project-aws-monitoring.html" class="project-nav-item">AWS Monitoring Stack</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">Azure Projects</div>
-            <a href="project-azure-aks.html" class="project-nav-item">Azure AKS Platform</a>
-            <a href="project-azure-serverless.html" class="project-nav-item">Serverless Event Platform</a>
-            <a href="project-azure-hybrid.html" class="project-nav-item">Hybrid Cloud Infrastructure</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">GCP Projects</div>
-            <a href="project-gcp-serverless.html" class="project-nav-item">Serverless Microservices</a>
-            <a href="project-gcp-ml.html" class="project-nav-item">AI/ML Operations Pipeline</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">Enterprise Projects</div>
-            <a href="project-docker-ansible-role.html" class="project-nav-item active">Docker Ansible Role</a>
-            <a href="project-uat-bug-report.html" class="project-nav-item">UAT Bug Report System</a>
-            <a href="project-uat-parent-initiative.html" class="project-nav-item">UAT Parent Initiative</a>
-            <a href="project-pritunl-vpn-helm.html" class="project-nav-item">Pritunl VPN Helm Chart</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">Healthcare Projects</div>
-            <a href="project-dockernet-project.html" class="project-nav-item">DockerNet Project</a>
-            <a href="project-dailydose-healthcare.html" class="project-nav-item">DailyDose Healthcare</a>
-            <a href="project-mindbridge-nigeria.html" class="project-nav-item">MindBridge Nigeria</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">Startup Projects</div>
-            <a href="project-virtual-tourism-apps.html" class="project-nav-item">Virtual Tourism Platform</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">Cross-Platform</div>
-            <a href="project-secrets-management.html" class="project-nav-item">Secrets Management</a>
-            <a href="project-monitoring-stack.html" class="project-nav-item">Monitoring Stack</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">This Project</div>
-            <a href="#overview" class="project-nav-item">🎯 Story Overview</a>
-            <a href="#architecture" class="project-nav-item">🏗️ Architecture</a>
-            <a href="#security" class="project-nav-item">🔒 Security</a>
-            <a href="#impact" class="project-nav-item">🎯 Real-World Impact</a>
-            <a href="#implementation" class="project-nav-item">⚙️ Implementation</a>
-        </div>
-
-        <div class="project-nav-group">
-            <div class="nav-group-title">Navigation</div>
-            <a href="index.html" class="project-nav-item">← Back to Portfolio</a>
-            <a href="projects.html" class="project-nav-item">All Projects Overview</a>
-        </div>
-    </nav>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+            <a href="index.html" class="logo">Temitayo Charles</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="https://aws.amazon.com" target="_blank">AWS</a></li>
+                <li><a href="https://azure.microsoft.com" target="_blank">Azure</a></li>
+                <li><a href="https://cloud.google.com" target="_blank">GCP</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        </nav>
+    </header>
 
 <main class="main-content">
     <!-- Navigation back to projects overview -->
@@ -580,7 +392,7 @@
 
             <!-- Government Infrastructure Layer -->
             <rect x="850" y="70" width="700" height="780" rx="15" fill="url(#govGrad)" stroke="#4A5568" stroke-width="3"/>
-            <text x="1200" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">� Enterprise Infrastructure</text>
+            <text x="1200" y="95" text-anchor="middle" style="font-size: 16px; font-weight: bold; fill: white;">Enterprise Infrastructure</text>
 
             <!-- Government Components -->
             <g transform="translate(870, 120)">

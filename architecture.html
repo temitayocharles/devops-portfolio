@@ -3,9 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Architecture • Ultimate DevOps</title>
-  <meta name="description" content="Interactive architectural diagrams and technical deep-dives into DevOps solutions, cloud platforms, and infrastructure patterns.">
+  <title>Architecture • DevOps Platforms</title>
+  <meta name="description" content="Reference architecture, platform topologies, and diagrams for production DevOps platforms across healthcare, AI operations, and enterprise SaaS.">
   <link rel="stylesheet" href="style.css" />
+  <script src="js/dark-mode.js"></script>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     /* Global Styles */
@@ -75,6 +76,38 @@
     .nav-link.active {
       color: #a6e22e;
       background: rgba(166, 226, 46, 0.1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: rgba(102, 217, 239, 0.1);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      color: var(--primary-cyan);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.2);
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
     }
 
     .mobile-menu-btn {
@@ -555,6 +588,11 @@
         <a href="architecture.html" class="nav-link active">Architecture</a>
         <a href="contact.html" class="nav-link">Contact</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          🌙
+        </button>
+      </div>
       <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
   </header>
@@ -568,6 +606,13 @@
         <div>
           <div class="nav-tile-text">System Overview</div>
           <div class="nav-tile-description">Multi-layer architecture</div>
+        </div>
+      </a>
+      <a href="#tiers" class="nav-tile" onclick="scrollToSection('tiers')">
+        <span class="nav-tile-icon">📁</span>
+        <div>
+          <div class="nav-tile-text">Case Study Tiers</div>
+          <div class="nav-tile-description">Tier A / Tier B projects</div>
         </div>
       </a>
       <a href="#diagrams" class="nav-tile" onclick="scrollToSection('diagrams')">
@@ -699,6 +744,39 @@
       </div>
     </section>
 
+    <!-- Portfolio Case Study Tiers -->
+    <section id="tiers" class="overview-section">
+      <div class="overview-container">
+        <h2 class="overview-title">Portfolio Case Study Tiers</h2>
+        <p class="overview-description">The same reference architecture and operating model are reused across a small set of flagship case studies. Tier A projects receive the deepest architectural, security, and operational treatment, with Tier B projects reusing the patterns for additional industries.</p>
+
+        <div class="architecture-layers">
+          <div class="layer-card">
+            <span class="layer-icon">⭐</span>
+            <h3 class="layer-title">Tier A  2d Anchor Case Studies</h3>
+            <p class="layer-description">End-to-end reference implementations with mini threat models, DR/backup notes, cost/performance considerations, and Architecture Decision Records.</p>
+            <p class="layer-description" style="margin-top: 0.75rem;">
+               2d <a href="project-ai-ops-platform.html" class="diagram-link" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">AI Ops Platform</a>
+               2d <a href="project-mindbridge-nigeria.html" class="diagram-link" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">MindBridge Nigeria Healthcare</a>
+            </p>
+          </div>
+
+          <div class="layer-card">
+            <span class="layer-icon">📂</span>
+            <h3 class="layer-title">Tier B  2d Strategic Case Studies</h3>
+            <p class="layer-description">Projects that share the same global architecture, with focused documentation on IaC, CI/CD, observability, and one or two representative runbooks.</p>
+            <p class="layer-description" style="margin-top: 0.75rem;">
+               2d <a href="project-cila-health-platform.html" class="diagram-link" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Cila Health Platform</a><br>
+               2d <a href="project-devops-mission-control.html" class="diagram-link" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">DevOps Mission Control</a><br>
+               2d <a href="project-yelb-odilia-stack.html" class="diagram-link" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">Yelb Odilia Observability Stack</a><br>
+               2d <a href="project-rideco-transit-platform.html" class="diagram-link" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">RideCo Transit Platform</a><br>
+               2d <a href="project-foodshare-app.html" class="diagram-link" style="padding: 0.4rem 0.9rem; font-size: 0.8rem;">FoodShare App Platform</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Architectural Diagrams -->
     <section id="diagrams" class="diagrams-section">
       <div class="section-header">
@@ -787,7 +865,7 @@
         <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
         <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
       </div>
-      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | Senior DevOps, Platform &amp; Reliability Engineer</p>
     </div>
   </footer>
 

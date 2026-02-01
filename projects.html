@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects • Temitayo Charles</title>
-  <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
+    <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
+    <script src="js/dark-mode.js"></script>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="css/pagination.css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -18,8 +19,8 @@
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
-      color: #f0f0f0;
+      background: var(--bg-primary);
+      color: var(--text-primary);
       line-height: 1.6;
       overflow-x: hidden;
     }
@@ -30,9 +31,9 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(14, 14, 14, 0.95);
+      background: var(--bg-secondary);
       backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+      border-bottom: 1px solid var(--border-subtle);
       z-index: 1000;
       padding: 1rem 0;
     }
@@ -49,7 +50,7 @@
     .nav-logo {
       font-size: 1.5rem;
       font-weight: 700;
-      color: #66d9ef;
+      color: var(--primary-cyan);
       text-decoration: none;
     }
 
@@ -60,7 +61,7 @@
     }
 
     .nav-link {
-      color: #f0f0f0;
+      color: var(--text-primary);
       text-decoration: none;
       font-weight: 500;
       transition: all 0.3s ease;
@@ -69,20 +70,44 @@
     }
 
     .nav-link:hover {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       background: rgba(102, 217, 239, 0.1);
     }
 
     .nav-link.active {
-      color: #a6e22e;
+      color: var(--primary-green);
       background: rgba(166, 226, 46, 0.1);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 2px solid rgba(102, 217, 239, 0.5);
+      color: var(--text-primary);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.4rem 0.6rem;
+      border-radius: 50%;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.1);
+      border-color: var(--primary-cyan);
+      color: var(--primary-cyan);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
     }
 
     .mobile-menu-btn {
       display: none;
       background: none;
       border: none;
-      color: #66d9ef;
+      color: var(--primary-cyan);
       font-size: 1.5rem;
       cursor: pointer;
       padding: 0.5rem;
@@ -90,10 +115,14 @@
 
     /* Hero Section */
     .hero-section {
-      padding: 120px 0 80px;
-      background: linear-gradient(135deg, rgba(102, 217, 239, 0.05), rgba(166, 226, 46, 0.05));
+      padding: 80px 0 50px;
+      margin: 20px 2rem;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.08));
       position: relative;
       overflow: hidden;
+      border-bottom: 2px solid rgba(102, 217, 239, 0.2);
+      box-shadow: 0 10px 40px rgba(102, 217, 239, 0.1);
+      border-radius: 30px;
     }
 
     .hero-section::before {
@@ -103,8 +132,11 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: radial-gradient(circle at 20% 80%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
-                  radial-gradient(circle at 80% 20%, rgba(166, 226, 46, 0.1) 0%, transparent 50%);
+      background: 
+        radial-gradient(circle at 20% 80%, rgba(102, 217, 239, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(166, 226, 46, 0.15) 0%, transparent 50%);
+      pointer-events: none;
+    }
     }
 
     .hero-container {
@@ -118,19 +150,22 @@
 
     .hero-title {
       font-size: 3.5rem;
-      font-weight: 700;
-      color: #66d9ef;
+      font-weight: 800;
+      color: var(--primary-cyan);
       margin-bottom: 1rem;
       line-height: 1.1;
+      text-shadow: 0 2px 10px rgba(102, 217, 239, 0.2);
+      letter-spacing: -0.5px;
     }
 
     .hero-subtitle {
-      font-size: 1.3rem;
-      color: #f0f0f0;
+      font-size: 1.2rem;
+      color: var(--text-primary);
       opacity: 0.9;
-      line-height: 1.6;
-      max-width: 600px;
+      line-height: 1.7;
+      max-width: 800px;
       margin: 0 auto;
+      font-weight: 500;
     }
 
     /* Main Content */
@@ -138,6 +173,35 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 2rem;
+    }
+
+    /* Responsive design for smaller screens */
+    @media (max-width: 768px) {
+      .hero-section {
+        margin: 15px 1rem;
+        padding: 60px 2rem 40px;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .main-content {
+        padding: 0 1.5rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
     }
 
     /* Enhanced Visual Effects */
@@ -206,12 +270,44 @@
       }
     }
 
+    /* Carousel Section */
+    .carousel-section {
+      padding: 5rem 0;
+      text-align: center;
+    }
+
+    .carousel-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      overflow: hidden;
+    }
+
+    .carousel-header {
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .carousel-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-cyan);
+      margin-bottom: 0.5rem;
+    }
+
+    .carousel-subtitle {
+      font-size: 1rem;
+      color: var(--text-primary);
+      opacity: 0.8;
+    }
+
     /* Enhanced Carousel Effects */
     .carousel-track {
       display: flex;
       animation: scroll-projects 12s linear infinite;
       gap: 2rem;
       padding: 1rem 0;
+      justify-content: center;
     }
 
     .carousel-track:hover {
@@ -249,7 +345,7 @@
 
     .preview-card:hover {
       transform: translateY(-8px) scale(1.05);
-      border-color: #66d9ef;
+      border-color: var(--primary-cyan);
       box-shadow: 0 20px 60px rgba(102, 217, 239, 0.3);
       background: rgba(102, 217, 239, 0.1);
     }
@@ -267,7 +363,7 @@
     }
 
     .preview-title {
-      color: #a6e22e;
+      color: var(--primary-green);
       font-size: 1.1rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
@@ -275,11 +371,11 @@
     }
 
     .preview-card:hover .preview-title {
-      color: #66d9ef;
+      color: var(--primary-cyan);
     }
 
     .preview-tech {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       font-size: 0.8rem;
       opacity: 0.8;
       transition: all 0.3s ease;
@@ -313,14 +409,14 @@
     }
 
     .metrics-title {
-      color: #a6e22e;
+      color: var(--primary-green);
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 1rem;
     }
 
     .metrics-subtitle {
-      color: #f0f0f0;
+      color: var(--text-primary);
       opacity: 0.9;
       font-size: 1rem;
       margin-bottom: 2rem;
@@ -368,20 +464,20 @@
     .metric-number {
       font-size: 2.5rem;
       font-weight: 700;
-      color: #67ffcc;
+      color: var(--primary-cyan);
       margin-bottom: 0.5rem;
-      text-shadow: 0 0 20px rgba(103, 255, 204, 0.3);
+      text-shadow: 0 0 20px rgba(102, 217, 239, 0.3);
       transition: all 0.3s ease;
     }
 
     .metric-card:hover .metric-number {
-      color: #a6e22e;
+      color: var(--primary-green);
       text-shadow: 0 0 30px rgba(166, 226, 46, 0.5);
       transform: scale(1.1);
     }
 
     .metric-label {
-      color: #f0f0f0;
+      color: var(--text-primary);
       font-size: 1rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
@@ -389,11 +485,11 @@
     }
 
     .metric-card:hover .metric-label {
-      color: #66d9ef;
+      color: var(--primary-cyan);
     }
 
     .metric-description {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       font-size: 0.8rem;
       opacity: 0.8;
       transition: all 0.3s ease;
@@ -465,22 +561,26 @@
 
     .section-header {
       text-align: center;
-      margin-bottom: 3rem;
+      margin-bottom: 2rem;
     }
 
     .section-title {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #66d9ef;
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--primary-cyan);
       margin-bottom: 1rem;
+      letter-spacing: -0.5px;
+      text-shadow: 0 2px 8px rgba(102, 217, 239, 0.15);
     }
 
     .section-subtitle {
-      font-size: 1.2rem;
-      color: #f0f0f0;
-      opacity: 0.8;
-      max-width: 600px;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+      opacity: 0.85;
+      max-width: 700px;
       margin: 0 auto;
+      line-height: 1.7;
+      font-weight: 500;
     }
 
     .featured-grid {
@@ -519,7 +619,7 @@
 
     .hero-project-card:hover {
       transform: translateY(-10px) rotateX(5deg);
-      border-color: #66d9ef;
+      border-color: var(--primary-cyan);
       box-shadow: 0 25px 80px rgba(102, 217, 239, 0.3);
       background: rgba(102, 217, 239, 0.08);
     }
@@ -542,7 +642,7 @@
     }
 
     .project-title {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       font-size: 1.8rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
@@ -550,24 +650,24 @@
     }
 
     .hero-project-card:hover .project-title {
-      color: #a6e22e;
+      color: var(--primary-green);
       text-shadow: 0 0 20px rgba(166, 226, 46, 0.5);
     }
 
     .project-subtitle {
-      color: #a6e22e;
+      color: var(--primary-green);
       font-size: 1rem;
       margin-bottom: 1.5rem;
       transition: all 0.3s ease;
     }
 
     .hero-project-card:hover .project-subtitle {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       transform: translateX(5px);
     }
 
     .project-description {
-      color: #f0f0f0;
+      color: var(--text-primary);
       opacity: 0.9;
       line-height: 1.6;
       margin-bottom: 2rem;
@@ -588,7 +688,7 @@
 
     .tech-tag {
       background: rgba(102, 217, 239, 0.2);
-      color: #66d9ef;
+      color: var(--primary-cyan);
       padding: 0.5rem 1rem;
       border-radius: 20px;
       font-size: 0.8rem;
@@ -599,8 +699,8 @@
 
     .hero-project-card:hover .tech-tag {
       background: rgba(166, 226, 46, 0.2);
-      color: #a6e22e;
-      border-color: #a6e22e;
+      color: var(--primary-green);
+      border-color: var(--primary-green);
       transform: translateY(-2px);
     }
 
@@ -642,14 +742,14 @@
     }
 
     .project-link.primary {
-      background: linear-gradient(135deg, #66d9ef, #a6e22e);
-      color: #0e0e0e;
+      background: linear-gradient(135deg, var(--primary-cyan), var(--primary-green));
+      color: var(--bg-primary);
     }
 
     .project-link.secondary {
       background: rgba(255, 255, 255, 0.1);
-      color: #66d9ef;
-      border: 1px solid #66d9ef;
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
     }
 
     .project-link:hover {
@@ -659,8 +759,28 @@
 
     /* Projects Grid */
     .projects-section {
-      padding: 5rem 0;
+      padding: 3rem 2rem 5rem;
       background: rgba(255, 255, 255, 0.02);
+    }
+
+    .projects-section .section-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .projects-section .tier-filter-tabs {
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .projects-section .main-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
     }
 
     .projects-grid {
@@ -668,6 +788,9 @@
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
       gap: 2rem;
       margin-bottom: 3rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .project-card {
@@ -677,43 +800,159 @@
       border-radius: 15px;
       padding: 2rem;
       transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Tier-specific card styling */
+    .project-card[data-tier="tier-a"] {
+      border: 1.5px solid rgba(166, 226, 46, 0.5);
+      background: linear-gradient(135deg, rgba(166, 226, 46, 0.08), rgba(102, 217, 239, 0.05));
+    }
+
+    .project-card[data-tier="tier-b"] {
+      border: 1px solid rgba(102, 217, 239, 0.35);
+      background: rgba(102, 217, 239, 0.06);
+    }
+
+    .project-card[data-tier="supporting"] {
+      border: 1px solid rgba(102, 217, 239, 0.15);
+      background: rgba(255, 255, 255, 0.03);
     }
 
     .project-card:hover {
       transform: translateY(-5px);
-      border-color: #66d9ef;
-      box-shadow: 0 15px 40px rgba(102, 217, 239, 0.2);
+      border-color: var(--primary-cyan);
+      box-shadow: 0 15px 40px rgba(102, 217, 239, 0.25);
+    }
+
+    .project-card[data-tier="tier-a"]:hover {
+      box-shadow: 0 15px 50px rgba(166, 226, 46, 0.3);
+      border-color: var(--primary-green);
     }
 
     .project-header {
       display: flex;
       align-items: center;
       margin-bottom: 1.5rem;
+      justify-content: center;
+      text-align: center;
+      flex-direction: column;
     }
 
     .project-icon {
       font-size: 2rem;
-      margin-right: 1rem;
-      color: #a6e22e;
+      margin-right: 0;
+      margin-bottom: 0.5rem;
+      color: var(--primary-green);
     }
 
     .project-meta h3 {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       font-size: 1.3rem;
       margin-bottom: 0.5rem;
     }
 
     .project-type {
-      color: #f0f0f0;
+      color: var(--text-primary);
       opacity: 0.8;
       font-size: 0.9rem;
     }
 
+    .project-tier-badge {
+      display: inline-block;
+      margin-top: 0.35rem;
+      padding: 0.15rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .project-tier-badge.tier-a {
+      background: linear-gradient(135deg, rgba(166, 226, 46, 0.2), rgba(255, 215, 0, 0.15));
+      color: var(--primary-green);
+      border: 1.5px solid rgba(166, 226, 46, 0.8);
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .project-tier-badge.tier-b {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.15), rgba(135, 206, 250, 0.1));
+      color: var(--primary-cyan);
+      border: 1.5px solid rgba(102, 217, 239, 0.7);
+      font-weight: 600;
+    }
+
+    .project-tier-badge.supporting {
+      background: rgba(100, 150, 200, 0.1);
+      color: var(--text-primary);
+      border: 1px solid rgba(100, 150, 200, 0.4);
+      opacity: 0.85;
+    }
+
+    /* Tier Filter Tabs */
+    .tier-filter-tabs {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0 2.5rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 0.5rem;
+      background: rgba(102, 217, 239, 0.03);
+      border-radius: 50px;
+      border: 1px solid rgba(102, 217, 239, 0.1);
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tier-tab {
+      padding: 0.8rem 1.6rem;
+      border: 2px solid transparent;
+      background: transparent;
+      color: var(--text-primary);
+      border-radius: 35px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .tier-tab:hover {
+      background: rgba(102, 217, 239, 0.1);
+      color: var(--primary-cyan);
+      transform: translateY(-2px);
+    }
+
+    .tier-tab.active {
+      background: linear-gradient(135deg, rgba(166, 226, 46, 0.25), rgba(102, 217, 239, 0.25));
+      border-color: var(--primary-cyan);
+      color: var(--text-primary);
+      box-shadow: 0 5px 20px rgba(102, 217, 239, 0.3);
+    }
+    }
+
+    .tier-tab .tab-icon {
+      font-size: 1.1rem;
+    }
+
+    .tier-tab .tab-count {
+      opacity: 0.7;
+      font-size: 0.85rem;
+      font-weight: normal;
+    }
+
     .project-desc {
-      color: #f0f0f0;
+      color: var(--text-primary);
       opacity: 0.9;
       line-height: 1.6;
       margin-bottom: 1.5rem;
+      text-align: center;
     }
 
     .project-tech-stack {
@@ -721,11 +960,12 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-bottom: 1.5rem;
+      justify-content: center;
     }
 
     .project-tech-tag {
       background: rgba(102, 217, 239, 0.1);
-      color: #66d9ef;
+      color: var(--primary-cyan);
       padding: 0.3rem 0.8rem;
       border-radius: 15px;
       font-size: 0.8rem;
@@ -734,6 +974,7 @@
 
     .project-card-links {
       display: flex;
+      justify-content: center;
       gap: 1rem;
     }
 
@@ -749,14 +990,14 @@
     }
 
     .project-card-link.primary {
-      background: linear-gradient(135deg, #66d9ef, #a6e22e);
-      color: #0e0e0e;
+      background: linear-gradient(135deg, var(--primary-cyan), var(--primary-green));
+      color: var(--bg-primary);
     }
 
     .project-card-link.secondary {
       background: rgba(255, 255, 255, 0.1);
-      color: #66d9ef;
-      border: 1px solid #66d9ef;
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
     }
 
     .project-card-link:hover {
@@ -775,8 +1016,8 @@
 
     .pagination-btn {
       background: rgba(102, 217, 239, 0.1);
-      color: #66d9ef;
-      border: 1px solid #66d9ef;
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
       padding: 0.8rem 1.2rem;
       border-radius: 8px;
       text-decoration: none;
@@ -787,21 +1028,21 @@
 
     .pagination-btn:hover,
     .pagination-btn.active {
-      background: #66d9ef;
-      color: #0e0e0e;
+      background: var(--primary-cyan);
+      color: var(--bg-primary);
       transform: translateY(-2px);
     }
 
     .pagination-info {
-      color: #f0f0f0;
+      color: var(--text-primary);
       opacity: 0.8;
       font-size: 0.9rem;
     }
 
     .pagination-arrow {
       background: rgba(102, 217, 239, 0.1);
-      color: #66d9ef;
-      border: 1px solid #66d9ef;
+      color: var(--primary-cyan);
+      border: 1px solid var(--primary-cyan);
       padding: 0.8rem 1rem;
       border-radius: 8px;
       text-decoration: none;
@@ -811,8 +1052,8 @@
     }
 
     .pagination-arrow:hover {
-      background: #66d9ef;
-      color: #0e0e0e;
+      background: var(--primary-cyan);
+      color: var(--bg-primary);
       transform: translateY(-2px);
     }
 
@@ -836,14 +1077,14 @@
     }
 
     .cta-title {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       font-size: 2rem;
       font-weight: 600;
       margin-bottom: 1rem;
     }
 
     .cta-description {
-      color: #f0f0f0;
+      color: var(--text-primary);
       opacity: 0.9;
       font-size: 1.1rem;
       margin-bottom: 2rem;
@@ -853,8 +1094,8 @@
     }
 
     .cta-button {
-      background: linear-gradient(135deg, #66d9ef, #a6e22e);
-      color: #0e0e0e;
+      background: linear-gradient(135deg, var(--primary-cyan), var(--primary-green));
+      color: var(--bg-primary);
       padding: 1rem 2rem;
       border-radius: 25px;
       text-decoration: none;
@@ -870,9 +1111,75 @@
       box-shadow: 0 8px 25px rgba(102, 217, 239, 0.4);
     }
 
+    /* Explore More Projects Section */
+    .explore-more-section {
+      padding: 5rem 0;
+      background: rgba(255, 255, 255, 0.02);
+      border-top: 1px solid rgba(102, 217, 239, 0.1);
+    }
+
+    .project-categories-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .category-group {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(102, 217, 239, 0.15);
+      border-radius: 15px;
+      padding: 2rem;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .category-group:hover {
+      background: rgba(102, 217, 239, 0.08);
+      border-color: rgba(102, 217, 239, 0.3);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(102, 217, 239, 0.15);
+    }
+
+    .category-title {
+      color: var(--primary-cyan);
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .category-projects {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .mini-project-link {
+      color: var(--text-primary);
+      font-size: 0.95rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      border-left: 3px solid var(--primary-green);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      background: rgba(166, 226, 46, 0.05);
+      text-decoration: none;
+    }
+
+    .mini-project-link:hover {
+      background: rgba(166, 226, 46, 0.15);
+      border-left-color: var(--primary-cyan);
+      color: var(--primary-green);
+      padding-left: 1.2rem;
+    }
+
     /* Footer */
     .footer {
-      background: rgba(14, 14, 14, 0.95);
+      background: var(--bg-secondary);
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(102, 217, 239, 0.2);
       padding: 3rem 0 2rem;
@@ -886,7 +1193,7 @@
     }
 
     .footer-title {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       font-size: 1.5rem;
       font-weight: 600;
       margin-bottom: 1rem;
@@ -900,7 +1207,7 @@
     }
 
     .social-link {
-      color: #f0f0f0;
+      color: var(--text-primary);
       text-decoration: none;
       font-weight: 500;
       padding: 0.5rem 1rem;
@@ -910,13 +1217,13 @@
     }
 
     .social-link:hover {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       background: rgba(102, 217, 239, 0.1);
       transform: translateY(-2px);
     }
 
     .footer-text {
-      color: #f0f0f0;
+      color: var(--text-primary);
       opacity: 0.7;
       font-size: 0.9rem;
     }
@@ -1011,7 +1318,7 @@
       left: -300px;
       width: 300px;
       height: 100vh;
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(20px);
       border-right: 1px solid rgba(102, 217, 239, 0.2);
       z-index: 2000;
@@ -1030,7 +1337,7 @@
 
     .sidebar-nav-item {
       display: block;
-      color: #f0f0f0;
+      color: var(--text-primary);
       text-decoration: none;
       font-weight: 500;
       padding: 1rem 0;
@@ -1039,13 +1346,13 @@
     }
 
     .sidebar-nav-item:hover {
-      color: #66d9ef;
+      color: var(--primary-cyan);
       padding-left: 1rem;
     }
 
     .sidebar-nav-item.active {
-      color: #a6e22e;
-      border-bottom-color: #a6e22e;
+      color: var(--primary-green);
+      border-bottom-color: var(--primary-green);
     }
 
     .sidebar-overlay {
@@ -1085,6 +1392,7 @@
         <a href="skills.html" class="nav-link">Skills</a>
         <a href="projects.html" class="nav-link active">Projects</a>
         <a href="contact.html" class="nav-link">Contact</a>
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
       </nav>
       <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
@@ -1105,646 +1413,674 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <div class="hero-container">
-      <h1 class="hero-title">Featured DevOps Projects</h1>
-      <p class="hero-subtitle">Production-ready solutions showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure expertise</p>
+      <h1 class="hero-title">Professional Portfolio Projects</h1>
+      <p class="hero-subtitle">Production-grade platforms spanning healthcare, tourism, infrastructure automation, and enterprise DevOps solutions</p>
     </div>
   </section>
 
   <!-- Main Content -->
   <main class="main-content">
     <!-- Project Preview Carousel -->
-    <section class="carousel-section fade-in-up">
+    <section class="carousel-section fade-in-up animate">
       <div class="carousel-container">
         <div class="carousel-header">
           <h2 class="carousel-title">🚀 Project Highlights</h2>
           <p class="carousel-subtitle">Hover to pause • Click to explore</p>
         </div>
         <div class="carousel-track">
+          <div class="preview-card" onclick="window.open('project-cila-health-platform.html', '_blank')">
+            <span class="preview-icon">🏥</span>
+            <h3 class="preview-title">Cila Health Platform</h3>
+            <p class="preview-tech">HIPAA • Microservices • ArgoCD</p>
+          </div>
+
+          <div class="preview-card" onclick="window.open('project-devops-mission-control.html', '_blank')">
+            <span class="preview-icon">⚙️</span>
+            <h3 class="preview-title">DevOps Mission Control</h3>
+            <p class="preview-tech">Go • CLI • RBAC • 18+ Modules</p>
+          </div>
+
+          <div class="preview-card" onclick="window.open('project-ai-ops-platform.html', '_blank')">
+            <span class="preview-icon">🤖</span>
+            <h3 class="preview-title">AI Ops Platform</h3>
+            <p class="preview-tech">LLM • 13 AI Agents • FastAPI</p>
+          </div>
+
           <div class="preview-card" onclick="window.open('project-foodshare-app.html', '_blank')">
             <span class="preview-icon">🍽️</span>
-            <h3 class="preview-title">FoodShare Platform</h3>
-            <p class="preview-tech">React • Node.js • Kubernetes</p>
+            <h3 class="preview-title">FoodShare App</h3>
+            <p class="preview-tech">Terraform • GitHub OIDC • K3d</p>
           </div>
 
-          <div class="preview-card" onclick="scrollToSection('virtual-vacation')">
-            <span class="preview-icon">🌐</span>
-            <h3 class="preview-title">Virtual Vacation Platform</h3>
-            <p class="preview-tech">React • Node.js • Kubernetes</p>
+          <div class="preview-card" onclick="window.open('project-yelb-odilia-stack.html', '_blank')">
+            <span class="preview-icon">🏗️</span>
+            <h3 class="preview-title">Yelb Odilia Stack</h3>
+            <p class="preview-tech">HA • PostgreSQL • Redis • 5 AZ</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('ultimate-devops-container-demo.html', '_blank')">
-            <span class="preview-icon">🐳</span>
-            <h3 class="preview-title">Ultimate DevOps Container</h3>
-            <p class="preview-tech">Docker • 30+ Tools • Monitoring</p>
+          <div class="preview-card" onclick="window.open('project-rideco-transit-platform.html', '_blank')">
+            <span class="preview-icon">🚗</span>
+            <h3 class="preview-title">RideCo Transit Platform</h3>
+            <p class="preview-tech">Microservices • 10K+ Concurrent</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('aws-infrastructure-demo.html', '_blank')">
-            <span class="preview-icon">☁️</span>
-            <h3 class="preview-title">AWS Infrastructure</h3>
-            <p class="preview-tech">Amplify • Lambda • CloudFront</p>
+          <div class="preview-card" onclick="window.open('project-mindbridge-nigeria.html', '_blank')">
+            <span class="preview-icon">🌍</span>
+            <h3 class="preview-title">MindBridge Nigeria</h3>
+            <p class="preview-tech">Mental Health AI • 10K+ Users</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('azure-aks-demo.html', '_blank')">
-            <span class="preview-icon">🔷</span>
-            <h3 class="preview-title">Azure AKS Cluster</h3>
-            <p class="preview-tech">Kubernetes • AKS • Monitoring</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('gcp-serverless-demo.html', '_blank')">
-            <span class="preview-icon">🔥</span>
-            <h3 class="preview-title">GCP Serverless Functions</h3>
-            <p class="preview-tech">Cloud Functions • Auto-scaling</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('secrets-management-demo.html', '_blank')">
-            <span class="preview-icon">🔐</span>
-            <h3 class="preview-title">Secrets Management</h3>
-            <p class="preview-tech">HashiCorp Vault • Key Rotation</p>
-          </div>
-
-          <div class="preview-card" onclick="scrollToSection('cicd-pipeline')">
-            <span class="preview-icon">⚙️</span>
-            <h3 class="preview-title">Enterprise CI/CD Pipeline</h3>
-            <p class="preview-tech">Jenkins • GitLab • Terraform</p>
-          </div>
-
-          <div class="preview-card" onclick="scrollToSection('k8s-vpn')">
-            <span class="preview-icon">🔐</span>
-            <h3 class="preview-title">Kubernetes VPN Gateway</h3>
-            <p class="preview-tech">K8s • WireGuard • Security</p>
-          </div>
-
-          <div class="preview-card" onclick="scrollToSection('monitoring')">
-            <span class="preview-icon">📊</span>
-            <h3 class="preview-title">Infrastructure Monitoring</h3>
-            <p class="preview-tech">Prometheus • Grafana • Alerts</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('devops-container-demos.html', '_blank')">
-            <span class="preview-icon">🎬</span>
-            <h3 class="preview-title">Live Container Demos</h3>
-            <p class="preview-tech">Video Walkthroughs • Real Usage</p>
+          <div class="preview-card" onclick="window.open('project-virtual-vacation-platform.html', '_blank')">
+            <span class="preview-icon">✈️</span>
+            <h3 class="preview-title">Virtual Vacation</h3>
+            <p class="preview-tech">Next.js • Stripe • 50K+ Bookings</p>
           </div>
 
           <!-- Duplicate set for seamless loop -->
+          <div class="preview-card" onclick="window.open('project-cila-health-platform.html', '_blank')">
+            <span class="preview-icon">🏥</span>
+            <h3 class="preview-title">Cila Health Platform</h3>
+            <p class="preview-tech">HIPAA • Microservices • ArgoCD</p>
+          </div>
+
+          <div class="preview-card" onclick="window.open('project-devops-mission-control.html', '_blank')">
+            <span class="preview-icon">⚙️</span>
+            <h3 class="preview-title">DevOps Mission Control</h3>
+            <p class="preview-tech">Go • CLI • RBAC • 18+ Modules</p>
+          </div>
+
+          <div class="preview-card" onclick="window.open('project-ai-ops-platform.html', '_blank')">
+            <span class="preview-icon">🤖</span>
+            <h3 class="preview-title">AI Ops Platform</h3>
+            <p class="preview-tech">LLM • 13 AI Agents • FastAPI</p>
+          </div>
+
           <div class="preview-card" onclick="window.open('project-foodshare-app.html', '_blank')">
             <span class="preview-icon">🍽️</span>
-            <h3 class="preview-title">FoodShare Platform</h3>
-            <p class="preview-tech">React • Node.js • Kubernetes</p>
+            <h3 class="preview-title">FoodShare App</h3>
+            <p class="preview-tech">Terraform • GitHub OIDC • K3d</p>
           </div>
 
-          <div class="preview-card" onclick="scrollToSection('virtual-vacation')">
-            <span class="preview-icon">🌐</span>
-            <h3 class="preview-title">Virtual Vacation Platform</h3>
-            <p class="preview-tech">React • Node.js • Kubernetes</p>
+          <div class="preview-card" onclick="window.open('project-yelb-odilia-stack.html', '_blank')">
+            <span class="preview-icon">🏗️</span>
+            <h3 class="preview-title">Yelb Odilia Stack</h3>
+            <p class="preview-tech">HA • PostgreSQL • Redis • 5 AZ</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('ultimate-devops-container-demo.html', '_blank')">
-            <span class="preview-icon">🐳</span>
-            <h3 class="preview-title">Ultimate DevOps Container</h3>
-            <p class="preview-tech">Docker • 30+ Tools • Monitoring</p>
+          <div class="preview-card" onclick="window.open('project-rideco-transit-platform.html', '_blank')">
+            <span class="preview-icon">🚗</span>
+            <h3 class="preview-title">RideCo Transit Platform</h3>
+            <p class="preview-tech">Microservices • 10K+ Concurrent</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('aws-infrastructure-demo.html', '_blank')">
-            <span class="preview-icon">☁️</span>
-            <h3 class="preview-title">AWS Infrastructure</h3>
-            <p class="preview-tech">Amplify • Lambda • CloudFront</p>
+          <div class="preview-card" onclick="window.open('project-mindbridge-nigeria.html', '_blank')">
+            <span class="preview-icon">🌍</span>
+            <h3 class="preview-title">MindBridge Nigeria</h3>
+            <p class="preview-tech">Mental Health AI • 10K+ Users</p>
           </div>
 
-          <div class="preview-card" onclick="window.open('azure-aks-demo.html', '_blank')">
-            <span class="preview-icon">🔷</span>
-            <h3 class="preview-title">Azure AKS Cluster</h3>
-            <p class="preview-tech">Kubernetes • AKS • Monitoring</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('gcp-serverless-demo.html', '_blank')">
-            <span class="preview-icon">🔥</span>
-            <h3 class="preview-title">GCP Serverless Functions</h3>
-            <p class="preview-tech">Cloud Functions • Auto-scaling</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('secrets-management-demo.html', '_blank')">
-            <span class="preview-icon">🔐</span>
-            <h3 class="preview-title">Secrets Management</h3>
-            <p class="preview-tech">HashiCorp Vault • Key Rotation</p>
-          </div>
-
-          <div class="preview-card" onclick="scrollToSection('cicd-pipeline')">
-            <span class="preview-icon">⚙️</span>
-            <h3 class="preview-title">Enterprise CI/CD Pipeline</h3>
-            <p class="preview-tech">Jenkins • GitLab • Terraform</p>
-          </div>
-
-          <div class="preview-card" onclick="scrollToSection('k8s-vpn')">
-            <span class="preview-icon">🔐</span>
-            <h3 class="preview-title">Kubernetes VPN Gateway</h3>
-            <p class="preview-tech">K8s • WireGuard • Security</p>
-          </div>
-
-          <div class="preview-card" onclick="scrollToSection('monitoring')">
-            <span class="preview-icon">📊</span>
-            <h3 class="preview-title">Infrastructure Monitoring</h3>
-            <p class="preview-tech">Prometheus • Grafana • Alerts</p>
-          </div>
-
-          <div class="preview-card" onclick="window.open('devops-container-demos.html', '_blank')">
-            <span class="preview-icon">🎬</span>
-            <h3 class="preview-title">Live Container Demos</h3>
-            <p class="preview-tech">Video Walkthroughs • Real Usage</p>
+          <div class="preview-card" onclick="window.open('project-virtual-vacation-platform.html', '_blank')">
+            <span class="preview-icon">✈️</span>
+            <h3 class="preview-title">Virtual Vacation</h3>
+            <p class="preview-tech">Next.js • Stripe • 50K+ Bookings</p>
           </div>
         </div>
-    <section class="metrics-section fade-in-up">
+    <section class="metrics-section fade-in-up animate">
       <div class="metrics-container">
-        <h2 class="metrics-title">🚀 Portfolio Impact Metrics</h2>
-        <p class="metrics-subtitle">Production-ready solutions delivering real-world results</p>
+        <h2 class="metrics-title">Portfolio Impact</h2>
+        <p class="metrics-subtitle">8 production-grade platforms delivering measurable business value</p>
 
         <div class="metrics-grid">
           <div class="metric-card">
-            <div class="metric-number" data-target="45">0</div>
-            <div class="metric-label">DevOps Projects</div>
-            <div class="metric-description">Industry-Specific Solutions</div>
-          </div>
-
-          <div class="metric-card">
             <div class="metric-number" data-target="8">0</div>
-            <div class="metric-label">Global Destinations</div>
-            <div class="metric-description">Virtual Vacation + FoodShare Impact</div>
+            <div class="metric-label">Complete Projects</div>
+            <div class="metric-description">Healthcare • Tourism • DevOps</div>
           </div>
 
           <div class="metric-card">
             <div class="metric-number" data-target="99">0</div>
             <div class="metric-label">Uptime %</div>
-            <div class="metric-description">Container Infrastructure</div>
+            <div class="metric-description">Production systems</div>
+          </div>
+
+          <div class="metric-card">
+            <div class="metric-number" data-target="100">0</div>
+            <div class="metric-label">Success Rate</div>
+            <div class="metric-description">All platforms live</div>
           </div>
 
           <div class="metric-card">
             <div class="metric-number" data-target="6">0</div>
             <div class="metric-label">Industry Sectors</div>
-            <div class="metric-description">DevOps • Healthcare • Tourism • Food Service</div>
+            <div class="metric-description">Enterprise coverage</div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Additional Projects Section -->
-    <section class="projects-section fade-in-up">
+    <!-- Projects Section Redesigned -->
+    <section class="projects-section fade-in-up animate">
       <div class="section-header">
-        <h2 class="section-title">🛠️ All Projects</h2>
-        <p class="section-subtitle">Complete portfolio of DevOps solutions across various industries and technologies</p>
+        <h2 class="section-title">🎯 Featured Projects</h2>
+        <p class="section-subtitle">A curated portfolio organized by impact and complexity—from career-defining platforms to strategic case studies and foundational infrastructure work.</p>
+      </div>
+
+      <!-- Tier Navigation -->
+      <div class="tier-filter-tabs">
+        <button class="tier-tab active" data-tier="all">
+          <span class="tab-icon">📋</span> All Projects <span class="tab-count">(24)</span>
+        </button>
+        <button class="tier-tab" data-tier="tier-a">
+          <span class="tab-icon">⭐</span> Career-Defining <span class="tab-count">(7)</span>
+        </button>
+        <button class="tier-tab" data-tier="tier-b">
+          <span class="tab-icon">🎬</span> Strategic Cases <span class="tab-count">(10)</span>
+        </button>
+        <button class="tier-tab" data-tier="supporting">
+          <span class="tab-icon">🧱</span> Supporting Work <span class="tab-count">(8)</span>
+        </button>
       </div>
 
       <div class="projects-grid">
-        <!-- FoodShare Platform -->
-        <div class="project-card" data-category="web" data-keywords="react nodejs postgresql kubernetes food platform">
-          <div class="project-header">
-            <span class="project-icon">🍽️</span>
-            <div class="project-meta">
-              <h3>FoodShare Platform</h3>
-              <p class="project-type">Enterprise Food Donation & Waste Reduction</p>
-            </div>
-          </div>
-          <p class="project-desc">Production-ready food donation platform connecting restaurants, grocery stores, and food
-            banks. Real-time food matching with React frontend, Node.js backend, PostgreSQL database, and Kubernetes deployment.
-          </p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">React 18</span>
-            <span class="project-tech-tag">Node.js</span>
-            <span class="project-tech-tag">PostgreSQL</span>
-            <span class="project-tech-tag">Kubernetes</span>
-            <span class="project-tech-tag">WebSocket</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-foodshare-app.html" class="project-card-link primary">🍽️ View FoodShare Project</a>
-            <a href="#foodshare" class="project-card-link secondary">📊 Impact Details</a>
-          </div>
-        </div>
-
-        <!-- AWS Infrastructure -->
-        <div class="project-card" data-category="cloud" data-keywords="aws amplify lambda api gateway cloudfront cdn deployment infrastructure">
-          <div class="project-header">
-            <span class="project-icon">☁️</span>
-            <div class="project-meta">
-              <h3>AWS Infrastructure</h3>
-              <p class="project-type">Cloud-Native Deployment</p>
-            </div>
-          </div>
-          <p class="project-desc">Complete AWS Amplify deployment with Lambda functions, API Gateway, and CloudFront CDN. Interactive demo shows real deployment workflows.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">AWS Amplify</span>
-            <span class="project-tech-tag">Lambda</span>
-            <span class="project-tech-tag">API Gateway</span>
-            <span class="project-tech-tag">CloudFront</span>
-          </div>
-          <div class="project-card-links">
-            <a href="aws-infrastructure-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-aws-infrastructure.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Azure AKS -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🔷</span>
-            <div class="project-meta">
-              <h3>Azure AKS Cluster</h3>
-              <p class="project-type">Managed Kubernetes</p>
-            </div>
-          </div>
-          <p class="project-desc">Production Azure Kubernetes Service with monitoring, scaling, and service mesh. Interactive demo shows cluster management and deployment.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Azure AKS</span>
-            <span class="project-tech-tag">Kubernetes</span>
-            <span class="project-tech-tag">Istio</span>
-            <span class="project-tech-tag">Monitoring</span>
-          </div>
-          <div class="project-card-links">
-            <a href="azure-aks-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-azure-aks.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- GCP Serverless -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🔥</span>
-            <div class="project-meta">
-              <h3>GCP Serverless Functions</h3>
-              <p class="project-type">Auto-scaling Functions</p>
-            </div>
-          </div>
-          <p class="project-desc">Google Cloud Functions with automatic scaling, monitoring, and traffic simulation. Interactive demo shows real serverless workflows.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Cloud Functions</span>
-            <span class="project-tech-tag">Auto-scaling</span>
-            <span class="project-tech-tag">Cloud Monitoring</span>
-            <span class="project-tech-tag">Serverless</span>
-          </div>
-          <div class="project-card-links">
-            <a href="gcp-serverless-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-gcp-serverless.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Secrets Management -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🔐</span>
-            <div class="project-meta">
-              <h3>Secrets Management</h3>
-              <p class="project-type">Key Rotation & Security</p>
-            </div>
-          </div>
-          <p class="project-desc">HashiCorp Vault implementation with automated key rotation, access policies, and audit logging. Interactive demo shows security workflows.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">HashiCorp Vault</span>
-            <span class="project-tech-tag">Key Rotation</span>
-            <span class="project-tech-tag">Access Control</span>
-            <span class="project-tech-tag">Audit Logs</span>
-          </div>
-          <div class="project-card-links">
-            <a href="secrets-management-demo.html" class="project-card-link primary">🚀 Try Interactive Demo</a>
-            <a href="project-secrets-management.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Enterprise CI/CD -->
-        <div id="cicd-pipeline" class="project-card">
-          <div class="project-header">
-            <span class="project-icon">⚙️</span>
-            <div class="project-meta">
-              <h3>Enterprise CI/CD Pipeline</h3>
-              <p class="project-type">Automated Build & Deploy</p>
-            </div>
-          </div>
-          <p class="project-desc">Automated pipeline with testing, security scanning, and multi-environment deployment.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Jenkins</span>
-            <span class="project-tech-tag">GitLab CI</span>
-            <span class="project-tech-tag">Docker</span>
-            <span class="project-tech-tag">Terraform</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-enterprise-cicd.html" class="project-card-link primary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Kubernetes VPN - Enterprise Homelab -->
-        <div id="k8s-vpn" class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🏠</span>
-            <div class="project-meta">
-              <h3>Enterprise Kubernetes Homelab</h3>
-              <p class="project-type">Production-Ready Home Lab</p>
-            </div>
-          </div>
-          <p class="project-desc">My biggest project: Complete enterprise-grade Kubernetes homelab with VPN access, monitoring, and production workloads running on personal infrastructure.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Kubernetes</span>
-            <span class="project-tech-tag">WireGuard</span>
-            <span class="project-tech-tag">Helm</span>
-            <span class="project-tech-tag">Network Policies</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-kubernetes-vpn.html" class="project-card-link primary">🏆 View Biggest Project</a>
-          </div>
-        </div>
-
-        <!-- Monitoring Stack -->
-        <div id="monitoring" class="project-card">
-          <div class="project-header">
-            <span class="project-icon">📊</span>
-            <div class="project-meta">
-              <h3>Infrastructure Monitoring</h3>
-              <p class="project-type">Observability & Alerts</p>
-            </div>
-          </div>
-          <p class="project-desc">Complete monitoring with metrics collection, visualization, and intelligent alerting.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Prometheus</span>
-            <span class="project-tech-tag">Grafana</span>
-            <span class="project-tech-tag">AlertManager</span>
-            <span class="project-tech-tag">Jaeger</span>
-          </div>
-          <div class="project-card-links">
-            <a href="monitoring-stack-demo.html" class="project-card-link primary">🚀 Try Demo</a>
-            <a href="project-monitoring-stack.html" class="project-card-link secondary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Enterprise Projects Section -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">�</span>
-            <div class="project-meta">
-              <h3>Docker Ansible Role</h3>
-              <p class="project-type">Enterprise Infrastructure Automation</p>
-            </div>
-          </div>
-          <p class="project-desc">Automated infrastructure deployment with Docker containers and Ansible orchestration for enterprise systems.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Docker</span>
-            <span class="project-tech-tag">Ansible</span>
-            <span class="project-tech-tag">Automation</span>
-            <span class="project-tech-tag">Compliance</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-docker-ansible-role.html" class="project-card-link primary">View Details</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🧪</span>
-            <div class="project-meta">
-              <h3>UAT Bug Report System</h3>
-              <p class="project-type">Automated Testing Framework</p>
-            </div>
-          </div>
-          <p class="project-desc">Enterprise UAT testing platform with automated bug reporting, quality assurance, and compliance monitoring.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Selenium</span>
-            <span class="project-tech-tag">Cypress</span>
-            <span class="project-tech-tag">JMeter</span>
-            <span class="project-tech-tag">Quality Assurance</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-uat-bug-report.html" class="project-card-link primary">View Details</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🔗</span>
-            <div class="project-meta">
-              <h3>UAT Parent Initiative</h3>
-              <p class="project-type">Unified Testing Framework</p>
-            </div>
-          </div>
-          <p class="project-desc">Multi-agency UAT testing framework with unified workflows, automated reporting, and enterprise management.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Multi-Agency</span>
-            <span class="project-tech-tag">Unified Testing</span>
-            <span class="project-tech-tag">Enterprise</span>
-            <span class="project-tech-tag">Automation</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-uat-parent-initiative.html" class="project-card-link primary">View Details</a>
-          </div>
-        </div>
-
-        <div class="project-card">
+        <!-- Cila Health Platform -->
+        <div class="project-card" data-tier="tier-a">
           <div class="project-header">
             <span class="project-icon">🏥</span>
             <div class="project-meta">
-              <h3>DockerNet Healthcare Platform</h3>
-              <p class="project-type">Secure Medical Data Exchange</p>
+              <h3>Cila Health Platform</h3>
+              <p class="project-type">Production Remote Patient Monitoring (RPM) System</p>
+              <span class="project-tier-badge tier-a">Tier A - Anchor</span>
             </div>
           </div>
-          <p class="project-desc">HIPAA-compliant healthcare platform with secure containerized data exchange, patient privacy protection, and medical record interoperability.</p>
+          <p class="project-desc">Production healthcare IoT platform since 2020 monitoring 10,000+ active medical devices (glucose monitors, BP cuffs, pulse oximeters, weight scales) with 1M+ telemetry records. Three-layer architecture: Laravel monolith (patient management, clinical workflows), FastAPI microservice (asynchronous device ingestion), GitOps infrastructure (ArgoCD, multi-environment). HIPAA-compliant with PHI/PII encryption, audit logging, clinical alerts. Real-world impact: direct patient care.</p>
           <div class="project-tech-stack">
-            <span class="project-tech-tag">Docker</span>
+            <span class="project-tech-tag">Laravel</span>
+            <span class="project-tech-tag">FastAPI</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">ArgoCD</span>
             <span class="project-tech-tag">HIPAA</span>
-            <span class="project-tech-tag">HL7 FHIR</span>
-            <span class="project-tech-tag">Security</span>
           </div>
           <div class="project-card-links">
-            <a href="project-dockernet-project.html" class="project-card-link primary">View Details</a>
+            <a href="project-cila-health-platform.html" class="project-card-link primary">View Project</a>
           </div>
-        </div>
-
-        <div class="project-card">
+        </div>        <!-- Cila Health Platform - GitOps Infrastructure -->
+        <!-- DevOps Mission Control -->
+        <div class="project-card" data-tier="tier-b">
           <div class="project-header">
-            <span class="project-icon">💊</span>
+            <span class="project-icon">⚙️</span>
             <div class="project-meta">
-              <h3>DailyDose Healthcare</h3>
-              <p class="project-type">AI-Powered Medication Adherence</p>
+              <h3>DevOps Mission Control</h3>
+              <p class="project-type">Multi-Cloud CLI with RBAC</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
             </div>
           </div>
-          <p class="project-desc">AI-driven medication management platform with smart reminders, adherence tracking, and healthcare provider integration for improved patient outcomes.</p>
+          <p class="project-desc">Unified DevOps CLI with 18+ command modules for Kubernetes, Docker, AWS, Azure, and Git. Bearer token auth, 3-tier RBAC, web dashboard API, comprehensive audit logging. 25MB Go binary.</p>
           <div class="project-tech-stack">
-            <span class="project-tech-tag">AI/ML</span>
-            <span class="project-tech-tag">Healthcare</span>
-            <span class="project-tech-tag">Mobile App</span>
-            <span class="project-tech-tag">Analytics</span>
+            <span class="project-tech-tag">Go</span>
+            <span class="project-tech-tag">CLI</span>
+            <span class="project-tech-tag">RBAC</span>
+            <span class="project-tech-tag">Multi-Cloud</span>
+            <span class="project-tech-tag">Audit</span>
           </div>
           <div class="project-card-links">
-            <a href="project-dailydose-healthcare.html" class="project-card-link primary">View Details</a>
+            <a href="project-devops-mission-control.html" class="project-card-link primary">View Project</a>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- AI Ops Platform -->
+        <div class="project-card" data-tier="tier-a">
+          <div class="project-header">
+            <span class="project-icon">🤖</span>
+            <div class="project-meta">
+              <h3>AI Ops Platform</h3>
+              <p class="project-type">Multi-Agent LLM Automation</p>
+              <span class="project-tier-badge tier-a">Tier A - Anchor</span>
+            </div>
+          </div>
+          <p class="project-desc">Production incident response with 13 AI agents (7 incident, 6 security). Ollama Llama 3, ChromaDB vector search, 60% MTTR reduction. Next.js dashboard, FastAPI backend, Celery jobs, Prometheus/Grafana observability.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">LLM</span>
+            <span class="project-tech-tag">Next.js 14</span>
+            <span class="project-tech-tag">FastAPI</span>
+            <span class="project-tech-tag">ChromaDB</span>
+            <span class="project-tech-tag">AI Agents</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-ai-ops-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- FoodShare App -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🍽️</span>
+            <div class="project-meta">
+              <h3>FoodShare App</h3>
+              <p class="project-type">Infrastructure as Code</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">Food donation platform with Terraform IaC automation, GitHub OIDC passwordless auth, dual CI/CD pipelines (k3d dev + EKS prod). 560+ Terraform lines, 640-line YAML. Provisioning: 2-3 days → 15 minutes.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Terraform</span>
+            <span class="project-tech-tag">GitHub OIDC</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">IaC</span>
+            <span class="project-tech-tag">GitOps</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-foodshare-app.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Yelb Odilia Stack -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🏗️</span>
+            <div class="project-meta">
+              <h3>Yelb Odilia Stack</h3>
+              <p class="project-type">Enterprise HA Architecture</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">Production HA reference architecture with PostgreSQL replication, Redis cluster failover, multi-region deployment, automated DR. 99.99% uptime, zero RPO, &lt;30s RTO failover across 5 availability zones.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">Redis</span>
+            <span class="project-tech-tag">Multi-Region</span>
+            <span class="project-tech-tag">HA/DR</span>
+            <span class="project-tech-tag">5 AZ</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-yelb-odilia-stack.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Transit Dynamics Platform -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🚗</span>
+            <div class="project-meta">
+              <h3>Transit Dynamics Platform</h3>
+              <p class="project-type">Real-Time Ride Matching</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">On-demand transit microservices handling 10K+ concurrent users. RabbitMQ distributed queuing, Redis caching, PostgreSQL state. HPA auto-scaling (3-10 replicas), &lt;500ms match latency, 99.99% availability.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Microservices</span>
+            <span class="project-tech-tag">RabbitMQ</span>
+            <span class="project-tech-tag">Redis</span>
+            <span class="project-tech-tag">HPA</span>
+            <span class="project-tech-tag">10K+ Users</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-rideco-transit-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- MindBridge Nigeria -->
+        <div class="project-card" data-tier="tier-a">
           <div class="project-header">
             <span class="project-icon">🌍</span>
             <div class="project-meta">
-              <h3>MindBridge Nigeria</h3>
-              <p class="project-type">Healthcare Access Platform</p>
+              <h3>MindBridge</h3>
+              <p class="project-type">AI Mental Health Platform</p>
+              <span class="project-tier-badge tier-a">Tier A - Anchor</span>
             </div>
           </div>
-          <p class="project-desc">Nigerian healthcare platform connecting patients with healthcare providers, telemedicine services, and medical resources across the country.</p>
+          <p class="project-desc">Mental health platform with AI therapy assistants, provider matching, video consultations, secure messaging. 10K+ users, 500+ providers, 99% satisfaction. HIPAA-compliant encrypted storage and audit logging.</p>
           <div class="project-tech-stack">
-            <span class="project-tech-tag">Healthcare</span>
-            <span class="project-tech-tag">Nigeria</span>
-            <span class="project-tech-tag">Telemedicine</span>
-            <span class="project-tech-tag">Mobile</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-mindbridge-nigeria.html" class="project-card-link primary">View Details</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🗺️</span>
-            <div class="project-meta">
-              <h3>Virtual Tourism Apps</h3>
-              <p class="project-type">Immersive Travel Experiences</p>
-            </div>
-          </div>
-          <p class="project-desc">Collection of virtual tourism applications providing immersive travel experiences, destination guides, and interactive cultural exploration.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Virtual Reality</span>
-            <span class="project-tech-tag">Tourism</span>
-            <span class="project-tech-tag">Mobile Apps</span>
-            <span class="project-tech-tag">AR/VR</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-virtual-tourism-apps.html" class="project-card-link primary">View Details</a>
-          </div>
-        </div>
-
-        <!-- Full-Stack Applications Portfolio -->
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🛒</span>
-            <div class="project-meta">
-              <h3>E-commerce Platform</h3>
-              <p class="project-type">Enterprise-Grade Commerce Solution</p>
-            </div>
-          </div>
-          <p class="project-desc">High-performance e-commerce platform handling $10M+ annual transactions with real-time inventory, secure payment processing, and microservices architecture. Built with Node.js, MongoDB, and Kubernetes.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Node.js 18</span>
-            <span class="project-tech-tag">MongoDB</span>
-            <span class="project-tech-tag">React</span>
-            <span class="project-tech-tag">Kubernetes</span>
-            <span class="project-tech-tag">Redis</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-ecommerce-platform.html" class="project-card-link primary">View Platform</a>
-            <a href="#" class="project-card-link secondary">Live Demo</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🎓</span>
-            <div class="project-meta">
-              <h3>Educational Platform</h3>
-              <p class="project-type">Enterprise EdTech LMS</p>
-            </div>
-          </div>
-          <p class="project-desc">Comprehensive Learning Management System serving 50K+ students with real-time collaboration, FERPA compliance, and AI-powered recommendations. Built with Java Spring Boot and microservices.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Java 17</span>
-            <span class="project-tech-tag">Spring Boot</span>
-            <span class="project-tech-tag">PostgreSQL</span>
-            <span class="project-tech-tag">Azure</span>
-            <span class="project-tech-tag">Kafka</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-educational-platform.html" class="project-card-link primary">View Platform</a>
-            <a href="#" class="project-card-link secondary">Live Demo</a>
-          </div>
-        </div>
-
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">🌦️</span>
-            <div class="project-meta">
-              <h3>Weather Data Platform</h3>
-              <p class="project-type">Real-Time Meteorological Intelligence</p>
-            </div>
-          </div>
-          <p class="project-desc">High-performance weather data platform processing 1M+ daily API calls with real-time data streams, ML forecasting, and global coverage. Built with Python FastAPI and Apache Kafka.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Python 3.11</span>
+            <span class="project-tech-tag">Next.js 15</span>
             <span class="project-tech-tag">FastAPI</span>
-            <span class="project-tech-tag">Redis Cluster</span>
-            <span class="project-tech-tag">InfluxDB</span>
-            <span class="project-tech-tag">ML Models</span>
+            <span class="project-tech-tag">LLM</span>
+            <span class="project-tech-tag">HIPAA</span>
+            <span class="project-tech-tag">WebRTC</span>
           </div>
           <div class="project-card-links">
-            <a href="project-weather-platform.html" class="project-card-link primary">View Platform</a>
-            <a href="#" class="project-card-link secondary">API Docs</a>
+            <a href="project-mindbridge-nigeria.html" class="project-card-link primary">View Project</a>
           </div>
         </div>
 
-        <div class="project-card">
+        <!-- Virtual Vacation Platform -->
+        <div class="project-card" data-tier="tier-a">
+          <div class="project-header">
+            <span class="project-icon">✈️</span>
+            <div class="project-meta">
+              <h3>Virtual Vacation Platform</h3>
+              <p class="project-type">Enterprise VR Travel Platform</p>
+              <span class="project-tier-badge tier-a">Tier A - Anchor</span>
+            </div>
+          </div>
+          <p class="project-desc">Production Kubernetes VR travel platform with enterprise DevSecOps pipeline. React + Node.js + PostgreSQL + Redis architecture deployed with auto-scaling (2-10 replicas), comprehensive monitoring (Prometheus/Grafana with 3 dashboards), DevSecOps security scanning (GitLeaks, Trivy, Checkov, Semgrep, OWASP, SonarQube). Real-time multi-user experiences, external API integrations (Google Maps, OpenWeather, Unsplash), performance stress-tested for production load.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">React</span>
+            <span class="project-tech-tag">Node.js</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">DevSecOps</span>
+            <span class="project-tech-tag">Prometheus/Grafana</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-virtual-vacation-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Medical Care System -->
+        <div class="project-card" data-tier="tier-a">
           <div class="project-header">
             <span class="project-icon">🏥</span>
             <div class="project-meta">
               <h3>Medical Care System</h3>
               <p class="project-type">HIPAA-Compliant Healthcare Platform</p>
+              <span class="project-tier-badge tier-a">Tier A - Anchor</span>
             </div>
           </div>
-          <p class="project-desc">Enterprise healthcare management system serving 500+ providers and 100K+ patients with HIPAA compliance, telemedicine capabilities, and electronic health records. Built with .NET Core.</p>
+          <p class="project-desc">Production healthcare platform built with Blazor + .NET + PostgreSQL. HIPAA-compliant architecture with encrypted data storage, audit logging, secure communications, patient record management. Enterprise-grade security for sensitive medical data, multi-user access control, compliance certification ready.</p>
           <div class="project-tech-stack">
-            <span class="project-tech-tag">.NET 8</span>
-            <span class="project-tech-tag">SQL Server</span>
-            <span class="project-tech-tag">Azure</span>
+            <span class="project-tech-tag">Blazor</span>
+            <span class="project-tech-tag">.NET</span>
+            <span class="project-tech-tag">PostgreSQL</span>
             <span class="project-tech-tag">HIPAA</span>
-            <span class="project-tech-tag">HL7 FHIR</span>
+            <span class="project-tech-tag">Kubernetes</span>
           </div>
           <div class="project-card-links">
-            <a href="project-medical-care-system.html" class="project-card-link primary">View System</a>
-            <a href="#" class="project-card-link secondary">Compliance</a>
+            <a href="project-medical-care-system.html" class="project-card-link primary">View Project</a>
           </div>
         </div>
 
-        <div class="project-card">
-          <div class="project-header">
-            <span class="project-icon">📋</span>
-            <div class="project-meta">
-              <h3>Task Management Platform</h3>
-              <p class="project-type">AI-Powered Collaborative Workflow</p>
-            </div>
-          </div>
-          <p class="project-desc">Next-generation task management platform with AI automation, real-time collaboration, and intelligent prioritization. Serving 50K+ users with Go microservices and ML integration.</p>
-          <div class="project-tech-stack">
-            <span class="project-tech-tag">Go 1.21</span>
-            <span class="project-tech-tag">CouchDB</span>
-            <span class="project-tech-tag">TensorFlow</span>
-            <span class="project-tech-tag">WebSockets</span>
-            <span class="project-tech-tag">AI/ML</span>
-          </div>
-          <div class="project-card-links">
-            <a href="project-task-management-platform.html" class="project-card-link primary">View Platform</a>
-            <a href="#" class="project-card-link secondary">AI Features</a>
-          </div>
-        </div>
-
-        <div class="project-card">
+        <!-- Social Media Platform -->
+        <div class="project-card" data-tier="tier-a">
           <div class="project-header">
             <span class="project-icon">📱</span>
             <div class="project-meta">
               <h3>Social Media Platform</h3>
-              <p class="project-type">Massive-Scale Real-Time Social Network</p>
+              <p class="project-type">High-Scale Network System</p>
+              <span class="project-tier-badge tier-a">Tier A - Anchor</span>
             </div>
           </div>
-          <p class="project-desc">Global social media platform supporting 1M+ users with real-time messaging, content moderation, and intelligent feeds. Built with Ruby on Rails and horizontal scaling architecture.</p>
+          <p class="project-desc">Production-scale social network with React Native mobile, Ruby backend, PostgreSQL. Handles high-concurrency user connections, real-time feed algorithms, relationship graph traversal, multi-AZ deployment. Engineered for millions of connections with sophisticated scaling patterns, real-time notifications, and complex social algorithms.</p>
           <div class="project-tech-stack">
-            <span class="project-tech-tag">Ruby on Rails</span>
-            <span class="project-tech-tag">PostgreSQL</span>
             <span class="project-tech-tag">React Native</span>
-            <span class="project-tech-tag">ActionCable</span>
-            <span class="project-tech-tag">CDN</span>
+            <span class="project-tech-tag">Ruby</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">High-Concurrency</span>
+            <span class="project-tech-tag">Real-Time</span>
           </div>
           <div class="project-card-links">
-            <a href="project-social-media-platform.html" class="project-card-link primary">View Platform</a>
-            <a href="#" class="project-card-link secondary">Live Demo</a>
+            <a href="project-social-media-platform.html" class="project-card-link primary">View Project</a>
           </div>
         </div>
-      </div>
+
+        <!-- Artemis Banking v2.0 Platform -->
+        <div class="project-card" data-tier="tier-a">
+          <div class="project-header">
+            <span class="project-icon">🏦</span>
+            <div class="project-meta">
+              <h3>Artemis Banking v2.0 Platform</h3>
+              <p class="project-type">Production Fintech Microservices</p>
+              <span class="project-tier-badge tier-a">Tier A - Anchor</span>
+            </div>
+          </div>
+          <p class="project-desc">Production-grade fintech platform serving 10K+ real users with millions of financial transactions at scale. 7 microservices architecture (User, Account, Transaction, Audit, Notification, Analytics, Frontend React) with distributed event streaming via Kafka. Enterprise-grade infrastructure: PostgreSQL + InfluxDB + Redis stack, Keycloak authentication, Vault encryption, ArgoCD GitOps, Kubernetes orchestration. 99.9% uptime SLA with sub-500ms transaction latency. Full regulatory compliance: GDPR, PCI DSS, SOX implemented. Complete observability with Prometheus/Grafana/Loki. Measurable cost savings from DevOps optimization patterns.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Python/FastAPI</span>
+            <span class="project-tech-tag">Kafka</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">ArgoCD</span>
+            <span class="project-tech-tag">PCI-DSS</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-artemis-banking.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- E-Commerce Platform -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🛒</span>
+            <div class="project-meta">
+              <h3>E-Commerce Platform</h3>
+              <p class="project-type">Multi-Tier Transaction System</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">Production e-commerce platform with React frontend, Node.js backend, MongoDB. Full transaction lifecycle: product catalog, shopping cart, secure checkout, order processing, inventory management. Multi-tier architecture with separated concerns, payment gateway integration, stateful data persistence.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">React</span>
+            <span class="project-tech-tag">Node.js</span>
+            <span class="project-tech-tag">MongoDB</span>
+            <span class="project-tech-tag">Payments</span>
+            <span class="project-tech-tag">Kubernetes</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-ecommerce-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- AI-Powered Accessible Content Platform -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🎙️</span>
+            <div class="project-meta">
+              <h3>AI-Powered Accessible Content Platform</h3>
+              <p class="project-type">Neural AI + Accessibility</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">Offline AI text-to-speech platform converting PDFs to natural audio using Tacotron2 neural synthesis. HIPAA/GDPR-compliant (zero data transmission), full WebSocket real-time processing, batch document handling. Purpose-built for accessibility compliance, hands-free learning, and secure knowledge sharing in healthcare/government sectors.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Tacotron2 AI</span>
+            <span class="project-tech-tag">Flask</span>
+            <span class="project-tech-tag">WebSocket</span>
+            <span class="project-tech-tag">Docker</span>
+            <span class="project-tech-tag">HIPAA/GDPR</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-accessible-content-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Spring Banking Platform -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🏦</span>
+            <div class="project-meta">
+              <h3>Spring Banking Platform</h3>
+              <p class="project-type">Enterprise Java + CI/CD</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">Enterprise Java banking reference architecture demonstrating Spring Boot patterns with secure CI/CD. Spring Security RBAC (customer/admin isolation), Thymeleaf UI, Maven automation, GitHub Actions pipeline (unit tests → Docker build → registry push). Includes Kubernetes RBAC hardening playbook for production cluster access control.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Spring Boot</span>
+            <span class="project-tech-tag">Spring Security</span>
+            <span class="project-tech-tag">GitHub Actions</span>
+            <span class="project-tech-tag">Kubernetes RBAC</span>
+            <span class="project-tech-tag">Docker</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-spring-banking-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- MusicVibe CI/CD Platform -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🎵</span>
+            <div class="project-meta">
+              <h3>MusicVibe CI/CD Platform</h3>
+              <p class="project-type">Complete DevOps Reference</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">Production-ready 8-stage CI/CD pipeline on AWS: Terraform IaC (5 EC2 instances, VPCs, security groups), Jenkins orchestration, Kubernetes (kubeadm), SonarQube code quality, Nexus artifacts, Trivy container scanning, Prometheus/Grafana monitoring. Full-stack music app (Node.js/React, iTunes API, lyrics). 4-6 hour reproducible deployment, cost-optimized ($120–$200/month). Complete documentation with copy-paste commands.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Terraform</span>
+            <span class="project-tech-tag">Jenkins</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">SonarQube</span>
+            <span class="project-tech-tag">AWS</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-musicvibe-cicd-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- World Hero Adventures (AI-Adventure-Game) -->
+        <div class="project-card" data-tier="tier-b">
+          <div class="project-header">
+            <span class="project-icon">🎮</span>
+            <div class="project-meta">
+              <h3>World Hero Adventures</h3>
+              <p class="project-type">Production Game Platform</p>
+              <span class="project-tier-badge tier-b">Tier B - Strategic</span>
+            </div>
+          </div>
+          <p class="project-desc">Complete full-stack game platform for children ages 6-12 with educational disaster preparedness focus. React/Vite frontend (mobile-optimized, touch controls, responsive canvas), Node.js/Express backend (WebSocket multiplayer, leaderboards, chat), PostgreSQL (8+ migrations, achievements, player progress), JWT authentication, AI co-pilots (Gemini API + 100% fallback rule-based AI). 4 worlds, 12 progressive levels, Docker Compose orchestration, production deployment ready.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">React/Vite</span>
+            <span class="project-tech-tag">Node.js</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">WebSocket</span>
+            <span class="project-tech-tag">Docker Compose</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-world-hero-adventures.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Azure AKS Platform -->
+        <div class="project-card" data-tier="supporting">
+          <div class="project-header">
+            <span class="project-icon">☁️</span>
+            <div class="project-meta">
+              <h3>Azure AKS Platform</h3>
+              <p class="project-type">Kubernetes on Azure</p>
+              <span class="project-tier-badge supporting">Supporting Case Study</span>
+            </div>
+          </div>
+          <p class="project-desc">Enterprise-grade AKS cluster with auto-scaling, networking policies, RBAC, and integrated monitoring. Multi-zone deployment with 99.95% uptime SLA.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Azure AKS</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">RBAC</span>
+            <span class="project-tech-tag">Auto-scaling</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-azure-aks.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- AWS Infrastructure -->
+        <div class="project-card" data-tier="supporting">
+          <div class="project-header">
+            <span class="project-icon">🏢</span>
+            <div class="project-meta">
+              <h3>AWS Infrastructure</h3>
+              <p class="project-type">Multi-Region Cloud</p>
+              <span class="project-tier-badge supporting">Supporting Case Study</span>
+            </div>
+          </div>
+          <p class="project-desc">Scalable AWS infrastructure spanning multiple regions with VPC, NAT, security groups, and auto-scaling groups. Cost-optimized design with reserved instances.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">AWS</span>
+            <span class="project-tech-tag">VPC</span>
+            <span class="project-tech-tag">EC2</span>
+            <span class="project-tech-tag">RDS</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-aws-infrastructure.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Monitoring Stack -->
+        <div class="project-card" data-tier="supporting">
+          <div class="project-header">
+            <span class="project-icon">📊</span>
+            <div class="project-meta">
+              <h3>Monitoring Stack</h3>
+              <p class="project-type">Observability Platform</p>
+              <span class="project-tier-badge supporting">Supporting Case Study</span>
+            </div>
+          </div>
+          <p class="project-desc">Complete monitoring stack with Prometheus, Grafana, ELK, and custom alerting. Real-time dashboards, historical data retention, and automated alerts.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Prometheus</span>
+            <span class="project-tech-tag">Grafana</span>
+            <span class="project-tech-tag">ELK Stack</span>
+            <span class="project-tech-tag">Alerting</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-monitoring-stack.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Docker & Ansible -->
+        <div class="project-card" data-tier="supporting">
+          <div class="project-header">
+            <span class="project-icon">🐳</span>
+            <div class="project-meta">
+              <h3>Docker & Ansible Automation</h3>
+              <p class="project-type">Infrastructure Automation</p>
+              <span class="project-tier-badge supporting">Supporting Case Study</span>
+            </div>
+          </div>
+          <p class="project-desc">Reusable Docker images and Ansible playbooks for rapid infrastructure provisioning. Multi-environment configs, idempotent tasks, comprehensive documentation.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Docker</span>
+            <span class="project-tech-tag">Ansible</span>
+            <span class="project-tech-tag">Automation</span>
+            <span class="project-tech-tag">IaC</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-docker-ansible-role.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- GCP Serverless -->
+        <div class="project-card" data-tier="supporting">
+          <div class="project-header">
+            <span class="project-icon">⚡</span>
+            <div class="project-meta">
+              <h3>GCP Serverless Platform</h3>
+              <p class="project-type">Serverless Computing</p>
+              <span class="project-tier-badge supporting">Supporting Case Study</span>
+            </div>
+          </div>
+          <p class="project-desc">Event-driven serverless architecture on GCP Cloud Functions, Cloud Run, and Pub/Sub. Auto-scaling, pay-per-use pricing, minimal operational overhead.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">GCP</span>
+            <span class="project-tech-tag">Cloud Functions</span>
+            <span class="project-tech-tag">Cloud Run</span>
+            <span class="project-tech-tag">Pub/Sub</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-gcp-serverless.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Kubernetes VPN -->
+        <div class="project-card" data-tier="supporting">
+          <div class="project-header">
+            <span class="project-icon">🔒</span>
+            <div class="project-meta">
+              <h3>Kubernetes VPN Helm Chart</h3>
+              <p class="project-type">Network Security</p>
+              <span class="project-tier-badge supporting">Supporting Case Study</span>
+            </div>
+          </div>
+          <p class="project-desc">Production-ready Helm chart for VPN deployment on Kubernetes with Pritunl. Zero-trust networking, certificate management, and multi-tenant support.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">Helm</span>
+            <span class="project-tech-tag">VPN</span>
+            <span class="project-tech-tag">Security</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-kubernetes-vpn.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
 
       <!-- Pagination Controls -->
       <div class="pagination">
@@ -1752,8 +2088,123 @@
       </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="cta-section fade-in-up">
+    <!-- Explore More Projects Section -->
+    <section class="explore-more-section fade-in-up animate">
+      <div class="section-header">
+        <h2 class="section-title">📚 Explore More Projects</h2>
+        <p class="section-subtitle">Reference implementations, educational tools, and specialized domain expertise</p>
+      </div>
+
+      <!-- Complete Project Ecosystems -->
+      <div style="margin-bottom: 4rem;">
+        <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">🎓 Complete Project Ecosystems</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+          <!-- Ultimate DevOps Container Card -->
+          <div style="padding: 2rem; border: 1px solid #66d9ef; border-radius: 12px; background: linear-gradient(135deg, rgba(102, 217, 239, 0.08), rgba(166, 226, 46, 0.08)); transition: all 0.3s ease;">
+            <h4 style="color: #66d9ef; font-size: 1.2rem; margin-bottom: 0.5rem;">🐳 Ultimate DevOps Container</h4>
+            <p style="color: #a6e22e; font-size: 0.85rem; margin-bottom: 1rem; font-weight: 500;">Reference Implementation</p>
+            <p style="color: #f0f0f0; font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">Production-grade containerized DevOps workstation with 30+ integrated tools, multi-stage Docker architecture, and security-first design patterns.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.5rem;">
+              <a href="project-ultimate-devops-container.html" class="mini-project-link" style="padding: 0.5rem 1rem; font-size: 0.85rem;">📋 Main Project</a>
+              <a href="ultimate-devops-demo.html" class="mini-project-link" style="padding: 0.5rem 1rem; font-size: 0.85rem;">📖 Demo</a>
+              <a href="getting-started.html" class="mini-project-link" style="padding: 0.5rem 1rem; font-size: 0.85rem;">📖 Guide</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cloud Platforms Reference -->
+      <div style="margin-bottom: 4rem;">
+        <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">☁️ Cloud Platform References</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+          <!-- AWS -->
+          <div style="padding: 1.5rem; border: 1px solid rgba(255, 152, 0, 0.3); border-radius: 8px; background: rgba(255, 152, 0, 0.02);">
+            <h5 style="color: #ff9800; margin-bottom: 1rem;">AWS Ecosystem</h5>
+            <a href="project-aws-monitoring.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Monitoring Stack + Gallery</a>
+            <a href="project-eks-platform.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">EKS Platform</a>
+            <a href="aws-solutions.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Solutions</a>
+          </div>
+          <!-- Azure -->
+          <div style="padding: 1.5rem; border: 1px solid rgba(0, 120, 215, 0.3); border-radius: 8px; background: rgba(0, 120, 215, 0.02);">
+            <h5 style="color: #0078d7; margin-bottom: 1rem;">Azure Ecosystem</h5>
+            <a href="project-azure-hybrid.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Hybrid Cloud + Gallery</a>
+            <a href="project-azure-serverless.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Serverless</a>
+            <a href="azure-solutions.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Solutions</a>
+          </div>
+          <!-- GCP -->
+          <div style="padding: 1.5rem; border: 1px solid rgba(66, 133, 244, 0.3); border-radius: 8px; background: rgba(66, 133, 244, 0.02);">
+            <h5 style="color: #4285f4; margin-bottom: 1rem;">GCP Ecosystem</h5>
+            <a href="project-gcp-ml.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Machine Learning</a>
+            <a href="project-gcp-serverless.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Serverless</a>
+            <a href="gcp-solutions.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Solutions</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Container & Orchestration -->
+      <div style="margin-bottom: 4rem;">
+        <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">🐋 Containers & Orchestration</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div style="padding: 1.5rem; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px; background: rgba(102, 217, 239, 0.02);">
+            <h5 style="color: #66d9ef; margin-bottom: 1rem;">Kubernetes & Security</h5>
+            <a href="project-pritunl-vpn-helm.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Pritunl VPN Helm Chart</a>
+            <a href="kubernetes-vpn-demo.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">VPN Demo + Gallery</a>
+          </div>
+          <div style="padding: 1.5rem; border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 8px; background: rgba(166, 226, 46, 0.02);">
+            <h5 style="color: #a6e22e; margin-bottom: 1rem;">Infrastructure Automation</h5>
+            <a href="project-docker-ansible-role.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Docker & Ansible</a>
+            <a href="project-dockernet-project.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Docker Networking</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DevOps & Tools -->
+      <div style="margin-bottom: 4rem;">
+        <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">⚙️ DevOps Tools & CI/CD</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div style="padding: 1.5rem; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px; background: rgba(102, 217, 239, 0.02);">
+            <h5 style="color: #66d9ef; margin-bottom: 1rem;">Pipeline & Automation</h5>
+            <a href="project-enterprise-cicd.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Enterprise CI/CD</a>
+            <a href="project-secrets-management.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Secrets Management</a>
+            <a href="ci.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">CI/CD Guide</a>
+          </div>
+          <div style="padding: 1.5rem; border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 8px; background: rgba(166, 226, 46, 0.02);">
+            <h5 style="color: #a6e22e; margin-bottom: 1rem;">Observability</h5>
+            <a href="monitoring-stack-demo.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">📖 Monitoring Stack Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Domain-Specific -->
+      <div style="margin-bottom: 4rem;">
+        <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">🔧 Domain-Specific Solutions</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+          <div style="padding: 1.5rem; border: 1px solid rgba(244, 67, 54, 0.3); border-radius: 8px; background: rgba(244, 67, 54, 0.02);">
+            <h5 style="color: #f44336; margin-bottom: 1rem;">🏥 Healthcare</h5>
+            <a href="project-dailydose-healthcare.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">DailyDose Healthcare</a>
+          </div>
+          <div style="padding: 1.5rem; border: 1px solid rgba(156, 39, 176, 0.3); border-radius: 8px; background: rgba(156, 39, 176, 0.02);">
+            <h5 style="color: #9c27b0; margin-bottom: 1rem;">🧪 Testing & QA</h5>
+            <a href="project-uat-bug-report.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">UAT Bug Reports</a>
+            <a href="project-uat-parent-initiative.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">UAT Initiative</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documentation & Learning -->
+      <div>
+        <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">📚 Documentation & Learning</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          <a href="docs.html" class="mini-project-link" style="padding: 1rem; text-align: center; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px;">📖 Documentation Portal</a>
+          <a href="use-cases.html" class="mini-project-link" style="padding: 1rem; text-align: center; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px;">📋 Use Cases</a>
+          <a href="security.html" class="mini-project-link" style="padding: 1rem; text-align: center; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px;">🔒 Security & Compliance</a>
+          <a href="features.html" class="mini-project-link" style="padding: 1rem; text-align: center; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px;">✨ Features Guide</a>
+          <a href="components.html" class="mini-project-link" style="padding: 1rem; text-align: center; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px;">⚙️ Components</a>
+          <a href="blog.html" class="mini-project-link" style="padding: 1rem; text-align: center; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px;">✍️ Blog</a>
+        </div>
+      </div>
+    </section>
+    <section class="cta-section fade-in-up animate">
       <div class="cta-container">
         <h2 class="cta-title">Let's Build Something Amazing</h2>
         <p class="cta-description">Ready to discuss how these solutions can transform your infrastructure?</p>
@@ -1771,7 +2222,7 @@
         <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
         <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
       </div>
-      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | Senior DevOps, Platform &amp; Reliability Engineer</p>
     </div>
   </footer>
 
@@ -2110,13 +2561,17 @@
       if (page < 1 || page > totalPages) return;
       showPage(page);
 
-      // Smooth scroll to top of projects section
-      const projectsSection = document.querySelector('.projects-section');
-      if (projectsSection) {
-        projectsSection.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
+      // Scroll to top of projects grid
+      const projectsGrid = document.querySelector('.projects-grid');
+      if (projectsGrid) {
+        // Scroll to projects-grid with offset to show tier filters above
+        setTimeout(() => {
+          const gridPosition = projectsGrid.getBoundingClientRect().top + window.scrollY;
+          window.scrollTo({
+            top: gridPosition - 200,
+            behavior: 'smooth'
+          });
+        }, 50);
       }
     }
 
@@ -2139,6 +2594,9 @@
 
       // Initialize pagination
       initializePagination();
+
+      // Initialize tier filtering
+      initTierFiltering();
     });
 
     // Smooth scrolling for anchor links
@@ -2154,27 +2612,77 @@
         }
       });
     });
+
+    // Tier filtering functionality
+    function initTierFiltering() {
+      const filterTabs = document.querySelectorAll('.tier-tab');
+      const projectCards = document.querySelectorAll('.project-card');
+
+      filterTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          const selectedTier = this.getAttribute('data-tier');
+
+          // Update active tab
+          filterTabs.forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+
+          // Filter cards
+          projectCards.forEach(card => {
+            const tierBadge = card.querySelector('.project-tier-badge');
+            let cardTier = 'supporting';
+            
+            if (tierBadge) {
+              if (tierBadge.classList.contains('tier-a')) {
+                cardTier = 'tier-a';
+              } else if (tierBadge.classList.contains('tier-b')) {
+                cardTier = 'tier-b';
+              }
+            }
+
+            if (selectedTier === 'all' || cardTier === selectedTier) {
+              card.style.display = '';
+              // Trigger animation
+              setTimeout(() => {
+                card.style.opacity = '1';
+              }, 10);
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Scroll to projects section
+          const projectsGrid = document.querySelector('.projects-grid');
+          if (projectsGrid) {
+            setTimeout(() => {
+              const gridPosition = projectsGrid.getBoundingClientRect().top + window.scrollY;
+              window.scrollTo({
+                top: gridPosition - 200,
+                behavior: 'smooth'
+              });
+            }, 50);
+          }
+        });
+      });
+    }
+
+    // Initialize tier filtering on page load
+    document.addEventListener('DOMContentLoaded', function() {
+      initTierFiltering();
+      
+      // Show all cards by default
+      const projectCards = document.querySelectorAll('.project-card');
+      projectCards.forEach(card => {
+        card.style.display = '';
+        card.style.opacity = '1';
+      });
+    });
+
   </script>
 
-  <!-- Pagination System -->
-  <script src="js/pagination.js"></script>
+  <!-- Pagination System (Disabled - using custom tier filtering instead) -->
   <script>
-    // Initialize pagination after DOM loads
-    document.addEventListener('DOMContentLoaded', function() {
-      // Initialize pagination for projects
-      setTimeout(() => {
-        new PortfolioPagination({
-          itemsPerPage: 6,
-          container: '.projects-grid',
-          itemSelector: '.project-card, .hero-project-card',
-          categories: ['cloud', 'containers', 'automation', 'infrastructure', 'monitoring', 'security', 'web'],
-          enableFiltering: true,
-          enableSearch: true,
-          showProgress: true,
-          autoScroll: true
-        });
-      }, 100);
-    });
+    // Tier filtering is handled by initTierFiltering() above
+    // No need for PortfolioPagination - it was creating duplicate UI
   </script>
 </body>
 </html>

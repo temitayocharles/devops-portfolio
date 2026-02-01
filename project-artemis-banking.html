@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artemis Banking v2.0 - Enterprise Fintech Platform</title>
+    <meta name="description" content="Production fintech platform with 10K+ users, 7 microservices, Spring Boot, Kubernetes, and 99.9% uptime SLA. Enterprise-grade RBAC security and CI/CD automation.">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+            color: #f0f0f0;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(14, 14, 14, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            text-decoration: none;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .back-btn {
+            color: #66d9ef;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: rgba(102, 217, 239, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 50%, #0e0e0e 100%);
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(102, 217, 239, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(166, 226, 46, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 30px rgba(166, 226, 46, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #66d9ef;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #f0f0f0;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.7;
+        }
+
+        /* CTA Buttons */
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .cta-primary,
+        .cta-secondary {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .cta-primary {
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            color: #0e0e0e;
+            box-shadow: 0 4px 15px rgba(166, 226, 46, 0.3);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(166, 226, 46, 0.4);
+        }
+
+        .cta-secondary {
+            background: rgba(102, 217, 239, 0.1);
+            color: #66d9ef;
+            border: 2px solid #66d9ef;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(102, 217, 239, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #a6e22e;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #f0f0f0;
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #a6e22e, #66d9ef);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #66d9ef;
+            box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            color: #a6e22e;
+            margin-bottom: 1rem;
+        }
+
+        .feature-description {
+            color: #f0f0f0;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Architecture Section */
+        .architecture-section {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(102, 217, 239, 0.1);
+        }
+
+        /* Tech Stack */
+        .tech-stack {
+            background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1));
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(102, 217, 239, 0.2);
+        }
+
+        .tech-category {
+            margin-bottom: 2rem;
+        }
+
+        .tech-category-title {
+            font-size: 1.3rem;
+            color: #a6e22e;
+            margin-bottom: 1rem;
+            border-left: 3px solid #66d9ef;
+            padding-left: 1rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(102, 217, 239, 0.2);
+            color: #66d9ef;
+            padding: 0.6rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(102, 217, 239, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .tech-tag:hover {
+            background: rgba(102, 217, 239, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* List Styles */
+        ul {
+            margin-left: 2rem;
+            color: #f0f0f0;
+        }
+
+        li {
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #a6e22e;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            color: #999;
+            border-top: 1px solid rgba(102, 217, 239, 0.2);
+            margin-top: 5rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="index.html" class="logo">Temitayo Charles</a>
+            <a href="projects.html" class="back-btn">← Back to Projects</a>
+        </div>
+    </header>
+
+    <main style="margin-top: 70px;">
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-title">🏦 Artemis Banking v2.0</h1>
+                <p class="hero-subtitle">Enterprise Fintech Platform</p>
+                <p class="hero-description">
+                    Production-grade financial platform serving 10,000+ active users with 7 microservices, 
+                    Spring Boot architecture, Kubernetes orchestration, and comprehensive RBAC security. 
+                    Maintains 99.9% uptime SLA with automated CI/CD pipeline and enterprise-grade observability.
+                </p>
+                <div class="cta-buttons">
+                    <a href="#architecture" class="cta-primary">📐 Architecture</a>
+                    <a href="#features" class="cta-secondary">✨ Features</a>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">10K+</div>
+                        <div class="stat-label">Active Users</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">7</div>
+                        <div class="stat-label">Microservices</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">99.9%</div>
+                        <div class="stat-label">Uptime SLA</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">&lt;200ms</div>
+                        <div class="stat-label">API Latency</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">The Challenge: Enterprise Banking at Scale</h2>
+            <div class="architecture-section">
+                <p style="color: #f0f0f0; text-align: center; font-size: 1.1rem; max-width: 900px; margin: 0 auto 3rem; line-height: 1.7;">
+                    Traditional monolithic banking systems struggle with scalability, reliability, and security. Artemis Banking v2.0 
+                    solves this with a microservices-first architecture, enabling independent scaling, continuous deployment, and 
+                    industry-leading 99.9% uptime SLA while maintaining strict financial compliance.
+                </p>
+
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">⚠️</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #66d9ef; margin-bottom: 0.5rem;">Legacy Issues</div>
+                        <div style="color: #f0f0f0;">Monolithic architecture limits scaling, slow deployments, tight coupling</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🏗️</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">Microservices Solution</div>
+                        <div style="color: #f0f0f0;">Independent services, Kubernetes orchestration, automated pipelines</div>
+                    </div>
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(166, 226, 46, 0.1)); border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">✅</div>
+                        <div style="font-size: 1.3rem; font-weight: bold; color: #48bb78; margin-bottom: 0.5rem;">Results</div>
+                        <div style="color: #f0f0f0;">10K users, 99.9% uptime, &lt;200ms latency, zero breaches</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="architecture" class="section">
+            <h2 class="section-title">Microservices Architecture</h2>
+            <div class="architecture-section">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin: 2rem 0;">
+                    <div style="background: linear-gradient(135deg, rgba(102, 217, 239, 0.1), rgba(102, 217, 239, 0.05)); border: 2px solid rgba(102, 217, 239, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #66d9ef; font-size: 1.3rem; margin-bottom: 1rem;">💳 Payment Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Core transaction processing</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">REST APIs, PCI-DSS compliance, transaction ledger, settlement processing</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(166, 226, 46, 0.05)); border: 2px solid rgba(166, 226, 46, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #a6e22e; font-size: 1.3rem; margin-bottom: 1rem;">👥 User Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Account management & RBAC</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Profile management, role assignment, permission validation, audit logs</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(59, 130, 246, 0.05)); border: 2px solid rgba(59, 130, 246, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #60a5fa; font-size: 1.3rem; margin-bottom: 1rem;">🔐 Auth Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Security & authentication</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">JWT tokens, Spring Security, MFA support, session management</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(239, 68, 68, 0.1), rgba(239, 68, 68, 0.05)); border: 2px solid rgba(239, 68, 68, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #ef4444; font-size: 1.3rem; margin-bottom: 1rem;">📊 Analytics Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Business intelligence</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Real-time metrics, user behavior tracking, revenue analytics</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.1), rgba(168, 85, 247, 0.05)); border: 2px solid rgba(168, 85, 247, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #d8b4fe; font-size: 1.3rem; margin-bottom: 1rem;">📧 Notification Service</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Communication hub</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Email, SMS, push notifications, message queue integration</div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(34, 197, 94, 0.05)); border: 2px solid rgba(34, 197, 94, 0.3); border-radius: 16px; padding: 2rem;">
+                        <h4 style="color: #22c55e; font-size: 1.3rem; margin-bottom: 1rem;">🔗 API Gateway</h4>
+                        <p style="color: #f0f0f0; margin-bottom: 1rem; font-size: 0.95rem;">Request routing & rate limiting</p>
+                        <div style="background: rgba(0,0,0,0.2); padding: 1rem; border-radius: 8px; color: #f0f0f0; font-size: 0.9rem;">Load balancing, request throttling, authentication proxy, logging</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <h2 class="section-title">Core Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-title">Transaction Processing</div>
+                    <div class="feature-description">Real-time payment processing with PCI-DSS compliance, instant settlement, and complete audit trails for regulatory requirements.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <div class="feature-title">Security & RBAC</div>
+                    <div class="feature-description">Comprehensive role-based access control, JWT authentication, encrypted data storage, and continuous security monitoring.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <div class="feature-title">Analytics Dashboard</div>
+                    <div class="feature-description">Real-time business intelligence, user activity tracking, revenue analytics, and predictive insights for strategic decision-making.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-title">High Performance</div>
+                    <div class="feature-description">Sub-200ms API latency, horizontal scaling with Kubernetes, connection pooling, and optimized database queries.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <div class="feature-title">Continuous Deployment</div>
+                    <div class="feature-description">Automated CI/CD pipeline with GitHub Actions, zero-downtime deployments, and instant rollback capabilities.</div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📞</div>
+                    <div class="feature-title">Omnichannel Support</div>
+                    <div class="feature-description">Email, SMS, and push notifications integrated through dedicated notification service with message queuing.</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Technology Stack</h2>
+            <div class="tech-stack">
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Backend Framework</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Spring Boot 3.x</span>
+                        <span class="tech-tag">Java 17</span>
+                        <span class="tech-tag">Maven</span>
+                        <span class="tech-tag">Spring Security</span>
+                        <span class="tech-tag">JPA/Hibernate</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Data & Infrastructure</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PostgreSQL</span>
+                        <span class="tech-tag">Redis Cache</span>
+                        <span class="tech-tag">Docker</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Helm Charts</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">CI/CD & DevOps</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">GitHub Actions</span>
+                        <span class="tech-tag">SonarQube</span>
+                        <span class="tech-tag">Docker Registry</span>
+                        <span class="tech-tag">Terraform IaC</span>
+                        <span class="tech-tag">Prometheus</span>
+                    </div>
+                </div>
+
+                <div class="tech-category">
+                    <h3 class="tech-category-title">Testing & Quality</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">JUnit 5</span>
+                        <span class="tech-tag">Mockito</span>
+                        <span class="tech-tag">Integration Tests</span>
+                        <span class="tech-tag">SonarQube Analysis</span>
+                        <span class="tech-tag">Code Coverage</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Key Achievements</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 3rem 0;">
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">10,000+</div>
+                    <div style="color: #f0f0f0;">Active users in production</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">99.9%</div>
+                    <div style="color: #f0f0f0;">Uptime SLA maintained</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">&lt;200ms</div>
+                    <div style="color: #f0f0f0;">API response time</div>
+                </div>
+                <div style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 12px; padding: 2rem;">
+                    <div style="font-size: 2rem; font-weight: bold; color: #a6e22e; margin-bottom: 0.5rem;">0</div>
+                    <div style="color: #f0f0f0;">Security breaches with RBAC</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Temitayo Charles. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -55,9 +55,9 @@ All requested features have been successfully implemented with professional styl
 - ✅ LinkedIn: https://linkedin.com/in/temitayocharles
 - ✅ 11+ years IT experience (7+ DevOps & Cloud)
 - ✅ All three positions at correct companies:
-  * Senior DevOps & Cloud Platform Engineer - EK Tech (Apr 2021-Present)
-  * DevOps Engineer - EK Tech (Jun 2018-Mar 2021)
-  * Linux Systems Engineer & Scrum Facilitator - British Council (Feb 2014-May 2018)
+   * Senior DevOps & Cloud Platform Engineer - Kanshe Infotech (Apr 2021-Present)
+   * DevOps Engineer - Kanshe Infotech (Jun 2018-Mar 2021)
+   * Linux Systems Engineer & Scrum Facilitator - British Council (Feb 2014-May 2018)
 - ✅ Education: University of Ado-Ekiti & Bamidele Olumilua University
 - ✅ All certifications: HashiCorp Terraform, AWS SA, PMP, CSM
 - ✅ Professional development courses listed
@@ -115,7 +115,89 @@ All requested features have been successfully implemented with professional styl
 
 ---
 
-## 🎨 Design System
+## � Project Tier System
+
+### Tier A - Career-Defining Projects
+**Criteria:**
+- **Scale:** Handles 10K+ concurrent users OR processes 500K+ daily data points
+- **Complexity:** Multi-service microarchitecture, distributed systems, or advanced automation
+- **Impact:** 60%+ improvement metrics (MTTR, latency, provisioning time) or proven cost savings ($100K+)
+- **Innovation:** Implements cutting-edge patterns (AI agents, LLM integration, GitOps, IaC automation, HA/DR)
+- **Production Readiness:** 99.99%+ uptime SLA, enterprise compliance (HIPAA, SOC2), real revenue impact
+- **Technology Depth:** Advanced use of Kubernetes, microservices, LLM/AI, infrastructure automation
+- **Real User Base:** 10K+ active users, 500+ service providers, or enterprise customers
+
+**Assigned Projects (6 total):**
+
+1. **AI Ops Platform** ⭐
+   - **Impact:** 60% MTTR reduction in production incident response
+   - **Architecture:** 13 AI agents (7 incident, 6 security), multi-agent LLM automation
+   - **Stack:** Ollama Llama 3, ChromaDB vector search, Next.js 14 dashboard, FastAPI backend
+
+2. **MindBridge Nigeria** ⭐
+   - **Impact:** Real social impact - 10K+ users, 500+ healthcare providers
+   - **Scale:** 10K+ active users, 500+ providers, 99% satisfaction
+   - **Compliance:** HIPAA-compliant with encrypted storage and audit logging
+
+3. **Cila Health Platform** ⭐
+   - **Impact:** 500K+ daily data points processed, enterprise healthcare
+   - **Reliability:** 99.99% uptime SLA with PostgreSQL replication, Redis caching
+   - **DevOps:** GitOps deployment with ArgoCD, distributed tracing (Jaeger)
+
+4. **Yelb Odilia Stack** ⭐
+   - **Impact:** 99.99% uptime at scale, multi-region enterprise HA
+   - **Reliability:** Zero RPO, <30s RTO failover across 5 availability zones
+   - **Technology:** PostgreSQL replication, Redis cluster failover
+
+5. **RideCo Transit Platform** ⭐
+   - **Impact:** <500ms match latency for 10K+ concurrent users
+   - **Reliability:** 99.99% availability SLA
+   - **Architecture:** RabbitMQ queuing, Redis caching, Kubernetes HPA (3-10 replicas)
+
+6. **FoodShare App** ⭐
+   - **Impact:** 95% provisioning time reduction (2-3 days → 15 minutes)
+   - **IaC:** 560+ lines of Terraform, 640+ lines of Kubernetes YAML
+   - **Innovation:** GitHub OIDC passwordless authentication
+
+### Tier B - Strategic Case Studies
+**Criteria:**
+- **Scale:** 1K-10K users OR moderate data processing
+- **Complexity:** Complete application, significant DevOps automation, or specialized implementations
+- **Impact:** 30-60% improvements, working MVP with clear business value
+- **Production Ready:** 99.9%+ uptime, documented architecture, deployable
+- **Technology Breadth:** Good use of multiple technologies, proper monitoring, reasonable architecture
+- **Business Value:** Demonstrates specific technical competency or solves real problem
+
+**Assigned Projects (1 total):**
+
+1. **DevOps Mission Control** 🎬
+   - **Capability:** 18+ command modules for multi-cloud orchestration
+   - **Features:** Bearer token auth, 3-tier RBAC, web dashboard API, comprehensive audit logging
+   - **Technology:** 25MB Go binary, supports Kubernetes, Docker, AWS, Azure, Git
+   - **Scope:** Advanced CLI tool demonstrating cross-cloud management
+   - **Impact:** Unified DevOps interface reducing tool fragmentation
+
+### Supporting Case Studies
+**Status:** ✅ REMOVED - Section consolidated into Featured Projects
+
+**Rationale for Consolidation:**
+1. **Portfolio Focus:** 8 production-grade projects provide stronger, more credible showcase than 30+ mixed-quality links
+2. **Removed "Explore More" Section:** Separate section diluted focus and contained placeholder/demo links
+3. **Quality Over Quantity:** Tier A and B projects demonstrate proven expertise and real-world impact
+4. **Cleaner UX:** Users see only high-quality projects they can deeply explore
+
+**Previous Supporting Projects Removed:**
+- Virtual Vacation Platform (now recognized as Tier A-quality - 50K+ bookings)
+- Azure AKS Platform (single-tech demo)
+- AWS Infrastructure (template/reference)
+- Monitoring Stack (utility project)
+- Docker & Ansible (automation templates)
+- GCP Serverless (cloud demo)
+- Kubernetes VPN Helm Chart (specialized tool)
+
+---
+
+## �🎨 Design System
 
 ### Color Scheme
 - **Primary Cyan:** #66d9ef (rgba(102, 217, 239))
@@ -262,6 +344,7 @@ docker run -d -p 8080:80 devops-portfolio:latest
 - Initial implementation documentation
 - Photo organization details
 - Phase 1, 4, 5 completion details
+- 2026 portfolio project tiering (Tier A/Tier B case studies)
 
 ### 2. TESTING_SETUP.md
 - Phase 3 testing guide

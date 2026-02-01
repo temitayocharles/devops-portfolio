@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Temitayo Charles - DevOps Engineer | Get In Touch</title>
+  <title>Contact Temitayo Charles - DevOps &amp; Platform Engineer</title>
   
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Contact Temitayo Charles, experienced DevOps Engineer specializing in cloud infrastructure, containerization, and CI/CD. Available for consulting, collaboration, and full-time opportunities.">
+  <meta name="description" content="Contact Temitayo Charles, senior DevOps and platform engineer working with teams across AWS, Azure, and GCP. Available for consulting, leadership, and full-time opportunities.">
   <meta name="keywords" content="contact devops engineer, hire devops consultant, cloud engineer contact, kubernetes expert, docker specialist, temitayo charles contact">
   <meta name="author" content="Temitayo Charles">
   <meta name="robots" content="index, follow">
   
   <!-- Open Graph Meta Tags -->
-  <meta property="og:title" content="Contact Temitayo Charles - DevOps Engineer">
-  <meta property="og:description" content="Get in touch with Temitayo Charles for DevOps consulting, cloud infrastructure projects, and collaboration opportunities. Expert in AWS, Kubernetes, Docker, and CI/CD.">
+  <meta property="og:title" content="Contact Temitayo Charles - DevOps &amp; Platform Engineer">
+  <meta property="og:description" content="Get in touch with Temitayo Charles for DevOps and platform engineering engagements across AWS, Azure, and GCP.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://temitayocharles.online/contact.html">
   <meta property="og:image" content="https://temitayocharles.online/images/banner-optimized.jpg">
-  <meta property="og:image:alt" content="Contact Temitayo Charles - DevOps Engineer">
+  <meta property="og:image:alt" content="Contact Temitayo Charles - DevOps, Platform &amp; Reliability Engineer">
   <meta property="og:site_name" content="Temitayo Charles - DevOps Portfolio">
   
   <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Contact Temitayo Charles - DevOps Engineer">
-  <meta name="twitter:description" content="Get in touch for DevOps consulting, cloud infrastructure projects, and collaboration opportunities.">
+  <meta name="twitter:title" content="Contact Temitayo Charles - DevOps &amp; Platform Engineer">
+  <meta name="twitter:description" content="Get in touch for DevOps and platform engineering consulting and leadership roles.">
   <meta name="twitter:image" content="https://temitayocharles.online/images/banner-optimized.jpg">
   <meta name="twitter:creator" content="@temitayocharles">
   
@@ -36,13 +36,13 @@
       "@context": "https://schema.org",
       "@type": "ContactPage",
       "name": "Contact Temitayo Charles",
-      "description": "Contact page for DevOps Engineer Temitayo Charles",
+      "description": "Contact page for Senior DevOps, Platform, and Reliability Engineer Temitayo Charles",
       "url": "https://temitayocharles.online/contact.html",
       "mainEntity": {
           "@type": "Person",
           "name": "Temitayo Charles",
-          "jobTitle": "DevOps Engineer",
-          "email": "temitayo_charles@yahoo.com",
+          "jobTitle": "Senior DevOps & Platform Engineer",
+          "email": "tayocharlesak@gmail.com",
           "url": "https://temitayocharles.online/",
           "sameAs": [
               "https://linkedin.com/in/temitayocharles",
@@ -54,6 +54,7 @@
   </script>
   
   <link rel="stylesheet" href="style.css"/>
+  <script src="js/dark-mode.js"></script>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     /* Global Styles */
@@ -77,8 +78,7 @@
       top: 0;
       left: 0;
       right: 0;
-      background: rgba(14, 14, 14, 0.95);
-      background: rgba(14, 14, 14, 0.9);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(102, 217, 239, 0.2);
       z-index: 1000;
@@ -124,6 +124,38 @@
     .nav-link.active {
       color: #a6e22e;
       background: rgba(166, 226, 46, 0.1);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .theme-toggle {
+      background: rgba(102, 217, 239, 0.1);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      color: var(--primary-cyan);
+      font-size: 1.2rem;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.2);
+      transform: scale(1.1) rotate(20deg);
+      box-shadow: 0 0 15px rgba(102, 217, 239, 0.4);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
     }
 
     .mobile-menu-btn {
@@ -499,6 +531,12 @@
       gap: 2rem;
     }
 
+    .collaboration-grid .collab-card:last-child {
+      grid-column: 1 / -1;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
     .collab-card {
       background: rgba(14, 14, 14, 0.9);
       background: rgba(255, 255, 255, 0.05);
@@ -537,8 +575,7 @@
 
     /* Footer */
     .footer {
-      background: rgba(14, 14, 14, 0.95);
-      background: rgba(14, 14, 14, 0.9);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(10px);
       border-top: 1px solid rgba(102, 217, 239, 0.2);
       padding: 3rem 0 2rem;
@@ -691,7 +728,7 @@
       left: -300px;
       width: 300px;
       height: 100vh;
-      background: rgba(14, 14, 14, 0.95);
+      background: rgba(14, 14, 14, 0.85);
       backdrop-filter: blur(20px);
       border-right: 1px solid rgba(102, 217, 239, 0.2);
       z-index: 2000;
@@ -757,8 +794,17 @@
         <a href="about-me.html" class="nav-link">About</a>
         <a href="skills.html" class="nav-link">Skills</a>
         <a href="projects.html" class="nav-link">Projects</a>
+        <a href="aws-solutions.html" class="nav-link">AWS</a>
+        <a href="azure-solutions.html" class="nav-link">Azure</a>
+        <a href="gcp-solutions.html" class="nav-link">GCP</a>
+        <a href="blog.html" class="nav-link">Blog</a>
         <a href="contact.html" class="nav-link active">Contact</a>
       </nav>
+      <div class="nav-actions">
+        <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
+          🌙
+        </button>
+      </div>
       <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
     </div>
   </header>
@@ -770,6 +816,10 @@
       <a href="about-me.html" class="sidebar-nav-item">About</a>
       <a href="skills.html" class="sidebar-nav-item">Skills</a>
       <a href="projects.html" class="sidebar-nav-item">Projects</a>
+      <a href="aws-solutions.html" class="sidebar-nav-item">AWS</a>
+      <a href="azure-solutions.html" class="sidebar-nav-item">Azure</a>
+      <a href="gcp-solutions.html" class="sidebar-nav-item">GCP</a>
+      <a href="blog.html" class="sidebar-nav-item">Blog</a>
       <a href="contact.html" class="sidebar-nav-item active">Contact</a>
     </nav>
   </div>
@@ -802,7 +852,7 @@
 
           <div class="contact-detail">
             <h4>Email</h4>
-            <a href="mailto:temitayo_charles@yahoo.com" class="contact-link">temitayo_charles@yahoo.com</a>
+            <a href="mailto:tayocharlesak@gmail.com" class="contact-link">tayocharlesak@gmail.com</a>
             <span class="response-time">Response within 24 hours</span>
           </div>
 
@@ -858,37 +908,6 @@
       </div>
     </section>
 
-    <!-- Social Networks Section -->
-    <section class="social-section">
-      <div class="section-header">
-        <h2 class="section-title">Professional Networks</h2>
-        <p class="section-subtitle">Connect with me on professional platforms and explore my work</p>
-      </div>
-
-      <div class="social-grid">
-        <a href="https://github.com/temitayocharles" target="_blank" class="social-card">
-          <span class="social-icon">🐙</span>
-          <h3 class="social-title">GitHub</h3>
-          <p class="social-handle">@temitayocharles</p>
-          <p class="social-description">Open source projects, code samples, and DevOps tools</p>
-        </a>
-
-        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-card">
-          <span class="social-icon">🐳</span>
-          <h3 class="social-title">DockerHub</h3>
-          <p class="social-handle">temitayocharles</p>
-          <p class="social-description">Container images and DevOps container solutions</p>
-        </a>
-
-        <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-card">
-          <span class="social-icon">💼</span>
-          <h3 class="social-title">LinkedIn</h3>
-          <p class="social-handle">Temitayo Charles</p>
-          <p class="social-description">Professional experience and industry network</p>
-        </a>
-      </div>
-    </section>
-
     <!-- Collaboration Section -->
     <section class="collaboration-section">
       <div class="section-header">
@@ -898,13 +917,13 @@
 
       <div class="collaboration-grid">
         <div class="collab-card">
-          <span class="collab-icon">�</span>
+          <span class="collab-icon">🚀</span>
           <h3 class="collab-title">Career Opportunities</h3>
           <p class="collab-description">Open to exciting job opportunities in DevOps, cloud engineering, and container technologies. Let's discuss how we can work together to build amazing solutions.</p>
         </div>
 
         <div class="collab-card">
-          <span class="collab-icon">�🔧</span>
+          <span class="collab-icon">🛠️</span>
           <h3 class="collab-title">DevOps Consulting</h3>
           <p class="collab-description">Infrastructure automation, CI/CD pipeline optimization, containerization strategies, and cloud architecture design for enterprise teams.</p>
         </div>
@@ -933,7 +952,7 @@
         <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
         <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
       </div>
-      <p class="footer-text">&copy; 2025 Temitayo Charles | DevOps Engineer & Container Enthusiast</p>
+      <p class="footer-text">&copy; 2025 Temitayo Charles | Senior DevOps & Platform Engineer</p>
     </div>
   </footer>
 

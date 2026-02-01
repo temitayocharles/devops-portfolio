@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects • Temitayo Charles</title>
+  <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="css/pagination.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Projects Grid -->
+    <section class="projects-section fade-in-up">
+      <div class="projects-grid">
+        <!-- Cila Health Platform -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🏥</span>
+            <div class="project-meta">
+              <h3>Cila Health Platform</h3>
+              <p class="project-type">HIPAA-Compliant Healthcare</p>
+            </div>
+          </div>
+          <p class="project-desc">Enterprise healthcare platform with device ingestion microservice, HIPAA compliance, GitOps automation using ArgoCD, and Strangler Fig migration pattern. 500K+ daily data points, 99.99% uptime SLA.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">FastAPI</span>
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">ArgoCD</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">HIPAA</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-cila-health-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- DevOps Mission Control -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">⚙️</span>
+            <div class="project-meta">
+              <h3>DevOps Mission Control</h3>
+              <p class="project-type">Multi-Cloud CLI with RBAC</p>
+            </div>
+          </div>
+          <p class="project-desc">Unified DevOps CLI with 18+ command modules for Kubernetes, Docker, AWS, Azure, and Git. Bearer token auth, 3-tier RBAC, web dashboard API, comprehensive audit logging. 25MB Go binary.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Go</span>
+            <span class="project-tech-tag">CLI</span>
+            <span class="project-tech-tag">RBAC</span>
+            <span class="project-tech-tag">Multi-Cloud</span>
+            <span class="project-tech-tag">Audit</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-devops-mission-control.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- AI Ops Platform -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🤖</span>
+            <div class="project-meta">
+              <h3>AI Ops Platform</h3>
+              <p class="project-type">Multi-Agent LLM Automation</p>
+            </div>
+          </div>
+          <p class="project-desc">Production incident response with 13 AI agents (7 incident, 6 security). Ollama Llama 3, ChromaDB vector search, 60% MTTR reduction. Next.js dashboard, FastAPI backend, Celery jobs, Prometheus/Grafana observability.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">LLM</span>
+            <span class="project-tech-tag">Next.js 14</span>
+            <span class="project-tech-tag">FastAPI</span>
+            <span class="project-tech-tag">ChromaDB</span>
+            <span class="project-tech-tag">AI Agents</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-ai-ops-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- FoodShare App -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🍽️</span>
+            <div class="project-meta">
+              <h3>FoodShare App</h3>
+              <p class="project-type">Infrastructure as Code</p>
+            </div>
+          </div>
+          <p class="project-desc">Food donation platform with Terraform IaC automation, GitHub OIDC passwordless auth, dual CI/CD pipelines (k3d dev + EKS prod). 560+ Terraform lines, 640-line YAML. Provisioning: 2-3 days → 15 minutes.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Terraform</span>
+            <span class="project-tech-tag">GitHub OIDC</span>
+            <span class="project-tech-tag">Kubernetes</span>
+            <span class="project-tech-tag">IaC</span>
+            <span class="project-tech-tag">GitOps</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-foodshare-app.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Yelb Odilia Stack -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🏗️</span>
+            <div class="project-meta">
+              <h3>Yelb Odilia Stack</h3>
+              <p class="project-type">Enterprise HA Architecture</p>
+            </div>
+          </div>
+          <p class="project-desc">Production HA reference architecture with PostgreSQL replication, Redis cluster failover, multi-region deployment, automated DR. 99.99% uptime, zero RPO, &lt;30s RTO failover across 5 availability zones.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">PostgreSQL</span>
+            <span class="project-tech-tag">Redis</span>
+            <span class="project-tech-tag">Multi-Region</span>
+            <span class="project-tech-tag">HA/DR</span>
+            <span class="project-tech-tag">5 AZ</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-yelb-odilia-stack.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- RideCo Transit Platform -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🚗</span>
+            <div class="project-meta">
+              <h3>RideCo Transit Platform</h3>
+              <p class="project-type">Real-Time Ride Matching</p>
+            </div>
+          </div>
+          <p class="project-desc">On-demand transit microservices handling 10K+ concurrent users. RabbitMQ distributed queuing, Redis caching, PostgreSQL state. HPA auto-scaling (3-10 replicas), &lt;500ms match latency, 99.99% availability.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Microservices</span>
+            <span class="project-tech-tag">RabbitMQ</span>
+            <span class="project-tech-tag">Redis</span>
+            <span class="project-tech-tag">HPA</span>
+            <span class="project-tech-tag">10K+ Users</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-rideco-transit-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- MindBridge Nigeria -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">🌍</span>
+            <div class="project-meta">
+              <h3>MindBridge Nigeria</h3>
+              <p class="project-type">AI Mental Health Platform</p>
+            </div>
+          </div>
+          <p class="project-desc">Mental health platform with AI therapy assistants, provider matching, video consultations, secure messaging. 10K+ users, 500+ providers, 99% satisfaction. HIPAA-compliant encrypted storage and audit logging.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Next.js 15</span>
+            <span class="project-tech-tag">FastAPI</span>
+            <span class="project-tech-tag">LLM</span>
+            <span class="project-tech-tag">HIPAA</span>
+            <span class="project-tech-tag">WebRTC</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-mindbridge-nigeria.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+
+        <!-- Virtual Vacation Platform -->
+        <div class="project-card">
+          <div class="project-header">
+            <span class="project-icon">✈️</span>
+            <div class="project-meta">
+              <h3>Virtual Vacation Platform</h3>
+              <p class="project-type">Tourism Booking Platform</p>
+            </div>
+          </div>
+          <p class="project-desc">Tourism platform with 360° tours, AI guide matching, smart booking, Stripe payments. 50K+ bookings, 2000+ guides, 150+ destinations, 4.8/5 rating. ML recommendations and real-time chat.</p>
+          <div class="project-tech-stack">
+            <span class="project-tech-tag">Next.js</span>
+            <span class="project-tech-tag">Stripe</span>
+            <span class="project-tech-tag">ML</span>
+            <span class="project-tech-tag">WebSocket</span>
+            <span class="project-tech-tag">50K+ Bookings</span>
+          </div>
+          <div class="project-card-links">
+            <a href="project-virtual-vacation-platform.html" class="project-card-link primary">View Project</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pagination Controls -->
+      <div class="pagination">
+        <!-- Pagination controls will be generated by JavaScript -->
+      </div>
+    </section>
+  </main>
+</body>
+</html>
