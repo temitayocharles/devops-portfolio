@@ -3314,3 +3314,206 @@ footer p {
     padding: 0.2rem 0.3rem;
   }
 }
+
+/* ==========================================
+   ACCESSIBILITY ENHANCEMENTS (WCAG AAA)
+   ========================================== */
+
+/* Skip to Content Link */
+.skip-to-content {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #66d9ef;
+  color: #0e0e0e;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 0 0 4px 0;
+  font-weight: 600;
+  z-index: 100;
+  transition: top 0.3s ease;
+}
+
+.skip-to-content:focus {
+  top: 0;
+}
+
+/* Main Content Landmark */
+main {
+  outline: none;
+}
+
+main:focus {
+  outline: 2px dashed #66d9ef;
+  outline-offset: 2px;
+}
+
+/* Improved Focus Styles */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  outline: 2px solid #66d9ef;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Focus visible for keyboard nav */
+:focus-visible {
+  outline: 2px solid #a6e22e;
+  outline-offset: 2px;
+}
+
+/* Landmark Navigation */
+.nav-landmark,
+nav {
+  position: relative;
+}
+
+nav[aria-label="Breadcrumb"] {
+  position: relative;
+}
+
+/* Skip Links Container */
+.skip-links {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 101;
+}
+
+.skip-links a {
+  display: block;
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  background: #66d9ef;
+  color: #0e0e0e;
+  padding: 8px 16px;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0 0 4px 0;
+}
+
+.skip-links a:focus {
+  left: 0;
+  top: 0;
+  width: auto;
+  height: auto;
+  overflow: visible;
+}
+
+/* Heading Structure */
+h1 {
+  margin-top: 1rem;
+}
+
+h2 {
+  margin-top: 1.5rem;
+}
+
+h3 {
+  margin-top: 1rem;
+}
+
+/* Link Accessibility */
+a {
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+  text-decoration-thickness: 0.125em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.25em;
+}
+
+/* Form Accessibility */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+input,
+textarea,
+select {
+  font-family: inherit;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+/* Button Accessibility */
+button,
+[type="button"],
+[type="submit"],
+[type="reset"] {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+button:active,
+[type="button"]:active,
+[type="submit"]:active,
+[type="reset"]:active {
+  transform: scale(0.98);
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: more) {
+  body {
+    color: #ffffff;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  .nav-link {
+    border: 1px solid currentColor;
+    padding: 0.75rem 1rem;
+  }
+
+  .nav-link:focus {
+    outline: 3px solid #ffffff;
+    outline-offset: 2px;
+  }
+}
+
+/* Dark Mode Users with Accessibility Needs */
+@media (prefers-color-scheme: dark) {
+  ::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: rgba(102, 217, 239, 0.1);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #66d9ef;
+    border-radius: 6px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a6e22e;
+  }
+}
