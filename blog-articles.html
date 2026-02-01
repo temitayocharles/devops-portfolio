@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0e0e0e">
+  <title>DevOps & Cloud Engineering Blog • Temitayo Charles</title>
+  <meta name="description" content="In-depth articles on platform engineering, Kubernetes, multi-cloud strategy, DevOps best practices, and infrastructure optimization. Industry insights and real-world case studies.">
+  <meta name="keywords" content="DevOps, Kubernetes, Platform Engineering, Cloud Architecture, CI/CD, Infrastructure as Code, Blog">
+  
+  <!-- Open Graph / Social Meta Tags -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DevOps & Cloud Engineering Blog">
+  <meta property="og:description" content="Thought leadership content on platform engineering, cloud architecture, and DevOps practices">
+  <meta property="og:url" content="https://temitayocharles.online/blog-articles.html">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <style>
+    /* Blog Specific Styles */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+      color: #f0f0f0;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Navigation */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 14, 14, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #66d9ef;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    nav a:hover {
+      color: #a6e22e;
+      background: rgba(166, 226, 46, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Header Section */
+    .blog-header {
+      margin-top: 80px;
+      padding: 4rem 2rem 3rem;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1) 0%, rgba(166, 226, 46, 0.05) 100%);
+      border-bottom: 2px solid rgba(102, 217, 239, 0.3);
+      max-width: 100%;
+      overflow: hidden;
+    }
+
+    .blog-header h1 {
+      font-size: 2.5rem;
+      color: #66d9ef;
+      margin: 0 0 1rem;
+      line-height: 1.2;
+    }
+
+    .blog-header p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+
+    /* Blog Container */
+    .blog-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+    /* Article Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 2rem 0;
+    }
+
+    /* Article Card */
+    .article-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 10px;
+      padding: 2rem;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .article-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(102, 217, 239, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .article-card:hover::before {
+      left: 100%;
+    }
+
+    .article-card:hover {
+      transform: translateY(-8px);
+      border-color: #66d9ef;
+      box-shadow: 0 10px 30px rgba(102, 217, 239, 0.2);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .article-tag {
+      display: inline-block;
+      padding: 0.4rem 0.8rem;
+      background: rgba(166, 226, 46, 0.2);
+      color: #a6e22e;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      width: fit-content;
+    }
+
+    .article-tag.devops {
+      background: rgba(102, 217, 239, 0.2);
+      color: #66d9ef;
+    }
+
+    .article-tag.kubernetes {
+      background: rgba(174, 129, 255, 0.2);
+      color: #ae81ff;
+    }
+
+    .article-tag.cloud {
+      background: rgba(253, 151, 31, 0.2);
+      color: #fd971f;
+    }
+
+    .article-card h3 {
+      color: #66d9ef;
+      font-size: 1.5rem;
+      margin: 0.5rem 0;
+      line-height: 1.3;
+      flex-grow: 1;
+    }
+
+    .article-card p {
+      color: #aaa;
+      font-size: 0.95rem;
+      margin: 1rem 0;
+      flex-grow: 1;
+    }
+
+    .article-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(102, 217, 239, 0.1);
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .article-date {
+      color: #66d9ef;
+    }
+
+    .read-time {
+      color: #a6e22e;
+    }
+
+    .article-link {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      width: fit-content;
+    }
+
+    .article-link:hover {
+      transform: translateX(5px);
+      box-shadow: 0 5px 15px rgba(102, 217, 239, 0.3);
+    }
+
+    /* Code Block Styling */
+    .code-block {
+      background: rgba(0, 0, 0, 0.5);
+      border-left: 3px solid #a6e22e;
+      padding: 1rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      max-width: 100%;
+      font-size: 0.85rem;
+      color: #a6e22e;
+      font-family: 'Monaco', 'Courier New', monospace;
+      line-height: 1.6;
+    }
+
+    /* Category Filter */
+    .category-filter {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid rgba(102, 217, 239, 0.3);
+      background: transparent;
+      color: #66d9ef;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: 600;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: #66d9ef;
+      color: #0e0e0e;
+      border-color: #66d9ef;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #666;
+      border-top: 1px solid rgba(102, 217, 239, 0.1);
+      margin-top: 4rem;
+    }
+
+    footer a {
+      color: #66d9ef;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #a6e22e;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav {
+        padding: 0.75rem 1rem;
+        gap: 0.75rem;
+      }
+
+      nav a {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+      }
+
+      .blog-header {
+        margin-top: 70px;
+        padding: 2.5rem 1rem 2rem;
+      }
+
+      .blog-header h1 {
+        font-size: 1.8rem;
+      }
+
+      .blog-header p {
+        font-size: 1rem;
+      }
+
+      .blog-container {
+        padding: 2rem 1rem;
+      }
+
+      .articles-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .article-card {
+        padding: 1.5rem;
+      }
+
+      .article-card h3 {
+        font-size: 1.25rem;
+      }
+
+      .category-filter {
+        margin: 1.5rem 0;
+      }
+
+      .filter-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 0.5rem;
+      }
+
+      nav a {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.85rem;
+      }
+
+      .blog-header {
+        margin-top: 60px;
+        padding: 1.5rem 0.75rem;
+      }
+
+      .blog-header h1 {
+        font-size: 1.5rem;
+      }
+
+      .blog-header p {
+        font-size: 0.95rem;
+      }
+
+      .blog-container {
+        padding: 1.5rem 0.75rem;
+      }
+
+      .article-card {
+        padding: 1rem;
+      }
+
+      .article-card h3 {
+        font-size: 1.1rem;
+      }
+
+      .category-filter {
+        gap: 0.5rem;
+      }
+
+      .filter-btn {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+      }
+
+      footer {
+        padding: 2rem 1rem;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <script src="global-sidebar.js"></script>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="blog-articles.html" style="color: #a6e22e; border-bottom: 2px solid #a6e22e;">Blog</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="blog-header">
+    <h1>DevOps & Cloud Engineering Blog</h1>
+    <p>In-depth articles on platform engineering, Kubernetes, multi-cloud strategy, and infrastructure optimization. Real-world insights and actionable best practices.</p>
+  </div>
+
+  <div class="blog-container">
+    <div class="category-filter">
+      <button class="filter-btn active" onclick="filterArticles('all')">All Articles</button>
+      <button class="filter-btn" onclick="filterArticles('platform')">Platform Engineering</button>
+      <button class="filter-btn" onclick="filterArticles('kubernetes')">Kubernetes</button>
+      <button class="filter-btn" onclick="filterArticles('devops')">DevOps</button>
+      <button class="filter-btn" onclick="filterArticles('cloud')">Cloud Strategy</button>
+    </div>
+
+    <div class="articles-grid">
+      <!-- Article 1 -->
+      <div class="article-card" data-category="platform">
+        <span class="article-tag devops">Platform Engineering</span>
+        <h3>Designing Resilient Cloud Platforms for Enterprise Scale</h3>
+        <p>Learn the architectural patterns, disaster recovery strategies, and multi-region deployment techniques that enable 99.99% uptime. Based on real-world implementations managing millions of transactions.</p>
+        <div class="article-meta">
+          <span class="article-date">Feb 2, 2026</span>
+          <span class="read-time">8 min read</span>
+        </div>
+        <a href="article-resilient-platforms.html" class="article-link">Read Article →</a>
+      </div>
+
+      <!-- Article 2 -->
+      <div class="article-card" data-category="kubernetes">
+        <span class="article-tag kubernetes">Kubernetes</span>
+        <h3>Kubernetes at Scale: Production Patterns & Best Practices</h3>
+        <p>Advanced Kubernetes patterns for production environments. Covers resource optimization, network policies, security hardening, and cost optimization strategies learned from managing 50+ clusters.</p>
+        <div class="article-meta">
+          <span class="article-date">Feb 3, 2026</span>
+          <span class="read-time">10 min read</span>
+        </div>
+        <a href="article-kubernetes-scale.html" class="article-link">Read Article →</a>
+      </div>
+
+      <!-- Article 3 -->
+      <div class="article-card" data-category="cloud">
+        <span class="article-tag cloud">Cloud Strategy</span>
+        <h3>Multi-Cloud Strategy: AWS vs Azure vs GCP</h3>
+        <p>Comprehensive comparison of AWS, Azure, and GCP with decision matrices, cost analysis, and vendor lock-in mitigation strategies. Includes real case studies from infrastructure optimization projects.</p>
+        <div class="article-meta">
+          <span class="article-date">Feb 4, 2026</span>
+          <span class="read-time">12 min read</span>
+        </div>
+        <a href="article-multicloud-strategy.html" class="article-link">Read Article →</a>
+      </div>
+
+      <!-- Article 4 -->
+      <div class="article-card" data-category="devops">
+        <span class="article-tag devops">DevOps</span>
+        <h3>Infrastructure as Code: Terraform Best Practices & Patterns</h3>
+        <p>Master Terraform module design, state management, secrets handling, and team workflows. Real-world examples from managing infrastructure across multiple cloud platforms at scale.</p>
+        <div class="article-meta">
+          <span class="article-date">Feb 5, 2026</span>
+          <span class="read-time">9 min read</span>
+        </div>
+        <a href="article-terraform-patterns.html" class="article-link">Read Article →</a>
+      </div>
+
+      <!-- Article 5 -->
+      <div class="article-card" data-category="platform">
+        <span class="article-tag devops">Platform Engineering</span>
+        <h3>Observability at Scale: Metrics, Logs, and Traces</h3>
+        <p>Build comprehensive observability strategies using Prometheus, Grafana, and ELK stack. Learn alert design, dashboard patterns, and incident response workflows from production systems.</p>
+        <div class="article-meta">
+          <span class="article-date">Feb 6, 2026</span>
+          <span class="read-time">11 min read</span>
+        </div>
+        <a href="article-observability-scale.html" class="article-link">Read Article →</a>
+      </div>
+
+      <!-- Article 6 -->
+      <div class="article-card" data-category="cloud">
+        <span class="article-tag cloud">Cloud Strategy</span>
+        <h3>Cloud Cost Optimization: Saving $216K Without Sacrificing Performance</h3>
+        <p>Real-world case study on infrastructure cost optimization. Strategies for Reserved Instances, Spot usage, auto-scaling, and resource right-sizing. How to save significantly while improving performance.</p>
+        <div class="article-meta">
+          <span class="article-date">Feb 7, 2026</span>
+          <span class="read-time">8 min read</span>
+        </div>
+        <a href="article-cost-optimization.html" class="article-link">Read Article →</a>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>All articles written by <strong>Temitayo Charles</strong>, Senior DevOps & Cloud Platform Engineer</p>
+    <p>
+      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> |
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a> |
+      <a href="contact.html">Contact</a>
+    </p>
+    <p style="margin-top: 2rem; color: #555; font-size: 0.9rem;">
+      © 2026 Temitayo Charles. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    function filterArticles(category) {
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+      });
+      event.target.classList.add('active');
+
+      // Filter articles
+      const articles = document.querySelectorAll('.article-card');
+      articles.forEach(article => {
+        if (category === 'all' || article.dataset.category === category) {
+          article.style.display = '';
+        } else {
+          article.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
