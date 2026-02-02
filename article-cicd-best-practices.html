@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0e0e0e">
+  <title>CI/CD Best Practices: Building Reliable Deployment Pipelines | Blog</title>
+  <meta name="description" content="Production-grade CI/CD pipeline design: automated testing, code quality gates, deployment strategies, rollback mechanisms, and incident recovery patterns.">
+  <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    body { background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%); color: #f0f0f0; line-height: 1.8; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; overflow-x: hidden; margin: 0; padding: 0; }
+    nav { position: fixed; top: 0; left: 0; right: 0; background: rgba(14, 14, 14, 0.95); backdrop-filter: blur(10px); border-bottom: 1px solid rgba(102, 217, 239, 0.2); z-index: 1000; padding: 1rem 2rem; display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap; }
+    nav a { color: #66d9ef; text-decoration: none; font-weight: 500; transition: all 0.3s ease; padding: 0.5rem 1rem; border-radius: 4px; }
+    nav a:hover { color: #a6e22e; background: rgba(166, 226, 46, 0.1); }
+    .article-container { max-width: 850px; margin: 100px auto 0; padding: 3rem 2rem; }
+    .article-header { margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid rgba(102, 217, 239, 0.3); }
+    .article-tag { display: inline-block; padding: 0.5rem 1rem; background: rgba(102, 217, 239, 0.2); color: #66d9ef; border-radius: 4px; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+    .article-header h1 { font-size: 2.5rem; color: #66d9ef; margin: 1rem 0; line-height: 1.3; }
+    .article-meta { display: flex; gap: 2rem; font-size: 0.95rem; color: #888; flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 0.5rem; }
+    .article-meta strong { color: #66d9ef; }
+    .article-content { font-size: 1.05rem; line-height: 1.9; }
+    .article-content h2 { color: #a6e22e; font-size: 1.8rem; margin: 2rem 0 1rem; }
+    .article-content h3 { color: #66d9ef; font-size: 1.4rem; margin: 1.5rem 0 0.75rem; }
+    .article-content p { margin: 1rem 0; color: #ddd; }
+    .article-content ul, .article-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+    .article-content li { margin: 0.75rem 0; color: #ddd; }
+    .article-content strong { color: #a6e22e; }
+    .article-content em { color: #66d9ef; font-style: italic; }
+    .code-block { background: rgba(0, 0, 0, 0.5); border-left: 3px solid #a6e22e; padding: 1.5rem; border-radius: 6px; margin: 1.5rem 0; overflow-x: auto; font-size: 0.9rem; color: #a6e22e; font-family: 'Monaco', 'Courier New', monospace; line-height: 1.6; }
+    .highlight-box { background: rgba(166, 226, 46, 0.1); border-left: 4px solid #a6e22e; padding: 1.5rem; border-radius: 6px; margin: 2rem 0; }
+    .stats-box { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin: 2rem 0; padding: 2rem; background: rgba(102, 217, 239, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 8px; }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; color: #66d9ef; font-weight: 700; margin-bottom: 0.5rem; }
+    .stat-label { color: #aaa; font-size: 0.9rem; }
+    .cta-box { background: linear-gradient(135deg, rgba(102, 217, 239, 0.1) 0%, rgba(166, 226, 46, 0.05) 100%); border: 1px solid rgba(102, 217, 239, 0.3); padding: 2rem; border-radius: 8px; margin: 3rem 0; text-align: center; }
+    .cta-box h3 { color: #66d9ef; margin-bottom: 1rem; }
+    .cta-button { display: inline-block; padding: 0.875rem 2rem; background: linear-gradient(135deg, #66d9ef, #a6e22e); color: #0e0e0e; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.3s ease; }
+    .cta-button:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(102, 217, 239, 0.3); }
+    .back-link { display: inline-block; margin-bottom: 2rem; color: #66d9ef; text-decoration: none; transition: all 0.3s ease; }
+    .back-link:hover { color: #a6e22e; }
+    .author-bio { margin-top: 4rem; padding: 2rem; background: rgba(102, 217, 239, 0.05); border: 1px solid rgba(102, 217, 239, 0.2); border-radius: 8px; display: flex; gap: 2rem; align-items: center; }
+    .author-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #66d9ef, #a6e22e); border-radius: 50%; flex-shrink: 0; }
+    .author-info h4 { color: #66d9ef; margin: 0 0 0.5rem; }
+    .author-info p { font-size: 0.95rem; margin: 0.5rem 0; }
+    @media (max-width: 768px) { nav { padding: 0.75rem 1rem; gap: 0.75rem; } .article-container { margin-top: 80px; padding: 2rem 1rem; } .article-header h1 { font-size: 1.8rem; } .article-content { font-size: 1rem; } .article-content h2 { font-size: 1.5rem; } .stats-box { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1.5rem; } .author-bio { flex-direction: column; text-align: center; gap: 1rem; } }
+    @media (max-width: 480px) { nav { flex-direction: column; gap: 0.5rem; padding: 0.5rem; } nav a { padding: 0.3rem 0.6rem; font-size: 0.85rem; } .article-container { margin-top: 70px; padding: 1.5rem 0.75rem; } .article-header h1 { font-size: 1.4rem; } .article-meta { flex-direction: column; gap: 0.5rem; } .article-content { font-size: 0.95rem; } .article-content h2 { font-size: 1.3rem; } .article-content h3 { font-size: 1.1rem; } .code-block { padding: 1rem; font-size: 0.8rem; } .stats-box { grid-template-columns: 1fr; padding: 1rem; } .cta-box { padding: 1.5rem; margin: 2rem 0; } .author-bio { padding: 1.5rem; } .author-avatar { width: 60px; height: 60px; } }
+  </style>
+</head>
+<body>
+  <script src="global-sidebar.js"></script>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog-articles.html">Blog</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="article-container">
+    <a href="blog-articles.html" class="back-link">← Back to Blog</a>
+    <div class="article-header">
+      <span class="article-tag">DevOps</span>
+      <h1>CI/CD Best Practices: Building Reliable Deployment Pipelines</h1>
+      <div class="article-meta">
+        <span><strong>Author:</strong> Temitayo Charles</span>
+        <span><strong>Published:</strong> February 9, 2026</span>
+        <span><strong>Read Time:</strong> 13 minutes</span>
+      </div>
+    </div>
+    <div class="article-content">
+      <p>CI/CD is the backbone of modern DevOps. When done right, it enables teams to deploy code hundreds of times per day with confidence. When done wrong, it becomes a nightmare of broken deployments, security vulnerabilities, and firefighting.</p>
+      <p>I've built CI/CD pipelines that handle 50+ deployments per week with zero manual intervention and 99%+ success rate. This article shares the practices that make it work at production scale.</p>
+      <div class="stats-box">
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Deployments/Week</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">99%+</div>
+          <div class="stat-label">Success Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15min</div>
+          <div class="stat-label">Avg Pipeline Time</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">0</div>
+          <div class="stat-label">Manual Steps</div>
+        </div>
+      </div>
+      <h2>The Pipeline Architecture</h2>
+      <p>A production CI/CD pipeline has distinct stages, each with specific responsibilities:</p>
+      <div class="code-block">
+Commit → Build → Unit Test → Security Scan → Deploy Dev
+   ↓       2m        5m         2m            3m
+   
+Integration Test → Deploy Staging → Approval → Deploy Prod
+    5m                 5m             manual      10m
+    
+Total Average Pipeline Time: 32 minutes
+      </div>
+      <h3>Key Principles</h3>
+      <ul>
+        <li><strong>Fast feedback:</strong> Unit tests in < 2 minutes</li>
+        <li><strong>Parallel execution:</strong> Tests run concurrently, not sequentially</li>
+        <li><strong>Single artifact:</strong> Build once, deploy everywhere</li>
+        <li><strong>Progressive deployment:</strong> Dev → Staging → Prod</li>
+        <li><strong>Automatic rollback:</strong> Failed health checks trigger rollback</li>
+      </ul>
+      <h2>Build Stage: Create Artifacts</h2>
+      <p>Create versioned, immutable artifacts that flow through the pipeline:</p>
+      <div class="code-block">
+# GitHub Actions build job
+- name: Generate version
+  run: echo "VERSION=${{ github.run_id }}" >> $GITHUB_ENV
+
+- name: Build Docker image
+  run: docker build -t myapp:${{ env.VERSION }} .
+
+- name: Push to registry
+  run: docker push myapp:${{ env.VERSION }}
+
+# Result: Single immutable image for all environments
+      </div>
+      <h2>Test Stage: Multiple Levels</h2>
+      <p><strong>Level 1: Unit Tests</strong> (< 2 minutes, run in parallel)</p>
+      <div class="code-block">
+pytest tests/unit/ --cov=src --cov-fail-under=80 -n auto
+      </div>
+      <p><strong>Level 2: Integration Tests</strong> (5-10 minutes)</p>
+      <div class="code-block">
+docker-compose -f tests/docker-compose.yml up -d
+pytest tests/integration/ --timeout=300
+docker-compose down
+      </div>
+      <p><strong>Level 3: Contract/API Tests</strong> (2-3 minutes)</p>
+      <p>Ensure service compatibility with clients and dependencies.</p>
+      <h2>Security Scanning</h2>
+      <p>Shift security left. Scan at build time, not deployment:</p>
+      <div class="code-block">
+# 1. Dependency scanning
+npm audit --audit-level=moderate
+
+# 2. Static code analysis (SAST)
+sonarqube scan --project=myapp
+
+# 3. Docker image scanning
+trivy image myapp:latest
+
+# Fail pipeline if vulnerabilities found
+      </div>
+      <h2>Deployment Strategy: Blue-Green with Canary</h2>
+      <p>Minimize risk with gradual rollouts:</p>
+      <div class="code-block">
+# 1. Deploy canary: 10% traffic
+kubectl set image deployment/myapp \
+  myapp=myapp:new-version \
+  --record
+
+# 2. Monitor metrics for 5 minutes
+# If error rate > 1%, auto-rollback
+
+# 3. If stable, shift 50% traffic
+# Then 100%
+      </div>
+      <h2>Rollback Mechanics</h2>
+      <p>Automatic rollback on failure:</p>
+      <div class="code-block">
+# Health check fails
+GET /health → 500
+Error rate spike detected
+→ Automatic rollback to previous version
+→ Alert team
+
+# Manual rollback
+kubectl rollout undo deployment/myapp
+      </div>
+      <h2>Approval Gates</h2>
+      <p><strong>For non-production:</strong> Automatic approval after tests pass</p>
+      <p><strong>For production:</strong> Manual approval + change window validation</p>
+      <div class="code-block">
+# Production deployment requires:
+- All tests passing
+- Security scan clean
+- Manual approval
+- Change window open (e.g., 9am-5pm weekdays only)
+- On-call engineer confirmed
+      </div>
+      <h2>Monitoring & Alerting</h2>
+      <p>Monitor the CI/CD system itself:</p>
+      <ul>
+        <li><strong>Pipeline success rate:</strong> Alert if < 95%</li>
+        <li><strong>Deployment frequency:</strong> Trend over time</li>
+        <li><strong>Lead time for changes:</strong> Commit to production</li>
+        <li><strong>Mean time to recovery:</strong> Failure detection to fix</li>
+        <li><strong>Change failure rate:</strong> Deployments causing incidents</li>
+      </ul>
+      <h2>Common Pitfalls</h2>
+      <p><strong>Pitfall 1:</strong> Deployments taking too long → Parallelize stages</p>
+      <p><strong>Pitfall 2:</strong> Brittle tests → Use containers, avoid external dependencies</p>
+      <p><strong>Pitfall 3:</strong> Manual steps → Automate everything</p>
+      <p><strong>Pitfall 4:</strong> No rollback strategy → Practice it regularly</p>
+      <p><strong>Pitfall 5:</strong> Skipping staging → Always deploy to staging first</p>
+      <div class="highlight-box">
+        <strong>The Golden Rule:</strong> If you wouldn't deploy it 50 times a day, your CI/CD isn't automated enough. Automation removes human error and enables confidence.
+      </div>
+      <h2>Tools & Platforms</h2>
+      <ul>
+        <li><strong>CI/CD Platforms:</strong> GitHub Actions, GitLab CI, Jenkins, CircleCI</li>
+        <li><strong>Container Registry:</strong> Docker Hub, ECR, ACR, GCR</li>
+        <li><strong>Deployment:</strong> Kubernetes, Argo CD, Helm, Terraform</li>
+        <li><strong>Monitoring:</strong> Prometheus, Grafana, Datadog</li>
+        <li><strong>Security:</strong> Sonarqube, Trivy, Snyk</li>
+      </ul>
+      <div class="cta-box">
+        <h3>Ready to Build Your CI/CD Pipeline?</h3>
+        <p>Explore my enterprise-cicd and musicvibe-cicd projects for real-world implementations.</p>
+        <a href="projects.html" class="cta-button">View My CI/CD Projects</a>
+      </div>
+      <div class="author-bio">
+        <div class="author-avatar"></div>
+        <div class="author-info">
+          <h4>Temitayo Charles</h4>
+          <p><strong>Senior DevOps & Platform Engineer</strong></p>
+          <p>Built production CI/CD pipelines handling 50+ deployments/week. Expert in GitHub Actions, Kubernetes deployments, automated testing, and zero-downtime releases.</p>
+          <p><a href="https://github.com/temitayocharles" target="_blank" style="color: #66d9ef;">GitHub</a> | <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color: #66d9ef;">LinkedIn</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

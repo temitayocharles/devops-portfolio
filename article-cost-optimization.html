@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="theme-color" content="#0e0e0e">
+  <title>Cloud Cost Optimization: Saving $216K+ Without Performance Loss | Blog</title>
+  <meta name="description" content="Real-world cloud cost optimization strategies: Reserved Instances, Spot instances, Kubernetes right-sizing, Compute optimization, Networking efficiency across AWS, Azure, GCP.">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+      color: #f0f0f0;
+      line-height: 1.8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 14, 14, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #66d9ef;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    nav a:hover { color: #a6e22e; background: rgba(166, 226, 46, 0.1); }
+
+    .article-container {
+      max-width: 850px;
+      margin: 100px auto 0;
+      padding: 3rem 2rem;
+    }
+
+    .article-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid rgba(102, 217, 239, 0.3);
+    }
+
+    .article-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(166, 226, 46, 0.2);
+      color: #a6e22e;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article-header h1 {
+      font-size: 2.5rem;
+      color: #66d9ef;
+      margin: 1rem 0;
+      line-height: 1.3;
+    }
+
+    .article-meta { display: flex; gap: 2rem; font-size: 0.95rem; color: #888; flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 0.5rem; }
+    .article-meta strong { color: #66d9ef; }
+
+    .article-content { font-size: 1.05rem; line-height: 1.9; }
+    .article-content h2 { color: #a6e22e; font-size: 1.8rem; margin: 2rem 0 1rem; }
+    .article-content h3 { color: #66d9ef; font-size: 1.4rem; margin: 1.5rem 0 0.75rem; }
+    .article-content p { margin: 1rem 0; color: #ddd; }
+    .article-content ul, .article-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+    .article-content li { margin: 0.75rem 0; color: #ddd; }
+    .article-content strong { color: #a6e22e; }
+    .article-content em { color: #66d9ef; font-style: italic; }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.5);
+      border-left: 3px solid #a6e22e;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      color: #a6e22e;
+      font-family: 'Monaco', 'Courier New', monospace;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: rgba(166, 226, 46, 0.1);
+      border-left: 4px solid #a6e22e;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin: 2rem 0;
+    }
+
+    .stats-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 8px;
+    }
+
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; color: #66d9ef; font-weight: 700; margin-bottom: 0.5rem; }
+    .stat-label { color: #aaa; font-size: 0.9rem; }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1) 0%, rgba(166, 226, 46, 0.05) 100%);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .cta-box h3 { color: #66d9ef; margin-bottom: 1rem; }
+    .cta-box p { margin-bottom: 1.5rem; }
+
+    .cta-button {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.3);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: #66d9ef;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover { color: #a6e22e; }
+
+    .author-bio {
+      margin-top: 4rem;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 8px;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .author-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #66d9ef, #a6e22e); border-radius: 50%; flex-shrink: 0; }
+    .author-info h4 { color: #66d9ef; margin: 0 0 0.5rem; }
+    .author-info p { font-size: 0.95rem; margin: 0.5rem 0; }
+
+    .table-wrapper { overflow-x: auto; margin: 2rem 0; }
+    .cost-table { width: 100%; border-collapse: collapse; color: #ddd; }
+    .cost-table th, .cost-table td { padding: 1rem; text-align: left; border-bottom: 1px solid rgba(102, 217, 239, 0.2); }
+    .cost-table th { background: rgba(102, 217, 239, 0.1); color: #66d9ef; font-weight: 600; }
+    .cost-table tr:hover { background: rgba(102, 217, 239, 0.05); }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; gap: 0.75rem; }
+      .article-container { margin-top: 80px; padding: 2rem 1rem; }
+      .article-header h1 { font-size: 1.8rem; }
+      .article-content { font-size: 1rem; }
+      .article-content h2 { font-size: 1.5rem; }
+      .stats-box { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1.5rem; }
+      .author-bio { flex-direction: column; text-align: center; gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-direction: column; gap: 0.5rem; padding: 0.5rem; }
+      nav a { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
+      .article-container { margin-top: 70px; padding: 1.5rem 0.75rem; }
+      .article-header h1 { font-size: 1.4rem; }
+      .article-meta { flex-direction: column; gap: 0.5rem; }
+      .article-content { font-size: 0.95rem; }
+      .article-content h2 { font-size: 1.3rem; }
+      .article-content h3 { font-size: 1.1rem; }
+      .code-block { padding: 1rem; font-size: 0.8rem; }
+      .stats-box { grid-template-columns: 1fr; padding: 1rem; }
+      .cta-box { padding: 1.5rem; margin: 2rem 0; }
+      .author-bio { padding: 1.5rem; }
+      .author-avatar { width: 60px; height: 60px; }
+      .cost-table th, .cost-table td { padding: 0.75rem; font-size: 0.9rem; }
+    }
+  </style>
+</head>
+<body>
+  <script src="global-sidebar.js"></script>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog-articles.html">Blog</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="article-container">
+    <a href="blog-articles.html" class="back-link">← Back to Blog</a>
+
+    <div class="article-header">
+      <span class="article-tag">Cost Optimization</span>
+      <h1>Cloud Cost Optimization: Saving $216K+ Without Sacrificing Performance</h1>
+      <div class="article-meta">
+        <span><strong>Author:</strong> Temitayo Charles</span>
+        <span><strong>Published:</strong> February 8, 2026</span>
+        <span><strong>Read Time:</strong> 12 minutes</span>
+      </div>
+    </div>
+
+    <div class="article-content">
+      <p>Most organizations waste 30-40% of their cloud spend on unused resources, inefficient configurations, and poor commitment strategies. I've helped teams save millions—not by cutting corners, but by implementing intelligent optimization strategies.</p>
+
+      <p>This article shares the practical, battle-tested tactics that have saved my organizations over $216,000 annually while improving performance and reliability.</p>
+
+      <div class="stats-box">
+        <div class="stat-item">
+          <div class="stat-number">$216K+</div>
+          <div class="stat-label">Saved Annually</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">35%</div>
+          <div class="stat-label">Cost Reduction</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+12%</div>
+          <div class="stat-label">Performance Improvement</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Cloud Providers</div>
+        </div>
+      </div>
+
+      <h2>The Strategy: Find the Waste</h2>
+
+      <p>Before optimizing, you must identify waste. Most waste falls into three categories:</p>
+
+      <ul>
+        <li><strong>Idle Resources:</strong> Running but unused (stopped VMs, disconnected volumes)</li>
+        <li><strong>Oversized Resources:</strong> Resource requests 2-3x larger than needed</li>
+        <li><strong>Wrong Purchasing Model:</strong> On-demand when commitment-based is cheaper</li>
+      </ul>
+
+      <p>Let's tackle each systematically.</p>
+
+      <h2>Strategy 1: Reserved Instances (RI) and Savings Plans</h2>
+
+      <p>This is the biggest lever. Commitments can save 30-70% on compute costs.</p>
+
+      <h3>AWS Approach</h3>
+
+      <div class="code-block">
+# Analyze current spend
+aws ce get-cost-and-usage --time-period Start=2025-01-01,End=2025-12-31 \
+  --granularity MONTHLY \
+  --metrics "UnblendedCost" \
+  --group-by Type=DIMENSION,Key=INSTANCE_TYPE
+
+# Calculate RI savings
+aws ce get-reservation-purchase-recommendation \
+  --service EC2 \
+  --lookback-period THIRTY_DAYS \
+  --term-in-years 1
+      </div>
+
+      <h3>Strategy</h3>
+
+      <ol>
+        <li><strong>Analyze baseline usage:</strong> Which instances run 24/7?</li>
+        <li><strong>Purchase 1-year RIs for baseline:</strong> Save 30-40%</li>
+        <li><strong>Use Compute Savings Plans for flex:</strong> Save 17-25% with flexibility</li>
+        <li><strong>Run Spot for variable workloads:</strong> Save 60-90%</li>
+      </ol>
+
+      <div class="highlight-box">
+        <strong>Result:</strong> 1-year RI commitment on baseline compute can reduce spend by 35-50% with zero performance impact.
+      </div>
+
+      <h2>Strategy 2: Kubernetes Right-Sizing</h2>
+
+      <p>Kubernetes makes it easy to waste resources. Here's how to optimize:</p>
+
+      <h3>Step 1: Analyze Pod Resource Usage</h3>
+
+      <div class="code-block">
+# Get actual resource usage vs requests
+kubectl top pods -A --containers
+
+# Example output:
+# NAMESPACE    POD                CPU(cores)  MEMORY(Mi)
+# default      app-1              50m         200Mi
+# default      app-2              10m         50Mi
+# (But they probably requested 500m/512Mi each!)
+      </div>
+
+      <h3>Step 2: Right-Size Requests and Limits</h3>
+
+      <p>Don't guess. Use actual usage metrics:</p>
+
+      <div class="code-block">
+# BAD: Guessing at resource requirements
+resources:
+  requests:
+    cpu: 500m          # Probably 10x more than needed!
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+
+# GOOD: Based on actual usage + buffer
+resources:
+  requests:
+    cpu: 60m           # P99 usage: 50m + 20% buffer
+    memory: 256Mi      # P99 usage: 200Mi + 28% buffer
+  limits:
+    cpu: 200m          # Prevent runaway
+    memory: 512Mi
+      </div>
+
+      <h3>Step 3: Implement Vertical Pod Autoscaler (VPA)</h3>
+
+      <p>VPA automatically recommends and applies right-sizing:</p>
+
+      <div class="code-block">
+# Install VPA
+helm repo add fairwinds-stable https://charts.fairwinds.com/stable
+helm install vpa fairwinds-stable/vpa
+
+# It then monitors and recommends optimal sizes
+# Check recommendations:
+kubectl get vpa -A
+kubectl describe vpa my-app
+      </div>
+
+      <h2>Strategy 3: Spot Instances & Preemptible VMs</h2>
+
+      <p>Use short-term instances for fault-tolerant workloads:</p>
+
+      <div class="code-block">
+# Kubernetes Spot Configuration
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: batch-processor
+spec:
+  template:
+    spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            preference:
+              matchExpressions:
+              - key: karpenter.sh/capacity-type
+                operator: In
+                values: ["spot"]  # Prefer Spot
+      tolerations:
+      - key: spot
+        operator: Equal
+        value: "true"
+        effect: NoSchedule
+      containers:
+      - name: app
+        image: my-app:latest
+        
+# Save: 60-90% vs on-demand
+      </div>
+
+      <h2>Strategy 4: Storage Optimization</h2>
+
+      <p>Storage costs add up silently. Optimize by tier and retention:</p>
+
+      <h3>Tiering Strategy</h3>
+
+      <div class="table-wrapper">
+        <table class="cost-table">
+          <tr>
+            <th>Storage Tier</th>
+            <th>Use Case</th>
+            <th>Cost</th>
+            <th>Access Pattern</th>
+          </tr>
+          <tr>
+            <td>Hot (SSD)</td>
+            <td>Active databases, cache</td>
+            <td>$0.10/GB/mo</td>
+            <td>Frequent access</td>
+          </tr>
+          <tr>
+            <td>Warm (HDD)</td>
+            <td>Archives, backups</td>
+            <td>$0.02/GB/mo</td>
+            <td>Infrequent access</td>
+          </tr>
+          <tr>
+            <td>Cold (Glacier)</td>
+            <td>Compliance, rarely accessed</td>
+            <td>$0.004/GB/mo</td>
+            <td>Rare access</td>
+          </tr>
+        </table>
+      </div>
+
+      <h3>Implementation</h3>
+
+      <div class="code-block">
+# AWS S3 Lifecycle Policy
+{
+  "Rules": [
+    {
+      "Id": "AutoTierData",
+      "Status": "Enabled",
+      "Transitions": [
+        {
+          "Days": 30,
+          "StorageClass": "STANDARD_IA"
+        },
+        {
+          "Days": 90,
+          "StorageClass": "GLACIER"
+        }
+      ],
+      "Expiration": {
+        "Days": 730  # Delete after 2 years
+      }
+    }
+  ]
+}
+
+# Result: Reduce storage cost by 60-80%
+      </div>
+
+      <h2>Strategy 5: Network Optimization</h2>
+
+      <p>Data transfer costs are often hidden. Optimize:</p>
+
+      <ul>
+        <li><strong>Cross-region data transfer:</strong> Minimize by region-localizing workloads</li>
+        <li><strong>Internet egress:</strong> Use CDN (CloudFront, Azure CDN) instead of direct egress</li>
+        <li><strong>Unused IPs:</strong> Release unattached Elastic IPs (~$3/month each)</li>
+        <li><strong>VPC peering:</strong> Cheaper than NAT Gateway for inter-VPC communication</li>
+      </ul>
+
+      <h2>Strategy 6: Database Right-Sizing</h2>
+
+      <p>Databases often run on oversized instances:</p>
+
+      <div class="code-block">
+# Check actual database load
+SELECT 
+  sum(heap_blks_read) as heap_read,
+  sum(idx_blks_read) as index_read,
+  sum(heap_blks_hit) / (sum(heap_blks_hit) + sum(heap_blks_read)) as ratio
+FROM pg_statio_user_tables;
+
+# If ratio > 0.99, you're cache-bound and can downsize
+# If ratio < 0.95, you need more cache
+      </div>
+
+      <h2>The ROI: How Much Can You Save?</h2>
+
+      <p>Based on typical cloud spend patterns:</p>
+
+      <div class="code-block">
+Starting spend: $600K/year
+
+Strategy 1 (Commitments): -$180K (RI + Savings Plans)
+Strategy 2 (Right-sizing): -$36K (Kubernetes optimization)
+Strategy 3 (Spot instances): -$90K (Batch workloads)
+Strategy 4 (Storage tiering): -$24K (Lifecycle policies)
+Strategy 5 (Network): -$12K (CDN + cleanup)
+
+Total savings: $342K (57% reduction)
+Realistic: $200-250K (30-40% reduction)
+      </div>
+
+      <h2>Implementation Roadmap</h2>
+
+      <p><strong>Month 1:</strong> Audit and identify waste. Set baseline metrics.</p>
+      <p><strong>Month 2:</strong> Implement RIs for baseline. Start Spot pilots.</p>
+      <p><strong>Month 3:</strong> Right-size Kubernetes workloads. Implement VPA.</p>
+      <p><strong>Month 4:</strong> Storage tiering and cleanup. Database optimization.</p>
+      <p><strong>Month 5:</strong> Monitor and iterate. Fine-tune based on new workloads.</p>
+
+      <h2>Tools & Monitoring</h2>
+
+      <ul>
+        <li><strong>AWS:</strong> Cost Explorer, Trusted Advisor, Compute Optimizer</li>
+        <li><strong>Azure:</strong> Cost Management + Billing</li>
+        <li><strong>GCP:</strong> Recommendations Hub, Cloud Billing</li>
+        <li><strong>Multi-cloud:</strong> CloudHealth, Flexera One</li>
+      </ul>
+
+      <div class="cta-box">
+        <h3>Ready to Optimize Your Cloud Costs?</h3>
+        <p>Start with an audit of your current spend and identify the biggest opportunities in your environment.</p>
+        <a href="projects.html" class="cta-button">View My Infrastructure Projects</a>
+      </div>
+
+      <div class="author-bio">
+        <div class="author-avatar"></div>
+        <div class="author-info">
+          <h4>Temitayo Charles</h4>
+          <p><strong>Senior DevOps & Cloud Platform Engineer</strong></p>
+          <p>Helped organizations save $200K+ annually through cloud cost optimization. Expert in AWS cost modeling, Kubernetes efficiency, and multi-cloud financial optimization.</p>
+          <p><a href="https://github.com/temitayocharles" target="_blank" style="color: #66d9ef;">GitHub</a> | <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color: #66d9ef;">LinkedIn</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
