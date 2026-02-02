@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0e0e0e">
+  <title>Terraform Patterns: IaC Best Practices | Blog</title>
+  <meta name="description" content="Production-grade Terraform patterns for managing infrastructure across AWS, Azure, and GCP. Module design, state management, testing, and multi-environment strategies.">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+      color: #f0f0f0;
+      line-height: 1.8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 14, 14, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #66d9ef;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    nav a:hover { color: #a6e22e; background: rgba(166, 226, 46, 0.1); }
+
+    .article-container {
+      max-width: 850px;
+      margin: 100px auto 0;
+      padding: 3rem 2rem;
+    }
+
+    .article-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid rgba(102, 217, 239, 0.3);
+    }
+
+    .article-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(253, 151, 31, 0.2);
+      color: #fd971f;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article-header h1 {
+      font-size: 2.5rem;
+      color: #66d9ef;
+      margin: 1rem 0;
+      line-height: 1.3;
+    }
+
+    .article-meta { display: flex; gap: 2rem; font-size: 0.95rem; color: #888; flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 0.5rem; }
+    .article-meta strong { color: #66d9ef; }
+
+    .article-content { font-size: 1.05rem; line-height: 1.9; }
+    .article-content h2 { color: #a6e22e; font-size: 1.8rem; margin: 2rem 0 1rem; }
+    .article-content h3 { color: #66d9ef; font-size: 1.4rem; margin: 1.5rem 0 0.75rem; }
+    .article-content p { margin: 1rem 0; color: #ddd; }
+    .article-content ul, .article-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+    .article-content li { margin: 0.75rem 0; color: #ddd; }
+    .article-content strong { color: #a6e22e; }
+    .article-content em { color: #66d9ef; font-style: italic; }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.5);
+      border-left: 3px solid #a6e22e;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      color: #a6e22e;
+      font-family: 'Monaco', 'Courier New', monospace;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: rgba(166, 226, 46, 0.1);
+      border-left: 4px solid #a6e22e;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin: 2rem 0;
+    }
+
+    .stats-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 8px;
+    }
+
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; color: #66d9ef; font-weight: 700; margin-bottom: 0.5rem; }
+    .stat-label { color: #aaa; font-size: 0.9rem; }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1) 0%, rgba(166, 226, 46, 0.05) 100%);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .cta-box h3 { color: #66d9ef; margin-bottom: 1rem; }
+    .cta-box p { margin-bottom: 1.5rem; }
+
+    .cta-button {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.3);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: #66d9ef;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover { color: #a6e22e; }
+
+    .author-bio {
+      margin-top: 4rem;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 8px;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .author-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #66d9ef, #a6e22e); border-radius: 50%; flex-shrink: 0; }
+    .author-info h4 { color: #66d9ef; margin: 0 0 0.5rem; }
+    .author-info p { font-size: 0.95rem; margin: 0.5rem 0; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; gap: 0.75rem; }
+      .article-container { margin-top: 80px; padding: 2rem 1rem; }
+      .article-header h1 { font-size: 1.8rem; }
+      .article-content { font-size: 1rem; }
+      .article-content h2 { font-size: 1.5rem; }
+      .stats-box { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1.5rem; }
+      .author-bio { flex-direction: column; text-align: center; gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-direction: column; gap: 0.5rem; padding: 0.5rem; }
+      nav a { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
+      .article-container { margin-top: 70px; padding: 1.5rem 0.75rem; }
+      .article-header h1 { font-size: 1.4rem; }
+      .article-meta { flex-direction: column; gap: 0.5rem; }
+      .article-content { font-size: 0.95rem; }
+      .article-content h2 { font-size: 1.3rem; }
+      .article-content h3 { font-size: 1.1rem; }
+      .code-block { padding: 1rem; font-size: 0.8rem; }
+      .stats-box { grid-template-columns: 1fr; padding: 1rem; }
+      .cta-box { padding: 1.5rem; margin: 2rem 0; }
+      .author-bio { padding: 1.5rem; }
+      .author-avatar { width: 60px; height: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <script src="global-sidebar.js"></script>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog-articles.html">Blog</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="article-container">
+    <a href="blog-articles.html" class="back-link">← Back to Blog</a>
+
+    <div class="article-header">
+      <span class="article-tag">Infrastructure as Code</span>
+      <h1>Terraform Patterns: Building Scalable Infrastructure</h1>
+      <div class="article-meta">
+        <span><strong>Author:</strong> Temitayo Charles</span>
+        <span><strong>Published:</strong> February 5, 2026</span>
+        <span><strong>Read Time:</strong> 11 minutes</span>
+      </div>
+    </div>
+
+    <div class="article-content">
+      <p>Terraform has become the de facto standard for Infrastructure as Code (IaC). But managing infrastructure at scale requires more than just writing HCL. It requires patterns, discipline, and architectural thinking.</p>
+
+      <p>After managing infrastructure across 50+ clusters and multi-cloud deployments, I've learned what separates maintainable Terraform from unmaintainable chaos. Let me share the production patterns that work.</p>
+
+      <div class="stats-box">
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Clusters Managed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Cloud Providers</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100+</div>
+          <div class="stat-label">Terraform Modules</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">99.99%</div>
+          <div class="stat-label">Uptime</div>
+        </div>
+      </div>
+
+      <h2>Module Design: The Foundation</h2>
+
+      <p>The biggest mistake I see is massive flat Terraform files. A 2000-line main.tf is a code smell.</p>
+
+      <p>Instead, think in modules. Each module should be a reusable, self-contained unit of infrastructure:</p>
+
+      <div class="code-block">
+# Good: Organized module structure
+terraform/
+├── modules/
+│   ├── networking/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── kubernetes/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── storage/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+├── environments/
+│   ├── dev/
+│   ├── staging/
+│   └── production/
+└── root main.tf
+      </div>
+
+      <h3>Module Design Principles</h3>
+
+      <p><strong>Single Responsibility:</strong> Each module manages one type of resource or service. A networking module shouldn't contain Kubernetes configuration.</p>
+
+      <p><strong>Clear Inputs/Outputs:</strong> Modules with 50 input variables are hard to use. Keep it simple. 3-5 key inputs, specific outputs.</p>
+
+      <p><strong>Version Constraints:</strong> Pin module versions. Floating versions are unpredictable in production.</p>
+
+      <div class="code-block">
+# Good: Versioned modules with constraints
+module "networking" {
+  source = "git::https://github.com/temitayocharles/terraform-modules.git//networking?ref=v2.1.0"
+  
+  vpc_cidr = var.vpc_cidr
+  region   = var.region
+}
+
+# Bad: No version, unpredictable
+module "networking" {
+  source = "git::https://github.com/temitayocharles/terraform-modules.git//networking"
+}
+      </div>
+
+      <h2>State Management: Your Most Critical Resource</h2>
+
+      <p>Terraform state is sacred. Lose it, and you lose the ability to manage your infrastructure safely.</p>
+
+      <h3>State Storage Best Practices</h3>
+
+      <ul>
+        <li><strong>Remote state, always:</strong> Never store state locally in production. Use S3 (with versioning), Azure Storage, or GCS.</li>
+        <li><strong>Enable versioning:</strong> Accidental deletions happen. Versioning saves you.</li>
+        <li><strong>Enable encryption:</strong> State contains sensitive data (database passwords, API keys). Encrypt at rest and in transit.</li>
+        <li><strong>Lock state:</strong> Use DynamoDB, Azure, or Consul for state locking. Prevents concurrent modifications.</li>
+      </ul>
+
+      <div class="code-block">
+# Production-grade S3 backend
+terraform {
+  backend "s3" {
+    bucket         = "my-terraform-state"
+    key            = "prod/terraform.tfstate"
+    region         = "us-east-1"
+    encrypt        = true
+    dynamodb_table = "terraform-locks"
+  }
+}
+      </div>
+
+      <h3>State File Isolation</h3>
+
+      <p>Never manage development and production from the same state file. Use separate backends:</p>
+
+      <div class="code-block">
+# environments/prod/main.tf
+terraform {
+  backend "s3" {
+    bucket = "terraform-state-prod"
+    key    = "terraform.tfstate"
+  }
+}
+
+# environments/dev/main.tf
+terraform {
+  backend "s3" {
+    bucket = "terraform-state-dev"
+    key    = "terraform.tfstate"
+  }
+}
+      </div>
+
+      <h2>Testing Your Infrastructure Code</h2>
+
+      <p>Untested Terraform is unpredictable Terraform. Here's how to test:</p>
+
+      <h3>Static Analysis</h3>
+
+      <p><strong>terraform fmt:</strong> Enforces consistent style</p>
+      <p><strong>terraform validate:</strong> Checks syntax and configuration</p>
+      <p><strong>tflint:</strong> Lints Terraform for best practices</p>
+
+      <div class="code-block">
+# Pre-commit hook for testing
+#!/bin/bash
+terraform fmt -recursive .
+terraform validate
+tflint .
+      </div>
+
+      <h3>Plan Testing</h3>
+
+      <p>Always review plans before applying, especially in production. Set up CI/CD to run plans on every PR:</p>
+
+      <div class="code-block">
+# CI/CD: Run terraform plan on PR
+terraform plan -out=tfplan
+terraform show -json tfplan > plan.json
+# Parse and comment on PR with changes
+      </div>
+
+      <h2>Secrets Management</h2>
+
+      <p>Never commit secrets to git. Ever.</p>
+
+      <h3>Pattern 1: External Data Sources</h3>
+
+      <p>Store secrets in AWS Secrets Manager, Azure Key Vault, or HashiCorp Vault. Reference them:</p>
+
+      <div class="code-block">
+data "aws_secretsmanager_secret_version" "db_password" {
+  secret_id = aws_secretsmanager_secret.db.id
+}
+
+resource "aws_db_instance" "main" {
+  password = data.aws_secretsmanager_secret_version.db_password.secret_string
+}
+      </div>
+
+      <h3>Pattern 2: SOPS (Secrets Operations)</h3>
+
+      <p>Encrypt sensitive values in your terraform.tfvars file:</p>
+
+      <div class="code-block">
+# Before applying
+sops --decrypt secrets.enc.tfvars > secrets.tfvars
+terraform apply -var-file=secrets.tfvars
+# Cleanup
+rm secrets.tfvars
+      </div>
+
+      <h2>Multi-Environment Deployments</h2>
+
+      <p>Production, staging, and development should be identical infrastructure, different configurations.</p>
+
+      <div class="code-block">
+# Single configuration structure
+# environments/
+# ├── dev/
+# │   ├── terraform.tfvars
+# │   └── backend.tf
+# ├── staging/
+# │   ├── terraform.tfvars
+# │   └── backend.tf
+# └── production/
+#     ├── terraform.tfvars
+#     └── backend.tf
+
+# Then deploy the same modules with different variables:
+terraform apply -var-file=environments/prod/terraform.tfvars
+      </div>
+
+      <h2>Common Pitfalls and Solutions</h2>
+
+      <p><strong>Pitfall 1: Hardcoded Values</strong> → Use variables with defaults</p>
+      <p><strong>Pitfall 2: Tight Coupling</strong> → Use data sources to reference other stacks</p>
+      <p><strong>Pitfall 3: Missing Outputs</strong> → Export critical values (IDs, endpoints) for consumption by other systems</p>
+      <p><strong>Pitfall 4: No Documentation</strong> → Comment your Terraform, especially complex conditionals</p>
+
+      <div class="highlight-box">
+        <strong>The 80/20 Rule:</strong> 80% of Terraform problems come from 5 causes: missing versions, unclear modules, untested code, poor state management, and hardcoded values. Fix these 5 things and your Terraform becomes maintainable.
+      </div>
+
+      <h2>Conclusion</h2>
+
+      <p>Terraform is powerful, but power without structure is chaos. Use modules, test your code, manage state safely, and keep environments isolated. These patterns have kept my infrastructure reliable and maintainable at scale.</p>
+
+      <p>The best infrastructure is infrastructure you can change with confidence. Terraform, done right, gives you exactly that.</p>
+
+      <div class="cta-box">
+        <h3>Ready to Master Infrastructure as Code?</h3>
+        <p>Explore my Terraform-heavy projects including platform-gitops and EKS deployments.</p>
+        <a href="projects.html" class="cta-button">View My Projects</a>
+      </div>
+
+      <div class="author-bio">
+        <div class="author-avatar"></div>
+        <div class="author-info">
+          <h4>Temitayo Charles</h4>
+          <p><strong>Senior DevOps & Cloud Platform Engineer</strong></p>
+          <p>Manages 50+ clusters using Terraform across AWS, Azure, and GCP. Expert in IaC best practices, multi-cloud deployments, and infrastructure scaling.</p>
+          <p><a href="https://github.com/temitayocharles" target="_blank" style="color: #66d9ef;">GitHub</a> | <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color: #66d9ef;">LinkedIn</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

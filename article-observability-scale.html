@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#0e0e0e">
+  <title>Observability at Scale: Metrics, Logs, and Traces | Blog</title>
+  <meta name="description" content="Production observability strategy for managing 50+ Kubernetes clusters. Implement Prometheus, Grafana, ELK, and distributed tracing at enterprise scale.">
+  
+  <link rel="stylesheet" href="style.css">
+  <script src="js/dark-mode.js"></script>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  
+  <style>
+    body {
+      background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+      color: #f0f0f0;
+      line-height: 1.8;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(14, 14, 14, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(102, 217, 239, 0.2);
+      z-index: 1000;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #66d9ef;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+    }
+
+    nav a:hover { color: #a6e22e; background: rgba(166, 226, 46, 0.1); }
+
+    .article-container {
+      max-width: 850px;
+      margin: 100px auto 0;
+      padding: 3rem 2rem;
+    }
+
+    .article-header {
+      margin-bottom: 3rem;
+      padding-bottom: 2rem;
+      border-bottom: 2px solid rgba(102, 217, 239, 0.3);
+    }
+
+    .article-tag {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: rgba(102, 217, 239, 0.2);
+      color: #66d9ef;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .article-header h1 {
+      font-size: 2.5rem;
+      color: #66d9ef;
+      margin: 1rem 0;
+      line-height: 1.3;
+    }
+
+    .article-meta { display: flex; gap: 2rem; font-size: 0.95rem; color: #888; flex-wrap: wrap; }
+    .article-meta span { display: flex; align-items: center; gap: 0.5rem; }
+    .article-meta strong { color: #66d9ef; }
+
+    .article-content { font-size: 1.05rem; line-height: 1.9; }
+    .article-content h2 { color: #a6e22e; font-size: 1.8rem; margin: 2rem 0 1rem; }
+    .article-content h3 { color: #66d9ef; font-size: 1.4rem; margin: 1.5rem 0 0.75rem; }
+    .article-content p { margin: 1rem 0; color: #ddd; }
+    .article-content ul, .article-content ol { margin: 1.5rem 0; padding-left: 2rem; }
+    .article-content li { margin: 0.75rem 0; color: #ddd; }
+    .article-content strong { color: #a6e22e; }
+    .article-content em { color: #66d9ef; font-style: italic; }
+
+    .code-block {
+      background: rgba(0, 0, 0, 0.5);
+      border-left: 3px solid #a6e22e;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin: 1.5rem 0;
+      overflow-x: auto;
+      font-size: 0.9rem;
+      color: #a6e22e;
+      font-family: 'Monaco', 'Courier New', monospace;
+      line-height: 1.6;
+    }
+
+    .highlight-box {
+      background: rgba(166, 226, 46, 0.1);
+      border-left: 4px solid #a6e22e;
+      padding: 1.5rem;
+      border-radius: 6px;
+      margin: 2rem 0;
+    }
+
+    .stats-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      margin: 2rem 0;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 8px;
+    }
+
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 2rem; color: #66d9ef; font-weight: 700; margin-bottom: 0.5rem; }
+    .stat-label { color: #aaa; font-size: 0.9rem; }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(102, 217, 239, 0.1) 0%, rgba(166, 226, 46, 0.05) 100%);
+      border: 1px solid rgba(102, 217, 239, 0.3);
+      padding: 2rem;
+      border-radius: 8px;
+      margin: 3rem 0;
+      text-align: center;
+    }
+
+    .cta-box h3 { color: #66d9ef; margin-bottom: 1rem; }
+    .cta-box p { margin-bottom: 1.5rem; }
+
+    .cta-button {
+      display: inline-block;
+      padding: 0.875rem 2rem;
+      background: linear-gradient(135deg, #66d9ef, #a6e22e);
+      color: #0e0e0e;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(102, 217, 239, 0.3);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 2rem;
+      color: #66d9ef;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover { color: #a6e22e; }
+
+    .author-bio {
+      margin-top: 4rem;
+      padding: 2rem;
+      background: rgba(102, 217, 239, 0.05);
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 8px;
+      display: flex;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .author-avatar { width: 80px; height: 80px; background: linear-gradient(135deg, #66d9ef, #a6e22e); border-radius: 50%; flex-shrink: 0; }
+    .author-info h4 { color: #66d9ef; margin: 0 0 0.5rem; }
+    .author-info p { font-size: 0.95rem; margin: 0.5rem 0; }
+
+    @media (max-width: 768px) {
+      nav { padding: 0.75rem 1rem; gap: 0.75rem; }
+      .article-container { margin-top: 80px; padding: 2rem 1rem; }
+      .article-header h1 { font-size: 1.8rem; }
+      .article-content { font-size: 1rem; }
+      .article-content h2 { font-size: 1.5rem; }
+      .stats-box { grid-template-columns: repeat(2, 1fr); gap: 1rem; padding: 1.5rem; }
+      .author-bio { flex-direction: column; text-align: center; gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      nav { flex-direction: column; gap: 0.5rem; padding: 0.5rem; }
+      nav a { padding: 0.3rem 0.6rem; font-size: 0.85rem; }
+      .article-container { margin-top: 70px; padding: 1.5rem 0.75rem; }
+      .article-header h1 { font-size: 1.4rem; }
+      .article-meta { flex-direction: column; gap: 0.5rem; }
+      .article-content { font-size: 0.95rem; }
+      .article-content h2 { font-size: 1.3rem; }
+      .article-content h3 { font-size: 1.1rem; }
+      .code-block { padding: 1rem; font-size: 0.8rem; }
+      .stats-box { grid-template-columns: 1fr; padding: 1rem; }
+      .cta-box { padding: 1.5rem; margin: 2rem 0; }
+      .author-bio { padding: 1.5rem; }
+      .author-avatar { width: 60px; height: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <script src="global-sidebar.js"></script>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about-me.html">About</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog-articles.html">Blog</a>
+    <a href="skills.html">Skills</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+  <div class="article-container">
+    <a href="blog-articles.html" class="back-link">← Back to Blog</a>
+
+    <div class="article-header">
+      <span class="article-tag">Monitoring & Observability</span>
+      <h1>Observability at Scale: Metrics, Logs, and Traces</h1>
+      <div class="article-meta">
+        <span><strong>Author:</strong> Temitayo Charles</span>
+        <span><strong>Published:</strong> February 6, 2026</span>
+        <span><strong>Read Time:</strong> 13 minutes</span>
+      </div>
+    </div>
+
+    <div class="article-content">
+      <p>Observability is the difference between operating infrastructure with confidence and operating it blind. As systems grow more complex and distributed, traditional monitoring becomes insufficient. You need observability: the ability to ask arbitrary questions about your system's behavior.</p>
+
+      <p>Managing 50+ clusters across three clouds has taught me that observability is not a luxury—it's an absolute requirement. Without it, you're debugging production in the dark.</p>
+
+      <div class="stats-box">
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Clusters Monitored</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Cloud Regions</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1M+</div>
+          <div class="stat-label">Metrics/sec</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">99.99%</div>
+          <div class="stat-label">Uptime SLO</div>
+        </div>
+      </div>
+
+      <h2>The Three Pillars: Metrics, Logs, Traces</h2>
+
+      <p>Observability rests on three pillars. Each answers different questions:</p>
+
+      <h3>Metrics (Time-Series Data)</h3>
+
+      <p><strong>What to ask:</strong> "What's the CPU usage?" "How many requests per second?" "What's the disk space trend?"</p>
+
+      <p><strong>Answer speed:</strong> Milliseconds. Metrics are sampled, aggregated, and queryable instantly.</p>
+
+      <p><strong>Use case:</strong> Dashboards, alerting, capacity planning.</p>
+
+      <h3>Logs (Structured Event Data)</h3>
+
+      <p><strong>What to ask:</strong> "Why did request X fail?" "What happened between timestamp A and B?" "Which service is throwing errors?"</p>
+
+      <p><strong>Answer speed:</strong> Seconds. Logs are voluminous; querying them takes time.</p>
+
+      <p><strong>Use case:</strong> Debugging specific incidents, audit trails, security analysis.</p>
+
+      <h3>Traces (Request Flow)</h3>
+
+      <p><strong>What to ask:</strong> "How long did request X take?" "Which service was slow?" "Where did the request fail?"</p>
+
+      <p><strong>Answer speed:</strong> Seconds to minutes. Traces require correlation across services.</p>
+
+      <p><strong>Use case:</strong> Performance debugging, dependency analysis, latency investigation.</p>
+
+      <h2>Metrics: Prometheus at Scale</h2>
+
+      <p>Prometheus is the standard for Kubernetes monitoring. Here's how to scale it:</p>
+
+      <h3>Architecture Pattern</h3>
+
+      <div class="code-block">
+# Production Prometheus setup
+prometheus:
+  global:
+    scrape_interval: 15s
+    evaluation_interval: 15s
+    external_labels:
+      cluster: us-west-prod
+      region: us-west-2
+
+  # Scrape configurations
+  scrape_configs:
+  - job_name: 'kubernetes-pods'
+    kubernetes_sd_configs:
+    - role: pod
+    relabel_configs:
+    - source_labels: [__meta_kubernetes_pod_label_app]
+      target_label: app
+
+  # Alert rules
+  rule_files:
+  - '/etc/prometheus/rules/*.yml'
+
+  # Alertmanager
+  alerting:
+    alertmanagers:
+    - static_configs:
+      - targets: ['alertmanager:9093']
+      </div>
+
+      <h3>Key Principles for Scale</h3>
+
+      <ul>
+        <li><strong>Federated Prometheus:</strong> One Prometheus per cluster, then federate to central. Prevents single point of failure.</li>
+        <li><strong>Storage strategy:</strong> Local storage + long-term remote storage (Thanos, Cortex). Don't rely on single disk.</li>
+        <li><strong>Retention policy:</strong> Keep 2-4 weeks locally, 1+ year remotely.</li>
+        <li><strong>Dimensionality control:</strong> High cardinality labels create storage explosions. Label thoughtfully.</li>
+      </ul>
+
+      <div class="highlight-box">
+        <strong>The Cardinality Trap:</strong> Labeling every request ID as a dimension will blow up your storage. Use labels for dimensions (environment, service, type) not for unique values (user ID, request ID).
+      </div>
+
+      <h2>Logs: ELK Stack at Scale</h2>
+
+      <p>Logs are important but expensive at scale. Here's a scalable approach:</p>
+
+      <div class="code-block">
+# Production ELK pipeline
+Kubernetes Pods
+  → Fluent Bit (lightweight agent)
+  → Kafka (buffering layer)
+  → Logstash (enrichment)
+  → Elasticsearch (storage)
+  → Kibana (querying)
+      </div>
+
+      <h3>Cost Optimization Strategies</h3>
+
+      <ul>
+        <li><strong>Sampling:</strong> Log 100% of errors, 10% of info, 1% of debug</li>
+        <li><strong>Filtering:</strong> Don't log health checks, expected errors, or noise</li>
+        <li><strong>Aggregation:</strong> Move logs to cheaper tiers after 30 days</li>
+        <li><strong>Index rotation:</strong> Create daily indices, archive old ones</li>
+      </ul>
+
+      <h3>Structuring Logs for Queryability</h3>
+
+      <div class="code-block">
+# Good: Structured JSON logs
+{
+  "timestamp": "2026-02-06T10:30:00Z",
+  "level": "ERROR",
+  "service": "payment-api",
+  "request_id": "abc-123",
+  "user_id": "user-456",
+  "error_type": "PaymentGatewayTimeout",
+  "duration_ms": 5000,
+  "trace_id": "xyz-789"
+}
+
+# Bad: Unstructured text
+"Failed to process payment for user 456, error: timeout after 5000ms"
+      </div>
+
+      <h2>Traces: Distributed Tracing with Jaeger</h2>
+
+      <p>Traces show the complete journey of a request through your system:</p>
+
+      <h3>Instrumentation Pattern</h3>
+
+      <div class="code-block">
+# Service A calls Service B
+# Service A (Node.js with Jaeger):
+const tracer = initTracer({
+  serviceName: 'service-a',
+  sampler: { type: 'const', param: 1 },
+  reporter: { logSpans: true }
+});
+
+const span = tracer.startSpan('process_order');
+await callServiceB(span);
+span.finish();
+
+// Service B automatically receives trace context
+// Both services contribute to same trace
+      </div>
+
+      <h3>Sampling Strategy</h3>
+
+      <p>Tracing everything is expensive. Sample strategically:</p>
+
+      <ul>
+        <li><strong>Always sample:</strong> Errors (100%), slow requests (10%), customer interactions (5%)</li>
+        <li><strong>Never sample:</strong> Non-critical internal calls, health checks</li>
+        <li><strong>Dynamic sampling:</strong> Increase during incidents, decrease during calm</li>
+      </ul>
+
+      <h2>Connecting the Three Pillars</h2>
+
+      <p>The magic happens when you correlate all three:</p>
+
+      <ul>
+        <li><strong>Metrics alert:</strong> "CPU spike detected"</li>
+        <li><strong>Logs explain:</strong> "Service X is memory leaking"</li>
+        <li><strong>Traces show:</strong> "Request Y takes 3x longer through Service X"</li>
+      </ul>
+
+      <p>Use trace IDs in logs to connect them. Use request IDs in metrics to drill down.</p>
+
+      <h2>Alerting: The Critical Piece</h2>
+
+      <p>Observability without alerting is just dashboarding. You need proactive alerts:</p>
+
+      <div class="code-block">
+# AlertManager example
+alert: HighErrorRate
+expr: rate(http_requests_total{status=~"5.."}[5m]) > 0.05
+for: 5m
+annotations:
+  summary: "High error rate detected"
+  severity: "critical"
+  
+alert: PodCrashLooping
+expr: rate(kube_pod_container_status_restarts_total[15m]) > 0.1
+for: 5m
+annotations:
+  summary: "Pod is crash looping"
+  runbook: "https://wiki.internal/runbooks/pod-crash-loop"
+      </div>
+
+      <h2>The Observability Maturity Journey</h2>
+
+      <p><strong>Level 1 (Basic):</strong> Prometheus + Grafana dashboards. You know your system's state.</p>
+
+      <p><strong>Level 2 (Intermediate):</strong> Add ELK for logs. You can debug issues.</p>
+
+      <p><strong>Level 3 (Advanced):</strong> Add Jaeger for traces. You understand latency.</p>
+
+      <p><strong>Level 4 (Mature):</strong> All three + smart alerting + runbooks. Your team reacts to issues, not searches for them.</p>
+
+      <p>Most teams are stuck at Level 1 or 2. Getting to Level 3-4 is the difference between managing infrastructure and running it smoothly.</p>
+
+      <div class="cta-box">
+        <h3>Ready to Build Observable Infrastructure?</h3>
+        <p>Explore my monitoring-stack project and observability implementations.</p>
+        <a href="projects.html" class="cta-button">View Monitoring Projects</a>
+      </div>
+
+      <div class="author-bio">
+        <div class="author-avatar"></div>
+        <div class="author-info">
+          <h4>Temitayo Charles</h4>
+          <p><strong>Senior DevOps & Cloud Platform Engineer</strong></p>
+          <p>Manages observability for 50+ Kubernetes clusters. Expert in Prometheus, ELK, Jaeger, and building observable systems at scale.</p>
+          <p><a href="https://github.com/temitayocharles" target="_blank" style="color: #66d9ef;">GitHub</a> | <a href="https://linkedin.com/in/temitayocharles" target="_blank" style="color: #66d9ef;">LinkedIn</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
