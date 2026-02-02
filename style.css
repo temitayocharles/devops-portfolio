@@ -3214,12 +3214,18 @@ footer p {
 
 .breadcrumb-list {
   list-style: none;
+  counter-reset: none;
   padding: 0;
   margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
+}
+
+.breadcrumb-list li {
+  list-style: none;
+  counter-increment: none;
 }
 
 .breadcrumb-item {

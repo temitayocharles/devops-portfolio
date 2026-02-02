@@ -63,6 +63,30 @@
       transform: translateY(-2px);
     }
 
+    /* Theme Toggle Button */
+    .theme-toggle {
+      background: transparent;
+      border: none;
+      color: #66d9ef;
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .theme-toggle:hover {
+      background: rgba(102, 217, 239, 0.2);
+      transform: scale(1.1);
+    }
+
+    .theme-toggle:active {
+      transform: scale(0.95);
+    }
+
     /* Header Section */
     .blog-header {
       margin-top: 80px;
@@ -94,6 +118,18 @@
       max-width: 1000px;
       margin: 0 auto;
       padding: 3rem 1.5rem;
+      transition: margin-left 0.3s ease;
+    }
+
+    /* When sidebar is open, shift content */
+    body.sidebar-open .blog-container {
+      margin-left: 0;
+    }
+
+    @media (max-width: 768px) {
+      .blog-container {
+        padding: 2rem 1rem;
+      }
     }
 
     /* Article Grid */
@@ -446,6 +482,7 @@
     <a href="skills.html">Skills</a>
     <a href="blog-articles.html" style="color: #a6e22e; border-bottom: 2px solid #a6e22e;">Blog</a>
     <a href="contact.html">Contact</a>
+    <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
   </nav>
 
   <div class="blog-header">
