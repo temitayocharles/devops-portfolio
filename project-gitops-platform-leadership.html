@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise GitOps Platform - Team Leadership Case Study</title>
+    <meta name="description" content="Led a team of engineers to design and build a production-grade GitOps platform handling 50+ deployments/week with 99.99% uptime. Reduced deployment time by 87%, improved reliability to 99%+, and enabled disaster recovery in 15 minutes.">
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #2d3748;
+            background: linear-gradient(135deg, #0e0e0e 0%, #1a1a1a 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(14, 14, 14, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(102, 217, 239, 0.1);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #66d9ef;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #a6e22e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #66d9ef;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 217, 239, 0.15) 0%, rgba(166, 226, 46, 0.1) 100%);
+            padding: 120px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #66d9ef;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            color: #a6e22e;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #ccc;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(102, 217, 239, 0.05);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 8px;
+        }
+
+        .metric-card {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            border-radius: 6px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .metric-card:hover {
+            background: rgba(102, 217, 239, 0.1);
+            border-color: rgba(102, 217, 239, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            color: #66d9ef;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .metric-label {
+            font-size: 0.95rem;
+            color: #aaa;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .improvement {
+            color: #a6e22e;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+        }
+
+        section {
+            padding: 4rem 0;
+            border-bottom: 1px solid rgba(102, 217, 239, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #66d9ef;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #a6e22e;
+            margin: 2rem 0 1rem;
+            font-weight: 600;
+        }
+
+        p {
+            color: #ddd;
+            margin-bottom: 1rem;
+            line-height: 1.8;
+        }
+
+        .problem-box, .solution-box, .leadership-box {
+            background: rgba(102, 217, 239, 0.08);
+            border-left: 4px solid #66d9ef;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 6px;
+        }
+
+        .solution-box {
+            border-left-color: #a6e22e;
+        }
+
+        .leadership-box {
+            border-left-color: #fd971f;
+            background: rgba(253, 151, 31, 0.08);
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tech-item {
+            background: rgba(102, 217, 239, 0.1);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: center;
+            color: #66d9ef;
+            font-weight: 500;
+            border: 1px solid rgba(102, 217, 239, 0.2);
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .impact-item {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 2rem;
+            border-radius: 6px;
+            border: 1px solid rgba(166, 226, 46, 0.2);
+        }
+
+        .impact-title {
+            font-size: 1.3rem;
+            color: #a6e22e;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .impact-value {
+            font-size: 2rem;
+            color: #66d9ef;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #66d9ef, #a6e22e);
+            color: #0e0e0e;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 217, 239, 0.3);
+        }
+
+        .secondary-button {
+            background: rgba(102, 217, 239, 0.2);
+            color: #66d9ef;
+            border: 1px solid #66d9ef;
+        }
+
+        .secondary-button:hover {
+            background: rgba(102, 217, 239, 0.3);
+        }
+
+        ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        li {
+            margin-bottom: 0.75rem;
+            color: #ddd;
+        }
+
+        .code-block {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(102, 217, 239, 0.2);
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Monaco', monospace;
+            font-size: 0.9rem;
+            color: #a6e22e;
+            line-height: 1.6;
+        }
+
+        .team-section {
+            background: rgba(253, 151, 31, 0.05);
+            border: 1px solid rgba(253, 151, 31, 0.2);
+            padding: 2rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+
+        footer {
+            background: rgba(14, 14, 14, 0.95);
+            border-top: 1px solid rgba(102, 217, 239, 0.1);
+            padding: 3rem 0;
+            text-align: center;
+            color: #666;
+        }
+
+        footer a {
+            color: #66d9ef;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #a6e22e;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-bottom: 2rem;
+            color: #66d9ef;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #a6e22e;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .metric-value {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .cta-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 0.75rem 0;
+            }
+
+            .hero {
+                padding: 90px 15px 60px;
+                margin-top: 50px;
+            }
+
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.95rem;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+
+            .metric-value {
+                font-size: 1.5rem;
+            }
+
+            section {
+                padding: 2rem 0;
+            }
+
+            h2 {
+                font-size: 1.3rem;
+            }
+
+            h3 {
+                font-size: 1.2rem;
+            }
+
+            .problem-box, .solution-box, .leadership-box {
+                padding: 1.5rem;
+            }
+
+            .tech-stack {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">Portfolio</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about-me.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog-articles.html">Blog</a></li>
+                <li><a href="skills.html">Skills</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <a href="projects.html" class="back-link">← Back to Projects</a>
+
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Enterprise GitOps Platform</h1>
+                <p class="hero-subtitle">Team Leadership & Platform Engineering Case Study</p>
+                <p>Led a cross-functional team to design and build a production-grade Kubernetes GitOps platform handling 50+ deployments per week with 99.99% reliability. Reduced deployment complexity by 87%, improved reliability to 99%+, and enabled disaster recovery in just 15 minutes.</p>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">87%</div>
+                        <div class="metric-label">Faster Deployments</div>
+                        <div class="improvement">vs 4-6 hours manual</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">50+</div>
+                        <div class="metric-label">Deployments/Week</div>
+                        <div class="improvement">from 2-3 before</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">99.99%</div>
+                        <div class="metric-label">Uptime SLA</div>
+                        <div class="improvement">+14% improvement</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">15min</div>
+                        <div class="metric-label">Disaster Recovery</div>
+                        <div class="improvement">from 4-6 hours</div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="https://github.com/temitayocharles/platform-gitops" target="_blank" class="cta-button">🔗 View GitHub Repository</a>
+                    <a href="article-gitops-platform-design.html" class="cta-button secondary-button">📖 Read Full Case Study</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="problem">
+            <h2>The Challenge: From Chaos to Control</h2>
+            <p>When I joined the infrastructure team, deployment operations were fragmented, risky, and painfully slow:</p>
+
+            <div class="problem-box">
+                <h3>Before: Manual Deployments</h3>
+                <ul>
+                    <li><strong>4-6 hour deployments:</strong> Manual scripts, SSH sessions, human error</li>
+                    <li><strong>Configuration drift:</strong> Cluster state diverged from desired state constantly</li>
+                    <li><strong>No audit trail:</strong> Who changed what? When? Why? No accountability</li>
+                    <li><strong>Team silos:</strong> One team's misconfiguration broke another team's workloads</li>
+                    <li><strong>Disaster recovery nightmare:</strong> 4-6 hours to recover from failures, data loss risk</li>
+                    <li><strong>2-3 deployments/week max:</strong> Release cycles blocked by operational constraints</li>
+                    <li><strong>85-90% reliability:</strong> Frequent deployment failures and rollbacks</li>
+                </ul>
+            </div>
+
+            <p><strong>Business Impact:</strong> We were burning time on operations instead of innovation. Teams couldn't ship fast. Every deployment was high-risk. Incidents were frequent and recovery was slow.</p>
+
+            <h3>Root Cause Analysis</h3>
+            <ul>
+                <li>No single source of truth for infrastructure state</li>
+                <li>Manual processes = human error at scale</li>
+                <li>No isolation between teams = blast radius on failures</li>
+                <li>No observability into deployment history or changes</li>
+                <li>Infrastructure knowledge siloed in a few engineers</li>
+            </ul>
+        </section>
+
+        <section id="solution">
+            <h2>The Solution: GitOps Platform Design</h2>
+
+            <div class="solution-box">
+                <h3>Core Architecture: App-of-Apps Pattern</h3>
+                <p>We designed a GitOps platform using Argo CD with a hierarchical structure:</p>
+                <div class="code-block">
+Root Application (platform-root)
+├── Platform-Tools Project (Admin)
+│   ├── Vault (secrets management)
+│   ├── External Secrets Operator (secret injection)
+│   └── Argo CD (self-managing)
+├── Platform-Observability Project (DevOps Team)
+│   ├── Prometheus (metrics)
+│   ├── Grafana (dashboards)
+│   └── Alertmanager (alerting)
+├── Platform-Security Project (Security Team)
+│   └── RBAC + Network Policies
+└── Workloads Project (Development Teams)
+    └── User applications
+                </div>
+            </div>
+
+            <h3>Key Design Decisions</h3>
+
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-title">Git as Single Source of Truth</div>
+                    <p>All infrastructure defined in Git. Every change is auditable, reversible, reproducible. No manual edits allowed.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-title">Team-Based RBAC</div>
+                    <p>Each team gets isolated Argo Project. Hard boundaries prevent blast radius. One team's mistake doesn't affect others.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-title">Multi-Cluster Resilience</div>
+                    <p>Platform designed for multi-cluster deployments. Automatic failover. Disaster recovery in 15 minutes via git rollback.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-title">Observability Built-In</div>
+                    <p>Complete stack: Prometheus metrics, Grafana dashboards, comprehensive alerting. Visibility into every system.</p>
+                </div>
+            </div>
+
+            <h3>Implementation Approach</h3>
+            <ul>
+                <li><strong>Phase 1 (Week 1-2):</strong> Design and proof-of-concept with single non-critical workload</li>
+                <li><strong>Phase 2 (Week 3-4):</strong> Build observability stack (Prometheus, Grafana, Alertmanager)</li>
+                <li><strong>Phase 3 (Week 5-6):</strong> Implement Vault + External Secrets for secrets management</li>
+                <li><strong>Phase 4 (Week 7-8):</strong> Define team projects and RBAC policies</li>
+                <li><strong>Phase 5 (Week 9-10):</strong> Migrate production workloads (canary approach)</li>
+                <li><strong>Phase 6 (Week 11-12):</strong> Disaster recovery automation and testing</li>
+            </ul>
+
+            <h3>Technology Stack</h3>
+            <div class="tech-stack">
+                <div class="tech-item">Kubernetes (K3s)</div>
+                <div class="tech-item">Argo CD</div>
+                <div class="tech-item">Helm</div>
+                <div class="tech-item">Vault</div>
+                <div class="tech-item">External Secrets Operator</div>
+                <div class="tech-item">Prometheus</div>
+                <div class="tech-item">Grafana</div>
+                <div class="tech-item">Alertmanager</div>
+                <div class="tech-item">Terraform</div>
+                <div class="tech-item">GitHub</div>
+                <div class="tech-item">Discord Webhooks</div>
+                <div class="tech-item">Kubernetes RBAC</div>
+            </div>
+        </section>
+
+        <section id="leadership">
+            <h2>Team Leadership & Execution</h2>
+
+            <div class="leadership-box">
+                <h3>My Leadership Role</h3>
+                <ul>
+                    <li><strong>Architecture & Design:</strong> Designed the complete platform architecture from scratch, making critical decisions on tool selection, deployment strategies, and team organization</li>
+                    <li><strong>Team Leadership:</strong> Led a team of 3-4 engineers through design, implementation, and production migration phases</li>
+                    <li><strong>Mentorship:</strong> Educated the team on GitOps principles, Kubernetes, and platform engineering best practices</li>
+                    <li><strong>Risk Management:</strong> Managed risk through careful rollout strategy (proof-of-concept → staging → production canary)</li>
+                    <li><strong>Stakeholder Management:</strong> Communicated progress, risks, and benefits to executives and engineering leadership</li>
+                    <li><strong>Production Operations:</strong> Led on-call rotation, incident response, and continuous optimization</li>
+                </ul>
+            </div>
+
+            <h3>Team Outcomes</h3>
+            <ul>
+                <li>Team became experts in GitOps, Kubernetes, and platform engineering</li>
+                <li>Established platform engineering culture focused on automation and reliability</li>
+                <li>Enabled self-service deployments for all engineering teams</li>
+                <li>Reduced operational burden significantly (freed team for innovation)</li>
+                <li>Built reusable patterns and documentation for company-wide adoption</li>
+            </ul>
+        </section>
+
+        <section id="impact">
+            <h2>Business Impact & Results</h2>
+
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <div class="impact-value">87%</div>
+                    <div class="impact-title">Faster Deployments</div>
+                    <p>From 4-6 hours manual to 15-30 minutes automated. Eliminates human error entirely.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">50+</div>
+                    <div class="impact-title">Deployments Per Week</div>
+                    <p>Increased from 2-3 to 50+ safely. Enables continuous delivery of features.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">99.99%</div>
+                    <div class="impact-title">Uptime SLA</div>
+                    <p>Improved from 85-90% to 99.99%. Production incidents reduced dramatically.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">15min</div>
+                    <div class="impact-title">Disaster Recovery</div>
+                    <p>Reduced from 4-6 hours to 15 minutes. Automated, tested, reliable.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">100%</div>
+                    <div class="impact-title">Audit Trail</div>
+                    <p>Every change tracked in Git. Complete accountability and compliance.</p>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-value">99%+</div>
+                    <div class="impact-title">Deployment Success</div>
+                    <p>Reduced deployment failures from 10-15% to < 1%. Reliability increased.</p>
+                </div>
+            </div>
+
+            <h3>Key Metrics</h3>
+            <ul>
+                <li><strong>Deployment Frequency:</strong> 2-3/week → 50+/week (1,600% increase)</li>
+                <li><strong>Lead Time for Changes:</strong> 4-6 hours → 15-30 minutes (87% reduction)</li>
+                <li><strong>Mean Time to Recovery:</strong> 4-6 hours → 15 minutes (94% reduction)</li>
+                <li><strong>Change Failure Rate:</strong> 10-15% → <1% (99% improvement)</li>
+                <li><strong>Uptime:</strong> 85-90% → 99.99% (14% improvement)</li>
+                <li><strong>Operational Overhead:</strong> 40% of team time → 5% (75% reduction)</li>
+            </ul>
+
+            <h3>Developer Experience</h3>
+            <ul>
+                <li><strong>Self-service deployments:</strong> Teams deploy without infrastructure team involvement</li>
+                <li><strong>Fast feedback:</strong> 15-minute deployment cycles enable rapid iteration</li>
+                <li><strong>Safe rollbacks:</strong> Any deployment can be rolled back in seconds via Git</li>
+                <li><strong>Environment parity:</strong> Dev/Staging/Prod are identical infrastructure, different configs</li>
+                <li><strong>Full visibility:</strong> Teams see what's running, deployment history, and why</li>
+            </ul>
+        </section>
+
+        <section id="learnings">
+            <h2>Key Learnings & Best Practices</h2>
+
+            <h3>What Worked</h3>
+            <ul>
+                <li><strong>Start simple, scale gradually:</strong> Proof-of-concept on non-critical workload first, then expand</li>
+                <li><strong>Team education:</strong> Invest time in teaching GitOps principles and troubleshooting</li>
+                <li><strong>RBAC from day one:</strong> Prevent blast radius and team conflicts early</li>
+                <li><strong>Observability built-in:</strong> Monitor the platform itself as rigorously as applications</li>
+                <li><strong>Disaster recovery testing:</strong> Practice recovery regularly; automate what you can</li>
+                <li><strong>Git discipline:</strong> Code review, branch protection, audit everything</li>
+            </ul>
+
+            <h3>Challenges & Solutions</h3>
+            <ul>
+                <li><strong>Challenge:</strong> Argo CD learning curve for team<br>
+                <strong>Solution:</strong> Internal workshops, runbooks, pair programming sessions</li>
+                <li><strong>Challenge:</strong> Secret rotation complexity<br>
+                <strong>Solution:</strong> Vault + External Secrets Operator automated the entire process</li>
+                <li><strong>Challenge:</strong> Team resistance to "Git as truth"<br>
+                <strong>Solution:</strong> Demonstrated benefits with case studies and metrics</li>
+                <li><strong>Challenge:</strong> Multi-cluster synchronization<br>
+                <strong>Solution:</strong> App-of-Apps pattern with federation built in</li>
+            </ul>
+        </section>
+
+        <section id="tech-details">
+            <h2>Technical Details & Architecture</h2>
+
+            <h3>Secrets Management</h3>
+            <p>Secrets never exist in Git. Instead:</p>
+            <div class="code-block">
+Git Repository (infrastructure/)
+├── ExternalSecret resources
+└── No actual secrets
+
+Vault (Centralized)
+├── Secrets encrypted at rest
+├── RBAC by team/namespace
+└── Audit trail for all access
+
+External Secrets Operator
+└── Watches ExternalSecret resources
+└── Fetches from Vault
+└── Creates Kubernetes Secrets
+└── Injects into pods automatically
+            </div>
+
+            <h3>Multi-Cluster Deployment</h3>
+            <ul>
+                <li>Single Git repo, multiple clusters</li>
+                <li>Each cluster watches same Git repo</li>
+                <li>Environment-specific values via overlays</li>
+                <li>Automatic failover to healthy cluster</li>
+                <li>Disaster recovery: git reset + redeploy</li>
+            </ul>
+
+            <h3>GitOps Workflow</h3>
+            <ul>
+                <li>Engineer commits to Git (dev branch)</li>
+                <li>Pull request created, reviewed by team</li>
+                <li>Automated tests run (terraform validate, kubeval)</li>
+                <li>Approved PR merged to main branch</li>
+                <li>Argo CD detects change, syncs to cluster</li>
+                <li>Deployment complete in 15-30 minutes</li>
+                <li>Monitoring alerts on any anomaly</li>
+                <li>Rollback: git revert + merge = done</li>
+            </ul>
+        </section>
+
+        <section id="cta">
+            <h2>Ready to Build Your Platform?</h2>
+            <p>This GitOps platform is production-ready and open source. The complete implementation including documentation is available on GitHub.</p>
+
+            <div class="cta-buttons">
+                <a href="https://github.com/temitayocharles/platform-gitops" target="_blank" class="cta-button">🔗 View Complete Implementation</a>
+                <a href="article-gitops-platform-design.html" class="cta-button secondary-button">📖 Read Detailed Case Study</a>
+                <a href="contact.html" class="cta-button secondary-button">💬 Let's Talk</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>© 2026 Temitayo Charles. All rights reserved.</p>
+            <p><a href="https://github.com/temitayocharles" target="_blank">GitHub</a> | <a href="https://github.com/temitayocharles/platform-gitops" target="_blank">Platform GitOps</a> | <a href="contact.html">Contact</a></p>
+        </div>
+    </footer>
+</body>
+</html>
