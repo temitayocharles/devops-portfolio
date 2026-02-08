@@ -27,6 +27,9 @@ node_modules/
 dist/
 build/
 .cache/
+test-results/
+playwright-report/
+test-results.xml
 
 ## Backup Files
 *.bak

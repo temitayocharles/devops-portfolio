@@ -226,7 +226,7 @@ open http://localhost:8000
 1. Fork this repository
 2. Enable GitHub Pages in repository settings
 3. Select source: Deploy from branch `main`
-4. Your portfolio will be live at: `https://yourusername.github.io/devops-portfolio/`
+4. Your portfolio will be live at: `https://temitayocharles.github.io/devops-portfolio/`
 
 ## 📱 **Responsive Design**
 
