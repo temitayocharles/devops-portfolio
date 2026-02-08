@@ -1,5 +1,7 @@
 # 🚀 DevOps Portfolio - Professional Engineering Showcase
 
+**Portfolio project.**
+
 [![Live Website](https://img.shields.io/badge/Live-Website-blue?style=for-the-badge&logo=github)](https://temitayocharles.github.io/devops-portfolio/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/temitayocharles/devops-charlie?style=for-the-badge&logo=docker)](https://hub.docker.com/r/temitayocharles/devops-charlie)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)

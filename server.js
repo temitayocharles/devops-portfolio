@@ -46,7 +46,7 @@ app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
 // Serve static files with caching headers
-app.use(express.static(path.join(__dirname, 'public'), {
+app.use(express.static(path.join(__dirname), {
   maxAge: '1d',
   setHeaders: (res, path) => {
     if (path.endsWith('.html')) {
@@ -72,7 +72,7 @@ app.post('/.netlify/functions/contact', contactHandler.handler);
 
 // Serve index.html for all other routes (SPA fallback)
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Error handling middleware

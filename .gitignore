@@ -45,7 +45,6 @@ build/
 .env.production
 
 ## Package Manager
-package-lock.json
 yarn.lock
 
 ## Archives
