@@ -1,5 +1,6 @@
 const express = require('express');
 const path = require('path');
+const fs = require('fs');
 const helmet = require('helmet');
 const rateLimit = require('express-rate-limit');
 const contactHandler = require('./netlify/functions/contact');
@@ -69,6 +70,20 @@ app.use('/.netlify/functions/contact', contactLimiter);
 
 // Netlify functions endpoint
 app.post('/.netlify/functions/contact', contactHandler.handler);
+
+// Serve root HTML files directly when they exist (e.g., /about -> about.html)
+app.get('*', (req, res, next) => {
+  if (req.path === '/' || path.extname(req.path)) {
+    return next();
+  }
+
+  const candidate = path.join(__dirname, `${req.path.replace(/^\\/+/, '')}.html`);
+  if (fs.existsSync(candidate)) {
+    return res.sendFile(candidate);
+  }
+
+  return next();
+});
 
 // Serve index.html for all other routes (SPA fallback)
 app.get('*', (req, res) => {
