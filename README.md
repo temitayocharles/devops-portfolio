@@ -8,6 +8,13 @@
 
 > **Enterprise-grade DevOps portfolio showcasing containerization expertise, automation solutions, and cloud infrastructure mastery.**
 
+## Start Here (Playbook)
+1. Run locally: `npm install` then `npm run start`.
+1. Open `http://localhost:8080`.
+1. Run UI smoke tests: `npm run test:ui`.
+1. Build container: `docker build -t devops-portfolio:local .`.
+1. Deploy via your chosen platform (Render/Netlify/Docker).
+
 ## 🐳 Containerization
 
 This portfolio is fully containerized following DevOps best practices for security, optimization, and production readiness.
