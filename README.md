@@ -1,5 +1,9 @@
 # 🚀 DevOps Portfolio - Professional Engineering Showcase
 
+
+## Start Here
+- Read [START_HERE.md](START_HERE.md) for the chronological playbook.
+
 **Portfolio project.**
 
 [![Live Website](https://img.shields.io/badge/Live-Website-blue?style=for-the-badge&logo=github)](https://temitayocharles.github.io/devops-portfolio/)
@@ -7,6 +11,13 @@
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 > **Enterprise-grade DevOps portfolio showcasing containerization expertise, automation solutions, and cloud infrastructure mastery.**
+
+
+## Documentation Index
+- [GETTING_STARTED.md](GETTING_STARTED.md)
+- [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md)
+- [PORTFOLIO_NARRATIVE_TRANSFORMATION.md](PORTFOLIO_NARRATIVE_TRANSFORMATION.md)
+- [blog-strategy.md](blog-strategy.md)
 
 ## Start Here (Playbook)
 1. Run locally: `npm install` then `npm run start`.
