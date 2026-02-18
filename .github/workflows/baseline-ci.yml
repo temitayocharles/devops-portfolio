@@ -1,0 +1,36 @@
+name: Baseline CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Validate YAML/JSON
+        run: |
+          python - <<"PY"
+          import json, yaml
+          from pathlib import Path
+          for p in Path(".").rglob("*"):
+              if not p.is_file() or ".git" in p.parts:
+                  continue
+              if p.suffix in {".yml", ".yaml"}:
+                  with p.open("r", encoding="utf-8") as f:
+                      list(yaml.safe_load_all(f))
+              elif p.suffix == ".json":
+                  with p.open("r", encoding="utf-8") as f:
+                      json.load(f)
+          print("validation complete")
+          PY
