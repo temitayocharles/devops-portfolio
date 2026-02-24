@@ -144,10 +144,10 @@
 
     <!-- Content and Resource Pages -->
     <url>
-        <loc>https://temitayocharles.github.io/devops-portfolio/blog.html</loc>
+        <loc>https://temitayocharles.github.io/devops-portfolio/blog-articles.html</loc>
         <lastmod>2025-01-31</lastmod>
         <changefreq>weekly</changefreq>
-        <priority>0.6</priority>
+        <priority>0.8</priority>
     </url>
 
     <url>

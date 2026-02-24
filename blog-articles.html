@@ -9,6 +9,7 @@
   <meta name="theme-color" content="#0e0e0e">
   <title>DevOps & Cloud Engineering Blog • Temitayo Charles</title>
   <meta name="description" content="In-depth articles on platform engineering, Kubernetes, multi-cloud strategy, DevOps best practices, and infrastructure optimization. Industry insights and real-world case studies.">
+  <link rel="canonical" href="https://temitayocharles.online/blog-articles.html">
   <meta name="keywords" content="DevOps, Kubernetes, Platform Engineering, Cloud Architecture, CI/CD, Infrastructure as Code, Blog">
   
   <!-- Open Graph / Social Meta Tags -->
@@ -19,6 +20,7 @@
   
   <link rel="stylesheet" href="style.css">
   <script src="js/dark-mode.js"></script>
+  <script src="js/shared-nav.js"></script>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   
   <style>
@@ -61,6 +63,11 @@
       color: #a6e22e;
       background: rgba(166, 226, 46, 0.1);
       transform: translateY(-2px);
+    }
+
+    nav a.active {
+      color: #a6e22e;
+      border-bottom: 2px solid #a6e22e;
     }
 
     /* Theme Toggle Button */
@@ -475,12 +482,12 @@
 
   <script src="global-sidebar.js"></script>
 
-  <nav>
+  <nav data-shared-nav="primary">
     <a href="index.html">Home</a>
     <a href="about-me.html">About</a>
-    <a href="projects.html">Projects</a>
     <a href="skills.html">Skills</a>
-    <a href="blog-articles.html" style="color: #a6e22e; border-bottom: 2px solid #a6e22e;">Blog</a>
+    <a href="projects.html">Projects</a>
+    <a href="blog-articles.html">Blog</a>
     <a href="contact.html">Contact</a>
     <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
   </nav>
@@ -490,7 +497,7 @@
     <p>In-depth articles on platform engineering, Kubernetes, multi-cloud strategy, and infrastructure optimization. Real-world insights and actionable best practices.</p>
   </div>
 
-  <div class="blog-container">
+  <main id="main-content" class="blog-container">
     <div class="category-filter">
       <button class="filter-btn active" onclick="filterArticles('all')">All Articles</button>
       <button class="filter-btn" onclick="filterArticles('platform')">Platform Engineering</button>
@@ -596,13 +603,13 @@
         <a href="article-cicd-best-practices.html" class="article-link">Read Article →</a>
       </div>
     </div>
-  </div>
+  </main>
 
   <footer>
     <p>All articles written by <strong>Temitayo Charles</strong>, Senior DevOps & Cloud Platform Engineer</p>
     <p>
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a> |
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a> |
+      <a href="https://github.com/temitayocharles" target="_blank" rel="noopener noreferrer">GitHub</a> |
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank" rel="noopener noreferrer">LinkedIn</a> |
       <a href="contact.html">Contact</a>
     </p>
     <p style="margin-top: 2rem; color: #555; font-size: 0.9rem;">

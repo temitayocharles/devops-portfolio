@@ -13,6 +13,7 @@
   
   <title>Temitayo Charles • Senior DevOps &amp; Cloud Platform Engineer</title>
   <meta name="description" content="Senior DevOps and Cloud Platform Engineer helping teams design, ship, and operate reliable platforms with Kubernetes, IaC, CI/CD, and modern observability.">
+  <link rel="canonical" href="https://temitayocharles.online/">
   
   <!-- Mobile optimization meta tags -->
   <meta name="mobile-web-app-capable" content="yes">
@@ -52,6 +53,7 @@
   
   <link rel="stylesheet" href="style.css">
   <script src="js/dark-mode.js"></script>
+  <script src="js/shared-nav.js"></script>
   <script src="global-sidebar.js"></script>
   <style>
     /* Redesigned Hero Section Styles */
@@ -1034,6 +1036,46 @@
       background: rgba(255, 255, 255, 0.02);
     }
 
+    .recruiter-path {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 1.2rem;
+      border: 1px solid rgba(166, 226, 46, 0.35);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(102, 217, 239, 0.05));
+      text-align: center;
+    }
+
+    .recruiter-path p {
+      margin-bottom: 0.8rem;
+      color: #f0f0f0;
+    }
+
+    .recruiter-path-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.7rem;
+      justify-content: center;
+    }
+
+    .recruiter-path-link {
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid rgba(102, 217, 239, 0.35);
+      color: #f0f0f0;
+      background: rgba(255, 255, 255, 0.06);
+      font-size: 0.9rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+
+    .recruiter-path-link:hover {
+      color: #66d9ef;
+      border-color: #66d9ef;
+      transform: translateY(-1px);
+    }
+
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -1707,7 +1749,8 @@
     }
 
     /* Skip Navigation for Accessibility */
-    .skip-nav {
+    .skip-nav,
+    .skip-to-content {
       position: absolute;
       top: -100px;
       left: 0;
@@ -1720,7 +1763,8 @@
       border-radius: 0 0 0.5rem 0;
     }
 
-    .skip-nav:focus {
+    .skip-nav:focus,
+    .skip-to-content:focus {
       top: 0;
     }
   </style>
@@ -1742,14 +1786,7 @@
         </a>
       </div>
 
-      <div class="nav-menu">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="about-me.html" class="nav-link">About</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="blog-articles.html" class="nav-link">Blog</a>
-        <a href="skills.html" class="nav-link">Skills</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </div>
+      <div class="nav-menu"></div>
 
       <div class="nav-actions">
         <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
@@ -1790,8 +1827,7 @@
         </h1>
 
         <p class="hero-subtitle">
-          I act as a consulting platform lead, designing and operating secure, observable platforms 
-          with Kubernetes, infrastructure as code, and CI/CD for healthcare, AI operations, and enterprise teams.
+          I design and operate secure, observable cloud platforms with Kubernetes, IaC, and CI/CD for high-impact teams.
         </p>
 
         <div class="hero-stats">
@@ -1821,10 +1857,10 @@
         <div class="resume-downloads">
           <p class="resume-intro">View my resume:</p>
           <div class="resume-buttons">
-            <a href="resume-ats.html" target="_blank" class="resume-btn ats-btn" title="ATS-optimized resume (best for applications)">
+            <a href="resume-ats.html" target="_blank" rel="noopener noreferrer" class="resume-btn ats-btn" title="ATS-optimized resume (best for applications)">
               📄 ATS Optimized
             </a>
-            <a href="resume-visual.html" target="_blank" class="resume-btn visual-btn" title="Detailed visual resume">
+            <a href="resume-visual.html" target="_blank" rel="noopener noreferrer" class="resume-btn visual-btn" title="Detailed visual resume">
               🎨 Visual Version
             </a>
             <a href="resume.pdf" download="Temitayo_Charles_Resume.pdf" class="resume-btn pdf-btn" title="Download PDF resume">
@@ -1837,7 +1873,7 @@
       <div class="hero-visual">
         <div class="hero-image-container">
           <img src="images/hero-headshot-professional.jpeg" alt="Temitayo Charles - Senior DevOps and Cloud Platform Engineer"
-            class="hero-profile-image" loading="eager" onerror="this.src='images/hero-headshot-casual.jpeg'" />
+            class="hero-profile-image" loading="eager" fetchpriority="high" decoding="async" width="640" height="640" onerror="this.src='images/hero-headshot-casual.jpeg'" />
           <div class="hero-image-glow"></div>
         </div>
       </div>
@@ -1858,22 +1894,122 @@
 
 
   <div class="main" id="main-content" role="main">
-    <!-- Call to Action Section -->
-    <section class="cta-section" id="projects-showcase">
+    <section class="featured-projects" id="projects-showcase">
+      <div class="container">
+        <div class="recruiter-path">
+          <p><strong>Quick Recruiter Path:</strong> flagship outcomes -> ATS resume -> intro call.</p>
+          <div class="recruiter-path-actions">
+            <a href="#projects-showcase" class="recruiter-path-link">Flagship Outcomes</a>
+            <a href="resume-ats.html" target="_blank" rel="noopener noreferrer" class="recruiter-path-link">ATS Resume</a>
+            <a href="contact.html" class="recruiter-path-link">Book Intro Call</a>
+          </div>
+        </div>
+
+        <div class="project-categories">
+          <div class="category-filters">
+            <button class="filter-btn active" data-category="all">All Flagship</button>
+            <button class="filter-btn" data-category="platform">Platform</button>
+            <button class="filter-btn" data-category="cloud">Cloud</button>
+            <button class="filter-btn" data-category="ai">AI/Ops</button>
+          </div>
+
+          <div class="featured-projects-grid">
+            <article class="project-hero-card" data-category="platform">
+              <div class="project-hero-badge">Flagship</div>
+              <div class="project-hero-content">
+                <div class="project-hero-icon">🚀</div>
+                <div class="project-hero-text">
+                  <h3>Enterprise GitOps Platform</h3>
+                  <p>Led delivery of a production Kubernetes GitOps platform with 99.99% uptime and 87% faster deployments.</p>
+                </div>
+              </div>
+              <div class="project-hero-tech">
+                <span class="tech-pill">Argo CD</span>
+                <span class="tech-pill">Kubernetes</span>
+                <span class="tech-pill">Vault</span>
+                <span class="tech-pill">Terraform</span>
+              </div>
+              <div class="project-hero-actions">
+                <a href="project-gitops-platform-leadership.html" class="hero-action-btn primary">View Case Study</a>
+                <a href="projects.html#flagship-projects" class="hero-action-btn secondary">See All Flagship</a>
+              </div>
+            </article>
+
+            <article class="project-card-large" data-category="ai">
+              <div class="project-card-header">
+                <div class="project-card-icon">🤖</div>
+                <div class="project-card-meta">
+                  <h3>AI Ops Platform</h3>
+                  <div class="project-category">Incident + Security Automation</div>
+                </div>
+              </div>
+              <p class="project-description">13-agent AI platform reducing MTTR by 60% with local LLM inference and production observability.</p>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Next.js</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">ChromaDB</span>
+              </div>
+              <div class="project-actions">
+                <a href="project-ai-ops-platform.html" class="project-action-btn primary">View Project</a>
+              </div>
+            </article>
+
+            <article class="project-card-large" data-category="cloud">
+              <div class="project-card-header">
+                <div class="project-card-icon">🏥</div>
+                <div class="project-card-meta">
+                  <h3>Cila Health Platform</h3>
+                  <div class="project-category">Healthcare Cloud + IoT</div>
+                </div>
+              </div>
+              <p class="project-description">Production healthcare platform monitoring 10K+ devices with HIPAA-compliant architecture and GitOps operations.</p>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Laravel</span>
+                <span class="tech-tag">FastAPI</span>
+                <span class="tech-tag">ArgoCD</span>
+              </div>
+              <div class="project-actions">
+                <a href="project-cila-health-platform.html" class="project-action-btn primary">View Project</a>
+              </div>
+            </article>
+
+            <article class="project-card-large" data-category="platform">
+              <div class="project-card-header">
+                <div class="project-card-icon">⚙️</div>
+                <div class="project-card-meta">
+                  <h3>DevOps Mission Control</h3>
+                  <div class="project-category">CLI Platform Engineering</div>
+                </div>
+              </div>
+              <p class="project-description">Multi-cloud CLI with 18+ modules, RBAC, and audit logging for repeatable operations at scale.</p>
+              <div class="project-tech-stack">
+                <span class="tech-tag">Go</span>
+                <span class="tech-tag">RBAC</span>
+                <span class="tech-tag">Audit Logs</span>
+              </div>
+              <div class="project-actions">
+                <a href="project-devops-mission-control.html" class="project-action-btn primary">View Project</a>
+              </div>
+            </article>
+          </div>
+
+          <div class="view-all-projects">
+            <a href="projects.html#flagship-projects" class="view-all-btn">
+              Explore Full Portfolio <span class="arrow">→</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
       <div class="container">
         <div class="cta-content">
           <h2>Ready to Transform Your DevOps?</h2>
-          <p>
-            Let's discuss how we can accelerate your development pipeline, improve reliability,
-            and scale your infrastructure with confidence.
-          </p>
+          <p>Let's discuss how we can accelerate delivery, reliability, and cloud platform maturity for your team.</p>
           <div class="cta-buttons">
-            <a href="contact.html" class="cta-primary">
-              💼 Schedule a Consultation
-            </a>
-            <a href="projects.html" class="cta-secondary">
-              📂 View All Projects
-            </a>
+            <a href="contact.html" class="cta-primary">💼 Schedule a Consultation</a>
+            <a href="resume-ats.html" target="_blank" rel="noopener noreferrer" class="cta-secondary">📄 ATS Resume</a>
           </div>
         </div>
       </div>
@@ -1882,9 +2018,9 @@
   <footer id="contact">
     <h3>Connect with Me</h3>
     <div class="social-links">
-      <a href="https://github.com/temitayocharles" target="_blank">GitHub</a>
-      <a href="https://hub.docker.com/u/temitayocharles" target="_blank">DockerHub</a>
-      <a href="https://linkedin.com/in/temitayocharles" target="_blank">LinkedIn</a>
+      <a href="https://github.com/temitayocharles" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://hub.docker.com/u/temitayocharles" target="_blank" rel="noopener noreferrer">DockerHub</a>
+      <a href="https://linkedin.com/in/temitayocharles" target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
     <p>&copy; 2025 Temitayo Charles | DevOps Engineer &amp; Container Enthusiast</p>
   </footer>

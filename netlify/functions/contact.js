@@ -3,10 +3,32 @@
 
 const nodemailer = require('nodemailer');
 
+function escapeHtml(value = '') {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function sanitizeHeader(value = '') {
+  return String(value).replace(/[\r\n]+/g, ' ').trim();
+}
+
 const handler = async (req, res) => {
+  const allowedOrigins = (process.env.ALLOWED_ORIGINS || process.env.ALLOWED_ORIGIN || '')
+    .split(',')
+    .map((o) => o.trim())
+    .filter(Boolean);
+  const requestOrigin = req.headers.origin || '';
+  const corsOrigin = allowedOrigins.length === 0
+    ? '*'
+    : (allowedOrigins.includes(requestOrigin) ? requestOrigin : allowedOrigins[0]);
+
   // CORS headers
   const headers = {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': corsOrigin,
     'Access-Control-Allow-Headers': 'Content-Type',
     'Access-Control-Allow-Methods': 'POST, OPTIONS'
   };
@@ -42,12 +64,17 @@ const handler = async (req, res) => {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
+    if (String(message).length > 2000) {
+      res.set(headers);
+      return res.status(400).json({ error: 'Message is too long (max 2000 characters)' });
+    }
+
     // Rate limiting (simple in-memory cache, use Redis for production)
     const clientIP = req.ip || req.connection.remoteAddress;
     // Implement rate limiting logic here
 
     // Configure email transporter
-    const transporter = nodemailer.createTransporter({
+    const transporter = nodemailer.createTransport({
       service: 'gmail', // or your preferred email service
       auth: {
         user: process.env.EMAIL_USER,
@@ -55,11 +82,19 @@ const handler = async (req, res) => {
       }
     });
 
+    const safeName = escapeHtml(name);
+    const safeEmail = escapeHtml(email);
+    const safeSubject = escapeHtml(subject || 'No subject provided');
+    const headerSubject = sanitizeHeader(subject || 'New Contact Form Submission');
+    const safeMessage = escapeHtml(message);
+    const safeCompany = company ? escapeHtml(company) : '';
+    const safeProjectType = projectType ? escapeHtml(projectType) : '';
+
     // Email to portfolio owner
     const ownerEmailOptions = {
       from: `"Portfolio Contact Form" <${process.env.EMAIL_USER}>`,
       to: 'temitayo_charles@yahoo.com',
-      subject: `Portfolio Contact: ${subject || 'New Contact Form Submission'}`,
+      subject: `Portfolio Contact: ${headerSubject}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #66d9ef; border-bottom: 2px solid #66d9ef; padding-bottom: 10px;">
@@ -68,16 +103,16 @@ const handler = async (req, res) => {
 
           <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #333; margin-top: 0;">Contact Details</h3>
-            <p><strong>Name:</strong> ${name}</p>
-            <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
-            ${company ? `<p><strong>Company:</strong> ${company}</p>` : ''}
-            ${projectType ? `<p><strong>Project Type:</strong> ${projectType}</p>` : ''}
-            <p><strong>Subject:</strong> ${subject || 'No subject provided'}</p>
+            <p><strong>Name:</strong> ${safeName}</p>
+            <p><strong>Email:</strong> <a href="mailto:${safeEmail}">${safeEmail}</a></p>
+            ${safeCompany ? `<p><strong>Company:</strong> ${safeCompany}</p>` : ''}
+            ${safeProjectType ? `<p><strong>Project Type:</strong> ${safeProjectType}</p>` : ''}
+            <p><strong>Subject:</strong> ${safeSubject}</p>
           </div>
 
           <div style="background: #fff; padding: 20px; border: 1px solid #e9ecef; border-radius: 8px;">
             <h3 style="color: #333; margin-top: 0;">Message</h3>
-            <p style="white-space: pre-wrap; line-height: 1.6;">${message}</p>
+            <p style="white-space: pre-wrap; line-height: 1.6;">${safeMessage}</p>
           </div>
 
           <div style="margin-top: 20px; padding: 15px; background: #e8f4fd; border-radius: 8px;">
@@ -89,9 +124,9 @@ const handler = async (req, res) => {
           </div>
 
           <div style="margin-top: 30px; text-align: center;">
-            <a href="mailto:${email}?subject=Re: ${encodeURIComponent(subject || 'Your portfolio inquiry')}"
+            <a href="mailto:${safeEmail}?subject=Re: ${encodeURIComponent(subject || 'Your portfolio inquiry')}"
                style="background: #66d9ef; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; display: inline-block;">
-              Reply to ${name}
+              Reply to ${safeName}
             </a>
           </div>
         </div>
@@ -109,7 +144,7 @@ const handler = async (req, res) => {
             Thank You for Reaching Out! 🚀
           </h2>
 
-          <p>Hi ${name},</p>
+          <p>Hi ${safeName},</p>
 
           <p>Thank you for your interest in my DevOps work! I've received your message and really appreciate you taking the time to reach out.</p>
 
@@ -140,7 +175,7 @@ const handler = async (req, res) => {
 
           <div style="margin-top: 30px; padding: 15px; background: #f8f9fa; border-radius: 8px; font-size: 14px; color: #666;">
             <p style="margin: 0;"><strong>Your message summary:</strong></p>
-            <p style="margin: 5px 0;"><strong>Subject:</strong> ${subject || 'No subject'}</p>
+            <p style="margin: 5px 0;"><strong>Subject:</strong> ${safeSubject}</p>
             <p style="margin: 5px 0;"><strong>Sent:</strong> ${new Date().toLocaleString()}</p>
           </div>
         </div>

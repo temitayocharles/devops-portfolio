@@ -77,7 +77,7 @@ app.get('*', (req, res, next) => {
     return next();
   }
 
-  const candidate = path.join(__dirname, `${req.path.replace(/^\\/+/, '')}.html`);
+  const candidate = path.join(__dirname, `${req.path.replace(/^\/+/, '')}.html`);
   if (fs.existsSync(candidate)) {
     return res.sendFile(candidate);
   }

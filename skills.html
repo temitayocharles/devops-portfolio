@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skills & Technologies • Temitayo Charles</title>
   <meta name="description" content="Technical skills in DevOps, cloud platforms, observability, and automation tools.">
+  <link rel="canonical" href="https://temitayocharles.online/skills.html">
   <link rel="stylesheet" href="style.css"/>
   <script src="js/dark-mode.js"></script>
+  <script src="js/shared-nav.js"></script>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <style>
     /* Global Styles */
@@ -535,15 +537,7 @@
   <header class="header-nav">
     <div class="nav-container">
       <a href="index.html" class="nav-logo">Temitayo Charles</a>
-      <nav class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about-me.html" class="nav-link">About</a>
-        <a href="skills.html" class="nav-link active">Skills</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        
-        <a href="blog-articles.html" class="nav-link">Blog</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-      </nav>
+      <nav class="nav-links"></nav>
       <div class="nav-actions">
         <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">
           🌙
@@ -555,15 +549,7 @@
 
   <!-- Mobile Sidebar -->
   <div class="global-sidebar" id="sidebar">
-    <nav class="sidebar-nav">
-      <a href="index.html" class="sidebar-nav-item">Home</a>
-      <a href="about-me.html" class="sidebar-nav-item">About</a>
-      <a href="skills.html" class="sidebar-nav-item active">Skills</a>
-      <a href="projects.html" class="sidebar-nav-item">Projects</a>
-      
-      <a href="blog-articles.html" class="sidebar-nav-item">Blog</a>
-      <a href="contact.html" class="sidebar-nav-item">Contact</a>
-    </nav>
+    <nav class="sidebar-nav"></nav>
   </div>
   <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
 
@@ -576,7 +562,7 @@
   </section>
 
   <!-- Main Content -->
-  <main class="main-content">
+  <main id="main-content" class="main-content">
     <!-- Skills Section -->
     <section class="skills-section">
       <div class="section-header">
@@ -1015,9 +1001,9 @@
     <div class="footer-content">
       <h3 class="footer-title">Connect with Me</h3>
       <div class="social-links">
-        <a href="https://github.com/temitayocharles" target="_blank" class="social-link">GitHub</a>
-        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
-        <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
+        <a href="https://github.com/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">DockerHub</a>
+        <a href="https://linkedin.com/in/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
       </div>
       <p class="footer-text">&copy; 2025 Temitayo Charles | Senior DevOps, Platform &amp; Reliability Engineer</p>
     </div>
@@ -1039,9 +1025,11 @@
       overlay.classList.remove('active');
     }
 
-    // Close sidebar when clicking on a link
-    document.querySelectorAll('.sidebar-nav-item').forEach(link => {
-      link.addEventListener('click', closeSidebar);
+    // Close sidebar when clicking on a link (supports dynamic nav rendering)
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.sidebar-nav-item')) {
+        closeSidebar();
+      }
     });
 
     // Smooth scrolling for anchor links

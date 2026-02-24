@@ -1,5 +1,18 @@
 // Simplified Sidebar Navigation JavaScript
 document.addEventListener('DOMContentLoaded', function() {
+    const primaryNavItems = window.SHARED_PRIMARY_NAV || [
+        { label: 'Home', href: 'index.html', icon: '🏠' },
+        { label: 'About', href: 'about-me.html', icon: '👤' },
+        { label: 'Skills', href: 'skills.html', icon: '⚡' },
+        { label: 'Projects', href: 'projects.html', icon: '🚀' },
+        { label: 'Blog', href: 'blog-articles.html', icon: '✍️' },
+        { label: 'Contact', href: 'contact.html', icon: '📧' }
+    ];
+
+    const primaryLinks = primaryNavItems.map((item) =>
+        `<a href="${item.href}" class="sidebar-nav-item" data-icon="${item.icon || '•'}">${item.label}</a>`
+    ).join('');
+
     // Create simplified sidebar HTML
     const sidebarHTML = `
         <div class="global-sidebar" id="sidebar">
@@ -9,11 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="sidebar-nav-group">
-                <a href="index.html" class="sidebar-nav-item" data-icon="🏠">Home</a>
-                <a href="about-me.html" class="sidebar-nav-item" data-icon="👤">About</a>
-                <a href="skills.html" class="sidebar-nav-item" data-icon="⚡">Skills</a>
-                <a href="projects.html" class="sidebar-nav-item" data-icon="🚀">Projects</a>
-                <a href="contact.html" class="sidebar-nav-item" data-icon="📧">Contact</a>
+                ${primaryLinks}
             </div>
 
             <div class="sidebar-nav-group">
@@ -31,9 +40,9 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
 
             <div class="sidebar-footer">
-                <a href="https://github.com/temitayocharles" target="_blank" class="social-link">GitHub</a>
-                <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
-                <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
+                <a href="https://github.com/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+                <a href="https://linkedin.com/in/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
+                <a href="https://hub.docker.com/u/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">DockerHub</a>
             </div>
         </div>
 

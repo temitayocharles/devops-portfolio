@@ -1,0 +1,76 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/about"
+  to = "/about-me.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about.html"
+  to = "/about-me.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog-articles.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog-articles"
+  to = "/blog-articles.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog.html"
+  to = "/blog-articles.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects-new.html"
+  to = "/projects.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resume"
+  to = "/resume-visual.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resume-ats"
+  to = "/resume-ats.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/resume-visual"
+  to = "/resume-visual.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/projects"
+  to = "/projects.html"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 301
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
