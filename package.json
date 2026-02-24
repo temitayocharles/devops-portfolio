@@ -8,24 +8,29 @@
     "dev": "nodemon server.js",
     "build": "echo 'No build step required'",
     "test": "jest --passWithNoTests",
+    "test:unit": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint netlify/functions/",
     "lint:fix": "eslint netlify/functions/ --fix",
-    "test:ui": "playwright test"
+    "test:ui": "playwright test",
+    "netlify:dev": "npx netlify-cli dev",
+    "lighthouse:ci": "npx @lhci/cli@0.14.x autorun --config=lighthouse.config.js",
+    "audit:prod": "npm audit --omit=dev",
+    "audit:full": "npm audit || true"
   },
   "dependencies": {
+    "@netlify/functions": "^5.1.2",
     "express": "^4.18.2",
-    "helmet": "^7.1.0",
     "express-rate-limit": "^7.1.5",
-    "nodemailer": "^6.9.8",
-    "@netlify/functions": "^2.4.1"
+    "helmet": "^7.1.0",
+    "nodemailer": "^8.0.1"
   },
   "devDependencies": {
-    "jest": "^29.7.0",
-    "eslint": "^8.56.0",
-    "netlify-cli": "^17.15.4",
-    "nodemon": "^3.0.1",
-    "@playwright/test": "^1.49.1"
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.49.1",
+    "eslint": "^10.0.2",
+    "jest": "^30.2.0",
+    "nodemon": "^3.0.1"
   },
   "keywords": [
     "devops",
@@ -41,6 +46,6 @@
     "url": "https://github.com/temitayocharles/devops-portfolio.git"
   },
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=20.12.2"
   }
 }
