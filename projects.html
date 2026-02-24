@@ -5,7 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projects • Temitayo Charles</title>
     <meta name="description" content="DevOps projects showcasing containerization, automation, CI/CD pipelines, and cloud infrastructure solutions.">
+    <link rel="canonical" href="https://temitayocharles.online/projects.html">
     <script src="js/dark-mode.js"></script>
+    <script src="js/shared-nav.js"></script>
   <link rel="stylesheet" href="style.css"/>
   <link rel="stylesheet" href="css/pagination.css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon">
@@ -763,6 +765,47 @@
       background: rgba(255, 255, 255, 0.02);
     }
 
+    .recruiter-quick-path {
+      max-width: 1200px;
+      margin: 0 auto 2rem;
+      padding: 1.25rem;
+      border: 1px solid rgba(166, 226, 46, 0.35);
+      border-radius: 12px;
+      background: linear-gradient(135deg, rgba(166, 226, 46, 0.1), rgba(102, 217, 239, 0.05));
+      text-align: center;
+    }
+
+    .recruiter-quick-path p {
+      margin-bottom: 0.85rem;
+      color: var(--text-primary);
+      opacity: 0.95;
+    }
+
+    .quick-path-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .quick-path-link {
+      text-decoration: none;
+      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(102, 217, 239, 0.35);
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+      transition: all 0.2s ease;
+    }
+
+    .quick-path-link:hover {
+      border-color: var(--primary-cyan);
+      color: var(--primary-cyan);
+      transform: translateY(-1px);
+    }
+
     .projects-section .section-header {
       text-align: center;
       margin-bottom: 2.5rem;
@@ -935,7 +978,6 @@
       color: var(--text-primary);
       box-shadow: 0 5px 20px rgba(102, 217, 239, 0.3);
     }
-    }
 
     .tier-tab .tab-icon {
       font-size: 1.1rem;
@@ -1006,7 +1048,7 @@
 
     /* Pagination */
     .pagination {
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       gap: 1rem;
@@ -1111,11 +1153,44 @@
       box-shadow: 0 8px 25px rgba(102, 217, 239, 0.4);
     }
 
+    .cta-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.8rem;
+    }
+
     /* Explore More Projects Section */
     .explore-more-section {
       padding: 5rem 0;
       background: rgba(255, 255, 255, 0.02);
       border-top: 1px solid rgba(102, 217, 239, 0.1);
+    }
+
+    .more-work-disclosure {
+      max-width: 1200px;
+      margin: 0 auto;
+      border: 1px solid rgba(102, 217, 239, 0.2);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.02);
+      padding: 1rem 1.25rem;
+    }
+
+    .more-work-disclosure > summary {
+      cursor: pointer;
+      color: var(--primary-cyan);
+      font-size: 1.05rem;
+      font-weight: 600;
+      list-style: none;
+      outline: none;
+    }
+
+    .more-work-disclosure > summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .more-work-content {
+      margin-top: 1.5rem;
     }
 
     .project-categories-container {
@@ -1446,11 +1521,6 @@
     <div class="nav-container">
       <a href="index.html" class="nav-logo">Temitayo Charles</a>
       <nav class="nav-links">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="about-me.html" class="nav-link">About</a>
-        <a href="skills.html" class="nav-link">Skills</a>
-        <a href="projects.html" class="nav-link active">Projects</a>
-        <a href="contact.html" class="nav-link">Contact</a>
         <button id="theme-toggle" onclick="toggleTheme()" class="theme-toggle" aria-label="Toggle dark mode" title="Toggle theme">🌙</button>
       </nav>
       <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
@@ -1459,13 +1529,7 @@
 
   <!-- Mobile Sidebar -->
   <div class="global-sidebar" id="sidebar">
-    <nav class="sidebar-nav">
-      <a href="index.html" class="sidebar-nav-item">Home</a>
-      <a href="about-me.html" class="sidebar-nav-item">About</a>
-      <a href="skills.html" class="sidebar-nav-item">Skills</a>
-      <a href="projects.html" class="sidebar-nav-item active">Projects</a>
-      <a href="contact.html" class="sidebar-nav-item">Contact</a>
-    </nav>
+    <nav class="sidebar-nav"></nav>
   </div>
   <div class="sidebar-overlay" id="sidebar-overlay" onclick="closeSidebar()"></div>
 
@@ -1478,7 +1542,16 @@
   </section>
 
   <!-- Main Content -->
-  <main class="main-content">
+  <main id="main-content" class="main-content">
+    <section class="recruiter-quick-path fade-in-up animate">
+      <p><strong>Quick Recruiter Path:</strong> review flagship outcomes first, then resume, then contact.</p>
+      <div class="quick-path-actions">
+        <a class="quick-path-link" href="#flagship-projects">See Flagship Projects</a>
+        <a class="quick-path-link" href="resume-ats.html" target="_blank" rel="noopener noreferrer">Open ATS Resume</a>
+        <a class="quick-path-link" href="contact.html">Book Intro Call</a>
+      </div>
+    </section>
+
     <!-- Project Preview Carousel -->
     <section class="carousel-section fade-in-up animate">
       <div class="carousel-container">
@@ -1584,6 +1657,8 @@
             <p class="preview-tech">Next.js • Stripe • 50K+ Bookings</p>
           </div>
         </div>
+      </div>
+    </section>
     <section class="metrics-section fade-in-up animate">
       <div class="metrics-container">
         <h2 class="metrics-title">Portfolio Impact</h2>
@@ -1618,25 +1693,25 @@
     </section>
 
     <!-- Projects Section Redesigned -->
-    <section class="projects-section fade-in-up animate">
+    <section class="projects-section fade-in-up animate" id="flagship-projects">
       <div class="section-header">
-        <h2 class="section-title">🎯 Featured Projects</h2>
-        <p class="section-subtitle">A curated portfolio organized by impact and complexity—from career-defining platforms to strategic case studies and foundational infrastructure work.</p>
+        <h2 class="section-title">🎯 Flagship Projects First</h2>
+        <p class="section-subtitle">Start with the strongest delivery outcomes, then expand into strategic and supporting work as needed.</p>
       </div>
 
       <!-- Tier Navigation -->
       <div class="tier-filter-tabs">
-        <button class="tier-tab active" data-tier="all">
-          <span class="tab-icon">📋</span> All Projects <span class="tab-count">(41)</span>
-        </button>
-        <button class="tier-tab" data-tier="tier-a">
-          <span class="tab-icon">⭐</span> Career-Defining <span class="tab-count">(8)</span>
+        <button class="tier-tab active" data-tier="tier-a">
+          <span class="tab-icon">🏆</span> Flagship First <span class="tab-count">(8)</span>
         </button>
         <button class="tier-tab" data-tier="tier-b">
           <span class="tab-icon">🎬</span> Strategic Cases <span class="tab-count">(10)</span>
         </button>
         <button class="tier-tab" data-tier="supporting">
           <span class="tab-icon">🧱</span> Supporting Work <span class="tab-count">(8)</span>
+        </button>
+        <button class="tier-tab" data-tier="all">
+          <span class="tab-icon">📋</span> All Projects <span class="tab-count">(41)</span>
         </button>
       </div>
 
@@ -1663,7 +1738,7 @@
           </div>
           <div class="project-card-links">
             <a href="project-gitops-platform-leadership.html" class="project-card-link primary">View Project</a>
-            <a href="https://github.com/temitayocharles/platform-gitops" target="_blank" class="project-card-link secondary">GitHub Repo</a>
+            <a href="https://github.com/temitayocharles/platform-gitops" target="_blank" rel="noopener noreferrer" class="project-card-link secondary">GitHub Repo</a>
           </div>
         </div>
 
@@ -2174,11 +2249,10 @@
     </section>
 
     <!-- Explore More Projects Section -->
-    <section class="explore-more-section fade-in-up animate">
-      <div class="section-header">
-        <h2 class="section-title">📚 Explore More Projects</h2>
-        <p class="section-subtitle">Reference implementations, educational tools, and specialized domain expertise</p>
-      </div>
+    <section class="explore-more-section fade-in-up animate" id="more-work">
+      <details class="more-work-disclosure">
+        <summary>📚 Browse More Work (30+ additional projects, demos, and guides)</summary>
+        <div class="more-work-content">
 
       <!-- Complete Project Ecosystems -->
       <div style="margin-bottom: 4rem;">
@@ -2204,21 +2278,21 @@
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
           <!-- AWS -->
           <div style="padding: 1.5rem; border: 1px solid rgba(255, 152, 0, 0.3); border-radius: 8px; background: rgba(255, 152, 0, 0.02);">
-            <h5 style="color: #ff9800; margin-bottom: 1rem;">AWS Ecosystem</h5>
+            <h5 id="aws" style="color: #ff9800; margin-bottom: 1rem;">AWS Ecosystem</h5>
             <a href="project-aws-monitoring.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Monitoring Stack + Gallery</a>
             <a href="project-eks-platform.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">EKS Platform</a>
             <a href="aws-solutions.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Solutions</a>
           </div>
           <!-- Azure -->
           <div style="padding: 1.5rem; border: 1px solid rgba(0, 120, 215, 0.3); border-radius: 8px; background: rgba(0, 120, 215, 0.02);">
-            <h5 style="color: #0078d7; margin-bottom: 1rem;">Azure Ecosystem</h5>
+            <h5 id="azure" style="color: #0078d7; margin-bottom: 1rem;">Azure Ecosystem</h5>
             <a href="project-azure-hybrid.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Hybrid Cloud + Gallery</a>
             <a href="project-azure-serverless.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Serverless</a>
             <a href="azure-solutions.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Solutions</a>
           </div>
           <!-- GCP -->
           <div style="padding: 1.5rem; border: 1px solid rgba(66, 133, 244, 0.3); border-radius: 8px; background: rgba(66, 133, 244, 0.02);">
-            <h5 style="color: #4285f4; margin-bottom: 1rem;">GCP Ecosystem</h5>
+            <h5 id="gcp" style="color: #4285f4; margin-bottom: 1rem;">GCP Ecosystem</h5>
             <a href="project-gcp-ml.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Machine Learning</a>
             <a href="project-gcp-serverless.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Serverless</a>
             <a href="gcp-solutions.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Solutions</a>
@@ -2231,12 +2305,12 @@
         <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">🐋 Containers & Orchestration</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
           <div style="padding: 1.5rem; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px; background: rgba(102, 217, 239, 0.02);">
-            <h5 style="color: #66d9ef; margin-bottom: 1rem;">Kubernetes & Security</h5>
+            <h5 id="kubernetes" style="color: #66d9ef; margin-bottom: 1rem;">Kubernetes & Security</h5>
             <a href="project-pritunl-vpn-helm.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Pritunl VPN Helm Chart</a>
             <a href="kubernetes-vpn-demo.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">VPN Demo + Gallery</a>
           </div>
           <div style="padding: 1.5rem; border: 1px solid rgba(166, 226, 46, 0.3); border-radius: 8px; background: rgba(166, 226, 46, 0.02);">
-            <h5 style="color: #a6e22e; margin-bottom: 1rem;">Infrastructure Automation</h5>
+            <h5 id="docker" style="color: #a6e22e; margin-bottom: 1rem;">Infrastructure Automation</h5>
             <a href="project-docker-ansible-role.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Docker & Ansible</a>
             <a href="project-dockernet-project.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">Docker Networking</a>
           </div>
@@ -2248,7 +2322,7 @@
         <h3 style="color: #66d9ef; font-size: 1.5rem; margin-bottom: 2rem; text-align: left;">⚙️ DevOps Tools & CI/CD</h3>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
           <div style="padding: 1.5rem; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px; background: rgba(102, 217, 239, 0.02);">
-            <h5 style="color: #66d9ef; margin-bottom: 1rem;">Pipeline & Automation</h5>
+            <h5 id="devops" style="color: #66d9ef; margin-bottom: 1rem;">Pipeline & Automation</h5>
             <a href="project-enterprise-cicd.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Enterprise CI/CD</a>
             <a href="project-secrets-management.html" class="mini-project-link" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem;">Secrets Management</a>
             <a href="ci.html" class="mini-project-link" style="display: block; font-size: 0.9rem;">CI/CD Guide</a>
@@ -2288,12 +2362,18 @@
           <a href="blog-articles.html" class="mini-project-link" style="padding: 1rem; text-align: center; border: 1px solid rgba(102, 217, 239, 0.3); border-radius: 8px;">✍️ Blog</a>
         </div>
       </div>
+      </div>
+      </details>
     </section>
     <section class="cta-section fade-in-up animate">
       <div class="cta-container">
         <h2 class="cta-title">Let's Build Something Amazing</h2>
         <p class="cta-description">Ready to discuss how these solutions can transform your infrastructure?</p>
-        <a href="contact.html" class="cta-button">🚀 Get In Touch</a>
+        <div class="cta-actions">
+          <a href="contact.html" class="cta-button">🚀 Get In Touch</a>
+          <a href="resume-ats.html" target="_blank" rel="noopener noreferrer" class="cta-button">📄 ATS Resume</a>
+          <a href="#flagship-projects" class="cta-button">🏆 Flagship Projects</a>
+        </div>
       </div>
     </section>
   </main>
@@ -2303,9 +2383,9 @@
     <div class="footer-content">
       <h3 class="footer-title">Connect with Me</h3>
       <div class="social-links">
-        <a href="https://github.com/temitayocharles" target="_blank" class="social-link">GitHub</a>
-        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" class="social-link">DockerHub</a>
-        <a href="https://linkedin.com/in/temitayocharles" target="_blank" class="social-link">LinkedIn</a>
+        <a href="https://github.com/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">GitHub</a>
+        <a href="https://hub.docker.com/u/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">DockerHub</a>
+        <a href="https://linkedin.com/in/temitayocharles" target="_blank" rel="noopener noreferrer" class="social-link">LinkedIn</a>
       </div>
       <p class="footer-text">&copy; 2025 Temitayo Charles | Senior DevOps, Platform &amp; Reliability Engineer</p>
     </div>
@@ -2474,9 +2554,11 @@
       overlay.classList.remove('active');
     }
 
-    // Close sidebar when clicking on a link
-    document.querySelectorAll('.sidebar-nav-item').forEach(link => {
-      link.addEventListener('click', closeSidebar);
+    // Close sidebar when clicking on a link (supports dynamic nav rendering)
+    document.addEventListener('click', function (e) {
+      if (e.target.closest('.sidebar-nav-item')) {
+        closeSidebar();
+      }
     });
 
     // Scroll to section function
@@ -2677,9 +2759,6 @@
       // Setup metrics animation
       setupMetricsAnimation();
 
-      // Initialize pagination
-      initializePagination();
-
       // Initialize tier filtering
       initTierFiltering();
     });
@@ -2703,6 +2782,21 @@
       const filterTabs = document.querySelectorAll('.tier-tab');
       const projectCards = document.querySelectorAll('.project-card');
 
+      function applyTierFilter(selectedTier) {
+        projectCards.forEach(card => {
+          const cardTier = card.getAttribute('data-tier') || 'supporting';
+
+          if (selectedTier === 'all' || cardTier === selectedTier) {
+            card.style.display = '';
+            setTimeout(() => {
+              card.style.opacity = '1';
+            }, 10);
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
       filterTabs.forEach(tab => {
         tab.addEventListener('click', function() {
           const selectedTier = this.getAttribute('data-tier');
@@ -2711,29 +2805,7 @@
           filterTabs.forEach(t => t.classList.remove('active'));
           this.classList.add('active');
 
-          // Filter cards
-          projectCards.forEach(card => {
-            const tierBadge = card.querySelector('.project-tier-badge');
-            let cardTier = 'supporting';
-            
-            if (tierBadge) {
-              if (tierBadge.classList.contains('tier-a')) {
-                cardTier = 'tier-a';
-              } else if (tierBadge.classList.contains('tier-b')) {
-                cardTier = 'tier-b';
-              }
-            }
-
-            if (selectedTier === 'all' || cardTier === selectedTier) {
-              card.style.display = '';
-              // Trigger animation
-              setTimeout(() => {
-                card.style.opacity = '1';
-              }, 10);
-            } else {
-              card.style.display = 'none';
-            }
-          });
+          applyTierFilter(selectedTier);
 
           // Scroll to projects section
           const projectsGrid = document.querySelector('.projects-grid');
@@ -2748,19 +2820,10 @@
           }
         });
       });
-    }
 
-    // Initialize tier filtering on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      initTierFiltering();
-      
-      // Show all cards by default
-      const projectCards = document.querySelectorAll('.project-card');
-      projectCards.forEach(card => {
-        card.style.display = '';
-        card.style.opacity = '1';
-      });
-    });
+      const defaultActiveTab = document.querySelector('.tier-tab.active');
+      applyTierFilter(defaultActiveTab ? defaultActiveTab.getAttribute('data-tier') : 'tier-a');
+    }
 
   </script>
 
